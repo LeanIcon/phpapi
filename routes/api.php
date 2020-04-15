@@ -32,8 +32,12 @@ Route::get('coviddata', 'ConvidDataController@getCovidData');
 =======
 <<<<<<< HEAD
 Route::apiResource('region', 'RegionController');
+<<<<<<< HEAD
+Route::apiResource('town', 'TownController');
+=======
 Route::apiResource('customer','CustomerController');
 Route::get('coviddata', 'ConvidDataController@getCovidData');
+>>>>>>> dev
 =======
 Route::apiResource('customer','CustomerController');
 
