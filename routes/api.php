@@ -20,5 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::apiResource('post', 'PostController');
+<<<<<<< HEAD
 Route::apiResource('region', 'RegionController');
 Route::apiResource('town', 'TownController');
+=======
+Route::apiResource('customer','CustomerController');
+
+Route::get('coviddata', 'ConvidDataController@getCovidData');
+>>>>>>> dev
