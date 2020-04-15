@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::apiResource('post', 'PostController');
+<<<<<<< HEAD
 Route::apiResource('customer','CustomerController');
 
 Route::get('coviddata', 'ConvidDataController@getCovidData');
@@ -28,3 +29,14 @@ Route::apiResource('town', 'TownController');
 Route::apiResource('equipment', 'EquipmentController');
 Route::apiResource('customer','CustomerController');
 Route::get('coviddata', 'ConvidDataController@getCovidData');
+=======
+<<<<<<< HEAD
+Route::apiResource('region', 'RegionController');
+Route::apiResource('customer','CustomerController');
+Route::get('coviddata', 'ConvidDataController@getCovidData');
+=======
+Route::apiResource('customer','CustomerController');
+
+Route::get('coviddata', 'ConvidDataController@getCovidData');
+>>>>>>> dev
+>>>>>>> dev
