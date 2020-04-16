@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
+    Route::get('dashboard', 'DashboardController@loadDashboard')->name('dashboard.index');
+    Route::resource('post', 'PostController');
+});
+

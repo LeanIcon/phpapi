@@ -88,6 +88,7 @@
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laravel-news.com">News</a>
                     <a href="https://blog.laravel.com">Blog</a>
+                    <a href="{{route('dashboard.index')}}">Login</a>
 
                 </div>
             </div>
