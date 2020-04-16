@@ -5,12 +5,8 @@ namespace App\Models;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Category extends ApiModel
 {
-    //
-
-    /**
-     * Create the slug from the title
-     */
-
+    protected $table = 'product_category';
+    protected $fillable = ['name', 'type', 'status', 'created_at', 'updated_at'];
 }
