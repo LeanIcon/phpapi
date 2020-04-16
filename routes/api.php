@@ -20,27 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::apiResource('post', 'PostController');
-<<<<<<< HEAD
-Route::apiResource('customer','CustomerController');
-
-Route::get('coviddata', 'ConvidDataController@getCovidData');
 Route::apiResource('region', 'RegionController');
 Route::apiResource('town', 'TownController');
-Route::apiResource('equipment', 'EquipmentController');
 Route::apiResource('customer','CustomerController');
-Route::get('coviddata', 'ConvidDataController@getCovidData');
-=======
-<<<<<<< HEAD
-Route::apiResource('region', 'RegionController');
-<<<<<<< HEAD
-Route::apiResource('town', 'TownController');
-=======
-Route::apiResource('customer','CustomerController');
-Route::get('coviddata', 'ConvidDataController@getCovidData');
->>>>>>> dev
-=======
-Route::apiResource('customer','CustomerController');
+Route::apiResource('category','CategoryController');
 
 Route::get('coviddata', 'ConvidDataController@getCovidData');
->>>>>>> dev
->>>>>>> dev
