@@ -111,9 +111,9 @@
                                 <h6 class="menu-title">Analytics</h6>       
                             </div>
                             <ul class="nav">
-                                <li class="nav-item"><a class="nav-link" href="../analytics/analytics-index.html"><i class="dripicons-meter"></i>Dashboard</a></li>
-                                <li class="nav-item"><a class="nav-link" href="../analytics/analytics-customers.html"><i class="dripicons-user-group"></i>Customers</a></li>
-                                <li class="nav-item"><a class="nav-link" href="../analytics/analytics-reports.html"><i class="dripicons-document"></i>Reports</a></li> 
+                                <li class="nav-item"><a class="nav-link" href="#"><i class="dripicons-meter"></i>Dashboard</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#"><i class="dripicons-user-group"></i>Customers</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#"><i class="dripicons-document"></i>Reports</a></li> 
                             </ul>
                         </div><!-- end Analytic -->
                         

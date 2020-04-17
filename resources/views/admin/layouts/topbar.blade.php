@@ -4,7 +4,7 @@
             <!-- LOGO -->
             <div class="topbar-left">
                 <a href="{{route('dashboard.index')}}" class="logo">
-                    <span>
+                    {{-- <span>
                         <img src="{{url('admin/images/logo-sm.png')}}" alt="logo-small" class="logo-sm">
                     </span>
                     <span>
@@ -12,7 +12,8 @@
                     </span>
                     <span>
                         <img src="{{url('admin/images/logo.png')}}" alt="logo-large" class="logo-light">
-                    </span>
+                    </span> --}}
+                    NNURO
                 </a>
             </div>
             <!--end logo-->
