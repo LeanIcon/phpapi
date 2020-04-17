@@ -163,6 +163,13 @@
                                         <li><a href="{{route('post.index')}}">Post List</a></li>
                                         <li><a href="#">Post Category</a></li>
                                     </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Region</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                                    <ul class="nav-second-level" aria-expanded="false">
+                                        <li><a href="{{route('region.index')}}">Region List</a></li>
+                                        <li><a href="#">Update Region</a></li>
+                                    </ul>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!-- end Others -->
