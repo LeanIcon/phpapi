@@ -177,6 +177,13 @@
                                         <li><a href="{{route('town.index')}}">Town List</a></li>
                                         <li><a href="#">Town Region</a></li>
                                     </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Equipment</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                                    <ul class="nav-second-level" aria-expanded="false">
+                                        <li><a href="{{route('equipment.index')}}">Equipment List</a></li>
+                                        <li><a href="#">Equipment Update</a></li>
+                                    </ul>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!-- end Others -->
