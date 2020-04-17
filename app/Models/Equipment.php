@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Equipment extends ApiModel
 {
     protected $table = 'equipments';
-    protected $fillable = ['model', 'status', 'created_at', 'updated_at'];
+    protected $fillable = ['model', 'status'];
 }
