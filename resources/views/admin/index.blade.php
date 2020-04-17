@@ -3,7 +3,9 @@
 <div class="page-wrapper">
 @include('admin.layouts.side-bar')
     @yield('content')
-@include('admin.layouts.footer')
+<footer class="footer text-center text-sm-left">
+    &copy; {{date('Y')}} NNURO <span class="text-muted d-none d-sm-inline-block float-right">LITT</span>
+</footer><!--end footer-->
 </div>
 <!-- end page-wrapper -->
 
