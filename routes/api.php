@@ -21,5 +21,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('post', 'PostController');
 Route::apiResource('customer','CustomerController');
+<<<<<<< Updated upstream
+=======
+Route::apiResource('category','CategoryController');
+Route::apiResource('product','ProductController');
+Route::apiResource('manufacture','ManufactureController');
+>>>>>>> Stashed changes
 
 Route::get('coviddata', 'ConvidDataController@getCovidData');

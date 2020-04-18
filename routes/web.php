@@ -16,3 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+<<<<<<< Updated upstream
+=======
+
+
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
+    Route::get('dashboard', 'DashboardController@loadDashboard')->name('dashboard.index');
+    Route::resource('post', 'PostController');
+    Route::resource('manufacture', 'ManufactureController');
+    
+});
+
+>>>>>>> Stashed changes
