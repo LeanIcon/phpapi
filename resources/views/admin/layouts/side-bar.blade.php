@@ -153,8 +153,8 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Products</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                                     <ul class="nav-second-level" aria-expanded="false">
-                                        <li><a href="#">Basic</a></li>
-                                        <li><a href="#">Basic</a></li>
+                                        <li><a href="{{route('product.index')}}">Product List</a></li>
+                                        
                                     </ul>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
