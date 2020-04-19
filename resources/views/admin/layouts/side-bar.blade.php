@@ -58,7 +58,7 @@
                             </svg>
                         </a><!--end MetricaCRM--> --}}
 
-                        <a href="#MetricaOthers" class="nav-link leftmenu-sm-item bg-primary shadow-primary" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Sections">
+                        <a href="#MetricaOthers" id="loadOthers" class="nav-link leftmenu-sm-item bg-primary shadow-primary" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Sections">
                             <svg class="nav-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                 <path d="M70.7 164.5l169.2 81.7c4.4 2.1 10.3 3.2 16.1 3.2s11.7-1.1 16.1-3.2l169.2-81.7c8.9-4.3 8.9-11.3 0-15.6L272.1 67.2c-4.4-2.1-10.3-3.2-16.1-3.2s-11.7 1.1-16.1 3.2L70.7 148.9c-8.9 4.3-8.9 11.3 0 15.6z"/>
                                 <path class="svg-primary" d="M441.3 248.2s-30.9-14.9-35-16.9-5.2-1.9-9.5.1S272 291.6 272 291.6c-4.5 2.1-10.3 3.2-16.1 3.2s-11.7-1.1-16.1-3.2c0 0-117.3-56.6-122.8-59.3-6-2.9-7.7-2.9-13.1-.3l-33.4 16.1c-8.9 4.3-8.9 11.3 0 15.6l169.2 81.7c4.4 2.1 10.3 3.2 16.1 3.2s11.7-1.1 16.1-3.2l169.2-81.7c9.1-4.2 9.1-11.2.2-15.5z"/>
@@ -162,6 +162,41 @@
                                     <ul class="nav-second-level" aria-expanded="false">
                                         <li><a href="{{route('post.index')}}">Post List</a></li>
                                         <li><a href="#">Post Category</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Region</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                                    <ul class="nav-second-level" aria-expanded="false">
+                                        <li><a href="{{route('region.index')}}">Region List</a></li>
+                                        <li><a href="#">Update Region</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Town</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                                    <ul class="nav-second-level" aria-expanded="false">
+                                        <li><a href="{{route('town.index')}}">Town List</a></li>
+                                        <li><a href="#">Town Region</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Equipment</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                                    <ul class="nav-second-level" aria-expanded="false">
+                                        <li><a href="{{route('equipment.index')}}">Equipment List</a></li>
+                                        <li><a href="#">Equipment Update</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Product Category</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                                    <ul class="nav-second-level" aria-expanded="false">
+                                        <li><a href="{{route('product_category.index')}}">Category List</a></li>
+                                        <li><a href="#">Category Update</a></li>
+                                    </ul>
+                                </li><!--end nav-item-->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Drugs</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                                    <ul class="nav-second-level" aria-expanded="false">
+                                        <li><a href="{{route('drug.index')}}">Drugs List</a></li>
+                                        <li><a href="#">Drugs Category</a></li>
                                     </ul>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->

@@ -5,12 +5,8 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class DrugController extends Controller
 {
-    public $pageTitle = 'Post';
-    public function __construct()
-    {
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.post.index', ['pageTitle' => $this->pageTitle]);
+        $pageTitle = 'Drugs';
+        return view('admin.pages.drug.index', compact('pageTitle'));
     }
 
     /**
@@ -28,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.post.add');
+        return view('admin.pages.drug.add');
     }
 
     /**

@@ -9,10 +9,10 @@
             <div class="float-right">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0);">NNURO</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">{{$pageTitle ?? 'Current Page'}}</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Product Category</a></li>
                 </ol>
             </div>
-            <h4 class="page-title">{{$pageTitle ?? 'Current Page'}}</h4>
+            <h4 class="page-title">Product Category</h4>
         </div><!--end page-title-box-->
     </div><!--end col-->
 </div>
@@ -116,16 +116,16 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a type="button" href="{{route('post.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
-                <h4 class="header-title mt-0 mb-3">All {{$pageTitle ?? 'Current Page'}}</h4> 
+                <a type="button" href="{{route('product_category.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
+                <h4 class="header-title mt-0 mb-3">All Product's Category</h4> 
                 <div class="table-responsive dash-social">
                     <table id="datatable" class="table">
                         <thead class="thead-light">
                         <tr>
-                            <th>Lead</th>
-                            <th>Email</th>
-                            <th>Phone No</th>                                                    
-                            <th>Company</th>
+                           <!-- <th>Lead</th>
+                            <th>Email</th>-->
+                            <th>Category Name</th>                                                    
+                            <th>Type</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr><!--end tr-->
@@ -134,8 +134,8 @@
                         <tbody>
                         <tr>
                             <td><img src="../assets/images/users/user-10.jpg" alt="" class="thumb-sm rounded-circle mr-2">Donald Gardner</td>
-                            <td>xyx@gmail.com</td>
-                            <td>+123456789</td>
+                           <!-- <td>xyx@gmail.com</td>
+                            <td>+123456789</td>-->
                             <td>Starbucks coffee</td>
                             <td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>
                             <td>                                                                                                       
@@ -143,7 +143,61 @@
                                 <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
                             </td>
                         </tr><!--end tr-->
-                       
+                        <tr>
+                            <td><img src="../assets/images/users/user-9.jpg" alt="" class="thumb-sm rounded-circle mr-2">Matt Rosales</td>
+                          <!--   <td>xyx@gmail.com</td>
+                            <td>+123456789</td>-->
+                            <td>Mac Donald</td>
+                            <td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>
+                            <td>                                                       
+                                <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                            </td>
+                        </tr><!--end tr-->
+                        <tr>
+                            <td><img src="../assets/images/users/user-8.jpg" alt="" class="thumb-sm rounded-circle mr-2">Michael Hill</td>
+                           <!--  <td>xyx@gmail.com</td>
+                            <td>+123456789</td>-->
+                            <td>Life Good</td>
+                            <td> <span class="badge badge-md badge-soft-danger">Lost</span></td>
+                            <td>                                                       
+                                <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                            </td>
+                        </tr><!--end tr-->
+                        <tr>
+                            <td><img src="../assets/images/users/user-7.jpg" alt="" class="thumb-sm rounded-circle mr-2">Nancy Flanary</td>
+                          <!--   <td>xyx@gmail.com</td>
+                            <td>+123456789</td>-->
+                            <td>Flipcart</td>
+                            <td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>
+                            <td>                                                       
+                                <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                            </td>
+                        </tr><!--end tr-->
+                        <tr>
+                            <td><img src="../assets/images/users/user-6.jpg" alt="" class="thumb-sm rounded-circle mr-2">Dorothy Key</td>
+                          <!--   <td>xyx@gmail.com</td>
+                            <td>+123456789</td>-->
+                            <td>Adidas</td>
+                            <td> <span class="badge badge-md badge-soft-primary">Follow Up</span></td>
+                            <td>                                                       
+                                <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                            </td>
+                        </tr><!--end tr-->
+                        <tr>
+                            <td><img src="../assets/images/users/user-5.jpg" alt="" class="thumb-sm rounded-circle mr-2">Joseph Cross</td>
+                           <!--  <td>xyx@gmail.com</td>
+                            <td>+123456789</td>-->
+                            <td>Reebok</td>
+                            <td> <span class="badge badge-md badge-soft-success">Converted</span></td>
+                            <td>                                                       
+                                <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                            </td>
+                        </tr><!--end tr-->
                                                                         
                         </tbody>
                     </table>                    

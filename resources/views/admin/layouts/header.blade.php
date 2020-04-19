@@ -22,6 +22,8 @@
         <link href="{{url('admin/css/metisMenu.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{url('admin/css/style.css')}}" rel="stylesheet" type="text/css" />
 
+        @yield('pages-css')
+
     </head>
 
     <body class="dark-topbar">
