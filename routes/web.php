@@ -22,5 +22,9 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('dashboard', 'DashboardController@loadDashboard')->name('dashboard.index');
     Route::resource('post', 'PostController');
+    Route::resource('region', 'RegionController');
+    Route::resource('town', 'TownController');
+    Route::resource('equipment', 'EquipmentController');
+    Route::resource('product_category', 'Product_CategoryController');
 });
 
