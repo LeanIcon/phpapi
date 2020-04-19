@@ -24,5 +24,13 @@
 <!-- App js -->
 <script src="{{url('admin/js/app.js')}}"></script>
 
+<script>
+    $(document).ready(function(){
+       
+    })
+</script>
+
+@yield('pages-js')
+
 </body>
 </html>

@@ -26,5 +26,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::resource('town', 'TownController');
     Route::resource('equipment', 'EquipmentController');
     Route::resource('product_category', 'Product_CategoryController');
+    Route::resource('drug', 'DrugController');
 });
 
