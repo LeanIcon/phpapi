@@ -4,8 +4,11 @@ namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Products extends ApiModel
+class Product extends ApiModel
 {
-    protected $table = "Product";
-    protected $fillable = ['name', 'photo', 'manufacture_id', 'equipment_id', 'category_id']
+    protected $table = "products";
+    protected $fillable = ['name', 'photo', 'manufacture_id', 'equipment_id', 'category_id'];
 }
+
+
+// product hello
