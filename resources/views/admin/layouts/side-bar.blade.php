@@ -142,6 +142,7 @@
                                         <li><a href="#">Inbox</a></li>
                                         <li><a href="#">Read Email</a></li>
                                     </ul>
+                                    <!-- -->
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
                                     <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Retailers</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
