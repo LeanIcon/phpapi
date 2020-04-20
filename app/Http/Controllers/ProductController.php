@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class Product extends ApiController
+class ProductController extends ApiController
 {
     public __construct(Product $product){
 
