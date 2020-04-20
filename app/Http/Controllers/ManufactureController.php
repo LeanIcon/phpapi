@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Manufacture;
 use Illuminate\Http\Request;
 
-class manufacture extends ApiController
+class ManufactureController extends ApiController
 {
     
     public function __construct(Manufacture $manufacture){

@@ -123,7 +123,7 @@
                             </div>
                             <ul class="nav metismenu" id="main_menu_side_nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="dripicons-mail"></i><span class="w-100">Manufacturers</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                                    <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Manufacturers</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                                     <ul class="nav-second-level" aria-expanded="false">
                                         <li><a href="{{route('manufacture.index')}}">Manufacturers List</a></li>
                                         <li><a href="#">Others</a></li>
@@ -142,6 +142,7 @@
                                         <li><a href="#">Inbox</a></li>
                                         <li><a href="#">Read Email</a></li>
                                     </ul>
+                                    <!-- -->
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
                                     <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Retailers</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
