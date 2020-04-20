@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class manufacture extends ApiModel
+class Manufacture extends ApiModel
 {
-    protected $table = 'Manufacture';
-    protected $fillable = ['name', 'status', 'created_at', 'updated_at'];
+    protected $table = 'manufactures';
+    protected $fillable = ['name', 'status'];
 }
