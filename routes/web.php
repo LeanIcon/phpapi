@@ -29,3 +29,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::resource('drug', 'DrugController');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
