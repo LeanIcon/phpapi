@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends ApiController
 {
-    public __construct(Product $product){
+    public  function __construct(Product $product){
 
     	
     	parent::__construct($product);
