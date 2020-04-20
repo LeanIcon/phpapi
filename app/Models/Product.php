@@ -9,3 +9,6 @@ class Product extends ApiModel
     protected $table = "products";
     protected $fillable = ['name', 'photo', 'manufacture_id', 'equipment_id', 'category_id'];
 }
+
+
+// product
