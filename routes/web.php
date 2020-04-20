@@ -16,3 +16,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
+    Route::get('dashboard', 'DashboardController@loadDashboard')->name('dashboard.index');
+    Route::resource('post', 'PostController');
+    Route::resource('manufacture', 'ManufactureController');
+    Route::resource('product', 'ProductController');
+    Route::resource('region', 'RegionController');
+    Route::resource('town', 'TownController');
+    Route::resource('equipment', 'EquipmentController');
+    Route::resource('product_category', 'Product_CategoryController');
+    Route::resource('drug', 'DrugController');
+});
+
