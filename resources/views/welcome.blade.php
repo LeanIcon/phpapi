@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome to LITT Medical Services
+                    Welcome to NNURO Medical Services
                 </div>
 
                 <div class="links">
