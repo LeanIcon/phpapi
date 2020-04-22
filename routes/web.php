@@ -34,6 +34,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::resource('post_category', 'PostCategoryController');
     
     Route::resource('wholesaler.drugs', 'WholeSalerDrugsController');
+    Route::get('register', 'RegisterFormController@loadRegisterForm')->name('register.form');
 });
 
 
