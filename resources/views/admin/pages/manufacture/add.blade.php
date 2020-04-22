@@ -20,12 +20,13 @@
 <div class="row">
     <div class="col-lg-8 card">
         <div class="card-body">
-            <form>
+            <form method="POST" action="{{route('manufacture.store')}}" enctype="multipart/form-data" >
+                @csrf
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="LeadName">Name</label>
-                            <input type="text" class="form-control" id="LeadName" required="">
+                            <input type="text" class="form-control" name="name" id="LeadName" required="">
                         </div>
                     </div>
                 </div>
@@ -33,13 +34,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="Leadstatus">Status</label>
-                            <input type="text" class="form-control" id="Leadstatus" required="">
+                            <input type="text" class="form-control" name="status" id="Leadstatus" required="">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                 </div> 
-                <button type="button" class="btn btn-sm btn-primary">Save</button>  
+                <button type="submit" class="btn btn-sm btn-primary">Save</button>  
                 <button type="button" class="btn btn-sm btn-danger">Cancel</button>             
             </form>  
         </div>

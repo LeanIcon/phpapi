@@ -15,16 +15,16 @@
                 <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Manufacturers</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('manufacture.index')}}">Manufacturers List</a></li>
-                    <li><a href="#">Others</a></li>
+                    <!--<li><a href="#">Others</a></li>-->
                 </ul>
             </li><!--end nav-item-->
-            <li class="nav-item">
+           <!-- <li class="nav-item">
                 <a class="nav-link" href="#"><i class="dripicons-mail"></i><span class="w-100">Equipments</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <li><a href="#">Inbox</a></li>
                     <li><a href="#">Read Email</a></li>
                 </ul>
-            </li><!--end nav-item-->
+            </li>--><!--end nav-item-->
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="dripicons-mail"></i><span class="w-100">Wholesaler</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
@@ -48,32 +48,32 @@
                 </ul>
             </li><!--end nav-item-->
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Region</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                <ul class="nav-second-level" aria-expanded="false">
+                <a class="nav-link" href="{{route('region.index')}}"><i class="dripicons-view-list-large"></i><span class="w-100">Region</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <!--<ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('region.index')}}">Region List</a></li>
                     <li><a href="#">Update Region</a></li>
-                </ul>
+                </ul>-->
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Town</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                <ul class="nav-second-level" aria-expanded="false">
+                <a class="nav-link" href="{{route('town.index')}}"><i class="dripicons-view-list-large"></i><span class="w-100">Town</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <!--<ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('town.index')}}">Town List</a></li>
                     <li><a href="#">Town Region</a></li>
-                </ul>
+                </ul>-->
             </li>
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Equipment</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('equipment.index')}}">Equipment List</a></li>
                     <li><a href="#">Equipment Update</a></li>
                 </ul>
-            </li>
+            </li>-->
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Product Category</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                <ul class="nav-second-level" aria-expanded="false">
+                <a class="nav-link" href="{{route('product_category.index')}}"><i class="dripicons-view-list-large"></i><span class="w-100">Product Category</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <!--<ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('product_category.index')}}">Category List</a></li>
                     <li><a href="#">Category Update</a></li>
-                </ul>
+                </ul>-->
             </li><!--end nav-item-->
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Drugs</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
@@ -85,7 +85,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">News / Articles</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
-                    <li><a href="{{route('post.index')}}">Post List</a></li>
+                    <li><a href="{{route('post.index')}}">News Post</a></li>
                     <li><a href="{{route('post_category.index')}}">Post Category</a></li>
                 </ul>
             </li>

@@ -9,10 +9,10 @@
             <div class="float-right">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0);">NNURO</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">Manufacturer</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Manufacturers</a></li>
                 </ol>
             </div>
-            <h4 class="page-title">Manufacturer</h4>
+            <h4 class="page-title">Manufacturers</h4>
         </div><!--end page-title-box-->
     </div><!--end col-->
 </div>
@@ -23,7 +23,7 @@
             <div class="card-body profile-card">                                    
                 <div class="media align-items-center">                                                                               
                     <div class="media-body ml-3 align-self-center">
-                        <h5 class="pro-title">Nnuro</h5>
+                        <h5 class="pro-title">Jon Doe</h5>
                         <p class="mb-1 text-muted">Admin</p>                                              
                     </div>
                     <div class="action-btn">
@@ -47,8 +47,8 @@
                             </div>
                             <div class="col-8 align-self-center text-right">
                                 <div class="ml-2">
-                                    <p class="mb-1 text-muted">Total Manufacturers</p>
-                                    <h4 class="mt-0 mb-1 text-warning font-22">1</h4>                                                                                                                                           
+                                    <p class="mb-1 text-muted">Total Leads</p>
+                                    <h4 class="mt-0 mb-1 text-warning font-22">1935</h4>                                                                                                                                           
                                 </div>
                             </div>                    
                         </div>
@@ -72,7 +72,7 @@
                                 <div class="ml-2">
                                     <div class="ml-2">
                                         <p class="mb-0 text-muted">Open</p>
-                                        <h4 class="mt-0 mb-1 d-inline-block text-purple font-22">1</h4>
+                                        <h4 class="mt-0 mb-1 d-inline-block text-purple font-22">1240</h4>
                                         <span class="badge badge-soft-success mt-1 shadow-none">Active</span>
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
                             <div class="col-8 align-self-center text-right">
                                 <div class="ml-2">
                                     <p class="mb-0 text-muted">Close</p>
-                                    <h4 class="mt-0 mb-1 d-inline-block text-pink font-22">0</h4>                                                                                                                                   
+                                    <h4 class="mt-0 mb-1 d-inline-block text-pink font-22">240</h4>                                                                                                                                   
                                 </div>
                             </div>
                         </div>
@@ -122,31 +122,44 @@
                     <table id="datatable" class="table">
                         <thead class="thead-light">
                         <tr>
-                            <th>Name</th>
+                           <!-- <th>Lead</th>-->
+                            <th>ID</th>
+                            <th>Name</th>                                                    
+                            <!--<th>Company</th>-->
                             <th>Status</th>
-                           
+                            <th>Action</th>
                         </tr><!--end tr-->
                         </thead>
 
                         <tbody>
-                        <tr>
-                            <td><img src="../assets/images/users/user-10.jpg" alt="" class="thumb-sm rounded-circle mr-2">Nnuro Pharma</td>
-                            <td>Active</td>
-                           
-                                                                                                                                  
-                                <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                            </td>
-                        
-                                                                        
+                            @if ($postManufacture->isNotEmpty())
+                            @foreach ($postManufacture ?? '' as $manufacture)
+                                <tr>
+                                    <td>{{$manufacture->id}}</td>
+                                    <td>{{$manufacture->name}}</td>
+                                    <td>{{$manufacture->status}}</td>
+                                    <!--<td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>-->
+                                    <td>
+                                        <a href="{{route('manufacture.edit', $manufacture->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                        <a href="{{route('manufacture.show', $manufacture->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>
+                                        {{-- <a id="deleteAction"><i class="fas fa-trash-alt text-danger font-16"></i></a> --}}
+                                        <form action="{{route('manufacture.destroy', $manufacture->id)}}" method="POST" >
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="id" value="{{$manufacture ?? ''->id}}">
+                                            <button type="submit" class="btn btn-sm btn-default"><i class="fas fa-trash-alt text-danger font-16"></i></button>
+                                        </form>
+                                    </td>
+                                </tr><!--end tr-->
+                            @endforeach
+                        @endif                               
                         </tbody>
                     </table>                    
                 </div>                                           
             </div><!--end card-body--> 
         </div><!--end card--> 
     </div><!--end col-->
-</div><
-<!--end row-->  
+</div><!--end row-->  
 @include('admin.pages.dashboard.modal-page')
 </div><!-- container -->
 @endsection
