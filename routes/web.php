@@ -30,6 +30,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::resource('product_category', 'Product_CategoryController');
     Route::resource('drug', 'DrugController');
     Route::get('banner', 'FrontSettingsController@getBannerPage')->name('home.banner');
+
+    Route::resource('post_category', 'PostCategoryController');
     
     Route::resource('wholesaler.drugs', 'WholeSalerDrugsController');
 });

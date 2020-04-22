@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 use App\Models\PostCategory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class PostController extends Controller
+class PostCategoryController extends Controller
 {
-    public $pageTitle = 'Post';
-    public $postCategory;
+
+    private $postCategory;
+
     public function __construct(PostCategory $postCategory)
     {
         $this->postCategory = $postCategory;
@@ -22,7 +24,8 @@ class PostController extends Controller
     public function index()
     {
         $postCategory = $this->postCategory::all();
-        return view('admin.pages.post.index', compact('pageTitle', 'postCategory'));
+        $pageTitle = 'Post Category';
+        return view('admin.pages.post.category.index', compact('pageTitle', 'postCategory'));
     }
 
     /**
@@ -32,8 +35,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        $postCategory = $this->postCategory::all();
-        return view('admin.pages.post.add',  compact('pageTitle', 'postCategory'));
+        $pageTitle = 'Post Category';
+        return view('admin.pages.post.category.add', compact('pageTitle'));
     }
 
     /**
@@ -44,7 +47,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        return "New Post here";
+        $data =  $request->all();
+        $data['slug'] = Str::slug($request->name);
+        $postCategory = $this->postCategory::create($data);
+        
+        return redirect()->route('post_category.index');
     }
 
     /**
@@ -55,7 +62,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+         $postCategory =  $this->postCategory::find($id);
+         return view('admin.pages.post.category.show', compact('postCategory'));
     }
 
     /**
@@ -66,7 +74,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $postCategory =  $this->postCategory::find($id);
+         return view('admin.pages.post.category.edit', compact('postCategory'));
     }
 
     /**
@@ -78,9 +87,9 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $postCategory =  $this->postCategory::find($id)->update($request->all());
+        return redirect()->route('post_category.index');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -89,6 +98,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $postCategory =  $this->postCategory::find($id)->delete();
+        return redirect()->route('post_category.index');
     }
 }
