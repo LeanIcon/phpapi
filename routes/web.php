@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
-    Route::get('dashboard', 'DashboardController@loadDashboard')->name('dashboard.index');
+    Route::get('/dashboard', 'DashboardController@loadDashboard')->name('dashboard.index');
     Route::resource('post', 'PostController');
     Route::resource('manufacture', 'ManufactureController');
     Route::resource('product', 'ProductController');
@@ -38,6 +38,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
 });
 
 
-// Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
