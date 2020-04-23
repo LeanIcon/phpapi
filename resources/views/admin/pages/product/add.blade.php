@@ -33,13 +33,13 @@
                             <input type="text" class="form-control" id="LeadName" required="" name="name">
                         </div>
                     </div>
-                   <!-- <div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="Leadphoto">Photo</label>
-                            <input type="text" class="form-control" id="Leadphoto" required="" name="photo">
+                            <input type="file" class="form-control" id="Leadphoto" required="" name="photo">
                         </div>
                     </div>
-                </div> -->
+                </div> 
 
                  <div class="row">
                     <div class="col-lg-6">

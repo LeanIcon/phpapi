@@ -123,7 +123,7 @@
                         <thead class="thead-light">
                         <tr>
                             <th>Name</th>
-                         <!--   <th>Photo</th> -->
+                            <th>Photo</th>
                             <th>Manufacture ID</th>
                             <th>Equipment ID</th>
                             <th>Other Products ID</th>
@@ -141,7 +141,7 @@
                         
                                 <tr>
                                     <td>{{$product->name}}</td>
-                                  <!--  <td>{{$product->photo}}</td> -->
+                                    <td>{{$product->photo}}</td> 
                            
                                   
                                     <td> {{$product->manufacturers_id}}</td>

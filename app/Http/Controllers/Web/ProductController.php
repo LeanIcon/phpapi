@@ -37,7 +37,7 @@ class ProductController extends Controller
     public function create()
     {
         $pageTitle = 'product';
-        return view('admin.pages.product.add', compact('pageTitle'));
+        return view('admin.pages.product.add', compact('pageTitle', 'product'));
     }
 
     /**
@@ -49,7 +49,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = $this->product::create($request->all());
-        // return $product;
+         //return $product;
          return redirect()->route('product.index');
     }
 
@@ -62,7 +62,7 @@ class ProductController extends Controller
     public function show($id)
     {
        $product = $this->product::find($id);
-       return view('admin.pages.product.show', compact('product'));
+       return view('admin.pages.product.show', compact('pageTitle', 'product'));
     }
 
     /**
@@ -74,7 +74,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = $this->product::find($id);
-       return view('admin.pages.product.edit', compact('product'));
+       return view('admin.pages.product.edit', compact('pageTitle', 'product'));
     }
 
     /**
