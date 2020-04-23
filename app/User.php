@@ -42,8 +42,8 @@ class User extends Authenticatable
      *
      * @return void
      */
-    public function setNameAttribute()
+    public function setNameAttribute($value)
     {
-        return $this->firstname.' '.$this->lastname;
+        $this->attributes['name'] = $this->firstname.' '.$this->lastname;
     }
 }
