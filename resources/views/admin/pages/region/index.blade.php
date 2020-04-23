@@ -122,8 +122,8 @@
                     <table id="datatable" class="table">
                         <thead class="thead-light">
                         <tr>
-                           <!-- <th>Lead</th>
-                            <th>Email</th>-->
+                           <!-- <th>Lead</th>-->
+                            <th>ID</th>
                             <th>Name</th>                                                    
                             <!--<th>Company</th>-->
                             <th>Status</th>
@@ -132,73 +132,27 @@
                         </thead>
 
                         <tbody>
-                        <tr>
-                            <td><img src="../assets/images/users/user-10.jpg" alt="" class="thumb-sm rounded-circle mr-2">Donald Gardner</td>
-                           <!-- <td>xyx@gmail.com</td>
-                            <td>+123456789</td>
-                            <td>Starbucks coffee</td>-->
-                            <td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>
-                            <td>                                                                                                       
-                                <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                            </td>
-                        </tr><!--end tr-->
-                        <tr>
-                            <td><img src="../assets/images/users/user-9.jpg" alt="" class="thumb-sm rounded-circle mr-2">Matt Rosales</td>
-                          <!--   <td>xyx@gmail.com</td>
-                            <td>+123456789</td>
-                            <td>Mac Donald</td>-->
-                            <td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>
-                            <td>                                                       
-                                <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                            </td>
-                        </tr><!--end tr-->
-                        <tr>
-                            <td><img src="../assets/images/users/user-8.jpg" alt="" class="thumb-sm rounded-circle mr-2">Michael Hill</td>
-                           <!--  <td>xyx@gmail.com</td>
-                            <td>+123456789</td>
-                            <td>Life Good</td>-->
-                            <td> <span class="badge badge-md badge-soft-danger">Lost</span></td>
-                            <td>                                                       
-                                <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                            </td>
-                        </tr><!--end tr-->
-                        <tr>
-                            <td><img src="../assets/images/users/user-7.jpg" alt="" class="thumb-sm rounded-circle mr-2">Nancy Flanary</td>
-                          <!--   <td>xyx@gmail.com</td>
-                            <td>+123456789</td>
-                            <td>Flipcart</td>-->
-                            <td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>
-                            <td>                                                       
-                                <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                            </td>
-                        </tr><!--end tr-->
-                        <tr>
-                            <td><img src="../assets/images/users/user-6.jpg" alt="" class="thumb-sm rounded-circle mr-2">Dorothy Key</td>
-                          <!--   <td>xyx@gmail.com</td>
-                            <td>+123456789</td>
-                            <td>Adidas</td>-->
-                            <td> <span class="badge badge-md badge-soft-primary">Follow Up</span></td>
-                            <td>                                                       
-                                <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                            </td>
-                        </tr><!--end tr-->
-                        <tr>
-                            <td><img src="../assets/images/users/user-5.jpg" alt="" class="thumb-sm rounded-circle mr-2">Joseph Cross</td>
-                           <!--  <td>xyx@gmail.com</td>
-                            <td>+123456789</td>
-                            <td>Reebok</td>-->
-                            <td> <span class="badge badge-md badge-soft-success">Converted</span></td>
-                            <td>                                                       
-                                <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                            </td>
-                        </tr><!--end tr-->
-                                                                        
+                            @if ($postRegion->isNotEmpty())
+                            @foreach ($postRegion ?? '' as $region)
+                                <tr>
+                                    <td>{{$region->id}}</td>
+                                    <td>{{$region->name}}</td>
+                                    <td>{{$region->status}}</td>
+                                    <!--<td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>-->
+                                    <td>
+                                        <a href="{{route('region.edit', $region->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                        <a href="{{route('region.show', $region->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>
+                                        {{-- <a id="deleteAction"><i class="fas fa-trash-alt text-danger font-16"></i></a> --}}
+                                        <form action="{{route('region.destroy', $region->id)}}" method="POST" >
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="id" value="{{$region->id}}">
+                                            <button type="submit" class="btn btn-sm btn-default"><i class="fas fa-trash-alt text-danger font-16"></i></button>
+                                        </form>
+                                    </td>
+                                </tr><!--end tr-->
+                            @endforeach
+                        @endif                               
                         </tbody>
                     </table>                    
                 </div>                                           

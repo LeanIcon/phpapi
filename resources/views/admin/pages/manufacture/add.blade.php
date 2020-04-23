@@ -27,9 +27,14 @@
                 @csrf
                <!-- <div class="row">
                     <div class="col-lg-6">
+            <form method="POST" action="{{route('manufacture.store')}}" enctype="multipart/form-data" >
+                @csrf
+                <div class="row">
+                    <div class="col-md-6">
+
                         <div class="form-group">
-                            <label for="LeadName">Name</label>
-                            <input type="text" class="form-control" id="LeadName" required="">
+                            <label for="PhoneNo">Name of Manufacturer</label>
+                            <input type="text" class="form-control" name="name" id="Name" required="">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -60,8 +65,20 @@
                     </div>
                 </div> 
                 <div class="row">
+
+                            <label for="status-select" class="mr-2">Status</label>
+                            <select name="status" class="custom-select"  id="status-select">
+                                <option selected="">Select</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Suspended">Suspended</option>
+                                <option value="Verified">Verified</option>
+                                
+                            </select>
+                        </div>
+                    </div>
+
                 </div> 
-                <button type="button" class="btn btn-sm btn-primary">Save</button>  
+                <button type="submit" class="btn btn-sm btn-primary">Save</button>  
                 <button type="button" class="btn btn-sm btn-danger">Cancel</button>             
             </form>  
         </div>
