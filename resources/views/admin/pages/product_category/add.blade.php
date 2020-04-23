@@ -25,7 +25,7 @@
         <div class="card-body">
             <form method="POST" action="{{route('product_category.store')}}" enctype="multipart/form-data" >
                 @csrf
-               <<div class="row">
+                <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="LeadName">Name</label>
