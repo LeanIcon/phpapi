@@ -21,9 +21,14 @@ class ManufactureController extends Controller
      */
     public function index()
     {
+
+       
+        return view('admin.pages.manufacture.index');
+
         $postManufacture = $this->postManufacture::all();
         $pageTitle = 'Manufacturer';
         return view('admin.pages.manufacture.index', compact('pageTitle', 'postManufacture'));
+
     }
 
     /**
