@@ -146,7 +146,7 @@
                                         <form action="{{route('manufacture.destroy', $manufacture->id)}}" method="POST" >
                                             @csrf
                                             @method('DELETE')
-                                            <input type="hidden" name="id" value="{{$manufacture ?? ''->id}}">
+                                            <input type="hidden" name="id" value="{{$manufacture->id}}">
                                             <button type="submit" class="btn btn-sm btn-default"><i class="fas fa-trash-alt text-danger font-16"></i></button>
                                         </form>
                                     </td>
