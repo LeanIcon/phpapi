@@ -3,10 +3,17 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Manufacture;
 use Illuminate\Http\Request;
 
 class ManufactureController extends Controller
 {
+    private $postManufacture;
+
+    public function __construct(Manufacture $postManufacture)
+    {
+        $this->postManufacture = $postManufacture;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +21,14 @@ class ManufactureController extends Controller
      */
     public function index()
     {
+
        
         return view('admin.pages.manufacture.index');
+
+        $postManufacture = $this->postManufacture::all();
+        $pageTitle = 'Manufacturer';
+        return view('admin.pages.manufacture.index', compact('pageTitle', 'postManufacture'));
+
     }
 
     /**
@@ -25,6 +38,7 @@ class ManufactureController extends Controller
      */
     public function create()
     {
+        $pageTitle = 'Manufacturer';
          return view('admin.pages.manufacture.add');
     }
 
@@ -36,7 +50,11 @@ class ManufactureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data =  $request->all();
+       // $data['status'] = Str::slug($request->status);
+        $postManufacture = $this->postManufacture::create($data);
+        
+        return redirect()->route('manufacture.index');
     }
 
     /**
@@ -47,7 +65,8 @@ class ManufactureController extends Controller
      */
     public function show($id)
     {
-        //
+        $postManufacture =  $this->postManufacture::find($id);
+        return view('admin.pages.manufacture.show', compact('postManufacture'));
     }
 
     /**
@@ -58,7 +77,8 @@ class ManufactureController extends Controller
      */
     public function edit($id)
     {
-        //
+        $postManufacture =  $this->postManufacture::find($id);
+        return view('admin.pages.manufacture.edit', compact('postManufacture'));
     }
 
     /**
@@ -70,7 +90,8 @@ class ManufactureController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $postManufacture =  $this->postManufacture::find($id)->update($request->all());
+        return redirect()->route('manufacture.index');
     }
 
     /**
@@ -81,6 +102,7 @@ class ManufactureController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $postManufacture =  $this->postManufacture::find($id)->delete();
+        return redirect()->route('manufacture.index');
     }
 }

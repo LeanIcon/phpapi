@@ -88,6 +88,7 @@
                     <a href="#">News</a>
                     <a href="#">Blog</a>
                     <a href="{{route('dashboard.index')}}">Login</a>
+                    <a href="{{route('register.form')}}">Register</a>
 
                 </div>
             </div>

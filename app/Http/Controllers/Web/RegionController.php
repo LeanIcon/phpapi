@@ -2,19 +2,30 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
+use App\Models\Region;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class RegionController extends Controller
 {
+    private $postRegion;
+
+    public function __construct(Region $postRegion)
+    {
+        $this->postRegion = $postRegion;
+    }
     /**
+   
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('admin.pages.region.index');
+        $postRegion = $this->postRegion::all();
+        $pageTitle = 'Region';
+        return view('admin.pages.region.index', compact('pageTitle', 'postRegion'));
     }
 
     /**
@@ -24,6 +35,7 @@ class RegionController extends Controller
      */
     public function create()
     {
+        $pageTitle = 'Region';
         return view('admin.pages.region.add');
     }
 
@@ -35,7 +47,12 @@ class RegionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    
+        $data =  $request->all();
+       // $data['status'] = Str::slug($request->status);
+        $postRegion = $this->postRegion::create($data);
+        
+        return redirect()->route('region.index');
     }
 
     /**
@@ -46,7 +63,8 @@ class RegionController extends Controller
      */
     public function show($id)
     {
-        //
+        $postRegion =  $this->postRegion::find($id);
+        return view('admin.pages.region.show', compact('postRegion'));
     }
 
     /**
@@ -57,7 +75,8 @@ class RegionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $postRegion =  $this->postRegion::find($id);
+         return view('admin.pages.region.edit', compact('postRegion'));
     }
 
     /**
@@ -69,7 +88,8 @@ class RegionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $postRegion =  $this->postRegion::find($id)->update($request->all());
+        return redirect()->route('region.index');
     }
 
     /**
@@ -80,6 +100,7 @@ class RegionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $postRegion =  $this->postRegion::find($id)->delete();
+        return redirect()->route('region.index');
     }
 }

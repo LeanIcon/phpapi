@@ -21,6 +21,8 @@ class UsersSeeder extends Seeder
         DB::table('users')->insert([
                 [
                     'name' => "Admin Jack",
+                    'firstname' => "Admin",
+                    'lastname' => "Jack",
                     "slug" =>"admin-doe",
                     'email' => "admin@nnuro.com",
                         'password' => bcrypt('secret'),
@@ -29,6 +31,8 @@ class UsersSeeder extends Seeder
                 [
                     'name' => "John Doe",
                     "slug" =>"john-doe",
+                    'firstname' => "Admin",
+                    'lastname' => "Doe",
                     'email' => "johndoe@nnuro.com",
                         'password' => bcrypt('secret'),
                         "bio" => $faker->text(rand(250, 300))
@@ -36,6 +40,8 @@ class UsersSeeder extends Seeder
                 [
                     'name' => "Jane Doe",
                     "slug" =>"jane-doe",
+                    'firstname' => "Jane",
+                    'lastname' => "Doe",
                     'email' => "janedoe@nnuro.com",
                     'password' => bcrypt('secret'),
                     "bio" => $faker->text(rand(250, 300))
@@ -43,6 +49,8 @@ class UsersSeeder extends Seeder
                 [
                 'name' => "Mark Otoo",
                 "slug" =>"mark-otoo",
+                'firstname' => "Mark",
+                'lastname' => "Otoo",
                 'email' => "markotoo@nnuro.com",
                 'password' => bcrypt('secret'),
                 "bio" => $faker->text(rand(250, 300))
