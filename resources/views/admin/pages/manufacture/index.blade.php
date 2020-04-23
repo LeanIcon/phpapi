@@ -128,10 +128,23 @@
                             <!--<th>Company</th>-->
                             <th>Status</th>
                             <th>Action</th>
+
                         </tr><!--end tr-->
                         </thead>
 
                         <tbody>
+
+                        <tr>
+                            <td><img src="../assets/images/users/user-10.jpg" alt="" class="thumb-sm rounded-circle mr-2">Nnuro Pharma</td>
+                            <td>Active</td>
+                           
+                                    <td>                                                                                                       
+                                <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                            </td>
+                        
+                                                                        
+
                             @if ($postManufacture->isNotEmpty())
                             @foreach ($postManufacture ?? '' as $manufacture)
                                 <tr>
@@ -153,6 +166,7 @@
                                 </tr><!--end tr-->
                             @endforeach
                         @endif                               
+
                         </tbody>
                     </table>                    
                 </div>                                           
