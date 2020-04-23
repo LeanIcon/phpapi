@@ -47,7 +47,6 @@
                                 <option selected="">Select</option>
                                 <option value="Available">Available</option>
                                 <option value="Hold">Hold</option>
-                                
                             </select>
                         </div>
                     </div>
@@ -58,8 +57,8 @@
                         </div>-->
                     </div>
                 </div> 
-                <button type="submit" class="btn btn-sm btn-primary">Save</button>  
-                <button type="button" class="btn btn-sm btn-danger">Cancel</button>             
+                <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                <button type="button" class="btn btn-sm btn-danger">Cancel</button>
             </form>  
         </div>
     </div>
