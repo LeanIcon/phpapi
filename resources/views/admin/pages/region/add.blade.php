@@ -23,7 +23,7 @@
             ADD NEW REGION
         </div>
         <div class="card-body">
-            <form>
+            <form method="POST" action="{{route('region.store')}}" enctype="multipart/form-data" >
                 @csrf
                <!-- <div class="row">
                     <div class="col-lg-6">
@@ -43,23 +43,23 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="PhoneNo">Name of Region</label>
-                            <input type="text" class="form-control" id="PhoneNo" required="">
+                            <input type="text" class="form-control" name="name" id="Name" required="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="status-select" class="mr-2">Status</label>
-                            <select class="custom-select" id="status-select">
+                            <select name="status" class="custom-select"  id="status-select">
                                 <option selected="">Select</option>
-                                <option value="1">Active</option>
-                                <option value="2">Pending</option>
-                                <option value="3">Changed</option>
-                                <option value="4">Deleted</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
                             </select>
                         </div>
                     </div>
                 </div> 
-                <button type="button" class="btn btn-sm btn-primary">Save</button>  
+                <button type="submit" class="btn btn-sm btn-primary">Save</button>  
                 <button type="button" class="btn btn-sm btn-danger">Cancel</button>             
             </form>  
         </div>

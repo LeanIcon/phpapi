@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Manufacture extends ApiModel
 {
-    protected $table = 'manufactures';
+    protected $table = 'manufacturers';
     protected $fillable = ['name', 'status'];
 }
