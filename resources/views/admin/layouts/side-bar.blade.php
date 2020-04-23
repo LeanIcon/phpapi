@@ -44,6 +44,7 @@
                 <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Products</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('product.index')}}">Product List</a></li>
+                    <li><a href="{{route('product_category.index')}}">Product Category</a></li>
                     
                 </ul>
             </li><!--end nav-item-->
@@ -68,13 +69,13 @@
                     <li><a href="#">Equipment Update</a></li>
                 </ul>
             </li>-->
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link" href="{{route('product_category.index')}}"><i class="dripicons-view-list-large"></i><span class="w-100">Product Category</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                <!--<ul class="nav-second-level" aria-expanded="false">
+                <ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('product_category.index')}}">Category List</a></li>
                     <li><a href="#">Category Update</a></li>
-                </ul>-->
-            </li><!--end nav-item-->
+                </ul>
+            </li>--><!--end nav-item-->
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Drugs</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
