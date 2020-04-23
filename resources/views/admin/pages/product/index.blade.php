@@ -127,27 +127,40 @@
                             <th>Manufacture ID</th>
                             <th>Equipment ID</th>
                             <th>Category ID</th>
+                            <th>Action </th>
                            
                         </tr><!--end tr-->
                         </thead>
 
                         <tbody>
-                        <tr>
-                            <td><img src="../assets/images/users/user-10.jpg" alt="" class="thumb-sm rounded-circle mr-2">Nnuro Pharma</td>
-                            <td>Active</td>
+                        @if($product)->isNotEmpty())
+                            @foreach ($collection as $product)
+
+
+                        
+                                <tr>
+                                    <td>{{$product->name}}</td>
+                                    <td>{{$product->photo}}</td>
                            
-                                                                                                                                  
-                                <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                            </td>
-                            <td> 2456</td>
+                                  
+                                    <td> {{$product->manufacture_id}}</td>
 
-                            <td> 987 </td>
+                                    <td>{{$product->category_id}} </td>
 
-                            <td> 322 </td>
-                        </tr>
-                        </tr>
-                                                                        
+                                    <td>                                                                                              <a href="{{route('product.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                    <a href="{{route('product.show', $product->id)}}" class="mr-2"><i class="fas fa-eye text-info font-16"></i></a>
+                                    {{-- <a id="deleteAction"><i class="fas fa-trash-alt text-danger font-16"></i></a> --}}
+                                        <form action="{{route('product.destroy', $product->id)}}" method="POST" >
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="id" value="{{$product->id}}">
+                                            <button type="submit" class="btn btn-sm btn-default"><i class="fas fa-trash-alt text-danger font-16"></i></button>
+                                        </form>
+                                </td>
+                                </tr>
+                                </tr>
+                            @endforeach
+                        @endif                                            
                         </tbody>
                     </table>                    
                 </div>                                           

@@ -21,49 +21,57 @@
 <div class="row">
     <div class="col-lg-8 card">
         <div class="card-body">
-            <form>
+            
+<div class="card-body">
+            <form method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
+                @csrf
+               
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="LeadName">Name</label>
-                            <input type="text" class="form-control" id="LeadName" required="">
+                            <input type="text" class="form-control" id="LeadName" required="" name="name">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Leadphoto">Photo</label>
+                            <input type="text" class="form-control" id="Leadphoto" required="" name="photo">
                         </div>
                     </div>
                 </div>
-                  <div class="row">
+
+                 <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="LeadName">Manufacturer ID</label>
+                            <input type="number" class="form-control" id="Leadmanid" required="" name = "manufacturers_id">
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="Leadstatus">Photo</label>
-                            <input type="text" class="form-control" id="Leadstatus" required="">
+                            <label for="LeadEmail">Equipment ID</label>
+                            <input type="number" class="form-control" id="Leadeqid" required="" name="equipments_id">
                         </div>
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="LeadName">Other Products ID</label>
+                            <input type="number" class="form-control" id="Leadproductid" required="" name="other_products_id">
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="Leadstatus">Manufacturer ID</label>
-                            <input type="text" class="form-control" id="Leadstatus" required="">
+                            <label for="LeadEmail">Product Category ID</label>
+                            <input type="number" class="form-control" id="Leadnumber" required="" product_category_id="product_category_id">
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="Leadstatus">Equipment ID</label>
-                            <input type="text" class="form-control" id="Leadstatus" required="">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="Leadstatus">Category ID</label>
-                            <input type="text" class="form-control" id="Leadstatus" required="">
-                        </div>
-                    </div>
-                </div>
+
                 <div  style = "margin-right: 50% !important"class="form-group"> 
-                <button type="button" class="btn btn-sm btn-primary">Save</button>  
+                <button type="submit"  class="btn btn-sm btn-primary">Save</button>  
                 <button type="button" class="btn btn-sm btn-danger">Cancel</button>
                 </div>             
             </form>  
