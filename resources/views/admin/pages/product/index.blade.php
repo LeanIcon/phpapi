@@ -117,35 +117,40 @@
         <div class="card">
             <div class="card-body">
                 <a type="button" href="{{route('product.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
-                <h4 class="header-title mt-0 mb-3">All Manufacturers</h4> 
+                <h4 class="header-title mt-0 mb-3">All PRODUCTS</h4> 
                 <div class="table-responsive dash-social">
                     <table id="datatable" class="table">
                         <thead class="thead-light">
                         <tr>
                             <th>Name</th>
-                            <th>Photo</th>
+                         <!--   <th>Photo</th> -->
                             <th>Manufacture ID</th>
                             <th>Equipment ID</th>
-                            <th>Category ID</th>
+                            <th>Other Products ID</th>
+                            <th>Product Category ID</th>
                             <th>Action </th>
                            
                         </tr><!--end tr-->
                         </thead>
 
                         <tbody>
-                        @if($product)->isNotEmpty())
-                            @foreach ($collection as $product)
+                        @if ($product->isNotEmpty())
+                            @foreach ($product as $product)
 
 
                         
                                 <tr>
                                     <td>{{$product->name}}</td>
-                                    <td>{{$product->photo}}</td>
+                                  <!--  <td>{{$product->photo}}</td> -->
                            
                                   
-                                    <td> {{$product->manufacture_id}}</td>
+                                    <td> {{$product->manufacturers_id}}</td>
 
-                                    <td>{{$product->category_id}} </td>
+                                    <td>{{$product->equipments_id}} </td>
+
+                                    <td>{{$product->other_products_id}} </td>
+
+                                    <td>{{$product->product_category_id}} </td>
 
                                     <td>                                                                                              <a href="{{route('product.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                     <a href="{{route('product.show', $product->id)}}" class="mr-2"><i class="fas fa-eye text-info font-16"></i></a>

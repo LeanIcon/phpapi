@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\web;
+namespace App\Http\Controllers\Web;
 
+use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+//use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
@@ -35,7 +37,7 @@ class ProductController extends Controller
     public function create()
     {
         $pageTitle = 'product';
-        return view('admin.pages.product.add', compact('pageTitle', 'product'));
+        return view('admin.pages.product.add', compact('pageTitle'));
     }
 
     /**
@@ -47,7 +49,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = $this->product::create($request->all());
-         return $product;
+        // return $product;
          return redirect()->route('product.index');
     }
 
@@ -60,7 +62,7 @@ class ProductController extends Controller
     public function show($id)
     {
        $product = $this->product::find($id);
-       return view('admin.pages.product.show', compact('pageTitle', 'product'));
+       return view('admin.pages.product.show', compact('product'));
     }
 
     /**
@@ -72,7 +74,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = $this->product::find($id);
-       return view('admin.pages.product.edit', compact('pageTitle', 'product'));
+       return view('admin.pages.product.edit', compact('product'));
     }
 
     /**
@@ -85,7 +87,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
 
-        $product = $this->product::find($id)
+        $product = $this->product::find($id);
         $product->update($request->all());
         return redirect()->route('product.index');
     }
