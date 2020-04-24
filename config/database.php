@@ -1,5 +1,5 @@
 <?php
-$DATABASE_URL = parse_url('postgres://xxgxzpmf:Nv14i7eorxd7ajMi72k2ZnVKlcZIGMGU@drona.db.elephantsql.com:5432/xxgxzpmf');
+$DEV_DATABASE_URL = parse_url('postgres://xxgxzpmf:Nv14i7eorxd7ajMi72k2ZnVKlcZIGMGU@drona.db.elephantsql.com:5432/xxgxzpmf');
 use Illuminate\Support\Str;
 
 return [
@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'pgsql'),
 
     /*
     |--------------------------------------------------------------------------
