@@ -137,16 +137,13 @@
                         <tr>
                             <td><img src="../assets/images/users/user-10.jpg" alt="" class="thumb-sm rounded-circle mr-2">Nnuro Pharma</td>
                             <td>Active</td>
-                           
-                                    <td>                                                                                                       
+                            <td>
                                 <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                 <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
                             </td>
-                        
-                                                                        
 
                             @if ($postManufacture->isNotEmpty())
-                            @foreach ($postManufacture  as $manufacture)
+                                @foreach ($postManufacture as $manufacture)
                                 <tr>
                                     <td>{{$manufacture->id}}</td>
                                     <td>{{$manufacture->name}}</td>
@@ -164,12 +161,12 @@
                                         </form>
                                     </td>
                                 </tr><!--end tr-->
-                            @endforeach
-                        @endif                               
+                                @endforeach
+                            @endif
 
                         </tbody>
-                    </table>                    
-                </div>                                           
+                    </table>
+                </div>
             </div><!--end card-body--> 
         </div><!--end card--> 
     </div><!--end col-->

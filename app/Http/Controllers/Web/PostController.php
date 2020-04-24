@@ -21,6 +21,7 @@ class PostController extends Controller
      */
     public function index()
     {
+        $pageTitle = 'Post';
         $postCategory = $this->postCategory::all();
         return view('admin.pages.post.index', compact('pageTitle', 'postCategory'));
     }
@@ -32,6 +33,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        $pageTitle = 'Post';
         $postCategory = $this->postCategory::all();
         return view('admin.pages.post.add',  compact('pageTitle', 'postCategory'));
     }
