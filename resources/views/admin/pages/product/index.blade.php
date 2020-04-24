@@ -136,9 +136,6 @@
                         <tbody>
                         @if ($product->isNotEmpty())
                             @foreach ($product as $product)
-
-
-                        
                                 <tr>
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->photo}}</td> 
@@ -172,7 +169,7 @@
             </div><!--end card-body--> 
         </div><!--end card--> 
     </div><!--end col-->
-</div><
+</div>
 <!--end row-->  
 @include('admin.pages.dashboard.modal-page')
 </div><!-- container -->

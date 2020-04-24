@@ -146,7 +146,7 @@
                                                                         
 
                             @if ($postManufacture->isNotEmpty())
-                            @foreach ($postManufacture ?? '' as $manufacture)
+                            @foreach ($postManufacture  as $manufacture)
                                 <tr>
                                     <td>{{$manufacture->id}}</td>
                                     <td>{{$manufacture->name}}</td>
