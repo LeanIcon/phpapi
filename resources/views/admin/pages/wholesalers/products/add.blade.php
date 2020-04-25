@@ -13,6 +13,14 @@
             <div class="card-body">
                 <form>
                     <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="LeadName">Batch Number</label>
+                                <input type="text" class="form-control" id="LeadName" required="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="LeadEmail">Manufacturer</label>
@@ -59,6 +67,12 @@
                             <div class="form-group">
                                 <label for="status-select" class="mr-2">Product Image</label>
                                 <input class="form-control" type="file" name="image">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="PhoneNo">Expiry Date</label>
+                                <input type="date" name="expiry_date" class="form-control" id="price" required="">
                             </div>
                         </div>
                     </div>
