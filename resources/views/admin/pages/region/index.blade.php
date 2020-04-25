@@ -122,10 +122,8 @@
                     <table id="datatable" class="table">
                         <thead class="thead-light">
                         <tr>
-                           <!-- <th>Lead</th>-->
                             <th>ID</th>
-                            <th>Name</th>                                                    
-                            <!--<th>Company</th>-->
+                            <th>Name</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr><!--end tr-->
@@ -142,20 +140,13 @@
                                     <td>
                                         <a href="{{route('region.edit', $region->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                         <a href="{{route('region.show', $region->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>
-                                        {{-- <a id="deleteAction"><i class="fas fa-trash-alt text-danger font-16"></i></a> --}}
-                                        <form action="{{route('region.destroy', $region->id)}}" method="POST" >
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="hidden" name="id" value="{{$region->id}}">
-                                            <button type="submit" class="btn btn-sm btn-default"><i class="fas fa-trash-alt text-danger font-16"></i></button>
-                                        </form>
                                     </td>
                                 </tr><!--end tr-->
                             @endforeach
-                        @endif                               
+                        @endif
                         </tbody>
-                    </table>                    
-                </div>                                           
+                    </table>
+                </div>   
             </div><!--end card-body--> 
         </div><!--end card--> 
     </div><!--end col-->

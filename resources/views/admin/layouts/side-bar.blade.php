@@ -8,15 +8,10 @@
                     <li class="nav-item"><a class="nav-link" href="{{route('dashboard.index')}}"><i class="ti-control-record"></i>Dashboard</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="ti-control-record"></i>Customers</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="ti-control-record"></i>Reports</a></li> 
+                    <li class="nav-item"><a class="nav-link" href="{{route('dashboard.wholesalers')}}"><i class="ti-control-record"></i>Wholesalers</a></li> 
+                    <li class="nav-item"><a class="nav-link" href="{{route('dashboard.retailers')}}"><i class="ti-control-record"></i>Retailers</a></li> 
                 </ul>
             </li>
-           <!-- <li class="nav-item">
-                <a class="nav-link" href="#"><i class="dripicons-mail"></i><span class="w-100">Equipments</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                <ul class="nav-second-level" aria-expanded="false">
-                    <li><a href="#">Inbox</a></li>
-                    <li><a href="#">Read Email</a></li>
-                </ul>
-            </li>--><!--end nav-item-->
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="dripicons-mail"></i><span class="w-100">Wholesaler</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
@@ -76,6 +71,8 @@
                 <ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('manufacture.index')}}">Manufacturers</a></li>
                     <li><a href="{{route('product_category.index')}}">Product Category</a></li>
+                    <li><a href="{{route('drug_class.index')}}">Drugs Class</a></li>
+                    <li><a href="{{route('dosage_form.index')}}">Drug Dosage Form</a></li>
                     <li><a href="{{route('region.index')}}">Region</a></li>
                     <li><a href="{{route('town.index')}}">Town</a></li>
                 </ul>

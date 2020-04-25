@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Models\Manufacturer;
-use Illuminate\Http\Request;
-use App\Models\ProductCategory;
 use App\Http\Controllers\Controller;
+use App\Models\DosageForm;
+use Illuminate\Http\Request;
 
-class WholesalerProductsController extends Controller
+class DosageFormController extends Controller
 {
-    public $manufacturer, $productCategory;
-    public function __construct(Manufacturer $manufacturer, ProductCategory $productCategory)
+    public $dosageForm;
+    public function __construct(DosageForm $dosageForm)
     {
-        $this->manufacturer = $manufacturer;
-        $this->productCategory = $productCategory;
+        $this->dosageForm = $dosageForm;
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +20,8 @@ class WholesalerProductsController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.wholesalers.products');
+        $dosageForm = $this->dosageForm::all();
+        return view('admin.pages.drug.dosage_form', compact('dosageForm'));
     }
 
     /**
@@ -33,9 +31,7 @@ class WholesalerProductsController extends Controller
      */
     public function create()
     {
-        $manufacturers = $this->manufacturer::all();
-        $productCategory = $this->productCategory::ProductCategory();
-        return view('admin.pages.wholesalers.products.add', compact('manufacturers', 'productCategory'));
+        //
     }
 
     /**
@@ -46,7 +42,8 @@ class WholesalerProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dosageForm = $this->dosageForm::create($request->all());
+        return redirect()->route('dosage_form.index');
     }
 
     /**

@@ -18,4 +18,16 @@ class ProductCategory extends ApiModel
                     'supplies' => ['Dental', 'Lab', 'Theatre', 'Medical'],
                     );
     }
+
+    public static function ProductCategory()
+    {
+        $produtCat =  array(
+                        ['key' => 'drugs', 'name' => 'Drugs'],
+                        ['key' => 'equipments', 'name' => 'Equipments'],
+                        ['key' => 'supplies', 'name' => 'Supplies'],
+                    );
+        return $produtCat;
+    }
+
+    
 }

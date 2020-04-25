@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDrugFormTable extends Migration {
+class CreateDosageFormTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,11 @@ class CreateDrugFormTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('drug_form', function(Blueprint $table)
+		Schema::create('dosage_form', function(Blueprint $table)
 		{
 			$table->integer('id', true);
 			$table->string('name');
+			$table->timestamps();
 		});
 	}
 
@@ -27,7 +28,7 @@ class CreateDrugFormTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('drug_form');
+		Schema::drop('dosage_form');
 	}
 
 }

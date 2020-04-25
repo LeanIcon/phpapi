@@ -37,9 +37,6 @@
         <!-- App js -->
         <script src="{{url('admin/assets/js/app.js')}}"></script>
 
-        @yield('pages-js')
-
-
-
+        @yield('page-js')
     </body>
 </html>

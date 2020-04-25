@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Models\Manufacturer;
+use App\Models\DrugClass;
 use Illuminate\Http\Request;
-use App\Models\ProductCategory;
 use App\Http\Controllers\Controller;
 
-class WholesalerProductsController extends Controller
+class DrugClassController extends Controller
 {
-    public $manufacturer, $productCategory;
-    public function __construct(Manufacturer $manufacturer, ProductCategory $productCategory)
+    public $drugClass;
+    public function __construct(DrugClass $drugClass)
     {
-        $this->manufacturer = $manufacturer;
-        $this->productCategory = $productCategory;
+        $this->drugClass = $drugClass;
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +20,8 @@ class WholesalerProductsController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.wholesalers.products');
+        $drugClass = $this->drugClass::all();
+        return view('admin.pages.drug.drug_class', compact('drugClass'));
     }
 
     /**
@@ -33,9 +31,7 @@ class WholesalerProductsController extends Controller
      */
     public function create()
     {
-        $manufacturers = $this->manufacturer::all();
-        $productCategory = $this->productCategory::ProductCategory();
-        return view('admin.pages.wholesalers.products.add', compact('manufacturers', 'productCategory'));
+        //
     }
 
     /**
@@ -46,7 +42,8 @@ class WholesalerProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $drugClass = $this->drugClass::create($request->all());
+        return redirect()->route('drug_class.index');
     }
 
     /**

@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Town extends ApiModel
 {
-    protected $table = 'town';
+    protected $table = 'towns';
     protected $fillable = ['name', 'region_id'];
 }

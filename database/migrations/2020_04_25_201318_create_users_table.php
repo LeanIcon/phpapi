@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration {
 			$table->string('name')->nullable();
 			$table->string('email')->nullable();
 			$table->string('slug')->nullable();
+			$table->string('type', 20)->nullable();
 			$table->string('phone', 15)->nullable();
 			$table->string('password');
 			$table->integer('is_superuser')->default(0);
