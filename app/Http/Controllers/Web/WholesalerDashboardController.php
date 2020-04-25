@@ -12,4 +12,10 @@ class WholesalerDashboardController extends Controller
         $pageTitle = 'Wholesalers';
         return view('admin.pages.wholesalers.dashboard', compact('pageTitle'));
     }
+
+
+    public function loadProducts()
+    {
+        return view('admin.pages.wholesalers.products');
+    }
 }

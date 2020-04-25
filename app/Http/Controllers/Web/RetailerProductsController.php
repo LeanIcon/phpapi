@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers\Web;
 
-use Illuminate\Http\Request;
-use App\Models\ProductCategory;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class ProductCategoryController extends Controller
+class RetailerProductsController extends Controller
 {
-    public $productCategory;
-    public function __construct(ProductCategory $productCategory)
-    {
-        $this->productCategory = $productCategory;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -20,9 +14,7 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        $pageTitle = 'Product Category';
-        $productCategory = $this->productCategory::all();
-        return view('admin.pages.product_category.index', compact('pageTitle', 'productCategory'));
+        //
     }
 
     /**
@@ -32,8 +24,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        $pageTitle = 'Product Category';
-        return view('admin.pages.product_category.add', compact('pageTitle', 'productCategory'));
+        //
     }
 
     /**
@@ -44,8 +35,7 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $productCategory = $this->productCategory::create($request->all());
-        return redirect()->route('product_category.index');
+        //
     }
 
     /**
@@ -56,8 +46,7 @@ class ProductCategoryController extends Controller
      */
     public function show($id)
     {
-        $productCategory = $this->productCategory::find($id);
-        return view('admin.pages.product_category.show', compact('productCategory'));
+        //
     }
 
     /**
@@ -68,8 +57,7 @@ class ProductCategoryController extends Controller
      */
     public function edit($id)
     {
-        $productCategory = $this->productCategory::find($id);
-        return view('admin.pages.product_category.edit', compact('productCategory'));
+        //
     }
 
     /**
@@ -81,8 +69,7 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $productCategory = $this->productCategory::find($id)->update($request->all());
-        return view('admin.pages.product_category.index');
+        //
     }
 
     /**

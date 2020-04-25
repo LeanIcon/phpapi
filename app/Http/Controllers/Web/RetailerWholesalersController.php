@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class RetailerWholesalersController extends Controller
 {
-    //
+    public function index()
+    {
+        return view('admin.pages.retailers.wholesalers');
+    }
 }

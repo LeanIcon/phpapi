@@ -10,4 +10,7 @@ class PostCategory extends Model
     use SoftDeletes;
     protected $table = 'category_post';
     protected $fillable = ['name', 'slug'];
+
+
+    
 }

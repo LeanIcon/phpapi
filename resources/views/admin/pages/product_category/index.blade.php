@@ -117,46 +117,43 @@
         <div class="card">
             <div class="card-body">
                 <a type="button" href="{{route('product_category.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
-                <h4 class="header-title mt-0 mb-3">All Product's Category</h4> 
+                <h4 class="header-title mt-0 mb-3">All Products Category</h4> 
                 <div class="table-responsive dash-social">
                     <table id="datatable" class="table">
                         <thead class="thead-light">
                         <tr>
-                           <!-- <th>Lead</th>-->
                             <th>ID</th>
-                            <th>Category Name</th>                                                    
-                            <th>Type</th>
-                            <th>Status</th>
+                            <th>Name</th>
+                            <th>Slug</th>
+                            <th>Date</th>
                             <th>Action</th>
                         </tr><!--end tr-->
                         </thead>
-
                         <tbody>
-                            @if ($postProduct_Category->isNotEmpty())
-                            @foreach ($postProduct_Category ?? '' as $product_category)
+                        @if ($productCategory->isNotEmpty())
+                            @foreach ($productCategory as $category)
                                 <tr>
-                                    <td>{{$product_category->id}}</td>
-                                    <td>{{$product_category->name}}</td>
-                                    <td>{{$product_category->type}}</td>
-                                    <td>{{$product_category->status}}</td>
-                                    <!--<td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>-->
+                                    <td>{{$category->id}}</td>
+                                    <td>{{$category->name}}</td>
+                                    <td>{{$category->slug}}</td>
+                                    <td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>
                                     <td>
-                                        <a href="{{route('product_category.edit', $product_category->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                        <a href="{{route('product_category.show', $product_category->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>
+                                        <a href="{{route('post_category.edit', $category->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                        <a href="{{route('post_category.show', $category->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>
                                         {{-- <a id="deleteAction"><i class="fas fa-trash-alt text-danger font-16"></i></a> --}}
-                                        <form action="{{route('product_category.destroy', $product_category->id)}}" method="POST" >
+                                        <form action="{{route('post_category.destroy', $category->id)}}" method="POST" >
                                             @csrf
                                             @method('DELETE')
-                                            <input type="hidden" name="id" value="{{$product_category->id}}">
+                                            <input type="hidden" name="id" value="{{$category->id}}">
                                             <button type="submit" class="btn btn-sm btn-default"><i class="fas fa-trash-alt text-danger font-16"></i></button>
                                         </form>
                                     </td>
                                 </tr><!--end tr-->
                             @endforeach
-                        @endif                                       
+                        @endif
                         </tbody>
-                    </table>                    
-                </div>                                           
+                    </table>
+                </div>
             </div><!--end card-body--> 
         </div><!--end card--> 
     </div><!--end col-->

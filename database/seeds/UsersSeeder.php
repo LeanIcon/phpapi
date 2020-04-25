@@ -24,6 +24,7 @@ class UsersSeeder extends Seeder
                     'firstname' => "Admin",
                     'lastname' => "Jack",
                     "slug" =>"admin-doe",
+                    "type" =>"admin",
                     'email' => "admin@nnuro.com",
                         'password' => bcrypt('secret'),
                         "bio" => $faker->text(rand(250, 300))
@@ -33,6 +34,7 @@ class UsersSeeder extends Seeder
                     "slug" =>"john-doe",
                     'firstname' => "Admin",
                     'lastname' => "Doe",
+                    "type" =>"retailer",
                     'email' => "johndoe@nnuro.com",
                         'password' => bcrypt('secret'),
                         "bio" => $faker->text(rand(250, 300))
@@ -42,6 +44,7 @@ class UsersSeeder extends Seeder
                     "slug" =>"jane-doe",
                     'firstname' => "Jane",
                     'lastname' => "Doe",
+                    "type" =>"wholesaler",
                     'email' => "janedoe@nnuro.com",
                     'password' => bcrypt('secret'),
                     "bio" => $faker->text(rand(250, 300))
@@ -51,6 +54,7 @@ class UsersSeeder extends Seeder
                 "slug" =>"mark-otoo",
                 'firstname' => "Mark",
                 'lastname' => "Otoo",
+                "type" =>"customer",
                 'email' => "markotoo@nnuro.com",
                 'password' => bcrypt('secret'),
                 "bio" => $faker->text(rand(250, 300))

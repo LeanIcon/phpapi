@@ -25,42 +25,25 @@
         <div class="card-body">
             <form method="POST" action="{{route('product_category.store')}}" enctype="multipart/form-data" >
                 @csrf
-
-               <div class="row">
-
                 <div class="row">
-
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="LeadName">Name</label>
-                            <input type="text" name="name" class="form-control" id="LeadName" required="">
+                            <label for="productCategory">Category Name</label>
+                            <input type="text" name="name" class="form-control" id="productCategory" required="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="type">Type</label>
-                            <input type="text" class="form-control" name="type" id="type" required="">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="status-select" class="mr-2">Status</label>
+                            <label for="status-select" class="mr-2">Type</label>
                             <select class="custom-select" name="status" id="status-select">
-                                <option selected="">Select</option>
-                                <option value="Available">Available</option>
-                                <option value="Hold">Hold</option>
+                                <option>Select</option>
+                                <option value="drugs">Drugs</option>
+                                <option value="prescription">Prescription</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <!--<div class="form-group">
-                            <label for="PhoneNo">Type</label>
-                            <input type="text" class="form-control" id="PhoneNo" required="">
-                        </div>-->
-                    </div>
-                </div> 
+                </div>
+
                 <button type="submit" class="btn btn-sm btn-primary">Save</button>
                 <button type="button" class="btn btn-sm btn-danger">Cancel</button>
             </form>  
