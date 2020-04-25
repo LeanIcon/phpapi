@@ -6,7 +6,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a type="button" href="{{route('wholesaler_products.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
+                <a type="button" href="#" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
                 <h4 class="header-title mt-0 mb-3">All {{$pageTitle ?? 'Current Page'}}</h4> 
                 
                 <h4 class="mt-0 header-title">Wholesalers</h4>
