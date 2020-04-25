@@ -10,7 +10,7 @@
                 <div class="d-flex justify-content-between">
                     <h3 class="text-purple">24k</h3>
                     <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i>
-                </div>                                     
+                </div>
                 <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>8.5%</span>Up From Yesterday</p>
             </div><!--end card-body-->
         </div><!--end card-->
@@ -22,7 +22,7 @@
                 <div class="d-flex justify-content-between">
                     <h3 class="text-pink">10k</h3>
                     <i class="dripicons-cart card-eco-icon bg-icon-pink align-self-center"></i>
-                </div>                                     
+                </div>
                 <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>1.5%</span> Up From Last Week</p>
             </div><!--end card-body-->
         </div><!--end card-->
@@ -34,7 +34,7 @@
                 <div class="d-flex justify-content-between">
                     <h3 class="text-secondary">8400</h3>
                     <i class="dripicons-jewel card-eco-icon bg-icon-secondary align-self-center"></i>
-                </div>                                   
+                </div>
                 <p class="mb-0 text-muted text-truncate"><span class="text-danger"><i class="mdi mdi-trending-down"></i>3%</span> Down From Last Month</p>
             </div><!--end card-body-->
         </div><!--end card-->
@@ -46,7 +46,7 @@
                 <div class="d-flex justify-content-between">
                     <h3 class="text-warning">$1590</h3>
                     <i class="dripicons-wallet card-eco-icon bg-icon-warning  align-self-center"></i>
-                </div>                                    
+                </div>
                 <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>10.5%</span> Up From Yesterday</p>
             </div><!--end card-body-->
         </div><!--end card-->
