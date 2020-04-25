@@ -23,63 +23,29 @@
             Add Manufacturer
         </div>
         <div class="card-body">
-            <form>
+            <form method="POST" action="{{route('manufacture.store')}}" >
                 @csrf
-               <!-- <div class="row">
+                <div class="row">
                     <div class="col-lg-6">
-            <form method="POST" action="{{route('manufacture.store')}}" enctype="multipart/form-data" >
-                @csrf
-                <div class="row">
-                    <div class="col-md-6">
-
                         <div class="form-group">
-                            <label for="PhoneNo">Name of Manufacturer</label>
-                            <input type="text" class="form-control" name="name" id="Name" required="">
+                            <label for="manufactureName">Manufacturer Name</label>
+                            <input type="text" name="name" class="form-control" id="manufactureName" required="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="LeadEmail">Email</label>
-                            <input type="email" class="form-control" id="LeadEmail" required="">
-                        </div>
-                    </div>
-                </div>-->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="PhoneNo">Name</label>
-                            <input type="text" class="form-control" id="PhoneNo" required="">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="status-select" class="mr-2">Status</label>
-                            <select class="custom-select" id="status-select">
-                                <option selected="">Select</option>
-                                <option value="1">Active</option>
-                                <option value="2">Pending</option>
-                                <option value="3">Changed</option>
-                                <option value="4">Deleted</option>
+                            <label for="status-select" class="mr-2">Product Category</label>
+                            <select class="custom-select" name="status" id="status-select">
+                                <option>Select</option>
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
                             </select>
                         </div>
                     </div>
-                </div> 
-                <div class="row">
+                </div>
 
-                            <label for="status-select" class="mr-2">Status</label>
-                            <select name="status" class="custom-select"  id="status-select">
-                                <option selected="">Select</option>
-                                <option value="Pending">Pending</option>
-                                <option value="Suspended">Suspended</option>
-                                <option value="Verified">Verified</option>
-                                
-                            </select>
-                        </div>
-                    </div>
-
-                </div> 
-                <button type="submit" class="btn btn-sm btn-primary">Save</button>  
-                <button type="button" class="btn btn-sm btn-danger">Cancel</button>             
+                <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                <button type="button" class="btn btn-sm btn-danger">Cancel</button>
             </form>  
         </div>
     </div>

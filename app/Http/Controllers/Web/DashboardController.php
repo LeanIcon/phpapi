@@ -11,6 +11,7 @@ class DashboardController extends Controller
 
     public function loadDashboard()
     {
-        return view('admin.pages.dashboard.index');
+        $pageTitle = 'Nnuro Dashboard';
+        return view('admin.pages.dashboard.index', compact('pageTitle'));
     }
 }

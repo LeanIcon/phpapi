@@ -10,14 +10,6 @@
                     <li class="nav-item"><a class="nav-link" href="#"><i class="ti-control-record"></i>Reports</a></li> 
                 </ul>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Manufacturers</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                <ul class="nav-second-level" aria-expanded="false">
-                    <li><a href="{{route('manufacture.index')}}">Manufacturers List</a></li>
-                    <!--<li><a href="#">Others</a></li>-->
-                </ul>
-            </li><!--end nav-item-->
            <!-- <li class="nav-item">
                 <a class="nav-link" href="#"><i class="dripicons-mail"></i><span class="w-100">Equipments</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
@@ -28,18 +20,20 @@
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="dripicons-mail"></i><span class="w-100">Wholesaler</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Drugs</a></li>
+                    <li><a href="{{route('wholesaler.dashboard')}}">Dashboard</a></li>
+                    <li><a href="{{route('wholesaler.retailer')}}">Retailers</a></li>
                 </ul>
                 <!-- -->
             </li><!--end nav-item-->
-           <!-- <li class="nav-item">
+           <li class="nav-item">
                 <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Retailers</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
-                    <li><a href="#">Basic</a></li>
-                    <li><a href="#">Basic</a></li>
+                    <li><a href="{{route('retailer.dashboard')}}">Dashboard</a></li>
+                    <li><a href="{{route('retailer.wholesaler')}}">Wholesalers</a></li>
+                    <li><a href="#">Customers</a></li>
+                    <li><a href="#">POS-Portal</a></li>
                 </ul>
-            </li>--><!--end nav-item-->
+            </li><!--end nav-item-->
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Products</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
@@ -48,20 +42,6 @@
                     
                 </ul>
             </li><!--end nav-item-->
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('region.index')}}"><i class="dripicons-view-list-large"></i><span class="w-100">Region</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                <!--<ul class="nav-second-level" aria-expanded="false">
-                    <li><a href="{{route('region.index')}}">Region List</a></li>
-                    <li><a href="#">Update Region</a></li>
-                </ul>-->
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('town.index')}}"><i class="dripicons-view-list-large"></i><span class="w-100">Town</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                <!--<ul class="nav-second-level" aria-expanded="false">
-                    <li><a href="{{route('town.index')}}">Town List</a></li>
-                    <li><a href="#">Town Region</a></li>
-                </ul>-->
-            </li>
             <!--<li class="nav-item">
                 <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Equipment</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
@@ -90,6 +70,15 @@
                     <li><a href="{{route('post_category.index')}}">Post Category</a></li>
                 </ul>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Settings</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <ul class="nav-second-level" aria-expanded="false">
+                    <li><a href="{{route('manufacture.index')}}">Manufacturers</a></li>
+                    <li><a href="{{route('product_category.index')}}">Product Category</a></li>
+                    <li><a href="{{route('region.index')}}">Region</a></li>
+                    <li><a href="{{route('town.index')}}">Town</a></li>
+                </ul>
+            </li><!--end nav-item-->
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Web Front Settings</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">

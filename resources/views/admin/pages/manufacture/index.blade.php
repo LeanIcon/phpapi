@@ -124,8 +124,7 @@
                         <tr>
                            <!-- <th>Lead</th>-->
                             <th>ID</th>
-                            <th>Name</th>                                                    
-                            <!--<th>Company</th>-->
+                            <th>Name</th>
                             <th>Status</th>
                             <th>Action</th>
 
@@ -135,17 +134,11 @@
                         <tbody>
 
                         <tr>
-                            <td><img src="../assets/images/users/user-10.jpg" alt="" class="thumb-sm rounded-circle mr-2">Nnuro Pharma</td>
-                            <td>Active</td>
-                            <td>
-                                <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                            </td>
 
-                            @if ($postManufacture->isNotEmpty())
-                                @foreach ($postManufacture as $manufacture)
+                            @if ($manufacturers->isNotEmpty())
+                                @foreach ($manufacturers as $manufacture)
                                 <tr>
-                                    <td>{{$manufacture->id}}</td>
+                                    <td>00{{$manufacture->id}}</td>
                                     <td>{{$manufacture->name}}</td>
                                     <td>{{$manufacture->status}}</td>
                                     <!--<td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>-->

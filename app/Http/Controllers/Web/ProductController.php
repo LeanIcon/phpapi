@@ -3,20 +3,16 @@
 namespace App\Http\Controllers\Web;
 
 use App\Models\Product;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-//use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
-
-    private $product;
-
+    public $product;
     public function __construct(Product $product)
     {
-
         $this->product = $product;
-     }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,9 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-         $product = $this->product::all();
-         $pageTitle = 'product';
-        return view('admin.pages.product.index' , compact('pageTitle', 'product'));
+        //
     }
 
     /**
@@ -36,8 +30,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $pageTitle = 'product';
-        return view('admin.pages.product.add', compact('pageTitle', 'product'));
+        //
     }
 
     /**
@@ -48,9 +41,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = $this->product::create($request->all());
-         //return $product;
-         return redirect()->route('product.index');
+        //
     }
 
     /**
@@ -61,8 +52,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-       $product = $this->product::find($id);
-       return view('admin.pages.product.show', compact('pageTitle', 'product'));
+        //
     }
 
     /**
@@ -73,8 +63,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = $this->product::find($id);
-       return view('admin.pages.product.edit', compact('pageTitle', 'product'));
+        //
     }
 
     /**
@@ -86,10 +75,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $product = $this->product::find($id);
-        $product->update($request->all());
-        return redirect()->route('product.index');
+        //
     }
 
     /**
@@ -100,7 +86,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = $this->product::find($id)->delete();
-        return redirect()->route('product.index'); 
+        //
     }
 }

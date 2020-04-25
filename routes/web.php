@@ -21,21 +21,33 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('/dashboard', 'DashboardController@loadDashboard')->name('dashboard.index');
+
+    Route::get('/retailer/dashboard', 'WholesalerDashboardController@loadDashboard')->name('wholesaler.dashboard');
+    Route::get('/wholesaler/dashboard', 'RetailerDashboardController@loadDashboard')->name('retailer.dashboard');
+    Route::get('/wholesaler/retailers', 'WholesalerRetailersController@loadDashboard')->name('wholesaler.retailer');
+    Route::get('/retailer/wholesalers', 'RetailerWholesalersController@loadDashboard')->name('retailer.wholesaler');
+
     Route::resource('post', 'PostController');
-    Route::resource('manufacture', 'ManufactureController');
     Route::resource('product', 'ProductController');
-    Route::resource('region', 'RegionController');
-    Route::resource('town', 'TownController');
+
     Route::resource('equipment', 'EquipmentController');
-    Route::resource('product_category', 'Product_CategoryController');
+    Route::resource('product_category', 'ProductCategoryController');
     Route::resource('drug', 'DrugController');
     Route::get('banner', 'FrontSettingsController@getBannerPage')->name('home.banner');
 
     Route::resource('post_category', 'PostCategoryController');
-    
+
     Route::resource('wholesaler.drugs', 'WholeSalerDrugsController');
     Route::get('register', 'RegisterFormController@loadRegisterForm')->name('register.form');
     Route::post('register', 'RegisterController@register')->name('register.form');
+
+
+    Route::group(['prefix' => 'settings'], function() {
+        Route::resource('manufacture', 'ManufacturerController');
+        Route::resource('region', 'RegionController');
+        Route::resource('town', 'TownController');
+    });
+
 });
 
 
