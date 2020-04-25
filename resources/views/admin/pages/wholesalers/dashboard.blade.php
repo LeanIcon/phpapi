@@ -6,7 +6,7 @@
     <div class="col-lg-3">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Visits</h4>
+                <h4 class="title-text mt-0">Total Products</h4>
                 <div class="d-flex justify-content-between">
                     <h3 class="text-purple">24k</h3>
                     <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i>
@@ -18,7 +18,7 @@
     <div class="col-lg-3">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">New Orders</h4>
+                <h4 class="title-text mt-0">Purchase Orders</h4>
                 <div class="d-flex justify-content-between">
                     <h3 class="text-pink">10k</h3>
                     <i class="dripicons-cart card-eco-icon bg-icon-pink align-self-center"></i>
@@ -30,7 +30,7 @@
     <div class="col-lg-3">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Return Orders</h4>
+                <h4 class="title-text mt-0">Invoice</h4>
                 <div class="d-flex justify-content-between">
                     <h3 class="text-secondary">8400</h3>
                     <i class="dripicons-jewel card-eco-icon bg-icon-secondary align-self-center"></i>
@@ -42,7 +42,7 @@
     <div class="col-lg-3">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Revenue</h4>
+                <h4 class="title-text mt-0">Pending</h4>
                 <div class="d-flex justify-content-between">
                     <h3 class="text-warning">$1590</h3>
                     <i class="dripicons-wallet card-eco-icon bg-icon-warning  align-self-center"></i>
