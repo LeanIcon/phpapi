@@ -1,7 +1,8 @@
 <!-- Left Sidenav -->
 <div class="left-sidenav">
+    @auth
         <ul class="metismenu left-sidenav-menu">
-
+            @role('Admin')
             <li>
                 <a href="javascript: void(0);"><i class="ti-bar-chart"></i><span>Analytics</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
@@ -12,15 +13,21 @@
                     <li class="nav-item"><a class="nav-link" href="{{route('dashboard.retailers')}}"><i class="ti-control-record"></i>Retailers</a></li> 
                 </ul>
             </li>
+            @endrole
+            @role('Wholesaler')
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="dripicons-mail"></i><span class="w-100">Wholesaler</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('wholesaler.dashboard')}}">Dashboard</a></li>
                     <li><a href="{{route('wholesaler.retailer')}}">Retailers</a></li>
                     <li><a href="{{route('wholesaler_products.index')}}">Products</a></li>
+                    <li><a href="#">Transactions</a></li>
+                    <li><a href="#">Inventory</a></li>
                 </ul>
                 <!-- -->
             </li><!--end nav-item-->
+            @endrole
+            @role('Retailer')
            <li class="nav-item">
                 <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Retailers</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
@@ -28,14 +35,17 @@
                     <li><a href="{{route('retailer.wholesaler')}}">Wholesalers</a></li>
                     <li><a href="#">Customers</a></li>
                     <li><a href="#">POS-Portal</a></li>
+                    <li><a href="#">Transactions</a></li>
+                    <li><a href="#">Inventory</a></li>
                 </ul>
             </li><!--end nav-item-->
+            @endrole
+            @role('Admin')
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Products</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('product.index')}}">Product List</a></li>
                     {{--  <li><a href="{{route('product_category.index')}}">Product Category</a></li>  --}}
-                    
                 </ul>
             </li><!--end nav-item-->
             <!--<li class="nav-item">
@@ -83,7 +93,7 @@
                     <li><a href="{{route('home.banner')}}">Banners</a></li>
                 </ul>
             </li><!--end nav-item-->
-
+            @endrole
             <li>
                 <a href="javascript: void(0);"><i class="ti-briefcase"></i>
                     <span>Projects</span>
@@ -96,5 +106,6 @@
                 </ul>
             </li>
         </ul>
+    @endauth
 </div>
 <!-- end left-sidenav-->

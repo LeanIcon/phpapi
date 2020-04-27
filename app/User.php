@@ -5,10 +5,16 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
+    use HasRoles;
     use Notifiable;
+
+    CONST IS_ADMIN = 'admin';
+    CONST IS_WHOLESALER = 'wholesaler';
+    CONST IS_RETAILER = 'retailer';
 
     /**
      * The attributes that are mass assignable.
@@ -45,5 +51,16 @@ class User extends Authenticatable
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = $this->firstname.' '.$this->lastname;
+    }
+
+
+    public function scopeIsWholeSaler($query, $wholesalerId = null)
+    {
+        return $query->where('type', 'wholesaler');
+    }
+
+    public function scopeIsRetailer($query)
+    {
+        return $query->where('type', 'retailer');
     }
 }

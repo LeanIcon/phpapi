@@ -67,40 +67,6 @@
                                             <a href=""><i class="far fa-trash-alt text-danger"></i></a>
                                         </td>
                                     </tr>
-                                    <tr role="row" class="even">
-                                        <td class="sorting_1">
-                                            <img src="../assets/images/products/img-5.png" alt="" height="52">
-                                            <p class="d-inline-block align-middle mb-0">
-                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Bata Shoes</a>
-                                                <br>
-                                                <span class="text-muted font-13">size-08 (Model 2019)</span>
-                                            </p>
-                                        </td>
-                                        <td>Footwear</td>
-                                        <td>$49</td>
-                                        <td><span class="badge badge-soft-secondary">Stock</span></td>
-                                        <td>
-                                            <a href=""><i class="far fa-edit text-info mr-1"></i></a>
-                                            <a href=""><i class="far fa-trash-alt text-danger"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">
-                                            <img src="../assets/images/products/2.jpg" alt="" height="52">
-                                            <p class="d-inline-block align-middle mb-0">
-                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Best Look Chair</a>
-                                                <br>
-                                                <span class="text-muted font-13">size-05 (Model 2019)</span>
-                                            </p>
-                                        </td>
-                                        <td>Interior</td>
-                                        <td>$39</td>
-                                        <td><span class="badge badge-soft-warning">Stock</span></td>
-                                        <td>
-                                            <a href=""><i class="far fa-edit text-info mr-1"></i></a>
-                                            <a href=""><i class="far fa-trash-alt text-danger"></i></a>
-                                        </td>
-                                    </tr>
 
                                 </tbody>
                             </table>
