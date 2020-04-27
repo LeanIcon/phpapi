@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterFormController extends Controller
@@ -21,8 +22,9 @@ class RegisterFormController extends Controller
     {
         $request['password'] = Hash::make($request->password);
         $request['name'] = $request->firstname.' '.$request->lastname;
+        $request['slug'] = Str::slug($request->firstname.' '.$request->lastname);
         $user = new User();
         $user = $user::create($request->all());
-        return back();
+        return redirect()->route('dashboard.index');
     }
 }

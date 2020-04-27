@@ -124,7 +124,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="LeadEmail">Email</label>
-                                <input type="email" class="form-control" id="LeadEmail" required="">
+                                <input type="email" name="email" class="form-control" id="LeadEmail" required="">
                             </div>
                         </div>
                         <div class="col-md-6">

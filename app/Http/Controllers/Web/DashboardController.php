@@ -26,11 +26,11 @@ class DashboardController extends Controller
         }
         if ($authUser->type == $this->user::IS_WHOLESALER )
         {
-            return $this->loadWholesalerDashboard();
+            return redirect()->route('wholesaler.dashboard');
         }
         if ($authUser->type == $this->user::IS_RETAILER)
         {
-            return $this->loadRetailerDashboard();
+            return redirect()->route('retailer.dashboard');
         }
     }
 
@@ -54,15 +54,15 @@ class DashboardController extends Controller
         return view('admin.pages.dashboard.index', compact('pageTitle'));
     }
 
-    public function loadRetailerDashboard()
-    {
-        $pageTitle = 'Nnuro Dashboard';
-        return view('admin.pages.retailers.dashboard', compact('pageTitle'));
-    }
+    // public function loadRetailerDashboard()
+    // {
+    //     $pageTitle = 'Nnuro Dashboard';
+    //     return view('admin.pages.retailers.dashboard', compact('pageTitle'));
+    // }
 
-    public function loadWholesalerDashboard()
-    {
-        $pageTitle = 'Nnuro Dashboard';
-        return view('admin.pages.wholesalers.dashboard', compact('pageTitle'));
-    }
+    // public function loadWholesalerDashboard()
+    // {
+    //     $pageTitle = 'Nnuro Dashboard';
+    //     return view('admin.pages.wholesalers.dashboard', compact('pageTitle'));
+    // }
 }
