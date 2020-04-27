@@ -74,28 +74,28 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label for="LeadName">Drug Code</label>
-                            <input type="text" name="code" class="form-control" id="LeadName" required="">
+                            <label for="Drug Code">Drug Code</label>
+                            <input type="text" name="code" class="form-control" id="LeadName" required="required">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="PhoneNo">Active Ingredients (Comma Seperated)</label>
-                            <input type="text" name="active_ingredients" name="price" class="form-control" id="price" required="">
+                            <label for="Active Ingredients">Active Ingredients (Comma Seperated)</label>
+                            <input type="text" name="active_ingredients" class="form-control" id="active_ingredients" required="required">
                         </div>
                     </div>
                 </div> 
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label for="LeadName">Associated Name</label>
-                            <input type="text" name="associated_name" class="form-control" id="LeadName" required="">
+                            <label for="AssociatedName">Associated Name</label>
+                            <input type="text" name="associated_name" class="form-control" id="associated_name" required="required">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="PhoneNo">Strength</label>
-                            <input type="text" name="strength" name="price" class="form-control" id="price" required="">
+                            <label for="Strength">Strength</label>
+                            <input type="text" name="strength" class="form-control" id="strength" required="required">
                         </div>
                     </div>
                 </div> 
@@ -107,14 +107,14 @@
                                     <option selected="">Select</option>
                                     @if ($manufacturers->isNotEmpty())
                                         @foreach ($manufacturers as $manufacturer)
-                                        <option value="{{$manufacturer->id}}">{{$manufacturer->name}}</option>
+                                            <option value="{{$manufacturer->id}}">{{$manufacturer->name}}</option>
                                         @endforeach
                                     @endif
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-sm btn-primary">Save</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
                     <button type="button" class="btn btn-sm btn-danger">Cancel</button>
                 </div>
             </div>

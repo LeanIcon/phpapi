@@ -14,8 +14,13 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement("SET FOREIGN_KEY_CHECKS=0");
-        DB::table('roles')->truncate();
+        $connection = config('database.default');
+        $driver = config("database.connections.{$connection}.driver");
+        //reset the table
+        if($driver == 'mysql') {
+            DB::statement("SET FOREIGN_KEY_CHECKS=0");
+            DB::table('roles')->truncate();
+        }
 
         $role = Role::create(['name' => 'Admin']);
         $role = Role::create(['name' => 'Wholesaler']);
