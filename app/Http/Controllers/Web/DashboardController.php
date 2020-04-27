@@ -37,13 +37,15 @@ class DashboardController extends Controller
     public function loadWholesaler()
     {
         $pageTitle = 'Nnuro Dashboard';
-        return view('admin.pages.dashboard.wholesalers', compact('pageTitle'));
+        $wholesalers = $this->user->isWholeSaler()->get();
+        return view('admin.pages.dashboard.wholesalers', compact('pageTitle', 'wholesalers'));
     }
 
     public function loadRetailer()
     {
         $pageTitle = 'Nnuro Dashboard';
-        return view('admin.pages.dashboard.retailers', compact('pageTitle'));
+        $retailers = $this->user->isRetailer()->get();
+        return view('admin.pages.dashboard.retailers', compact('pageTitle', 'retailers'));
     }
 
     public function loadDashboard()

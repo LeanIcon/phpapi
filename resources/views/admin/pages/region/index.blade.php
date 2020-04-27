@@ -116,7 +116,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a type="button" href="{{route('region.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
+                {{-- <a type="button" href="{{route('region.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a> --}}
                 <h4 class="header-title mt-0 mb-3">All Regions</h4> 
                 <div class="table-responsive dash-social">
                     <table id="datatable" class="table">

@@ -50,23 +50,25 @@
 
                                 <tbody>
 
+                                    @if ($retailers->isNotEmpty())
+                                    @foreach ($retailers as $retailer)
                                     <tr role="row" class="odd">
                                         <td class="sorting_1">
                                             <img src="../assets/images/products/img-2.png" alt="" height="52">
                                             <p class="d-inline-block align-middle mb-0">
-                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Apple Watch</a>
-                                                <br>
-                                                <span class="text-muted font-13">Size-05 (Model 2019)</span>
+                                                <a href="" class="d-inline-block align-middle mb-0 product-name">{{$retailer->name}}</a>
                                             </p>
                                         </td>
-                                        <td>Sports</td>
-                                        <td>$39</td>
+                                        <td>Kasoa</td>
+                                        <td>Drugs</td>
                                         <td><span class="badge badge-soft-warning">Stock</span></td>
                                         <td>
                                             <a href=""><i class="far fa-edit text-info mr-1"></i></a>
                                             <a href=""><i class="far fa-trash-alt text-danger"></i></a>
                                         </td>
                                     </tr>
+                                    @endforeach
+                                @endif
 
                                 </tbody>
                             </table>
