@@ -32,18 +32,19 @@ class DashboardController extends Controller
         {
             return redirect()->route('retailer.dashboard');
         }
+        abort(404);
     }
 
     public function loadWholesaler()
     {
-        $pageTitle = 'Nnuro Dashboard';
+        $pageTitle = 'Admin Dashboard';
         $wholesalers = $this->user->isWholeSaler()->get();
         return view('admin.pages.dashboard.wholesalers', compact('pageTitle', 'wholesalers'));
     }
 
     public function loadRetailer()
     {
-        $pageTitle = 'Nnuro Dashboard';
+        $pageTitle = 'Admin Dashboard';
         $retailers = $this->user->isRetailer()->get();
         return view('admin.pages.dashboard.retailers', compact('pageTitle', 'retailers'));
     }
