@@ -50,57 +50,25 @@
 
                                 <tbody>
 
+                                    @if ($retailers->isNotEmpty())
+                                    @foreach ($retailers as $retailer)
                                     <tr role="row" class="odd">
                                         <td class="sorting_1">
                                             <img src="../assets/images/products/img-2.png" alt="" height="52">
                                             <p class="d-inline-block align-middle mb-0">
-                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Apple Watch</a>
-                                                <br>
-                                                <span class="text-muted font-13">Size-05 (Model 2019)</span>
+                                                <a href="" class="d-inline-block align-middle mb-0 product-name">{{$retailer->name}}</a>
                                             </p>
                                         </td>
-                                        <td>Sports</td>
-                                        <td>$39</td>
+                                        <td>Kasoa</td>
+                                        <td>Drugs</td>
                                         <td><span class="badge badge-soft-warning">Stock</span></td>
                                         <td>
                                             <a href=""><i class="far fa-edit text-info mr-1"></i></a>
                                             <a href=""><i class="far fa-trash-alt text-danger"></i></a>
                                         </td>
                                     </tr>
-                                    <tr role="row" class="even">
-                                        <td class="sorting_1">
-                                            <img src="../assets/images/products/img-5.png" alt="" height="52">
-                                            <p class="d-inline-block align-middle mb-0">
-                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Bata Shoes</a>
-                                                <br>
-                                                <span class="text-muted font-13">size-08 (Model 2019)</span>
-                                            </p>
-                                        </td>
-                                        <td>Footwear</td>
-                                        <td>$49</td>
-                                        <td><span class="badge badge-soft-secondary">Stock</span></td>
-                                        <td>
-                                            <a href=""><i class="far fa-edit text-info mr-1"></i></a>
-                                            <a href=""><i class="far fa-trash-alt text-danger"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">
-                                            <img src="../assets/images/products/2.jpg" alt="" height="52">
-                                            <p class="d-inline-block align-middle mb-0">
-                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Best Look Chair</a>
-                                                <br>
-                                                <span class="text-muted font-13">size-05 (Model 2019)</span>
-                                            </p>
-                                        </td>
-                                        <td>Interior</td>
-                                        <td>$39</td>
-                                        <td><span class="badge badge-soft-warning">Stock</span></td>
-                                        <td>
-                                            <a href=""><i class="far fa-edit text-info mr-1"></i></a>
-                                            <a href=""><i class="far fa-trash-alt text-danger"></i></a>
-                                        </td>
-                                    </tr>
+                                    @endforeach
+                                @endif
 
                                 </tbody>
                             </table>
@@ -156,7 +124,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="LeadEmail">Email</label>
-                                <input type="email" class="form-control" id="LeadEmail" required="">
+                                <input type="email" name="email" class="form-control" id="LeadEmail" required="">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -167,8 +135,8 @@
                         </div>
                     </div>
                     <input type="hidden" name="type" value="retailer">
-                    <input id="password" type="password" name="password" value="12345678" required autocomplete="new-password">
-                    <input id="password-confirm" type="password" name="password_confirmation" value="12345678" required autocomplete="new-password">
+                    <input id="password" type="hidden" name="password" value="12345678" required autocomplete="new-password">
+                    <input id="password-confirm" type="hidden" name="password_confirmation" value="12345678" required autocomplete="new-password">
 
                     <button type="submit" class="btn btn-sm btn-primary">Save</button>
                     <button type="button" class="btn btn-sm btn-danger">Delete</button>

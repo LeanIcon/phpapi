@@ -25,6 +25,18 @@
             </select>
         </div>
     </div>
+    <div class="col-lg-6">
+        <div class="form-group">
+            <label for="LeadName">Drug Strength</label>
+            <input type="text" class="form-control" id="LeadName" required="">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="PhoneNo">Packet Size</label>
+            <input type="text" name="price" class="form-control" id="price" required="">
+        </div>
+    </div>
 </div>
 
 <div class="row" id="selectedEquipCat">

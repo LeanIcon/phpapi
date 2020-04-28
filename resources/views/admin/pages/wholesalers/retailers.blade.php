@@ -6,7 +6,6 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a type="button" href="#" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
                 <h4 class="header-title mt-0 mb-3">All {{$pageTitle ?? 'Current Page'}}</h4> 
                 
                 <h4 class="mt-0 header-title">Retailers</h4>
@@ -42,65 +41,32 @@
                                     <tr role="row">
                                         <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 285px;">Retailer Name</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Location</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Invoices</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Items</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Status</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">Action</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-
+                                    @if ($retailers->isNotEmpty())
+                                    @foreach ($retailers as $retailer)
                                     <tr role="row" class="odd">
                                         <td class="sorting_1">
                                             <img src="../assets/images/products/img-2.png" alt="" height="52">
                                             <p class="d-inline-block align-middle mb-0">
-                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Apple Watch</a>
-                                                <br>
-                                                <span class="text-muted font-13">Size-05 (Model 2019)</span>
+                                                <a href="" class="d-inline-block align-middle mb-0 product-name">{{$retailer->name}}</a>
                                             </p>
                                         </td>
                                         <td>Sports</td>
-                                        <td>$39</td>
+                                        <td>Drugs</td>
                                         <td><span class="badge badge-soft-warning">Stock</span></td>
                                         <td>
                                             <a href=""><i class="far fa-edit text-info mr-1"></i></a>
                                             <a href=""><i class="far fa-trash-alt text-danger"></i></a>
                                         </td>
                                     </tr>
-                                    <tr role="row" class="even">
-                                        <td class="sorting_1">
-                                            <img src="../assets/images/products/img-5.png" alt="" height="52">
-                                            <p class="d-inline-block align-middle mb-0">
-                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Bata Shoes</a>
-                                                <br>
-                                                <span class="text-muted font-13">size-08 (Model 2019)</span>
-                                            </p>
-                                        </td>
-                                        <td>Footwear</td>
-                                        <td>$49</td>
-                                        <td><span class="badge badge-soft-secondary">Stock</span></td>
-                                        <td>
-                                            <a href=""><i class="far fa-edit text-info mr-1"></i></a>
-                                            <a href=""><i class="far fa-trash-alt text-danger"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">
-                                            <img src="../assets/images/products/2.jpg" alt="" height="52">
-                                            <p class="d-inline-block align-middle mb-0">
-                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Best Look Chair</a>
-                                                <br>
-                                                <span class="text-muted font-13">size-05 (Model 2019)</span>
-                                            </p>
-                                        </td>
-                                        <td>Interior</td>
-                                        <td>$39</td>
-                                        <td><span class="badge badge-soft-warning">Stock</span></td>
-                                        <td>
-                                            <a href=""><i class="far fa-edit text-info mr-1"></i></a>
-                                            <a href=""><i class="far fa-trash-alt text-danger"></i></a>
-                                        </td>
-                                    </tr>
+                                    @endforeach
+                                @endif
 
                                 </tbody>
                             </table>

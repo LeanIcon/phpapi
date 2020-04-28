@@ -2,21 +2,11 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Models\Product;
-use App\Models\Manufacturer;
-use Illuminate\Http\Request;
-use App\Models\ProductCategory;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class UserProfileController extends Controller
 {
-    public $product, $manufacturer, $productCateogory;
-    public function __construct(Product $product, Manufacturer $manufacturer, ProductCategory $productCateogory)
-    {
-        $this->product = $product;
-        $this->manufacturer = $manufacturer;
-        $this->productCateogory = $productCateogory;;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -24,8 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = $this->product::all();
-        return view('admin.pages.product.index', compact('products'));
+        return view('admin.settings.profile');
     }
 
     /**
@@ -35,10 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $manufacturers = $this->manufacturer::all();
-        $productCategory  = $this->productCateogory::ProductCategory();
-
-        return view('admin.pages.product.add', compact('manufacturers','productCategory'));
+        //
     }
 
     /**

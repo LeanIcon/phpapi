@@ -13,49 +13,54 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
+        $connection = config('database.default');
+        $driver = config("database.connections.{$connection}.driver");
+
         $faker = Factory::create();
         //reset the table
-        DB::statement("SET FOREIGN_KEY_CHECKS=0");
-        DB::table('users')->truncate();
+        if($driver == 'mysql') {
+            DB::statement("SET FOREIGN_KEY_CHECKS=0");
+            DB::table('users')->truncate();
+        }
 
         DB::table('users')->insert([
                 [
-                    'name' => "Admin Jack",
+                    'name' => "Admin Nnuro",
                     'firstname' => "Admin",
-                    'lastname' => "Jack",
-                    "slug" =>"admin-doe",
+                    'lastname' => "Nnuro",
+                    "slug" =>"admin-nnuro",
                     "type" =>"admin",
                     'email' => "admin@nnuro.com",
                         'password' => bcrypt('secret'),
                         "bio" => $faker->text(rand(250, 300))
                 ],
                 [
-                    'name' => "John Doe",
-                    "slug" =>"john-doe",
-                    'firstname' => "Admin",
-                    'lastname' => "Doe",
-                    "type" =>"retailer",
-                    'email' => "johndoe@nnuro.com",
-                        'password' => bcrypt('secret'),
-                        "bio" => $faker->text(rand(250, 300))
-                ],
-                [
-                    'name' => "Jane Doe",
-                    "slug" =>"jane-doe",
+                    'name' => "Wholesaler Jane",
+                    "slug" =>"wholesaler-jane",
                     'firstname' => "Jane",
                     'lastname' => "Doe",
                     "type" =>"wholesaler",
-                    'email' => "janedoe@nnuro.com",
+                    'email' => "wholesaler@nnuro.com",
                     'password' => bcrypt('secret'),
                     "bio" => $faker->text(rand(250, 300))
                 ],
                 [
-                'name' => "Mark Otoo",
-                "slug" =>"mark-otoo",
+                    'name' => "Retailer John",
+                    "slug" =>"retailer-john",
+                    'firstname' => "Retailer",
+                    'lastname' => "John",
+                    "type" =>"retailer",
+                    'email' => "retailer@nnuro.com",
+                        'password' => bcrypt('secret'),
+                        "bio" => $faker->text(rand(250, 300))
+                ],
+                [
+                'name' => "Consumer Mark",
+                "slug" =>"consumer-mark",
                 'firstname' => "Mark",
-                'lastname' => "Otoo",
+                'lastname' => "Consumer",
                 "type" =>"customer",
-                'email' => "markotoo@nnuro.com",
+                'email' => "consumer@nnuro.com",
                 'password' => bcrypt('secret'),
                 "bio" => $faker->text(rand(250, 300))
                 ]

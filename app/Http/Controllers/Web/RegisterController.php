@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -30,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::DASHBOARD;
 
     /**
      * Create a new controller instance.
@@ -69,7 +70,9 @@ class RegisterController extends Controller
         return User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
-            'name' =>  $data['firstname']. ' ' .$data['lastname'],
+            'type' => $data['type'],
+            'name' =>  $data['firstname'].' '.$data['lastname'],
+            'slug' =>  Str::slug($data['firstname']. ' ' .$data['lastname']),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

@@ -16,7 +16,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Register As') }}</label>
     
                                 <div class="col-md-6">
-                                    <select class="form-control" name="role" id="">
+                                    <select class="form-control" name="type" id="">
                                         <option value="">Select</option>
                                         <option value="wholesaler">Wholesaler</option>
                                         <option value="retailer">Retailer</option>
