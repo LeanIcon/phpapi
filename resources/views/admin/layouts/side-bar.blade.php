@@ -81,6 +81,7 @@
                 <ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('manufacture.index')}}">Manufacturers</a></li>
                     <li><a href="{{route('product_category.index')}}">Product Category</a></li>
+                    <li><a href="{{route('product_category_types.index')}}">Product Category Types</a></li>
                     <li><a href="{{route('drug_class.index')}}">Drugs Class</a></li>
                     <li><a href="{{route('dosage_form.index')}}">Drug Dosage Form</a></li>
                     <li><a href="{{route('region.index')}}">Region</a></li>

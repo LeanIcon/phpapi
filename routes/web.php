@@ -43,8 +43,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::resource('drug', 'DrugController');
     Route::resource('drug_class', 'DrugClassController')->only(['index','store']);
     Route::resource('dosage_form', 'DosageFormController')->only(['index','store']);
+    Route::resource('product_category_types', 'ProductCategoryTypesController')->only(['index','store']);
 
     Route::get('banner', 'FrontSettingsController@getBannerPage')->name('home.banner');
+
+    Route::get('approved_users/{user?}', 'ApproveRegistrationController@approvedUsers')->name('approve.users');
+    Route::post('approved_users/{user?}', 'ApproveRegistrationController@AcceptapprovedUsers')->name('approve.users');
 
     Route::resource('post_category', 'PostCategoryController');
 
