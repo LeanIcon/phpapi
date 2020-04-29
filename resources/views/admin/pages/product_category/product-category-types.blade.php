@@ -6,12 +6,12 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <button type="button" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" data-toggle="modal" data-animation="bounce" data-target=".bs-wholesalers-modal-lg">+ Add New</button>
+                <button type="button" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" data-toggle="modal" data-animation="bounce" data-target=".bs-retailer-modal-lg">+ Add New</button>
                 <h4 class="header-title mt-0 mb-3">All {{$pageTitle ?? 'Current Page'}}</h4> 
                 
-                <h4 class="mt-0 header-title">Wholesalers</h4>
+                <h4 class="mt-0 header-title">Dosage Form</h4>
                 <p class="text-muted mb-4 font-13">
-                    Wholesalers.
+                    Dosage Form.
                 </p>
 
                 <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -40,42 +40,31 @@
                             <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                                 <thead>
                                     <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 285px;">Wholesaler Name</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Location</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Invoices</th>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 285px;">Dosage Name</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Status</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Role</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">Action</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-
-                                    @if ($wholesalers->isNotEmpty())
-                                        @foreach ($wholesalers as $wholesaler)
-                                            <tr role="row" class="odd">
-                                                <td class="sorting_1">
-                                                    <img src="../assets/images/products/img-2.png" alt="" height="52">
-                                                    <p class="d-inline-block align-middle mb-0">
-                                                        <a href="" class="d-inline-block align-middle mb-0 product-name">{{$wholesaler->name}}</a>
-                                                    </p>
-                                                </td>
-                                                <td>East Legon</td>
-                                                <td>
-                                                    <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}"> Equipments/Drugs</a>
-                                                </td>
-                                                <td><span class="badge badge-soft-warning">Stock</span></td>
-                                                <td>
-                                                    <a href="{{route('approve.users', $wholesaler->id)}}">
-                                                        <span class= "badge badge-soft-{{$wholesaler->hasRole('Wholesaler') ? 'success' : 'warning'}}">{{$wholesaler->hasRole('Wholesaler') ? 'Approved' : 'Pending Approval'}}</span></td>
-                                                    </a>
-                                                    
-                                                <td>
-                                                    <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}"><i class="far fa-eye text-danger"></i></a>
-                                                </td>
-                                            </tr>
+                                    @if ($productCategoryTypes->isNotEmpty())
+                                        @foreach ($productCategoryTypes as $item)
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">
+                                                <img src="../assets/images/products/img-2.png" alt="" height="52">
+                                                <p class="d-inline-block align-middle mb-0">
+                                                    <a href="" class="d-inline-block align-middle mb-0 product-name">{{$item->name}}</a>
+                                                </p>
+                                            </td>
+                                            <td><span class="badge badge-soft-warning">Active</span></td>
+                                            <td>
+                                                <a href=""><i class="far fa-edit text-info mr-1"></i></a>
+                                                <a href=""><i class="far fa-trash-alt text-danger"></i></a>
+                                            </td>
+                                        </tr>
                                         @endforeach
                                     @endif
+
 
                                 </tbody>
                             </table>
@@ -103,49 +92,38 @@
     <!-- end col -->
 </div>
 <!--  Modal content for the above example -->
-<div class="modal fade bs-wholesalers-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<!--  Modal content for the above example -->
+<div class="modal fade bs-retailer-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myLargeModalLabel">Add New Wholesaler</h5>
+                <h5 class="modal-title mt-0" id="myLargeModalLabel">Add {{$pageTitle ?? 'Item'}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
-                <form method="POST"  action="{{route('save.user')}}">
+                <form method="POST"  action="{{route('product_category_types.store')}}" >
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="LeadName">First Name</label>
-                                <input type="text" name="firstname" class="form-control" id="LeadName" required="">
+                                <label for="LeadName">Category Type Name</label>
+                                <input type="text" name="name" class="form-control" id="LeadName" required="">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="LeadEmail">Last Name</label>
-                                <input type="text" class="form-control" name="lastname" id="LeadEmail" required="">
+                                <label for="LeadName">Product Category</label>
+                                <select class="form-control" name="product_category_id" id="" required>
+                                    <option value="">Select Product Category</option>
+                                    @if ($productCategory->isNotEmpty())
+                                        @foreach ($productCategory as $item)
+                                            <option value="{{$item->id}}">{{$item->name}}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="LeadEmail">Email</label>
-                                <input type="email" name="email" class="form-control" id="LeadEmail" required="">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="LeadName">Phone</label>
-                                <input type="text" name="phone" class="form-control" id="LeadName" required="">
-                            </div>
-                        </div>
-                    </div>
-                    <input type="hidden" name="type" value="wholesaler">
-                    <input id="password" type="hidden" name="password" value="12345678" required autocomplete="new-password">
-                    <input id="password-confirm" type="hidden" name="password_confirmation" value="12345678" required autocomplete="new-password">
-
-
                     <button type="submit" class="btn btn-sm btn-primary">Save</button>
                     <button type="button" class="btn btn-sm btn-danger">Delete</button>
                 </form>
