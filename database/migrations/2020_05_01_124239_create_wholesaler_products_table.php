@@ -15,11 +15,11 @@ class CreateWholesalerProductsTable extends Migration {
 		Schema::create('wholesaler_products', function(Blueprint $table)
 		{
 			$table->integer('id', true);
-			$table->string('batch_number');
+			$table->string('batch_number', 191);
 			$table->decimal('price', 19, 8)->default(0.00000000);
 			$table->dateTime('expiry_date');
-			$table->string('expiry_status');
-			$table->string('type');
+			$table->string('expiry_status', 191);
+			$table->string('type', 191);
 			$table->integer('status');
 			$table->timestamps();
 			$table->softDeletes();

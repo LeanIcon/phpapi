@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateManufacturersTable extends Migration {
+class CreateCategoryPostTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,13 @@ class CreateManufacturersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('manufacturers', function(Blueprint $table)
+		Schema::create('category_post', function(Blueprint $table)
 		{
-			$table->bigInteger('id', true);
-			$table->string('name');
-			$table->string('status');
+			$table->integer('id', true);
+			$table->string('name', 191);
+			$table->string('slug', 191);
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 
@@ -29,7 +30,7 @@ class CreateManufacturersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('manufacturers');
+		Schema::drop('category_post');
 	}
 
 }

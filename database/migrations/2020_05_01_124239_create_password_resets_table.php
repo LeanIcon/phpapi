@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDosageFormTable extends Migration {
+class CreatePasswordResetsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,11 @@ class CreateDosageFormTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('dosage_form', function(Blueprint $table)
+		Schema::create('password_resets', function(Blueprint $table)
 		{
-			$table->integer('id', true);
-			$table->string('name');
-			$table->timestamps();
+			$table->string('email', 191)->index();
+			$table->string('token', 191);
+			$table->dateTime('created_at')->nullable();
 		});
 	}
 
@@ -28,7 +28,7 @@ class CreateDosageFormTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('dosage_form');
+		Schema::drop('password_resets');
 	}
 
 }
