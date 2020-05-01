@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\RetailerProduct;
+use App\Http\Controllers\Controller;
 
 class RetailerProductsController extends Controller
 {
+    public function __construct(RetailerProduct $retailerProducts)
+    {
+        $this->middleware('auth');
+        $this->middleware(['role:Wholesaler']);
+        $this->retailerProducts = $retailerProducts;
+    }
     /**
      * Display a listing of the resource.
      *

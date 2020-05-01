@@ -43,6 +43,7 @@
                                         <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 285px;">Retailer Name</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Location</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Invoices</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Role</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Status</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">Action</th>
                                     </tr>
@@ -61,7 +62,12 @@
                                         </td>
                                         <td>Kasoa</td>
                                         <td>Drugs</td>
-                                        <td><span class="badge badge-soft-warning">Stock</span></td>
+                                            <td>
+                                                <a href="{{route('approve.users', $retailer->id)}}">
+                                                    <span class= "badge badge-soft-{{$retailer->hasRole('Retailer') ? 'success' : 'warning'}}">{{$retailer->hasRole('Retailer') ? 'Approved' : 'Pending Approval'}}</span></td>
+                                                </a>
+                                                
+                                            <td>
                                         <td>
                                             <a href=""><i class="far fa-edit text-info mr-1"></i></a>
                                             <a href=""><i class="far fa-trash-alt text-danger"></i></a>

@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <select class="form-control" name="user_id" required id="">
+                                        <select class="form-control" name="action" required id="">
                                             <option value="">Select Action</option>
                                             <option value="approve">Approve</option>
                                             <option value="cancel">Cancel</option>

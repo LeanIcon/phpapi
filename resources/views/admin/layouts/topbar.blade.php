@@ -45,33 +45,29 @@
                             <h6 class="dropdown-item-text">
                                 Notifications (18)
                             </h6>
+                            @if (Auth::user()->hasRole('Admin'))
                             <div class="slimscroll notification-list">
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item active">
-                                    <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
-                                    <p class="notify-details">Your order is placed<small class="text-muted">Dummy text of the printing and typesetting industry.</small></p>
-                                </a>
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <div class="notify-icon bg-warning"><i class="mdi mdi-message"></i></div>
-                                    <p class="notify-details">New Message received<small class="text-muted">You have 87 unread messages</small></p>
-                                </a>
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <div class="notify-icon bg-info"><i class="mdi mdi-glass-cocktail"></i></div>
-                                    <p class="notify-details">Your item is shipped<small class="text-muted">It is a long established fact that a reader will</small></p>
-                                </a>
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <div class="notify-icon bg-primary"><i class="mdi mdi-cart-outline"></i></div>
-                                    <p class="notify-details">Your order is placed<small class="text-muted">Dummy text of the printing and typesetting industry.</small></p>
-                                </a>
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <div class="notify-icon bg-danger"><i class="mdi mdi-message"></i></div>
-                                    <p class="notify-details">New Message received<small class="text-muted">You have 87 unread messages</small></p>
-                                </a>
+                                @foreach ($wholesalers as $wholesaler)
+                                @if (!$wholesaler->hasRole('Wholesaler'))
+                                 <a href="{{route('approve.users', $wholesaler->id)}}" class="dropdown-item notify-item active">
+                                     <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
+                                     <p class="notify-details">{{$wholesaler->name}}
+                                         <small class="text-muted">Pending Approval & Authorization</small></p>
+                                 </a>
+                                 @endif
+                                @endforeach
+                                @foreach ($retailers as $retailer)
+                                 @if (!$wholesaler->hasRole('Retailer'))
+                                 <a href="{{route('approve.users', $retailer->id)}}" class="dropdown-item notify-item active">
+                                     <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
+                                     <p class="notify-details">{{$retailer->name}}
+                                         <small class="text-muted">Pending Approval & Authorization</small></p>
+                                 </a>
+                                 @endif
+                                @endforeach
                             </div>
+                            @endif
                             <!-- All-->
                             <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
                                 View all <i class="fi-arrow-right"></i>

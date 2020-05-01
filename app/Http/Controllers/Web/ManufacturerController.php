@@ -11,6 +11,8 @@ class ManufacturerController extends Controller
     public $manufacturer;
     public function __construct(Manufacturer $manufacturer)
     {
+        $this->middleware('auth');
+        $this->middleware(['role:Admin']);
         $this->manufacturer = $manufacturer;
     }
     /**
