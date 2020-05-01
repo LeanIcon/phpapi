@@ -40,77 +40,36 @@
                             <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                                 <thead>
                                     <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 285px;">Product Name</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Category</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Batch Number</th>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 150px;">Product Name</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Description</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Price</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Status</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 156px;">Variations</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 156px;">Manufacturer</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">Action</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
 
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">
-                                            <img src="../assets/images/products/img-2.png" alt="" height="52">
-                                            <p class="d-inline-block align-middle mb-0">
-                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Apple Watch</a>
-                                                <br>
-                                                <span class="text-muted font-13">Size-05 (Model 2019)</span>
-                                            </p>
+                                    @if ($wholesalerProducts->isNotEmpty())
+                                    @foreach ($wholesalerProducts as $product)
+                                        <tr>
+                                            <td>{{$product->batch_number}}</td>
+                                            <td>{{$product->id}} | {{$product->products->name}}</td>
+                                            <td> {{$product->products->active_ingredients}}, {{$product->products->strength}}, {{$product->products->packet_size}}</td>
+                                            <td>{{$product->price}}</td>
+                                            <td>{{$product->expiry_status}} </td>
+                                            <td>{{$product->products->manufacturers->name}} </td>
+                                            <td> 
+                                            <a href="{{route('wholesaler_products.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                            <a href="{{route('wholesaler_products.edit', $product->id)}}" class="mr-2"><i class="fas fa-eye text-info font-16"></i></a>
+                                            {{-- <a id="deleteAction"><i class="fas fa-trash-alt text-danger font-16"></i></a> --}}
                                         </td>
-                                        <td>Sports</td>
-                                        <td>$39</td>
-                                        <td><span class="badge badge-soft-warning">Stock</span></td>
-                                        <td>
-                                           5
-                                        </td>
-                                        <td>
-                                            <a href=""><i class="far fa-edit text-info mr-1"></i></a>
-                                            <a href=""><i class="far fa-trash-alt text-danger"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="even">
-                                        <td class="sorting_1">
-                                            <img src="../assets/images/products/img-5.png" alt="" height="52">
-                                            <p class="d-inline-block align-middle mb-0">
-                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Bata Shoes</a>
-                                                <br>
-                                                <span class="text-muted font-13">size-08 (Model 2019)</span>
-                                            </p>
-                                        </td>
-                                        <td>Footwear</td>
-                                        <td>$49</td>
-                                        <td><span class="badge badge-soft-secondary">Stock</span></td>
-                                        <td>
-                                           2
-                                        </td>
-                                        <td>
-                                            <a href=""><i class="far fa-edit text-info mr-1"></i></a>
-                                            <a href=""><i class="far fa-trash-alt text-danger"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">
-                                            <img src="../assets/images/products/2.jpg" alt="" height="52">
-                                            <p class="d-inline-block align-middle mb-0">
-                                                <a href="" class="d-inline-block align-middle mb-0 product-name">Best Look Chair</a>
-                                                <br>
-                                                <span class="text-muted font-13">size-05 (Model 2019)</span>
-                                            </p>
-                                        </td>
-                                        <td>Interior</td>
-                                        <td>$39</td>
-                                        <td><span class="badge badge-soft-warning">Stock</span></td>
-                                        <td>
-                                          3
-                                        </td>
-                                        <td>
-                                            <a href=""><i class="far fa-edit text-info mr-1"></i></a>
-                                            <a href=""><i class="far fa-trash-alt text-danger"></i></a>
-                                        </td>
-                                    </tr>
+                                        </tr>
+                                        </tr>
+                                    @endforeach
+                                @endif            
 
                                 </tbody>
                             </table>

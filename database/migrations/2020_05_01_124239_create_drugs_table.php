@@ -15,12 +15,12 @@ class CreateDrugsTable extends Migration {
 		Schema::create('drugs', function(Blueprint $table)
 		{
 			$table->integer('id', true);
-			$table->string('code');
-			$table->string('active_ingredients');
-			$table->string('associated_name');
-			$table->string('category');
-			$table->string('strength');
-			$table->string('type');
+			$table->string('code', 191);
+			$table->string('active_ingredients', 191);
+			$table->string('associated_name', 191);
+			$table->string('category', 191);
+			$table->string('strength', 191);
+			$table->string('type', 191);
 			$table->integer('status');
 			$table->timestamps();
 			$table->integer('drug_class_id');

@@ -16,10 +16,10 @@ class CreateBulkOrdersTable extends Migration {
 		{
 			$table->bigInteger('id')->nullable();
 			$table->dateTime('order_date')->nullable();
-			$table->string('order_status')->nullable();
+			$table->string('order_status', 191)->nullable();
 			$table->dateTime('delivery_date')->nullable();
-			$table->string('purchase_order')->nullable();
-			$table->string('invoice_number')->nullable();
+			$table->string('purchase_order', 191)->nullable();
+			$table->string('invoice_number', 191)->nullable();
 			$table->timestamps();
 		});
 	}

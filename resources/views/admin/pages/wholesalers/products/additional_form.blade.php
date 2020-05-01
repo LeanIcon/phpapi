@@ -2,11 +2,11 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="LeadEmail">Dosage Form</label>
-            <select class="custom-select" id="status-select">
+            <select name="dosage_form_id" class="form-control custom-select" id="status-select">
                 <option selected="">Select</option>
-                @if ($manufacturers->isNotEmpty())
-                    @foreach ($manufacturers as $manufacturer)
-                    <option value="{{$manufacturer->id}}">{{$manufacturer->name}}</option>
+                @if ($dosageForm->isNotEmpty())
+                    @foreach ($dosageForm as $dosage)
+                    <option value="{{$dosage->id}}">{{$dosage->name}}</option>
                     @endforeach
                 @endif
             </select>
@@ -15,11 +15,11 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="status-select" class="mr-2">Drug Class</label>
-            <select class="custom-select" id="status-select">
+            <select name="drug_class_id" class="form-control custom-select" id="status-select">
                 <option selected="">Select</option>
-            @if (!is_null($productCategory))
-                @foreach ($productCategory as $category)
-                    <option value="{{$category['key']}}">{{$category['name']}}</option>
+            @if (!is_null($drugClass))
+                @foreach ($drugClass as $drug)
+                    <option value="{{$drug->id}}">{{$drug->name}}</option>
                 @endforeach
             @endif
             </select>
@@ -28,13 +28,13 @@
     <div class="col-lg-6">
         <div class="form-group">
             <label for="LeadName">Drug Strength</label>
-            <input type="text" class="form-control" id="LeadName" required="">
+            <input type="text" name="strength" class="form-control" id="LeadName" required="">
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label for="PhoneNo">Packet Size</label>
-            <input type="text" name="price" class="form-control" id="price" required="">
+            <input type="text" name="packet_size" class="form-control" id="price" required="">
         </div>
     </div>
 </div>
