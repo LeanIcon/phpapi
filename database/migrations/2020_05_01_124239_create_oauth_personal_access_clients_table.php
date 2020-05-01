@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateProductCategoryTable extends Migration {
+class CreateOauthPersonalAccessClientsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,10 @@ class CreateProductCategoryTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('product_category', function(Blueprint $table)
+		Schema::create('oauth_personal_access_clients', function(Blueprint $table)
 		{
-			$table->bigInteger('id', true);
-			$table->string('name');
-			$table->string('type');
-			$table->integer('status');
+			$table->increments('id');
+			$table->integer('client_id')->unsigned()->index();
 			$table->timestamps();
 		});
 	}
@@ -30,7 +28,7 @@ class CreateProductCategoryTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('product_category');
+		Schema::drop('oauth_personal_access_clients');
 	}
 
 }

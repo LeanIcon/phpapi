@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateCategoryPostTable extends Migration {
+class CreateDrugClassTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +12,11 @@ class CreateCategoryPostTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('category_post', function(Blueprint $table)
+		Schema::create('drug_class', function(Blueprint $table)
 		{
 			$table->integer('id', true);
-			$table->string('name');
-			$table->string('slug');
+			$table->string('name', 191);
 			$table->timestamps();
-			$table->softDeletes();
 		});
 	}
 
@@ -30,7 +28,7 @@ class CreateCategoryPostTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('category_post');
+		Schema::drop('drug_class');
 	}
 
 }
