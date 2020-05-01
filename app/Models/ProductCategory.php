@@ -6,28 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductCategory extends ApiModel
 {
+    const TYPE_PRES = 'prescription';
+    const TYPE_OTC = 'otc';
+    const TYPE_DENTAL = 'dental';
+    const TYPE_LAB = 'lab';
+    const TYPE_MEDICAL = 'medical';
+    const TYPE_THEATRE = 'theatre';
+    const TYPE_INDI = 'individual';
+
+    const CAT_DRUG = 'drugs';
+    const CAT_EQUIP = 'equipments';
+    const CAT_CONS = 'consumables';
+
     protected $table ='product_category';
-    protected $fillable = ['name','type'];
+    protected $fillable = ['name','type', 'slug'];
 
 
-    public function ProductCategoryTypes()
-    {
-        return array(
-                    'drugs' => ['Prescription', 'OTC'],
-                    'equipment' => ['Dental', 'Lab', 'Theatre', 'Medical', 'Individual'],
-                    'supplies' => ['Dental', 'Lab', 'Theatre', 'Medical'],
-                    );
-    }
-
-    public static function ProductCategory()
-    {
-        $produtCat =  array(
-                        ['key' => 'drugs', 'name' => 'Drugs'],
-                        ['key' => 'equipments', 'name' => 'Equipments'],
-                        ['key' => 'supplies', 'name' => 'Supplies'],
-                    );
-        return $produtCat;
-    }
-
-    
 }

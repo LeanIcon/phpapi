@@ -24,6 +24,7 @@ class ProductCategoryTypesController extends Controller
     public function index()
     {
         $productCategoryTypes = $this->productCategoryTypes::all();
+
         $productCategory = $this->productCategory::all();
         $pageTitle = $this->pageTitle;
         return view('admin.pages.product_category.product-category-types', compact('productCategoryTypes', 'productCategory','pageTitle'));
@@ -48,7 +49,6 @@ class ProductCategoryTypesController extends Controller
     public function store(Request $request)
     {
         $productCategoryTypes =   $this->productCategoryTypes::create($request->all());
-        return $productCategoryTypes;
         return redirect()->route('product_category_types.index');
 
     }

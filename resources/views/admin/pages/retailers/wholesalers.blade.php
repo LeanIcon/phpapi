@@ -59,7 +59,7 @@
                                                 </td>
                                                 <td>Sports</td>
                                                 <td>
-                                                    <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}"> Equipments/Drugs</a>
+                                                    <a >{{$wholesaler->product_cat}}</a>
                                                 </td>
                                                 <td><span class="badge badge-soft-warning">Stock</span></td>
                                                 <td>
