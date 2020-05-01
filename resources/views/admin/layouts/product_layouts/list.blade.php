@@ -38,9 +38,9 @@
                             </thead>
 
                             <tbody>
-                        @if ($wholesalerProducts)
-                            @if ($wholesalerProducts->isNotEmpty())
-                                @foreach ($wholesalerProducts as $product)
+                        @if ($products)
+                            @if ($products->isNotEmpty())
+                                @foreach ($products as $product)
                                     <tr>
                                         <td>{{$product->batch_number}}</td>
                                         <td>{{$product->id}} | {{$product->products->name}}</td>

@@ -96,7 +96,7 @@
 
                 <div class="tab-pane fade" id="education_detail">
                     <div class="row">
-                        @include('admin.layouts.product_layouts.list', ['wholesalerProducts' => []])
+                        @include('admin.layouts.product_layouts.list', ['products' => $products])
                     </div>
                 </div>
                 <!--end education detail-->
