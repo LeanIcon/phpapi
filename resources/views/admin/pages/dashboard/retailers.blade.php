@@ -9,7 +9,7 @@
                 <button type="button" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" data-toggle="modal" data-animation="bounce" data-target=".bs-retailer-modal-lg">+ Add New</button>
                 <h4 class="header-title mt-0 mb-3">All {{$pageTitle ?? 'Current Page'}}</h4> 
                 
-                <h4 class="mt-0 header-title">Retailers</h4>
+                <h4 class="mt-0 header-title">Retailers</h4> <!---{{Auth::user()->hasRole('Admin')}} -->
                 <p class="text-muted mb-4 font-13">
                     Retailers.
                 </p>
@@ -44,6 +44,7 @@
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Location</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Invoices</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Status</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Role</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">Action</th>
                                     </tr>
                                 </thead>
@@ -52,21 +53,27 @@
 
                                     @if ($retailers->isNotEmpty())
                                     @foreach ($retailers as $retailer)
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">
-                                            <img src="../assets/images/products/img-2.png" alt="" height="52">
-                                            <p class="d-inline-block align-middle mb-0">
-                                                <a href="" class="d-inline-block align-middle mb-0 product-name">{{$retailer->name}}</a>
-                                            </p>
-                                        </td>
-                                        <td>Kasoa</td>
-                                        <td>Drugs</td>
-                                        <td><span class="badge badge-soft-warning">Stock</span></td>
-                                        <td>
-                                            <a href=""><i class="far fa-edit text-info mr-1"></i></a>
-                                            <a href=""><i class="far fa-trash-alt text-danger"></i></a>
-                                        </td>
-                                    </tr>
+                                    
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">
+                                                <img src="../assets/images/products/img-2.png" alt="" height="52">
+                                                <p class="d-inline-block align-middle mb-0">
+                                                    <a href="" class="d-inline-block align-middle mb-0 product-name">{{$retailer->name}}</a>
+                                                </p>
+                                            </td>
+                                            <td>Kasoa</td>
+                                            <td>Drugs</td>
+                                            <td><span class="badge badge-soft-warning">Stock</span></td>
+                                            <td>
+                                            <a href="{{route('approve.users', $retailer->id)}}">
+                                            <span class="badge badge-soft-{{$retailer->hasRole('Retailer') ? 'success' : 'warning'}}"> {{$retailer->hasRole('Retailer') ? 'Approved': 'Pending Approval'}}</span></td>
+                                            </a>
+                                            
+                                            <td>
+                                                <a href=""><i class="far fa-edit text-info mr-1"></i></a>
+                                                <a href=""><i class="far fa-trash-alt text-danger"></i></a>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 @endif
 

@@ -18,7 +18,7 @@
     <div class="col-lg-3">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Invoices</h4>
+                <h4 class="title-text mt-0">Orders Confirmed</h4>
                 <div class="d-flex justify-content-between">
                     <h3 class="text-pink">10k</h3>
                     <i class="dripicons-cart card-eco-icon bg-icon-pink align-self-center"></i>
@@ -112,7 +112,7 @@
     <div class="col-lg-4">
         <div class="card carousel-bg-img">
             <div class="card-body dash-info-carousel">
-                <h4 class="mt-0 header-title">Populer Product</h4>
+                <h4 class="mt-0 header-title">Popular Product</h4>
                 <div id="carousel_2" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">

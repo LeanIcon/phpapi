@@ -74,7 +74,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12 col-md-5">
-                            <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 10 of 14 entries</div>
+                            <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 2 to 10 of 14 entries</div>
                         </div>
                         <div class="col-sm-12 col-md-7">
                             <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">

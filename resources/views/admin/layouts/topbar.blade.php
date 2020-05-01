@@ -1,5 +1,7 @@
+
 <!-- Top Bar Start -->
         <div class="topbar">
+
 
             <!-- LOGO -->
             <div class="topbar-left">
@@ -44,13 +46,16 @@
                             <!-- item-->
                             <h6 class="dropdown-item-text">
                                 Notifications (18)
-                            </h6>
+                           </h6>
+                    
                             <div class="slimscroll notification-list">
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item active">
-                                    <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
-                                    <p class="notify-details">Your order is placed<small class="text-muted">Dummy text of the printing and typesetting industry.</small></p>
+                                <a  href= "javascript:void(0);"class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-warning"><i class="mdi mdi-message"></i></div>
+                                    <p class="notify-details">Dummy<small class="text-muted">Dummy text of the printing and typesetting industry.</small></p>
                                 </a>
+
+                    
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <div class="notify-icon bg-warning"><i class="mdi mdi-message"></i></div>

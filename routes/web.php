@@ -32,6 +32,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('/retailer/products', 'RetailerDashboardController@loadProducts')->name('retailer.products');
     Route::get('/wholesaler/products', 'WholesalerDashboardController@loadProducts')->name('wholesaler.products');
 
+    Route::get('/retailer/purchase_order', 'RetailerPurchaseOrdersController@index')->name('retailer.purchase_order');
+
+     Route::get('/retailer/shortagelist', 'RetailershortagelistController@index')->name('retailer.shortagelist');
+
+     Route::get('/retailer/retailer_invoice', 'RetailerinvoiceController@index')->name('retailer.retailer_invoice');
+
     // Route::get('retailer_products', 'WholesalerProductsController');
     Route::resource('wholesaler_products', 'WholesalerProductsController');
 
@@ -49,6 +55,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
 
     Route::get('approved_users/{user?}', 'ApproveRegistrationController@approvedUsers')->name('approve.users');
     Route::post('approved_users/{user?}', 'ApproveRegistrationController@AcceptapprovedUsers')->name('approve.users');
+    Route::post('approved_users/{user?}', 'ApproveRegistrationController@AcceptapprovedUsersretailers')->name('approve.users');
 
     Route::resource('post_category', 'PostCategoryController');
 
