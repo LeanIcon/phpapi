@@ -24,6 +24,13 @@ class Product extends ApiModel
     }
 
 
+    public function scopeProductCategory($value)
+    {
+        $productCat = ProductCategory::find($this->product_category_id);
+        return $productCat;
+    }
+
+
     public function manufacturers()
     {
         return $this->belongsTo(Manufacturer::class,'manufacturer_id');

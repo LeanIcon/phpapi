@@ -34,7 +34,8 @@ class WholesalerProduct extends Model
 
     public function product_cat()
     {
-        return $this->hasManyThrough(Product::class, ProductCategory::class);
+        $product_cat = Product::find($this->products_id)->category->pluck();
+        return $product_cat;
     }
 
 
