@@ -53,13 +53,12 @@
     </div><!--end col-->
 </div><!--end row-->
 
-<div class="card"><div class="card-body"><h4 class="mt-0 header-title">Edit Table With Button</h4><p class="text-muted mb-3">Add toolbar column with edit and delete buttons.</p><button class="btn btn-sm btn-primary mb-3" id="submit_data">Submit</button><div class="table-responsive"><table class="table table-bordered" id="makeEditable"><thead><tr><th>Firstname</th><th>Lastname</th><th>Email</th><th name="buttons"></th></tr></thead><tbody><tr><td>Default</td><td>Defaultson</td><td>def@somemail.com</td><td name="buttons"><div class=" pull-right"><button id="bEdit" type="button" class="btn btn-sm btn-soft-success btn-circle mr-2" onclick="rowEdit(this);"><i class="dripicons-pencil"></i></button><button id="bElim" type="button" class="btn btn-sm btn-soft-danger btn-circle" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button><button id="bAcep" type="button" class="btn btn-sm btn-soft-purple mr-2 btn-circle" style="display:none;" onclick="rowAcep(this);"><i class="dripicons-checkmark"></i></button><button id="bCanc" type="button" class="btn btn-sm btn-soft-info btn-circle" style="display:none;" onclick="rowCancel(this);"><i class="dripicons-cross" aria-hidden="true"></i></button></div></td></tr><tr class="success"><td>Success</td><td>Doe</td><td>john@example.com</td><td name="buttons"><div class=" pull-right"><button id="bEdit" type="button" class="btn btn-sm btn-soft-success btn-circle mr-2" onclick="rowEdit(this);"><i class="dripicons-pencil"></i></button><button id="bElim" type="button" class="btn btn-sm btn-soft-danger btn-circle" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button><button id="bAcep" type="button" class="btn btn-sm btn-soft-purple mr-2 btn-circle" style="display:none;" onclick="rowAcep(this);"><i class="dripicons-checkmark"></i></button><button id="bCanc" type="button" class="btn btn-sm btn-soft-info btn-circle" style="display:none;" onclick="rowCancel(this);"><i class="dripicons-cross" aria-hidden="true"></i></button></div></td></tr><tr class="danger"><td>Danger</td><td>Moe</td><td>mary@example.com</td><td name="buttons"><div class=" pull-right"><button id="bEdit" type="button" class="btn btn-sm btn-soft-success btn-circle mr-2" onclick="rowEdit(this);"><i class="dripicons-pencil"></i></button><button id="bElim" type="button" class="btn btn-sm btn-soft-danger btn-circle" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button><button id="bAcep" type="button" class="btn btn-sm btn-soft-purple mr-2 btn-circle" style="display:none;" onclick="rowAcep(this);"><i class="dripicons-checkmark"></i></button><button id="bCanc" type="button" class="btn btn-sm btn-soft-info btn-circle" style="display:none;" onclick="rowCancel(this);"><i class="dripicons-cross" aria-hidden="true"></i></button></div></td></tr><tr class="info"><td>Info</td><td>Dooley</td><td>july@example.com</td><td name="buttons"><div class=" pull-right"><button id="bEdit" type="button" class="btn btn-sm btn-soft-success btn-circle mr-2" onclick="rowEdit(this);"><i class="dripicons-pencil"></i></button><button id="bElim" type="button" class="btn btn-sm btn-soft-danger btn-circle" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button><button id="bAcep" type="button" class="btn btn-sm btn-soft-purple mr-2 btn-circle" style="display:none;" onclick="rowAcep(this);"><i class="dripicons-checkmark"></i></button><button id="bCanc" type="button" class="btn btn-sm btn-soft-info btn-circle" style="display:none;" onclick="rowCancel(this);"><i class="dripicons-cross" aria-hidden="true"></i></button></div></td></tr><tr class="warning"><td>Warning</td><td>Refs</td><td>bo@example.com</td><td name="buttons"><div class=" pull-right"><button id="bEdit" type="button" class="btn btn-sm btn-soft-success btn-circle mr-2" onclick="rowEdit(this);"><i class="dripicons-pencil"></i></button><button id="bElim" type="button" class="btn btn-sm btn-soft-danger btn-circle" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button><button id="bAcep" type="button" class="btn btn-sm btn-soft-purple mr-2 btn-circle" style="display:none;" onclick="rowAcep(this);"><i class="dripicons-checkmark"></i></button><button id="bCanc" type="button" class="btn btn-sm btn-soft-info btn-circle" style="display:none;" onclick="rowCancel(this);"><i class="dripicons-cross" aria-hidden="true"></i></button></div></td></tr><tr class="active"><td>Active</td><td>Activeson</td><td>act@example.com</td><td name="buttons"><div class=" pull-right"><button id="bEdit" type="button" class="btn btn-sm btn-soft-success btn-circle mr-2" onclick="rowEdit(this);"><i class="dripicons-pencil"></i></button><button id="bElim" type="button" class="btn btn-sm btn-soft-danger btn-circle" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button><button id="bAcep" type="button" class="btn btn-sm btn-soft-purple mr-2 btn-circle" style="display:none;" onclick="rowAcep(this);"><i class="dripicons-checkmark"></i></button><button id="bCanc" type="button" class="btn btn-sm btn-soft-info btn-circle" style="display:none;" onclick="rowCancel(this);"><i class="dripicons-cross" aria-hidden="true"></i></button></div></td></tr></tbody></table></div><span class="float-right"><button id="but_add" class="btn btn-sm btn-danger">Add New Row</button></span><!--end table--></div><!--end card-body--></div>
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body order-list">
-                <button type="button" class="btn btn-primary btn-sm px-4 mt-0 mb-3" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg2">
-                    <i class="mdi mdi-plus-circle-outline mr-2"></i>New Room Allotment</button>
+              <!--  <button type="button" class="btn btn-primary btn-sm px-4 mt-0 mb-3" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg2">
+                    <i class="mdi mdi-plus-circle-outline mr-2"></i>New Room Allotment</button>-->
 
                 <h4 class="header-title mt-0 mb-3"><span class="badge badge-danger badge-pill noti-icon-badge">New</span> Orders Received</h4>
                 <div class="row">
@@ -171,7 +170,8 @@
 </div><!--end row-->
 <!--New Table start-->
 
-<div class="row">
+<!--Map Dashboard-->
+<!--<div class="row">
     <div class="col-lg-8">
         <div class="card">
             <div class="card-body">
@@ -192,10 +192,10 @@
                 <div class="apexchart-wrapper">
                     <div id="eco-dash1" class="chart-gutters"></div>
                 </div>
-            </div><!--end card-body-->
+            </div>--><!--end card-body-->
         </div><!--end card-->
     </div><!--end col-->
-    <div class="col-lg-4">
+    <!--<div class="col-lg-4">
         <div class="card">
             <div class="card-body">
                 <h4 class="header-title mt-0">Top Globle Sales</h4>
@@ -217,8 +217,8 @@
                                 <div class="progress-bar bg-secondary" role="progressbar" style="width: 68%; border-radius:5px;" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
-                    </div><!--end col-->
-                    <div class="col-md-5 ml-auto">                                            
+                    </div>--><!--end col-->
+               <!--     <div class="col-md-5 ml-auto">                                            
                         <div class="mt-3">
                             <span class="text-info">Australia</span>
                             <small class="float-right text-muted ml-3 font-14">48%</small>
@@ -234,7 +234,7 @@
                                 <div class="progress-bar bg-warning" role="progressbar" style="width: 32%; border-radius:5px;" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
-                    </div><!--end col-->
+                    </div>--><!--end col-->
                 </div><!--end row-->
             </div><!--end card-body-->
         </div><!--end card-->
