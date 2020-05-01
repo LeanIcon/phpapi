@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDrugClassTable extends Migration {
+class CreatePermissionsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,11 @@ class CreateDrugClassTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('drug_class', function(Blueprint $table)
+		Schema::create('permissions', function(Blueprint $table)
 		{
-			$table->integer('id', true);
-			$table->string('name');
+			$table->bigInteger('id', true)->unsigned();
+			$table->string('name', 191);
+			$table->string('guard_name', 191);
 			$table->timestamps();
 		});
 	}
@@ -28,7 +29,7 @@ class CreateDrugClassTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('drug_class');
+		Schema::drop('permissions');
 	}
 
 }
