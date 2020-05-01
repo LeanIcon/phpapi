@@ -68,7 +68,9 @@ class WholesalerProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $manufacturers = $this->manufacturer::all();
+        $productCategory = $this->productCategory::ProductCategory();
+        return view('admin.pages.wholesalers.products.edit', compact('manufacturers', 'productCategory'));
     }
 
     /**

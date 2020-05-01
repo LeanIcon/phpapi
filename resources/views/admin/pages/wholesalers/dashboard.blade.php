@@ -52,6 +52,125 @@
         </div><!--end card-->
     </div><!--end col-->
 </div><!--end row-->
+
+<div class="card"><div class="card-body"><h4 class="mt-0 header-title">Edit Table With Button</h4><p class="text-muted mb-3">Add toolbar column with edit and delete buttons.</p><button class="btn btn-sm btn-primary mb-3" id="submit_data">Submit</button><div class="table-responsive"><table class="table table-bordered" id="makeEditable"><thead><tr><th>Firstname</th><th>Lastname</th><th>Email</th><th name="buttons"></th></tr></thead><tbody><tr><td>Default</td><td>Defaultson</td><td>def@somemail.com</td><td name="buttons"><div class=" pull-right"><button id="bEdit" type="button" class="btn btn-sm btn-soft-success btn-circle mr-2" onclick="rowEdit(this);"><i class="dripicons-pencil"></i></button><button id="bElim" type="button" class="btn btn-sm btn-soft-danger btn-circle" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button><button id="bAcep" type="button" class="btn btn-sm btn-soft-purple mr-2 btn-circle" style="display:none;" onclick="rowAcep(this);"><i class="dripicons-checkmark"></i></button><button id="bCanc" type="button" class="btn btn-sm btn-soft-info btn-circle" style="display:none;" onclick="rowCancel(this);"><i class="dripicons-cross" aria-hidden="true"></i></button></div></td></tr><tr class="success"><td>Success</td><td>Doe</td><td>john@example.com</td><td name="buttons"><div class=" pull-right"><button id="bEdit" type="button" class="btn btn-sm btn-soft-success btn-circle mr-2" onclick="rowEdit(this);"><i class="dripicons-pencil"></i></button><button id="bElim" type="button" class="btn btn-sm btn-soft-danger btn-circle" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button><button id="bAcep" type="button" class="btn btn-sm btn-soft-purple mr-2 btn-circle" style="display:none;" onclick="rowAcep(this);"><i class="dripicons-checkmark"></i></button><button id="bCanc" type="button" class="btn btn-sm btn-soft-info btn-circle" style="display:none;" onclick="rowCancel(this);"><i class="dripicons-cross" aria-hidden="true"></i></button></div></td></tr><tr class="danger"><td>Danger</td><td>Moe</td><td>mary@example.com</td><td name="buttons"><div class=" pull-right"><button id="bEdit" type="button" class="btn btn-sm btn-soft-success btn-circle mr-2" onclick="rowEdit(this);"><i class="dripicons-pencil"></i></button><button id="bElim" type="button" class="btn btn-sm btn-soft-danger btn-circle" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button><button id="bAcep" type="button" class="btn btn-sm btn-soft-purple mr-2 btn-circle" style="display:none;" onclick="rowAcep(this);"><i class="dripicons-checkmark"></i></button><button id="bCanc" type="button" class="btn btn-sm btn-soft-info btn-circle" style="display:none;" onclick="rowCancel(this);"><i class="dripicons-cross" aria-hidden="true"></i></button></div></td></tr><tr class="info"><td>Info</td><td>Dooley</td><td>july@example.com</td><td name="buttons"><div class=" pull-right"><button id="bEdit" type="button" class="btn btn-sm btn-soft-success btn-circle mr-2" onclick="rowEdit(this);"><i class="dripicons-pencil"></i></button><button id="bElim" type="button" class="btn btn-sm btn-soft-danger btn-circle" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button><button id="bAcep" type="button" class="btn btn-sm btn-soft-purple mr-2 btn-circle" style="display:none;" onclick="rowAcep(this);"><i class="dripicons-checkmark"></i></button><button id="bCanc" type="button" class="btn btn-sm btn-soft-info btn-circle" style="display:none;" onclick="rowCancel(this);"><i class="dripicons-cross" aria-hidden="true"></i></button></div></td></tr><tr class="warning"><td>Warning</td><td>Refs</td><td>bo@example.com</td><td name="buttons"><div class=" pull-right"><button id="bEdit" type="button" class="btn btn-sm btn-soft-success btn-circle mr-2" onclick="rowEdit(this);"><i class="dripicons-pencil"></i></button><button id="bElim" type="button" class="btn btn-sm btn-soft-danger btn-circle" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button><button id="bAcep" type="button" class="btn btn-sm btn-soft-purple mr-2 btn-circle" style="display:none;" onclick="rowAcep(this);"><i class="dripicons-checkmark"></i></button><button id="bCanc" type="button" class="btn btn-sm btn-soft-info btn-circle" style="display:none;" onclick="rowCancel(this);"><i class="dripicons-cross" aria-hidden="true"></i></button></div></td></tr><tr class="active"><td>Active</td><td>Activeson</td><td>act@example.com</td><td name="buttons"><div class=" pull-right"><button id="bEdit" type="button" class="btn btn-sm btn-soft-success btn-circle mr-2" onclick="rowEdit(this);"><i class="dripicons-pencil"></i></button><button id="bElim" type="button" class="btn btn-sm btn-soft-danger btn-circle" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button><button id="bAcep" type="button" class="btn btn-sm btn-soft-purple mr-2 btn-circle" style="display:none;" onclick="rowAcep(this);"><i class="dripicons-checkmark"></i></button><button id="bCanc" type="button" class="btn btn-sm btn-soft-info btn-circle" style="display:none;" onclick="rowCancel(this);"><i class="dripicons-cross" aria-hidden="true"></i></button></div></td></tr></tbody></table></div><span class="float-right"><button id="but_add" class="btn btn-sm btn-danger">Add New Row</button></span><!--end table--></div><!--end card-body--></div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body order-list">
+                <button type="button" class="btn btn-primary btn-sm px-4 mt-0 mb-3" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg2">
+                    <i class="mdi mdi-plus-circle-outline mr-2"></i>New Room Allotment</button>
+
+                <h4 class="header-title mt-0 mb-3"><span class="badge badge-danger badge-pill noti-icon-badge">New</span> Orders Received</h4>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_length" id="datatable_length">
+                            <label>Show <select name="datatable_length" aria-controls="datatable" class="custom-select custom-select-sm form-control form-control-sm">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select> entries</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div id="datatable_filter" class="dataTables_filter">
+                            <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="datatable"></label>
+                        </div>
+                    </div>
+                </div>                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="border-top-0">PO Id</th>
+                                <th class="border-top-0">Retailer</th>
+                                <th class="border-top-0">Location</th>
+                                <th class="border-top-0">Order Date/Time</th>
+                                <th class="border-top-0">Qty</th>                                    
+                                <th class="border-top-0">Amount (₵)</th>
+                                <th class="border-top-0">Status</th>
+                            </tr><!--end tr-->
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">001</a>                                 </td>
+                                <td>
+                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">Darko Oscar</a> 
+                                </td>
+                                <td>   
+                                   Accra                                                            
+                                </td>
+                                <td>3/03/2019 4:29 PM</td>
+                                <td>200</td>                                   
+                                <td> ₵750</td>
+                                <td>                                                                        
+                                    <span class="badge badge-md badge-boxed  badge-soft-success">Shipped</span>
+                                </td>
+                            </tr><!--end tr-->
+                            <tr>
+                                <td>
+                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">002</a>                                 </td>
+
+                                </td>
+                                <td>
+                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">Darko Oscar</a> 
+
+                                </td>
+                                <td>   
+                                    Accra                                                            
+                                </td>
+                                <td>3/03/2019 4:29 PM</td>
+                                <td>200</td>                                   
+                                <td> ₵750</td>
+                                <td>                                                                        
+                                    <span class="badge badge-md badge-boxed  badge-soft-danger">Delivered</span>
+                                </td>
+                            </tr><!--end tr--> <tr>
+                                <td>
+                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">003</a>                                 </td>
+
+                                </td>
+                                <td>
+                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">Darko Oscar</a> 
+                                </td>
+                                <td>   
+                                    Accra                                                            
+                                </td>
+                                <td>3/03/2019 4:29 PM</td>
+                                <td>200</td>                                   
+                                <td> ₵750</td>
+                                <td>                                                                        
+                                    <span class="badge badge-md badge-boxed badge-soft-warning">Pending</span>
+                                </td>
+                            </tr><!--end tr--> <tr>
+                                <td>
+                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">004</a>                                 </td>
+
+                                </td>
+                                <td>
+                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">Darko Oscar</a> 
+                                </td>
+                                <td>   
+                                    Accra                                                            
+                                </td>
+                                <td>3/03/2019 4:29 PM</td>
+                                <td>200</td>                                   
+                                <td> ₵750</td>
+                                <td>                                                                        
+                                    <span class="badge badge-md badge-boxed  badge-soft-success">Shipped</span>
+                                </td>
+                            </tr><!--end tr-->
+                                                                              
+                        </tbody>
+                    </table> <!--end table-->                                               
+                </div><!--end /div-->
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div><!--end col-->
+</div><!--end row-->
+<!--New Table start-->
+
 <div class="row">
     <div class="col-lg-8">
         <div class="card">
@@ -122,126 +241,5 @@
     </div><!--end col-->
 </div><!--end row-->
 
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body order-list">
-                <h4 class="header-title mt-0 mb-3">Order List</h4>
-                <div class="table-responsive">
-                    <table class="table table-hover mb-0">
-                        <thead class="thead-light">
-                            <tr>
-                                <th class="border-top-0">Product</th>
-                                <th class="border-top-0">Pro Name</th>
-                                <th class="border-top-0">Country</th>
-                                <th class="border-top-0">Order Date/Time</th>
-                                <th class="border-top-0">Pcs.</th>                                    
-                                <th class="border-top-0">Amount ($)</th>
-                                <th class="border-top-0">Status</th>
-                            </tr><!--end tr-->
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <img class="" src="../assets/images/products/img-1.png" alt="user"> </td>
-                                <td>
-                                    Beg
-                                </td>
-                                <td>                                                                
-                                    <img src="../assets/images/flags/us_flag.jpg" alt="" class="img-flag thumb-xxs rounded-circle">
-                                </td>
-                                <td>3/03/2019 4:29 PM</td>
-                                <td>200</td>                                   
-                                <td> $750</td>
-                                <td>                                                                        
-                                    <span class="badge badge-md badge-boxed  badge-soft-success">Shipped</span>
-                                </td>
-                            </tr><!--end tr-->
-                            <tr>
-                                <td>
-                                    <img class="" src="../assets/images/products/img-2.png" alt="user"> </td>
-                                <td>
-                                    Watch
-                                </td>
-                                <td>                                                                
-                                    <img src="../assets/images/flags/french_flag.jpg" alt="" class="img-flag thumb-xxs rounded-circle">
-                                </td>
-                                <td>13/03/2019 1:09 PM</td>
-                                <td>180</td>                                   
-                                <td> $970</td>
-                                <td>
-                                    <span class="badge badge-md badge-boxed  badge-soft-danger">Delivered</span>
-                                </td>
-                            </tr><!--end tr-->
-                            <tr>
-                                <td>
-                                    <img class="" src="../assets/images/products/img-3.png" alt="user"> </td>
-                                <td>
-                                    Headphone
-                                </td>
-                                <td>                                                                
-                                    <img src="../assets/images/flags/spain_flag.jpg" alt="" class="img-flag thumb-xxs rounded-circle">
-                                </td>
-                                <td>22/03/2019 12:09 PM</td>
-                                <td>30</td>                                   
-                                <td> $2800</td>
-                                <td>
-                                    <span class="badge badge-md badge-boxed badge-soft-warning">Pending</span>
-                                </td>
-                            </tr><!--end tr-->
-                            <tr>
-                                <td>
-                                    <img class="" src="../assets/images/products/img-4.png" alt="user"> </td>
-                                <td>
-                                    Purse
-                                </td>
-                                <td>                                                                
-                                    <img src="../assets/images/flags/russia_flag.jpg" alt="" class="img-flag thumb-xxs rounded-circle">
-                                </td>
-                                <td>14/03/2019 8:27 PM</td>
-                                <td>100</td>                                   
-                                <td> $520</td>
-                                <td>                                                                                                                                              
-                                    <span class="badge badge-md badge-boxed  badge-soft-success">Shipped</span>                                                                    
-                                </td>
-                            </tr><!--end tr-->
-                            <tr>
-                                <td>
-                                    <img class="" src="../assets/images/products/img-5.png" alt="user"> </td>
-                                <td>
-                                    Shoe
-                                </td>
-                                <td>                                                                
-                                    <img src="../assets/images/flags/italy_flag.jpg" alt="" class="img-flag thumb-xxs rounded-circle">
-                                </td>
-                                <td>18/03/2019 5:09 PM</td>
-                                <td>100</td>                                   
-                                <td> $1150</td>
-                                <td>
-                                    <span class="badge badge-md badge-boxed badge-soft-warning">Pending</span>
-                                </td>
-                            </tr><!--end tr-->
-                            <tr>
-                                <td>
-                                    <img class="" src="../assets/images/products/img-6.png" alt="user"> </td>
-                                <td>
-                                    Boll
-                                </td>
-                                <td>                                                                
-                                    <img src="../assets/images/flags/us_flag.jpg" alt="" class="img-flag thumb-xxs rounded-circle">
-                                </td>
-                                <td>30/03/2019 4:29 PM</td>
-                                <td>140</td>                                   
-                                <td> $ 650</td>
-                                <td>                                                                        
-                                    <span class="badge badge-md badge-boxed  badge-soft-success">Shipped</span>
-                                </td>
-                            </tr><!--end tr-->                                                    
-                        </tbody>
-                    </table> <!--end table-->                                               
-                </div><!--end /div-->
-            </div><!--end card-body-->
-        </div><!--end card-->
-    </div><!--end col-->
-</div><!--end row-->
+
 @endsection
