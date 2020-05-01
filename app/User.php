@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\Models\Product;
+use App\Models\ProductCategory;
+use App\Models\WholesalerProduct;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -15,6 +18,8 @@ class User extends Authenticatable
     CONST IS_ADMIN = 'admin';
     CONST IS_WHOLESALER = 'wholesaler';
     CONST IS_RETAILER = 'retailer';
+    CONST IS_APPROVE = 'approve';
+    CONST IS_CANCEL = 'cancel';
 
     /**
      * The attributes that are mass assignable.
@@ -63,4 +68,17 @@ class User extends Authenticatable
     {
         return $query->where('type', 'retailer');
     }
+
+
+    public function wholesaler_products()
+    {
+        return $this->hasMany(WholesalerProduct::class, 'wholesaler_id');
+    }
+
+
+    // public function product_cat()
+    // {
+    //     return $this->hasManyThrough( ProductCategory::class, WholesalerProduct::class, 'wholesaler_id','products_id','');
+    // }
+
 }

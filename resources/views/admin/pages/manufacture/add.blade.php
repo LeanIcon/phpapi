@@ -34,9 +34,9 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="status-select" class="mr-2">Product Category</label>
-                            <select class="custom-select" name="status" id="status-select">
-                                <option>Select</option>
+                            <label for="status-select" class="mr-2">Status</label>
+                            <select class="custom-select" name="status" id="status-select" required>
+                                <option value="">Select</option>
                                 <option value="pending">Pending</option>
                                 <option value="approved">Approved</option>
                             </select>

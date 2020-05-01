@@ -7,15 +7,24 @@ use App\Models\Manufacturer;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use App\Http\Controllers\Controller;
+use App\Models\DosageForm;
+use App\Models\DrugClass;
+use App\Models\ProductCategoryTypes;
 
 class ProductController extends Controller
 {
-    public $product, $manufacturer, $productCateogory;
-    public function __construct(Product $product, Manufacturer $manufacturer, ProductCategory $productCateogory)
+    public $product, $manufacturer, $productCateogory, $drugClass, $dosageForm, $productCategoryTypes;
+    public function __construct(Product $product, Manufacturer $manufacturer, ProductCategory $productCateogory, 
+    DrugClass $drugClass, DosageForm $dosageForm, ProductCategoryTypes $productCategoryTypes)
     {
+        $this->middleware('auth');
+        $this->middleware(['role:Admin']);
         $this->product = $product;
         $this->manufacturer = $manufacturer;
-        $this->productCateogory = $productCateogory;;
+        $this->productCateogory = $productCateogory;
+        $this->dosageForm = $dosageForm;
+        $this->drugClass = $drugClass;
+        $this->productCategoryTypes = $productCategoryTypes;
     }
     /**
      * Display a listing of the resource.
@@ -36,9 +45,12 @@ class ProductController extends Controller
     public function create()
     {
         $manufacturers = $this->manufacturer::all();
-        $productCategory  = $this->productCateogory::ProductCategory();
+        $productCategory  = $this->productCateogory::all();
+        $dosageForm = $this->dosageForm::all();
+        $drugClass = $this->drugClass::all();
+        $productCategoryTypes = $this->productCategoryTypes::all();
 
-        return view('admin.pages.product.add', compact('manufacturers','productCategory'));
+        return view('admin.pages.product.add', compact('manufacturers','productCategory','dosageForm', 'drugClass', 'productCategoryTypes'));
     }
 
     /**
@@ -49,7 +61,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $product =  $this->product::create($request->all());
+        return redirect()->route('product.index');
     }
 
     /**

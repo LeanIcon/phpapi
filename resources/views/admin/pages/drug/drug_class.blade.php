@@ -103,7 +103,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="LeadName">Drug Class Name (*Capsule)</label>
+                                <label for="LeadName">Drug Class Name (*Vitamins)</label>
                                 <input type="text" name="name" class="form-control" id="LeadName" required="">
                             </div>
                         </div>
@@ -114,5 +114,5 @@
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div><!-- /.modal --> 
+</div><!-- /.modal -->
 @endsection
