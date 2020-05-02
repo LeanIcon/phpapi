@@ -8,8 +8,11 @@ use App\Http\Controllers\Controller;
 
 class RetailerWholesalersController extends Controller
 {
+    
     public function __construct(User $user)
     {
+        $this->middleware('auth');
+        $this->middleware(['role:Retailer']);
         $this->user = $user;
     }
 

@@ -35,6 +35,10 @@ class GlobalTemplateServiceProvider extends ServiceProvider
         view()->composer(['admin.layouts.topbar'], function($view){
             $view->with('retailers', $this->getRetailers());
         });
+
+        view()->composer([], function($view){
+            
+        });
     }
 
     public function getWholeslers()

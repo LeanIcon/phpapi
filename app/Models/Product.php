@@ -41,4 +41,12 @@ class Product extends ApiModel
         return $this->belongsTo(ProductCategory::class,'product_category_id');
     }
 
+    public function productDescription()
+    {
+        $desc = "$this->active_ingredients $this->strength $this->packet_size";
+        return $desc;
+    }
+
+    
+
 }
