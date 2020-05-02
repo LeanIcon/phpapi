@@ -48,6 +48,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public $appends = [
+        'product_category'
+    ];
+
     /**
      * Undocumented function
      *
@@ -76,9 +80,18 @@ class User extends Authenticatable
     }
 
 
-    // public function product_cat()
-    // {
-    //     return $this->hasManyThrough( ProductCategory::class, WholesalerProduct::class, 'wholesaler_id','products_id','');
-    // }
+    public function product_category()
+    {
+        $prod_ids = collect($this->wholesaler_products)->pluck('products_id');
+        $productCatIds = Product::whereIn('id', $prod_ids)->pluck('product_category_id');
+        $prod_ids = $this->returnProductCats($productCatIds);
+        return $prod_ids;
+    }
+
+    public function returnProductCats($ids = [])
+    {
+        $cats = ProductCategory::whereIn('id', $ids)->get('name');
+        return $cats->implode('name', ', ');
+    }
 
 }
