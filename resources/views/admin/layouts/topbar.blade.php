@@ -49,6 +49,7 @@
 
 
                             </h6>
+                            @auth
                             @if (Auth::user()->hasRole('Admin'))
                             <div class="slimscroll notification-list">
                                 <!-- item-->
@@ -73,6 +74,7 @@
 
                             </div>
                             @endif
+                            @endauth
                             <!-- All-->
                             <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
                                 View all <i class="fi-arrow-right"></i>

@@ -17,4 +17,10 @@ class RetailerDashboardController extends Controller
         $pageTitle = 'Retailers';
         return view('admin.pages.retailers.dashboard', compact('pageTitle'));
     }
+
+    public function loadPurchaseOrderList()
+    {
+        $pageTitle = "Purchase List";
+        return view('admin.pages.retailers.purchase_order-list', compact('pageTitle'));
+    }
 }

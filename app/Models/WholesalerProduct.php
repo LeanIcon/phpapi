@@ -11,9 +11,9 @@ class WholesalerProduct extends Model
     protected $fillable = ['batch_number', 'price', 'expiry_date', 'expiry_status','wholesaler_id','products_id', 'type', 'status'];
 
 
-    public $appends = [
-        'category'
-    ];
+    // public $appends = [
+    //     'category'
+    // ];
 
     public function user()
     {
@@ -34,7 +34,14 @@ class WholesalerProduct extends Model
 
     public function product_cat()
     {
-        return $this->hasManyThrough(Product::class, ProductCategory::class);
+        $product_cat = Product::find($this->products_id)->category->pluck();
+        return $product_cat;
+    }
+
+    public function formattedPrice()
+    {
+        $price = number_format($this->price, 2);
+        return $price;
     }
 
 
