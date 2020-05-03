@@ -33,6 +33,7 @@ class ProductCategoryController extends Controller
     public function create()
     {
         $pageTitle = 'Product Category';
+        $productCategory = $this->productCategory::all();
         return view('admin.pages.product_category.add', compact('pageTitle', 'productCategory'));
     }
 
