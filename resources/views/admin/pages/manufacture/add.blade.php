@@ -19,28 +19,33 @@
 <!-- end page title end breadcrumb -->
 <div class="row">
     <div class="col-lg-8 card">
+        <div class="card-header">
+            Add Manufacturer
+        </div>
         <div class="card-body">
-            <form>
+            <form method="POST" action="{{route('manufacture.store')}}" >
+                @csrf
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="LeadName">Name</label>
-                            <input type="text" class="form-control" id="LeadName" required="">
+                            <label for="manufactureName">Manufacturer Name</label>
+                            <input type="text" name="name" class="form-control" id="manufactureName" required="">
                         </div>
                     </div>
-                </div>
-                  <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="Leadstatus">Status</label>
-                            <input type="text" class="form-control" id="Leadstatus" required="">
+                            <label for="status-select" class="mr-2">Status</label>
+                            <select class="custom-select" name="status" id="status-select" required>
+                                <option value="">Select</option>
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                </div> 
-                <button type="button" class="btn btn-sm btn-primary">Save</button>  
-                <button type="button" class="btn btn-sm btn-danger">Cancel</button>             
+
+                <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                <button type="button" class="btn btn-sm btn-danger">Cancel</button>
             </form>  
         </div>
     </div>

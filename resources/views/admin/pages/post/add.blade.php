@@ -48,14 +48,14 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="status-select" class="mr-2">Country</label>
+                                <label for="status-select" class="mr-2">Category</label>
                                 <select class="custom-select" id="status-select">
                                     <option selected="">Select</option>
-                                    <option value="1">India</option>
-                                    <option value="2">USA</option>
-                                    <option value="3">Japan</option>
-                                    <option value="4">China</option>
-                                    <option value="5">Germany</option>
+                                    @if ($postCategory->isNotEmpty())
+                                        @foreach ($postCategory as $category)
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>

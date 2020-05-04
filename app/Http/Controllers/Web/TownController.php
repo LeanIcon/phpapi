@@ -3,10 +3,19 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Region;
+use App\Models\Town;
 use Illuminate\Http\Request;
 
 class TownController extends Controller
 {
+    private $town, $region;
+
+    public function __construct(Town $town, Region $region)
+    {
+        $this->town = $town;
+        $this->region = $region;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,9 @@ class TownController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.town.index');
+        $postTown = $this->town::all();
+        $pageTitle = 'Town';
+        return view('admin.pages.town.index', compact('pageTitle', 'postTown'));
     }
 
     /**
@@ -24,7 +35,9 @@ class TownController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.town.add');
+        $pageTitle = 'Town';
+        $regions = $this->region::all();
+        return view('admin.pages.town.add', compact('regions'));
     }
 
     /**
@@ -35,7 +48,9 @@ class TownController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data =  $request->all();
+        $town = $this->town::create($data);
+        return redirect()->route('town.index');
     }
 
     /**
@@ -46,7 +61,8 @@ class TownController extends Controller
      */
     public function show($id)
     {
-        //
+        $town =  $this->town::find($id);
+        return view('admin.pages.town.show', compact('postTown'));
     }
 
     /**
@@ -57,7 +73,8 @@ class TownController extends Controller
      */
     public function edit($id)
     {
-        //
+        $town =  $this->town::find($id);
+        return view('admin.pages.town.edit', compact('postTown'));
     }
 
     /**
@@ -69,7 +86,8 @@ class TownController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $town =  $this->town::find($id)->update($request->all());
+        return redirect()->route('town.index');
     }
 
     /**
@@ -80,6 +98,7 @@ class TownController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $town =  $this->town::find($id)->delete();
+        return redirect()->route('town.index');
     }
 }

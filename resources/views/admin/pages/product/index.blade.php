@@ -117,7 +117,7 @@
         <div class="card">
             <div class="card-body">
                 <a type="button" href="{{route('product.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
-                <h4 class="header-title mt-0 mb-3">All Manufacturers</h4> 
+                <h4 class="header-title mt-0 mb-3">All PRODUCTS</h4> 
                 <div class="table-responsive dash-social">
                     <table id="datatable" class="table">
                         <thead class="thead-light">
@@ -126,35 +126,39 @@
                             <th>Photo</th>
                             <th>Manufacture ID</th>
                             <th>Equipment ID</th>
-                            <th>Category ID</th>
+                            <th>Other Products ID</th>
+                            <th>Product Category ID</th>
+                            <th>Action </th>
                            
                         </tr><!--end tr-->
                         </thead>
 
                         <tbody>
-                        <tr>
-                            <td><img src="../assets/images/users/user-10.jpg" alt="" class="thumb-sm rounded-circle mr-2">Nnuro Pharma</td>
-                            <td>Active</td>
-                           
-                                                                                                                                  
-                                <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                            </td>
-                            <td> 2456</td>
-
-                            <td> 987 </td>
-
-                            <td> 322 </td>
-                        </tr>
-                        </tr>
-                                                                        
+                        @if ($products->isNotEmpty())
+                            @foreach ($products as $product)
+                                <tr>
+                                    <td>{{$product->name}}</td>
+                                    <td>{{$product->photo}}</td> 
+                                    <td> {{$product->manufacturers_id}}</td>
+                                    <td>{{$product->equipments_id}} </td>
+                                    <td>{{$product->other_products_id}} </td>
+                                    <td>{{$product->product_category_id}} </td>
+                                    <td>                                                                                              <a href="{{route('product.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                    <a href="{{route('product.show', $product->id)}}" class="mr-2"><i class="fas fa-eye text-info font-16"></i></a>
+                                    {{-- <a id="deleteAction"><i class="fas fa-trash-alt text-danger font-16"></i></a> --}}
+                                
+                                </td>
+                                </tr>
+                                </tr>
+                            @endforeach
+                        @endif                                            
                         </tbody>
                     </table>                    
                 </div>                                           
             </div><!--end card-body--> 
         </div><!--end card--> 
     </div><!--end col-->
-</div><
+</div>
 <!--end row-->  
 @include('admin.pages.dashboard.modal-page')
 </div><!-- container -->

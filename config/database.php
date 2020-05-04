@@ -1,5 +1,5 @@
 <?php
-
+$DEV_DATABASE_URL = parse_url('postgres://xxgxzpmf:Nv14i7eorxd7ajMi72k2ZnVKlcZIGMGU@drona.db.elephantsql.com:5432/xxgxzpmf');
 use Illuminate\Support\Str;
 
 return [
@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'pgsql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -66,11 +66,11 @@ return [
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => $DEV_DATABASE_URL["host"],
+            'port' => $DEV_DATABASE_URL["port"],
+            'database' => ltrim($DEV_DATABASE_URL["path"], "/"),
+            'username' => $DEV_DATABASE_URL["user"],
+            'password' => $DEV_DATABASE_URL["pass"],
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
