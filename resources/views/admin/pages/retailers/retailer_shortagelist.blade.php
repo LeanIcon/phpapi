@@ -130,13 +130,9 @@
                 </table>
             </div>
         </div>
-        <div class="col mb-2">
-            <div class="row">
-                <div class="col-sm-12  col-md-6">
-                    <button class="btn btn-block btn-light">Add to list</button>
-                </div>
+        
                 <div class="col-sm-12 col-md-6 text-right">
-                    <button class="btn btn-lg btn-block btn-success text-uppercase">Send P.O</button>
+                    <button class="btn btn-lg btn-block btn-success text-uppercase">Add to P.O</button>
                 </div>
             </div>
         </div>
