@@ -48,6 +48,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('/wholesaler/retailers', 'WholesalerRetailersController@index')->name('wholesaler.retailer');
     Route::get('/wholesaler/products', 'WholesalerDashboardController@loadProducts')->name('wholesaler.products');
     Route::resource('wholesaler_products', 'WholesalerProductsController');
+    Route::get('/wholesaler/purchaseorder', 'WholesalerPurchaseOrdersController@index')->name('wholesaler.purchaseorder');
+
 
 
     /****************Retailers*******************/
