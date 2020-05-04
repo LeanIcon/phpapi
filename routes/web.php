@@ -23,6 +23,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard.index');
     Route::get('/dashboard/wholesalers', 'DashboardController@loadWholesaler')->name('dashboard.wholesalers');
     Route::get('/dashboard/retailers', 'DashboardController@loadRetailer')->name('dashboard.retailers');
+
     Route::resource('equipment', 'EquipmentController');
     Route::resource('product_category', 'ProductCategoryController');
     Route::resource('drug', 'DrugController');

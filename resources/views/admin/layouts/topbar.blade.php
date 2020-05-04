@@ -1,5 +1,7 @@
+
 <!-- Top Bar Start -->
         <div class="topbar">
+
 
             <!-- LOGO -->
             <div class="topbar-left">
@@ -44,6 +46,8 @@
                             <!-- item-->
                             <h6 class="dropdown-item-text">
                                 Notifications (18)
+
+
                             </h6>
                             @auth
                             @if (Auth::user()->hasRole('Admin'))
@@ -67,6 +71,7 @@
                                  </a>
                                  @endif
                                 @endforeach
+
                             </div>
                             @endif
                             @endauth

@@ -59,4 +59,12 @@ class ApproveRegistrationController extends Controller
         $user->assignRole([$wholesalerrole->id]);
         return redirect()->route('dashboard.wholesalers');
     }
+
+    public function AcceptapprovedUsersretailers($userId = null) 
+    {
+        $user  =  $this->user::find($userId);
+        $retailerrole = Role::findByName('Retailer');
+        $user->assignRole([$retailerrole->id]);
+        return redirect()->route('dashboard.retailers');
+    }
 }
