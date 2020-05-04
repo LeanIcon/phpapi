@@ -37,7 +37,7 @@
                     <li><a href="#">POS-Portal</a></li>
                     <li><a href="#">Transactions</a></li>
                     <li><a href="#">Inventory</a></li>
-                    <li><a href="{{route('retailer.purchaselist')}}">Purchase Order list </a></li>
+                   
                 </ul>
             </li><!--end nav-item-->
             @endrole
