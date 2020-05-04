@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use App\Http\Controllers\Controller;
@@ -44,6 +45,7 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request['slug'] = Str::slug($request->name);
         $productCategory = $this->productCategory::create($request->all());
         return redirect()->route('product_category.index');
     }
