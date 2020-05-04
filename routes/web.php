@@ -24,6 +24,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('/dashboard/wholesalers', 'DashboardController@loadWholesaler')->name('dashboard.wholesalers');
     Route::get('/dashboard/retailers', 'DashboardController@loadRetailer')->name('dashboard.retailers');
 
+<<<<<<< HEAD
     Route::get('/retailer/dashboard', 'WholesalerDashboardController@loadDashboard')->name('wholesaler.dashboard');
     Route::get('/wholesaler/dashboard', 'RetailerDashboardController@loadDashboard')->name('retailer.dashboard');
     Route::get('/wholesaler/retailers', 'WholesalerRetailersController@index')->name('wholesaler.retailer');
@@ -44,6 +45,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::resource('post', 'PostController');
     Route::resource('product', 'ProductController');
 
+=======
+>>>>>>> dev
     Route::resource('equipment', 'EquipmentController');
     Route::resource('product_category', 'ProductCategoryController');
     Route::resource('drug', 'DrugController');
