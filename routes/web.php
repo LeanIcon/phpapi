@@ -24,26 +24,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('/dashboard/wholesalers', 'DashboardController@loadWholesaler')->name('dashboard.wholesalers');
     Route::get('/dashboard/retailers', 'DashboardController@loadRetailer')->name('dashboard.retailers');
 
-    Route::get('/retailer/dashboard', 'WholesalerDashboardController@loadDashboard')->name('wholesaler.dashboard');
-    Route::get('/wholesaler/dashboard', 'RetailerDashboardController@loadDashboard')->name('retailer.dashboard');
-    Route::get('/wholesaler/retailers', 'WholesalerRetailersController@index')->name('wholesaler.retailer');
-    Route::get('/retailer/wholesalers', 'RetailerWholesalersController@index')->name('retailer.wholesaler');
-    Route::get('/retailer/wholesalers/{wholesaler?}', 'RetailerWholesalersController@show')->name('retailer.wholesaler.show');
-    Route::get('/retailer/products', 'RetailerDashboardController@loadProducts')->name('retailer.products');
-    Route::get('/wholesaler/products', 'WholesalerDashboardController@loadProducts')->name('wholesaler.products');
-    Route::get('/wholesaler/products', 'WholesalerProductsController@edit')->name('wholesaler_products.edit');
-
-    Route::get('/wholesaler/purchaseorder', 'WholesalerPurchaseOrdersController@index')->name('wholesaler.purchaseorder');
-
-
-    // Route::get('retailer_products', 'WholesalerProductsController');
-    Route::resource('wholesaler_products', 'WholesalerProductsController');
-    Route::resource('purchaseorder', 'WholesalerPurchaseOrdersController');
-
-
-    Route::resource('post', 'PostController');
-    Route::resource('product', 'ProductController');
-
     Route::resource('equipment', 'EquipmentController');
     Route::resource('product_category', 'ProductCategoryController');
     Route::resource('drug', 'DrugController');
