@@ -23,7 +23,7 @@
             EDIT MANUFACTURER
         </div>
         <div class="card-body">
-            <form method="POST" action="{{route('manufacture.update', $postManufacture->id)}}" enctype="multipart/form-data">
+            <form method="POST" action="{{route('manufacture.update', $manufacturer->id)}}" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                <!-- <div class="row">
@@ -44,7 +44,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="PhoneNo">Name of Manufacturer</label>
-                            <input type="text" class="form-control" name="name" value="{{$postManufacture->name}}"id="Name" required="">
+                            <input type="text" class="form-control" name="name" value="{{$manufacturer->name}}"id="Name" required="">
                         </div>
                     </div>
                     <div class="col-md-6">

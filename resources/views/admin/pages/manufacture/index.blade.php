@@ -135,8 +135,8 @@
 
                         <tr>
 
-                            @if ($manufacturers->isNotEmpty())
-                                @foreach ($manufacturers as $manufacture)
+                            @if ($manufacturers ?? ''->isNotEmpty())
+                                @foreach ($manufacturers ?? '' as $manufacture)
                                 <tr>
                                     <td>00{{$manufacture->id}}</td>
                                     <td>{{$manufacture->name}}</td>
