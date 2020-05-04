@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class RetailerPurchaseOrdersController extends Controller
+class RetailershortagelistController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,9 @@ class RetailerPurchaseOrdersController extends Controller
      */
     public function index()
     {
-        $pageTitle = 'Purchase order';
-        return view('admin.pages.retailers.purchase_order', compact('pageTitle'));
+        $pageTitle = 'Retailer_Shortagelist';
+        return view('admin.pages.retailers.retailer_shortagelist', compact('pageTitle'));
+
     }
 
     /**
@@ -25,7 +26,7 @@ class RetailerPurchaseOrdersController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**

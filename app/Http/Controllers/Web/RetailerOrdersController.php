@@ -14,7 +14,7 @@ class RetailerOrdersController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
