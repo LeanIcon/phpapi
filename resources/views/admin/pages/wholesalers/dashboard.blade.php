@@ -147,13 +147,13 @@
                                 <td>
                                     Beg
                                 </td>
-                                <td>                                                                
+                                <td>
                                     <img src="../assets/images/flags/us_flag.jpg" alt="" class="img-flag thumb-xxs rounded-circle">
                                 </td>
                                 <td>3/03/2019 4:29 PM</td>
                                 <td>200</td>                                   
                                 <td> $750</td>
-                                <td>                                                                        
+                                <td> 
                                     <span class="badge badge-md badge-boxed  badge-soft-success">Shipped</span>
                                 </td>
                             </tr><!--end tr-->
