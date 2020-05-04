@@ -14,7 +14,7 @@ class CreateUserDetailsTable extends Migration {
 	{
 		Schema::create('user_details', function(Blueprint $table)
 		{
-			$table->bigInteger('id', true);
+			$table->bigIncrements('id');
 			$table->string('location', 191)->nullable();
 			$table->string('digital_address', 191)->nullable();
 			$table->string('business_address', 191)->nullable();
