@@ -38,6 +38,9 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
+                        <form method="POST" action="{{url('admin/retailer/cart/update')}}" enctype="multipart/form-data" >
+                            @method('PUT')
+                            @csrf
                         <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                             <thead>
                                 <tr role="row">
@@ -49,7 +52,8 @@
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">Action</th>
                                 </tr>
                             </thead>
-
+                            <p align="right"> <button type="submit" class="btn btn-primary btn-sm px-4 mt-0 mb-3" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg2">
+                                <i href="" class="mdi mdi-plus-circle-outline mr-2"></i>Update Quantity</button></p>
                             <tbody>
 
                         @if (Cart::getContent()->count() > 0)
@@ -71,6 +75,7 @@
                         @endif
                             </tbody>
                         </table>
+                    </form>  
                     </div>
                 </div>
                 <div class="row">

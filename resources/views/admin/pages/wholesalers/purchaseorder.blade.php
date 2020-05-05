@@ -32,25 +32,25 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Description</th>
-                                        <th>Qty</th><th>Amount</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 100px;">Qty</th><th>Amount</th>
                                     </tr><!--end tr-->
                                 </thead>
                                 <tbody>
                                     <tr><td>1</td>
                                         <td><h5 class="mt-0 mb-1">Pharmacy</h5></td>
-                                        <td><input class="form-control input-sm" value="3"></td><td>₵300.00</td></tr><!--end tr-->
+                                        <td><input class="form-control" type="number" value="3"></td><td>₵300.00</td></tr><!--end tr-->
                                         <tr><td>2</td>
                                             <td><h5 class="mt-0 mb-1">CT Scan</h5></td>
-                                            <td><input class="form-control input-sm" value="1"></td><td>₵200.00</td></tr><!--end tr-->
+                                            <td><input class="form-control" type="number" value="1"></td><td>₵200.00</td></tr><!--end tr-->
                                             <tr><td>3</td>
                                                 <td><h5 class="mt-0 mb-1">laboratory</h5></td>
-                                                <td><input class="form-control input-sm" value="3"></td>
+                                                <td><input class="form-control" type="number" value="3"></td>
                                                 <td>₵300.00</td>
                                             </tr><!--end tr-->
                                             <tr>
                                                 <td>4</td>
                                                 <td><h5 class="mt-0 mb-1">Medical/Surgical Supplies and Devices</h5></td>
-                                                <td><input class="form-control input-sm" value="4"></td>
+                                                <td><input class="form-control" type="number" value="4"></td>
                                                 <td>$5000.00</td></tr><!--end tr-->
                                                 <tr><td colspan="2" class="border-0"></td>
                                                     <td class="border-0 font-14"><b>Sub Total</b></td>
