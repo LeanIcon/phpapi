@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\WholesalerProduct;
 use Cart;
-
+use Validator;
 class RetailerCartController extends Controller
 {
     public $product, $wholesalerProduct;
@@ -83,8 +83,20 @@ class RetailerCartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+         // Validation on max quantity
+         $validator = Validator::make($request->all(), [
+            'quantity' => 'required|numeric|between:1,5'
+        ]);
+
+         if ($validator->fails()) {
+            session()->flash('error_message', 'Quantity must be between 1 and 5.');
+            return response()->json(['success' => false]);
+         }
+
+        Cart::update($id, $request->quantity);
+        session()->flash('success_message', 'Quantity was updated successfully!');
+
+        return view('admin.pages.retailers.purchase_order', compact('pageTitle'));   }
 
     /**
      * Remove the specified resource from storage.

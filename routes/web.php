@@ -40,6 +40,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('register', 'RegisterFormController@loadRegisterForm')->name('register.form');
     Route::post('register_user', 'RegisterFormController@saveNewUserForm')->name('save.user');
     Route::post('register', 'RegisterController@register')->name('register.form');
+    
 
 
     /****************Wholesalers*******************/
@@ -57,6 +58,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('/retailer/wholesalers/{wholesaler?}', 'RetailerWholesalersController@show')->name('retailer.wholesaler.show');
     Route::get('/retailer/products', 'RetailerDashboardController@loadProducts')->name('retailer.products');
     Route::get('/retailer/purchase-order-list', 'RetailerDashboardController@loadPurchaseOrderList')->name('retailer.purchaselist');
+    Route::put('cart/update/{id}', 'RetailerCartController@update')->name('cart.update');
 
     Route::group(['prefix' => 'retailer'], function () {
         Route::resource('cart', 'RetailerCartController');
