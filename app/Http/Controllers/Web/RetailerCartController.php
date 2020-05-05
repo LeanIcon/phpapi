@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Web;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\PurchaseOrders;
 use App\Models\WholesalerProduct;
 use Cart;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 class RetailerCartController extends Controller
 {
-    public $product, $wholesalerProduct;
-    public function __construct(Product $product, WholesalerProduct $wholesalerProduct)
+    public $product, $wholesalerProduct, $purchaseOrders;
+    public function __construct(Product $product, WholesalerProduct $wholesalerProduct, PurchaseOrders $purchaseOrders)
     {
         $this->product = $product;
         $this->wholesalerProduct = $wholesalerProduct;
@@ -42,12 +44,30 @@ class RetailerCartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function createPurchaseOrder(Request $request, $wholesaler = null)
+    {
+        $wholesaler = session()->put('wholesaler', $wholesaler);
+
+        $options = array();
+        $product = $this->product::find($request->products_id);
+        Cart::add(array('id' => $product->id, 'name' => $product->name, 'price' => $request->price, 'quantity' => $request->quantity, $options, 'associatedModel' => $product));
+        
+        return back();
+        // return redirect()->route('cart.index');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request, $wholesaler = null)
     {
         $options = array();
         $product = $this->product::find($request->products_id);
-
-        Cart::add($product->id, $product->name, $request->price, $request->quantity, $options);
+        Cart::add(array('id' => $product->id, 'name' => $product->name, 'price' => $request->price, 'quantity' => $request->quantity, $options, 'associatedModel' => $product));
+        
         return back();
         // return redirect()->route('cart.index');
     }
@@ -107,5 +127,39 @@ class RetailerCartController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function savePurchaseOrder(Request $request, $wholesaler = null)
+    {
+        $wholesaler = session()->get('wholesaler');
+        $retailer = Auth::user()->id;
+        $items = Cart::getContent();
+
+        foreach ($items as $row) {
+           PurchaseOrders::create(
+                ['wholesaler_id' => $wholesaler,
+                'product_name' => $row->name,
+                'retailer_id' => $retailer ,
+                'products_id' => $row->associatedModel->id,
+                'description' => $row->associatedModel->productDescription(),
+                'quantity' => $row->quantity,
+                'price' => $row->price,
+                'manufacturer' => $row->associatedModel->manufacturers->name,
+                'order_type' => 'purchase_order',
+                'wholesaler_visible' => 'true'
+                ]
+            );
+        }
+        Cart::clear();
+        return  back();
+
     }
 }

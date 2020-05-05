@@ -32,16 +32,28 @@
                     </div>
                 </div>
                 <div class="row">
+                    @php
+                        $pIds = []
+                    @endphp
+                    @if (!Cart::isEmpty())
+                    @foreach (Cart::getContent() as $item)
+                    @php
+                        $pIds[] .= $item->id;
+                    @endphp
+
+                    @endforeach
+                    @endif
                     <div class="col-sm-12">
                         <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                             <thead>
                                 <tr role="row">
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 40px;">Batch Number</th>
+                                    {{--  <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 40px;">Batch Number</th>  --}}
                                     <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 150px;">Product Name</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 170px;">Description</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Price</th>
                                     {{-- <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Status</th> --}}
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 130px;">Manufacturer</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Quantity</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">Action</th>
                                 </tr>
                             </thead>
@@ -51,24 +63,34 @@
                             @if ($products->isNotEmpty())
                                 @foreach ($products as $product)
                                     <tr>
-                                        <td>{{$product->batch_number}}</td>
+                                        {{--  <td>{{$product->batch_number}}</td>  --}}
                                         <td>{{$product->id}} | {{$product->products->name}}</td>
                                         <td> {{$product->products->active_ingredients}}, {{$product->products->strength}}, {{$product->products->packet_size}}</td>
                                         <td>{{$product->formattedPrice()}}</td>
                                         {{-- <td>{{$product->expiry_status}} </td> --}}
                                         <td>{{$product->products->manufacturers->name}} </td>
-                                        <td> 
-                                            <form method="POST" action="{{url('admin/retailer/cart')}}" enctype="multipart/form-data" >
+                                        <form method="POST" action="{{route('create.purchase.order', $wholesaler->id)}}" enctype="multipart/form-data" >
+                                            <td>
+                                                @if (in_array($product->id, $pIds))
+                                                    ADDED
+                                                @else
+                                                    <input class="form-control" value="1" name="quantity" type="text" >
+                                                @endif
+                                            </td>
+                                            <td>
                                                 @csrf
                                                 <input class="form-control" value="{{$product->id}}" name="id" type="hidden">
                                                 <input class="form-control" value="{{$product->products_id}}" name="products_id" type="hidden">
                                                 <input class="form-control" value="{{$product->products->name}}" name="name" type="hidden">
                                                 <input class="form-control" value="{{$product->formattedPrice()}}" name="price" type="hidden">
-                                                <input class="form-control" value="1" name="quantity" type="hidden">
-                                                <button type="submit" class="btn btn-sm btn-primary">ADD</button>
-                                            </form>  
-                                    </td>
-                                    </tr>
+                                                {{--  <input class="form-control" value="1" name="quantity" type="hidden">  --}}
+                                                @if (in_array($product->id, $pIds)) 
+                                                ADDED
+                                                @else
+                                                <button type="submit" class="btn btn-sm btn-primary"> ADD</button>
+                                                @endif
+                                            </td>
+                                        </form>  
                                     </tr>
                                 @endforeach
                             @endif

@@ -62,6 +62,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
 
     Route::group(['prefix' => 'retailer'], function () {
         Route::resource('cart', 'RetailerCartController');
+        Route::post('retailercart/{wholesaler?}', 'RetailerCartController@createPurchaseOrder')->name('create.purchase.order');
+        Route::post('retailerpo/{wholesaler?}', 'RetailerCartController@savePurchaseOrder')->name('save.purchase.order');
     });
 
 
