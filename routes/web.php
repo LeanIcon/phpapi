@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 
@@ -40,6 +40,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('register', 'RegisterFormController@loadRegisterForm')->name('register.form');
     Route::post('register_user', 'RegisterFormController@saveNewUserForm')->name('save.user');
     Route::post('register', 'RegisterController@register')->name('register.form');
+
+    Route::post('update_user/{user}', 'UserDetailsController@updateUserDetails')->name('user.update');
     
 
 

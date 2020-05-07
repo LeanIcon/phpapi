@@ -12,7 +12,7 @@ class RetailerWholesalersController extends Controller
     public function __construct(User $user)
     {
         $this->middleware('auth');
-        $this->middleware(['role:Retailer']);
+        $this->middleware(['role:Retailer|Admin']);
         $this->user = $user;
     }
 
@@ -27,6 +27,7 @@ class RetailerWholesalersController extends Controller
     {
         $wholesaler = $this->user::isWholeSaler()->where('id', $wholesalerId)->first();
         $products = $wholesaler->wholesaler_products;
-        return view('admin.pages.retailers.wholesaler_details', compact('wholesaler','products'));
+        $details = $wholesaler->details;
+        return view('admin.pages.retailers.wholesaler_details', compact('wholesaler','products', 'details'));
     }
 }
