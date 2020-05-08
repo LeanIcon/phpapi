@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\UserDetails;
 use App\Models\WholesalerProduct;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -92,6 +93,11 @@ class User extends Authenticatable
     {
         $cats = ProductCategory::whereIn('id', $ids)->get('name');
         return $cats->implode('name', ', ');
+    }
+
+    public function details()
+    {
+        return $this->hasOne(UserDetails::class,'users_id');    
     }
 
 }

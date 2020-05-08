@@ -38,17 +38,29 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
+                        {{--  <form method="POST" action="{{url('admin/retailer/cart/update')}}" enctype="multipart/form-data" >
+                            @method('PUT')
+                            @csrf
+                        </form>    --}}
                         <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                             <thead>
                                 <tr role="row">
                                     <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 150px;">Product Name</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 170px;">Description</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Price</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Qty</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 130px;">Manufacturer</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">Action</th>
                                 </tr>
                             </thead>
-
+                            {{--  <p align="right"> <button type="submit" class="btn btn-primary btn-sm px-4 mt-0 mb-3" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg2">
+                                <i href="" class="mdi mdi-plus-circle-outline mr-2"></i>Update Quantity</button></p>  --}}
+                                <form action="{{route('save.purchase.order')}}" method="POST">
+                                    @csrf
+                                    <p align="right"> 
+                                        <button type="submit" class="btn btn-primary btn-sm px-4 mt-0 mb-3" >
+                                        <i href="" class="mdi mdi-plus-circle-outline mr-2"></i>Create Purchase Order</button></p>
+                                </form>
                             <tbody>
 
                         @if (Cart::getContent()->count() > 0)
@@ -56,9 +68,10 @@
                                 @foreach (Cart::getContent() as $item)
                                     <tr>
                                         <td>{{$item->name}}</td>
-                                        <td> </td>
-                                        <td>{{$item->price}}</td>
-                                        <td></td>
+                                        <td>{{$item->associatedModel->productDescription()}} </td>
+                                        <td> {{$item->price}}</td>
+                                        <td><input disabled class="form-control" type="number" value="{{$item->quantity}}" /> </td>
+                                        <td>{{$item->associatedModel->manufacturers->name}}</td>
                                         <td>
                                             ADDED
                                     </td>

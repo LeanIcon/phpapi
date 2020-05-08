@@ -37,7 +37,7 @@ class GlobalTemplateServiceProvider extends ServiceProvider
         });
 
         view()->composer([], function($view){
-            
+            // in_array()
         });
     }
 

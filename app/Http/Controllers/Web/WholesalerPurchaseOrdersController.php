@@ -14,7 +14,9 @@ class WholesalerPurchaseOrdersController extends Controller
      */
     public function index()
     {
-        //
+        $pageTitle = 'Purchase Order';
+        return view('admin.pages.wholesalers.purchaseorder');
+
     }
 
     /**

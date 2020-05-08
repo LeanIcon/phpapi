@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class RegisterFormController extends Controller
 {
     //
-
+    
     public function loadRegisterForm()
     {
         return view('admin.pages.register.wholesaler');

@@ -14,7 +14,7 @@ class CreateWholesalersTable extends Migration {
 	{
 		Schema::create('wholesalers', function(Blueprint $table)
 		{
-			$table->integer('id', true);
+			$table->bigIncrements('id');
 			$table->string('digital_address', 191);
 			$table->string('phone', 15);
 			$table->string('business_address', 191);

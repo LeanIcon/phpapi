@@ -9,7 +9,7 @@
             <div class="card-body">
                 <h4 class="title-text mt-0">Purchase Orders</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">24</h3>
+                    <h3 class="text-purple">{{$purchaseOrders->count()}}</h3>
                     <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i>
                 </div>                                     
                 <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i></span>Up From Yesterday</p>
@@ -23,7 +23,7 @@
             <div class="card-body">
                 <h4 class="title-text mt-0">Orders Confirmed</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-pink">15</h3>
+                    <h3 class="text-pink">{{$approvedPurchaseOrders->count()}}</h3>
                     <i class="dripicons-cart card-eco-icon bg-icon-pink align-self-center"></i>
                 </div>                                     
                 <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i></span> Up From Last Week</p>

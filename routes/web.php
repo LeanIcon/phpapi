@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 
@@ -41,6 +41,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::post('register_user', 'RegisterFormController@saveNewUserForm')->name('save.user');
     Route::post('register', 'RegisterController@register')->name('register.form');
 
+    Route::post('update_user/{user}', 'UserDetailsController@updateUserDetails')->name('user.update');
+    
+
 
     /****************Wholesalers*******************/
     Route::get('/retailer/dashboard', 'WholesalerDashboardController@loadDashboard')->name('wholesaler.dashboard');
@@ -48,6 +51,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('/wholesaler/retailers', 'WholesalerRetailersController@index')->name('wholesaler.retailer');
     Route::get('/wholesaler/products', 'WholesalerDashboardController@loadProducts')->name('wholesaler.products');
     Route::resource('wholesaler_products', 'WholesalerProductsController');
+    Route::get('/wholesaler/purchaseorder', 'WholesalerPurchaseOrdersController@index')->name('wholesaler.purchaseorder');
+
 
 
     /****************Retailers*******************/
@@ -55,9 +60,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('/retailer/wholesalers/{wholesaler?}', 'RetailerWholesalersController@show')->name('retailer.wholesaler.show');
     Route::get('/retailer/products', 'RetailerDashboardController@loadProducts')->name('retailer.products');
     Route::get('/retailer/purchase-order-list', 'RetailerDashboardController@loadPurchaseOrderList')->name('retailer.purchaselist');
+    Route::put('cart/update/{id}', 'RetailerCartController@update')->name('cart.update');
 
     Route::group(['prefix' => 'retailer'], function () {
         Route::resource('cart', 'RetailerCartController');
+        Route::post('retailercart/{wholesaler?}', 'RetailerCartController@createPurchaseOrder')->name('create.purchase.order');
+        Route::post('retailerpo/{wholesaler?}', 'RetailerCartController@savePurchaseOrder')->name('save.purchase.order');
     });
 
 
