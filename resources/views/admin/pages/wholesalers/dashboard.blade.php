@@ -4,28 +4,30 @@
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])
 <div class="row">
     <div class="col-lg-3">
+        <a href="{{ route('wholesaler_products.index') }}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <a href="#">  <h4 class="title-text mt-0">Total Products</h4></a>
+                <h4 class="title-text mt-0">Total Products</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">24k</h3>
-                    <a href="#">    <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i></a>
+                    <h3 class="text-purple">{{$approvedPurchaseOrders->count()}}</h3>
+                    <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i>
                 </div>
                 <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>8.5%</span>Up From Yesterday</p>
             </div><!--end card-body-->
-        </div><!--end card-->
+        </div><!--end card--></a>
     </div><!--end col-->
     <div class="col-lg-3">
+        <a href="" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <a href="#"> <h4 class="title-text mt-0">Purchase Orders</h4></a>
+               <h4 class="title-text mt-0">Purchase Orders</h4>
                 <div class="d-flex justify-content-between">
                     <h3 class="text-pink">10k</h3>
-                    <a href="#">  <i class="dripicons-cart card-eco-icon bg-icon-pink align-self-center"></i></a>
+                        <i class="dripicons-cart card-eco-icon bg-icon-pink align-self-center"></i>
                 </div>
                 <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>1.5%</span> Up From Last Week</p>
             </div><!--end card-body-->
-        </div><!--end card-->
+        </div><!--end card--></a>
     </div><!--end col-->
     <div class="col-lg-3">
         <div class="card card-eco">
