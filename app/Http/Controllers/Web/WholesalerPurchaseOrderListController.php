@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class WholesalerPurchaseOrdersController extends Controller
+class WholesalerPurchaseOrderListController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,20 +14,8 @@ class WholesalerPurchaseOrdersController extends Controller
      */
     public function index()
     {
-        $pageTitle = 'Purchase Order';
-        return view('admin.pages.wholesalers.purchaseorder');
-
-    }
-    public function pending()
-    {
-        $pageTitle = 'Pending Purchase Order';
-        return view('admin.pages.wholesalers.pendingpurchaseorder');
-
-    }
-    public function approve()
-    {
-        $pageTitle = 'Pending Purchase Order';
-        return view('admin.pages.wholesalers.approvepurchaseorder');
+        $pageTitle = 'Purchase Order List';
+        return view('admin.pages.wholesalers.purchaseorderlist');
 
     }
 
