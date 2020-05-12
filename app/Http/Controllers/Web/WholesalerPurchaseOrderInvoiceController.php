@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class WholesalerPurchaseOrdersController extends Controller
+class WholesalerPurchaseOrderInvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,23 +14,15 @@ class WholesalerPurchaseOrdersController extends Controller
      */
     public function index()
     {
-        $pageTitle = 'Purchase Order';
-        return view('admin.pages.wholesalers.purchaseorder');
-
+        $pageTitle = 'Purchase Order Invoice';
+        return view('admin.pages.wholesalers.purchaseorderinvoice');
     }
-    public function pending()
+
+    public function invoicedetail()
     {
-        $pageTitle = 'Pending Purchase Order';
-        return view('admin.pages.wholesalers.pendingpurchaseorder');
-
+        $pageTitle = 'Order Invoice';
+        return view('admin.pages.wholesalers.invoicedetails');
     }
-    public function approve()
-    {
-        $pageTitle = 'Pending Purchase Order';
-        return view('admin.pages.wholesalers.approvepurchaseorder');
-
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -60,7 +52,7 @@ class WholesalerPurchaseOrdersController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

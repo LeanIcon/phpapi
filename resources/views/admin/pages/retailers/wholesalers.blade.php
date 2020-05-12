@@ -40,7 +40,7 @@
                                 <thead>
                                     <tr role="row">
                                         <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 285px;">Wholesaler Name</th>
-                                      <!--  <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Location</th>-->
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Location</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Items</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Status</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">Action</th>
@@ -54,10 +54,10 @@
                                                 <td class="sorting_1">
                                                     <img src="../assets/images/products/img-2.png" alt="" height="52">
                                                     <p class="d-inline-block align-middle mb-0">
-                                                        <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}" class="d-inline-block align-middle mb-0 product-name">{{$wholesaler->name}}</a>
+                                                        <a href="" class="d-inline-block align-middle mb-0 product-name">{{$wholesaler->name}}</a>
                                                     </p>
                                                 </td>
-                                             <!--   <td>Sports</td>-->
+                                                <td>Sports</td>
                                                 <td>
                                                     <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}" >{{$wholesaler->product_category()}}</a>
                                                 </td>

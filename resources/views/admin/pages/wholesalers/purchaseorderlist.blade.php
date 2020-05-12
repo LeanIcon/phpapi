@@ -1,61 +1,7 @@
 @extends('admin.index')
 
 @section('content')
-@include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])
-<div class="row">
-    <div class="col-lg-3">
-        <a href="{{ route('wholesaler_products.index') }}" class="custom-card">
-        <div class="card card-eco">
-            <div class="card-body">
-                <h4 class="title-text mt-0">Total Products</h4>
-                <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">{{$approvedPurchaseOrders->count()}}</h3>
-                    <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i>
-                </div>
-               <!-- <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>8.5%</span>Up From Yesterday</p>
-               --></div><!--end card-body-->
-        </div><!--end card--></a>
-    </div><!--end col-->
-    <div class="col-lg-3">
-        <a href="{{ route('wholesaler.purchaseorderlist') }}" class="custom-card">
-        <div class="card card-eco">
-            <div class="card-body">
-               <h4 class="title-text mt-0">Purchase Orders Received</h4>
-                <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">{{$approvedPurchaseOrders->count()}}</h3>
-                        <i class="dripicons-cart card-eco-icon bg-icon-pink align-self-center"></i>
-                </div>
-                <!--<p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>1.5%</span> Up From Last Week</p>
-                --></div><!--end card-body-->
-        </div><!--end card--></a>
-    </div><!--end col-->
-    <div class="col-lg-3">
-        <a href="{{ route('wholesaler.purchaseorderinvoice') }}" class="custom-card">
-        <div class="card card-eco">
-            <div class="card-body">
-                <h4 class="title-text mt-0">Invoice</h4>
-                <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">{{$approvedPurchaseOrders->count()}}</h3>
-                    <i class="dripicons-jewel card-eco-icon bg-icon-secondary align-self-center"></i>
-                </div>
-                <!--<p class="mb-0 text-muted text-truncate"><span class="text-danger"><i class="mdi mdi-trending-down"></i>3%</span> Down From Last Month</p>
-                --></div><!--end card-body-->
-        </div><!--end card--></a>
-    </div><!--end col-->
-    <div class="col-lg-3">
-        <a href="{{ route('wholesaler.pendingpurchaseorder') }}" class="custom-card">
-        <div class="card card-eco">
-            <div class="card-body">
-              <h4 class="title-text mt-0">Pending</h4>
-                <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">{{$approvedPurchaseOrders->count()}}</h3>
-                    <i class="dripicons-wallet card-eco-icon bg-icon-warning  align-self-center"></i>
-                </div>
-                <!--<p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>10.5%</span> Up From Yesterday</p>
-                --></div><!--end card-body-->
-        </div><!--end card--></a>
-    </div><!--end col-->
-</div><!--end row-->
+@include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? ''])
 
 <div class="row">
     <div class="col-12">
@@ -146,7 +92,24 @@
                                 <td>                                                                        
                                     <span class="badge badge-md badge-boxed badge-soft-warning">Pending</span>
                                 </td>
-                            </tr><!--end tr--> 
+                            </tr><!--end tr--> <tr>
+                                <td>
+                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">004</a>                                 </td>
+
+                                </td>
+                                <td>
+                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">Darko Oscar</a> 
+                                </td>
+                                <td>   
+                                    Accra                                                            
+                                </td>
+                                <td>3/03/2019 4:29 PM</td>
+                                <td>200</td>                                   
+                                <td> ₵750</td>
+                                <td>                                                                        
+                                    <span class="badge badge-md badge-boxed  badge-soft-success">Shipped</span>
+                                </td>
+                            </tr><!--end tr-->
                                                                               
                         </tbody>
                     </table> <!--end table-->                                               
