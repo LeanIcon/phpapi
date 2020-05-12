@@ -41,10 +41,13 @@
                                         <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 285px;"> Purchase ID</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Wholesaler ID</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Status</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">View Purchase Order Details</th>
-                                        
-                                        
-                                        
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Product Name</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Description</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Quantity</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Manufacturer</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Price</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Order Type</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Created_at</th>
                                     </tr>
                                 </thead>
 
@@ -65,7 +68,25 @@
                             
                                                 <td><span class="badge badge-soft-warning">{{$purchaseOrder->status}}</span></td>
                                                      <td>
-                                                    <a href="{{route('retailer.order_details')}}"><i class="far fa-eye text-danger"></i></a>
+                                                     {{$purchaseOrder->product_name}}
+                                                </td>
+                                                <td>
+                                                     {{$purchaseOrder->description}}
+                                                </td>
+                                                <td>
+                                                     {{$purchaseOrder->quantity}}
+                                                </td>
+                                                <td>
+                                                     {{$purchaseOrder->manufacturer}}
+                                                </td>
+                                                <td>
+                                                     {{$purchaseOrder->price}}
+                                                </td>
+                                                <td>
+                                                     {{$purchaseOrder->order_type}}
+                                                </td>
+                                                <td>
+                                                     {{$purchaseOrder->created_at}}
                                                 </td>
                                             </tr>
                                         @endforeach
