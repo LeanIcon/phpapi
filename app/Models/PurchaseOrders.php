@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class PurchaseOrders extends Model
@@ -18,5 +19,28 @@ class PurchaseOrders extends Model
     public function scopeIsApproved($query)
     {
         return $query->where('status', 'approved');
+    }
+
+
+    public function order_items()
+    {
+        return $this->hasMany(PurchaseOrderItems::class,'purchase_order_id');
+    }
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+    /**
+     * Get the order product's name.
+     *
+     * @return string
+     */
+    public function getWholesalerAttribute()
+    {
+        return  User::find($this->wholesaler_id);
     }
 }

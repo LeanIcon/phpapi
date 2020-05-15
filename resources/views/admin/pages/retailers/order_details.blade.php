@@ -38,23 +38,21 @@
                             <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                                 <thead>
                                     <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 285px;"> Purchase ID</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Wholesaler ID</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Status</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Product Name</th>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 50px;"> Purchase ID</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Description</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Quantity</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Wholesaler</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Manufacturer</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Price</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Order Type</th>
+                                        {{-- <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Status</th> --}}
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Created_at</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
 
-                                    @if ($purchaseOrders->isNotEmpty())
-                                        @foreach ($purchaseOrders as $purchaseOrder)
+                                    @if ($orderItems->isNotEmpty())
+                                        @foreach ($orderItems as $purchaseOrder)
                                             <tr role="row" class="odd">
                                                 <td class="sorting_1">
                                                     <img src="../assets/images/products/img-2.png" alt="" height="52">
@@ -64,30 +62,17 @@
                                                         </a>
                                                     </p>
                                                 </td>
-                                                <td>{{$purchaseOrder->wholesaler_id}}</td>
-                            
-                                                <td><span class="badge badge-soft-warning">{{$purchaseOrder->status}}</span></td>
-                                                     <td>
-                                                     {{$purchaseOrder->product_name}}
-                                                </td>
+                                                <td> {{$purchaseOrder->info}}</td>
+                                                
+                                                <td> {{$purchaseOrder->quantity}}</td>
+                                                <td>{{$purchaseOrder->purchase_order->wholesaler->name}}</td>
+                                            
                                                 <td>
-                                                     {{$purchaseOrder->description}}
+                                                    {{$purchaseOrder->manufacturer}}
                                                 </td>
-                                                <td>
-                                                     {{$purchaseOrder->quantity}}
-                                                </td>
-                                                <td>
-                                                     {{$purchaseOrder->manufacturer}}
-                                                </td>
-                                                <td>
-                                                     {{$purchaseOrder->price}}
-                                                </td>
-                                                <td>
-                                                     {{$purchaseOrder->order_type}}
-                                                </td>
-                                                <td>
-                                                     {{$purchaseOrder->created_at}}
-                                                </td>
+                                                <td> {{$purchaseOrder->price}}  </td>
+                                                {{-- <td><span class="badge badge-soft-warning">{{$purchaseOrder->status}}</span></td> --}}
+                                                <td> {{$purchaseOrder->created_at}} </td>
                                             </tr>
                                         @endforeach
                                     @endif

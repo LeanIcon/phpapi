@@ -11,7 +11,7 @@
                 <div class="d-flex justify-content-between">
                     <h3 class="text-purple">{{$purchaseOrders->count()}}</h3>
                     <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i>
-                </div>                                     
+                </div>
             </div><!--end card-body-->
         </div><!--end card-->
     </div>
@@ -24,7 +24,7 @@
                 <div class="d-flex justify-content-between">
                     <h3 class="text-pink">{{$approvedPurchaseOrders->count()}}</h3>
                     <i class="dripicons-cart card-eco-icon bg-icon-pink align-self-center"></i>
-                </div>                                     
+                </div>
             </div><!--end card-body-->
         </div><!--end card-->
     </div><!--end col-->

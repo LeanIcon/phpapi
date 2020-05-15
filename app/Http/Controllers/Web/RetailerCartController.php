@@ -162,7 +162,7 @@ class RetailerCartController extends Controller
                 [
                 'purchase_order_id' => $purchaseOrder->id,
                 'product_name' => $row->name,
-                'product_id' => $row->associatedModel->id,
+                'products_id' => $row->associatedModel->id,
                 'description' => $row->associatedModel->productDescription(),
                 'quantity' => $row->quantity,
                 'price' => $row->price,

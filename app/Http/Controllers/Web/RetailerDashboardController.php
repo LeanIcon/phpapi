@@ -37,21 +37,16 @@ class RetailerDashboardController extends Controller
     public function displayPurchaseOrders(){
         $pageTitle = 'Orders';
         $retailer = Auth::user()->id;
-        $purchaseOrders = $this->purchaseOrders::groupBy('wholesaler_id')->get();
-        $wholesalers = $this->user::isWholeSaler()->get();
-        //return $purchaseOrders;
-        //return $wholesalers;
-        return view('admin.pages.retailers.purchase_order', compact('pageTitle', 'purchaseOrders'));
+        $purchaseOrders = Auth::user()->retailer_orders;
+
+        return view('admin.pages.retailers.purchase_order', compact('pageTitle','purchaseOrders'));
     }
 
-    public function purchaseOrderDetails(){
-        $pageTitle = 'orderdetails';
-        $retailer = Auth::user()->id;
-        $purchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->get();
-        $wholesalers = $this->user::isWholeSaler()->get();
-        // return $approvedPurchaseOrders->count();
-        // return $purchaseOrders;
-        return view('admin.pages.retailers.order_details', compact('pageTitle','purchaseOrders'));
-
+    public function purchaseOrderDetails($purchaseOrderId = null)
+    {
+        $orderItems = $this->purchaseOrders::find($purchaseOrderId)->order_items;
+        // return $orderItems->order_items;
+        $pageTitle = 'Order Details';
+        return view('admin.pages.retailers.order_details', compact('pageTitle','orderItems'));
     }
 }
