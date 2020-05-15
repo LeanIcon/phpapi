@@ -61,7 +61,7 @@
                     </div>
                 </div> 
                 <button type="submit" class="btn btn-sm btn-primary">Save</button>  
-                <button type="button" class="btn btn-sm btn-danger">Cancel</button>             
+                <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Cancel</button>             
             </form>  
         </div>
     </div>

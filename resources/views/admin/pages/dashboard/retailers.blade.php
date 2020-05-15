@@ -149,7 +149,7 @@
                     <input id="password-confirm" type="hidden" name="password_confirmation" value="12345678" required autocomplete="new-password">
 
                     <button type="submit" class="btn btn-sm btn-primary">Save</button>
-                    <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                    <button type="button" class="btn btn-sm btn-danger">Cancel</button>
                 </form>
             </div>
         </div><!-- /.modal-content -->
