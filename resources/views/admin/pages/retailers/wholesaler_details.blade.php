@@ -54,15 +54,11 @@
                         <li class="nav-item">
                             <a class="nav-link active" id="education_detail_tab" data-toggle="pill" href="#education_detail">Products</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="portfolio_detail_tab" data-toggle="pill" href="#portfolio_detail">News Info</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="settings_detail_tab" data-toggle="pill" href="#settings_detail">Settings</a>
-                        </li>
+                        @role('Admin')
                         <li class="nav-item">
                             <a class="nav-link" id="general_detail_tab" data-toggle="pill" href="#general_detail">General</a>
                         </li>
+                        @endrole
                     </ul>
                 </div>
                 <!--end card-body-->
