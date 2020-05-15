@@ -2,21 +2,25 @@
 
 namespace App\Http\Controllers\Web;
 
+use Cart;
+use Validator;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\PurchaseOrders;
 use App\Models\WholesalerProduct;
-use Cart;
+use App\Models\PurchaseOrderItems;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Validator;
+
 class RetailerCartController extends Controller
 {
-    public $product, $wholesalerProduct, $purchaseOrders;
-    public function __construct(Product $product, WholesalerProduct $wholesalerProduct, PurchaseOrders $purchaseOrders)
+    public $product, $wholesalerProduct, $purchaseOrders, $purchaseOrderItems;
+    public function __construct(Product $product, WholesalerProduct $wholesalerProduct, PurchaseOrders $purchaseOrders, PurchaseOrderItems $purchaseOrderItems )
     {
         $this->product = $product;
         $this->wholesalerProduct = $wholesalerProduct;
+        $this->purchaseOrders = $purchaseOrders;
+        $this->purchaseOrderItems = $purchaseOrderItems;
     }
     /**
      * Display a listing of the resource.
@@ -141,20 +145,28 @@ class RetailerCartController extends Controller
     {
         $wholesaler = session()->get('wholesaler');
         $retailer = Auth::user()->id;
+        $total = Cart::getTotal();
         $items = Cart::getContent();
 
+        $purchaseOrder = $this->purchaseOrders::create([
+            'wholesaler_id' => $wholesaler,
+            'retailer_id' => $retailer ,
+            'status' => 'pending',
+            'total' => $total,
+            'order_type' => 'purchase_order',
+            'wholesaler_visible' => 'true'
+        ]);
+
         foreach ($items as $row) {
-           PurchaseOrders::create(
-                ['wholesaler_id' => $wholesaler,
+           $this->purchaseOrderItems::create(
+                [
+                'purchase_order_id' => $purchaseOrder->id,
                 'product_name' => $row->name,
-                'retailer_id' => $retailer ,
-                'products_id' => $row->associatedModel->id,
+                'product_id' => $row->associatedModel->id,
                 'description' => $row->associatedModel->productDescription(),
                 'quantity' => $row->quantity,
                 'price' => $row->price,
                 'manufacturer' => $row->associatedModel->manufacturers->name,
-                'order_type' => 'purchase_order',
-                'wholesaler_visible' => 'true'
                 ]
             );
         }
