@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateWholesalerProductsTable extends Migration {
+class CreateRetailerProductsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateWholesalerProductsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('wholesaler_products', function(Blueprint $table)
+		Schema::create('retailer_products', function(Blueprint $table)
 		{
 			$table->integer('id', true);
 			$table->string('batch_number', 191);
@@ -20,10 +20,10 @@ class CreateWholesalerProductsTable extends Migration {
 			$table->dateTime('expiry_date');
 			$table->string('expiry_status', 191);
 			$table->string('type', 191);
-			$table->integer('status');
+			$table->integer('status')->nullable()->default(1);
 			$table->timestamps();
 			$table->softDeletes();
-			$table->integer('wholesalers_id');
+			$table->integer('retailer_id');
 			$table->bigInteger('products_id');
 			$table->integer('drugs_id');
 		});
@@ -37,7 +37,7 @@ class CreateWholesalerProductsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('wholesaler_products');
+		Schema::drop('retailer_products');
 	}
 
 }
