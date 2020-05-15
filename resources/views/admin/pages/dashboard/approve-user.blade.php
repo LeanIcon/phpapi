@@ -37,7 +37,7 @@
                                         <select class="form-control" name="action" required id="">
                                             <option value="">Select Action</option>
                                             <option value="approve">Approve</option>
-                                            <option value="cancel">Cancel</option>
+                                            <option value="cancel" >Cancel</option>
                                         </select>
                                     </div>
                                 </div>
