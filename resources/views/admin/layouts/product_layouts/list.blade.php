@@ -1,12 +1,13 @@
 
+ @if (!Cart::isEmpty())
     <div class="col-lg-3">
         <div class="card">
            <a class="btn btn-default" href="{{route('retailer.purchaselist')}}">Purchase Order List
-               <i class="fa fa-1x far fa-list-alt" ></i>
+               <i class="fa fa-1x far fa-list-alt" > <span class="badge badge-blue" >{{Cart::getContent()->count() ?? '0'}}</span>  </i>
            </a>
         </div>
     </div>
-
+@endif
 <div class="col-12">
     <div class="card">
         <div class="card-body">
