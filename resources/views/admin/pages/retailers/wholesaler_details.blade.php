@@ -52,16 +52,16 @@
                 <div class="card-body">
                     <ul class="nav nav-pills mb-0" id="pills-tab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="general_detail_tab" data-toggle="pill" href="#general_detail">General</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="education_detail_tab" data-toggle="pill" href="#education_detail">Products</a>
+                            <a class="nav-link active" id="education_detail_tab" data-toggle="pill" href="#education_detail">Products</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="portfolio_detail_tab" data-toggle="pill" href="#portfolio_detail">News Info</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="settings_detail_tab" data-toggle="pill" href="#settings_detail">Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="general_detail_tab" data-toggle="pill" href="#general_detail">General</a>
                         </li>
                     </ul>
                 </div>
@@ -75,7 +75,7 @@
     <div class="row">
         <div class="col-12">
             <div class="tab-content detail-list" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="general_detail">
+                <div class="tab-pane fade " id="general_detail">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -155,7 +155,7 @@
                 </div>
                 <!--end general detail-->
 
-                <div class="tab-pane fade" id="education_detail">
+                <div class="tab-pane fade show active" id="education_detail">
                     <div class="row">
                         @include('admin.layouts.product_layouts.list', ['products' => $products])
                     </div>

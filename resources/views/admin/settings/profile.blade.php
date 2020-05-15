@@ -52,9 +52,6 @@
                 <div class="card-body">
                     <ul class="nav nav-pills mb-0" id="pills-tab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="general_detail_tab" data-toggle="pill" href="#general_detail">General</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" id="education_detail_tab" data-toggle="pill" href="#education_detail">Products</a>
                         </li>
                         <li class="nav-item">
@@ -62,6 +59,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="settings_detail_tab" data-toggle="pill" href="#settings_detail">Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" id="general_detail_tab" data-toggle="pill" href="#general_detail">General</a>
                         </li>
                     </ul>
                 </div>
