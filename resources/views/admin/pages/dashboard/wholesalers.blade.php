@@ -42,10 +42,9 @@
                                     <tr role="row">
                                         <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 285px;">Wholesaler Name</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Location</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Invoices</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Category</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Status</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Role</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">Action</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">View List</th>
                                     </tr>
                                 </thead>
 
@@ -64,7 +63,6 @@
                                                 <td>
                                                     <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}"> Equipments/Drugs</a>
                                                 </td>
-                                                <td><span class="badge badge-soft-warning">Stock</span></td>
                                                 <td>
                                                     <a href="{{route('approve.users', $wholesaler->id)}}">
                                                         <span class= "badge badge-soft-{{$wholesaler->hasRole('Wholesaler') ? 'success' : 'warning'}}">{{$wholesaler->hasRole('Wholesaler') ? 'Approved' : 'Pending Approval'}}</span></td>
@@ -147,7 +145,7 @@
 
 
                     <button type="submit" class="btn btn-sm btn-primary">Save</button>
-                    <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                    <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Cancel</button>
                 </form>
             </div>
         </div><!-- /.modal-content -->

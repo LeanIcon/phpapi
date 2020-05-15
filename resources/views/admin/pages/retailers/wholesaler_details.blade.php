@@ -30,7 +30,7 @@
                                 <ul class="list-unstyled personal-detail">
                                     <li class=""><i class="dripicons-phone mr-2 text-info font-18"></i> <b> phone </b> :{{$wholesaler->phone}}</li>
                                     <li class="mt-2"><i class="dripicons-mail text-info font-18 mt-2 mr-2"></i> <b> Email </b> : {{$wholesaler->email}}</li>
-                                    <li class="mt-2"><i class="dripicons-location text-info font-18 mt-2 mr-2"></i> <b>Location</b> : USA</li>
+                                    <li class="mt-2"><i class="dripicons-location text-info font-18 mt-2 mr-2"></i> <b>Location</b> : {{$wholesaler->location}}</li>
                                 </ul>
                                 <div class="button-list btn-social-icon">
                                     <button type="button" class="btn btn-blue btn-round">
