@@ -87,11 +87,13 @@ class WholesalerProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        $manufacturers = $this->manufacturer::all();
-        $productCategory = $this->productCategory::ProductCategory();
-        return view('admin.pages.wholesalers.products.edit', compact('manufacturers', 'productCategory'));
-    }
+    {        $products = $this->products::all();
+        $products = $this->products::all();
+        $product = $this->wholesalerProducts::find($id);
+        $manufacturers  = $this->manufacturer::all();
+        $productCategoryTypes = $this->productCategoryTypes::all();
+        return view('admin.pages.wholesalers.products.edit', compact('manufacturers','products', 'product', 'productCategoryTypes'));
+      }
 
     /**
      * Update the specified resource in storage.
