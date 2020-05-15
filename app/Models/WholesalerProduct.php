@@ -27,6 +27,12 @@ class WholesalerProduct extends Model
     }
 
 
+    public function order_items()
+    {
+        return $this->hasMany(PurchaseOrderItems::class);
+    }
+
+
     public function getCategoryAttribute()
     {
         return $this->products->category;

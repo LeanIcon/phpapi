@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\PurchaseOrders;
 use App\Models\UserDetails;
 use App\Models\WholesalerProduct;
 use Spatie\Permission\Traits\HasRoles;
@@ -81,6 +82,17 @@ class User extends Authenticatable
     }
 
 
+    public function wholesaler_orders()
+    {
+        return $this->hasMany(PurchaseOrders::class, 'wholesaler_id');
+    }
+
+    public function retailer_orders()
+    {
+        return $this->hasMany(PurchaseOrders::class, 'retailer_id');
+    }
+
+
     public function product_category()
     {
         $prod_ids = collect($this->wholesaler_products)->pluck('products_id');
@@ -98,6 +110,11 @@ class User extends Authenticatable
     public function details()
     {
         return $this->hasOne(UserDetails::class,'users_id');    
+    }
+
+    public function getProductCategoryAttribute()
+    {
+        return;
     }
 
 }

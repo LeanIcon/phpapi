@@ -11,8 +11,7 @@
                 <div class="d-flex justify-content-between">
                     <h3 class="text-purple">{{$purchaseOrders->count()}}</h3>
                     <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i>
-                </div>                                     
-                <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i></span>Up From Yesterday</p>
+                </div>
             </div><!--end card-body-->
         </div><!--end card-->
     </div>
@@ -25,8 +24,7 @@
                 <div class="d-flex justify-content-between">
                     <h3 class="text-pink">{{$approvedPurchaseOrders->count()}}</h3>
                     <i class="dripicons-cart card-eco-icon bg-icon-pink align-self-center"></i>
-                </div>                                     
-                <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i></span> Up From Last Week</p>
+                </div>
             </div><!--end card-body-->
         </div><!--end card-->
     </div><!--end col-->
@@ -41,7 +39,6 @@
                     <h3 class="text-secondary">8</h3>
                     <i class="dripicons-jewel card-eco-icon bg-icon-secondary align-self-center"></i>
                 </div>                                   
-                <p class="mb-0 text-muted text-truncate"><span class="text-danger"><i class="mdi mdi-trending-down"></i>3%</span> Down From Last Month</p>
             </div><!--end card-body-->
         </div><!--end card-->
     </div><!--end -->
@@ -56,7 +53,6 @@
                     <h3 class="text-warning">4</h3>
                     <i class="dripicons-wallet card-eco-icon bg-icon-warning  align-self-center"></i>
                 </div>
-                <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i></span></p>
             </div><!--end card-body-->
         </div><!--end card-->
     </div><!--end col-->

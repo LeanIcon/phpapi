@@ -54,18 +54,17 @@
                                         @foreach ($purchaseOrders as $purchaseOrder)
                                             <tr role="row" class="odd">
                                                 <td class="sorting_1">
-                                                    <img src="../assets/images/products/img-2.png" alt="" height="52">
+                                                    {{-- <img src="../assets/images/products/img-2.png" alt="" height="52"> --}}
                                                     <p class="d-inline-block align-middle mb-0">
                                                         <a href="">
                                                         <span class="badge badge-soft">{{$purchaseOrder->id}} </span>
                                                         </a>
                                                     </p>
                                                 </td>
-                                                <td>{{$purchaseOrder->wholesaler_id}}</td>
-                            
+                                                <td>{{$purchaseOrder->wholesaler->name}}</td>
                                                 <td><span class="badge badge-soft-warning">{{$purchaseOrder->status}}</span></td>
-                                                     <td>
-                                                    <a href="{{route('retailer.order_details')}}"><i class="far fa-eye text-danger"></i></a>
+                                                <td>
+                                                    <a href="{{route('retailer.order_details', $purchaseOrder->id)}}"><i class="far fa-eye text-danger"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
