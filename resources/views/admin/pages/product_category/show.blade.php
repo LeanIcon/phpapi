@@ -29,13 +29,13 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="LeadName">Name</label>
-                            <input type="text" name="name" value="{{$postProduct_Category->name}}" class="form-control" id="LeadName" readonly required="">
+                            <input type="text" name="name" value="{{$productCategory->name}}" class="form-control" id="LeadName" readonly required="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="type">Type</label>
-                            <input type="text" class="form-control" name="type" value="{{$postProduct_Category->type}}" id="type" readonly required="">
+                            <input type="text" class="form-control" name="type" value="{{$productCategory->type}}" id="type" readonly required="">
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="status-select" class="mr-2">Status</label>
-                            <select class="custom-select" value="{{$postProduct_Category->status}}" name="status" id="status-select">
+                            <select class="custom-select" value="{{$productCategory->status}}" name="status" id="status-select">
                                 <option selected="">Select</option>
                                 <option value="Available">Available</option>
                                 <option value="Hold">Hold</option>
