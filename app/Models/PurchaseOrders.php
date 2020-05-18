@@ -43,4 +43,9 @@ class PurchaseOrders extends Model
     {
         return  User::find($this->wholesaler_id);
     }
+
+    public function getRetailerAttribute(){
+
+    	return User::find($this->retailer_id);
+    }
 }
