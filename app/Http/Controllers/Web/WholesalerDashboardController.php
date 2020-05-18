@@ -38,8 +38,8 @@ class WholesalerDashboardController extends Controller
         return view('admin.pages.wholesalers.products');
     }
 
-  //  public function retailerpurchasedetails($purchaseOrderId = null)
-   // {
+   // public function retailerpurchasedetails($purchaseOrderId = null)
+    //{
        // $pageTitle = 'Wholesalers';
        // $wholesaler = Auth::user()->id;
        // $purchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler)->get();
@@ -47,7 +47,7 @@ class WholesalerDashboardController extends Controller
        // $approvedPurchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler)->where('status', 'approved')->get();
        // $retailers = $this->user::isRetailer()->get();
 
-       // $orderItems = $this->purchaseOrders::find($purchaseOrderId)->order_items;
+        //$orderItems = $this->purchaseOrders::find($purchaseOrderId)->order_items;
       //   return $orderItems;
 
         //return $retailers;

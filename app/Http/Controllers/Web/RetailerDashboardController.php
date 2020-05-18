@@ -45,8 +45,8 @@ class RetailerDashboardController extends Controller
     public function purchaseOrderDetails($purchaseOrderId = null)
     {
         $orderItems = $this->purchaseOrders::find($purchaseOrderId)->order_items;
-         return $orderItems;
-       // $pageTitle = 'Order Details';
-        //return view('admin.pages.retailers.order_details', compact('pageTitle','orderItems'));
+        // return $orderItems;
+        $pageTitle = 'Order Details';
+        return view('admin.pages.retailers.order_details', compact('pageTitle','orderItems'));
     }
 }
