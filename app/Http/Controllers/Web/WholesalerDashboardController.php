@@ -50,7 +50,7 @@ class WholesalerDashboardController extends Controller
 
        // return $purchaseOrders;
        // return view('admin.pages.wholesalers.purchaseorder', compact('pageTitle','purchaseOrders', '', 'retailers'));
-  //  } 
+    } 
 
 
 }
