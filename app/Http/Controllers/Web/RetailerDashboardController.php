@@ -35,7 +35,7 @@ class RetailerDashboardController extends Controller
     }
 
     public function displayPurchaseOrders(){
-        $pageTitle = 'Orders';
+        $pageTitle = 'Purchase Orders';
         $retailer = Auth::user()->id;
         $purchaseOrders = Auth::user()->retailer_orders;
 
