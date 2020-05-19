@@ -68,6 +68,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::put('cart/update/{id}', 'RetailerCartController@update')->name('cart.update');
     Route::get('/retailer/purchase_order', 'RetailerDashboardController@displayPurchaseOrders')->name('retailer.purchase_order');
     Route::get('retailer/order_details/{order_id?}', 'RetailerDashboardController@purchaseOrderDetails')->name('retailer.order_details');
+    Route::get('/retailer/dashboard/{order_id?}', 'RetailerDashboardController@WholesalerpurchaseOrderDetails')->name('wholesaler.order_details');
     Route::get('retailer/search', 'SearchController@index')->name('retailer.search.index');
     Route::get('retailer/search-results', 'SearchController@search')->name('retailer.search.result');
 
