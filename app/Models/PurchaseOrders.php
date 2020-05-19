@@ -27,12 +27,10 @@ class PurchaseOrders extends Model
         return $this->hasMany(PurchaseOrderItems::class,'purchase_order_id');
     }
 
-
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-
 
     /**
      * Get the order product's name.
