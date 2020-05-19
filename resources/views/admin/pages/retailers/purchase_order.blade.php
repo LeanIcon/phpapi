@@ -41,7 +41,7 @@
                                         <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 285px;"> Purchase ID</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Wholesaler Name</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Status</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">View Purchase Order Details</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">View Details</th>
                                         
                                         
                                         
@@ -56,8 +56,8 @@
                                                 <td class="sorting_1">
                                                     {{-- <img src="../assets/images/products/img-2.png" alt="" height="52"> --}}
                                                     <p class="d-inline-block align-middle mb-0">
-                                                        <a href="">
-                                                        <span class="badge badge-soft">{{$purchaseOrder->id}} </span>
+                                                        <a href="{{route('retailer.order_details', $purchaseOrder->id)}}">
+                                                        <span class="badge badge-soft">PO-00{{$purchaseOrder->id}} </span>
                                                         </a>
                                                     </p>
                                                 </td>

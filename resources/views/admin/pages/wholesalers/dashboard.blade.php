@@ -104,15 +104,15 @@
                                                 <td class="sorting_1">
                                                     {{-- <img src="../assets/images/products/img-2.png" alt="" height="52"> --}}
                                                     <p class="d-inline-block align-middle mb-0">
-                                                        <a href="">
-                                                        <span class="badge badge-soft">{{$purchaseOrder->id}} </span>
+                                                        <a href="{{route('wholesaler.order_details', $purchaseOrder->id)}}">
+                                                        <span class="badge badge-soft">PO-00{{$purchaseOrder->id}} </span>
                                                         </a>
                                                     </p>
                                                 </td>
                                                 <td>{{$purchaseOrder->retailer->name}}</td>
                                                 <td><span class="badge badge-soft-warning">{{$purchaseOrder->status}}</span></td>
                                                 <td>
-                                                    <a href="{{route('wholesaler.purchaseorder')}}"><i class="far fa-eye text-danger"></i></a>
+                                                    <a href="{{route('wholesaler.order_details', $purchaseOrder->id)}}"><i class="far fa-eye text-danger"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

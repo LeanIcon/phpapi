@@ -12,7 +12,7 @@ class RetailerDashboardController extends Controller
     public function __construct(PurchaseOrders $purchaseOrders, User $user)
     {
         $this->middleware('auth');
-        $this->middleware(['role:Retailer']);
+        $this->middleware(['role:Retailer|Wholesaler']);
         $this->purchaseOrders = $purchaseOrders;
         $this->user = $user;
     }
@@ -48,5 +48,12 @@ class RetailerDashboardController extends Controller
         // return $orderItems->order_items;
         $pageTitle = 'Order Details';
         return view('admin.pages.retailers.order_details', compact('pageTitle','orderItems'));
+    }
+    public function WholesalerpurchaseOrderDetails($purchaseOrderId = null)
+    {
+        $orderItems = $this->purchaseOrders::find($purchaseOrderId)->order_items;
+        // return $orderItems;
+        $pageTitle = 'Order Details';
+        return view('admin.pages.wholesalers.purchaseorder', compact('pageTitle','orderItems'));
     }
 }

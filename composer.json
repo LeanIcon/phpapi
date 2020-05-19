@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "algolia/scout-extended": "^1.9",
         "bumbummen99/shoppingcart": "^2.9",
         "darryldecode/cart": "^4.1",
         "doctrine/dbal": "^2.10",
