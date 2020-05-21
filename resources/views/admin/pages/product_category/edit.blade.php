@@ -23,20 +23,20 @@
             ADD NEW PRODUCT CATEGORY
         </div>
         <div class="card-body">
-            <form method="POST" action="{{route('product_category.update', $postProduct_Category->id)}}" enctype="multipart/form-data">
+            <form method="POST" action="{{route('product_category.update', $productCategory->id)}}" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="LeadName">Name</label>
-                            <input type="text" name="name" value="{{$postProduct_Category->name}}" class="form-control" id="LeadName" required="">
+                            <input type="text" name="name" value="{{$productCategory->name}}" class="form-control" id="LeadName" required="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="type">Type</label>
-                            <input type="text" class="form-control" name="type" value="{{$postProduct_Category->type}}" id="type" required="">
+                            <input type="text" class="form-control" name="type" value="{{$productCategory->type}}" id="type" required="">
                         </div>
                     </div>
                 </div>

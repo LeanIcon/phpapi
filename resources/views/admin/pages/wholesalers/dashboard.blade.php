@@ -2,33 +2,46 @@
 
 @section('content')
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])
+
+
+
+
 <div class="row">
+<div class="col-lg-6 tags p-b-2">
+                    <h3> Hi, </h3>
+                    <h1> Welcome Back! </h1>
+                    
+                </div>
     <div class="col-lg-3">
-        <a href="{{ route('wholesaler_products.index') }}" class="custom-card">
+        <a href="{{route('wholesaler_products.index')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
                 <h4 class="title-text mt-0">Total Products</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">{{$approvedPurchaseOrders->count()}}</h3>
+                    <h3 class="text-purple">{{$purchaseOrders->count()}}</h3>
                     <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i>
                 </div>
-               <!-- <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>8.5%</span>Up From Yesterday</p>
-               --></div><!--end card-body-->
-        </div><!--end card--></a>
-    </div><!--end col-->
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div>
+</a>
     <div class="col-lg-3">
-        <a href="{{ route('wholesaler.purchaseorderlist') }}" class="custom-card">
+        <a href="{{route('wholesaler.purchaseorderlist') }}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-               <h4 class="title-text mt-0">Purchase Orders Received</h4>
+                <h4 class="title-text mt-0">Purchase Orders Received</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">{{$approvedPurchaseOrders->count()}}</h3>
-                        <i class="dripicons-cart card-eco-icon bg-icon-pink align-self-center"></i>
+                    <h3 class="text-pink">{{$purchaseOrders->count()}}</h3>
+                    <i class="dripicons-cart card-eco-icon bg-icon-pink align-self-center"></i>
                 </div>
-                <!--<p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>1.5%</span> Up From Last Week</p>
-                --></div><!--end card-body-->
-        </div><!--end card--></a>
+            </div><!--end card-body-->
+        </div><!--end card-->
     </div><!--end col-->
+</a>
+
+<div class="col-lg-6 tags p-b-2">
+
+                </div>
     <div class="col-lg-3">
         <a href="{{ route('wholesaler.purchaseorderinvoice') }}" class="custom-card">
         <div class="card card-eco">
@@ -36,26 +49,27 @@
                 <h4 class="title-text mt-0">Invoice</h4>
                 <div class="d-flex justify-content-between">
                     <h3 class="text-purple">{{$approvedPurchaseOrders->count()}}</h3>
-                    <i class="dripicons-jewel card-eco-icon bg-icon-secondary align-self-center"></i>
-                </div>
-                <!--<p class="mb-0 text-muted text-truncate"><span class="text-danger"><i class="mdi mdi-trending-down"></i>3%</span> Down From Last Month</p>
-                --></div><!--end card-body-->
-        </div><!--end card--></a>
-    </div><!--end col-->
+                    <i class="dripicons-document-new card-eco-icon bg-icon-secondary align-self-center"></i>
+                </div>                                   
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div><!--end -->
+</a>
+
     <div class="col-lg-3">
         <a href="{{ route('wholesaler.pendingpurchaseorder') }}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-              <h4 class="title-text mt-0">Pending</h4>
+                <h4 class="title-text mt-0">Pending</h4>
                 <div class="d-flex justify-content-between">
                     <h3 class="text-purple">{{$approvedPurchaseOrders->count()}}</h3>
                     <i class="dripicons-wallet card-eco-icon bg-icon-warning  align-self-center"></i>
                 </div>
-                <!--<p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>10.5%</span> Up From Yesterday</p>
-                --></div><!--end card-body-->
+            </div><!--end card-body-->
         </div><!--end card--></a>
     </div><!--end col-->
-</div><!--end row-->
+</div>
+
 
 <div class="row">
     <div class="col-12">
@@ -81,77 +95,47 @@
                             <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="datatable"></label>
                         </div>
                     </div>
-                </div>                <div class="table-responsive">
-                    <table class="table table-hover mb-0">
-                        <thead class="thead-light">
-                            <tr>
-                                <th class="border-top-0">PO Id</th>
-                                <th class="border-top-0">Retailer</th>
-                                <th class="border-top-0">Location</th>
-                                <th class="border-top-0">Order Date/Time</th>
-                                <th class="border-top-0">Qty</th>                                    
-                                <th class="border-top-0">Amount (₵)</th>
-                                <th class="border-top-0">Status</th>
-                            </tr><!--end tr-->
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">001</a>                                 </td>
-                                <td>
-                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">Darko Oscar</a> 
-                                </td>
-                                <td>   
-                                   Accra                                                            
-                                </td>
-                                <td>3/03/2019 4:29 PM</td>
-                                <td>200</td>                                   
-                                <td> ₵750</td>
-                                <td>                                                                        
-                                    <span class="badge badge-md badge-boxed  badge-soft-success">Shipped</span>
-                                </td>
-                            </tr><!--end tr-->
-                            <tr>
-                                <td>
-                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">002</a>                                 </td>
+                </div>                <div class="row">
+                        <div class="col-sm-12">
+                            <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 285px;"> Purchase ID</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Reatailer Name</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Status</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">View Purchase Order Details</th>
+                                        
+                                        
+                                        
+                                    </tr>
+                                </thead>
 
-                                </td>
-                                <td>
-                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">Darko Oscar</a> 
+                                <tbody>
 
-                                </td>
-                                <td>   
-                                    Accra                                                            
-                                </td>
-                                <td>3/03/2019 4:29 PM</td>
-                                <td>200</td>                                   
-                                <td> ₵750</td>
-                                <td>                                                                        
-                                    <span class="badge badge-md badge-boxed  badge-soft-danger">Delivered</span>
-                                </td>
-                            </tr><!--end tr--> <tr>
-                                <td>
-                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">003</a>                                 </td>
+                                    @if ($purchaseOrders->isNotEmpty())
+                                        @foreach ($purchaseOrders as $purchaseOrder)
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">
+                                                    {{-- <img src="../assets/images/products/img-2.png" alt="" height="52"> --}}
+                                                    <p class="d-inline-block align-middle mb-0">
+                                                        <a href="{{route('wholesaler.order_details', $purchaseOrder->id)}}">
+                                                        <span class="badge badge-soft">PO-00{{$purchaseOrder->id}} </span>
+                                                        </a>
+                                                    </p>
+                                                </td>
+                                                <td>{{$purchaseOrder->retailer->name}}</td>
+                                                <td><span class="badge badge-soft-warning">{{$purchaseOrder->status}}</span></td>
+                                                <td>
+                                                    <a href="{{route('wholesaler.order_details', $purchaseOrder->id)}}"><i class="far fa-eye text-danger"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
 
-                                </td>
-                                <td>
-                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">Darko Oscar</a> 
-                                </td>
-                                <td>   
-                                    Accra                                                            
-                                </td>
-                                <td>3/03/2019 4:29 PM</td>
-                                <td>200</td>                                   
-                                <td> ₵750</td>
-                                <td>                                                                        
-                                    <span class="badge badge-md badge-boxed badge-soft-warning">Pending</span>
-                                </td>
-                            </tr><!--end tr--> 
-                                                                              
-                        </tbody>
-                    </table> <!--end table-->                                               
-                </div><!--end /div-->
-            </div><!--end card-body-->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
         </div><!--end card-->
     </div><!--end col-->
 </div><!--end row-->

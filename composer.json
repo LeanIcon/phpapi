@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "algolia/scout-extended": "^1.9",
         "bumbummen99/shoppingcart": "^2.9",
         "darryldecode/cart": "^4.1",
         "doctrine/dbal": "^2.10",
@@ -19,7 +20,8 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "spatie/laravel-permission": "^3.11"
+        "spatie/laravel-permission": "^3.11",
+        "spatie/laravel-searchable": "^1.6"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

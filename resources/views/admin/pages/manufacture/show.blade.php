@@ -43,19 +43,19 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="PhoneNo">Name of Manufacturer</label>
-                            <input type="text" class="form-control" name="name" value="{{$postManufacture->name}}"id="Name" readonly required="">
+                            <input type="text" class="form-control" name="name" value="{{$manufacturers->name}}"id="Name" readonly required="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="status-select" class="mr-2">Status</label>
-                            <input type="text" class="form-control" name="name" value="{{$postManufacture->status}}"id="Name" readonly required="">
+                            <input type="text" class="form-control" name="name" value="{{$manufacturers->status}}"id="Name" readonly required="">
 
                         </div>
                     </div>
                 </div> 
                 <!--<button type="button" class="btn btn-sm btn-primary">Save</button>  -->
-                <button type="button" class="btn btn-sm btn-danger">Cancel</button>             
+                <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Cancel</button>             
             </form>  
         </div>
     </div>

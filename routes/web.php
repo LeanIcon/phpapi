@@ -49,11 +49,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('/wholesaler/dashboard', 'RetailerDashboardController@loadDashboard')->name('retailer.dashboard');
     Route::get('/wholesaler/retailers', 'WholesalerRetailersController@index')->name('wholesaler.retailer');
     Route::get('/wholesaler/products', 'WholesalerDashboardController@loadProducts')->name('wholesaler.products');
+   // Route::get('wholesalers/purchaseorder/{order_id?}', 'WholesalerDashboardController@retailerpurchasedetails')->name('wholesaler.purchaseorder');
     Route::resource('wholesaler_products', 'WholesalerProductsController');
     Route::get('/wholesaler/purchaseorder', 'WholesalerPurchaseOrdersController@index')->name('wholesaler.purchaseorder');
     Route::get('/wholesaler/approvepurchaseorder', 'WholesalerPurchaseOrdersController@approve')->name('wholesaler.approvepurchaseorder');
     Route::get('/wholesaler/pendingpurchaseorder', 'WholesalerPurchaseOrdersController@pending')->name('wholesaler.pendingpurchaseorder');
-    Route::get('/wholesaler/purchaseorderlist', 'WholesalerPurchaseOrderListController@index')->name('wholesaler.purchaseorderlist');
+    Route::get('/wholesaler/purchaseorderlist', 'WholesalerDashboardController@loadpurchasereceived')->name('wholesaler.purchaseorderlist');
     Route::get('/wholesaler/purchaseorderinvoice', 'WholesalerPurchaseOrderInvoiceController@index')->name('wholesaler.purchaseorderinvoice');
     Route::get('/wholesaler/invoicedetails', 'WholesalerPurchaseOrderInvoiceController@invoicedetail')->name('wholesaler.orderinvoicedetails');
 
@@ -66,6 +67,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::put('cart/update/{id}', 'RetailerCartController@update')->name('cart.update');
     Route::get('/retailer/purchase_order', 'RetailerDashboardController@displayPurchaseOrders')->name('retailer.purchase_order');
     Route::get('retailer/order_details/{order_id?}', 'RetailerDashboardController@purchaseOrderDetails')->name('retailer.order_details');
+    Route::get('/retailer/dashboard/{order_id?}', 'RetailerDashboardController@WholesalerpurchaseOrderDetails')->name('wholesaler.order_details');
+    Route::get('retailer/search', 'SearchController@index')->name('retailer.search.index');
+    Route::get('retailer/search-results', 'SearchController@search')->name('retailer.search.result');
+    Route::get('retailer/retailer_invoice', 'RetailerinvoiceController@index')->name('retailer.retailer_invoice');
+    Route::get('retailer/invoicedetails', 'RetailerinvoiceController@invoicedetail')->name('retailer.invoicedetails');
+    Route::get('retailer/retailer_shortagelist', 'RetailerShortagelistController@index')->name('retailer.retailer_shortagelist');
+    Route::get('retailer/orders', 'RetailerOrdersController@index')->name('retailer.orders');
+    
+
+
 
     Route::group(['prefix' => 'retailer'], function () {
         Route::resource('cart', 'RetailerCartController');

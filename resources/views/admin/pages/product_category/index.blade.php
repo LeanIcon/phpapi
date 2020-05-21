@@ -138,8 +138,8 @@
                                     <td>{{$category->slug}}</td>
                                     <td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>
                                     <td>
-                                        <a href="{{route('post_category.edit', $category->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                        <a href="{{route('post_category.show', $category->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>
+                                        <a href="{{route('product_category.edit', $category->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                        <a href="{{route('product_category.show', $category->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>
                                         {{-- <a id="deleteAction"><i class="fas fa-trash-alt text-danger font-16"></i></a> --}}
                                         {{-- <form action="{{route('post_category.destroy', $category->id)}}" method="POST" >
                                             @csrf
