@@ -2,140 +2,136 @@
 
 @section('content')
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? '']) 
+
 <div class="row">
-    <div class="col-lg-3">
-        <a href="" class="custom-card">
-        <div class="card card-eco">
-            <div class="card-body">
-                <h4 class="title-text mt-0">Purchase Orders</h4>
-                <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">24</h3>
-                    <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i>
-                </div>                                     
-                <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i></span>Up From Yesterday</p>
-            </div><!--end card-body-->
-        </div><!--end card-->
-    </div>
-</a>
-    <div class="col-lg-3">
-        <a href="" class="custom-card">
-        <div class="card card-eco">
-            <div class="card-body">
-                <h4 class="title-text mt-0">Orders Confirmed</h4>
-                <div class="d-flex justify-content-between">
-                    <h3 class="text-pink">15</h3>
-                    <i class="dripicons-cart card-eco-icon bg-icon-pink align-self-center"></i>
-                </div>                                     
-                <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i></span> Up From Last Week</p>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body order-list">
+              <!--  <button type="button" class="btn btn-primary btn-sm px-4 mt-0 mb-3" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg2">
+                    <i class="mdi mdi-plus-circle-outline mr-2"></i>New Room Allotment</button>-->
+
+                <h4 class="header-title mt-0 mb-3"><span class="badge badge-danger badge-pill noti-icon-badge"> Pending</span> Purchase Orders</h4>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_length" id="datatable_length">
+                            <label>Show <select name="datatable_length" aria-controls="datatable" class="custom-select custom-select-sm form-control form-control-sm">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select> entries</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div id="datatable_filter" class="dataTables_filter">
+                            <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="datatable"></label>
+                        </div>
+                    </div>
+                </div>                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="border-top-0">Invoice Id</th>
+                                <th class="border-top-0">Retailer</th>
+                                <th class="border-top-0">Location</th>
+                                <th class="border-top-0">Order Date/Time</th>
+                                <th class="border-top-0">Qty</th>                                    
+                                <th class="border-top-0">Amount (₵)</th>
+                                <th class="border-top-0">Status</th>
+                            </tr><!--end tr-->
+                        </thead>
+                        <tbody>
+                           
+                            <tr>
+                                <td>
+                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">002</a>                                 </td>
+
+                                </td>
+                                <td>
+                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">Darko Oscar</a> 
+
+                                </td>
+                                <td>   
+                                    Accra                                                            
+                                </td>
+                                <td>3/03/2019 4:29 PM</td>
+                                <td>200</td>                                   
+                                <td> ₵750</td>
+                                <td>                                                                        
+                                    <span class="badge badge-md badge-boxed  badge-soft-danger">pending</span>
+                                </td>
+                            </tr><!--end tr--> <!--end tr-->
+                            <tr>
+                                <td>
+                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">002</a>                                 </td>
+
+                                </td>
+                                <td>
+                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">Darko Oscar</a> 
+
+                                </td>
+                                <td>   
+                                    Accra                                                            
+                                </td>
+                                <td>3/03/2019 4:29 PM</td>
+                                <td>200</td>                                   
+                                <td> ₵750</td>
+                                <td>                                                                        
+                                    <span class="badge badge-md badge-boxed  badge-soft-danger">pending</span>
+                                </td>
+                            </tr><!--end tr--> <!--end tr-->
+                            <tr>
+                                <td>
+                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">002</a>                                 </td>
+
+                                </td>
+                                <td>
+                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">Darko Oscar</a> 
+
+                                </td>
+                                <td>   
+                                    Accra                                                            
+                                </td>
+                                <td>3/03/2019 4:29 PM</td>
+                                <td>200</td>                                   
+                                <td> ₵750</td>
+                                <td>                                                                        
+                                    <span class="badge badge-md badge-boxed  badge-soft-danger">pending</span>
+                                </td>
+                            </tr><!--end tr--> <!--end tr-->
+                            <tr>
+                                <td>
+                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">002</a>                                 </td>
+
+                                </td>
+                                <td>
+                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">Darko Oscar</a> 
+
+                                </td>
+                                <td>   
+                                    Accra                                                            
+                                </td>
+                                <td>3/03/2019 4:29 PM</td>
+                                <td>200</td>                                   
+                                <td> ₵750</td>
+                                <td>                                                                        
+                                    <span class="badge badge-md badge-boxed  badge-soft-danger">pending</span>
+                                </td>
+                            </tr><!--end tr--> <!--end tr-->
+                            
+                                                                              
+                        </tbody>
+                    </table> <!--end table-->                                               
+                </div><!--end /div-->
             </div><!--end card-body-->
         </div><!--end card-->
     </div><!--end col-->
-</a>
+</div><!--end row-->
+<!--New Table start-->
 
-    <div class="col-lg-3">
-        <a href="{{route('retailer.retailer_invoice')}}" class="custom-card">
-        <div class="card card-eco">
-            <div class="card-body">
-                <h4 class="title-text mt-0">Invoice Received</h4>
-                <div class="d-flex justify-content-between">
-                    <h3 class="text-secondary">8</h3>
-                    <i class="dripicons-jewel card-eco-icon bg-icon-secondary align-self-center"></i>
-                </div>                                   
-                <p class="mb-0 text-muted text-truncate"><span class="text-danger"><i class="mdi mdi-trending-down"></i>3%</span> Down From Last Month</p>
-            </div><!--end card-body-->
-        </div><!--end card-->
-    </div><!--end -->
-</a>
+<!--Map Dashboard-->
+<!--<div class="row">
+    
+</div>end row-->
 
-    <div class="col-lg-3">
-        <a href="" class="custom-card">
-        <div class="card card-eco">
-            <div class="card-body">
-                <h4 class="title-text mt-0">Shortage List</h4>
-                <div class="d-flex justify-content-between">
-                    <h3 class="text-warning">4</h3>
-                    <i class="dripicons-wallet card-eco-icon bg-icon-warning  align-self-center"></i>
-                </div>
-                <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i></span></p>
-            </div><!--end card-body-->
-        </div><!--end card-->
-    </div><!--end col-->
-</div>
-</a>
-<div class="container mb-4">
-    <div class="row">
-        <div class="col-12">
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col"> </th>
-                            <th scope="col">Product</th>
-                            <th scope="col">Available</th>
-                            <th scope="col" class="text-center">Quantity</th>
-                            <th scope="col" class="text-right">Price</th>
-                            <th> </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                            <td>Product (Ernest Chemist)</td>
-                            <td>In stock</td>
-                            <td><input class="form-control" type="number" value="1" /></td>
-                            <td class="text-right">124,90 GHc</td>
-                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                        </tr>
-                        <tr>
-                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                            <td>Product (Tobinco Chemist)</td>
-                            <td>In stock</td>
-                            <td><input class="form-control" type="number" value="1" /></td>
-                            <td class="text-right">33,90 GHc</td>
-                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                        </tr>
-                        <tr>
-                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                            <td>Drug  (Pokupharma Chemist)</td>
-                            <td>In stock</td>
-                            <td><input class="form-control" type="number" value="1" /></td>
-                            <td class="text-right">70,00 GHc</td>
-                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>Sub-Total</td>
-                            <td class="text-right">255,90 Ghc</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>Shipping</td>
-                            <td class="text-right">6,90 GHc</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><strong>Total</strong></td>
-                            <td class="text-right"><strong>346,90 GHc</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
-                <div class="col-sm-12 col-md-6 text-right">
-                    <button class="btn btn-lg btn-block btn-success text-uppercase">Add to P.O</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection

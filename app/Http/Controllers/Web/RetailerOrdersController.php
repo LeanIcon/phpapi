@@ -14,7 +14,9 @@ class RetailerOrdersController extends Controller
      */
     public function index()
     {
-        
+     
+        $pageTitle = 'Retailer Orders';
+        return view('admin.pages.retailers.orders', compact('pageTitle'));
     }
 
     /**
