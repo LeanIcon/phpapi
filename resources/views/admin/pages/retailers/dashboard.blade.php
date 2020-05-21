@@ -39,7 +39,7 @@
 
                 </div>
     <div class="col-lg-3">
-        <a href="" class="custom-card">
+        <a href="{{route('retailer.retailer_invoice')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
                 <h4 class="title-text mt-0">Invoice Received</h4>

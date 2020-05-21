@@ -12,67 +12,41 @@
                         <table class="table table-hover mb-0">
                             <thead>
                                 <tr class="align-self-center">
-                                    <th>Purchase Order Invoice</th>
-                                    <th>Payment Type</th>
-                                    <th>Paid Date</th>
-                                    <th>Amount</th>
-                                    <th>Transaction</th>
+                                    <th>Purchase Order ID</th>
+                                    <th>Wholesaler Name</th>
+                                    <th>Status</th>
+                                    <th>View Invoice details</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>NNU-33443</td>
+                                    <td>PO 0012</td>
                                    
-                                    <td>Cash</td>
-                                    <td>5/8/2018</td>
-                                    <td>GHc15,000</td>
-                                    <td><span class="badge badge-boxed badge-soft-warning">pending</span></td>
+                                    <td>Retailer John</td>
+                                    <td>Paid</td>
+                                    <td>
+                                                    <a href="{{route('retailer.invoicedetails')}}"><i class="far fa-eye text-danger"></i></a>
+                                                </td>
+                                    
                                 </tr>
                                 <tr>
-                                    <td>NNU-33443</td>
+                                    <td>PO 0013</td>
                                     
-                                    <td>Cash</td>
-                                    <td>15/7/2018</td>
-                                    <td>GHc35,000</td>
-                                    <td><span class="badge badge-boxed badge-soft-primary">Success</span></td>
-                                </tr>
-                                <tr>
-                                    <td>NNU-33443</td>
+                                    <td>Retailer John</td>
+                                    <td>Unpaid</td>
+                                    <td>
+                                                    <a href=""><i class="far fa-eye text-danger"></i></a>
+                                                </td>
                                     
-                                    <td>Pioneer</td>
-                                    <td>30/9/2018</td>
-                                    <td>GHc45,000</td>
-                                    <td><span class="badge badge-boxed badge-soft-warning">Pending</span></td>
                                 </tr>
-                                <tr>
-                                    <td>NNU-33443</td>
-                                    
-                                    <td>Paypal</td>
-                                    <td>2/6/2018</td>
-                                    <td>GHc70,000</td>
-                                    <td><span class="badge badge-boxed badge-soft-warning">Success</span></td>
-                                </tr>
-                                <tr>
-                                    <td>NNU-33443</td>
-                                    
-                                    <td>Paypal</td>
-                                    <td>5/8/2018</td>
-                                    <td>GHc15,000</td>
-                                    <td><span class="badge badge-boxed badge-soft-primary">pending</span></td>
-                                </tr>
-                                <tr>
-                                    <td>NNU-33443</td>
-                                    
-                                    <td>Paypal</td>
-                                    <td>15/7/2018</td>
-                                    <td>GHc35,000</td>
-                                    <td><span class="badge badge-boxed badge-soft-primary">Success</span></td>
-                                </tr>
+                                
+                                
                             </tbody>
                         </table>
                     </div>
                     <!--end table-responsive-->
-                    <div class="pt-3 border-top text-right"><a href="#" class="text-primary">View all <i class="mdi mdi-arrow-right"></i></a></div>
+                    
                 </div>
             </div>
         </div>
