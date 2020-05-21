@@ -18,6 +18,12 @@ class ShortagelistController extends Controller
         return view('admin.pages.retailers.orders', compact('pageTitle'));
     }
 
+    public function shortage()
+    {
+        $pageTitle = 'Shortage List';
+        return view('admin.pages.retailers.shortagelist', compact('pageTitle'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

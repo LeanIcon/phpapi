@@ -22,7 +22,7 @@
     </div>
 </a>
     <div class="col-lg-3">
-        <a href="" class="custom-card">
+        <a href="{{route('retailer.orders')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
                 <h4 class="title-text mt-0">Orders Confirmed</h4>
@@ -44,7 +44,7 @@
             <div class="card-body">
                 <h4 class="title-text mt-0">Invoice Received</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-secondary">8</h3>
+                    <h3 class="text-secondary">2</h3>
                     <i class="dripicons-document-new card-eco-icon bg-icon-secondary align-self-center"></i>
                 </div>                                   
             </div><!--end card-body-->
@@ -53,7 +53,7 @@
 </a>
 
     <div class="col-lg-3">
-        <a href="" class="custom-card">
+        <a href="{{route('retailer.retailer_shortagelist')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
                 <h4 class="title-text mt-0">Shortage List</h4>

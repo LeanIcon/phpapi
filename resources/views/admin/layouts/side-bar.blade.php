@@ -1,5 +1,27 @@
+<style>
+.left-sidenav-menu li ul li > a {
+    padding: 10px 22px;
+    color: #e5e8eb;
+    font-size: 13.5px;
+    border-left: none;
+}
+.left-sidenav-menu li > a {
+    display: block;
+    padding: 12px 24px;
+    color: #eceff1;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+.left-sidenav-menu li > a i {
+    width: 25px;
+    display: inline-block;
+    font-size: 16px;
+    opacity: 0.8;
+    color: #f3f6f8;
+}
+</style>
 <!-- Left Sidenav -->
-<div class="left-sidenav">
+<div class="left-sidenav bg-dark">
     @auth
         <ul class="metismenu left-sidenav-menu">
             @role('Admin')

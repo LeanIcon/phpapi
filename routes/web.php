@@ -73,6 +73,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('retailer/search-results', 'SearchController@search')->name('retailer.search.result');
     Route::get('retailer/retailer_invoice', 'RetailerinvoiceController@index')->name('retailer.retailer_invoice');
     Route::get('retailer/invoicedetails', 'RetailerinvoiceController@invoicedetail')->name('retailer.invoicedetails');
+    Route::get('retailer/retailer_shortagelist', 'RetailerShortagelistController@index')->name('retailer.retailer_shortagelist');
+    Route::get('retailer/orders', 'RetailerOrdersController@index')->name('retailer.orders');
+    
 
 
 

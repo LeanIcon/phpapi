@@ -34,8 +34,8 @@ class SearchController extends Controller
                     
                     ->perform($searchterm);
 
-        return $searchResults;
+       // return $searchResults;
  
-       // return view('admin.pages.retailers.search', compact('searchResults', 'searchterm'));
+        return view('admin.pages.retailers.search', compact('searchResults', 'searchterm'));
     }
 }
