@@ -42,7 +42,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::post('register', 'RegisterController@register')->name('register.form');
 
     Route::post('update_user/{user}', 'UserDetailsController@updateUserDetails')->name('user.update');
-    
 
 
     /****************Wholesalers*******************/
