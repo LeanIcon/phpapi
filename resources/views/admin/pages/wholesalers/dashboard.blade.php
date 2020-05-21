@@ -8,7 +8,7 @@
 
 <div class="row">
 <div class="col-lg-6 tags p-b-2">
-                    <h3> Hi, </h3>
+                    <h3> Hi {{ $wholesalername }}, </h3>
                     <h1> Welcome Back! </h1>
                     
                 </div>
