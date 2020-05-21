@@ -121,7 +121,7 @@
                     </div><!--end col-->
                     
                     <div class="col-md-3 ml-auto mb-4">
-                        <h6 class="m-0"><b>Invoice No :</b> PO-00{{$purchaseOrder->id}}</h6>
+                        <h6 class="m-0"><b>Invoice No :</b> PO-00{{$purchaseOrder->purchase_order_id}}</h6>
                         <h6 class="mb-0"><b> Date :</b> {{$purchaseOrder->created_at}}</h6>
                     </div><!--end col-->
                 </div><!--end row-->
@@ -207,7 +207,7 @@
                                                             <a href="javascript:window.print()" class="btn btn-info btn-sm">
                                                                 <i class="fa fa-print"></i>
                                                             </a> <a href="#" class="btn btn-primary btn-sm">Process</a> 
-                                                            <a href="#" class="btn btn-danger btn-sm">Cancel</a>
+                                                            <a href="javascript:history.back()" class="btn btn-danger btn-sm">Cancel</a>
                                                         </div>
                                                     </div><!--end col-->
                                                 </div><!--end row-->

@@ -116,7 +116,7 @@
                                             <div class="col-md-3">
                                                 <div class="">
                                                     <h6 class="mb-0"><b>Order Date :</b> {{$purchaseOrder->created_at}}</h6>
-                                                    <h6><b>Order ID :</b> PO-00{{$purchaseOrder->id}} </h6>
+                                                    <h6><b>Order ID :</b> PO-00{{$purchaseOrder->purchase_order_id}} </h6>
                                                 </div>
                                             </div><!--end col-->
                                             <div class="col-md-3">
