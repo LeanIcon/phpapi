@@ -40,17 +40,22 @@ class WholesalerDashboardController extends Controller
         return view('admin.pages.wholesalers.products');
     }
 
-    public function retailerpurchasedetails($purchaseOrderId = null)
+
+    public function loadpurchasereceived()
     {
-        
-        $orderItems = $this->purchaseOrderItems::orderBy('purchase_order_id')->get();
-      return $orderItems;
+        $pageTitle = 'Purchase Order List';
+        $wholesaler = Auth::user()->id;
+        $purchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler)->get();
+
+       // $approvedPurchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler)->where('status', 'approved')->get();
+        $retailers = $this->user::isRetailer()->get();
 
         //return $retailers;
 
        // return $purchaseOrders;
-       // return view('admin.pages.wholesalers.purchaseorder', compact('pageTitle','purchaseOrders', '', 'retailers'));
-    } 
+        return view('admin.pages.wholesalers.purchaseorderlist', compact('pageTitle','purchaseOrders','retailers'));
+    }
+   
 
 
 }

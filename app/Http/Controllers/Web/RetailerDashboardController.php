@@ -23,9 +23,11 @@ class RetailerDashboardController extends Controller
         $purchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->get();
         $approvedPurchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->where('status', 'approved')->get();
         $wholesalers = $this->user::isWholeSaler()->get();
+        $retailer = Auth::user()->name;
         // return $approvedPurchaseOrders->count();
         // return $purchaseOrders;
-        return view('admin.pages.retailers.dashboard', compact('pageTitle', 'purchaseOrders','approvedPurchaseOrders', 'wholesalers'));
+       // return $retailers;
+        return view('admin.pages.retailers.dashboard', compact('pageTitle', 'purchaseOrders','approvedPurchaseOrders', 'wholesalers', 'retailer'));
     }
 
     public function loadPurchaseOrderList()

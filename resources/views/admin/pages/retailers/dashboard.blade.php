@@ -3,6 +3,11 @@
 @section('content')
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])
 <div class="row">
+<div class="col-lg-6 tags p-b-2">
+                    <h3> Hi {{$retailer}}, </h3>
+                    <h1> Welcome Back! </h1>
+                    
+                </div>
     <div class="col-lg-3">
         <a href="{{route('retailer.purchase_order')}}" class="custom-card">
         <div class="card card-eco">
@@ -30,6 +35,9 @@
     </div><!--end col-->
 </a>
 
+<div class="col-lg-6 tags p-b-2">
+
+                </div>
     <div class="col-lg-3">
         <a href="" class="custom-card">
         <div class="card card-eco">
@@ -37,7 +45,7 @@
                 <h4 class="title-text mt-0">Invoice Received</h4>
                 <div class="d-flex justify-content-between">
                     <h3 class="text-secondary">8</h3>
-                    <i class="dripicons-jewel card-eco-icon bg-icon-secondary align-self-center"></i>
+                    <i class="dripicons-document-new card-eco-icon bg-icon-secondary align-self-center"></i>
                 </div>                                   
             </div><!--end card-body-->
         </div><!--end card-->
