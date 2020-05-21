@@ -2,33 +2,46 @@
 
 @section('content')
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])
+
+
+
+
 <div class="row">
+<div class="col-lg-6 tags p-b-2">
+                    <h3> Hi, </h3>
+                    <h1> Welcome Back! </h1>
+                    
+                </div>
     <div class="col-lg-3">
-        <a href="{{ route('wholesaler_products.index') }}" class="custom-card">
+        <a href="{{route('wholesaler_products.index')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
                 <h4 class="title-text mt-0">Total Products</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">{{$approvedPurchaseOrders->count()}}</h3>
+                    <h3 class="text-purple">{{$purchaseOrders->count()}}</h3>
                     <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i>
                 </div>
-               <!-- <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>8.5%</span>Up From Yesterday</p>
-               --></div><!--end card-body-->
-        </div><!--end card--></a>
-    </div><!--end col-->
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div>
+</a>
     <div class="col-lg-3">
-        <a href="{{ route('wholesaler.purchaseorderlist') }}" class="custom-card">
+        <a href="{{route('wholesaler.purchaseorderlist') }}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-               <h4 class="title-text mt-0">Purchase Orders Received</h4>
+                <h4 class="title-text mt-0">Purchase Orders Received</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">{{$purchaseOrders->count()}}</h3>
-                        <i class="dripicons-cart card-eco-icon bg-icon-pink align-self-center"></i>
+                    <h3 class="text-pink">{{$purchaseOrders->count()}}</h3>
+                    <i class="dripicons-cart card-eco-icon bg-icon-pink align-self-center"></i>
                 </div>
-                <!--<p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>1.5%</span> Up From Last Week</p>
-                --></div><!--end card-body-->
-        </div><!--end card--></a>
+            </div><!--end card-body-->
+        </div><!--end card-->
     </div><!--end col-->
+</a>
+
+<div class="col-lg-6 tags p-b-2">
+
+                </div>
     <div class="col-lg-3">
         <a href="{{ route('wholesaler.purchaseorderinvoice') }}" class="custom-card">
         <div class="card card-eco">
@@ -36,26 +49,27 @@
                 <h4 class="title-text mt-0">Invoice</h4>
                 <div class="d-flex justify-content-between">
                     <h3 class="text-purple">{{$approvedPurchaseOrders->count()}}</h3>
-                    <i class="dripicons-jewel card-eco-icon bg-icon-secondary align-self-center"></i>
-                </div>
-                <!--<p class="mb-0 text-muted text-truncate"><span class="text-danger"><i class="mdi mdi-trending-down"></i>3%</span> Down From Last Month</p>
-                --></div><!--end card-body-->
-        </div><!--end card--></a>
-    </div><!--end col-->
+                    <i class="dripicons-document-new card-eco-icon bg-icon-secondary align-self-center"></i>
+                </div>                                   
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div><!--end -->
+</a>
+
     <div class="col-lg-3">
         <a href="{{ route('wholesaler.pendingpurchaseorder') }}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-              <h4 class="title-text mt-0">Pending</h4>
+                <h4 class="title-text mt-0">Pending</h4>
                 <div class="d-flex justify-content-between">
                     <h3 class="text-purple">{{$approvedPurchaseOrders->count()}}</h3>
                     <i class="dripicons-wallet card-eco-icon bg-icon-warning  align-self-center"></i>
                 </div>
-                <!--<p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>10.5%</span> Up From Yesterday</p>
-                --></div><!--end card-body-->
+            </div><!--end card-body-->
         </div><!--end card--></a>
     </div><!--end col-->
-</div><!--end row-->
+</div>
+
 
 <div class="row">
     <div class="col-12">
