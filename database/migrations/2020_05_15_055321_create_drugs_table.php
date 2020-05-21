@@ -16,7 +16,7 @@ class CreateDrugsTable extends Migration {
 		{
 			$table->integer('id', true);
 			$table->string('code', 191);
-			$table->string('active_ingredients', 191);
+			$table->text('active_ingredients');
 			$table->string('associated_name', 191);
 			$table->string('category', 191);
 			$table->string('strength', 191);

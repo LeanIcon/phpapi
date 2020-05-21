@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateRegionsTable extends Migration {
+class CreateDrugClassTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,11 @@ class CreateRegionsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('regions', function(Blueprint $table)
+		Schema::create('drug_class', function(Blueprint $table)
 		{
-			$table->bigIncrements('id');
+			$table->integer('id', true);
 			$table->string('name', 191);
-			$table->integer('status');
+			$table->string('slug', 10)->nullable();
 			$table->timestamps();
 		});
 	}
@@ -29,7 +29,7 @@ class CreateRegionsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('regions');
+		Schema::drop('drug_class');
 	}
 
 }

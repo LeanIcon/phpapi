@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDosageFormTable extends Migration {
+class CreateTownsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,12 @@ class CreateDosageFormTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('dosage_form', function(Blueprint $table)
+		Schema::create('towns', function(Blueprint $table)
 		{
-			$table->integer('id', true);
+			$table->bigInteger('id', true);
 			$table->string('name', 191);
 			$table->timestamps();
+			$table->bigInteger('region_id');
 		});
 	}
 
@@ -28,7 +29,7 @@ class CreateDosageFormTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('dosage_form');
+		Schema::drop('towns');
 	}
 
 }

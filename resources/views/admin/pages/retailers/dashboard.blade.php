@@ -4,7 +4,7 @@
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])
 <div class="row">
 <div class="col-lg-6 tags p-b-2">
-                    <h3> Hi {{$retailer}}, </h3>
+                    <h3> Hi {{Auth::user()->name}}, </h3>
                     <h1> Welcome Back! </h1>
                     
                 </div>
