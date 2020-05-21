@@ -14,7 +14,7 @@ class RetailerinvoiceController extends Controller
      */
     public function index()
     {
-        $pageTitle = 'Retailer_Invoice';
+        $pageTitle = 'Retailer Invoice';
         return view('admin.pages.retailers.retailer_invoice', compact('pageTitle'));
     }
 
@@ -82,5 +82,11 @@ class RetailerinvoiceController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function invoicedetail()
+    {
+        $pageTitle = 'Invoice details';
+        return view('admin.pages.retailers.invoicedetails');
     }
 }

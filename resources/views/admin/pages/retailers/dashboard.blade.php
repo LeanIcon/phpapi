@@ -3,6 +3,11 @@
 @section('content')
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])
 <div class="row">
+<div class="col-lg-6 tags p-b-2">
+                    <h3> Hi {{$retailer}}, </h3>
+                    <h1> Welcome Back! </h1>
+                    
+                </div>
     <div class="col-lg-3">
         <a href="{{route('retailer.purchase_order')}}" class="custom-card">
         <div class="card card-eco">
@@ -17,7 +22,7 @@
     </div>
 </a>
     <div class="col-lg-3">
-        <a href="" class="custom-card">
+        <a href="{{route('retailer.orders')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
                 <h4 class="title-text mt-0">Orders Confirmed</h4>
@@ -30,14 +35,17 @@
     </div><!--end col-->
 </a>
 
+<div class="col-lg-6 tags p-b-2">
+
+                </div>
     <div class="col-lg-3">
-        <a href="" class="custom-card">
+        <a href="{{route('retailer.retailer_invoice')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
                 <h4 class="title-text mt-0">Invoice Received</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-secondary">8</h3>
-                    <i class="dripicons-jewel card-eco-icon bg-icon-secondary align-self-center"></i>
+                    <h3 class="text-secondary">2</h3>
+                    <i class="dripicons-document-new card-eco-icon bg-icon-secondary align-self-center"></i>
                 </div>                                   
             </div><!--end card-body-->
         </div><!--end card-->
@@ -45,7 +53,7 @@
 </a>
 
     <div class="col-lg-3">
-        <a href="" class="custom-card">
+        <a href="{{route('retailer.retailer_shortagelist')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
                 <h4 class="title-text mt-0">Shortage List</h4>
@@ -97,7 +105,7 @@
                                         <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 285px;">Wholesaler Name</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Location</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Category</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">View List</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">View Products List</th>
                                     </tr>
                                 </thead>
 
