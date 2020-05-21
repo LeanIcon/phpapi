@@ -27,7 +27,7 @@
     } else
     /* Finally, show good night if the time is greater than or equal to 1900 hours */
     if ($time >= "19") {
-        echo "<h3>". "Good night" . $wholesalername.","."</h3>";
+        echo "<h3>". "Good evening" . " " . $wholesalername.","."</h3>";
     }
     ?>
                     <h1> Welcome Back! </h1>
