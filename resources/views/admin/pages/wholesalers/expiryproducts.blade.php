@@ -44,7 +44,7 @@
                                         <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 150px;">Product Name</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Description</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Price</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Status</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Expiry Date</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 156px;">Manufacturer</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">Action</th>
                                     </tr>
@@ -61,7 +61,7 @@
                                             <td>{{$product->id}} | {{$product->products->name}}</td>
                                             <td> {{$product->products->active_ingredients}}, {{$product->products->strength}}, {{$product->products->packet_size}}</td>
                                             <td>{{$product->price}}</td>
-                                            <td>{{$product->expiry_status}} </td>
+                                            <td><?php $months=strtotime($product->expiry_date);$months=date('Y-m-d',$months); echo $months?></td>
                                             <td>{{$product->products->manufacturers->name}} </td>
                                             <td> 
                                             <a href="{{route('wholesaler_products.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
