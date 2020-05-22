@@ -25,7 +25,7 @@
                             <tr>
                                 <td>
                                     <a href="{{route('retailer.orderinvoicedetails', $item->id)}}"
-                                    class="d-inline-block align-middle mb-0 product-name">{{$item->invoice}}</a></td>
+                                    class="d-inline-block align-middle mb-0 product-name">Inv-00{{$item->id}}</a></td>
                                 </td>
                                 <td>
                                     <a href="{{route('retailer.orderinvoicedetails')}}"
