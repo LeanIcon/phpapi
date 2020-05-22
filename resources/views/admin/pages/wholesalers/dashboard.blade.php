@@ -31,7 +31,7 @@
     }
     ?>
                     <h1> Welcome Back! </h1>
-                    
+                    <span class="badge badge-danger badge-pill noti-icon-badge"><a href="">Expiring Products</a></span>
                 </div>
     <div class="col-lg-3">
         <a href="{{route('wholesaler_products.index')}}" class="custom-card">
