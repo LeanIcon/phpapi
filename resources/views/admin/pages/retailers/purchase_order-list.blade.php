@@ -47,10 +47,10 @@
                                 <tr role="row">
                                     <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 150px;">Product Name</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 170px;">Description</th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Price</th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Qty</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 130px;">Manufacturer</th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">Action</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Price</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 10px;">Qty</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 170px;">Action</th>
                                 </tr>
                             </thead>
                             {{--  <p align="right"> <button type="submit" class="btn btn-primary btn-sm px-4 mt-0 mb-3" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg2">
@@ -68,12 +68,27 @@
                                 @foreach (Cart::getContent() as $item)
                                     <tr>
                                         <td>{{$item->name}}</td>
+                                        <td>{{$item->associatedModel->manufacturers->name}}</td>
                                         <td>{{$item->associatedModel->productDescription()}} </td>
                                         <td> {{$item->price}}</td>
+                                        <form action="{{route('cart.update',$item->id )}}" method="POST">
+                                            @method('PUT')
                                         <td><input class="form-control" value="{{$item->quantity}}" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" type="number" name="quantity" id="quantity" /></td>
-                                        <td>{{$item->associatedModel->manufacturers->name}}</td>
                                         <td>
-                                            <button type="submit" class="btn btn-sm btn-primary"> REMOVE</button>
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-primary"> UPDATE</button>
+                                                </div>
+                                            </form>
+                                                <div class="col-lg-4">
+                                                    <form action="{{route('cart.destroy', $item->id)}}" method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm btn-danger"> REMOVE</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                     </td>
                                     </tr>
                                     </tr>

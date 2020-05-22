@@ -50,6 +50,7 @@ class RetailerCartController extends Controller
      */
     public function createPurchaseOrder(Request $request, $wholesaler = null)
     {
+        $userId = Auth::user()->id;
         $wholesaler = session()->put('wholesaler', $wholesaler);
 
         $options = array();
@@ -71,7 +72,7 @@ class RetailerCartController extends Controller
         $options = array();
         $product = $this->product::find($request->products_id);
         Cart::add(array('id' => $product->id, 'name' => $product->name, 'price' => $request->price, 'quantity' => $request->quantity, $options, 'associatedModel' => $product));
-        
+
         return back();
         // return redirect()->route('cart.index');
     }
@@ -109,18 +110,27 @@ class RetailerCartController extends Controller
     {
          // Validation on max quantity
          $validator = Validator::make($request->all(), [
-            'quantity' => 'required|numeric|between:1,5'
+            'quantity' => 'required|numeric|between:1,500'
         ]);
 
          if ($validator->fails()) {
+             return $validator->errors();
             session()->flash('error_message', 'Quantity must be between 1 and 5.');
             return response()->json(['success' => false]);
          }
 
-        Cart::update($id, $request->quantity);
+        Cart::update($id, array(
+            'quantity'=> array( 
+                'relative' => false,
+                'value' => $request->quantity,
+            )
+        ));
         session()->flash('success_message', 'Quantity was updated successfully!');
 
-        return view('admin.pages.retailers.purchase_order', compact('pageTitle'));   }
+        return back();
+
+        return view('admin.pages.retailers.purchase_order', compact('pageTitle'));   
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -128,9 +138,10 @@ class RetailerCartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($rowId)
     {
-        //
+        Cart::remove($rowId);
+        return back();
     }
 
 
