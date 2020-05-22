@@ -3,10 +3,17 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\PurchaseOrders;
 use Illuminate\Http\Request;
 
 class WholesalerPurchaseOrderInvoiceController extends Controller
 {
+    public function __construct(PurchaseOrders $purchaseOrders)
+    {
+        $this->purchaseOrders = $purchaseOrders;
+        $this->middleware('auth');
+        $this->middleware(['role:Wholesaler']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -23,69 +30,12 @@ class WholesalerPurchaseOrderInvoiceController extends Controller
         $pageTitle = 'Order Invoice';
         return view('admin.pages.wholesalers.invoicedetails');
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function UpdatePurchaseOrderStatus(Request $request,  $purchaseId = null)
     {
-        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $updateStatus = $this->purchaseOrders::find($purchaseId)->update(['status' => $request->status]);
+        return $updateStatus ? redirect()->route('dashboard.index') : redirect()->route('dashboard.index');
     }
 }
