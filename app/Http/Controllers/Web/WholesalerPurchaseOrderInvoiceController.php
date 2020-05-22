@@ -29,19 +29,19 @@ class WholesalerPurchaseOrderInvoiceController extends Controller
         return view('admin.pages.wholesalers.purchaseorderinvoice', compact('purchaseInvoices'));
     }
 
-    public function invoicedetail()
+    public function invoicedetail($purchaseOrderId = null)
     {
+        $orderItems = $this->purchaseOrders::find($purchaseOrderId)->order_items;
         $pageTitle = 'Order Invoice';
-        return view('admin.pages.wholesalers.invoicedetails');
+        return view('admin.pages.wholesalers.invoicedetails', compact('orderItems'));
     }
-    
-
 
     public function UpdatePurchaseOrderStatus(Request $request,  $purchaseId = null)
     {
         $code = $this->purchaseOrders::generateInvoiceCode();
+        $dvStatus = 'pending';
 
-        $updateStatus = $this->purchaseOrders::find($purchaseId)->update(['status' => $request->status, 'invoice' => $code]);
+        $updateStatus = $this->purchaseOrders::find($purchaseId)->update(['status' => $request->status, 'invoice' => $code, 'devlivery_status' => $dvStatus]);
         return $updateStatus ? redirect()->route('dashboard.index') : redirect()->route('dashboard.index');
     }
 }

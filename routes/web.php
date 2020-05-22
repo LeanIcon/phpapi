@@ -57,7 +57,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('/wholesaler/pendingpurchaseorder', 'WholesalerPurchaseOrdersController@pending')->name('wholesaler.pendingpurchaseorder');
     Route::get('/wholesaler/purchaseorderlist', 'WholesalerDashboardController@loadpurchasereceived')->name('wholesaler.purchaseorderlist');
     Route::get('/wholesaler/purchaseorderinvoice', 'WholesalerPurchaseOrderInvoiceController@index')->name('wholesaler.purchaseorderinvoice');
-    Route::get('/wholesaler/invoicedetails', 'WholesalerPurchaseOrderInvoiceController@invoicedetail')->name('wholesaler.orderinvoicedetails');
+    Route::get('/wholesaler/invoicedetails/{id?}', 'WholesalerPurchaseOrderInvoiceController@invoicedetail')->name('wholesaler.orderinvoicedetails');
     Route::post('/wholesaler/purchase-order/{id?}', 'WholesalerPurchaseOrderInvoiceController@UpdatePurchaseOrderStatus')->name('update.purchase.status');
 
 

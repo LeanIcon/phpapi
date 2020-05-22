@@ -37,7 +37,6 @@
                         <tr>
                             <th class="border-top-0">Invoice</th>
                             <th class="border-top-0">Retailer</th>
-                            <th class="border-top-0">Location</th>
                             <th class="border-top-0">Order Date/Time</th>
                             <th class="border-top-0">Status</th>
                         </tr><!--end tr-->
@@ -47,22 +46,16 @@
                                 @foreach ($purchaseInvoices as $item)
                         <tr>
                             <td>
-                                <a href="{{route('wholesaler.orderinvoicedetails')}}"
-                                   class="d-inline-block align-middle mb-0 product-name">{{$item->invoice}}</a></td>
-
+                                <a href="{{route('wholesaler.orderinvoicedetails', $item->id)}}"
+                                class="d-inline-block align-middle mb-0 product-name">{{$item->invoice}}</a></td>
                             </td>
                             <td>
                                 <a href="{{route('wholesaler.orderinvoicedetails')}}"
-                                   class="d-inline-block align-middle mb-0 product-name">Darko Oscar</a>
-
-                            </td>
-                            <td>
-                                Accra
+                                class="d-inline-block align-middle mb-0 product-name">{{$item->get_retailer->name}}</a>
                             </td>
                             <td>3/03/2019 4:29 PM</td>
-                         
                             <td>
-                                <span class="badge badge-md badge-boxed  badge-soft-danger">Delivered</span>
+                                <span class="badge badge-md badge-boxed  badge-soft-danger">{{$item->devlivery_status}}</span>
                             </td>
                         </tr>
                         @endforeach
