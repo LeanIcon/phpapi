@@ -63,10 +63,8 @@
                                                     </p>
                                                 </td>
                                                 <td> {{$purchaseOrder->info}}</td>
-                                                
                                                 <td> {{$purchaseOrder->quantity}}</td>
                                                 <td>{{$purchaseOrder->purchase_order->wholesaler->name}}</td>
-                                            
                                                 <td>
                                                     {{$purchaseOrder->manufacturer}}
                                                 </td>
@@ -100,26 +98,26 @@
             </div>
         </div>
     </div>-->
-    <!-- end col -->
+<!-- end col -->
 </div>
 <!--  Modal content for the above example -->
 <!--New Table start-->
 @role('Wholesaler')
 <style>.bg-black {
-    background-color: #000 !important;
-    color: #fff;
-}</style>
+        background-color: #000 !important;
+        color: #fff;
+    }</style>
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-3 mb-4"><h6 class="mt-0">
-                        <b>Retailer Name :</b> {{$purchaseOrder->purchase_order->retailer->name}}</h6>
+                            <b>Retailer Name :</b> {{$purchaseOrder->purchase_order->retailer->name}}</h6>
                         <h6 class="mt-0"><b>Email :</b> {{$purchaseOrder->purchase_order->retailer->email}}</h6>
                         <h6 class="m-0"><b>Phone No :</b> {{$purchaseOrder->purchase_order->retailer->phone}}</h6>
                     </div><!--end col-->
-                    
+
                     <div class="col-md-3 ml-auto mb-4">
                         <h6 class="m-0"><b>Invoice No :</b> PO-00{{$purchaseOrder->purchase_order_id}}</h6>
                         <h6 class="mb-0"><b> Date :</b> {{$purchaseOrder->created_at}}</h6>
@@ -130,91 +128,116 @@
                         <div class="table-responsive project-invoice">
                             <table class="table table-bordered mb-0">
                                 <thead class="thead-light">
-                                    <tr>
-                                        <th>Product Name</th>
-                                        <th>manufacturer</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 100px;">Qty</th><th>Price</th><th>Amount</th>
-                                    </tr><!--end tr-->
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>manufacturer</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
+                                        aria-label="Price: activate to sort column ascending" style="width: 100px;">Qty
+                                    </th>
+                                    <th>Price</th>
+                                    <th>Amount</th>
+                                </tr><!--end tr-->
                                 </thead>
                                 <tbody>
-                                    @if ($orderItems->isNotEmpty())
-@foreach ($orderItems as $purchaseOrder)
-    <tr role="row" class="odd">
-       <!-- <td class="sorting_1">
-            <img src="../assets/images/products/img-2.png" alt="" height="52">
-            <p class="d-inline-block align-middle mb-0">
-                <a href="">
-                <span class="badge badge-soft">{{$purchaseOrder->id}} </span>
-                </a>
-            </p>
-        </td>-->
-        <td><h6 class="mt-0 mb-1">{{$purchaseOrder->info}}</h6></td>
-        <td><h6 class="mt-0 mb-1">{{$purchaseOrder->manufacturer}}</h6></td>
-        <td><input class="form-control" type="number" value="{{$purchaseOrder->quantity}}"></td>
-        <td> {{$purchaseOrder->price}}  </td>
-        <td>{{$purchaseOrder->quantity*$purchaseOrder->price}} </td>
-    
-        
-        
-        {{-- <td><span class="badge badge-soft-warning">{{$purchaseOrder->status}}</span></td> --}}
-        
-    </tr>
-@endforeach
-@endif<!--end tr-->
-                                                <tr><td colspan="2" class="border-0"></td>
-                                                    <td class="border-0"></td>
-                                                    <td class="border-0 font-14"><b>Sub Total</b></td>
-                                                    <td class="border-0 font-14"><b>₵{{$purchaseOrder->purchase_order->total}}</b></td></tr><!--end tr-->
-                                                    <tr><th colspan="2" class="border-0"></th>
-                                                        <td class="border-0"></td>
-                                                        <td class="border-0 font-14"><b>Tax Rate</b></td>
-                                                        <td class="border-0 font-14"><b>₵0.00%</b></td></tr><!--end tr-->
-                                                        <tr class="bg-black total-amount">
-                                                            <th colspan="2" class="border-0"></th>
-                                                            <td class="border-0"></td>
-                                                            <td class="border-0 font-14 text-white"><b>Total</b></td
-                                                                ><td class="border-0 font-14 text-white"><b>₵{{$purchaseOrder->purchase_order->total}}</b></td></tr><!--end tr-->
-                                                            </tbody>
-                                                        </table><!--end table-->
-                                                    </div><!--end /div-->
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-                                            <div class="row justify-content-center">
-                                                <div class="col-lg-6"><h5 class="mt-4">Terms And Condition :</h5>
-                                                    <ul class="pl-3">
-                                                        <li><small>All accounts are to be paid within 7 days from receipt of invoice.</small></li>
-                                                        <li><small>To be paid by cheque or credit card or direct payment online.</small></li>
-                                                        <li><small>If account is not paid within 7 days the credits details supplied as confirmation<br>of work undertaken will be charged the agreed quoted fee noted above.</small></li>
-                                                    </ul></div><!--end col-->
-                                                    <div class="col-lg-6 align-self-end">
-                                                        <div class="w-25 float-right">
-                                                            
-                                                                <label for="status-select" class="mr-2">Status</label>
-                                                                <select name="status" class="custom-select"  id="status-select">
-                                                                    <option selected="">{{$purchaseOrder->purchase_order->status}}</option>
-                                                                    <option value="1">approve</option>
-                                                                </select>
-                                                        </div>
-                                                    </div><!--end col-->
-                                                </div><!--end row--><hr>
-                                                <div class="row d-flex justify-content-center">
-                                                    <div class="col-lg-12 col-xl-6 ml-auto align-self-center">
-                                                        <div class="text-center text-muted"><small>Thank you very much for doing business with us. Thanks !</small>
-                                                        </div>
-                                                    </div><!--end col-->
-                                                    <div class="col-lg-12 col-xl-4">
-                                                        <div class="float-right d-print-none">
-                                                            <a href="javascript:window.print()" class="btn btn-info btn-sm">
-                                                                <i class="fa fa-print"></i>
-                                                            </a> <a href="#" class="btn btn-primary btn-sm">Process</a> 
-                                                            <a href="javascript:history.back()" class="btn btn-danger btn-sm">Cancel</a>
-                                                        </div>
-                                                    </div><!--end col-->
-                                                </div><!--end row-->
-                                            </div><!--end card-body-->
-                                        </div><!--end card-->
-                                    </div><!--end col-->
-                                </div>
+                                @if ($orderItems->isNotEmpty())
+                                @foreach ($orderItems as $purchaseOrder)
+                                <tr role="row" class="odd">
+                                    <!-- <td class="sorting_1">
+                                         <img src="../assets/images/products/img-2.png" alt="" height="52">
+                                         <p class="d-inline-block align-middle mb-0">
+                                             <a href="">
+                                             <span class="badge badge-soft">{{$purchaseOrder->id}} </span>
+                                             </a>
+                                         </p>
+                                     </td>-->
+                                    <td><h6 class="mt-0 mb-1">{{$purchaseOrder->info}}</h6></td>
+                                    <td><h6 class="mt-0 mb-1">{{$purchaseOrder->manufacturer}}</h6></td>
+                                    <td><input class="form-control" type="number" value="{{$purchaseOrder->quantity}}">
+                                    </td>
+                                    <td> {{$purchaseOrder->price}}</td>
+                                    <td>{{$purchaseOrder->quantity*$purchaseOrder->price}}</td>
+
+
+                                    {{--
+                                    <td><span class="badge badge-soft-warning">{{$purchaseOrder->status}}</span></td>
+                                    --}}
+
+                                </tr>
+                                @endforeach
+                                @endif<!--end tr-->
+                                <tr>
+                                    <td colspan="2" class="border-0"></td>
+                                    <td class="border-0"></td>
+                                    <td class="border-0 font-14"><b>Sub Total</b></td>
+                                    <td class="border-0 font-14"><b>₵{{$purchaseOrder->purchase_order->total}}</b></td>
+                                </tr><!--end tr-->
+                                <tr>
+                                    <th colspan="2" class="border-0"></th>
+                                    <td class="border-0"></td>
+                                    <td class="border-0 font-14"><b>Tax Rate</b></td>
+                                    <td class="border-0 font-14"><b>₵0.00%</b></td>
+                                </tr><!--end tr-->
+                                <tr class="bg-black total-amount">
+                                    <th colspan="2" class="border-0"></th>
+                                    <td class="border-0"></td>
+                                    <td class="border-0 font-14 text-white"><b>Total</b></td
+                                    >
+                                    <td class="border-0 font-14 text-white"><b>₵{{$purchaseOrder->purchase_order->total}}</b>
+                                    </td>
+                                </tr><!--end tr-->
+                                </tbody>
+                            </table><!--end table-->
+                        </div><!--end /div-->
+                    </div><!--end col-->
+                </div><!--end row-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-6"><h5 class="mt-4">Terms And Condition :</h5>
+                        <ul class="pl-3">
+                            <li><small>All accounts are to be paid within 7 days from receipt of invoice.</small></li>
+                            <li><small>To be paid by cheque or credit card or direct payment online.</small></li>
+                            <li><small>If account is not paid within 7 days the credits details supplied as confirmation<br>of
+                                    work undertaken will be charged the agreed quoted fee noted above.</small></li>
+                        </ul>
+                    </div><!--end col-->
+                    <div class="col-lg-6 align-self-end">
+                        <div class="w-25 float-right">
+                        <form action="{{route('update.purchase.status', $purchaseOrder->purchase_order->id)}}" method="POST" >
+                            @csrf
+                            <label for="status-select" class="mr-2">Status</label>
+                            <select name="status" class="custom-select" id="status-select">
+                                <option selected="">{{$purchaseOrder->purchase_order->status}}</option>
+                                <option value="pending">Pending</option>
+                                <option value="confirmed">Confirm</option>
+                                <option value="approved">Approve</option>
+                                <option value="cancel">Cancel</option>
+                            </select>
+                            <input class="form-control" value="{{$purchaseOrder->purchase_order->id}}" type="text">
+                        </div>
+                    </div><!--end col-->
+                </div><!--end row-->
+                <hr>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-12 col-xl-6 ml-auto align-self-center">
+                        <div class="text-center text-muted"><small>Thank you very much for doing business with us.
+                                Thanks !</small>
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-lg-12 col-xl-4">
+                        <div class="float-right d-print-none">
+                            <a href="javascript:window.print()" class="btn btn-info btn-sm">
+                                <i class="fa fa-print"></i>
+                            </a> 
+                            {{--  <a href="#" class="btn btn-primary btn-sm">Process</a>  --}}
+                            <button type="submit" class="btn btn-primary" >Process</button>
+                            <a href="javascript:history.back()" class="btn btn-danger btn-sm">Cancel</a>
+                        </div>
+                    </div><!--end col-->
+                </form>
+                </div><!--end row-->
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div><!--end col-->
+</div>
 
 <!--New Table end-->
 @endrole
