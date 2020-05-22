@@ -1,4 +1,26 @@
+<style>
+.navbar-custom {
+    background: #04031F;
+    padding: 0 10px 0 0;
+    margin-left: 240px;
+    min-height: 70px;
+    position: relative;
+    -webkit-box-shadow: 0 6px 20px rgba(36, 37, 38, 0.08);
+    box-shadow: 0 6px 20px rgba(36, 37, 38, 0.08);
+}
 
+.topbar .topbar-left {
+    background-color: #04031F;
+    float: left;
+    text-align: center;
+    height: 70px;
+    position: relative;
+    width: 270px;
+    z-index: 1;
+    -webkit-box-shadow: 0px 8px 3px -3px rgba(28, 45, 65, 0.05);
+    box-shadow: 0px 8px 3px -3px rgba(28, 45, 65, 0.05);
+}
+</style>
 <!-- Top Bar Start -->
         <div class="topbar">
 
@@ -15,8 +37,12 @@
                     <span>
                         <img src="{{url('admin/images/logo.png')}}" alt="logo-large" class="logo-light">
                     </span> --}}
-                    NNURO
+                    
                 </a>
+                <span>
+                        <img src="{{url('admin/assets/images/NN.png')}}" class="logo-light"  style="height: 80%">
+                    </span>
+                
             </div>
             <!--end logo-->
             <!-- Navbar -->
