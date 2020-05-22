@@ -14,7 +14,8 @@ class AddInvoiceToPurchaseOrderTable extends Migration
     public function up()
     {
         Schema::table('purchase_orders', function (Blueprint $table) {
-            $table->string('invoice');
+            $table->string('invoice')->nullable();
+            $table->string('devlivery_status')->nullable();
         });
     }
 
@@ -26,7 +27,7 @@ class AddInvoiceToPurchaseOrderTable extends Migration
     public function down()
     {
         Schema::table('purchase_orders', function (Blueprint $table) {
-            $table->dropColumn('invoice');
+            $table->dropColumn(['invoice','devlivery_status']);
         });
     }
 }
