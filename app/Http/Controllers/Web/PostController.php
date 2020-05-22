@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
+use App\Models\Post;
+use Illuminate\Support\Str;
 use App\Models\PostCategory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
     public $pageTitle = 'Post';
     public $postCategory;
-    public function __construct(PostCategory $postCategory)
+    public function __construct(PostCategory $postCategory, Post $post)
     {
         $this->postCategory = $postCategory;
+        $this->post = $post;
     }
     /**
      * Display a listing of the resource.
@@ -22,8 +25,11 @@ class PostController extends Controller
     public function index()
     {
         $pageTitle = 'Post';
-        $postCategory = $this->postCategory::all();
-        return view('admin.pages.post.index', compact('pageTitle', 'postCategory'));
+        $posts = $this->post::all();
+
+        // return $posts;
+        // $postCategory = $this->postCategory::all();
+        return view('admin.pages.post.index', compact('pageTitle', 'posts'));
     }
 
     /**
@@ -46,7 +52,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        return "New Post here";
+        $request['slug'] = Str::slug($request->title);
+        $data = $request->all();
+        $request->user()->posts()->create($data);
+
+        return redirect()->route('post.index');
     }
 
     /**

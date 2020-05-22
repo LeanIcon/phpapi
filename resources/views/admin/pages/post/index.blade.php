@@ -48,9 +48,9 @@
                             <div class="col-8 align-self-center text-right">
                                 <div class="ml-2">
                                     <p class="mb-1 text-muted">Total Leads</p>
-                                    <h4 class="mt-0 mb-1 text-warning font-22">1935</h4>                                                                                                                                           
+                                    <h4 class="mt-0 mb-1 text-warning font-22">1935</h4>
                                 </div>
-                            </div>                    
+                            </div>
                         </div>
                         <div class="progress mt-2" style="height:3px;">
                             <div class="progress-bar bg-warning" role="progressbar" style="width: 55%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
@@ -122,32 +122,33 @@
                     <table id="datatable" class="table">
                         <thead class="thead-light">
                         <tr>
-                            <th>Lead</th>
-                            <th>Email</th>
-                            <th>Phone No</th>                                                    
-                            <th>Company</th>
+                            <th>Category</th>
+                            <th>Title</th>
+                            <th>Content</th>                                                    
                             <th>Status</th>
                             <th>Action</th>
                         </tr><!--end tr-->
                         </thead>
 
                         <tbody>
-                        <tr>
-                            <td><img src="../assets/images/users/user-10.jpg" alt="" class="thumb-sm rounded-circle mr-2">Donald Gardner</td>
-                            <td>xyx@gmail.com</td>
-                            <td>+123456789</td>
-                            <td>Starbucks coffee</td>
-                            <td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>
-                            <td>                                                                                                       
-                                <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                            </td>
+                            @if ($posts->isNotEmpty())
+                            @foreach ($posts as $item)
+                            <tr>
+                                <td><img src="../assets/images/users/user-10.jpg" alt="" class="thumb-sm rounded-circle mr-2">{{$item->category->name}}</td>
+                                <td>{{$item->title}}</td>
+                                <td>{{Str::limit($item->body, 50)}}</td>
+                                <td> <span class="badge badge-md badge-soft-success">Published</span></td>
+                                {{--  <td> 
+                                    <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                    <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                                </td>  --}}
+                                @endforeach
+                            @endif
                         </tr><!--end tr-->
-                       
-                                                                        
+
                         </tbody>
-                    </table>                    
-                </div>                                           
+                    </table>
+                </div>
             </div><!--end card-body--> 
         </div><!--end card--> 
     </div><!--end col-->
