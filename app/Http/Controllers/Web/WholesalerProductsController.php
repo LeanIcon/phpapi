@@ -43,6 +43,7 @@ class WholesalerProductsController extends Controller
     {
         $wholesalerProducts = $this->wholesalerProducts::all();
         return view('admin.pages.wholesalers.expiryproducts', compact('wholesalerProducts'));
+        
     }
 
     /**
