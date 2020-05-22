@@ -20,28 +20,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>PO 0012</td>
-                                   
-                                    <td>Retailer John</td>
-                                    <td>Paid</td>
-                                    <td>
-                                                    <a href="{{route('retailer.invoicedetails')}}"><i class="far fa-eye text-danger"></i></a>
-                                                </td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>PO 0013</td>
-                                    
-                                    <td>Retailer John</td>
-                                    <td>Unpaid</td>
-                                    <td>
-                                                    <a href=""><i class="far fa-eye text-danger"></i></a>
-                                                </td>
-                                    
-                                </tr>
-                                
-                                
+                                @if ($purchaseInvoices->isNotEmpty())
+                                    @foreach ($purchaseInvoices as $item)
+                            <tr>
+                                <td>
+                                    <a href="{{route('retailer.orderinvoicedetails', $item->id)}}"
+                                    class="d-inline-block align-middle mb-0 product-name">{{$item->invoice}}</a></td>
+                                </td>
+                                <td>
+                                    <a href="{{route('retailer.orderinvoicedetails')}}"
+                                    class="d-inline-block align-middle mb-0 product-name">{{$item->get_retailer->name}}</a>
+                                </td>
+                                <td>3/03/2019 4:29 PM</td>
+                                <td>
+                                    <span class="badge badge-md badge-boxed  badge-soft-danger">{{$item->devlivery_status}}</span>
+                                </td>
+                            </tr>
+                            @endforeach
+                            @endif
+                            <!--end tr-->
+    
                             </tbody>
                         </table>
                     </div>
