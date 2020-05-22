@@ -2,8 +2,60 @@
 
 @section('content')
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])
+ <style>
+.searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 50px;
+    background-color: white;
+    border-radius: 30px;
+    padding: 10px;
+    }
 
+    .search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+    }
 
+    .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 200px;
+    caret-color:green;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_icon{
+    background: green;
+    color: #e74c3c;
+    }
+
+    .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:grapheme_strlen;
+    text-decoration:none;
+    }
+
+    i.fas {
+  color: green;
+  display: inline-block;
+  border-radius: 60px;
+  box-shadow: 0px 0px 2px #888;
+  padding: 0.5em 0.6em;
+
+}
+    </style>
 
 
 <div class="row">
@@ -15,11 +67,11 @@
     $timezone = date("e");
     /* If the time is less than 1200 hours, show good morning */
     if ($time < "12") {
-        echo "<h3>".  "Good morning" . Auth::user()->name .","."</h3>";
+        echo "<h3 style= font-family:lora;>".  "Good morning" . " ".Auth::user()->firstname .","."</h3>";
     } else
     /* If the time is grater than or equal to 1200 hours, but less than 1700 hours, so good afternoon */
     if ($time >= "12" && $time < "17") {
-        echo "<h3>". "Good afternoon" . " " . Auth::user()->name .","."</h3>";
+        echo "<h3 style= font-family:lora;>". "Good afternoon" . " " . Auth::user()->firstname .","."</h3>";
     } else
     /* Should the time be between or equal to 1700 and 1900 hours, show good evening */
     if ($time >= "17" && $time < "19") {
@@ -27,10 +79,10 @@
     } else
     /* Finally, show good night if the time is greater than or equal to 1900 hours */
     if ($time >= "19") {
-        echo "<h3>". "Good evening" . " " . Auth::user()->name .","."</h3>";
+        echo "<h3 style= font-family:lora;>". "Good evening" . " " . Auth::user()->firstname .","."</h3>";
     }
     ?>
-                    <h1> Welcome Back! </h1>
+                    <h1 style="font-size: 50px; font-family:lora;"> Welcome Back! </h1>
                     <span class="badge badge-danger badge-pill noti-icon-badge"><a href="{{ route('wholesaler_expiryproducts') }}">Expiring Products</a></span>
                 </div>
     <div class="col-lg-3">
@@ -112,8 +164,13 @@
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <div id="datatable_filter" class="dataTables_filter">
-                            <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="datatable"></label>
+                        <div class="container h-100">
+                        <div class="d-flex justify-content-center h-100">
+                        <div class="searchbar">
+                        <input class="search_input" type="text" name="" placeholder="Search...">
+          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                    </div>
+                     </div>
                         </div>
                     </div>
                 </div>                <div class="row">

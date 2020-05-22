@@ -1,4 +1,10 @@
 <style>
+.left-sidenav-menu{
+    color:#141336;
+}
+.bg-dark {
+    background-color: #04031F !important;
+}
 .left-sidenav-menu li ul li > a {
     padding: 10px 22px;
     color: #e5e8eb;
