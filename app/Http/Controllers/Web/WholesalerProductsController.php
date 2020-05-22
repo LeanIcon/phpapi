@@ -36,8 +36,17 @@ class WholesalerProductsController extends Controller
      */
     public function index()
     {
-        $wholesalerProducts = $this->wholesalerProducts::all();
+        //$wholesalerProducts = $this->wholesalerProducts::all();
+        $wholesaler = Auth::user()->id;
+        $wholesalerProducts = $this->wholesalerProducts::where('wholesaler_id', $wholesaler)->get();
         return view('admin.pages.wholesalers.products', compact('wholesalerProducts'));
+    }
+    public function loadExpiryProducts()
+    {
+        //$wholesalerProducts = $this->wholesalerProducts::all();
+        $wholesaler = Auth::user()->id;
+        $wholesalerProducts = $this->wholesalerProducts::where('wholesaler_id', $wholesaler)->get();
+        return view('admin.pages.wholesalers.expiryproducts', compact('wholesalerProducts'));
     }
 
     /**

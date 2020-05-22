@@ -59,7 +59,7 @@
                                     @csrf
                                     <p align="right"> 
                                         <button type="submit" class="btn btn-primary btn-sm px-4 mt-0 mb-3" >
-                                        <i href="" class="mdi mdi-plus-circle-outline mr-2"></i>Create Purchase Order</button></p>
+                                        <i href="" class="mdi mdi-plus-circle-outline mr-2"></i>Send Purchase Order</button></p>
                                 </form>
                             <tbody>
 
@@ -70,10 +70,10 @@
                                         <td>{{$item->name}}</td>
                                         <td>{{$item->associatedModel->productDescription()}} </td>
                                         <td> {{$item->price}}</td>
-                                        <td><input disabled class="form-control" type="number" value="{{$item->quantity}}" /> </td>
+                                        <td><input class="form-control" value="{{$item->quantity}}" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" type="number" name="quantity" id="quantity" /></td>
                                         <td>{{$item->associatedModel->manufacturers->name}}</td>
                                         <td>
-                                            ADDED
+                                            <button type="submit" class="btn btn-sm btn-primary"> REMOVE</button>
                                     </td>
                                     </tr>
                                     </tr>
