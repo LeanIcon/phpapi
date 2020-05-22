@@ -15,7 +15,7 @@
     $timezone = date("e");
     /* If the time is less than 1200 hours, show good morning */
     if ($time < "12") {
-        echo "<h3>".  "Good morning" . Auth::user()->name .","."</h3>";
+        echo "<h3>".  "Good morning" ." ". Auth::user()->name .","."</h3>";
     } else
     /* If the time is grater than or equal to 1200 hours, but less than 1700 hours, so good afternoon */
     if ($time >= "12" && $time < "17") {
