@@ -21,8 +21,8 @@
           </div>
           <div class="col-md-7">
             <div class="card-body">
-              <div class="brand-wrapper">
-                <img src="admin/assets/images/nnurologo.png" alt="logo" class="logo">
+              <div class="brand-wrapper" >
+                <img style="height: 65px; width: 20%" src="admin/assets/images/log.png" alt="logo" class="logo">
               </div>
               <p class="login-card-description">Sign into your account</p>
               <form  method="POST" action="{{ route('login') }}">
