@@ -20,6 +20,19 @@
     -webkit-box-shadow: 0px 8px 3px -3px rgba(28, 45, 65, 0.05);
     box-shadow: 0px 8px 3px -3px rgba(28, 45, 65, 0.05);
 }
+.navbar-custom .topbar-nav li.show .nav-link {
+    background-color: #04031F;
+    color: #828db1;
+}
+
+.dropdown-menu {
+    padding: 4px 0;
+    font-size: 13px;
+    -webkit-box-shadow: 0 3px 12px rgba(182, 194, 228, 0.05);
+    box-shadow: 0 3px 12px rgba(182, 194, 228, 0.05);
+    border-color: #04031F;
+    margin: 0;
+}
 </style>
 <!-- Top Bar Start -->
         <div class="topbar">
@@ -40,8 +53,10 @@
                     
                 </a>
                 <span>
+                	<a href="{{route('dashboard.index')}}">
                         <img src="{{url('admin/assets/images/NN.png')}}" class="logo-light"  style="height: 80%">
                     </span>
+                </a>
                 
             </div>
             <!--end logo-->
