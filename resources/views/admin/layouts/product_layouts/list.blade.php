@@ -86,7 +86,7 @@
                                                 <input class="form-control" value="{{$product->formattedPrice()}}" name="price" type="hidden">
                                                 {{--  <input class="form-control" value="1" name="quantity" type="hidden">  --}}
                                                 @role('Retailer') @if (in_array($product->id, $pIds)) 
-                                                <button type="submit" class="btn btn-sm btn-primary"> REMOVE</button>
+                                                ADDED
                                                     @else
                                                 <button type="submit" class="btn btn-sm btn-primary"> ADD</button>
                                                 @endif @endrole

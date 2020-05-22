@@ -2,20 +2,37 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\PurchaseOrders;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class RetailerinvoiceController extends Controller
 {
+    public $purchaseOrders;
+    public function __construct(PurchaseOrders $purchaseOrders)
+    {
+        $this->purchaseOrders = $purchaseOrders;
+        $this->middleware('auth');
+        $this->middleware(['role:Retailer']);
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($purchaseId = null)
     {
+        $user = Auth::user();
+        $purchaseInvoices = $user->retailer_orders->where('invoice', '!=', '');
         $pageTitle = 'Retailer Invoice';
-        return view('admin.pages.retailers.retailer_invoice', compact('pageTitle'));
+        return view('admin.pages.retailers.retailer_invoice', compact('purchaseInvoices'));
+    }
+    public function retailerinvoicedetail($purchaseOrderId = null)
+    {
+        $orderItems = $this->purchaseOrders::find($purchaseOrderId)->order_items;
+        $pageTitle = 'Order Invoice';
+        return view('admin.pages.retailers.invoicedetails', compact('orderItems'));
     }
 
     /**
@@ -84,9 +101,9 @@ class RetailerinvoiceController extends Controller
         //
     }
 
-    public function invoicedetail()
-    {
-        $pageTitle = 'Invoice details';
-        return view('admin.pages.retailers.invoicedetails');
-    }
+  //  public function invoicedetail()
+   // {
+   //     $pageTitle = 'Invoice details';
+   //     return view('admin.pages.retailers.invoicedetails');
+   // }
 }
