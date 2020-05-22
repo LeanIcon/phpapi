@@ -8,9 +8,30 @@
 
 <div class="row">
 <div class="col-lg-6 tags p-b-2">
-                    <h3> Hi {{Auth::user()->name}} </h3>
+    <?php
+    /* This sets the $time variable to the current hour in the 24 hour clock format */
+    $time = date("H");
+    /* Set the $timezone variable to become the current timezone */
+    $timezone = date("e");
+    /* If the time is less than 1200 hours, show good morning */
+    if ($time < "12") {
+        echo "<h3>".  "Good morning" . Auth::user()->name .","."</h3>";
+    } else
+    /* If the time is grater than or equal to 1200 hours, but less than 1700 hours, so good afternoon */
+    if ($time >= "12" && $time < "17") {
+        echo "<h3>". "Good afternoon" . " " . Auth::user()->name .","."</h3>";
+    } else
+    /* Should the time be between or equal to 1700 and 1900 hours, show good evening */
+    if ($time >= "17" && $time < "19") {
+        echo "Good evening";
+    } else
+    /* Finally, show good night if the time is greater than or equal to 1900 hours */
+    if ($time >= "19") {
+        echo "<h3>". "Good evening" . " " . Auth::user()->name .","."</h3>";
+    }
+    ?>
                     <h1> Welcome Back! </h1>
-                    
+                    <span class="badge badge-danger badge-pill noti-icon-badge"><a href="">Expiring Products</a></span>
                 </div>
     <div class="col-lg-3">
         <a href="{{route('wholesaler_products.index')}}" class="custom-card">
