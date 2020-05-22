@@ -55,8 +55,8 @@
                                     {{-- <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Status</th> --}}
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 130px;">Manufacturer</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Quantity</th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">Action</th>
-                                </tr>
+                                   @role('Retailer') <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">Action</th>
+                                </tr>@endrole
                             </thead>
 
                             <tbody>
@@ -85,11 +85,11 @@
                                                 <input class="form-control" value="{{$product->products->name}}" name="name" type="hidden">
                                                 <input class="form-control" value="{{$product->formattedPrice()}}" name="price" type="hidden">
                                                 {{--  <input class="form-control" value="1" name="quantity" type="hidden">  --}}
-                                                @if (in_array($product->id, $pIds)) 
+                                               @role('Retailer') @if (in_array($product->id, $pIds)) 
                                                 <button type="submit" class="btn btn-sm btn-primary"> REMOVE</button>
                                                 @else
                                                 <button type="submit" class="btn btn-sm btn-primary"> ADD</button>
-                                                @endif
+                                                @endif @endrole
                                             </td>
                                         </form>  
                                     </tr>
