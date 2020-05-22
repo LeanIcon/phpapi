@@ -47,6 +47,7 @@ class WholesalerProductsController extends Controller
         $wholesaler = Auth::user()->id;
         $wholesalerProducts = $this->wholesalerProducts::where('wholesaler_id', $wholesaler)->get();
         return view('admin.pages.wholesalers.expiryproducts', compact('wholesalerProducts'));
+        
     }
 
     /**

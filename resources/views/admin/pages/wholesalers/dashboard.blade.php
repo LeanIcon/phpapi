@@ -43,12 +43,12 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    color:grapheme_strlen;
+    color:green;
     text-decoration:none;
     }
 
     i.fas {
-  color: green;
+  
   display: inline-block;
   border-radius: 60px;
   box-shadow: 0px 0px 2px #888;
@@ -83,7 +83,7 @@
     }
     ?>
                     <h1 style="font-size: 50px; font-family:lora;"> Welcome Back! </h1>
-                    <span class="badge badge-danger badge-pill noti-icon-badge"><a href="{{ route('wholesaler_expiryproducts') }}">Expiring Products</a></span>
+                   <!-- <span class="badge badge-danger badge-pill noti-icon-badge"><a href="{{ route('wholesaler_expiryproducts') }}">Expiring Products</a></span> -->
                 </div>
     <div class="col-lg-3">
         <a href="{{route('wholesaler_products.index')}}" class="custom-card">
@@ -130,12 +130,12 @@
 </a>
 
     <div class="col-lg-3">
-        <a href="{{ route('wholesaler.pendingpurchaseorder') }}" class="custom-card">
+        <a href="{{ route('wholesaler_expiryproducts') }}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Pending</h4>
+                <h4 class="title-text mt-0">Expiring Products</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">{{$approvedPurchaseOrders->count()}}</h3>
+                    <h3 class="text-purple"></h3>
                     <i class="dripicons-wallet card-eco-icon bg-icon-warning  align-self-center"></i>
                 </div>
             </div><!--end card-body-->

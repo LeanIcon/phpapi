@@ -211,7 +211,7 @@
                                 <option value="approved">Approve</option>
                                 <option value="cancel">Cancel</option>
                             </select>
-                            <input class="form-control" value="{{$purchaseOrder->purchase_order->id}}" type="text">
+                            <!--<input class="form-control" value="{{$purchaseOrder->purchase_order->id}}" type="text">-->
                         </div>
                     </div><!--end col-->
                 </div><!--end row-->
