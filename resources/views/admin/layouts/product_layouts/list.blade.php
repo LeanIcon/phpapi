@@ -2,7 +2,7 @@
  @if (!Cart::isEmpty())
     <div class="col-lg-3">
         <div class="card">
-           <a class="btn btn-default" href="{{route('retailer.purchaselist')}}">Purchase Order List
+           <a class="btn btn-default" href="{{route('retailer.purchaselist')}}">Create Purchase Order
                <i class="fa fa-1x far fa-list-alt" > <span class="badge badge-blue" >{{Cart::getContent()->count() ?? '0'}}</span>  </i>
            </a>
         </div>
@@ -75,7 +75,7 @@
                                                 @if (in_array($product->id, $pIds))
                                                     ADDED
                                                 @else
-                                                    <input class="form-control" value="1" name="quantity" type="text" >
+                                                <input class="form-control" value="1" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" type="number" name="quantity" id="quantity" />
                                                 @endif
                                             </td>
                                             <td>
@@ -86,7 +86,7 @@
                                                 <input class="form-control" value="{{$product->formattedPrice()}}" name="price" type="hidden">
                                                 {{--  <input class="form-control" value="1" name="quantity" type="hidden">  --}}
                                                 @if (in_array($product->id, $pIds)) 
-                                                ADDED
+                                                <button type="submit" class="btn btn-sm btn-primary"> REMOVE</button>
                                                 @else
                                                 <button type="submit" class="btn btn-sm btn-primary"> ADD</button>
                                                 @endif

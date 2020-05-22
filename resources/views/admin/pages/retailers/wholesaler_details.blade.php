@@ -32,7 +32,7 @@
                                     <li class="mt-2"><i class="dripicons-mail text-info font-18 mt-2 mr-2"></i> <b> Email </b> : {{$wholesaler->email}}</li>
                                     <li class="mt-2"><i class="dripicons-location text-info font-18 mt-2 mr-2"></i> <b>Location</b> : {{$wholesaler->location}}</li>
                                 </ul>
-                                <div class="button-list btn-social-icon">
+                                <!--<div class="button-list btn-social-icon">
                                     <button type="button" class="btn btn-blue btn-round">
                                         <i class="fab fa-facebook-f"></i>
                                     </button>
@@ -40,7 +40,7 @@
                                     <button type="button" class="btn btn-secondary btn-round ml-2">
                                         <i class="fab fa-twitter"></i>
                                     </button>
-                                </div>
+                                </div>-->
                             </div>
                             <!--end col-->
                         </div>
