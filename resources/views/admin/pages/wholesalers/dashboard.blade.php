@@ -55,6 +55,12 @@
   padding: 0.5em 0.6em;
 
 }
+
+.card-eco .card-eco-icon.bg-icon-warning {
+    background-color: red;
+    -webkit-box-shadow: 0px 5px 5px 0.25px rgba(255, 184, 34, 0.5);
+    box-shadow: 0px 5px 5px 0.25px rgba(255, 184, 34, 0.5);
+}
     </style>
 
 
