@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class WholesalerPurchaseOrderInvoiceController extends Controller
 {
+    public $purchaseOrders;
     public function __construct(PurchaseOrders $purchaseOrders)
     {
         $this->purchaseOrders = $purchaseOrders;
@@ -35,7 +36,9 @@ class WholesalerPurchaseOrderInvoiceController extends Controller
 
     public function UpdatePurchaseOrderStatus(Request $request,  $purchaseId = null)
     {
-        $updateStatus = $this->purchaseOrders::find($purchaseId)->update(['status' => $request->status]);
+        $code = $this->purchaseOrders::generateInvoiceCode();
+
+        $updateStatus = $this->purchaseOrders::find($purchaseId)->update(['status' => $request->status, 'invoice' => $code]);
         return $updateStatus ? redirect()->route('dashboard.index') : redirect()->route('dashboard.index');
     }
 }

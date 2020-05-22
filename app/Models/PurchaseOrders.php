@@ -8,13 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class PurchaseOrders extends Model
 {
     protected $table = 'purchase_orders';
-    protected $fillable = ['wholesaler_id','retailer_id', 'products_id', 'description', 'product_name', 'total',
+    protected $fillable = ['wholesaler_id','retailer_id', 'products_id', 'description', 'product_name', 'total', 'invoice',
     'quantity', 'price', 'manufacturer' ,'order_type','wholesaler_visible', 'status'];
 
 
     // public $cast = [
 
     // ];
+
+    public static function generateInvoiceCode()
+    {
+        $num = 1;
+        $code = str_pad($num, 4, '0', STR_PAD_LEFT);
+        return $code;
+    }
 
     public function scopeIsApproved($query)
     {
