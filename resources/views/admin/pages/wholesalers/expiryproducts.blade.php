@@ -51,15 +51,17 @@
                                 </thead>
 
                                 <tbody>
-
                                     @if ($wholesalerProducts->isNotEmpty())
                                     @foreach ($wholesalerProducts as $product)
+                                    <?php $expiredate= date('Y-m-d', strtotime('-3 month'));?>
+                                    <?php $month=strtotime($product->expiry_date);$month=date('Y-m-d',$month);?>
+                                    @if ($month <= $expiredate)
                                         <tr>
                                             <td>{{$product->batch_number}}</td>
                                             <td>{{$product->id}} | {{$product->products->name}}</td>
                                             <td> {{$product->products->active_ingredients}}, {{$product->products->strength}}, {{$product->products->packet_size}}</td>
                                             <td>{{$product->price}}</td>
-                                            <td>{{$product->expiry_date}} </td>
+                                            <td>{{$product->expiry_status}} </td>
                                             <td>{{$product->products->manufacturers->name}} </td>
                                             <td> 
                                             <a href="{{route('wholesaler_products.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
@@ -68,6 +70,7 @@
                                         </td>
                                         </tr>
                                         </tr>
+                                        @endif  
                                     @endforeach
                                 @endif            
 
