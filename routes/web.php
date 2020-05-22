@@ -51,6 +51,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('/wholesaler/products', 'WholesalerDashboardController@loadProducts')->name('wholesaler.products');
    // Route::get('wholesalers/purchaseorder/{order_id?}', 'WholesalerDashboardController@retailerpurchasedetails')->name('wholesaler.purchaseorder');
     Route::resource('wholesaler_products', 'WholesalerProductsController');
+    Route::get('wholesaler_expiryproducts', 'WholesalerProductsController@loadExpiryProducts')->name('wholesaler_expiryproducts');
     Route::get('/wholesaler/purchaseorder', 'WholesalerPurchaseOrdersController@index')->name('wholesaler.purchaseorder');
     Route::get('/wholesaler/approvepurchaseorder', 'WholesalerPurchaseOrdersController@approve')->name('wholesaler.approvepurchaseorder');
     Route::get('/wholesaler/pendingpurchaseorder', 'WholesalerPurchaseOrdersController@pending')->name('wholesaler.pendingpurchaseorder');

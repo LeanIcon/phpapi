@@ -31,7 +31,7 @@
     }
     ?>
                     <h1> Welcome Back! </h1>
-                    <span class="badge badge-danger badge-pill noti-icon-badge"><a href="">Expiring Products</a></span>
+                    <span class="badge badge-danger badge-pill noti-icon-badge"><a href="{{ route('wholesaler_expiryproducts') }}">Expiring Products</a></span>
                 </div>
     <div class="col-lg-3">
         <a href="{{route('wholesaler_products.index')}}" class="custom-card">
@@ -145,7 +145,7 @@
                                                     </p>
                                                 </td>
                                                 <td>{{$purchaseOrder->retailer->name}}</td>
-                                                <td><span class="badge badge-soft-warning">{{$purchaseOrder->status}}</span></td>
+                                                <td><span class= "badge badge-soft-{{$purchaseOrder->status == 'approved' ? 'success' : 'warning'}}">{{$purchaseOrder->status}}</span></td>
                                                 <td>
                                                     <a href="{{route('wholesaler.order_details', $purchaseOrder->id)}}"><i class="far fa-eye text-danger"></i></a>
                                                 </td>

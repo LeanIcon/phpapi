@@ -39,6 +39,11 @@ class WholesalerProductsController extends Controller
         $wholesalerProducts = $this->wholesalerProducts::all();
         return view('admin.pages.wholesalers.products', compact('wholesalerProducts'));
     }
+    public function loadExpiryProducts()
+    {
+        $wholesalerProducts = $this->wholesalerProducts::all();
+        return view('admin.pages.wholesalers.expiryproducts', compact('wholesalerProducts'));
+    }
 
     /**
      * Show the form for creating a new resource.
