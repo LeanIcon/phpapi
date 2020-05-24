@@ -2,10 +2,11 @@
 
 namespace App;
 
+use App\Models\Post;
 use App\Models\Product;
-use App\Models\ProductCategory;
-use App\Models\PurchaseOrders;
 use App\Models\UserDetails;
+use App\Models\PurchaseOrders;
+use App\Models\ProductCategory;
 use App\Models\WholesalerProduct;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -90,6 +91,17 @@ class User extends Authenticatable
     public function retailer_orders()
     {
         return $this->hasMany(PurchaseOrders::class, 'retailer_id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, "author_id");
+    }
+
+
+    public function getRouteKeyName()
+    {
+        return "slug";
     }
 
 
