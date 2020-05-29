@@ -122,12 +122,12 @@
                     <table id="datatable" class="table">
                         <thead class="thead-light">
                         <tr>
-                            <th>Name</th>
-                            <th>Photo</th>
-                            <th>Manufacture ID</th>
-                            <th>Equipment ID</th>
-                            <th>Other Products ID</th>
-                            <th>Product Category ID</th>
+                            <th>Product Category</th>
+                            <th>Product Discription</th>
+                            <th>Packet Size</th>
+                            <th>Manufacture </th>
+                            <th>Wholesaler</th>
+                            <th>Price</th>
                             <th>Action </th>
                            
                         </tr><!--end tr-->
@@ -140,7 +140,7 @@
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->photo}}</td> 
                                     <td> {{$product->manufacturers_id}}</td>
-                                    <td>{{$product->equipments_id}} </td>
+                                    <td>{{$product->packet_size}} </td>
                                     <td>{{$product->other_products_id}} </td>
                                     <td>{{$product->product_category_id}} </td>
                                     <td>                                                                                              <a href="{{route('product.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
