@@ -4,10 +4,13 @@ namespace App;
 
 use App\Models\Post;
 use App\Models\Product;
+use App\Models\Location;
 use App\Models\UserDetails;
+use Illuminate\Support\Str;
 use App\Models\PurchaseOrders;
 use App\Models\ProductCategory;
 use App\Models\WholesalerProduct;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -30,7 +33,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'firstname', 'lastname', 'phone', 'type', 'slug'
+        'name', 'email', 'password', 'firstname', 'lastname', 'phone', 'type', 'slug','username'
     ];
 
     /**
@@ -60,9 +63,26 @@ class User extends Authenticatable
      *
      * @return void
      */
-    public function setNameAttribute($value)
+    // public function setNameAttribute($value)
+    // {
+    //     $this->attributes['name'] = $this->firstname.' '.$this->lastname;
+    // }
+
+    public static function activeUserAccess($user): bool
     {
-        $this->attributes['name'] = $this->firstname.' '.$this->lastname;
+        if($user->type == self::IS_WHOLESALER)
+        {
+            $role = Role::findByName('Wholesaler');
+            $user->assignRole([$role->id]);
+            return true;
+        }
+
+        if($user->type == self::IS_RETAILER)
+        {
+            $role = Role::findByName('Retailer');
+            $user->assignRole([$role->id]);
+            return true;
+        }
     }
 
 
@@ -96,6 +116,15 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Post::class, "author_id");
+    }
+
+
+    public function loginUserName($data)
+    {
+        $location = new Location();
+        $name  = Str::slug($data->username);
+        $uname = $name.'-'.$location->getLocationName($data->location);
+        return $uname;
     }
 
 

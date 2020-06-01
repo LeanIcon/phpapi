@@ -19,6 +19,7 @@ class RegisterFormController extends Controller
 
     public function saveNewUserForm(Request $request)
     {
+        return $request;
         $request['password'] = Hash::make($request->password);
         $request['name'] = $request->firstname.' '.$request->lastname;
         $request['slug'] = Str::slug($request->firstname.' '.$request->lastname);
