@@ -9,7 +9,7 @@
             <div class="float-right">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0);">NNURO</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">Location</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Town</a></li>
                 </ol>
             </div>
             <h4 class="page-title">Town</h4>
@@ -116,7 +116,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a type="button" href="{{route('town.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
+                <a type="button" href="{{route('location.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
                 <h4 class="header-title mt-0 mb-3">All Towns</h4> 
                 <div class="table-responsive dash-social">
                     <table id="datatable" class="table">
@@ -132,15 +132,15 @@
 
                         <tbody>
 
-                            @if ($postTown->isNotEmpty())
-                            @foreach ($postTown ?? '' as $town)
+                            @if ($locations->isNotEmpty())
+                            @foreach ($locations as $location)
                                 <tr>
-                                    <td>{{$town->id}}</td>
-                                    <td>{{$town->name}}</td>
+                                    <td>{{$location->id}}</td>
+                                    <td>{{$location->name}}</td>
                                     <td> <span class="badge badge-md badge-soft-purple">Active</span></td>
                                     <td>
-                                        <a href="{{route('town.edit', $town->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                        <a href="{{route('town.show', $town->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>
+                                        <a href="{{route('town.edit', $location->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                        <a href="{{route('town.show', $location->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>
                                     </td>
                                 </tr><!--end tr-->
                             @endforeach
