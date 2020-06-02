@@ -123,11 +123,9 @@
                         <thead class="thead-light">
                         <tr>
                             <th>Name</th>
-                            <th>Photo</th>
-                            <th>Manufacture ID</th>
-                            <th>Equipment ID</th>
-                            <th>Other Products ID</th>
-                            <th>Product Category ID</th>
+                            <th>Product Description(Active Ingredient , Strength)</th>
+                            <th>Manufacturer</th>
+                            <th>Pack Size</th>
                             <th>Action </th>
                            
                         </tr><!--end tr-->
@@ -138,11 +136,10 @@
                             @foreach ($products as $product)
                                 <tr>
                                     <td>{{$product->name}}</td>
-                                    <td>{{$product->photo}}</td> 
-                                    <td> {{$product->manufacturers_id}}</td>
-                                    <td>{{$product->equipments_id}} </td>
-                                    <td>{{$product->other_products_id}} </td>
-                                    <td>{{$product->product_category_id}} </td>
+                                    <td>{{$product->active_ingredients}}</td>
+                                    <td>{{$product->manufacturers->name}}</td> 
+                                    <td> {{$product->packet_size}}</td>
+                                    
                                     <td>                                                                                              <a href="{{route('product.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                     <a href="{{route('product.show', $product->id)}}" class="mr-2"><i class="fas fa-eye text-info font-16"></i></a>
                                     {{-- <a id="deleteAction"><i class="fas fa-trash-alt text-danger font-16"></i></a> --}}
