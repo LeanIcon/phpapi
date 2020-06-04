@@ -49,7 +49,7 @@
                             <thead>
                                 <tr role="row">
                                     {{--  <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 40px;">Batch Number</th>  --}}
-                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 150px;">Product Name, Active Ingredient , Strength and Dosage Form</th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 150px;"> Description</th>
                                    {{-- <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 170px;">Description(Active Ingredient , Strength and Dosage Form)</th> --}}
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Manufacturer</th>
                                     {{-- <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Status</th> --}}
@@ -66,7 +66,7 @@
                                 @foreach ($products as $product)
                                     <tr>
                                         {{--  <td>{{$product->batch_number}}</td>  --}}
-                                        <td>{{$product->products->name}}, {{$product->products->active_ingredients}}, {{$product->products->strength}}</td>
+                                        <td>{{$product->products->productDescription()}},{{$product->products->DosageForm->name}}</td>
                                        {{-- <td> {{$product->products->active_ingredients}}, {{$product->products->strength}}</td>  --}}
                                         
                                         {{-- <td>{{$product->expiry_status}} </td> --}}

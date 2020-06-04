@@ -45,8 +45,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
 
 
     /****************Wholesalers*******************/
-    Route::get('/retailer/dashboard', 'WholesalerDashboardController@loadDashboard')->name('wholesaler.dashboard');
-    Route::get('/wholesaler/dashboard', 'RetailerDashboardController@loadDashboard')->name('retailer.dashboard');
+    Route::get('/wholesaler/dashboard', 'WholesalerDashboardController@loadDashboard')->name('wholesaler.dashboard');
     Route::get('/wholesaler/retailers', 'WholesalerRetailersController@index')->name('wholesaler.retailer');
     Route::get('/wholesaler/products', 'WholesalerDashboardController@loadProducts')->name('wholesaler.products');
    // Route::get('wholesalers/purchaseorder/{order_id?}', 'WholesalerDashboardController@retailerpurchasedetails')->name('wholesaler.purchaseorder');
@@ -59,9 +58,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('/wholesaler/purchaseorderinvoice', 'WholesalerPurchaseOrderInvoiceController@index')->name('wholesaler.purchaseorderinvoice');
     Route::get('/wholesaler/invoicedetails/{id?}', 'WholesalerPurchaseOrderInvoiceController@invoicedetail')->name('wholesaler.orderinvoicedetails');
     Route::post('/wholesaler/purchase-order/{id?}', 'WholesalerPurchaseOrderInvoiceController@UpdatePurchaseOrderStatus')->name('update.purchase.status');
-
-
+    
+    
     /****************Retailers*******************/
+    Route::get('/retailer/dashboard', 'RetailerDashboardController@loadDashboard')->name('retailer.dashboard');
     Route::get('/retailer/wholesalers', 'RetailerWholesalersController@index')->name('retailer.wholesaler');
     Route::get('/retailer/wholesalers/{wholesaler?}', 'RetailerWholesalersController@show')->name('retailer.wholesaler.show');
     Route::get('/retailer/products', 'RetailerDashboardController@loadProducts')->name('retailer.products');
@@ -93,6 +93,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
         Route::resource('region', 'RegionController');
         Route::resource('town', 'TownController');
         Route::resource('profile', 'UserProfileController');
+        Route::resource('location', 'LocationController');
     });
 
 });

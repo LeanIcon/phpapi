@@ -40,9 +40,9 @@
                             <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                                 <thead>
                                     <tr role="row">
-                                        <!--<th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Batch Number</th> -->
-                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 150px;">Product Name</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Description(Active Ingredient , Strength and Dosage Form)</th>
+                                        {{--<th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Product Category</th> --}}
+                                       {{-- <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 150px;">Product Name</th> --}}
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Description</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Manufacturer</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Pack Size</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 156px;">Unit Price</th>
@@ -57,12 +57,14 @@
                                     @foreach ($wholesalerProducts as $product)
                                         <tr>
                                           {{--  <td>{{$product->batch_number}}</td> --}}
-                                            <td>{{$product->products->name}}</td>
-                                            <td> {{$product->products->active_ingredients}}, {{$product->products->strength}}</td>
+                                           {{-- <td>{{$product->products->name}}</td> --}}
+                                            <td>{{$product->products->productDescription()}},{{$product->products->DosageForm->name}} </td>
+                                            {{--<td> {{$product->products->active_ingredients}}, {{$product->products->strength}}</td> --}}
                                             <td>{{$product->products->manufacturers->name}} </td>
                                             <td> {{$product->products->packet_size}} </td>
                                             <td>{{$product->price}}</td>
                                             <td>{{$product->expiry_status}} </td>
+                                            
                                             
                                             <td> 
                                             <a href="{{route('wholesaler_products.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>

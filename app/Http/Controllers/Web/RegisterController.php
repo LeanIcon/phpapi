@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Web;
 
 use App\User;
+use App\Models\Location;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
@@ -52,8 +54,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'firstname' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
+            'location' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -67,14 +69,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'firstname' => $data['firstname'],
-            'lastname' => $data['lastname'],
+        $location = strtolower(Location::find($data['location'])->name);
+        $name  = Str::slug($data['name']);
+        $uname = $name.'-'.$location;
+
+        $user = User::create([
             'type' => $data['type'],
-            'name' =>  $data['firstname'].' '.$data['lastname'],
-            'slug' =>  Str::slug($data['firstname']. ' ' .$data['lastname']),
+            'name' =>  $data['name'],
+            'name' =>  $data['phone'],
+            'username' =>  $uname,
+            'slug' =>  $name,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        if(User::activeUserAccess($user))
+        {
+            return $user;
+        };
+
+        return $user;
     }
 }

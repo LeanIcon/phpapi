@@ -9,10 +9,10 @@
             <div class="float-right">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0);">NNURO</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">Products</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Town</a></li>
                 </ol>
             </div>
-            <h4 class="page-title">Products</h4>
+            <h4 class="page-title">Town</h4>
         </div><!--end page-title-box-->
     </div><!--end col-->
 </div>
@@ -23,7 +23,7 @@
             <div class="card-body profile-card">                                    
                 <div class="media align-items-center">                                                                               
                     <div class="media-body ml-3 align-self-center">
-                        <h5 class="pro-title">Nnuro</h5>
+                        <h5 class="pro-title">Jon Doe</h5>
                         <p class="mb-1 text-muted">Admin</p>                                              
                     </div>
                     <div class="action-btn">
@@ -47,8 +47,8 @@
                             </div>
                             <div class="col-8 align-self-center text-right">
                                 <div class="ml-2">
-                                    <p class="mb-1 text-muted">Total Products</p>
-                                    <h4 class="mt-0 mb-1 text-warning font-22">1</h4>                                                                                                                                           
+                                    <p class="mb-1 text-muted">Total Leads</p>
+                                    <h4 class="mt-0 mb-1 text-warning font-22">1935</h4>                                                                                                                                           
                                 </div>
                             </div>                    
                         </div>
@@ -72,7 +72,7 @@
                                 <div class="ml-2">
                                     <div class="ml-2">
                                         <p class="mb-0 text-muted">Open</p>
-                                        <h4 class="mt-0 mb-1 d-inline-block text-purple font-22">1</h4>
+                                        <h4 class="mt-0 mb-1 d-inline-block text-purple font-22">1240</h4>
                                         <span class="badge badge-soft-success mt-1 shadow-none">Active</span>
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
                             <div class="col-8 align-self-center text-right">
                                 <div class="ml-2">
                                     <p class="mb-0 text-muted">Close</p>
-                                    <h4 class="mt-0 mb-1 d-inline-block text-pink font-22">0</h4>                                                                                                                                   
+                                    <h4 class="mt-0 mb-1 d-inline-block text-pink font-22">240</h4>                                                                                                                                   
                                 </div>
                             </div>
                         </div>
@@ -116,65 +116,42 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a type="button" href="{{route('product.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
-                <h4 class="header-title mt-0 mb-3">All PRODUCTS</h4> 
+                <a type="button" href="{{route('location.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
+                <h4 class="header-title mt-0 mb-3">All Towns</h4> 
                 <div class="table-responsive dash-social">
                     <table id="datatable" class="table">
                         <thead class="thead-light">
                         <tr>
-<<<<<<< HEAD
-                            <th>Product Name, Active Ingredient & Strength</th>
-                           {{-- <th>Product Description(Active Ingredient , Strength)</th> --}}
-                            <th>Manufacturer</th>
-                            <th>Pack Size</th>
-=======
-                            <th>Product Category</th>
-                            <th>Product Discription</th>
-                            <th>Packet Size</th>
-                            <th>Manufacture </th>
-                            <th>Wholesaler</th>
-                            <th>Price</th>
->>>>>>> dev
-                            <th>Action </th>
-                           
+                         
+                            <th>ID</th>
+                            <th>Name</th>                                                    
+                            <th>Status</th>
+                            <th>Action</th>
                         </tr><!--end tr-->
                         </thead>
 
                         <tbody>
-                        @if ($products->isNotEmpty())
-                            @foreach ($products as $product)
+
+                            @if ($locations->isNotEmpty())
+                            @foreach ($locations as $location)
                                 <tr>
-<<<<<<< HEAD
-                                    <td>{{$product->name}}, {{$product->active_ingredients}}</td>
-                                   {{-- <td>{{$product->active_ingredients}}</td> --}}
-                                    <td>{{$product->manufacturers->name}}</td> 
-                                    <td> {{$product->packet_size}}</td>
-                                    
-=======
-                                    <td>{{$product->name}}</td>
-                                    <td>{{$product->photo}}</td> 
-                                    <td> {{$product->manufacturers_id}}</td>
-                                    <td>{{$product->packet_size}} </td>
-                                    <td>{{$product->other_products_id}} </td>
-                                    <td>{{$product->product_category_id}} </td>
->>>>>>> dev
-                                    <td>                                                                                              <a href="{{route('product.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                    <a href="{{route('product.show', $product->id)}}" class="mr-2"><i class="fas fa-eye text-info font-16"></i></a>
-                                    {{-- <a id="deleteAction"><i class="fas fa-trash-alt text-danger font-16"></i></a> --}}
-                                
-                                </td>
-                                </tr>
-                                </tr>
+                                    <td>{{$location->id}}</td>
+                                    <td>{{$location->name}}</td>
+                                    <td> <span class="badge badge-md badge-soft-purple">Active</span></td>
+                                    <td>
+                                        <a href="{{route('town.edit', $location->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                        <a href="{{route('town.show', $location->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>
+                                    </td>
+                                </tr><!--end tr-->
                             @endforeach
-                        @endif                                            
+                        @endif
                         </tbody>
-                    </table>                    
-                </div>                                           
+                    </table>
+                </div>
             </div><!--end card-body--> 
         </div><!--end card--> 
     </div><!--end col-->
-</div>
-<!--end row-->  
+</div><!--end row-->  
 @include('admin.pages.dashboard.modal-page')
 </div><!-- container -->
 @endsection
