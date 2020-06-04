@@ -122,8 +122,8 @@
                     <table id="datatable" class="table">
                         <thead class="thead-light">
                         <tr>
-                            <th>Name</th>
-                            <th>Product Description(Active Ingredient , Strength)</th>
+                            <th>Product Name, Active Ingredient & Strength</th>
+                           {{-- <th>Product Description(Active Ingredient , Strength)</th> --}}
                             <th>Manufacturer</th>
                             <th>Pack Size</th>
                             <th>Action </th>
@@ -135,8 +135,8 @@
                         @if ($products->isNotEmpty())
                             @foreach ($products as $product)
                                 <tr>
-                                    <td>{{$product->name}}</td>
-                                    <td>{{$product->active_ingredients}}</td>
+                                    <td>{{$product->name}}, {{$product->active_ingredients}}</td>
+                                   {{-- <td>{{$product->active_ingredients}}</td> --}}
                                     <td>{{$product->manufacturers->name}}</td> 
                                     <td> {{$product->packet_size}}</td>
                                     
