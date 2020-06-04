@@ -48,7 +48,7 @@ class Product extends ApiModel implements Searchable
         $desc = "$this->active_ingredients $this->strength $this->packet_size";
         return $desc;
     }
-    
+
 
      public function getSearchResult(): SearchResult
     {
@@ -61,6 +61,6 @@ class Product extends ApiModel implements Searchable
             //$url
         );
     }
-    
+
 
 }
