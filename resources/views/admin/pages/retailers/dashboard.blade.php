@@ -2,6 +2,60 @@
 
 @section('content')
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])
+<style>
+.searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 50px;
+    background-color: white;
+    border-radius: 30px;
+    padding: 10px;
+    }
+
+    .search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 200px;
+    caret-color:green;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_icon{
+    background: green;
+    color: #e74c3c;
+    }
+
+    .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:green;
+    text-decoration:none;
+    }
+
+    i.fas {
+  
+  display: inline-block;
+  border-radius: 60px;
+  box-shadow: 0px 0px 2px #888;
+  padding: 0.5em 0.6em;
+
+}
+    </style>
 <div class="row">
 <div class="col-lg-6 tags p-b-2">
 <?php
@@ -98,27 +152,29 @@
                    Click on Wholesalers to raise Purchase Order.
                 </p>
 
-                <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            <div class="dataTables_length" id="datatable_length">
-                                <label>Show
-                                    <select name="datatable_length" aria-controls="datatable" class="custom-select custom-select-sm form-control form-control-sm">
-                                        <option value="10">10</option>
-                                        <option value="25">25</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
-                                    </select> entries</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div id="datatable_filter" class="dataTables_filter">
-                                <label>Search:
-                                    <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="datatable">
-                                </label>
-                            </div>
+                <h4 class="header-title mt-0 mb-3"><span class="badge badge-danger badge-pill noti-icon-badge">New</span> Orders Received</h4>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_length" id="datatable_length">
+                            <label>Show <select name="datatable_length" aria-controls="datatable" class="custom-select custom-select-sm form-control form-control-sm">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select> entries</label>
                         </div>
                     </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="container h-100">
+                        <div class="d-flex justify-content-center h-100">
+                        <div class="searchbar">
+                        <input class="search_input" type="text" name="" placeholder="Search...">
+          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                    </div>
+                     </div>
+                        </div>
+                    </div>
+                </div>       
                     <div class="row">
                         <div class="col-sm-12">
                             <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
