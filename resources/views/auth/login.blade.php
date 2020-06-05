@@ -28,22 +28,6 @@
               <form  method="POST" action="{{ route('login') }}">
                  @csrf
                   <div class="form-group">
-                    <label for="email" class="">{{ __('Location') }}</label>
-                    @if (!is_null($locations))
-                    <select class="form-control" name="location" required id="">
-                        <option value="">Select</option>
-                        @foreach ($locations as $location)
-                            <option value="{{$location->id}}">{{$location->name}}</option>
-                        @endforeach
-                    </select>
-                    @endif
-                    @error('location')
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
-                      </span>
-                    @enderror
-                  </div>
-                  <div class="form-group">
                     <label for="email" class="">{{ __('FC-NUMBER | E-mail') }}</label>
                     <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                     @error('email')
