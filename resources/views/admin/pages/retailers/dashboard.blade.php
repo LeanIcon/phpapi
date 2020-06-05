@@ -88,6 +88,10 @@ h1, h2, h3, h4, h5, h6 {
 a {
     color: #707070;
 }
+
+.page-wrapper {
+    padding-top: 50px;
+}
     </style>
 <div class="row">
 <div class="col-lg-6 tags p-b-2">
