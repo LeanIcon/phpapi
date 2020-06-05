@@ -130,7 +130,7 @@
                             <table class="table table-bordered mb-0">
                                 <thead class="thead-light">
                                 <tr>
-                                    <th>Product Name</th>
+                                    <th>Product Description</th>
                                     <th>manufacturer</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
                                         aria-label="Price: activate to sort column ascending" style="width: 100px;">Qty

@@ -61,6 +61,10 @@
     -webkit-box-shadow: 0px 5px 5px 0.25px rgba(255, 184, 34, 0.5);
     box-shadow: 0px 5px 5px 0.25px rgba(255, 184, 34, 0.5);
 }
+
+.page-wrapper {
+    padding-top: 50px;
+}
     </style>
 
 
