@@ -45,8 +45,8 @@
                   </div>
                   <div class="form-group">
                     <label for="email" class="">{{ __('Company Name') }}</label>
-                    <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('email') }}" required autocomplete="username" autofocus>
-                    @error('username')
+                    <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -68,7 +68,6 @@
                                     {{ __('Login') }}
                                 </button>
                         </div>
-                    
                                 @if (Route::has('password.request'))
                                 <div style="margin-left:16px;">
                                     <a class="forgot-password-link"  href="{{ route('password.request') }}" >

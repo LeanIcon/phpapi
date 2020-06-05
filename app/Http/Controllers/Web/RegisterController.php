@@ -70,15 +70,14 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $location = strtolower(Location::find($data['location'])->name);
-        $name  = Str::slug($data['name']);
-        $uname = $name.'-'.$location;
+        $slug  = Str::slug($data['name']);
+        $uname = $slug.'-'.$location;
 
         $user = User::create([
             'type' => $data['type'],
             'name' =>  $data['name'],
-            'name' =>  $data['phone'],
             'username' =>  $uname,
-            'slug' =>  $name,
+            'slug' =>  $slug,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
