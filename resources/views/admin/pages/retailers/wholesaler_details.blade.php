@@ -56,7 +56,7 @@
                         </li>
                         @role('Admin')
                         <li class="nav-item">
-                            <a class="nav-link" id="general_detail_tab" data-toggle="pill" href="#general_detail">General</a>
+                            <a class="nav-link" id="general_detail_tab" data-toggle="pill" href="#general_detail">Profile</a>
                         </li>
                         @endrole
                     </ul>
