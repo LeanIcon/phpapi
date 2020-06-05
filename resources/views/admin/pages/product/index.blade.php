@@ -141,7 +141,7 @@
                         @if ($products->isNotEmpty())
                             @foreach ($products as $product)
                                 <tr>
-                                <td>{{$product->products->productDesc()}},{{$product->products->DosageForm->name}} </td>
+                                <td>{{$product->productDesc()}},{{$product->DosageForm->name}} </td>
                                    {{-- <td>{{$product->active_ingredients}}</td> --}}
                                     <td>{{$product->manufacturers->name}}</td> 
                                     <td> {{$product->packet_size}}</td>
