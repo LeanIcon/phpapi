@@ -63,7 +63,7 @@
                                             <td>{{$product->products->manufacturers->name}} </td>
                                             <td> {{$product->products->packet_size}} </td>
                                             <td>{{$product->price}}</td>
-                                            <td>{{$product->expiry_status}} </td>
+                                            <td>{{$product->expiry_status}}  </td> 
                                             
                                             
                                             <td> 

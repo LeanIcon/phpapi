@@ -122,17 +122,12 @@
                     <table id="datatable" class="table">
                         <thead class="thead-light">
                         <tr>
-                            <th>Product Name, Active Ingredient & Strength</th>
+                            <th>Description</th>
                            {{-- <th>Product Description(Active Ingredient , Strength)</th> --}}
                             <th>Manufacturer</th>
                             <th>Pack Size</th>
-                            <th>Product Category</th>
-                            <th>Product Discription</th>
-                            <th>Packet Size</th>
-                            <th>Manufacture </th>
-                            <th>Wholesaler</th>
-                            <th>Price</th>
-                            <th>Action </th>
+                            <th>Action</th>
+                            
                            
                         </tr><!--end tr-->
                         </thead>
