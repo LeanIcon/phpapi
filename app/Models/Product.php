@@ -45,6 +45,12 @@ class Product extends ApiModel implements Searchable
 
     public function productDescription()
     {
+        $desc = "$this->active_ingredients $this->strength";
+        return $desc;
+    }
+
+    public function productDesc()
+    {
         $desc = "$this->name $this->active_ingredients $this->strength";
         return $desc;
     }
@@ -66,6 +72,6 @@ class Product extends ApiModel implements Searchable
             //$url
         );
     }
-    
+
 
 }

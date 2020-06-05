@@ -58,7 +58,7 @@
                                         <tr>
                                           {{--  <td>{{$product->batch_number}}</td> --}}
                                            {{-- <td>{{$product->products->name}}</td> --}}
-                                            <td>{{$product->products->productDescription()}},{{$product->products->DosageForm->name}} </td>
+                                            <td>{{$product->products->productDesc()}},{{$product->products->DosageForm->name}} </td>
                                             {{--<td> {{$product->products->active_ingredients}}, {{$product->products->strength}}</td> --}}
                                             <td>{{$product->products->manufacturers->name}} </td>
                                             <td> {{$product->products->packet_size}} </td>

@@ -122,19 +122,16 @@
                     <table id="datatable" class="table">
                         <thead class="thead-light">
                         <tr>
-<<<<<<< HEAD
                             <th>Product Name, Active Ingredient & Strength</th>
                            {{-- <th>Product Description(Active Ingredient , Strength)</th> --}}
                             <th>Manufacturer</th>
                             <th>Pack Size</th>
-=======
                             <th>Product Category</th>
                             <th>Product Discription</th>
                             <th>Packet Size</th>
                             <th>Manufacture </th>
                             <th>Wholesaler</th>
                             <th>Price</th>
->>>>>>> dev
                             <th>Action </th>
                            
                         </tr><!--end tr-->
@@ -144,20 +141,17 @@
                         @if ($products->isNotEmpty())
                             @foreach ($products as $product)
                                 <tr>
-<<<<<<< HEAD
-                                    <td>{{$product->name}}, {{$product->active_ingredients}}</td>
+                                <td>{{$product->products->productDesc()}},{{$product->products->DosageForm->name}} </td>
                                    {{-- <td>{{$product->active_ingredients}}</td> --}}
                                     <td>{{$product->manufacturers->name}}</td> 
                                     <td> {{$product->packet_size}}</td>
                                     
-=======
-                                    <td>{{$product->name}}</td>
-                                    <td>{{$product->photo}}</td> 
-                                    <td> {{$product->manufacturers_id}}</td>
-                                    <td>{{$product->packet_size}} </td>
-                                    <td>{{$product->other_products_id}} </td>
-                                    <td>{{$product->product_category_id}} </td>
->>>>>>> dev
+                                   {{-- <td>{{$product->name}}</td> --}}
+                                    {{-- <td>{{$product->photo}}</td> --}} 
+                                    {{-- <td> {{$product->manufacturers_id}}</td> --}}
+                                   {{-- <td>{{$product->packet_size}} </td> --}}
+                                    {{-- <td>{{$product->other_products_id}} </td> --}}
+                                   {{-- <td>{{$product->product_category_id}} </td> --}}
                                     <td>                                                                                              <a href="{{route('product.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                     <a href="{{route('product.show', $product->id)}}" class="mr-2"><i class="fas fa-eye text-info font-16"></i></a>
                                     {{-- <a id="deleteAction"><i class="fas fa-trash-alt text-danger font-16"></i></a> --}}

@@ -28,25 +28,9 @@
               <form  method="POST" action="{{ route('login') }}">
                  @csrf
                   <div class="form-group">
-                    <label for="email" class="">{{ __('Location') }}</label>
-                    @if (!is_null($locations))
-                    <select class="form-control" name="location" id="">
-                        <option value="">Select</option>
-                        @foreach ($locations as $location)
-                            <option value="{{$location->id}}">{{$location->name}}</option>
-                        @endforeach
-                    </select>
-                    @endif
-                    @error('location')
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
-                      </span>
-                    @enderror
-                  </div>
-                  <div class="form-group">
-                    <label for="email" class="">{{ __('Company Name') }}</label>
-                    <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('email') }}" required autocomplete="username" autofocus>
-                    @error('username')
+                    <label for="email" class="">{{ __('FC-NUMBER | E-mail') }}</label>
+                    <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -56,6 +40,7 @@
                     <label for="password" class="sr-only">{{ __('Password') }}</label>
                     <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                     @error('password')
+<<<<<<< HEAD
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -91,6 +76,27 @@
                         </div>
                     
                                 
+=======
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                  </div>
+                  <div class= "text-left">
+                  <div class="form-group row mb-0">
+                        <div class="col-md-8 offset-md-0">
+                          <button type="submit" class="btn btn-block login-btn mb-3 ">
+                              {{ __('Login') }}
+                          </button>
+                        </div>
+                        @if (Route::has('password.request'))
+                        <div style="margin-left:16px;">
+                            <a class="forgot-password-link"  href="{{ route('password.request') }}" >
+                                {{ __('Forgot Your Password?') }}
+                            </a>
+                        </div>
+                        @endif
+>>>>>>> dev
 
                             
                         </div>

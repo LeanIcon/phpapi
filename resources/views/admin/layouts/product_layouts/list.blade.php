@@ -66,7 +66,7 @@
                                 @foreach ($products as $product)
                                     <tr>
                                         {{--  <td>{{$product->batch_number}}</td>  --}}
-                                        <td>{{$product->products->productDescription()}},{{$product->products->DosageForm->name}}</td>
+                                        <td>{{$product->products->productDesc()}},{{$product->products->DosageForm->name}}</td>
                                        {{-- <td> {{$product->products->active_ingredients}}, {{$product->products->strength}}</td>  --}}
                                         
                                         {{-- <td>{{$product->expiry_status}} </td> --}}
