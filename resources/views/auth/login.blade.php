@@ -7,12 +7,14 @@
     color: #fefefe;
     margin-bottom: 10px;
     float: right;
+    }
+    
 </style>
 <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="admin/assets/css/login.css">
- <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+ <main class="d-flex align-items-right min-vh-100 py-3 py-md-0">
     <div class="container">
       <div class="card login-card">
         <div class="row no-gutters">
@@ -57,10 +59,16 @@
                 </div>
                   <div class= "text-left">
                   <div class="form-group row mb-0">
-                        <div class="col-md-8 offset-md-0">
+                        <div class="col-md-6 offset-md-0">
                           <button type="submit" class="btn btn-block login-btn mb-3 ">
                               {{ __('Login') }}
                           </button>
+                        </div>
+                        <div class="col-md-6 offset-md-0">
+                         <a href="{{route('register.form')}}">
+                          <button type="button" class="btn btn-outline-dark btn-lg">
+                              {{ __('Sign Up') }}
+                          </button></a>
                         </div>
                         @if (Route::has('password.request'))
                         <div style="margin-left:16px;">
