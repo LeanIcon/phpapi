@@ -1,14 +1,17 @@
- @if (!Cart::isEmpty())
-    <div class="col-lg-3">
-        <div class="card">
-           <a class="btn btn-default" href="{{route('retailer.purchaselist')}}">Create Purchase Order
-               <i class="fa fa-1x far fa-list-alt" > <span class="badge badge-blue" >{{Cart::getContent()->count() ?? '0'}}</span>  </i>
-           </a>
-        </div>
+@if (!Cart::isEmpty())
+<div class="col-lg-3">
+    <div class="card">
+       <a class="btn btn-default" href="{{route('shortagelist.view')}}">VIEW SHORTAGE LIST
+           <i class="fa fa-1x far fa-list-alt" > <span class="badge badge-blue" >{{Cart::getContent()->count() ?? '0'}}</span>  </i>
+       </a>
     </div>
+</div>
 @endif
 <div class="col-12">
     <div class="card">
+        <div class="card-header">
+            Create Shortage List
+        </div>
         <div class="card-body">
             <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                 <div class="row">
@@ -72,7 +75,7 @@
                                         <td>{{$product->products->manufacturers->name}} </td>
                                         <td> {{$product->products->packet_size}} </td>
                                         <td>{{$product->formattedPrice()}}</td>
-                                        <form method="POST" action="{{route('create.purchase.order', $wholesaler->id)}}" enctype="multipart/form-data" >
+                                        <form method="POST" action="{{route('create.purchase.order')}}" enctype="multipart/form-data" >
                                             <td>
                                                 @if (in_array($product->id, $pIds))
                                                     ADDED
