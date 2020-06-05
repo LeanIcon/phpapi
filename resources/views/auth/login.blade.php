@@ -24,7 +24,6 @@
               <div class="brand-wrapper" >
                 <img style="height: 65px; width: 20%" src="admin/assets/images/log.png" alt="logo" class="logo">
               </div>
-              <p class="login-card-description">Sign into your account</p>
               <form  method="POST" action="{{ route('login') }}">
                  @csrf
                   <div class="form-group">
@@ -61,7 +60,18 @@
                                     </span>
                                 @enderror
 
-                  
+                  <div class="form-group row">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                    <label style="width:150px;" class="form-check-label" for="remember">
+                                        {{ __('Remember Me') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
                  
                   <div class= "text-left">
                   <div class="form-group row mb-4">
