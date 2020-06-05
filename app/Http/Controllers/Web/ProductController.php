@@ -34,6 +34,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = $this->product::all();
+        
         return view('admin.pages.product.index', compact('products'));
     }
 

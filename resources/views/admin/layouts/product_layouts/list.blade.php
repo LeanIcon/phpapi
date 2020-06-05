@@ -49,12 +49,13 @@
                             <thead>
                                 <tr role="row">
                                     {{--  <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 40px;">Batch Number</th>  --}}
-                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 150px;">Product Name</th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 170px;">Description</th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Price</th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 150px;"> Description</th>
+                                   {{-- <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 170px;">Description(Active Ingredient , Strength and Dosage Form)</th> --}}
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Manufacturer</th>
                                     {{-- <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Status</th> --}}
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 130px;">Manufacturer</th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Quantity</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 130px;">Pack Size</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Unit Price</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 130px;">Quantity</th>
                                    @role('Retailer') <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">Action</th>
                                 </tr>@endrole
                             </thead>
@@ -65,11 +66,13 @@
                                 @foreach ($products as $product)
                                     <tr>
                                         {{--  <td>{{$product->batch_number}}</td>  --}}
-                                        <td>{{$product->id}} | {{$product->products->name}}</td>
-                                        <td> {{$product->products->active_ingredients}}, {{$product->products->strength}}, {{$product->products->packet_size}}</td>
-                                        <td>{{$product->formattedPrice()}}</td>
+                                        <td>{{$product->products->productDesc()}},{{$product->products->DosageForm->name}}</td>
+                                       {{-- <td> {{$product->products->active_ingredients}}, {{$product->products->strength}}</td>  --}}
+                                        
                                         {{-- <td>{{$product->expiry_status}} </td> --}}
                                         <td>{{$product->products->manufacturers->name}} </td>
+                                        <td> {{$product->products->packet_size}} </td>
+                                        <td>{{$product->formattedPrice()}}</td>
                                         <form method="POST" action="{{route('create.purchase.order', $wholesaler->id)}}" enctype="multipart/form-data" >
                                             <td>
                                                 @if (in_array($product->id, $pIds))

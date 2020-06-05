@@ -45,10 +45,21 @@ class Product extends ApiModel implements Searchable
 
     public function productDescription()
     {
-        $desc = "$this->active_ingredients $this->strength $this->packet_size";
+        $desc = "$this->active_ingredients $this->strength";
         return $desc;
     }
 
+    public function productDesc()
+    {
+        $desc = "$this->name $this->active_ingredients $this->strength";
+        return $desc;
+    }
+
+    public function dosageform(){
+        return $this->belongsTo(DosageForm::class,'dosage_form_id');
+        
+    }
+    
 
      public function getSearchResult(): SearchResult
     {
