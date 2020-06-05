@@ -44,7 +44,7 @@
                     @enderror
                   </div>
                   <div class="form-group">
-                    <label for="email" class="">{{ __('Company Name | E-mail') }}</label>
+                    <label for="email" class="">{{ __('FC-NUMBER | E-mail') }}</label>
                     <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                     @error('email')
                         <span class="invalid-feedback" role="alert">
