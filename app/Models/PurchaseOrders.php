@@ -36,13 +36,18 @@ class PurchaseOrders extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
 
 
     public function get_retailer()
     {
         return $this->belongsTo(User::class, 'retailer_id', 'id');
+    }
+
+    public function get_wholesaler()
+    {
+        return $this->belongsTo(User::class, 'wholesaler_id', 'id');
     }
 
     /**

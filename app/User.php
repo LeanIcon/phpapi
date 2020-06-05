@@ -97,6 +97,13 @@ class User extends Authenticatable
     }
 
 
+    public function orderUsers($data)
+    {
+        $data = self::whereIn('id', $data)->get();
+        return $data;
+    }
+
+
     public function wholesaler_products()
     {
         return $this->hasMany(WholesalerProduct::class, 'wholesaler_id');
@@ -150,7 +157,7 @@ class User extends Authenticatable
 
     public function details()
     {
-        return $this->hasOne(UserDetails::class,'users_id');    
+        return $this->hasOne(UserDetails::class,'users_id');
     }
 
     public function getProductCategoryAttribute()
