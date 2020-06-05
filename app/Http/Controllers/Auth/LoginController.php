@@ -55,10 +55,6 @@ class LoginController extends Controller
      */
     protected function validateLogin(Request $request)
     {
-        $name  = Str::slug($request->username);
-        $uname = $name.'-'.$this->location->getLocationName($request->location);
-        $request['username'] = $uname;
-
 
         $request->validate([
             $this->username() => 'required|string',
