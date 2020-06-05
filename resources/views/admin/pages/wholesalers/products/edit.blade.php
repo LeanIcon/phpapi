@@ -1,5 +1,8 @@
 @extends('admin.index')
 
+@section('page-css')
+<link href="{{url('admin/assets/plugins/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />
+@endsection
 @section('content')
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? ''])
 <div class="container-fluid">
@@ -11,12 +14,13 @@
                 EDIT PRODUCTS
             </div>
             <div class="card-body">
-                <form>
+                <form method="POST" action="{{route('wholesaler_products.store')}}" enctype="multipart/form-data" >
+                    @csrf
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="LeadName">Batch Number</label>
-                                <input type="text" class="form-control" id="LeadName" required="">
+                                <input type="text" class="form-control" name="batch_number" id="LeadName" value="{{$product->batch_number}}" required="">
                             </div>
                         </div>
                     </div>
@@ -24,7 +28,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="LeadEmail">Manufacturer</label>
-                                <select class="custom-select" id="status-select">
+                                <select class="form-control custom-select" id="status-select">
                                     <option selected="">Select</option>
                                     @if ($manufacturers->isNotEmpty())
                                         @foreach ($manufacturers as $manufacturer)
@@ -36,49 +40,72 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="status-select" class="mr-2">Category</label>
-                                <select class="custom-select" id="productCatSelect">
+                                <label for="status-select" class="mr-2">Product</label>
+                                <select class="form-control custom-select" name="products_id" id="productCatSelect">
                                     <option selected="">Select</option>
-                                @if (!is_null($productCategory))
-                                    @foreach ($productCategory as $category)
-                                        <option value="{{$category['key']}}">{{$category['name']}}</option>
+                                @if (!is_null($products))
+                                    @foreach ($products as $products)
+                                        <option value="{{$products->name}}">{{$products->name}}</option>
                                     @endforeach
                                 @endif
                                 </select>
                             </div>
                         </div>
                     </div>
-                    @include('admin.pages.wholesalers.products.additional_form')
 
                     <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="LeadName">Name</label>
-                                <input type="text" class="form-control" id="LeadName" required="">
-                            </div>
-                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="PhoneNo">Price</label>
-                                <input type="text" name="price" class="form-control" id="price" required="">
+                                <input type="text" name="price" class="form-control" id="price" value="{{$product->price}}" required="">
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="status-select" class="mr-2">Product Image</label>
-                                <input class="form-control" type="file" name="image">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                      <label for=" ExpiryMonth"> Expiry Month</label>
+                                      <select class="form-control custom-select" name="expiry_month" id="">
+                                          <option value=""><?php $month=strtotime($product->expiry_date);$month=date('m',$month); echo $month;?></option>
+                                         @for ($i = 1; $i <= 12; $i++)
+                                            <option value="{{str_pad($i,2,'0',STR_PAD_LEFT)}}">{{str_pad($i,2,"0",STR_PAD_LEFT)}}</option>
+                                         @endfor
+                                      </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                      <label for=" ExpiryYear"> Expiry Year</label>
+                                      <select class="form-control custom-select" name="expiry_year" id="">
+                                        <option value=""><?php $year=strtotime($product->expiry_date);$year=date('Y',$year); echo $year;?></option>
+                                        @for ($i = 1990; $i <= date('Y')+10 ; $i++)
+                                           <option value="{{$i}}">{{$i}}</option>
+                                        @endfor
+                                      </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-lg-3">
                             <div class="form-group">
-                                <label for="PhoneNo">Expiry Date</label>
-                                <input type="date" name="expiry_date" class="form-control" id="price" required="">
-                            </div>
+                                <label for=" ExpiryYear"> Type</label>
+                                <select class="form-control custom-select" name="type" id="">
+                    @if ($productCategoryTypes->isNotEmpty())
+                                        <option></option>
+                                        @foreach ($productCategoryTypes as $cattype)
+                                            <option value="{{$cattype->id}}">{{$cattype->name}}</option>
+                                        @endforeach
+                                    @endif 
+                                </select>
+                              </div>
                         </div>
                     </div>
+                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                    <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Cancel</button>
+            </form>
             </div>
         </div>
-        <div class="col-lg-4 card" style="margin-left:15px;">
+        {{-- <div class="col-lg-4 card" style="margin-left:15px;">
             <div class="card-header">
                 PRODUCTS COMPONENT (Drugs Only) *
             </div>
@@ -117,11 +144,6 @@
                                 <label for="LeadEmail">Type</label>
                                 <select class="custom-select" id="status-select">
                                     <option selected="">Select</option>
-                                    @if ($manufacturers->isNotEmpty())
-                                        @foreach ($manufacturers as $manufacturer)
-                                        <option value="{{$manufacturer->id}}">{{$manufacturer->name}}</option>
-                                        @endforeach
-                                    @endif
                                 </select>
                             </div>
                         </div>
@@ -129,32 +151,43 @@
                     <button type="button" class="btn btn-sm btn-primary">Save</button>
                     <button type="button" class="btn btn-sm btn-danger">Cancel</button>
                 </div>
-            </div>
-        </form>
+            </div> --}}
     </div><!--end row-->
     @include('admin.pages.dashboard.modal-page')
     </div><!-- container -->
 @endsection
 @section('page-js')
+   <script src="{{url('admin/assets/plugins/select2/select2.min.js')}}"></script>
     <script>
         $("#selectedDrugCat").hide();
         $("#selectedEquipCat").hide();
         var catslect;
         $(document).ready(function(){
+            initSelectTags();
             $("#productCatSelect").change(function(){
+                console.log(catslect);
                 catslect = $("#productCatSelect").val();
                 console.log(catslect);
-                if(catslect == 'drugs') {
+                if(catslect == '1') {
                     $("#selectedDrugCat").show();
                 }else{
                     $("#selectedDrugCat").hide();
                 }
-                if(catslect == 'equipments') {
+                if(catslect == '2') {
                     $("#selectedEquipCat").show();
                 }else{
                     $("#selectedEquipCat").hide();
                 }
             });
         });
+
+
+
+    function initSelectTags() {
+        $(".manufact-select").select2({
+            placeholder: 'Select Category Type',
+            width: '100%'
+        });
+    }
     </script>
 @endsection

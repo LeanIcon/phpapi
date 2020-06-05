@@ -14,7 +14,8 @@ class RetailerPurchaseOrdersController extends Controller
      */
     public function index()
     {
-        //
+        $pageTitle = 'Purchase order';
+        return view('admin.pages.retailers.purchase_order', compact('pageTitle'));
     }
 
     /**
@@ -24,7 +25,7 @@ class RetailerPurchaseOrdersController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

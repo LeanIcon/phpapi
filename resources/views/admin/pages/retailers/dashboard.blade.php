@@ -2,284 +2,269 @@
 
 @section('content')
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])
+<style>
+.searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 50px;
+    background-color: white;
+    border-radius: 70%;
+    padding: 10px;
+    }
+
+    .search_input{
+    color: black;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 200px;
+    caret-color:green;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_icon{
+    background: green;
+    color: #e74c3c;
+    }
+
+    .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:green;
+    text-decoration:none;
+    }
+
+    i.fas {
+  
+  display: inline-block;
+  border-radius: 60px;
+  box-shadow: 2px 0px 2px #888;
+  padding: 0.5em 0.6em;
+
+}
+
+body{
+    margin-top:20px;
+    background: #f5f5f5;
+}
+.card {
+    border: none;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,1.0);
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,1.0);
+    margin-bottom: 30px;
+}
+.w-60 {
+    width: 60px;
+}
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 10px;
+    font-weight: 600;
+}
+.social-links li a {
+    -webkit-border-radius: 50%;
+    background-color: rgba(89,206,181,.85);
+    border-radius: 50%;
+    color: #fff;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 30px;
+    font-size: 12px;
+}
+a {
+    color: #707070;
+}
+
+.page-wrapper {
+    padding-top: 50px;
+}
+    </style>
 <div class="row">
+<div class="col-lg-6 tags p-b-2">
+<?php
+    /* This sets the $time variable to the current hour in the 24 hour clock format */
+    $time = date("H");
+    /* Set the $timezone variable to become the current timezone */
+    $timezone = date("e");
+    /* If the time is less than 1200 hours, show good morning */
+    if ($time < "12") {
+        echo "<h3 style= font-family:lora;>".  "Good morning" . " ".Auth::user()->firstname .","."</h3>";
+    } else
+    /* If the time is grater than or equal to 1200 hours, but less than 1700 hours, so good afternoon */
+    if ($time >= "12" && $time < "17") {
+        echo "<h3 style= font-family:lora;>". "Good afternoon" . " " . Auth::user()->firstname .","."</h3>";
+    } else
+    /* Should the time be between or equal to 1700 and 1900 hours, show good evening */
+    if ($time >= "17" && $time < "19") {
+        echo "Good evening";
+    } else
+    /* Finally, show good night if the time is greater than or equal to 1900 hours */
+    if ($time >= "19") {
+        echo "<h3 style= font-family:lora;>". "Good evening" . " " . Auth::user()->firstname .","."</h3>";
+    }
+    ?>
+
+<h1 style="font-size: 50px; font-family:lora;"> Welcome Back! </h1>
+                    
+                </div>
     <div class="col-lg-3">
+        <a href="{{route('retailer.purchase_order')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
                 <h4 class="title-text mt-0">Purchase Orders</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">24k</h3>
+                    <h3 class="text-purple">{{$purchaseOrders->count()}}</h3>
                     <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i>
-                </div>                                     
-                <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>8.5%</span>Up From Yesterday</p>
+                </div>
             </div><!--end card-body-->
         </div><!--end card-->
-    </div><!--end col-->
+    </div>
+</a>
     <div class="col-lg-3">
+        <a href="{{route('retailer.orders')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Invoices</h4>
+                <h4 class="title-text mt-0">Orders Confirmed</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-pink">10k</h3>
+                    <h3 class="text-pink">{{$approvedPurchaseOrders->count()}}</h3>
                     <i class="dripicons-cart card-eco-icon bg-icon-pink align-self-center"></i>
-                </div>                                     
-                <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>1.5%</span> Up From Last Week</p>
+                </div>
             </div><!--end card-body-->
         </div><!--end card-->
     </div><!--end col-->
+</a>
+
+<div class="col-lg-6 tags p-b-2">
+
+                </div>
     <div class="col-lg-3">
+        <a href="{{route('retailer.retailer_invoice')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Approved</h4>
+                <h4 class="title-text mt-0">Invoice Received</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-secondary">8400</h3>
-                    <i class="dripicons-jewel card-eco-icon bg-icon-secondary align-self-center"></i>
+                    <h3 class="text-secondary">2</h3>
+                    <i class="dripicons-document-new card-eco-icon bg-icon-secondary align-self-center"></i>
                 </div>                                   
-                <p class="mb-0 text-muted text-truncate"><span class="text-danger"><i class="mdi mdi-trending-down"></i>3%</span> Down From Last Month</p>
             </div><!--end card-body-->
         </div><!--end card-->
-    </div><!--end col-->
+    </div><!--end -->
+</a>
+
     <div class="col-lg-3">
+        <a href="{{route('retailer.retailer_shortagelist')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Declined</h4>
+                <h4 class="title-text mt-0">Shortage List</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-warning">$1590</h3>
+                    <h3 class="text-warning">4</h3>
                     <i class="dripicons-wallet card-eco-icon bg-icon-warning  align-self-center"></i>
                 </div>
-                <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>10.5%</span> Up From Yesterday</p>
             </div><!--end card-body-->
         </div><!--end card-->
     </div><!--end col-->
-</div><!--end row-->
-
-<div class="row">
-    <div class="col-lg-4">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-8 align-self-center">
-                        <div class="">
-                            <h4 class="mt-0 header-title">This Month Revenue</h4>
-                            <h2 class="mt-0">$57k</h2> 
-                            <p class="mb-0 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>14.5%</span> Up From Last Month</p>
-                        </div>
-                    </div><!--end col-->
-                    <div class="col-4 align-self-center">
-                        <div class="icon-info text-right">
-                            <i class="dripicons-wallet bg-soft-info"></i>
-                        </div>
-                    </div><!--end col-->
-                </div><!--end row-->
-            </div><!--end card-body-->
-            <div class="card-body overflow-hidden p-0">
-                <div class="d-flex mb-0 h-100 dash-info-box">
-                    <div class="w-100">
-                        <div class="apexchart-wrapper">
-                            <div id="eco_dash_2" class="chart-gutters"></div>
-                        </div>
-                    </div>
-                </div>
-            </div><!--end card-body-->
-        </div><!--end card-->
-    </div><!--end col-->
-
-    <div class="col-lg-4">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="mt-0 header-title mb-3">New Customers</h4>
-                <div class="row">
-                    <div class="col-8">
-                       <div class="align-self-center">
-                            <div id="re_customers" class="apex-charts mb-n4"></div>
-                       </div>
-                    </div><!--end col-->
-                    <div class="col-4 align-self-center">
-                        <div class="re-customers-detail">
-                            <h3 class="mb-0">21,546</h3>
-                            <p class="text-muted"><i class="mdi mdi-circle text-pink mr-1"></i>New Customers</p>
-                        </div>
-                        <div class="re-customers-detail">
-                            <h3 class="mb-0">1535</h3>
-                            <p class="text-muted"><i class="mdi mdi-circle text-primary mr-1"></i>Repeated</p>
-                        </div>
-                    </div><!--end col-->
-                </div><!--end row-->
-            </div><!--end card-body-->
-        </div><!--end card-->
-    </div><!--end col-->
-
-    <div class="col-lg-4">
-        <div class="card carousel-bg-img">
-            <div class="card-body dash-info-carousel">
-                <h4 class="mt-0 header-title">Populer Product</h4>
-                <div id="carousel_2" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="media">
-                                <img src="../assets/images/products/img-2.png" height="200" class="mr-4" alt="...">
-                                <div class="media-body align-self-center"> 
-                                    <span class="badge badge-primary mb-2">354 sold</span>
-                                    <h4 class="mt-0">Important Watch</h4>
-                                    <p class="text-muted mb-0">$99.00</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="media">
-                                <img src="../assets/images/products/img-3.png" height="200" class="mr-4" alt="...">
-                                <div class="media-body align-self-center"> 
-                                    <span class="badge badge-primary mb-2">654 sold</span>
-                                    <h4 class="mt-0">Wireless Headphone</h4>
-                                    <p class="text-muted mb-0">$39.00</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="media">
-                                <img src="../assets/images/products/img-1.png" height="200" class="mr-4" alt="...">
-                                <div class="media-body align-self-center"> 
-                                    <span class="badge badge-primary mb-2">551 sold</span>
-                                    <h4 class="mt-0">Leather Bag</h4>
-                                    <p class="text-muted mb-0">$49.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carousel_2" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carousel_2" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div><!--end card-body-->
-        </div><!--end card-->
-    </div><!--end col-->
-</div><!--end row-->
-
+</div>
+</a>
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-body order-list">
-                <h4 class="header-title mt-0 mb-3">Order List</h4>
-                <div class="table-responsive">
-                    <table class="table table-hover mb-0">
-                        <thead class="thead-light">
-                            <tr>
-                                <th class="border-top-0">Product</th>
-                                <th class="border-top-0">Pro Name</th>
-                                <th class="border-top-0">Country</th>
-                                <th class="border-top-0">Order Date/Time</th>
-                                <th class="border-top-0">Pcs.</th>
-                                <th class="border-top-0">Amount ($)</th>
-                                <th class="border-top-0">Status</th>
-                            </tr><!--end tr-->
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <img class="" src="../assets/images/products/img-1.png" alt="user"> </td>
-                                <td>
-                                    Beg
-                                </td>
-                                <td>                                                                
-                                    <img src="../assets/images/flags/us_flag.jpg" alt="" class="img-flag thumb-xxs rounded-circle">
-                                </td>
-                                <td>3/03/2019 4:29 PM</td>
-                                <td>200</td>                                   
-                                <td> $750</td>
-                                <td>                                                                        
-                                    <span class="badge badge-md badge-boxed  badge-soft-success">Shipped</span>
-                                </td>
-                            </tr><!--end tr-->
-                            <tr>
-                                <td>
-                                    <img class="" src="../assets/images/products/img-2.png" alt="user"> </td>
-                                <td>
-                                    Watch
-                                </td>
-                                <td>                                                                
-                                    <img src="../assets/images/flags/french_flag.jpg" alt="" class="img-flag thumb-xxs rounded-circle">
-                                </td>
-                                <td>13/03/2019 1:09 PM</td>
-                                <td>180</td>                                   
-                                <td> $970</td>
-                                <td>
-                                    <span class="badge badge-md badge-boxed  badge-soft-danger">Delivered</span>
-                                </td>
-                            </tr><!--end tr-->
-                            <tr>
-                                <td>
-                                    <img class="" src="../assets/images/products/img-3.png" alt="user"> </td>
-                                <td>
-                                    Headphone
-                                </td>
-                                <td>                                                                
-                                    <img src="../assets/images/flags/spain_flag.jpg" alt="" class="img-flag thumb-xxs rounded-circle">
-                                </td>
-                                <td>22/03/2019 12:09 PM</td>
-                                <td>30</td>                                   
-                                <td> $2800</td>
-                                <td>
-                                    <span class="badge badge-md badge-boxed badge-soft-warning">Pending</span>
-                                </td>
-                            </tr><!--end tr-->
-                            <tr>
-                                <td>
-                                    <img class="" src="../assets/images/products/img-4.png" alt="user"> </td>
-                                <td>
-                                    Purse
-                                </td>
-                                <td>                                                                
-                                    <img src="../assets/images/flags/russia_flag.jpg" alt="" class="img-flag thumb-xxs rounded-circle">
-                                </td>
-                                <td>14/03/2019 8:27 PM</td>
-                                <td>100</td>                                   
-                                <td> $520</td>
-                                <td>                                                                                                                                              
-                                    <span class="badge badge-md badge-boxed  badge-soft-success">Shipped</span>                                                                    
-                                </td>
-                            </tr><!--end tr-->
-                            <tr>
-                                <td>
-                                    <img class="" src="../assets/images/products/img-5.png" alt="user"> </td>
-                                <td>
-                                    Shoe
-                                </td>
-                                <td>                                                                
-                                    <img src="../assets/images/flags/italy_flag.jpg" alt="" class="img-flag thumb-xxs rounded-circle">
-                                </td>
-                                <td>18/03/2019 5:09 PM</td>
-                                <td>100</td>                                   
-                                <td> $1150</td>
-                                <td>
-                                    <span class="badge badge-md badge-boxed badge-soft-warning">Pending</span>
-                                </td>
-                            </tr><!--end tr-->
-                            <tr>
-                                <td>
-                                    <img class="" src="../assets/images/products/img-6.png" alt="user"> </td>
-                                <td>
-                                    Boll
-                                </td>
-                                <td>                                                                
-                                    <img src="../assets/images/flags/us_flag.jpg" alt="" class="img-flag thumb-xxs rounded-circle">
-                                </td>
-                                <td>30/03/2019 4:29 PM</td>
-                                <td>140</td>                                   
-                                <td> $ 650</td>
-                                <td>                                                                        
-                                    <span class="badge badge-md badge-boxed  badge-soft-success">Shipped</span>
-                                </td>
-                            </tr><!--end tr-->                                                    
-                        </tbody>
-                    </table> <!--end table-->                                               
-                </div><!--end /div-->
-            </div><!--end card-body-->
-        </div><!--end card-->
-    </div><!--end col-->
-</div><!--end row-->
+            <div class="card-body">
+                
+                <h4 class="mt-0 header-title">Wholesalers</h4>
+                <p class="text-muted mb-4 font-13">
+                   Click on "View Products" to raise Purchase Order.
+                </p>
+
+                
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_length" id="datatable_length">
+                            <label>Show <select name="datatable_length" aria-controls="datatable" class="custom-select custom-select-sm form-control form-control-sm">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select> entries</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="container h-100">
+                        <div class="d-flex justify-content-center h-100">
+                        <div class="searchbar">
+                        <input class="search_input" type="text" name="" placeholder="Search...">
+          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                    </div>
+                     </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+@if ($wholesalers->isNotEmpty())
+    @foreach ($wholesalers as $wholesaler)
+               
+                    
+    <div class="col-md-6 col-xl-6">
+            <div class="card m-b-30">
+                <div class="card-body row">
+                    <div class="col-6">
+                        <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="img-fluid rounded-circle w-60"></a>
+                    </div>
+                    <div class="col-6 card-title align-self-center mb-0">
+                        <h5>{{$wholesaler->name}}</h5>
+                        <p class="m-0">{{$wholesaler->product_category()}}</p>
+                    </div>
+                </div>
+               
+                <div class="card-body">
+                    <div class="float-right btn-group btn-group-sm">
+                        <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}" class="btn btn-primary tooltips"><i class="fa fa-pencil"></i>View Products </a>
+                        
+                    </div>
+                    <ul class="social-links list-inline mb-0">
+                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fab fa-facebook"></i></a></li>
+                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fab fa-skype"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+	@endforeach
+@endif
+</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-5">
+                            <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 10 of 14 entries</div>
+                        </div>
+                        <div class="col-sm-12 col-md-7">
+                            <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
+                                <ul class="pagination">
+                                    <li class="paginate_button page-item previous disabled" id="datatable_previous"><a href="#" aria-controls="datatable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                    <li class="paginate_button page-item active"><a href="#" aria-controls="datatable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                                    <li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+                                    <li class="paginate_button page-item next" id="datatable_next"><a href="#" aria-controls="datatable" data-dt-idx="3" tabindex="0" class="page-link">Next</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end col -->
+
 @endsection

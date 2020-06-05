@@ -9,7 +9,7 @@
             <div class="float-right">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0);">NNURO</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">Town</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Location</a></li>
                 </ol>
             </div>
             <h4 class="page-title">Town</h4>

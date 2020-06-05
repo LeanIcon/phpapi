@@ -2,56 +2,157 @@
 
 @section('content')
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])
+ <style>
+.searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 50px;
+    background-color: white;
+    border-radius: 30px;
+    padding: 10px;
+    }
+
+    .search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 200px;
+    caret-color:green;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_icon{
+    background: green;
+    color: #e74c3c;
+    }
+
+    .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:green;
+    text-decoration:none;
+    }
+
+    i.fas {
+  
+  display: inline-block;
+  border-radius: 60px;
+  box-shadow: 0px 0px 2px #888;
+  padding: 0.5em 0.6em;
+
+}
+
+.card-eco .card-eco-icon.bg-icon-warning {
+    background-color: red;
+    -webkit-box-shadow: 0px 5px 5px 0.25px rgba(255, 184, 34, 0.5);
+    box-shadow: 0px 5px 5px 0.25px rgba(255, 184, 34, 0.5);
+}
+
+.page-wrapper {
+    padding-top: 50px;
+}
+    </style>
+
+
 <div class="row">
+<div class="col-lg-6 tags p-b-2">
+    <?php
+    /* This sets the $time variable to the current hour in the 24 hour clock format */
+    $time = date("H");
+    /* Set the $timezone variable to become the current timezone */
+    $timezone = date("e");
+    /* If the time is less than 1200 hours, show good morning */
+    if ($time < "12") {
+        echo "<h3 style= font-family:lora;>".  "Good morning" . " ".Auth::user()->firstname .","."</h3>";
+    } else
+    /* If the time is grater than or equal to 1200 hours, but less than 1700 hours, so good afternoon */
+    if ($time >= "12" && $time < "17") {
+        echo "<h3 style= font-family:lora;>". "Good afternoon" . " " . Auth::user()->firstname .","."</h3>";
+    } else
+    /* Should the time be between or equal to 1700 and 1900 hours, show good evening */
+    if ($time >= "17" && $time < "19") {
+        echo "Good evening";
+    } else
+    /* Finally, show good night if the time is greater than or equal to 1900 hours */
+    if ($time >= "19") {
+        echo "<h3 style= font-family:lora;>". "Good evening" . " " . Auth::user()->firstname .","."</h3>";
+    }
+    ?>
+                    <h1 style="font-size: 50px; font-family:lora;"> Welcome Back! </h1>
+                   <!-- <span class="badge badge-danger badge-pill noti-icon-badge"><a href="{{ route('wholesaler_expiryproducts') }}">Expiring Products</a></span> -->
+                </div>
     <div class="col-lg-3">
+        <a href="{{route('wholesaler_products.index')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <a href="#">  <h4 class="title-text mt-0">Total Products</h4></a>
+                <h4 class="title-text mt-0">Total Products</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">24k</h3>
-                    <a href="#">    <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i></a>
+                    <h3 class="text-purple">{{$purchaseOrders->count()}}</h3>
+                    <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i>
                 </div>
-                <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>8.5%</span>Up From Yesterday</p>
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div>
+</a>
+    <div class="col-lg-3">
+        <a href="{{route('wholesaler.purchaseorderlist') }}" class="custom-card">
+        <div class="card card-eco">
+            <div class="card-body">
+                <h4 class="title-text mt-0">Purchase Orders Received</h4>
+                <div class="d-flex justify-content-between">
+                    <h3 class="text-pink">{{$purchaseOrders->count()}}</h3>
+                    <i class="dripicons-cart card-eco-icon bg-icon-pink align-self-center"></i>
+                </div>
             </div><!--end card-body-->
         </div><!--end card-->
     </div><!--end col-->
+</a>
+
+<div class="col-lg-6 tags p-b-2">
+
+                </div>
     <div class="col-lg-3">
+        <a href="{{ route('wholesaler.purchaseorderinvoice') }}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <a href="#"> <h4 class="title-text mt-0">Purchase Orders</h4></a>
+                <h4 class="title-text mt-0">Invoice</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-pink">10k</h3>
-                    <a href="#">  <i class="dripicons-cart card-eco-icon bg-icon-pink align-self-center"></i></a>
-                </div>
-                <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>1.5%</span> Up From Last Week</p>
+                    <h3 class="text-purple">{{$approvedPurchaseOrders->count()}}</h3>
+                    <i class="dripicons-document-new card-eco-icon bg-icon-secondary align-self-center"></i>
+                </div>                                   
             </div><!--end card-body-->
         </div><!--end card-->
-    </div><!--end col-->
+    </div><!--end -->
+</a>
+
     <div class="col-lg-3">
+        <a href="{{ route('wholesaler_expiryproducts') }}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <a href="#">   <h4 class="title-text mt-0">Invoice</h4></a>
+                <h4 class="title-text mt-0">Expiring Products</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-secondary">8400</h3>
-                    <a href="#">    <i class="dripicons-jewel card-eco-icon bg-icon-secondary align-self-center"></i></a>
+                    <h3 class="text-purple"></h3>
+                    <i class="dripicons-wallet card-eco-icon bg-icon-warning  align-self-center"></i>
                 </div>
-                <p class="mb-0 text-muted text-truncate"><span class="text-danger"><i class="mdi mdi-trending-down"></i>3%</span> Down From Last Month</p>
             </div><!--end card-body-->
-        </div><!--end card-->
+        </div><!--end card--></a>
     </div><!--end col-->
-    <div class="col-lg-3">
-        <div class="card card-eco">
-            <div class="card-body">
-                <a href="#">  <h4 class="title-text mt-0">Pending</h4></a>
-                <div class="d-flex justify-content-between">
-                    <h3 class="text-warning">$1590</h3>
-                    <a href="#">  <i class="dripicons-wallet card-eco-icon bg-icon-warning  align-self-center"></i></a>
-                </div>
-                <p class="mb-0 text-muted text-truncate"><span class="text-success"><i class="mdi mdi-trending-up"></i>10.5%</span> Up From Yesterday</p>
-            </div><!--end card-body-->
-        </div><!--end card-->
-    </div><!--end col-->
-</div><!--end row-->
+</div>
+
 
 <div class="row">
     <div class="col-12">
@@ -73,98 +174,56 @@
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <div id="datatable_filter" class="dataTables_filter">
-                            <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="datatable"></label>
+                        <div class="container h-100">
+                        <div class="d-flex justify-content-center h-100">
+                        <div class="searchbar">
+                        <input class="search_input" type="text" name="" placeholder="Search...">
+          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                    </div>
+                     </div>
                         </div>
                     </div>
-                </div>                <div class="table-responsive">
-                    <table class="table table-hover mb-0">
-                        <thead class="thead-light">
-                            <tr>
-                                <th class="border-top-0">PO Id</th>
-                                <th class="border-top-0">Retailer</th>
-                                <th class="border-top-0">Location</th>
-                                <th class="border-top-0">Order Date/Time</th>
-                                <th class="border-top-0">Qty</th>                                    
-                                <th class="border-top-0">Amount (₵)</th>
-                                <th class="border-top-0">Status</th>
-                            </tr><!--end tr-->
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">001</a>                                 </td>
-                                <td>
-                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">Darko Oscar</a> 
-                                </td>
-                                <td>   
-                                   Accra                                                            
-                                </td>
-                                <td>3/03/2019 4:29 PM</td>
-                                <td>200</td>                                   
-                                <td> ₵750</td>
-                                <td>                                                                        
-                                    <span class="badge badge-md badge-boxed  badge-soft-success">Shipped</span>
-                                </td>
-                            </tr><!--end tr-->
-                            <tr>
-                                <td>
-                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">002</a>                                 </td>
+                </div>                <div class="row">
+                        <div class="col-sm-12">
+                            <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 285px;"> Purchase ID</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Reatailer Name</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Status</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">View Purchase Order Details</th>
+                                        
+                                        
+                                        
+                                    </tr>
+                                </thead>
 
-                                </td>
-                                <td>
-                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">Darko Oscar</a> 
+                                <tbody>
 
-                                </td>
-                                <td>   
-                                    Accra                                                            
-                                </td>
-                                <td>3/03/2019 4:29 PM</td>
-                                <td>200</td>                                   
-                                <td> ₵750</td>
-                                <td>                                                                        
-                                    <span class="badge badge-md badge-boxed  badge-soft-danger">Delivered</span>
-                                </td>
-                            </tr><!--end tr--> <tr>
-                                <td>
-                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">003</a>                                 </td>
+                                    @if ($purchaseOrders->isNotEmpty())
+                                        @foreach ($purchaseOrders as $purchaseOrder)
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">
+                                                    {{-- <img src="../assets/images/products/img-2.png" alt="" height="52"> --}}
+                                                    <p class="d-inline-block align-middle mb-0">
+                                                        <a href="{{route('wholesaler.order_details', $purchaseOrder->id)}}">
+                                                        <span class="badge badge-soft">PO-00{{$purchaseOrder->id}} </span>
+                                                        </a>
+                                                    </p>
+                                                </td>
+                                                <td>{{$purchaseOrder->retailer->name}}</td>
+                                                <td><span class= "badge badge-soft-{{$purchaseOrder->status == 'approved' ? 'success' : 'warning'}}">{{$purchaseOrder->status}}</span></td>
+                                                <td>
+                                                    <a href="{{route('wholesaler.order_details', $purchaseOrder->id)}}"><i class="far fa-eye text-danger"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
 
-                                </td>
-                                <td>
-                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">Darko Oscar</a> 
-                                </td>
-                                <td>   
-                                    Accra                                                            
-                                </td>
-                                <td>3/03/2019 4:29 PM</td>
-                                <td>200</td>                                   
-                                <td> ₵750</td>
-                                <td>                                                                        
-                                    <span class="badge badge-md badge-boxed badge-soft-warning">Pending</span>
-                                </td>
-                            </tr><!--end tr--> <tr>
-                                <td>
-                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">004</a>                                 </td>
-
-                                </td>
-                                <td>
-                                    <a href="{{route('wholesaler.purchaseorder')}}" class="d-inline-block align-middle mb-0 product-name">Darko Oscar</a> 
-                                </td>
-                                <td>   
-                                    Accra                                                            
-                                </td>
-                                <td>3/03/2019 4:29 PM</td>
-                                <td>200</td>                                   
-                                <td> ₵750</td>
-                                <td>                                                                        
-                                    <span class="badge badge-md badge-boxed  badge-soft-success">Shipped</span>
-                                </td>
-                            </tr><!--end tr-->
-                                                                              
-                        </tbody>
-                    </table> <!--end table-->                                               
-                </div><!--end /div-->
-            </div><!--end card-body-->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
         </div><!--end card-->
     </div><!--end col-->
 </div><!--end row-->
@@ -240,6 +299,5 @@
         </div><!--end card-->
     </div><!--end col-->
 </div><!--end row-->
-
 
 @endsection

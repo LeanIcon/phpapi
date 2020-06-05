@@ -15,7 +15,20 @@ class WholesalerPurchaseOrdersController extends Controller
     public function index()
     {
         $pageTitle = 'Purchase Order';
+        
         return view('admin.pages.wholesalers.purchaseorder');
+
+    }
+    public function pending()
+    {
+        $pageTitle = 'Pending Purchase Order';
+        return view('admin.pages.wholesalers.pendingpurchaseorder');
+
+    }
+    public function approve()
+    {
+        $pageTitle = 'Pending Purchase Order';
+        return view('admin.pages.wholesalers.approvepurchaseorder');
 
     }
 

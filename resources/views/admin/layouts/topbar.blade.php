@@ -1,5 +1,42 @@
+<style>
+.navbar-custom {
+    background: #04031F;
+    padding: 0 10px 0 0;
+    margin-left: 240px;
+    min-height: 70px;
+    position: relative;
+    -webkit-box-shadow: 0 6px 20px rgba(36, 37, 38, 0.08);
+    box-shadow: 0 6px 20px rgba(36, 37, 38, 0.08);
+}
+
+.topbar .topbar-left {
+    background-color: #04031F;
+    float: left;
+    text-align: center;
+    height: 70px;
+    position: relative;
+    width: 270px;
+    z-index: 1;
+    -webkit-box-shadow: 0px 8px 3px -3px rgba(28, 45, 65, 0.05);
+    box-shadow: 0px 8px 3px -3px rgba(28, 45, 65, 0.05);
+}
+.navbar-custom .topbar-nav li.show .nav-link {
+    background-color: #04031F;
+    color: #828db1;
+}
+
+.dropdown-menu {
+    padding: 4px 0;
+    font-size: 13px;
+    -webkit-box-shadow: 0 3px 12px rgba(182, 194, 228, 0.05);
+    box-shadow: 0 3px 12px rgba(182, 194, 228, 0.05);
+    border-color: #04031F;
+    margin: 0;
+}
+</style>
 <!-- Top Bar Start -->
         <div class="topbar">
+
 
             <!-- LOGO -->
             <div class="topbar-left">
@@ -13,26 +50,20 @@
                     <span>
                         <img src="{{url('admin/images/logo.png')}}" alt="logo-large" class="logo-light">
                     </span> --}}
-                    NNURO
+                    
                 </a>
+                <span>
+                	<a href="{{route('dashboard.index')}}">
+                        <img src="{{url('admin/assets/images/NN.png')}}" class="logo-light"  style="height: 80%">
+                    </span>
+                </a>
+                
             </div>
             <!--end logo-->
             <!-- Navbar -->
             <nav class="navbar-custom">    
                 <ul class="list-unstyled topbar-nav float-right mb-0"> 
-                    <li class="hidden-sm">
-                        <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="javascript: void(0);" role="button"
-                            aria-haspopup="false" aria-expanded="false">
-                            English <img src="../assets/images/flags/us_flag.jpg" class="ml-2" height="16" alt=""/> <i class="mdi mdi-chevron-down"></i> 
-                        </a>
-                        {{-- <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javascript: void(0);"><span> German </span><img src="../assets/images/flags/germany_flag.jpg" alt="" class="ml-2 float-right" height="14"/></a>
-                            <a class="dropdown-item" href="javascript: void(0);"><span> Italian </span><img src="../assets/images/flags/italy_flag.jpg" alt="" class="ml-2 float-right" height="14"/></a>
-                            <a class="dropdown-item" href="javascript: void(0);"><span> French </span><img src="../assets/images/flags/french_flag.jpg" alt="" class="ml-2 float-right" height="14"/></a>
-                            <a class="dropdown-item" href="javascript: void(0);"><span> Spanish </span><img src="../assets/images/flags/spain_flag.jpg" alt="" class="ml-2 float-right" height="14"/></a>
-                            <a class="dropdown-item" href="javascript: void(0);"><span> Russian </span><img src="../assets/images/flags/russia_flag.jpg" alt="" class="ml-2 float-right" height="14"/></a>
-                        </div> --}}
-                    </li>
+                    
 
                     <li class="dropdown notification-list">
                         <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
@@ -44,7 +75,10 @@
                             <!-- item-->
                             <h6 class="dropdown-item-text">
                                 Notifications (18)
+
+
                             </h6>
+                            @auth
                             @if (Auth::user()->hasRole('Admin'))
                             <div class="slimscroll notification-list">
                                 <!-- item-->
@@ -66,8 +100,10 @@
                                  </a>
                                  @endif
                                 @endforeach
+
                             </div>
                             @endif
+                            @endauth
                             <!-- All-->
                             <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
                                 View all <i class="fi-arrow-right"></i>

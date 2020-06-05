@@ -36,8 +36,18 @@ class WholesalerProductsController extends Controller
      */
     public function index()
     {
-        $wholesalerProducts = $this->wholesalerProducts::all();
+        //$wholesalerProducts = $this->wholesalerProducts::all();
+        $wholesaler = Auth::user()->id;
+        $wholesalerProducts = $this->wholesalerProducts::where('wholesaler_id', $wholesaler)->get();
         return view('admin.pages.wholesalers.products', compact('wholesalerProducts'));
+    }
+    public function loadExpiryProducts()
+    {
+        //$wholesalerProducts = $this->wholesalerProducts::all();
+        $wholesaler = Auth::user()->id;
+        $wholesalerProducts = $this->wholesalerProducts::where('wholesaler_id', $wholesaler)->get();
+        return view('admin.pages.wholesalers.expiryproducts', compact('wholesalerProducts'));
+        
     }
 
     /**
@@ -87,11 +97,13 @@ class WholesalerProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        $manufacturers = $this->manufacturer::all();
-        $productCategory = $this->productCategory::ProductCategory();
-        return view('admin.pages.wholesalers.products.edit', compact('manufacturers', 'productCategory'));
-    }
+    {        $products = $this->products::all();
+        $products = $this->products::all();
+        $product = $this->wholesalerProducts::find($id);
+        $manufacturers  = $this->manufacturer::all();
+        $productCategoryTypes = $this->productCategoryTypes::all();
+        return view('admin.pages.wholesalers.products.edit', compact('manufacturers','products', 'product', 'productCategoryTypes'));
+      }
 
     /**
      * Update the specified resource in storage.

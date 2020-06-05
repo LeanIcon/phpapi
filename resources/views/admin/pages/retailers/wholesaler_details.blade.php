@@ -30,9 +30,9 @@
                                 <ul class="list-unstyled personal-detail">
                                     <li class=""><i class="dripicons-phone mr-2 text-info font-18"></i> <b> phone </b> :{{$wholesaler->phone}}</li>
                                     <li class="mt-2"><i class="dripicons-mail text-info font-18 mt-2 mr-2"></i> <b> Email </b> : {{$wholesaler->email}}</li>
-                                    <li class="mt-2"><i class="dripicons-location text-info font-18 mt-2 mr-2"></i> <b>Location</b> : USA</li>
+                                    <li class="mt-2"><i class="dripicons-location text-info font-18 mt-2 mr-2"></i> <b>Location</b> : {{$wholesaler->location}}</li>
                                 </ul>
-                                <div class="button-list btn-social-icon">
+                                <!--<div class="button-list btn-social-icon">
                                     <button type="button" class="btn btn-blue btn-round">
                                         <i class="fab fa-facebook-f"></i>
                                     </button>
@@ -40,7 +40,7 @@
                                     <button type="button" class="btn btn-secondary btn-round ml-2">
                                         <i class="fab fa-twitter"></i>
                                     </button>
-                                </div>
+                                </div>-->
                             </div>
                             <!--end col-->
                         </div>
@@ -52,17 +52,13 @@
                 <div class="card-body">
                     <ul class="nav nav-pills mb-0" id="pills-tab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="general_detail_tab" data-toggle="pill" href="#general_detail">General</a>
+                            <a class="nav-link active" id="education_detail_tab" data-toggle="pill" href="#education_detail">Products</a>
                         </li>
+                        @role('Admin')
                         <li class="nav-item">
-                            <a class="nav-link" id="education_detail_tab" data-toggle="pill" href="#education_detail">Products</a>
+                            <a class="nav-link" id="general_detail_tab" data-toggle="pill" href="#general_detail">General</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="portfolio_detail_tab" data-toggle="pill" href="#portfolio_detail">News Info</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="settings_detail_tab" data-toggle="pill" href="#settings_detail">Settings</a>
-                        </li>
+                        @endrole
                     </ul>
                 </div>
                 <!--end card-body-->
@@ -75,13 +71,74 @@
     <div class="row">
         <div class="col-12">
             <div class="tab-content detail-list" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="general_detail">
+                <div class="tab-pane fade " id="general_detail">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
-
+                                        <form action="{{route('user.update',$wholesaler->id)}}" method="POST" >
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="LeadName">Location</label>
+                                                        <input type="text" name="location" class="form-control" value="{{$details->location ?? 'Not Available'}}" id="LeadName" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="LeadName">Digital Addres</label>
+                                                        <input type="text" name="digital_address" class="form-control" value="{{$details->digital_address ?? 'Not Available'}}" id="LeadName" required="">
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="LeadName">Business Address</label>
+                                                        <input type="text" name="business_address" value="{{$details->business_address ?? 'Not Available'}}" class="form-control" id="LeadName" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="LeadName">Reg No.</label>
+                                                        <input type="text" name="reg_no" value="{{$details->reg_no ?? 'Not Available'}}" class="form-control" id="LeadName" required="">
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="LeadName">Contact Person</label>
+                                                        <input type="text" name="contact_person"  value="{{$details->contact_person ?? 'Not Available'}}" class="form-control" id="LeadName" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="LeadName">Practise group</label>
+                                                        <input type="text" name="practise_group"  value="{{$details->practise_group ?? 'Not Available'}}" class="form-control" id="LeadName" required="">
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="LeadName">Contact Person Phone</label>
+                                                        <input type="text"  name="contact_person_phone" class="form-control"  value="{{$details->contact_person_phone ?? 'Not Available'}}" id="LeadName" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="LeadName">Town</label>
+                                                        <select class="form-control" name="town_id" id="">
+                                                            <option value="">Select Town</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <button class="btn btn-primary" type="submit" >Submit</button>
+                                        </form>
                                     </div>
                                 </div>
                                 <!--end card-body-->
@@ -94,110 +151,9 @@
                 </div>
                 <!--end general detail-->
 
-                <div class="tab-pane fade" id="education_detail">
+                <div class="tab-pane fade show active" id="education_detail">
                     <div class="row">
-                        <div class="col-lg-3">
-                            <div class="card e-co-product">
-                                <a href="">
-                                    <img src="{{url('admin/assets/images/products/img-1.png')}}" alt="" class="img-fluid">
-                                </a>
-                                <div class="card-body product-info">
-                                    <a href="" class="product-title">Chloroquin</a>
-                                    <div class="d-flex justify-content-between my-2">
-                                        <p class="product-price"> &cent; 29.00 <span class="ml-2"><del>&cent;49.00</del></span></p>
-                                        <ul class="list-inline mb-0 product-review align-self-center">
-                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                                            <li class="list-inline-item"><i class="mdi mdi-star-half text-warning"></i></li>
-                                        </ul>
-                                    </div>
-                                    <button class="btn btn-gradient-primary btn-round px-3 btn-sm waves-effect waves-light"><i class="mdi mdi-cart mr-1"></i> Add To Purchase Order</button>
-                                    {{--  <button class="btn btn-gradient-pink  btn-sm waves-effect waves-light wishlist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wishlist"><i class="mdi mdi-heart"></i></button>
-                                    <button class="btn btn-gradient-secondary  btn-sm waves-effect waves-light quickview" data-toggle="tooltip" data-placement="top" title="" data-original-title="Quickview"><i class="mdi mdi-magnify"></i></button>  --}}
-                                </div>
-                                <!--end card-body-->
-                            </div>
-                            <!--end card-->
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="card e-co-product">
-                                <a href="">
-                                    <img src="{{url('admin/assets/images/products/img-1.png')}}" alt="" class="img-fluid">
-                                </a>
-                                <div class="card-body product-info">
-                                    <a href="" class="product-title">Chloroquin</a>
-                                    <div class="d-flex justify-content-between my-2">
-                                        <p class="product-price"> &cent; 29.00 <span class="ml-2"><del>&cent;49.00</del></span></p>
-                                        <ul class="list-inline mb-0 product-review align-self-center">
-                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                                            <li class="list-inline-item"><i class="mdi mdi-star-half text-warning"></i></li>
-                                        </ul>
-                                    </div>
-                                    <button class="btn btn-gradient-primary btn-round px-3 btn-sm waves-effect waves-light"><i class="mdi mdi-cart mr-1"></i> Add To Purchase Order</button>
-                                    {{--  <button class="btn btn-gradient-pink  btn-sm waves-effect waves-light wishlist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wishlist"><i class="mdi mdi-heart"></i></button>
-                                    <button class="btn btn-gradient-secondary  btn-sm waves-effect waves-light quickview" data-toggle="tooltip" data-placement="top" title="" data-original-title="Quickview"><i class="mdi mdi-magnify"></i></button>  --}}
-                                </div>
-                                <!--end card-body-->
-                            </div>
-                            <!--end card-->
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="card e-co-product">
-                                <a href="">
-                                    <img src="{{url('admin/assets/images/products/img-1.png')}}" alt="" class="img-fluid">
-                                </a>
-                                <div class="card-body product-info">
-                                    <a href="" class="product-title">Chloroquin</a>
-                                    <div class="d-flex justify-content-between my-2">
-                                        <p class="product-price"> &cent; 29.00 <span class="ml-2"><del>&cent;49.00</del></span></p>
-                                        <ul class="list-inline mb-0 product-review align-self-center">
-                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                                            <li class="list-inline-item"><i class="mdi mdi-star-half text-warning"></i></li>
-                                        </ul>
-                                    </div>
-                                    <button class="btn btn-gradient-primary btn-round px-3 btn-sm waves-effect waves-light"><i class="mdi mdi-cart mr-1"></i> Add To Purchase Order</button>
-                                    {{--  <button class="btn btn-gradient-pink  btn-sm waves-effect waves-light wishlist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wishlist"><i class="mdi mdi-heart"></i></button>
-                                    <button class="btn btn-gradient-secondary  btn-sm waves-effect waves-light quickview" data-toggle="tooltip" data-placement="top" title="" data-original-title="Quickview"><i class="mdi mdi-magnify"></i></button>  --}}
-                                </div>
-                                <!--end card-body-->
-                            </div>
-                            <!--end card-->
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="card e-co-product">
-                                <a href="">
-                                    <img src="{{url('admin/assets/images/products/img-1.png')}}" alt="" class="img-fluid">
-                                </a>
-                                <div class="card-body product-info">
-                                    <a href="" class="product-title">Chloroquin</a>
-                                    <div class="d-flex justify-content-between my-2">
-                                        <p class="product-price"> &cent; 29.00 <span class="ml-2"><del>&cent;49.00</del></span></p>
-                                        <ul class="list-inline mb-0 product-review align-self-center">
-                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                                            <li class="list-inline-item"><i class="mdi mdi-star-half text-warning"></i></li>
-                                        </ul>
-                                    </div>
-                                    <button class="btn btn-gradient-primary btn-round px-3 btn-sm waves-effect waves-light"><i class="mdi mdi-cart mr-1"></i> Add To Purchase Order</button>
-                                    {{--  <button class="btn btn-gradient-pink  btn-sm waves-effect waves-light wishlist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wishlist"><i class="mdi mdi-heart"></i></button>
-                                    <button class="btn btn-gradient-secondary  btn-sm waves-effect waves-light quickview" data-toggle="tooltip" data-placement="top" title="" data-original-title="Quickview"><i class="mdi mdi-magnify"></i></button>  --}}
-                                </div>
-                                <!--end card-body-->
-                            </div>
-                            <!--end card-->
-                        </div>
-                        <!--end col-->
-
+                        @include('admin.layouts.product_layouts.list', ['products' => $products])
                     </div>
                 </div>
                 <!--end education detail-->

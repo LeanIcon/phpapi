@@ -2,6 +2,42 @@
 
 @section('content')
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? ''])
+
+<style>
+body{
+    margin-top:20px;
+    background: #f5f5f5;
+}
+.card {
+    border: none;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,1.0);
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,1.0);
+    margin-bottom: 30px;
+}
+.w-60 {
+    width: 60px;
+}
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 10px;
+    font-weight: 600;
+}
+.social-links li a {
+    -webkit-border-radius: 50%;
+    background-color: rgba(89,206,181,.85);
+    border-radius: 50%;
+    color: #fff;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 30px;
+    font-size: 12px;
+}
+a {
+    color: #707070;
+}
+</style>
+
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -35,43 +71,34 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12">
-                            <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
-                                <thead>
-                                    <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 285px;">Wholesaler Name</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Location</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Items</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Status</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">Action</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    @if ($wholesalers->isNotEmpty())
-                                        @foreach ($wholesalers as $wholesaler)
-                                            <tr role="row" class="odd">
-                                                <td class="sorting_1">
-                                                    <img src="../assets/images/products/img-2.png" alt="" height="52">
-                                                    <p class="d-inline-block align-middle mb-0">
-                                                        <a href="" class="d-inline-block align-middle mb-0 product-name">{{$wholesaler->name}}</a>
-                                                    </p>
-                                                </td>
-                                                <td>Sports</td>
-                                                <td>
-                                                    <a >{{$wholesaler->product_cat}}</a>
-                                                </td>
-                                                <td><span class="badge badge-soft-warning">Stock</span></td>
-                                                <td>
-                                                    <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}"><i class="far fa-eye text-danger"></i></a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
-                                </tbody>
-                            </table>
-                        </div>
+@if ($wholesalers->isNotEmpty())
+    @foreach ($wholesalers as $wholesaler)
+               
+                    
+    <div class="col-md-6 col-xl-6">
+            <div class="card m-b-30">
+                <div class="card-body row">
+                    <div class="col-6">
+                        <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="img-fluid rounded-circle w-60"></a>
                     </div>
+                    <div class="col-6 card-title align-self-center mb-0">
+                        <h5>{{$wholesaler->name}}</h5>
+                        <p class="m-0">{{$wholesaler->product_category()}}</p>
+                    </div>
+                </div>
+               
+                <div class="card-body">
+                    <div class="float-right btn-group btn-group-sm">
+                        <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}" class="btn btn-primary tooltips"><i class="fa fa-pencil"></i>View Products </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+	@endforeach
+@endif
+</div>
                     <div class="row">
                         <div class="col-sm-12 col-md-5">
                             <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 10 of 14 entries</div>
@@ -93,4 +120,10 @@
     </div>
     <!-- end col -->
 </div>
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 @endsection

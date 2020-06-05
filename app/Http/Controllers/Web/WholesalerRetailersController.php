@@ -15,6 +15,7 @@ class WholesalerRetailersController extends Controller
     public function index()
     {
         $retailers = $this->user::isRetailer()->get();
+        //return $retailers;
         return view('admin.pages.wholesalers.retailers', compact('retailers'));
     }
 }

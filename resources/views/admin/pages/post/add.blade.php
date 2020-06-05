@@ -24,32 +24,19 @@
                 ADD NEW POST
             </div>
             <div class="card-body">
-                <form>
+                <form method="POST" action="{{route('post.store')}}" enctype="multipart/form-data" >
+                    @csrf
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="LeadName">Title</label>
-                                <input type="text" class="form-control" id="LeadName" required="">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="LeadEmail">Content</label>
-                                <input type="email" class="form-control" id="LeadEmail" required="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="PhoneNo">Phone No</label>
-                                <input type="text" class="form-control" id="PhoneNo" required="">
+                                <input type="text" name="title" class="form-control" id="LeadName" required="">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="status-select" class="mr-2">Category</label>
-                                <select class="custom-select" id="status-select">
+                                <select class="custom-select" name="category_post_id" id="status-select">
                                     <option selected="">Select</option>
                                     @if ($postCategory->isNotEmpty())
                                         @foreach ($postCategory as $category)
@@ -59,13 +46,29 @@
                                 </select>
                             </div>
                         </div>
-                    </div> 
-                    <button type="button" class="btn btn-sm btn-primary">Save</button>  
-                    <button type="button" class="btn btn-sm btn-danger">Cancel</button>             
-                </form>  
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="LeadEmail">Content</label>
+                                <textarea name="body" class="form-control" id="" cols="30" rows="10"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="LeadEmail">Post Image</label>
+                                <input type="file" class="form-control" id="post_image">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                    <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Cancel</button>
+                </form>
             </div>
         </div>
-    </div><!--end row-->  
+    </div><!--end row-->
     @include('admin.pages.dashboard.modal-page')
     </div><!-- container -->
 
