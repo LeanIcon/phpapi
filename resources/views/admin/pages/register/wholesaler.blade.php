@@ -1,12 +1,12 @@
 @include('admin.layouts.header')
 
-<div class="page-wrapper">
+<div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header text-center bg-dark text-white">{{ __('Sign Up') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register.form') }}">
