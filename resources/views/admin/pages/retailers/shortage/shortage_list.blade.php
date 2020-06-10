@@ -6,7 +6,7 @@
     
     <div class="col-lg-3">
         <div class="card">
-           <a class="btn btn-default" href="">Purchase Order List
+           <a class="btn btn-default" href="">SHORTAGE LIST
                <i class="fa fa-1x far fa-list-alt" ></i>
            </a>
         </div>
@@ -59,7 +59,7 @@
                                     @csrf
                                     <p align="right"> 
                                         <button type="submit" class="btn btn-primary btn-sm px-4 mt-0 mb-3" >
-                                        <i href="" class="mdi mdi-plus-circle-outline mr-2"></i>Send Purchase Order</button></p>
+                                        <i href="" class="mdi mdi-plus-circle-outline mr-2"></i>SAVE SHORTAGE LIST</button></p>
                                 </form>
                             <tbody>
 

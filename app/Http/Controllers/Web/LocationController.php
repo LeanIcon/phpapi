@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Models\Post;
-use Illuminate\Support\Str;
-use App\Models\PostCategory;
+use App\Models\Region;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class PostController extends Controller
+class LocationController extends Controller
 {
-    public $pageTitle = 'Post';
-    public $postCategory;
-    public function __construct(PostCategory $postCategory, Post $post)
+    public $location;
+    public function __construct(Location $location, Region $region)
     {
-        $this->postCategory = $postCategory;
-        $this->post = $post;
+        $this->location = $location;
+        $this->region = $region;
     }
     /**
      * Display a listing of the resource.
@@ -24,12 +22,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $pageTitle = 'Post';
-        $posts = $this->post::all();
-
-        // return $posts;
-        // $postCategory = $this->postCategory::all();
-        return view('admin.pages.post.index', compact('pageTitle', 'posts'));
+        $locations = $this->location::all();
+        $pageTitle = 'Locations';
+        return view('admin.pages.location.index', compact('pageTitle', 'locations'));
     }
 
     /**
@@ -39,9 +34,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        $pageTitle = 'Post';
-        $postCategory = $this->postCategory::all();
-        return view('admin.pages.post.add',  compact('pageTitle', 'postCategory'));
+        $pageTitle = 'Location';
+        $regions = $this->region::all();
+        return view('admin.pages.location.add', compact('regions'));
     }
 
     /**
@@ -52,11 +47,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request['slug'] = Str::slug($request->title);
-        $data = $request->all();
-        $request->user()->posts()->create($data);
-
-        return redirect()->route('post.index');
+        $data =  $request->all();
+        $town = $this->location::create($data);
+        return redirect()->route('location.index');
     }
 
     /**

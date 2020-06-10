@@ -2,6 +2,97 @@
 
 @section('content')
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])
+<style>
+.searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 50px;
+    background-color: white;
+    border-radius: 70%;
+    padding: 10px;
+    }
+
+    .search_input{
+    color: black;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 200px;
+    caret-color:green;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_icon{
+    background: green;
+    color: #e74c3c;
+    }
+
+    .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:green;
+    text-decoration:none;
+    }
+
+    i.fas {
+  
+  display: inline-block;
+  border-radius: 60px;
+  box-shadow: 2px 0px 2px #888;
+  padding: 0.5em 0.6em;
+
+}
+
+body{
+    margin-top:20px;
+    background: #f5f5f5;
+}
+.card {
+    border: none;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,1.0);
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,1.0);
+    margin-bottom: 30px;
+}
+.w-60 {
+    width: 60px;
+}
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 10px;
+    font-weight: 600;
+}
+.social-links li a {
+    -webkit-border-radius: 50%;
+    background-color: rgba(89,206,181,.85);
+    border-radius: 50%;
+    color: #fff;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 30px;
+    font-size: 12px;
+}
+a {
+    color: #707070;
+}
+
+.page-wrapper {
+    padding-top: 50px;
+}
+    </style>
 <div class="row">
 <div class="col-lg-6 tags p-b-2">
 <?php
@@ -95,65 +186,65 @@
                 
                 <h4 class="mt-0 header-title">Wholesalers</h4>
                 <p class="text-muted mb-4 font-13">
-                   Click on Wholesalers to raise Purchase Order.
+                   Click on "View Products" to raise Purchase Order.
                 </p>
 
-                <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            <div class="dataTables_length" id="datatable_length">
-                                <label>Show
-                                    <select name="datatable_length" aria-controls="datatable" class="custom-select custom-select-sm form-control form-control-sm">
-                                        <option value="10">10</option>
-                                        <option value="25">25</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
-                                    </select> entries</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div id="datatable_filter" class="dataTables_filter">
-                                <label>Search:
-                                    <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="datatable">
-                                </label>
-                            </div>
+                
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_length" id="datatable_length">
+                            <label>Show <select name="datatable_length" aria-controls="datatable" class="custom-select custom-select-sm form-control form-control-sm">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select> entries</label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
-                                <thead>
-                                    <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 285px;">Wholesaler Name</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Location</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Category</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">View Products List</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    @if ($wholesalers->isNotEmpty())
-                                        @foreach ($wholesalers as $wholesaler)
-                                            <tr role="row" class="odd">
-                                                <td class="sorting_1">
-                                                    <img src="../assets/images/products/img-2.png" alt="" height="52">
-                                                    <p class="d-inline-block align-middle mb-0">
-                                                        <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}" class="d-inline-block align-middle mb-0 product-name">{{$wholesaler->name}}</a>
-                                                    </p>
-                                                </td>
-                                                <td>Sports</td>
-                                                <td>
-                                                    <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}" >{{$wholesaler->product_category()}}</a>
-                                                </td>
-                                                <td>
-                                                    <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}"><i class="far fa-eye text-danger"></i></a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
-                                </tbody>
-                            </table>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="container h-100">
+                        <div class="d-flex justify-content-center h-100">
+                        <div class="searchbar">
+                        <input class="search_input" type="text" name="" placeholder="Search...">
+          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                    </div>
+                     </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+@if ($wholesalers->isNotEmpty())
+    @foreach ($wholesalers as $wholesaler)
+               
+                    
+    <div class="col-md-6 col-xl-6">
+            <div class="card m-b-30">
+                <div class="card-body row">
+                    <div class="col-6">
+                        <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="img-fluid rounded-circle w-60"></a>
+                    </div>
+                    <div class="col-6 card-title align-self-center mb-0">
+                        <h5>{{$wholesaler->name}}</h5>
+                        <p class="m-0">{{$wholesaler->product_category()}}</p>
+                    </div>
+                </div>
+               
+                <div class="card-body">
+                    <div class="float-right btn-group btn-group-sm">
+                        <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}" class="btn btn-primary tooltips"><i class="fa fa-pencil"></i>View Products </a>
+                        
+                    </div>
+                    <ul class="social-links list-inline mb-0">
+                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fab fa-facebook"></i></a></li>
+                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fab fa-skype"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+	@endforeach
+@endif
+</div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12 col-md-5">

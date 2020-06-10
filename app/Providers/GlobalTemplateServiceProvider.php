@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Location;
 use App\User;
 use Illuminate\Support\ServiceProvider;
 
@@ -36,7 +37,8 @@ class GlobalTemplateServiceProvider extends ServiceProvider
             $view->with('retailers', $this->getRetailers());
         });
 
-        view()->composer([], function($view){
+        view()->composer(['admin.pages.register.wholesaler', 'auth.login'], function($view){
+            $view->with('locations', $this->getLocations());
             // in_array()
         });
     }
@@ -53,5 +55,12 @@ class GlobalTemplateServiceProvider extends ServiceProvider
         // $retailers = $this->users->isRetailer()->get();
         $retailers = User::where('type', 'retailer')->get();;
         return $retailers;
+    }
+
+    public function getLocations()
+    {
+        // $retailers = $this->users->isRetailer()->get();
+        $locations = Location::all();
+        return $locations;
     }
 }

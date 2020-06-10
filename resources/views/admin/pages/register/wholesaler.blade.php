@@ -1,13 +1,13 @@
 @include('admin.layouts.header')
 
-<div class="page-wrapper">
+<div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
-    
+                    <div class="card-header text-center bg-dark text-white">{{ __('Sign Up') }}</div>
+
                     <div class="card-body">
                         <form method="POST" action="{{ route('register.form') }}">
                             @csrf
@@ -25,10 +25,23 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
+                                <div class="col-md-6">
+                                    @if (!is_null($locations))
+                                    <select class="form-control" name="location" id="">
+                                        <option value="">Select</option>
+                                        @foreach ($locations as $location)
+                                            <option value="{{$location->id}}">{{$location->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Company Name') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="name" autofocus>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
     
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -38,12 +51,11 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Registration No') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="name" autofocus>
-    
-                                    @error('name')
+                                    <input id="name" type="text" class="form-control @error('reg_no') is-invalid @enderror" name="reg_no" value="{{ old('reg_no') }}" required autocomplete="reg_no" autofocus>
+                                    @error('reg_no')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -51,12 +63,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Phone / Mobile') }}</label>
+                                <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone / Mobile') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="name" autofocus>
+                                    <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="name" autofocus>
     
-                                    @error('name')
+                                    @error('phone')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

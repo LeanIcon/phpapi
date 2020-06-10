@@ -9,10 +9,10 @@
             <div class="float-right">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0);">NNURO</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">{{$pageTitle ?? 'Current Page'}}</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Town</a></li>
                 </ol>
             </div>
-            <h4 class="page-title">{{$pageTitle ?? 'Current Page'}}</h4>
+            <h4 class="page-title">Town</h4>
         </div><!--end page-title-box-->
     </div><!--end col-->
 </div>
@@ -48,9 +48,9 @@
                             <div class="col-8 align-self-center text-right">
                                 <div class="ml-2">
                                     <p class="mb-1 text-muted">Total Leads</p>
-                                    <h4 class="mt-0 mb-1 text-warning font-22">1935</h4>
+                                    <h4 class="mt-0 mb-1 text-warning font-22">1935</h4>                                                                                                                                           
                                 </div>
-                            </div>
+                            </div>                    
                         </div>
                         <div class="progress mt-2" style="height:3px;">
                             <div class="progress-bar bg-warning" role="progressbar" style="width: 55%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
@@ -116,36 +116,35 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a type="button" href="{{route('post.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
-                <h4 class="header-title mt-0 mb-3">All {{$pageTitle ?? 'Current Page'}}</h4> 
+                <a type="button" href="{{route('location.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
+                <h4 class="header-title mt-0 mb-3">All Towns</h4> 
                 <div class="table-responsive dash-social">
                     <table id="datatable" class="table">
                         <thead class="thead-light">
                         <tr>
-                            <th>Category</th>
-                            <th>Title</th>
-                            <th>Content</th>                                                    
+                         
+                            <th>ID</th>
+                            <th>Name</th>                                                    
                             <th>Status</th>
                             <th>Action</th>
                         </tr><!--end tr-->
                         </thead>
 
                         <tbody>
-                            @if ($posts->isNotEmpty())
-                            @foreach ($posts as $item)
-                            <tr>
-                                <td><img src="../assets/images/users/user-10.jpg" alt="" class="thumb-sm rounded-circle mr-2">{{$item->category->name}}</td>
-                                <td>{{$item->title}}</td>
-                                <td>{{Str::limit($item->body, 50)}}</td>
-                                <td> <span class="badge badge-md badge-soft-success">Published</span></td>
-                                {{--  <td> 
-                                    <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                    <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                                </td>  --}}
-                                @endforeach
-                            @endif
-                        </tr><!--end tr-->
 
+                            @if ($locations->isNotEmpty())
+                            @foreach ($locations as $location)
+                                <tr>
+                                    <td>{{$location->id}}</td>
+                                    <td>{{$location->name}}</td>
+                                    <td> <span class="badge badge-md badge-soft-purple">Active</span></td>
+                                    <td>
+                                        <a href="{{route('town.edit', $location->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                        <a href="{{route('town.show', $location->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>
+                                    </td>
+                                </tr><!--end tr-->
+                            @endforeach
+                        @endif
                         </tbody>
                     </table>
                 </div>
