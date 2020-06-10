@@ -49,6 +49,16 @@ class Product extends ApiModel implements Searchable
         return $desc;
     }
     
+    public function prodesc()
+    {
+        $desc = "$this->name $this->active_ingredients $this->strength $this->packet_size";
+        return $desc;
+    }
+
+    public function dosageform()
+    {
+        return $this->belongsTo(DosageForm::class,'dosage_form_id');
+    }
 
      public function getSearchResult(): SearchResult
     {
