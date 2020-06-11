@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->middleware('guest');
 
 
 
@@ -38,7 +38,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::post('approved_users/{user?}', 'ApproveRegistrationController@AcceptapprovedUsers')->name('approve.users');
     Route::resource('post_category', 'PostCategoryController');
     Route::resource('wholesaler.drugs', 'WholeSalerDrugsController');
-    Route::get('register', 'RegisterFormController@loadRegisterForm')->name('register.form');
+    Route::get('register', 'RegisterFormController@loadRegisterForm')->name('register.form')->middleware('guest');
     Route::post('register_user', 'RegisterFormController@saveNewUserForm')->name('save.user');
     Route::post('register', 'RegisterController@register')->name('register.form');
 
