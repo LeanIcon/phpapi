@@ -140,10 +140,6 @@
                         </div>
                     </div>
                     <input type="hidden" name="type" value="wholesaler">
-                    <input id="password" type="hidden" name="password" value="12345678" required autocomplete="new-password">
-                    <input id="password-confirm" type="hidden" name="password_confirmation" value="12345678" required autocomplete="new-password">
-
-
                     <button type="submit" class="btn btn-sm btn-primary">Save</button>
                     <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Cancel</button>
                 </form>

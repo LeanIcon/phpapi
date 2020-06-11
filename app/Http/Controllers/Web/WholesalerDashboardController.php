@@ -15,6 +15,7 @@ class WholesalerDashboardController extends Controller
     {
         $this->middleware('auth');
         $this->middleware(['role:Wholesaler']);
+        $this->middleware('check-pin');
         $this->purchaseOrders = $purchaseOrders;
         $this->user = $user;
         $this->purchaseOrderItems = $purchaseOrderItems;
@@ -27,9 +28,7 @@ class WholesalerDashboardController extends Controller
 
         $approvedPurchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler)->where('status', 'approved')->get();
         $retailers = $this->user::isRetailer()->get();
-        //return $retailers;
 
-       // return $purchaseOrders;
         return view('admin.pages.wholesalers.dashboard', compact('pageTitle','purchaseOrders', 'approvedPurchaseOrders', 'retailers'));
     }
 

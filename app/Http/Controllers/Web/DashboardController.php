@@ -14,6 +14,7 @@ class DashboardController extends Controller
     {
         $this->user = $user;
         $this->middleware('auth');
+        // $this->middleware('check-pin');
     }
 
     public function dashboard()
@@ -22,7 +23,8 @@ class DashboardController extends Controller
 
         if( $authUser->type == $this->user::IS_ADMIN)
         {
-            return $this->loadDashboard();
+            return redirect()->route('admin.dashboard');
+            // return $this->loadDashboard();
         }
         if ($authUser->type == $this->user::IS_WHOLESALER )
         {

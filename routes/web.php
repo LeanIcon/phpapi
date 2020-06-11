@@ -20,7 +20,8 @@ Route::get('/', function () {
 
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
-    Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard.index');
+    Route::get('/loaddashboard', 'DashboardController@dashboard')->name('dashboard.index');
+    Route::get('/dashboard', 'AdminDashboardController@index')->name('admin.dashboard');
     Route::get('/dashboard/wholesalers', 'DashboardController@loadWholesaler')->name('dashboard.wholesalers');
     Route::get('/dashboard/retailers', 'DashboardController@loadRetailer')->name('dashboard.retailers');
 
@@ -98,6 +99,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     });
 
 });
+
+Route::get('verify', 'Web\VerifyPinPageController@loadpage')->name('loadpin');
+Route::post('verify', 'Web\ConfirmPinController');
 
 
 Auth::routes(['register' => false]);

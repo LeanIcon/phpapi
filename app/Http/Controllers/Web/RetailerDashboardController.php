@@ -13,6 +13,7 @@ class RetailerDashboardController extends Controller
     {
         $this->middleware('auth');
         $this->middleware(['role:Retailer|Wholesaler']);
+        $this->middleware('check-pin');
         $this->purchaseOrders = $purchaseOrders;
         $this->user = $user;
     }
@@ -23,10 +24,6 @@ class RetailerDashboardController extends Controller
         $purchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->get();
         $approvedPurchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->where('status', 'approved')->get();
         $wholesalers = $this->user::isWholeSaler()->get();
-        // $retailer = Auth::user()->name;
-        // return $approvedPurchaseOrders->count();
-        // return $purchaseOrders;
-       // return $retailers;
         return view('admin.pages.retailers.dashboard', compact('pageTitle', 'purchaseOrders','approvedPurchaseOrders', 'wholesalers', 'retailer'));
     }
 
@@ -47,14 +44,12 @@ class RetailerDashboardController extends Controller
     public function purchaseOrderDetails($purchaseOrderId = null)
     {
         $orderItems = $this->purchaseOrders::find($purchaseOrderId)->order_items;
-        // return $orderItems->order_items;
         $pageTitle = 'Order Details';
         return view('admin.pages.retailers.order_details', compact('pageTitle','orderItems'));
     }
     public function WholesalerpurchaseOrderDetails($purchaseOrderId = null)
     {
         $orderItems = $this->purchaseOrders::find($purchaseOrderId)->order_items;
-        // return $orderItems;
         $pageTitle = 'Order Details';
         return view('admin.pages.wholesalers.purchaseorder', compact('pageTitle','orderItems'));
     }

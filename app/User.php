@@ -33,7 +33,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'firstname', 'lastname', 'phone', 'type', 'slug','username'
+        'name', 'email', 'password', 'firstname', 'lastname', 'phone', 'type', 'slug','username', 'pin'
     ];
 
     /**
@@ -163,6 +163,15 @@ class User extends Authenticatable
     public function getProductCategoryAttribute()
     {
         return;
+    }
+
+    public static function generatePin()
+    {
+        // genrate based on time
+        // substr(number_format(time() * rand(),0,'',''),0,6);
+        // generate random
+        $pin = random_int(10000, 99999);
+        return $pin;
     }
 
 }
