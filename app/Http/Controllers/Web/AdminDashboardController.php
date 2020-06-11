@@ -10,6 +10,7 @@ class AdminDashboardController extends Controller
     public function __construct()
     {
         $this->middleware('check-pin');
+        $this->middleware(['role:Admin']);
     }
     //
 
