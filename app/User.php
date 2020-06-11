@@ -26,6 +26,7 @@ class User extends Authenticatable
     CONST IS_RETAILER = 'retailer';
     CONST IS_APPROVE = 'approve';
     CONST IS_CANCEL = 'cancel';
+    CONST SENDER_ID = 'NNURO';
 
     /**
      * The attributes that are mass assignable.
