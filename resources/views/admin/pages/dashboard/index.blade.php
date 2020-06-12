@@ -3,7 +3,7 @@
 @section('content')
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])
 <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-4">
         <div class="card card-eco">
             <div class="card-body">
                 <h4 class="title-text mt-0">Wholesalers</h4>
@@ -15,7 +15,7 @@
             </div><!--end card-body-->
         </div><!--end card-->
     </div><!--end col-->
-    <div class="col-lg-3">
+    <div class="col-lg-4">
         <div class="card card-eco">
             <div class="card-body">
                 <h4 class="title-text mt-0">Retailers</h4>
@@ -27,7 +27,7 @@
             </div><!--end card-body-->
         </div><!--end card-->
     </div><!--end col-->
-    <div class="col-lg-3">
+    <div class="col-lg-4">
         <div class="card card-eco">
             <div class="card-body">
                 <h4 class="title-text mt-0">Products</h4>
@@ -39,19 +39,7 @@
             </div><!--end card-body-->
         </div><!--end card-->
     </div><!--end col-->
-    <div class="col-lg-3">
-        <div class="card card-eco">
-            <div class="card-body">
-                <h4 class="title-text mt-0">Revenue</h4>
-                <div class="d-flex justify-content-between">
-                    <h3 class="text-warning">$1590</h3>
-                    <i class="dripicons-wallet card-eco-icon bg-icon-warning  align-self-center"></i>
-                </div>                                    
-                
-            </div><!--end card-body-->
-        </div><!--end card-->
-    </div><!--end col-->
-</div><!--end row-->
+    </div>
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
