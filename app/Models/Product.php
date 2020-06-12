@@ -53,7 +53,7 @@ class Product extends ApiModel implements Searchable
 
     public function productDesc()
     {
-        $desc = "NA";
+        $desc = "$this->name $this->active_ingredients $this->strength";
         return $desc;
     }
 

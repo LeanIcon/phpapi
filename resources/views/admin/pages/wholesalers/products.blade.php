@@ -56,16 +56,19 @@
                                     @if ($wholesalerProducts->isNotEmpty())
                                     @foreach ($wholesalerProducts as $product)
                                         <tr>
-                                          {{--  <td>{{$product->batch_number}}</td> --}}
-                                           {{-- <td>{{$product->products->name}}</td> --}}
-                                            <td>{{$product}} </td>
-                                            {{--<td> {{$product->products->active_ingredients}}, {{$product->products->strength}}</td> --}}
-                                            <td>{{$product->products->first()}} </td>
-                                            <td> {{$product->products->first()}} </td>
+                                          
+                                            <td> @foreach ($product->products as $item)
+                                                {{$item->productDesc()}}
+                                            @endforeach </td>
+                                            <td> @foreach ($product->products as $item)
+                                                {{$item->manufacturer->name}}
+                                            @endforeach </td>
+                                            <td> @foreach ($product->products as $item)
+                                                {{$item->packet_size}}
+                                            @endforeach </td>
                                             <td>{{$product->price}}</td>
                                             <td>{{$product->expiry_status}}  </td> 
-                                            
-                                            
+
                                             <td> 
                                             <a href="{{route('wholesaler_products.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                             <a href="{{route('wholesaler_products.edit', $product->id)}}" class="mr-2"><i class="fas fa-eye text-info font-16"></i></a>
