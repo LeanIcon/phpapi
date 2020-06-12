@@ -138,7 +138,7 @@
                                 <tr>
                                 <td>{{$product->productDesc()}},{{$product->DosageForm->name}} </td>
                                    {{-- <td>{{$product->active_ingredients}}</td> --}}
-                                    <td>{{$product->manufacturers->name}}</td> 
+                                    <td>{{$product->manufacturer->name}}</td> 
                                     <td> {{$product->packet_size}}</td>
                                     
                                    {{-- <td>{{$product->name}}</td> --}}

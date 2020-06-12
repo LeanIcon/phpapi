@@ -56,7 +56,6 @@
                                     @if ($wholesalerProducts->isNotEmpty())
                                     @foreach ($wholesalerProducts as $product)
                                         <tr>
-                                          
                                             <td> @foreach ($product->products as $item)
                                                 {{$item->productDesc()}}
                                             @endforeach </td>
