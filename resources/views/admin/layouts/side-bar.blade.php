@@ -113,14 +113,14 @@
                 </ul>-->
             </li><!--end nav-item-->
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">News / Articles</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <a class="nav-link" href="#">News / Articles</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('post.index')}}">News Post</a></li>
                     <li><a href="{{route('post_category.index')}}">Post Category</a></li>
                 </ul>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Data Entry</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+               <li> <a href="#">Data Entry</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('manufacture.index')}}">Manufacturers</a></li>
                     <li><a href="{{route('product_category.index')}}">Product Category</a></li>
