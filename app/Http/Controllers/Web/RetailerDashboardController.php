@@ -20,11 +20,16 @@ class RetailerDashboardController extends Controller
     public function loadDashboard()
     {
         $pageTitle = 'Retailers';
-        $retailer = Auth::user()->id;
-        $purchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->get();
+        $retailer = Auth::user();
+        // $purchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->get();
+        $purchaseOrders = $retailer->retailer_orders;
         $approvedPurchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->where('status', 'approved')->get();
+        $invoiceReceived = $this->purchaseOrders::where('retailer_id', $retailer)->where('invoice', '!=', null)->get();
+        $shortageList = $retailer->shortage;
+        $data = json_decode($shortageList->content, true);
+        $shortageList =  collect($data);
         $wholesalers = $this->user::isWholeSaler()->get();
-        return view('admin.pages.retailers.dashboard', compact('pageTitle', 'purchaseOrders','approvedPurchaseOrders', 'wholesalers', 'retailer'));
+        return view('admin.pages.retailers.dashboard', compact('pageTitle', 'purchaseOrders','approvedPurchaseOrders', 'wholesalers', 'retailer', 'invoiceReceived', 'shortageList'));
     }
 
     public function loadPurchaseOrderList()
