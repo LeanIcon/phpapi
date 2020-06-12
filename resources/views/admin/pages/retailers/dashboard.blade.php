@@ -118,7 +118,7 @@ a {
     }
     ?>
 
-<h1 style="font-size: 50px; font-family:lora;"> Welcome Back! </h1>
+<h1 style="font-size: 50px; font-family:lora;"> Welcome! </h1>
                     
                 </div>
     <div class="col-lg-3">
