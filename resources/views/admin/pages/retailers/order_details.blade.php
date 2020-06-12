@@ -102,7 +102,7 @@
     </div>-->
     <!-- end col -->
 </div>
-<!--  Modal content for the above example -->
+<!--  Modal content for the above examples -->
  
 <style>.bg-black {
     background-color: #000 !important;
