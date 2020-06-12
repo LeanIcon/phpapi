@@ -92,7 +92,7 @@
         echo "<h3 style= font-family:lora;>". "Good evening" . " " . Auth::user()->firstname .","."</h3>";
     }
     ?>
-                    <h1 style="font-size: 50px; font-family:lora;"> Welcome Back! </h1>
+                    <h1 style="font-size: 50px; font-family:lora;"> Welcome! </h1>
                    <!-- <span class="badge badge-danger badge-pill noti-icon-badge"><a href="{{ route('wholesaler_expiryproducts') }}">Expiring Products</a></span> -->
                 </div>
     <div class="col-lg-3">
