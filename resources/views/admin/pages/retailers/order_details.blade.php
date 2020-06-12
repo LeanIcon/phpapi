@@ -68,7 +68,7 @@
                                                 <td>{{$purchaseOrder->purchase_order->wholesaler->name}}</td>
                                             
                                                 <td>
-                                                    {{$purchaseOrder->manufacturer}}
+                                                    {{$purchaseOrder->manufacturer ?? $item->manufacturer_slug}}
                                                 </td>
                                                 <td> {{$purchaseOrder->price}}  </td>
                                                 {{-- <td><span class="badge badge-soft-warning">{{$purchaseOrder->status}}</span></td> --}}

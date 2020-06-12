@@ -71,7 +71,7 @@
                                             {{$item->productDesc()}}
                                         @endforeach </td>
                                         <td> @foreach ($product->products as $item)
-                                            {{$item->manufacturer->name}}
+                                            {{$item->manufacturer->name ?? $item->manufacturer_slug}}
                                         @endforeach </td>
                                         <td> @foreach ($product->products as $item)
                                             {{$item->packet_size}}

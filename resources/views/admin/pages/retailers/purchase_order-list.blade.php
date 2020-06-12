@@ -67,7 +67,7 @@
                                 @foreach (Cart::getContent() as $item)
                                     <tr>
                                         <td>{{$item->associatedModel->productDesc()}} </td>
-                                        <td>{{$item->associatedModel->manufacturer->name}}</td>
+                                        <td>{{$item->associatedModel->manufacturer->name ?? $item->manufacturer_slug}}</td>
                                         <td> {{$item->price}}</td>
                                         <form action="{{route('cart.update',$item->id )}}" method="POST">
                                             @method('PUT')

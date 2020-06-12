@@ -127,8 +127,7 @@
                             <th>Manufacturer</th>
                             <th>Pack Size</th>
                             <th>Action</th>
-                            
-                           
+
                         </tr><!--end tr-->
                         </thead>
 
