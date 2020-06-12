@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends ApiModel
 {
     protected $table = 'posts';
-    protected $fillable = ['title', 'slug', 'description', 'body', 'excerpt','author_id','category_post_id'];
+    protected $fillable = ['title', 'slug', 'description', 'body', 'excerpt','author_id','category_post_id', 'image'];
 
 
     public function author()

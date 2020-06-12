@@ -69,6 +69,14 @@
                         </div>
                     </div>
                     @include('admin.pages.wholesalers.products.additional_form')
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="LeadEmail">Product Image</label>
+                                <input type="file" class="form-control" name="product_image" id="product_image">
+                            </div>
+                        </div>
+                    </div>
 
                     {{--
                         <div class="row">

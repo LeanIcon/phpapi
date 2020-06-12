@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Support\Str;
 use App\Models\PostCategory;
 use Illuminate\Http\Request;
+use JD\Cloudder\Facades\Cloudder;
 use App\Http\Controllers\Controller;
 
 class PostController extends Controller
@@ -52,6 +53,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->has('post_image')) {
+            $img = $this->uploadImage($request);
+            $request['image'] =  $img['image_url'];
+        }
         $request['slug'] = Str::slug($request->title);
         $data = $request->all();
         $request->user()->posts()->create($data);
@@ -102,5 +107,26 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function uploadImage(Request $request)
+    {
+            $image = $request->file('post_image');
+            $name = time()."_".$request->file('post_image')->getClientOriginalName();
+            $image_name = $request->file('post_image')->getRealPath();
+
+            Cloudder::upload($image_name, null);
+            list($width, $height) = getimagesize($image_name);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+
+            $uploaded = $image->move(\public_path("uploads"), $name);
+
+            return [
+                'status' => 200,
+                'response' => 'Image Uploaded Successfully',
+                'image_url' => $image_url,
+                'image_path' => "public\uploads",
+                'name' => $name
+            ];
     }
 }

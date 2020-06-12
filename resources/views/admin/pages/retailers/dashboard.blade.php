@@ -157,7 +157,7 @@ a {
             <div class="card-body">
                 <h4 class="title-text mt-0">Invoice Received</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-secondary">2</h3>
+                    <h3 class="text-secondary">{{$invoiceReceived->count()}}</h3>
                     <i class="dripicons-document-new card-eco-icon bg-icon-secondary align-self-center"></i>
                 </div>                                   
             </div><!--end card-body-->
@@ -171,7 +171,7 @@ a {
             <div class="card-body">
                 <h4 class="title-text mt-0">Shortage List</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-warning">4</h3>
+                    <h3 class="text-warning">{{$shortageList->count()}}</h3>
                     <i class="dripicons-wallet card-eco-icon bg-icon-warning  align-self-center"></i>
                 </div>
             </div><!--end card-body-->

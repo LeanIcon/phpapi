@@ -67,13 +67,15 @@
                             @if ($products->isNotEmpty())
                                 @foreach ($products as $product)
                                     <tr>
-                                        {{--  <td>{{$product->batch_number}}</td>  --}}
-                                        <td>{{$product->products->productDesc()}},{{$product->products->DosageForm->name}}</td>
-                                       {{-- <td> {{$product->products->active_ingredients}}, {{$product->products->strength}}</td>  --}}
-                                        
-                                        {{-- <td>{{$product->expiry_status}} </td> --}}
-                                        <td>{{$product->products->manufacturers->name}} </td>
-                                        <td> {{$product->products->packet_size}} </td>
+                                        <td> @foreach ($product->products as $item)
+                                            {{$item->productDesc()}}
+                                        @endforeach </td>
+                                        <td> @foreach ($product->products as $item)
+                                            {{$item->manufacturer->name}}
+                                        @endforeach </td>
+                                        <td> @foreach ($product->products as $item)
+                                            {{$item->packet_size}}
+                                        @endforeach </td>
                                         <td>{{$product->formattedPrice()}}</td>
                                         <form method="POST" action="{{route('create.purchase.order')}}" enctype="multipart/form-data" >
                                             <td>
@@ -87,9 +89,7 @@
                                                 @csrf
                                                 <input class="form-control" value="{{$product->id}}" name="id" type="hidden">
                                                 <input class="form-control" value="{{$product->products_id}}" name="products_id" type="hidden">
-                                                <input class="form-control" value="{{$product->products->name}}" name="name" type="hidden">
                                                 <input class="form-control" value="{{$product->formattedPrice()}}" name="price" type="hidden">
-                                                {{--  <input class="form-control" value="1" name="quantity" type="hidden">  --}}
                                                 @role('Retailer') @if (in_array($product->id, $pIds)) 
                                                 ADDED
                                                     @else

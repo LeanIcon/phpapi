@@ -9,6 +9,7 @@ use App\Models\UserDetails;
 use Illuminate\Support\Str;
 use App\Models\PurchaseOrders;
 use App\Models\ProductCategory;
+use App\Models\ShortageList;
 use App\Models\WholesalerProduct;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
@@ -108,6 +109,11 @@ class User extends Authenticatable
     public function wholesaler_products()
     {
         return $this->hasMany(WholesalerProduct::class, 'wholesaler_id');
+    }
+
+    public function shortage()
+    {
+        return $this->hasOne(ShortageList::class, 'user_id');
     }
 
     public function products()

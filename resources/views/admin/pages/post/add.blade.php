@@ -59,7 +59,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="LeadEmail">Post Image</label>
-                                <input type="file" class="form-control" id="post_image">
+                                <input type="file" class="form-control" name="post_image" id="post_image">
                             </div>
                         </div>
                     </div>
