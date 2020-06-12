@@ -58,10 +58,10 @@
                                         <tr>
                                           {{--  <td>{{$product->batch_number}}</td> --}}
                                            {{-- <td>{{$product->products->name}}</td> --}}
-                                            <td>{{$product->products->productDesc()}},{{$product->products->DosageForm->name}} </td>
+                                            <td>{{$product}} </td>
                                             {{--<td> {{$product->products->active_ingredients}}, {{$product->products->strength}}</td> --}}
-                                            <td>{{$product->products->manufacturers->name}} </td>
-                                            <td> {{$product->products->packet_size}} </td>
+                                            <td>{{$product->products->first()}} </td>
+                                            <td> {{$product->products->first()}} </td>
                                             <td>{{$product->price}}</td>
                                             <td>{{$product->expiry_status}}  </td> 
                                             

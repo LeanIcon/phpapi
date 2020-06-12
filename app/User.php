@@ -110,6 +110,11 @@ class User extends Authenticatable
         return $this->hasMany(WholesalerProduct::class, 'wholesaler_id');
     }
 
+    public function products()
+    {
+        return $this->hasMany(WholesalerProduct::class, 'wholesaler_id');
+    }
+
 
     public function wholesaler_orders()
     {

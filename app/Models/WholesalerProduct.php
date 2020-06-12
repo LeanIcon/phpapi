@@ -21,11 +21,10 @@ class WholesalerProduct extends Model
     }
 
 
-    public function products()
-    {
-        return $this->belongsTo(Product::class);
-    }
-
+   public function products()
+   {
+        return $this->belongsToMany(Product::class, 'wholesaler_products', 'id','products_id');
+   }
 
     public function order_items()
     {

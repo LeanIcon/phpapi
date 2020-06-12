@@ -20,10 +20,12 @@ class Product extends ApiModel implements Searchable
         'active_ingredients' => Json::class
     ];
 
-    public function wholesaler_products()
+    
+    public function wholesalers()
     {
-        return $this->belongsTo(WholesalerProduct::class);
+        return $this->belongsToMany(WholesalerProduct::class);
     }
+    
 
 
     public function scopeProductCategory($value)
@@ -33,9 +35,9 @@ class Product extends ApiModel implements Searchable
     }
 
 
-    public function manufacturers()
+    public function manufacturer()
     {
-        return $this->belongsTo(Manufacturer::class,'manufacturer_id');
+        return $this->belongsTo(Manufacturer::class, 'manufacturer_id');
     }
 
     public function category()
@@ -51,7 +53,7 @@ class Product extends ApiModel implements Searchable
 
     public function productDesc()
     {
-        $desc = "$this->name $this->active_ingredients $this->strength";
+        $desc = "NA";
         return $desc;
     }
 

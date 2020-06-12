@@ -16,7 +16,7 @@ class CheckPin
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if ($request->user()->pin_confirmed == 1) {
+        if ($request->user()->pin_confirmed == 0) {
             return $next($request);
         }
         return redirect()->route('loadpin');
