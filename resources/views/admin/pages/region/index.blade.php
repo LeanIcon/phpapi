@@ -17,7 +17,7 @@
     </div><!--end col-->
 </div>
 <!-- end page title end breadcrumb -->
-<div class="row">
+{{-- <div class="row">
     <div class="col-lg-4">
         <div class="card">
             <div class="card-body profile-card">                                    
@@ -110,21 +110,21 @@
         </div><!--end row-->                            
     </div><!--end col-->
     
-</div><!--end row-->
+</div><!--end row--> --}}
 
-<div class="row">
+ 
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                {{-- <a type="button" href="{{route('region.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a> --}}
-                <h4 class="header-title mt-0 mb-3">All Regions</h4> 
+                <a type="button" href="{{route('region.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
+                {{-- <h4 class="header-title mt-0 mb-3">All Regions</h4>  --}}
                 <div class="table-responsive dash-social">
                     <table id="datatable" class="table">
                         <thead class="thead-light">
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Status</th>
+                            {{-- <th>Status</th> --}}
                             <th>Action</th>
                         </tr><!--end tr-->
                         </thead>
@@ -135,7 +135,7 @@
                                 <tr>
                                     <td>{{$region->id}}</td>
                                     <td>{{$region->name}}</td>
-                                    <td>{{$region->status}}</td>
+                                    {{-- <td>{{$region->status}}</td> --}}
                                     <!--<td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>-->
                                     <td>
                                         <a href="{{route('region.edit', $region->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
@@ -150,7 +150,15 @@
             </div><!--end card-body--> 
         </div><!--end card--> 
     </div><!--end col-->
-</div><!--end row-->  
+ 
 @include('admin.pages.dashboard.modal-page')
 </div><!-- container -->
+@endsection
+
+@section('page-js') 
+<script>
+    $(document).ready(function() {
+        $('#datatable').dataTable();
+    });
+</script>
 @endsection

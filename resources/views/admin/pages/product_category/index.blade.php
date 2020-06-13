@@ -16,7 +16,7 @@
         </div><!--end page-title-box-->
     </div><!--end col-->
 </div>
-<!-- end page title end breadcrumb -->
+{{-- <!-- end page title end breadcrumb -->
 <div class="row">
     <div class="col-lg-4">
         <div class="card">
@@ -110,14 +110,14 @@
         </div><!--end row-->                            
     </div><!--end col-->
     
-</div><!--end row-->
+</div><!--end row--> --}}
 
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
                 <a type="button" href="{{route('product_category.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
-                <h4 class="header-title mt-0 mb-3">All Products Category</h4> 
+                {{-- <h4 class="header-title mt-0 mb-3"> Products Category</h4>  --}}
                 <div class="table-responsive dash-social">
                     <table id="datatable" class="table">
                         <thead class="thead-light">
@@ -160,4 +160,13 @@
 </div><!--end row-->  
 @include('admin.pages.dashboard.modal-page')
 </div><!-- container -->
+@endsection
+
+
+@section('page-js') 
+<script>
+    $(document).ready(function() {
+        $('#datatable').dataTable();
+    });
+</script>
 @endsection
