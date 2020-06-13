@@ -79,8 +79,7 @@
                             <th>Manufacturer</th>
                             <th>Pack Size</th>
                             <th>Action</th>
-                            
-                           
+
                         </tr><!--end tr-->
                         </thead>
 
@@ -88,8 +87,8 @@
                         @if ($products->isNotEmpty())
                             @foreach ($products as $product)
                                 <tr>
-                                <td>{{$product->productDesc()}},{{$product->DosageForm->name}} </td>
-                                    <td>{{$product->manufacturer->name}}</td> 
+                                <td>{{$product->productDesc() ?? 'NA'}}</td>
+                                    <td>{{$product->manufacturer->name ?? $product->manufacturer_slug}}</td> 
                                     <td> {{$product->packet_size}}</td>
                                     <td>
                                     <a href="{{route('product.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
@@ -98,10 +97,10 @@
                                 </tr>
                                 </tr>
                             @endforeach
-                        @endif                                            
+                        @endif
                         </tbody>
-                    </table>                    
-                </div>                                           
+                    </table>
+                </div>
             </div><!--end card-body--> 
         </div><!--end card--> 
     </div><!--end col-->

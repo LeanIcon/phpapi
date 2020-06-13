@@ -14,7 +14,7 @@
                             <div class="col-lg-4 align-self-center mb-3 mb-lg-0">
                                 <div class="met-profile-main">
                                     <div class="met-profile-main-pic">
-                                        <img src="{{url('admin/assets/images/users/user-4.jpg')}}" alt="" class="rounded-circle">
+                                        <img src="{{$details->image_url ?? url('admin/assets/images/users/user-4.jpg')}}" width="80%" alt="" class="rounded-circle">
                                         <span class="fro-profile_main-pic-change">
                                                             <i class="fas fa-camera"></i>
                                                         </span>
@@ -77,7 +77,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
-                                        <form action="{{route('user.update',$wholesaler->id)}}" method="POST" >
+                                        <form action="{{route('user.update',$wholesaler->id)}}" method="POST" enctype="multipart/form-data" >
                                             @csrf
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -134,6 +134,14 @@
                                                         <select class="form-control" name="town_id" id="">
                                                             <option value="">Select Town</option>
                                                         </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="LeadEmail">Profile Image</label>
+                                                            <input type="file" class="form-control" name="profile_image" id="image">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div> 

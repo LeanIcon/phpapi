@@ -26,7 +26,11 @@ class RetailerDashboardController extends Controller
         $approvedPurchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->where('status', 'approved')->get();
         $invoiceReceived = $this->purchaseOrders::where('retailer_id', $retailer)->where('invoice', '!=', null)->get();
         $shortageList = $retailer->shortage;
-        $data = json_decode($shortageList->content, true);
+        if(is_null($shortageList)) {
+            $data = [];
+        }else{
+            $data = json_decode($shortageList->content, true);
+        }
         $shortageList =  collect($data);
         $wholesalers = $this->user::isWholeSaler()->get();
         return view('admin.pages.retailers.dashboard', compact('pageTitle', 'purchaseOrders','approvedPurchaseOrders', 'wholesalers', 'retailer', 'invoiceReceived', 'shortageList'));
@@ -50,7 +54,10 @@ class RetailerDashboardController extends Controller
     {
         $orderItems = $this->purchaseOrders::find($purchaseOrderId)->order_items;
         $pageTitle = 'Order Details';
-        return view('admin.pages.retailers.order_details', compact('pageTitle','orderItems'));
+        $retailer = Auth::user()->id;
+        $purchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->get();
+        $wholesalers = $this->user::isWholeSaler()->get();
+        return view('admin.pages.retailers.order_details', compact('pageTitle','orderItems','purchaseOrders'));
     }
     public function WholesalerpurchaseOrderDetails($purchaseOrderId = null)
     {
