@@ -162,36 +162,15 @@
                     <i class="mdi mdi-plus-circle-outline mr-2"></i>New Room Allotment</button>-->
 
                 <h4 class="header-title mt-0 mb-3"><span class="badge badge-danger badge-pill noti-icon-badge">New</span> Orders Received</h4>
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="dataTables_length" id="datatable_length">
-                            <label>Show <select name="datatable_length" aria-controls="datatable" class="custom-select custom-select-sm form-control form-control-sm">
-                                <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select> entries</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="container h-100">
-                        <div class="d-flex justify-content-center h-100">
-                        <div class="searchbar">
-                        <input class="search_input" type="text" name="" placeholder="Search...">
-          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-                    </div>
-                     </div>
-                        </div>
-                    </div>
-                </div>                <div class="row">
+                     
                         <div class="col-sm-12">
                             <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                                 <thead>
                                     <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 285px;"> Purchase ID</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Reatailer Name</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Status</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">View Purchase Order Details</th>
+                                        <th> Purchase ID</th>
+                                        <th>Reatailer Name</th>
+                                        <th>Status</th>
+                                        <th>View Purchase Order Details</th>
                                         
                                         
                                         
@@ -223,7 +202,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                     
         </div><!--end card-->
     </div><!--end col-->
 </div><!--end row-->
@@ -300,4 +279,13 @@
     </div><!--end col-->
 </div><!--end row-->
 
+@endsection
+
+
+@section('page-js') 
+<script>
+    $(document).ready(function() {
+        $('#datatable').dataTable();
+    });
+</script>
 @endsection
