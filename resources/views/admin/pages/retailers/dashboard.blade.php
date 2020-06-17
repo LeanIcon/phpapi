@@ -244,6 +244,26 @@ a {
         </div>
 	@endforeach
 @endif
+
+<!--INVOICE RECEIVED NOTIFICATION-->
+@if ($purchaseInvoices->isNotEmpty())
+ @foreach ($purchaseInvoices as $item)
+<script>
+var wholesaler = @json($item->get_wholesaler->name);
+            var options = {
+                    body: "New Invoice from "+ wholesaler,
+                    icon: "http://127.0.0.1:8000/admin/assets/images/NN.png",
+                    dir : "ltr"
+                    
+                 };
+              
+ notification = new Notification("Nnuro Desktop Notification", options);
+
+</script>
+@endforeach
+@endif
+<!--INVOICE RECEIVED NOTIFICATION ENDS HERE-->
+
 </div>
                     </div>
                     <div class="row">
