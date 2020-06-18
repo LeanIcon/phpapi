@@ -52,15 +52,6 @@
                 <div class="card-body">
                     <ul class="nav nav-pills mb-0" id="pills-tab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link" id="education_detail_tab" data-toggle="pill" href="#education_detail">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="portfolio_detail_tab" data-toggle="pill" href="#portfolio_detail">News Info</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="settings_detail_tab" data-toggle="pill" href="#settings_detail">Settings</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link active" id="general_detail_tab" data-toggle="pill" href="#general_detail">General</a>
                         </li>
                     </ul>
@@ -94,83 +85,6 @@
                 </div>
                 <!--end general detail-->
 
-                <div class="tab-pane fade" id="education_detail">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="header-title mt-0 mb-3">Title</h4>
-                                    <!--end education-activity-->
-                                </div>
-                                <!--end card-body-->
-                            </div>
-                            <!--end card-->
-                        </div>
-                        <!--end col-->
-
-                        <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="header-title mt-0 mb-3">Title</h4>
-                                </div>
-                                <!--end card-body-->
-                            </div>
-                            <!--end card-->
-                        </div>
-                        <!--end col-->
-
-                    </div>
-                    <!--end row-->
-                </div>
-                <!--end education detail-->
-
-                <div class="tab-pane fade" id="portfolio_detail">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="card">
-                                <div class="card-body">
-                                    <!-- End portfolio  -->
-                                </div>
-                                <!--end card-body-->
-                            </div>
-                            <!--end card-->
-
-                            <div class="card">
-                                <div class="card-body">
-                                    <!--end row-->
-                                </div>
-                                <!--end card-body-->
-                            </div>
-                            <!--end card-->
-                        </div>
-                        <!--end col-->
-                        <div class="col-lg-4">
-                            <div class="card ">
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <h4><i class="fas fa-quote-left text-primary"></i></h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end row-->
-                </div>
-                <!--end portfolio detail-->
-
-                <div class="tab-pane fade" id="settings_detail">
-                    <div class="row">
-                        <div class="col-lg-12 col-xl-9 mx-auto">
-                            <div class="card">
-                                <div class="card-body">
-                                </div>
-                            </div>
-                        </div>
-                        <!--end col-->
-                    </div>
-                    <!--end row-->
-                </div>
-                <!--end settings detail-->
             </div>
             <!--end tab-content-->
 
