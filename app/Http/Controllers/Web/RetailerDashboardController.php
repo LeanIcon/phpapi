@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RetailerDashboardController extends Controller
 {
+ 
     public function __construct(PurchaseOrders $purchaseOrders, User $user)
     {
         $this->middleware('auth');
@@ -21,7 +22,7 @@ class RetailerDashboardController extends Controller
     {
         $pageTitle = 'Retailers';
         $retailer = Auth::user();
-        // $purchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->get();
+        $purchaseInvoices = $retailer->retailer_orders->where('invoice', '!=', '');
         $purchaseOrders = $retailer->retailer_orders;
         $approvedPurchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->where('status', 'approved')->get();
         $invoiceReceived = $this->purchaseOrders::where('retailer_id', $retailer)->where('invoice', '!=', null)->get();
@@ -33,7 +34,7 @@ class RetailerDashboardController extends Controller
         }
         $shortageList =  collect($data);
         $wholesalers = $this->user::isWholeSaler()->get();
-        return view('admin.pages.retailers.dashboard', compact('pageTitle', 'purchaseOrders','approvedPurchaseOrders', 'wholesalers', 'retailer', 'invoiceReceived', 'shortageList'));
+        return view('admin.pages.retailers.dashboard', compact('pageTitle', 'purchaseOrders','approvedPurchaseOrders', 'wholesalers', 'retailer', 'invoiceReceived', 'shortageList', 'purchaseInvoices'));
     }
 
     public function loadPurchaseOrderList()

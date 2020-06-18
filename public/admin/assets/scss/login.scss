@@ -27,13 +27,17 @@ body {
         object-fit: cover;
     }
     .card-body {
-        padding: 85px 160px 60px;
+        padding: 85px 600px 60px;
 
         @media (max-width: 422px) {
             padding: 35px 24px;
         }
     }
-
+.forgot-password-link {
+    font-size: 14px;
+    color: #fefefe;
+    margin-bottom: 10px;
+    float: right;
     &-description {
         font-size: 25px;
         color: #000;

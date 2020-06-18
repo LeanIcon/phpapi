@@ -2,6 +2,12 @@
 
 @section('content')
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+   var window:Window 
+    window.onload = notifyMe;
+    </script>
  <style>
 .searchbar{
     margin-bottom: auto;
@@ -11,7 +17,7 @@
     border-radius: 30px;
     padding: 10px;
     }
-
+https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
     .search_input{
     color: white;
     border: 0;
@@ -152,7 +158,64 @@
         </div><!--end card--></a>
     </div><!--end col-->
 </div>
+<!--NOTIFICATION SYSTEM-->
+<!--<button onclick="notifyMe()">Notify me!</button>-->
+@if ($purchaseOrders->isNotEmpty())
+                                        @foreach ($purchaseOrders as $purchaseOrder)
+<script>
+var retailers = @json($purchaseOrder->retailer->name);
+            var options = {
+                    body: "New Order from "+ retailers,
+                    icon: "http://127.0.0.1:8000/admin/assets/images/NN.png",
+                    dir : "ltr"
+                    
+                 };
+              
+ notification = new Notification("Nnuro Desktop Notification", options);
 
+//var purchaseOrder = @json($purchaseOrder->id);
+//purchaseOrder.forEach(notifyMe);
+</script>
+@endforeach
+@endif
+@if ($purchaseOrders->isNotEmpty())
+                                        @foreach ($purchaseOrders as $purchaseOrder)
+                                       
+   <!--CURRENTLY USING UP TO THIS END-->                                                                 
+<script>
+    function notifyMe() {
+      if (!("Notification" in window)) {
+        alert("This browser does not support desktop notification");
+      }
+      else if (Notification.permission === "granted") {
+            var options = {
+                    body: "New Order from @json($purchaseOrder->id)",
+                    icon: "http://127.0.0.1:8000/admin/assets/images/NN.png",
+                    dir : "ltr"
+                 };
+              var notification = new Notification("Hi there",options);
+      }
+      else if (Notification.permission !== 'denied') {
+        Notification.requestPermission(function (permission) {
+          if (!('permission' in Notification)) {
+            Notification.permission = permission;
+          }
+       
+          if (permission === "granted") {
+            var options = {
+                  body: "This is the body of the notification",
+                  icon: "http://127.0.0.1:8000/admin/assets/images/NN.png",
+                  dir : "ltr"
+              };
+            var notification = new Notification("Hi there",options);
+          }
+        });
+      }
+    }
+    </script>
+       @endforeach
+       @endif   
+<!--NOTIFICATION SYSTEM-->
 
 <div class="row">
     <div class="col-12">
