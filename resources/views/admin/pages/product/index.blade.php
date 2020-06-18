@@ -17,52 +17,11 @@
     </div><!--end col-->
 </div>
 <!-- end page title end breadcrumb -->
-{{-- <div class="row">
-    <div class="col-lg-4">
-        <div class="card">
-            <div class="card-body profile-card">                                    
-                <div class="media align-items-center">                                                                               
-                    <div class="media-body ml-3 align-self-center">
-                        <h5 class="pro-title">Nnuro</h5>
-                        <p class="mb-1 text-muted">Admin</p>                                              
-                    </div>
-                                                                                                 
-                </div>                                    
-            </div><!--end card-body--> 
-        </div><!--end card-->  
-    </div><!-- end col-->
-    <div class="col-lg-8">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-4 align-self-center">
-                                <div class="icon-info">
-                                    <i class="mdi mdi-clipboard-plus text-warning"></i>
-                                </div> 
-                            </div>
-                            <div class="col-8 align-self-center text-right">
-                                <div class="ml-2">
-                                    <p class="mb-1 text-muted">Total Products</p>
-                                    <h4 class="mt-0 mb-1 text-warning font-22">{{$products->count()}}</h4>                                                                                                                                           
-                                </div>
-                            </div>                    
-                        </div>
-                        <div class="progress mt-2" style="height:3px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 55%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div><!--end card-body-->
-                </div><!--end card-->
-            </div><!--end col-->
-
-            
-
-            
-        </div><!--end row-->                            
-    </div><!--end col-->
-    
-</div><!--end row--> --}}
+<div class="row">
+    @include('admin.layouts.components.stats-card',[$cardName = ' Total Product'])
+    @include('admin.layouts.components.stats-card', [$cardName = ' Total Drugs'])
+    @include('admin.layouts.components.stats-card', [$cardName = ' Total Medical Devices'])
+</div><!--end row-->
 
 <div class="row">
     <div class="col-12">
