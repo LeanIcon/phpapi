@@ -33,7 +33,7 @@ class RegisterFormController extends Controller
         $request['otp']  = $pin;
 
         $msg = "Welcome: $user to Nnuro%0aYour Verification Code: $pin%0aConfirm code on login to proceed%0aThank you!!!";
-        $notify = $this->SendSMSNotification('POST', $request['phone'], $msg, $senderId);
+        $notify = $this->SendSMSNotify($request['phone'], $msg);
 
         $user = $user::create($request->all());
         return redirect()->route('dashboard.index');

@@ -103,6 +103,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
 
 Route::get('verify', 'Web\VerifyPinPageController@loadpage')->name('loadpin');
 Route::post('verify', 'Web\ConfirmPinController');
+Route::get('verify', 'Web\VerifyPinPageController@sendVerify');
 
 
 Auth::routes(['register' => false]);

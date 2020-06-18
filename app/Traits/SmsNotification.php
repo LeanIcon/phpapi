@@ -13,6 +13,9 @@ trait SmsNotification {
      */
 
      private static $API_KEY = 'V1XLCNcvVpnRqbWqb1v0CgpEt';
+     private static $N_USERNAME = 'leanicontech';
+     private static $N_PASS = 'Litt@2019';
+     private static $SENDER_ID = 'NNURO';
 
     public function performRequest($method, $to, $text, $formParams=[], $headers=[])
     {
@@ -36,9 +39,17 @@ trait SmsNotification {
 
         return json_decode($response, true);
     }
+
+
+    public function SendSMSNotify($to, $msg)
+    {
+        $response = Http::post("http://api.nalosolutions.com/bulksms/?username=leanicontech&password=Litt@2019&type=0&dlr=1&destination=233555223103&source=NNURO&message=$msg");
+        // $response = Http::withHeaders([
+        // ])->post('http://api.nalosolutions.com/bulksms/?username=leanicontech&password=Litt@2019&type=0&dlr=1&destination='.$to.'&source=NNURO&message='.$msg.'', [
+        // ]);
+
+        return json_decode($response, true);
+    }
 }
-
-
-
 
 ?>
