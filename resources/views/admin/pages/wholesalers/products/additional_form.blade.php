@@ -28,13 +28,13 @@
     <div class="col-lg-6">
         <div class="form-group">
             <label for="LeadName">Drug Strength</label>
-            <input type="text" name="strength" class="form-control" id="LeadName" required="">
+            <input type="text" name="strength" class="form-control" id="LeadName">
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label for="PhoneNo">Packet Size</label>
-            <input type="text" name="packet_size" class="form-control" id="price" required="">
+            <input type="text" name="packet_size" class="form-control" id="price">
         </div>
     </div>
 </div>
