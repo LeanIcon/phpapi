@@ -43,7 +43,7 @@ trait SmsNotification {
 
     public function SendSMSNotify($to, $msg)
     {
-        $response = Http::post("http://api.nalosolutions.com/bulksms/?username=leanicontech&password=Litt@2019&type=0&dlr=1&destination=233555223103&source=NNURO&message=$msg");
+        $response = Http::post("http://api.nalosolutions.com/bulksms/?username=leanicontech&password=Litt@2019&type=0&dlr=1&destination=$to&source=NNURO&message=$msg");
         // $response = Http::withHeaders([
         // ])->post('http://api.nalosolutions.com/bulksms/?username=leanicontech&password=Litt@2019&type=0&dlr=1&destination='.$to.'&source=NNURO&message='.$msg.'', [
         // ]);
