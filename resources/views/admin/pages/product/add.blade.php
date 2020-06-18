@@ -105,13 +105,13 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label for="Drug Code">Drug Code</label>
-                            <input type="text" name="code" class="form-control" id="LeadName" required="required">
+                            <input type="text" name="code" class="form-control" id="LeadName">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="Active Ingredients">Active Ingredients (Comma Seperated)</label>
-                            <input type="text" name="active_ingredients" class="form-control" id="active_ingredients" required="required">
+                            <input type="text" name="active_ingredients" class="form-control" id="active_ingredients">
                         </div>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label for="AssociatedName">Associated Name</label>
-                            <input type="text" name="associated_name" class="form-control" id="associated_name" required="required">
+                            <input type="text" name="associated_name" class="form-control" id="associated_name">
                         </div>
                     </div>
                 </div>
