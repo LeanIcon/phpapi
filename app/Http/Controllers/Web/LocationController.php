@@ -24,6 +24,7 @@ class LocationController extends Controller
     {
         $locations = $this->location::all();
         $pageTitle = 'Locations';
+       
         return view('admin.pages.location.index', compact('pageTitle', 'locations'));
     }
 

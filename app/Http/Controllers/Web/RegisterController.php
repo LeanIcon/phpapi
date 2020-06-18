@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Web;
 
 use App\User;
 use App\Models\Location;
+use App\Models\UserDetails;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Traits\SmsNotification;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
-use App\Traits\SmsNotification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -78,6 +79,7 @@ class RegisterController extends Controller
         $pin = User::generatePin();
         $phone = '233'.Str::after($data['phone'], '0');
 
+
         $user = User::create([
             'type' => $data['type'],
             'name' =>  $data['name'],
@@ -93,8 +95,12 @@ class RegisterController extends Controller
         {
             $msg = "Welcome: $user->name to Nnuro%0aYour Verification Code: $pin%0aConfirm code on proceed%0aThank you!!!";
             $notify = $this->SendSMSNotify($user->phone, $msg); 
-            return $user;
-        };
+            UserDetails::create([
+                'users_id' => $user->id, 
+                'town_id' => $data['region'], 
+                ]);
+                return $user;
+            };
 
         return $user;
     }
