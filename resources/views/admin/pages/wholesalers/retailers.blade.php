@@ -59,11 +59,12 @@ a {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-<div class="row">
+                       
+                 
                         @if ($retailers->isNotEmpty())
                             @foreach ($retailers as $retailer) 
+                             <tr>
+                                 <td>
                                 <div class="col-md-12 col-xl-12">
                                         <div class="card m-b-30">
                                             <div class="card-body row">
@@ -86,21 +87,18 @@ a {
                                                 
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> 
+                                </td> 
+                                </tr> 
                                 @endforeach
                             @endif
-                            </div>
-                            </td> 
-                        </tr> 
+                           
+                           
                     </tbody>
 
                 </table>
 
-                <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                     
-                    
-                     
-                </div>
+                
             </div>
         </div>
     </div>

@@ -22,8 +22,6 @@ class RetailerDashboardController extends Controller
     {
         $pageTitle = 'Retailers';
         $retailer = Auth::user();
-        // $purchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->get();
-        //for invoive notification for retailer
         $purchaseInvoices = $retailer->retailer_orders->where('invoice', '!=', '');
         $purchaseOrders = $retailer->retailer_orders;
         $approvedPurchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->where('status', 'approved')->get();
