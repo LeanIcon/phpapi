@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use App\Models\Location;
 use App\User;
+use App\Models\Region;
+use App\Models\Location;
 use Illuminate\Support\ServiceProvider;
 
 class GlobalTemplateServiceProvider extends ServiceProvider
@@ -41,6 +42,12 @@ class GlobalTemplateServiceProvider extends ServiceProvider
             $view->with('locations', $this->getLocations());
             // in_array()
         });
+
+        view()->composer(['admin.pages.register.wholesaler', 'auth.login'], function($view){
+            $view->with('regions', $this->getRegions());
+            // in_array()
+        });
+
     }
 
     public function getWholeslers()
@@ -62,5 +69,11 @@ class GlobalTemplateServiceProvider extends ServiceProvider
         // $retailers = $this->users->isRetailer()->get();
         $locations = Location::all();
         return $locations;
+    }
+
+    public function getRegions()
+    {
+        $regions=Region::all();
+        return $regions;
     }
 }
