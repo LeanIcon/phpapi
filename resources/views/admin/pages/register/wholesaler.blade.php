@@ -25,19 +25,19 @@
                                 </div>
                             
                             </div>
-                            {{-- <div class="form-group row">
+                            <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Region') }}</label>
                                 <div class="col-md-6">
                                     @if (!is_null($regions))
-                                    <select class="form-control" name="location" id="">
+                                    <select class="form-control" name="region" id="">
                                         <option value="">Select</option>
-                                        @foreach ($locations as $location)
-                                            <option value="{{$location->id}}">{{$location->name}}</option>
+                                        @foreach ($regions as $region)
+                                            <option value="{{$region->id}}">{{$region->name}}</option>
                                         @endforeach
                                     </select>
                                     @endif
                                 </div>
-                            </div> --}}
+                            </div>
 
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
