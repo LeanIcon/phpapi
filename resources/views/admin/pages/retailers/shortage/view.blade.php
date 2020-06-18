@@ -42,11 +42,11 @@
                                         <td>Manufacturer</td>
                                         <td>Packet Size</td>
                                         <td>
-                                            {{--  <form action="">
+                                            <form action="">
                                                 <button class="btn btn-primary">
                                                     ADD TO P.O
                                                 </button>
-                                            </form>  --}}
+                                            </form>
                                             Actions
                                         </td>
                                     </tr>
