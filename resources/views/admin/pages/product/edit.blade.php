@@ -65,34 +65,8 @@
                         </div>
                     <div class="col-md-6">
                     <div class="form-group">
-                                <label for="status-select" class="mr-2">Dosage Form</label>
-                                <select name="dosage_id" class="form-control custom-select" id="status-select">
-                                    <option selected="">Select</option>
-                                @if (!is_null($dosageForm))
-                                    @foreach ($dosageForm as $dosage)
-                                        <option value="{{$dosage->id}}">{{$dosage->name}}</option>
-                                    @endforeach
-                                @endif
-                                </select>
-                            </div>
-                </div>
-                <div class="row">
-                <div class="col-md-6">
-                                <label for="status-select" class="mr-2">Drug Class</label>
-                                <select name="drug_class_id" class="form-control custom-select" id="status-select">
-                                    <option selected="">Select</option>
-                                @if (!is_null($drugClass))
-                                    @foreach ($drugClass as $drug)
-                                        <option value="{{$drug->id}}">{{$drug->name}}</option>
-                                    @endforeach
-                                @endif
-                                </select>
-                            </div>
-                    
-                    <div class="col-md-6">
-                    <div class="form-group">
                                 <label for="status-select" class="mr-2">Product Category</label>
-                                <select name="product_category_id" class="form-control custom-select" id="status-select">
+                                <select name="product_category_id" class="form-control custom-select" id="productCatSelect">
                                     <option selected="">Select</option>
                                 @if (!is_null($productCategoryTypes))
                                     @foreach ($productCategoryTypes as $productcat)
@@ -101,26 +75,56 @@
                                 @endif
                                 </select>
                             </div>
+                </div>
+
+                
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
+                <div class="row" id="selectedDrugCat">
+                    <div class="col-lg-6">
+                                <label for="LeadEmail">Drug Class</label>
+                                <select name="drug_class_id" class="form-control custom-select" id="status-select">
+                                    <option selected="">Select</option>
+                                    @if (!is_null($drugClass))
+                                        @foreach ($drugClass as $drug)
+                                        <option value="{{$drug->id}}">{{$drug->name}}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                        <div class="form-group">
                         @if (!is_null($product))
                             <label for="LeadEmail">Strength</label>
                             <input type="text" class="form-control" id="LeadName" required="" name="strength" value="{{$product->strength}}">
 
                         @endif 
                         </div>
-                        <div class="col-md-6">
-                        <div class="form-group">
-                        @if (!is_null($product))
-                            <label for="LeadEmail">Packet Size</label>
-                            <input type="text" class="form-control" id="LeadName" required="" name="packet_size" value="{{$product->packet_size}}">
+                </div>
 
-                        @endif 
+                <div class="row">
+        <div class="col-md-6">
+        @if (!is_null($product))
+        <label for="LeadEmail">Packet Size</label>
+                            <input type="text" class="form-control" id="LeadName" required="" name="packet_size" value="{{$product->packet_size}}">
+        @endif 
+        </div>
+    </div>
+
                         </div>
+
+                        <div class="row" id="selectedEquipCat">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="model">Machine / Equipment Model</label>
+            <input class="form-control" type="text" name="model" id="model">
+        </div>
+    </div>
+</div>
                         
-                    </div>
-                    </div>
+
+                
+                {{--    @include('admin.pages.wholesalers.products.additional_form') --}}
+                    
                 </div>
 
                 <div  style = "margin-right: 50% !important"class="form-group"> 
@@ -137,4 +141,53 @@
 </style>
 @include('admin.pages.dashboard.modal-page')
 </div><!-- container -->
+
+@endsection
+
+@section('page-js')
+<script src="{{url('admin/assets/plugins/select2/select2.min.js')}}"></script>
+    <script>
+        $("#selectedDrugCat").hide();
+        $("#selectedEquipCat").hide();
+        var catslect;
+        $(document).ready(function(){
+            initSelectTags();
+            $("#productCatSelect").change(function(){
+                console.log(catslect);
+                catslect = $("#productCatSelect").val();
+                console.log(catslect);
+                if(catslect == '1') {
+                    $("#selectedDrugCat").show();
+                }else{
+                    $("#selectedDrugCat").hide();
+                }
+                if(catslect == '2') {
+                    $("#selectedEquipCat").show();
+                }else{
+                    $("#selectedEquipCat").hide();
+                }
+            });
+        });
+
+
+
+    function initSelectTags() {
+        $(".manufact-select").select2({
+            placeholder: 'Select Category Type',
+            width: '100%',
+            // ajax: {
+            //     url: 'https://api.github.com/orgs/select2/repos',
+            //     data: function (params) {
+            //     var query = {
+            //         search: params.term,
+            //         type: 'public'
+            //     }
+
+            //     // Query parameters will be ?search=[term]&type=public
+            //     return query;
+            //     }
+            // }
+                    }); 
+    }
+    </script>
 @endsection
