@@ -80,7 +80,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = $this->product::find($id);
+        return view('admin.pages.product.show', compact('product'));
     }
 
     /**
@@ -91,7 +92,14 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = $this->product::find($id);
+        $manufacturers = $this->manufacturer::all();
+        $productCategory  = $this->productCateogory::all();
+        $dosageForm = $this->dosageForm::all();
+        $drugClass = $this->drugClass::all();
+        $productCategoryTypes = $this->productCategoryTypes::all();
+        //return $manufacturers;
+        return view('admin.pages.product.edit', compact('product', 'manufacturers', 'productCategory', 'dosageForm', 'drugClass','productCategoryTypes')); 
     }
 
     /**
@@ -103,7 +111,10 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = $this->product::find($id)->update($request->all());
+        
+        
+        return redirect()->route('product.index');
     }
 
     /**

@@ -74,7 +74,7 @@ class ManufacturerController extends Controller
     {
         $pageTitle = 'Manufacturers';
         $manufacturer = $this->manufacturer::find($id);
-        return view('admin.pages.manufacture.edit', compact('manufacturer'));
+        return view('admin.pages.manufacture.edit', compact('manufacturer')); 
     }
 
     /**
@@ -87,8 +87,8 @@ class ManufacturerController extends Controller
     public function update(Request $request, $id)
     {
         $pageTitle = 'Manufacturers';
-        $manufacturer = $this->manufacturer::find($id)->update($request->all());
-        return view('admin.pages.manufacture.index');
+        $manufacturers = $this->manufacturer::find($id)->update($request->all());
+        return redirect()->route('manufacture.index');
     }
 
     /**
@@ -97,8 +97,10 @@ class ManufacturerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request ,$id)
     {
-        //
+        $pageTitle = 'Manufacturers';
+        $manufacturers = $this->manufacturer::find($id)->delete($request->all());
+        return redirect()->route('manufacture.index');
     }
 }

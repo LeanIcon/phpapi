@@ -35,45 +35,97 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="Leadphoto">Photo</label>
-                            <input type="text" class="form-control" id="LeadName" required="" name="name" value="{{$product->photo}}">
+                            <div class="form-group">
+                                <label for="LeadEmail">Manufacturer</label>
+                                <select name="manufacturer_id" class="form-control custom-select" id="status-select">
+                                    <option selected="">Select</option>
+                                    @if (!is_null($manufacturers))
+                                        @foreach ($manufacturers as $manufacturer)
+                                        <option value="{{$manufacturer->id}}">{{$manufacturer->name}}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
                         </div>
-                    </div>
                 </div>
 
                  <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label for="LeadName">Manufacturer ID</label>
-                            <input type="text" class="form-control" id="LeadName" required="" name="name" value="{{$product->manufacturers_id}}">
+                 <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="status-select" class="mr-2">Category</label>
+                                <select name="product_category_id" class="form-control custom-select" id="productCatSelect">
+                                    <option selected="">Select</option>
+                                @if (!is_null($productCategory))
+                                    @foreach ($productCategory as $category)
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                                @endif
+                                </select>
+                            </div>
                         </div>
-                    </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="LeadEmail">Equipment ID</label>
-                           <input type="text" class="form-control" id="LeadName" required="" name="name" value="{{$product->equipments_id}}">
-                        </div>
-                    </div>
+                    <div class="form-group">
+                                <label for="status-select" class="mr-2">Dosage Form</label>
+                                <select name="dosage_id" class="form-control custom-select" id="status-select">
+                                    <option selected="">Select</option>
+                                @if (!is_null($dosageForm))
+                                    @foreach ($dosageForm as $dosage)
+                                        <option value="{{$dosage->id}}">{{$dosage->name}}</option>
+                                    @endforeach
+                                @endif
+                                </select>
+                            </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label for="LeadName">Other Products ID</label>
-                            <input type="text" class="form-control" id="LeadName" required="" name="name" value="{{$product->other_products_id}}">
-                        </div>
-                    </div>
+                <div class="col-md-6">
+                                <label for="status-select" class="mr-2">Drug Class</label>
+                                <select name="drug_class_id" class="form-control custom-select" id="status-select">
+                                    <option selected="">Select</option>
+                                @if (!is_null($drugClass))
+                                    @foreach ($drugClass as $drug)
+                                        <option value="{{$drug->id}}">{{$drug->name}}</option>
+                                    @endforeach
+                                @endif
+                                </select>
+                            </div>
+                    
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="LeadEmail">Product Category ID</label>
-                            <input type="text" class="form-control" id="LeadName" required="" name="name" value="{{$product->name}}"> 
+                    <div class="form-group">
+                                <label for="status-select" class="mr-2">Product Category</label>
+                                <select name="product_category_id" class="form-control custom-select" id="status-select">
+                                    <option selected="">Select</option>
+                                @if (!is_null($productCategoryTypes))
+                                    @foreach ($productCategoryTypes as $productcat)
+                                        <option value="{{$productcat->id}}">{{$productcat->name}}</option>
+                                    @endforeach
+                                @endif
+                                </select>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                        @if (!is_null($product))
+                            <label for="LeadEmail">Strength</label>
+                            <input type="text" class="form-control" id="LeadName" required="" name="strength" value="{{$product->strength}}">
+
+                        @endif 
                         </div>
+                        <div class="col-md-6">
+                        <div class="form-group">
+                        @if (!is_null($product))
+                            <label for="LeadEmail">Packet Size</label>
+                            <input type="text" class="form-control" id="LeadName" required="" name="packet_size" value="{{$product->packet_size}}">
+
+                        @endif 
+                        </div>
+                        
+                    </div>
                     </div>
                 </div>
 
                 <div  style = "margin-right: 50% !important"class="form-group"> 
                 <button type="submit"  class="btn btn-sm btn-primary">Save</button>  
-                <button type="button" class="btn btn-sm btn-danger">Cancel</button>
+                <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Cancel</button> 
                 </div>             
             </form>  
         </div>
