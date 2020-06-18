@@ -159,22 +159,21 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
     </div><!--end col-->
 </div>
 <!--NOTIFICATION SYSTEM-->
-<!--<button onclick="notifyMe()">Notify me!</button>-->
-@if ($purchaseOrders->isNotEmpty())
-                                        @foreach ($purchaseOrders as $purchaseOrder)
+<button onclick="notifyMe()">Notify me!</button>
+    @if ($pendingPurchaseOrders->isNotEmpty())
+    @foreach ($pendingPurchaseOrders as $pendingPurchaseOrder)
 <script>
-var retailers = @json($purchaseOrder->retailer->name);
+var retailers = @json($pendingPurchaseOrder->retailer->name);
             var options = {
                     body: "New Order from "+ retailers,
-                    icon: "http://127.0.0.1:8000/admin/assets/images/NN.png",
+                    icon: "https://nnuro.com/assets/img/logo.png",
                     dir : "ltr"
                     
                  };
               
  notification = new Notification("Nnuro Desktop Notification", options);
 
-//var purchaseOrder = @json($purchaseOrder->id);
-//purchaseOrder.forEach(notifyMe);
+
 </script>
 @endforeach
 @endif
@@ -189,8 +188,8 @@ var retailers = @json($purchaseOrder->retailer->name);
       }
       else if (Notification.permission === "granted") {
             var options = {
-                    body: "New Order from @json($purchaseOrder->id)",
-                    icon: "http://127.0.0.1:8000/admin/assets/images/NN.png",
+                    body: "You will now receive notifications",
+                    icon: "https://nnuro.com/assets/img/logo.png",
                     dir : "ltr"
                  };
               var notification = new Notification("Hi there",options);
@@ -204,7 +203,7 @@ var retailers = @json($purchaseOrder->retailer->name);
           if (permission === "granted") {
             var options = {
                   body: "This is the body of the notification",
-                  icon: "http://127.0.0.1:8000/admin/assets/images/NN.png",
+                  icon: "https://nnuro.com/assets/img/logo.png",
                   dir : "ltr"
               };
             var notification = new Notification("Hi there",options);
