@@ -159,7 +159,7 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
     </div><!--end col-->
 </div>
 <!--NOTIFICATION SYSTEM-->
-<!--<button onclick="notifyMe()">Notify me!</button>-->
+<button onclick="notifyMe()">Notify me!</button>
 @if ($purchaseOrders->isNotEmpty())
                                         @foreach ($purchaseOrders as $purchaseOrder)
 <script>
@@ -189,7 +189,7 @@ var retailers = @json($purchaseOrder->retailer->name);
       }
       else if (Notification.permission === "granted") {
             var options = {
-                    body: "New Order from @json($purchaseOrder->id)",
+                    body: "You will now receive notifications",
                     icon: "http://127.0.0.1:8000/admin/assets/images/NN.png",
                     dir : "ltr"
                  };
