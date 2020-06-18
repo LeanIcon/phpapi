@@ -34,6 +34,17 @@ class Product extends ApiModel implements Searchable
         return $productCat;
     }
 
+    
+    public function scopeIsDrug($query, $wholesalerId = null)
+    {
+        return $query->where('product_category_slug', 'drugs');
+    }
+
+    public function scopeIsMedicalDevice($query, $wholesalerId = null)
+    {
+        return $query->where('product_category_slug', 'device');
+    }
+
 
     public function manufacturer()
     {

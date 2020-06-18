@@ -92,7 +92,7 @@ class RegisterController extends Controller
         if(User::activeUserAccess($user))
         {
             $msg = "Welcome: $user->name to Nnuro%0aYour Verification Code: $pin%0aConfirm code on proceed%0aThank you!!!";
-            $notify = $this->SendSMSNotification('POST', $user->phone, $msg, User::SENDER_ID);
+            $notify = $this->SendSMSNotify($user->phone, $msg); 
             return $user;
         };
 

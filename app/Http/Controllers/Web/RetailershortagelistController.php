@@ -27,6 +27,27 @@ class RetailershortagelistController extends Controller
      */
     public function index()
     {
+        $retailer = Auth::user();
+        $shortageList = $retailer->shortage;
+        if(is_null($shortageList)) {
+            $data = [];
+        }else{
+            $data = json_decode($shortageList->content, true);
+        }
+        $shortageListItems =  collect($data);
+        $pageTitle = 'Shortagelist';
+        $products = $this->wholesalerProduct::all();
+        return view('admin.pages.retailers.shortage.view', compact('products','pageTitle', 'shortageListItems'));
+
+    }
+
+    /**
+     * Return new view to create shortage list
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
         $pageTitle = 'Retailer_Shortagelist';
         $products = $this->wholesalerProduct::all();
         return view('admin.pages.retailers.retailer_shortagelist', compact('pageTitle', 'products'));
