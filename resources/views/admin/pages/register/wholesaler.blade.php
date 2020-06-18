@@ -23,7 +23,22 @@
                                         <option value="pharmacist">Pharmacist</option>
                                     </select>
                                 </div>
+                            
                             </div>
+                            {{-- <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Region') }}</label>
+                                <div class="col-md-6">
+                                    @if (!is_null($regions))
+                                    <select class="form-control" name="location" id="">
+                                        <option value="">Select</option>
+                                        @foreach ($locations as $location)
+                                            <option value="{{$location->id}}">{{$location->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @endif
+                                </div>
+                            </div> --}}
+
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
                                 <div class="col-md-6">
