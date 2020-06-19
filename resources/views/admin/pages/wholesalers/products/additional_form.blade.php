@@ -40,10 +40,16 @@
 </div>
 
 <div class="row" id="selectedEquipCat">
-    <div class="col-md-12">
+    <div class="col-md-6">
         <div class="form-group">
             <label for="model">Machine / Equipment Model</label>
             <input class="form-control" type="text" name="model" id="model">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="PhoneNo">Packet Size</label>
+            <input type="text" name="packet_size" class="form-control" id="price">
         </div>
     </div>
 </div>
