@@ -21,8 +21,9 @@ class RetailerinvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($purchaseId = null)
+    public function index(Request $request, $purchaseId = null)
     {
+        
         $user = Auth::user();
         $purchaseInvoices = $user->retailer_orders->where('invoice', '!=', '');
         $pageTitle = 'Retailer Invoice';
