@@ -201,14 +201,13 @@
                     </div><!--end col-->
                     <div class="col-lg-6 align-self-end">
                         <div class="w-25 float-right">
-                        <form action="{{route('update.purchase.status', $purchaseOrder->purchase_order->id)}}" method="POST" >
+                        <form action="{{route('proforma.update', $purchaseOrder->purchase_order->id)}}" method="POST" >
                             @csrf
                             <label for="status-select" class="mr-2">Status</label>
                             <select name="status" class="custom-select" id="status-select">
                                 <option selected="">{{$purchaseOrder->purchase_order->status}}</option>
                                 <option value="pending">Pending</option>
-                                <option value="confirmed">Confirm</option>
-                                <option value="approved">Approve</option>
+                                <option value="processed">Process Purchase Order</option>
                                 <option value="cancel">Cancel</option>
                             </select>
                             <!--<input class="form-control" value="{{$purchaseOrder->purchase_order->id}}" type="text">-->

@@ -26,6 +26,9 @@ class RetailerDashboardController extends Controller
         $purchaseOrders = $retailer->retailer_orders;
         $approvedPurchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->where('status', 'approved')->get();
         $invoiceReceived = $this->purchaseOrders::where('retailer_id', $retailer)->where('invoice', '!=', null)->get();
+
+        $proforminvoices = collect($retailer->retailer_orders)->where('order_type', 'pro_forma');
+
         $shortageList = $retailer->shortage;
         if(is_null($shortageList)) {
             $data = [];
@@ -34,7 +37,7 @@ class RetailerDashboardController extends Controller
         }
         $shortageList =  collect($data);
         $wholesalers = $this->user::isWholeSaler()->get();
-        return view('admin.pages.retailers.dashboard', compact('pageTitle', 'purchaseOrders','approvedPurchaseOrders', 'wholesalers', 'retailer', 'invoiceReceived', 'shortageList', 'purchaseInvoices'));
+        return view('admin.pages.retailers.dashboard', compact('pageTitle', 'purchaseOrders','approvedPurchaseOrders', 'wholesalers', 'retailer', 'invoiceReceived', 'shortageList', 'purchaseInvoices','proforminvoices'));
     }
 
     public function loadPurchaseOrderList()
