@@ -57,7 +57,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="PhoneNo">Price</label>
-                                <input type="text" name="price" class="form-control" id="price" required="">
+                                <input type="text" name="price" class="form-control price" id="price" required="">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -189,5 +189,14 @@
             width: '100%'
         });
     }
+
+
+    $(document).on("keypress keyup blur", '.price', function (event) {
+        //this.value = this.value.replace(/[^0-9\.]/g,'');
+        $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
     </script>
 @endsection
