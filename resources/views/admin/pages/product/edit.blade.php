@@ -101,14 +101,23 @@
                         </div>
                 </div>
 
-                <div class="row">
-        <div class="col-md-6">
-        @if (!is_null($product))
-        <label for="LeadEmail">Packet Size</label>
-                            <input type="text" class="form-control" id="LeadName" required="" name="packet_size" value="{{$product->packet_size}}">
-        @endif 
-        </div>
-    </div>
+               
+                <div class="col-md-6">
+                    <div class="form-group">
+                                <label for="status-select" class="mr-2">Dosage Form</label>
+                                <select name="dosage_id" class="form-control custom-select">
+                                    <option selected="">Select</option>
+                                @if (!is_null($dosageForm))
+                                    @foreach ($dosageForm as $dosage)
+                                        <option value="{{$dosage->id}}">{{$dosage->name}}</option>
+                                    @endforeach
+                                @endif
+                                </select>
+                            </div>
+                    </div>
+                        </div>
+
+    
 
                         </div>
 
