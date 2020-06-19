@@ -155,11 +155,11 @@ a {
         <a href="{{route('retailer.retailer_invoice')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Invoice Received</h4>
+                <h4 class="title-text mt-0">Pro-forma Invoice Received</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-secondary">{{$invoiceReceived->count()}}</h3>
+                    <h3 class="text-secondary">{{$proforminvoices->count()}}</h3>
                     <i class="dripicons-document-new card-eco-icon bg-icon-secondary align-self-center"></i>
-                </div>                                   
+                </div>
             </div><!--end card-body-->
         </div><!--end card-->
     </div><!--end -->

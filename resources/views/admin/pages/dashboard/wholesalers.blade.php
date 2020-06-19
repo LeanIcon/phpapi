@@ -21,7 +21,7 @@
                                         <th></th>
                                         <th>Name</th>
                                         <th>Location</th>
-                                        <th>Category</th>
+                                        <th>Contact person</th>
                                         <th>Status</th>
                                         <th>View List</th>
                                     </tr>
@@ -34,14 +34,14 @@
                                             <tr role="row" class="odd">
                                                 <td></td>
                                                 <td >
-                                                    <img src="../assets/images/products/img-2.png" alt="" height="52">
+                                                    <img src="{{$wholesaler->details->image_url ?? url('admin/assets/images/users/user-4.jpg')}}" alt="" height="52">
                                                     <p class="d-inline-block align-middle mb-0">
-                                                        <a href="" class="d-inline-block align-middle mb-0 product-name">{{$wholesaler->name}}</a>
+                                                        <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}" class="d-inline-block align-middle mb-0 product-name">{{$wholesaler->name}}</a>
                                                     </p>
                                                 </td>
-                                                <td>East Legon</td>
+                                                <td>{{$wholesaler->details->location ?? ''}}</td>
                                                 <td>
-                                                    <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}"> Equipments/Drugs</a>
+                                                    <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}">{{$wholesaler->details->contact_person ?? ''}}</a>
                                                 </td>
                                                 <td>
                                                     <a href="{{route('approve.users', $wholesaler->id)}}">

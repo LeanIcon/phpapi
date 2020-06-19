@@ -3,7 +3,7 @@
 @section('content')
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+{{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> --}}
 <script type="text/javascript">
    var window:Window 
     window.onload = notifyMe;
@@ -107,7 +107,7 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
             <div class="card-body">
                 <h4 class="title-text mt-0">Total Products</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">{{$purchaseOrders->count()}}</h3>
+                    <h3 class="text-purple">{{$products->count()}}</h3>
                     <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i>
                 </div>
             </div><!--end card-body-->
@@ -135,9 +135,9 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
         <a href="{{ route('wholesaler.purchaseorderinvoice') }}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Invoice</h4>
+                <h4 class="title-text mt-0">Pro forma-Invoice</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">{{$approvedPurchaseOrders->count()}}</h3>
+                    <h3 class="text-purple">{{$proforminvoices->count()}}</h3>
                     <i class="dripicons-document-new card-eco-icon bg-icon-secondary align-self-center"></i>
                 </div>                                   
             </div><!--end card-body-->
@@ -159,7 +159,9 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
     </div><!--end col-->
 </div>
 <!--NOTIFICATION SYSTEM-->
+
 <button onclick="notifyMe()">Notify me!</button>
+@if (Session::get('notify') == 0)
     @if ($pendingPurchaseOrders->isNotEmpty())
     @foreach ($pendingPurchaseOrders as $pendingPurchaseOrder)
 <script>
@@ -176,6 +178,7 @@ var retailers = @json($pendingPurchaseOrder->retailer->name);
 
 </script>
 @endforeach
+@endif
 @endif
 @if ($purchaseOrders->isNotEmpty())
                                         @foreach ($purchaseOrders as $purchaseOrder)

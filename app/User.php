@@ -121,6 +121,10 @@ class User extends Authenticatable
         return $this->hasMany(WholesalerProduct::class, 'wholesaler_id');
     }
 
+    public function wholesaler_proforma()
+    {
+        return $this->hasMany(PurchaseOrders::class, 'wholesaler_id')->where('order_type', 'proforma');
+    }
 
     public function wholesaler_orders()
     {
