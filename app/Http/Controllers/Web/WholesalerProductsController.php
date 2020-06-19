@@ -116,7 +116,10 @@ class WholesalerProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $wholesalerProduct = $this->wholesaler_products::find($id)->update($request->all());
+        //$wholesalerProduct = $user->wholesaler_products()->update($request->all());
+        return redirect()->route('wholesaler_products.index');
     }
 
     /**
