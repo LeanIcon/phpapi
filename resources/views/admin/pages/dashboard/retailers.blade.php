@@ -22,8 +22,7 @@
                                     <tr>
                                         <th>Retailer Name</th>
                                         <th>Location</th>
-                                        <th>Invoices</th>
-                                        <th>Role</th>
+                                        <th>Contact Person</th>
                                         <th>Status</th> 
                                         <th>Action</th>
                                     </tr>
@@ -34,14 +33,13 @@
                                     @foreach ($retailers as $retailer)  
                                         <tr role="row" class="odd">
                                             <td>
-                                                <img src="../assets/images/products/img-2.png" alt="" height="52">
+                                            <img src="{{$retailer->details->image_url ?? url('admin/assets/images/users/user-4.jpg')}}" alt="" height="52">
                                                 <p class="d-inline-block align-middle mb-0">
                                                     <a href="" class="d-inline-block align-middle mb-0 product-name">{{$retailer->name}}</a>
                                                 </p>
                                             </td>
-                                            <td>Kasoa</td>
-                                            <td>Drugs</td>
-                                            <td><span class="badge badge-soft-warning">Stock</span></td>
+                                            <td>{{$retailer->details->location ?? ''}}</td>
+                                            <td>{{$retailer->details->contact_person ?? ''}}</td>
                                             <td>
                                             <a href="{{route('approve.users', $retailer->id)}}">
                                             <span class="badge badge-soft-{{$retailer->hasRole('Retailer') ? 'success' : 'warning'}}"> {{$retailer->hasRole('Retailer') ? 'Approved': 'Pending Approval'}}</span></td>
