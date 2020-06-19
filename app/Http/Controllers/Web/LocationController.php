@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Models\Town;
 use App\Models\Region;
 use App\Models\Location;
 use Illuminate\Http\Request;
@@ -97,4 +98,15 @@ class LocationController extends Controller
     {
         //
     }
+
+    public function getLocations($regID)
+    {
+         $locationsX=Town::where('region_id',$regID)->get();
+        
+        // $locationsX=Town::all();
+        // return json_encode($locationsX);
+        return response()->json($locationsX); 
+
+    }
+     
 }

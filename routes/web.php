@@ -111,3 +111,5 @@ Route::post('verify', 'Web\ConfirmPinController');
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/location/getLocations/{regID}','Web\LocationController@getLocations')->name('location.get');

@@ -30,7 +30,7 @@
                                 <div class="col-md-6">
                                     @if (!is_null($regions))
                                     <select class="form-control" name="region" id="">
-                                        <option value="">Select</option>
+                                        <option value="">Select Region</option>
                                         @foreach ($regions as $region)
                                             <option value="{{$region->id}}">{{$region->name}}</option>
                                         @endforeach
@@ -43,11 +43,11 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
                                 <div class="col-md-6">
                                     @if (!is_null($locations))
-                                    <select class="form-control" name="location" id="">
-                                        <option value="">Select</option>
-                                        @foreach ($locations as $location)
+                                    <select class="form-control" name="location" id="location">
+                                        <option value="">Select Location</option>
+                                        {{-- @foreach ($locations as $location)
                                             <option value="{{$location->id}}">{{$location->name}}</option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </select>
                                     @endif
                                 </div>
@@ -161,6 +161,33 @@
 
 <!-- App js -->
 <script src="{{url('admin/assets/js/app.js')}}"></script>
-
+<script>
+    $(document).ready(function(){
+        $('select[name="region"]').on('change',function(){
+            let regID=$(this).val();
+            if(regID){
+                console.log(regID);
+                $.ajax({
+                    url:'/location/getLocations/'+regID,
+                    type:'GET',
+                    dataType:'JSON',
+                    success:function(data){
+                        console.log(data);
+                        $('select[name="location"]').empty();
+                        let items = '<option value="">Select Location </option>';
+                       
+                            // items += "<option value='" + key + "'>" + value + "</option>";
+                            
+                        for (var i = 0; i < data.length; i++) {
+                        items += "<option value='" + data[i].id + "'>" + data[i].name + "</option>";
+                        }
+                        $('#location').empty().append(items);
+                        }
+                    
+                });
+            }
+        });
+    });
+</script>
 </body>
 </html>
