@@ -21,8 +21,9 @@ class WholesalerPurchaseOrderInvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($purchaseId = null)
+    public function index(Request $request, $purchaseId = null)
     {
+        $request->session()->put('notify', 1);
         $user = Auth::user();
         $purchaseInvoices = $user->wholesaler_orders->where('invoice', '!=', '');
         $pageTitle = 'Purchase Order Invoice';

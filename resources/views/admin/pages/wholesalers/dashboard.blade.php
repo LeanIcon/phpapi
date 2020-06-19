@@ -135,7 +135,7 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
         <a href="{{ route('wholesaler.purchaseorderinvoice') }}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Invoice</h4>
+                <h4 class="title-text mt-0">Pro forma-Invoice</h4>
                 <div class="d-flex justify-content-between">
                     <h3 class="text-purple">{{$approvedPurchaseOrders->count()}}</h3>
                     <i class="dripicons-document-new card-eco-icon bg-icon-secondary align-self-center"></i>
@@ -159,7 +159,9 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
     </div><!--end col-->
 </div>
 <!--NOTIFICATION SYSTEM-->
+
 <button onclick="notifyMe()">Notify me!</button>
+@if (Session::get('notify') == 0)
     @if ($pendingPurchaseOrders->isNotEmpty())
     @foreach ($pendingPurchaseOrders as $pendingPurchaseOrder)
 <script>
@@ -176,6 +178,7 @@ var retailers = @json($pendingPurchaseOrder->retailer->name);
 
 </script>
 @endforeach
+@endif
 @endif
 @if ($purchaseOrders->isNotEmpty())
                                         @foreach ($purchaseOrders as $purchaseOrder)

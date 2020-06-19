@@ -12,8 +12,9 @@ class WholesalerPurchaseOrderListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $request->session()->put('notify', 1);
         $pageTitle = 'Purchase Order List';
         return view('admin.pages.wholesalers.purchaseorderlist');
 

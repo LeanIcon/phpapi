@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PurchaseOrderItems;
+use Illuminate\Support\Facades\Session;
 
 class WholesalerDashboardController extends Controller
 {

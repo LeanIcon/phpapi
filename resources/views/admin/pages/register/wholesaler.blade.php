@@ -132,6 +132,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Register') }}
                                     </button>
+                                    <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Cancel</button>
                                 </div>
                             </div>
                         </form>
