@@ -151,7 +151,9 @@
                     <li class="nav-item"><a class="nav-link" href="#"><i class="ti-control-record"></i>Clients</a></li>
                 </ul>
             </li>-->
-            <li><a href="{{route('profile.index')}}">Profile</a></li>
+            @hasanyrole('Wholesaler|Retailer')
+                <li><a href="{{route('profile.index')}}">Profile</a></li>
+            @endhasanyrole
         </ul>
     @endauth
 </div>

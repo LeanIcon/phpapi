@@ -3,10 +3,18 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\UserDetails;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserProfileController extends Controller
 {
+    public $userdetails;
+    public function __construct(UserDetails $userdetails)
+    {
+        $this->middleware('auth');
+        $this->userdetails = $userdetails;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,9 @@ class UserProfileController extends Controller
      */
     public function index()
     {
-        return view('admin.settings.profile');
+        $user = Auth::user();
+        $details = $user->details;
+        return view('admin.settings.profile', compact('details'));
     }
 
     /**
@@ -35,7 +45,7 @@ class UserProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -69,7 +79,9 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $details = $this->userdetails::find($id);
+        $details->update($request->all());
+        return back();
     }
 
     /**
