@@ -24,13 +24,14 @@ class WholesalerDashboardController extends Controller
     public function loadDashboard()
     {
         $pageTitle = 'Wholesaler';
-        $wholesaler = Auth::user()->id;
-        $purchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler)->get();
-        $pendingPurchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler)->where('status', 'pending')->get();
-        $approvedPurchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler)->where('status', 'approved')->get();
+        $wholesaler = Auth::user();
+        $purchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler->id)->get();
+        $pendingPurchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler->id)->where('status', 'pending')->get();
+        $approvedPurchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler->id)->where('status', 'approved')->get();
         $retailers = $this->user::isRetailer()->get();
+        $products = $wholesaler->wholesaler_products;
 
-        return view('admin.pages.wholesalers.dashboard', compact('pageTitle','purchaseOrders', 'approvedPurchaseOrders', 'retailers','pendingPurchaseOrders'));
+        return view('admin.pages.wholesalers.dashboard', compact('pageTitle','purchaseOrders', 'approvedPurchaseOrders', 'retailers','pendingPurchaseOrders','products'));
     }
 
 

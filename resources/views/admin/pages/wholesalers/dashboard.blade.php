@@ -107,7 +107,7 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
             <div class="card-body">
                 <h4 class="title-text mt-0">Total Products</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">{{$purchaseOrders->count()}}</h3>
+                    <h3 class="text-purple">{{$products->count()}}</h3>
                     <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i>
                 </div>
             </div><!--end card-body-->
