@@ -31,14 +31,18 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="LeadName">Name</label>
-                            <input type="text" class="form-control" id="LeadName" required="" name="name" value="{{$product->name}}">
+                            <input type="" class="form-control" id="LeadName" required="" name="name" value="{{$product->name}}">
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="Leadphoto">Photo</label>
-                            <input type="text" class="form-control" id="Leadphoto" required="" name="photo" value="{{$product->photo}}" >
-                        </div>
+                    <div class="form-group">
+                    <div class="met-profile-main-pic">
+                                        <img src="{{$product->image_url ?? url('admin/assets/images/users/user-4.jpg')}}" width="50%" alt="" class="img-thumbnail">
+                                        <span class="fro-profile_main-pic-change">
+                                                            <i class="fas fa-camera"></i>
+                                                        </span>
+                                    </div>
+                    </div>
                     </div>
                 </div>
 
