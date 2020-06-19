@@ -133,23 +133,23 @@
 
                         <tbody>
  
-                            @if ($manufacturers ?? ''->isNotEmpty())
-                                @foreach ($manufacturers ?? '' as $manufacture)
+                            @if ($manufacturers->isNotEmpty())
+                                @foreach ($manufacturers as $manufacture)
                                 <tr>
                                     <td>00{{$manufacture->id}}</td>
                                     <td>{{$manufacture->name}}</td>
                                     <td>{{$manufacture->status}}</td>
                                     <!--<td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>-->
                                     <td>
-                                        <a href="{{route('manufacture.edit', $manufacture->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                        <a href="{{route('manufacture.show', $manufacture->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>
-                                        {{-- <a id="deleteAction"><i class="fas fa-trash-alt text-danger font-16"></i></a> --}}
-                                        {{-- <form action="{{route('manufacture.destroy', $manufacture->id)}}" method="POST" >
+                                        <a href="{{route('manufacture.edit', $manufacture->id)}}" class="mr-1"><i class="fas fa-edit text-info font-12"></i></a>
+                                        <a href="{{route('manufacture.show', $manufacture->id)}}" class="mr-1"><i class="fas fa-eye text-danger font-12"></i></a>
+                                         {{--<a id="deleteAction"><i class="fas fa-trash-alt text-danger font-16"></i></a> --}}
+                                         <form action="{{route('manufacture.destroy', $manufacture->id)}}" method="POST" >
                                             @csrf
                                             @method('DELETE')
                                             <input type="hidden" name="id" value="{{$manufacture->id}}">
-                                            <button type="submit" class="btn btn-sm btn-default"><i class="fas fa-trash-alt text-danger font-16"></i></button>
-                                        </form> --}}
+                                            <button type="submit" class="btn btn-sm btn-default" class="mr-1"><i class="fas fa-trash-alt text-danger font-12"></i></button>
+                                        </form> 
                                     </td>
                                 </tr><!--end tr-->
                                 @endforeach
