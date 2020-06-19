@@ -14,7 +14,7 @@
                             <div class="col-lg-4 align-self-center mb-3 mb-lg-0">
                                 <div class="met-profile-main">
                                     <div class="met-profile-main-pic">
-                                        <img src="{{url('admin/assets/images/users/user-4.jpg')}}" alt="" class="rounded-circle">
+                                        <img src="{{$details->image_url ?? url('admin/assets/images/users/user-4.jpg')}}" width="80%" alt="" class="rounded-circle">
                                         <span class="fro-profile_main-pic-change">
                                                             <i class="fas fa-camera"></i>
                                                         </span>
@@ -52,16 +52,7 @@
                 <div class="card-body">
                     <ul class="nav nav-pills mb-0" id="pills-tab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link" id="education_detail_tab" data-toggle="pill" href="#education_detail">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="portfolio_detail_tab" data-toggle="pill" href="#portfolio_detail">News Info</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="settings_detail_tab" data-toggle="pill" href="#settings_detail">Settings</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" id="general_detail_tab" data-toggle="pill" href="#general_detail">General</a>
+                            <a class="nav-link active" id="general_detail_tab" data-toggle="pill" href="#general_detail">Profile</a>
                         </li>
                     </ul>
                 </div>
@@ -80,9 +71,77 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="row">
-
-                                    </div>
+                                    <form action="{{route('profile.update', $details->id)}}" method="POST" enctype="multipart/form-data" >
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="LeadName">Location</label>
+                                                        <input type="text" name="location" class="form-control" value="{{$details->location ?? 'Not Available'}}" id="LeadName" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="LeadName">Digital Addres</label>
+                                                        <input type="text" name="digital_address" class="form-control" value="{{$details->digital_address ?? 'Not Available'}}" id="LeadName" required="">
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="LeadName">Business Address</label>
+                                                        <input type="text" name="business_address" value="{{$details->business_address ?? 'Not Available'}}" class="form-control" id="LeadName" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="LeadName">Reg No.</label>
+                                                        <input type="text" name="reg_no" value="{{$details->reg_no ?? 'Not Available'}}" class="form-control" id="LeadName" required="">
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="LeadName">Contact Person</label>
+                                                        <input type="text" name="contact_person"  value="{{$details->contact_person ?? 'Not Available'}}" class="form-control" id="LeadName" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="LeadName">Practise group</label>
+                                                        <input type="text" name="practise_group"  value="{{$details->practise_group ?? 'Not Available'}}" class="form-control" id="LeadName" required="">
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="LeadName">Contact Person Phone</label>
+                                                        <input type="text"  name="contact_person_phone" class="form-control"  value="{{$details->contact_person_phone ?? 'Not Available'}}" id="LeadName" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="LeadName">Town</label>
+                                                        <select class="form-control" name="town_id" id="">
+                                                            <option value="">Select Town</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="LeadEmail">Profile Image</label>
+                                                            <input type="file" class="form-control" name="profile_image" id="image">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <button class="btn btn-primary" type="submit" >Submit</button>
+                                        </form>
                                 </div>
                                 <!--end card-body-->
                             </div>
@@ -94,83 +153,6 @@
                 </div>
                 <!--end general detail-->
 
-                <div class="tab-pane fade" id="education_detail">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="header-title mt-0 mb-3">Title</h4>
-                                    <!--end education-activity-->
-                                </div>
-                                <!--end card-body-->
-                            </div>
-                            <!--end card-->
-                        </div>
-                        <!--end col-->
-
-                        <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="header-title mt-0 mb-3">Title</h4>
-                                </div>
-                                <!--end card-body-->
-                            </div>
-                            <!--end card-->
-                        </div>
-                        <!--end col-->
-
-                    </div>
-                    <!--end row-->
-                </div>
-                <!--end education detail-->
-
-                <div class="tab-pane fade" id="portfolio_detail">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="card">
-                                <div class="card-body">
-                                    <!-- End portfolio  -->
-                                </div>
-                                <!--end card-body-->
-                            </div>
-                            <!--end card-->
-
-                            <div class="card">
-                                <div class="card-body">
-                                    <!--end row-->
-                                </div>
-                                <!--end card-body-->
-                            </div>
-                            <!--end card-->
-                        </div>
-                        <!--end col-->
-                        <div class="col-lg-4">
-                            <div class="card ">
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <h4><i class="fas fa-quote-left text-primary"></i></h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end row-->
-                </div>
-                <!--end portfolio detail-->
-
-                <div class="tab-pane fade" id="settings_detail">
-                    <div class="row">
-                        <div class="col-lg-12 col-xl-9 mx-auto">
-                            <div class="card">
-                                <div class="card-body">
-                                </div>
-                            </div>
-                        </div>
-                        <!--end col-->
-                    </div>
-                    <!--end row-->
-                </div>
-                <!--end settings detail-->
             </div>
             <!--end tab-content-->
 

@@ -162,8 +162,20 @@
     function initSelectTags() {
         $(".manufact-select").select2({
             placeholder: 'Select Category Type',
-            width: '100%'
-        });
+            width: '100%',
+            // ajax: {
+            //     url: 'https://api.github.com/orgs/select2/repos',
+            //     data: function (params) {
+            //     var query = {
+            //         search: params.term,
+            //         type: 'public'
+            //     }
+
+            //     // Query parameters will be ?search=[term]&type=public
+            //     return query;
+            //     }
+            // }
+                    }); 
     }
     </script>
 @endsection
