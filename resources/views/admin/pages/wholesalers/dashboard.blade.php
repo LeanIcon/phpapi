@@ -137,7 +137,7 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
             <div class="card-body">
                 <h4 class="title-text mt-0">Pro forma-Invoice</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">{{$approvedPurchaseOrders->count()}}</h3>
+                    <h3 class="text-purple">{{$proforminvoices->count()}}</h3>
                     <i class="dripicons-document-new card-eco-icon bg-icon-secondary align-self-center"></i>
                 </div>                                   
             </div><!--end card-body-->

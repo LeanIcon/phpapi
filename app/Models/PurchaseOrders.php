@@ -28,7 +28,6 @@ class PurchaseOrders extends Model
         return $query->where('status', 'approved');
     }
 
-
     public function order_items()
     {
         return $this->hasMany(PurchaseOrderItems::class,'purchase_order_id');

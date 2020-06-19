@@ -30,8 +30,8 @@ class WholesalerDashboardController extends Controller
         $approvedPurchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler->id)->where('status', 'approved')->get();
         $retailers = $this->user::isRetailer()->get();
         $products = $wholesaler->wholesaler_products;
-
-        return view('admin.pages.wholesalers.dashboard', compact('pageTitle','purchaseOrders', 'approvedPurchaseOrders', 'retailers','pendingPurchaseOrders','products'));
+        $proforminvoices = collect($wholesaler->wholesaler_orders)->where('order_type', 'pro_forma');
+        return view('admin.pages.wholesalers.dashboard', compact('pageTitle','purchaseOrders', 'approvedPurchaseOrders', 'retailers','pendingPurchaseOrders','products','proforminvoices'));
     }
 
 
