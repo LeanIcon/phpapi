@@ -35,7 +35,7 @@ class RetailershortagelistController extends Controller
             $data = json_decode($shortageList->content, true);
         }
         $shortageListItems =  collect($data);
-        $pageTitle = 'Shortagelist';
+        $pageTitle = 'Shortage List Items';
         $products = $this->wholesalerProduct::all();
         return view('admin.pages.retailers.shortage.view', compact('products','pageTitle', 'shortageListItems'));
 
