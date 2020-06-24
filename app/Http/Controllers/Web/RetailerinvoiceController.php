@@ -23,7 +23,6 @@ class RetailerinvoiceController extends Controller
      */
     public function index(Request $request, $purchaseId = null)
     {
-        
         $user = Auth::user();
         $purchaseInvoices = $user->retailer_orders->where('invoice', '!=', '');
         $pageTitle = 'Retailer Invoice';
@@ -36,70 +35,22 @@ class RetailerinvoiceController extends Controller
         return view('admin.pages.retailers.invoicedetails', compact('orderItems'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function listProforma(Request $request)
     {
-        //
+        $user = Auth::user();
+        $pageTitle = 'Pro-forma Invoice';
+        $proformaInvoice = $user->retailer_orders->where('order_type', '=', 'pro_forma');
+        return view('admin.pages.retailers.invoice.pro_forma', compact('proformaInvoice', 'pageTitle'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function getProformaInvoice($order = null)
     {
-        //
-    }
+        $user = Auth::user();
+        $pageTitle = 'Pro-forma Invoice';
+        $purchaseOrder = $this->purchaseOrders::find($order);
+        $proformaInvoiceItems = $this->purchaseOrders::find($order)->order_items;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('admin.pages.retailers.invoice.details', compact('proformaInvoiceItems', 'pageTitle','purchaseOrder'));
     }
 
   //  public function invoicedetail()
