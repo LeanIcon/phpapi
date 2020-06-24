@@ -80,7 +80,12 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = $this->product::find($id);
-        return view('admin.pages.product.show', compact('product'));
+        $manufacturers = $this->manufacturer::all();
+        $productCategory  = $this->productCateogory::all();
+        $dosageForm = $this->dosageForm::all();
+        $drugClass = $this->drugClass::all();
+        $productCategoryTypes = $this->productCategoryTypes::all();
+        return view('admin.pages.product.show', compact('product', 'manufacturers', 'productCategory', 'dosageForm', 'drugClass','productCategoryTypes'));
     }
 
     /**
@@ -97,7 +102,7 @@ class ProductController extends Controller
         $dosageForm = $this->dosageForm::all();
         $drugClass = $this->drugClass::all();
         $productCategoryTypes = $this->productCategoryTypes::all();
-       // return $product;
+       //return $dosageForm;
         return view('admin.pages.product.edit', compact('product', 'manufacturers', 'productCategory', 'dosageForm', 'drugClass','productCategoryTypes')); 
     }
 
@@ -122,9 +127,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $product = $this->product::find($id)->delete($request->all());
+        
+        
+        return redirect()->route('product.index');
     }
 
     public function uploadImage(Request $request)
