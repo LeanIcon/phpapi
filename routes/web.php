@@ -88,6 +88,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
         Route::get('savedshortagelist', 'RetailerShortagelistController@viewShortageList')->name('saved.shortagelist');
         Route::get('shortagelist/create', 'RetailerShortagelistController@create')->name('create.shortagelist');
         Route::post('shortagelist', 'RetailerShortagelistController@saveShortageList')->name('shortagelist.save');
+        Route::get('proforma', 'RetailerinvoiceController@listProforma')->name('proforma.list');
+        Route::get('proforma/details/{order?}', 'RetailerinvoiceController@getProformaInvoice')->name('proforma.view');
     });
 
 
