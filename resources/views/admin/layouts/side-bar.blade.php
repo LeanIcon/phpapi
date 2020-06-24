@@ -41,11 +41,11 @@
                     <li class="nav-item"><a class="nav-link" href="{{route('dashboard.retailers')}}"><i class="ti-control-record"></i>Retailers</a></li> 
                 </ul>
             </li>-->
-            <li class="nav-item"><a class="nav-link" href="{{route('dashboard.index')}}"><i class="ti-control-record"></i>Dashboard</a></li>
+            <li class="nav-item"><a href="{{route('dashboard.index')}}"></i>Dashboard</a></li>
                     <!--<li class="nav-item"><a class="nav-link" href="#"><i class="ti-control-record"></i>Customers</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="ti-control-record"></i>Reports</a></li> 
-                    --><li class="nav-item"><a class="nav-link" href="{{route('dashboard.wholesalers')}}"><i class="ti-control-record"></i>Wholesalers</a></li> 
-                    <li class="nav-item"><a class="nav-link" href="{{route('dashboard.retailers')}}"><i class="ti-control-record"></i>Retailers</a></li> 
+                    --><li><a href="{{route('dashboard.wholesalers')}}"></i>Wholesalers</a></li> 
+                    <li><a href="{{route('dashboard.retailers')}}"></i>Retailers</a></li> 
                 
             @endrole
             @role('Wholesaler')
@@ -54,6 +54,7 @@
                 <li><a href="{{route('wholesaler.retailer')}}">Retailers</a></li>
                 <li><a href="{{route('wholesaler_products.index')}}">Products</a></li>
                 <li><a href="{{route('wholesaler.purchaseorderlist')}}">Purchase Order</a></li>
+                <li><a href="">Invoices</a></li>
                 <!--<a class="nav-link" href="#"><i class="dripicons-mail"></i><span class="w-100">Wholesaler</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('wholesaler.dashboard')}}">Dashboard</a></li>
@@ -70,6 +71,8 @@
             <li><a href="{{route('retailer.dashboard')}}">Dashboard</a></li>
             <li><a href="{{route('retailer.wholesaler')}}">Wholesalers</a></li>
             <li><a href="{{route('retailer.purchase_order')}}">Purchase Order</a></li>
+            <li><a href="{{route('create.shortagelist')}}">Shortage List</a></li>
+            <li><a href="">Invoices</a></li>
                <!-- <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Retailers</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('retailer.dashboard')}}">Dashboard</a></li>
@@ -85,7 +88,7 @@
             @endrole
             @role('Admin')
             <li class="nav-item">
-                <a class="nav-link" href="{{route('product.index')}}"><i class="dripicons-view-list-large"></i><span class="w-100">Products</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <li><a  href="{{route('product.index')}}">Products</span><span class="menu-arrow"></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <!--<li><a href="{{route('product.index')}}">Products</a></li>-->
                     {{--  <li><a href="{{route('product_category.index')}}">Product Category</a></li>  --}}
@@ -113,22 +116,22 @@
                 </ul>-->
             </li><!--end nav-item-->
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">News / Articles</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <a class="nav-link" href="#">News / Articles</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('post.index')}}">News Post</a></li>
                     <li><a href="{{route('post_category.index')}}">Post Category</a></li>
                 </ul>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="dripicons-view-list-large"></i><span class="w-100">Data Entry</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+               <li> <a href="#">Data Entry</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <li><a href="{{route('manufacture.index')}}">Manufacturers</a></li>
                     <li><a href="{{route('product_category.index')}}">Product Category</a></li>
-                    <li><a href="{{route('product_category_types.index')}}">Product Category Types</a></li>
-                    <li><a href="{{route('drug_class.index')}}">Drugs Class</a></li>
+                    <li><a href="{{route('product_category_types.index')}}">Drug Legal Status</a></li>
+                    <li><a href="{{route('drug_class.index')}}">Drug Class</a></li>
                     <li><a href="{{route('dosage_form.index')}}">Drug Dosage Form</a></li>
                     <li><a href="{{route('region.index')}}">Region</a></li>
-                    <li><a href="{{route('town.index')}}">Town</a></li>
+                    {{-- <li><a href="{{route('town.index')}}">Town</a></li> --}}
                     <li><a href="{{route('location.index')}}">Location</a></li>
                 </ul>
             </li><!--end nav-item-->
@@ -150,6 +153,9 @@
                     <li class="nav-item"><a class="nav-link" href="#"><i class="ti-control-record"></i>Clients</a></li>
                 </ul>
             </li>-->
+            @hasanyrole('Wholesaler|Retailer')
+                <li><a href="{{route('profile.index')}}">Profile</a></li>
+            @endhasanyrole
         </ul>
     @endauth
 </div>

@@ -2,6 +2,12 @@
 
 @section('content')
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"></script>
+{{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> --}}
+<script type="text/javascript">
+   var window:Window 
+    window.onload = notifyMe;
+    </script>
  <style>
 .searchbar{
     margin-bottom: auto;
@@ -11,7 +17,7 @@
     border-radius: 30px;
     padding: 10px;
     }
-
+https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
     .search_input{
     color: white;
     border: 0;
@@ -92,7 +98,7 @@
         echo "<h3 style= font-family:lora;>". "Good evening" . " " . Auth::user()->firstname .","."</h3>";
     }
     ?>
-                    <h1 style="font-size: 50px; font-family:lora;"> Welcome Back! </h1>
+                    <h1 style="font-size: 50px; font-family:lora;"> Welcome! </h1>
                    <!-- <span class="badge badge-danger badge-pill noti-icon-badge"><a href="{{ route('wholesaler_expiryproducts') }}">Expiring Products</a></span> -->
                 </div>
     <div class="col-lg-3">
@@ -101,7 +107,7 @@
             <div class="card-body">
                 <h4 class="title-text mt-0">Total Products</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">{{$purchaseOrders->count()}}</h3>
+                    <h3 class="text-purple">{{$products->count()}}</h3>
                     <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i>
                 </div>
             </div><!--end card-body-->
@@ -129,9 +135,9 @@
         <a href="{{ route('wholesaler.purchaseorderinvoice') }}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Invoice</h4>
+                <h4 class="title-text mt-0">Pro forma-Invoice</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-purple">{{$approvedPurchaseOrders->count()}}</h3>
+                    <h3 class="text-purple">{{$proforminvoices->count()}}</h3>
                     <i class="dripicons-document-new card-eco-icon bg-icon-secondary align-self-center"></i>
                 </div>                                   
             </div><!--end card-body-->
@@ -152,7 +158,66 @@
         </div><!--end card--></a>
     </div><!--end col-->
 </div>
+<!--NOTIFICATION SYSTEM-->
 
+<button onclick="notifyMe()">Notify me!</button>
+@if (Session::get('notify') == 0)
+    @if ($pendingPurchaseOrders->isNotEmpty())
+    @foreach ($pendingPurchaseOrders as $pendingPurchaseOrder)
+<script>
+var retailers = @json($pendingPurchaseOrder->retailer->name);
+            var options = {
+                    body: "New Order from "+ retailers,
+                    icon: "https://nnuro.com/assets/img/logo.png",
+                    dir : "ltr"
+                    
+                 };
+              
+ notification = new Notification("Nnuro Desktop Notification", options);
+
+
+</script>
+@endforeach
+@endif
+@endif
+@if ($purchaseOrders->isNotEmpty())
+                                        @foreach ($purchaseOrders as $purchaseOrder)
+                                       
+   <!--CURRENTLY USING UP TO THIS END-->                                                                 
+<script>
+    function notifyMe() {
+      if (!("Notification" in window)) {
+        alert("This browser does not support desktop notification");
+      }
+      else if (Notification.permission === "granted") {
+            var options = {
+                    body: "You will now receive notifications",
+                    icon: "https://nnuro.com/assets/img/logo.png",
+                    dir : "ltr"
+                 };
+              var notification = new Notification("Hi there",options);
+      }
+      else if (Notification.permission !== 'denied') {
+        Notification.requestPermission(function (permission) {
+          if (!('permission' in Notification)) {
+            Notification.permission = permission;
+          }
+       
+          if (permission === "granted") {
+            var options = {
+                  body: "This is the body of the notification",
+                  icon: "https://nnuro.com/assets/img/logo.png",
+                  dir : "ltr"
+              };
+            var notification = new Notification("Hi there",options);
+          }
+        });
+      }
+    }
+    </script>
+       @endforeach
+       @endif   
+<!--NOTIFICATION SYSTEM-->
 
 <div class="row">
     <div class="col-12">
@@ -162,36 +227,15 @@
                     <i class="mdi mdi-plus-circle-outline mr-2"></i>New Room Allotment</button>-->
 
                 <h4 class="header-title mt-0 mb-3"><span class="badge badge-danger badge-pill noti-icon-badge">New</span> Orders Received</h4>
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="dataTables_length" id="datatable_length">
-                            <label>Show <select name="datatable_length" aria-controls="datatable" class="custom-select custom-select-sm form-control form-control-sm">
-                                <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select> entries</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="container h-100">
-                        <div class="d-flex justify-content-center h-100">
-                        <div class="searchbar">
-                        <input class="search_input" type="text" name="" placeholder="Search...">
-          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-                    </div>
-                     </div>
-                        </div>
-                    </div>
-                </div>                <div class="row">
+                     
                         <div class="col-sm-12">
                             <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                                 <thead>
                                     <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 285px;"> Purchase ID</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Reatailer Name</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Status</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">View Purchase Order Details</th>
+                                        <th> Purchase ID</th>
+                                        <th>Reatailer Name</th>
+                                        <th>Status</th>
+                                        <th>View Purchase Order Details</th>
                                         
                                         
                                         
@@ -223,7 +267,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                     
         </div><!--end card-->
     </div><!--end col-->
 </div><!--end row-->
@@ -300,4 +344,13 @@
     </div><!--end col-->
 </div><!--end row-->
 
+@endsection
+
+
+@section('page-js') 
+<script>
+    $(document).ready(function() {
+        $('#datatable').dataTable();
+    });
+</script>
 @endsection

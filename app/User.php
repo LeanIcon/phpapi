@@ -9,6 +9,7 @@ use App\Models\UserDetails;
 use Illuminate\Support\Str;
 use App\Models\PurchaseOrders;
 use App\Models\ProductCategory;
+use App\Models\ShortageList;
 use App\Models\WholesalerProduct;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
@@ -26,6 +27,7 @@ class User extends Authenticatable
     CONST IS_RETAILER = 'retailer';
     CONST IS_APPROVE = 'approve';
     CONST IS_CANCEL = 'cancel';
+    CONST SENDER_ID = 'NNURO';
 
     /**
      * The attributes that are mass assignable.
@@ -33,7 +35,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'firstname', 'lastname', 'phone', 'type', 'slug','username'
+        'name', 'email', 'password', 'firstname', 'lastname', 'phone', 'type', 'slug','username', 'otp'
     ];
 
     /**
@@ -97,11 +99,32 @@ class User extends Authenticatable
     }
 
 
+    public function orderUsers($data)
+    {
+        $data = self::whereIn('id', $data)->get();
+        return $data;
+    }
+
+
     public function wholesaler_products()
     {
         return $this->hasMany(WholesalerProduct::class, 'wholesaler_id');
     }
 
+    public function shortage()
+    {
+        return $this->hasOne(ShortageList::class, 'user_id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(WholesalerProduct::class, 'wholesaler_id');
+    }
+
+    public function wholesaler_proforma()
+    {
+        return $this->hasMany(PurchaseOrders::class, 'wholesaler_id')->where('order_type', 'proforma');
+    }
 
     public function wholesaler_orders()
     {
@@ -150,12 +173,21 @@ class User extends Authenticatable
 
     public function details()
     {
-        return $this->hasOne(UserDetails::class,'users_id');    
+        return $this->hasOne(UserDetails::class,'users_id');
     }
 
     public function getProductCategoryAttribute()
     {
         return;
+    }
+
+    public static function generatePin()
+    {
+        // genrate based on time
+        // substr(number_format(time() * rand(),0,'',''),0,6);
+        // generate random
+        $pin = random_int(10000, 99999);
+        return $pin;
     }
 
 }

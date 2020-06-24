@@ -14,23 +14,21 @@ class DashboardController extends Controller
     {
         $this->user = $user;
         $this->middleware('auth');
+        $this->middleware('check-pin');
     }
 
     public function dashboard()
     {
         $authUser = Auth::user();
 
-        if( $authUser->type == $this->user::IS_ADMIN)
-        {
-            return $this->loadDashboard();
+        if ($authUser->hasRole('Admin')) {
+            return redirect()->route('admin.dashboard');
         }
-        if ($authUser->type == $this->user::IS_WHOLESALER )
-        {
-            return redirect()->route('wholesaler.dashboard');
+        if ($authUser->hasRole('Retailer')) {
+           return redirect()->route('retailer.dashboard');
         }
-        if ($authUser->type == $this->user::IS_RETAILER)
-        {
-            return redirect()->route('retailer.dashboard');
+        if ($authUser->hasRole('Wholesaler')) {
+           return redirect()->route('wholesaler.dashboard');
         }
         abort(404);
     }
@@ -55,15 +53,4 @@ class DashboardController extends Controller
         return view('admin.pages.dashboard.index', compact('pageTitle'));
     }
 
-    // public function loadRetailerDashboard()
-    // {
-    //     $pageTitle = 'Nnuro Dashboard';
-    //     return view('admin.pages.retailers.dashboard', compact('pageTitle'));
-    // }
-
-    // public function loadWholesalerDashboard()
-    // {
-    //     $pageTitle = 'Nnuro Dashboard';
-    //     return view('admin.pages.wholesalers.dashboard', compact('pageTitle'));
-    // }
 }

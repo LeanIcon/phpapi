@@ -11,7 +11,7 @@ use Spatie\Searchable\SearchResult;
 class Product extends ApiModel implements Searchable
 {
     protected $table = "products";
-    protected $fillable = ['name', 'photo', 'code','active_ingredients', 'associated_name','dosage_form_id', 'packet_size', 'dosage_class_slug',
+    protected $fillable = ['name', 'image_url', 'code','active_ingredients', 'associated_name','dosage_form_id', 'packet_size', 'dosage_class_slug','model',
     ' category', 'strength', 'drug_class_id', 'type', 'product_category_id', 'product_category_id', 'manufacturer_id','dosage_form_slug','product_category_slug'];
 
 
@@ -20,10 +20,12 @@ class Product extends ApiModel implements Searchable
         'active_ingredients' => Json::class
     ];
 
-    public function wholesaler_products()
+    
+    public function wholesalers()
     {
-        return $this->belongsTo(WholesalerProduct::class);
+        return $this->belongsToMany(WholesalerProduct::class);
     }
+    
 
 
     public function scopeProductCategory($value)
@@ -32,10 +34,21 @@ class Product extends ApiModel implements Searchable
         return $productCat;
     }
 
-
-    public function manufacturers()
+    
+    public function scopeIsDrug($query, $wholesalerId = null)
     {
-        return $this->belongsTo(Manufacturer::class,'manufacturer_id');
+        return $query->where('product_category_slug', 'drugs');
+    }
+
+    public function scopeIsMedicalDevice($query, $wholesalerId = null)
+    {
+        return $query->where('product_category_slug', 'device');
+    }
+
+
+    public function manufacturer()
+    {
+        return $this->belongsTo(Manufacturer::class, 'manufacturer_id');
     }
 
     public function category()

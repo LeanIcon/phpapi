@@ -1,12 +1,12 @@
 @include('admin.layouts.header')
 
-<div class="page-wrapper">
+<div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header text-center bg-dark text-white">{{ __('Sign Up') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register.form') }}">
@@ -23,7 +23,22 @@
                                         <option value="pharmacist">Pharmacist</option>
                                     </select>
                                 </div>
+                            
                             </div>
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Region') }}</label>
+                                <div class="col-md-6">
+                                    @if (!is_null($regions))
+                                    <select class="form-control" name="region" id="">
+                                        <option value="">Select</option>
+                                        @foreach ($regions as $region)
+                                            <option value="{{$region->id}}">{{$region->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @endif
+                                </div>
+                            </div>
+
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
                                 <div class="col-md-6">
@@ -117,6 +132,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Register') }}
                                     </button>
+                                    <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Cancel</button>
                                 </div>
                             </div>
                         </form>
@@ -132,18 +148,6 @@
 <!-- jQuery  -->
 <script src="{{url('admin/assets/js/jquery.min.js')}}"></script>
 <script src="{{url('admin/assets/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{url('admin/assets/js/metisMenu.min.js')}}"></script>
-<script src="{{url('admin/assets/js/waves.min.js')}}"></script>
-<script src="{{url('admin/assets/js/jquery.slimscroll.min.js')}}"></script>
-<script src="{{url('admin/assets/plugins/moment/moment.js')}}"></script>
-<script src="{{url('admin/assets/plugins/apexcharts/apexcharts.min.js')}}"></script>
-<script src="{{url('admin/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js')}}"></script>
-<script src="{{url('admin/assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
-<script src="{{url('admin/assets/pages/jquery.eco_dashboard.init.js')}}"></script>
-{{--  <script src="{{url('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{url('admin/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{url('admin/pages/jquery.crm_leads.init.js')}}"></script>  --}}
-
 <!-- App js -->
 <script src="{{url('admin/assets/js/app.js')}}"></script>
 

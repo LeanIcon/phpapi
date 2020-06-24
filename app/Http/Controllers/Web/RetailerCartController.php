@@ -177,12 +177,12 @@ class RetailerCartController extends Controller
                 'description' => $row->associatedModel->productDescription(),
                 'quantity' => $row->quantity,
                 'price' => $row->price,
-                'manufacturer' => $row->associatedModel->manufacturers->name,
+                'manufacturer' => $row->associatedModel->manufacturer_slug,
                 ]
             );
         }
         Cart::clear();
-        return  back();
+        return redirect()->route('retailer.dashboard');
 
     }
 }

@@ -15,12 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->middleware('guest');
 
 
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
-    Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard.index');
+    Route::get('/loaddashboard', 'DashboardController@dashboard')->name('dashboard.index');
+    Route::get('/dashboard', 'AdminDashboardController@index')->name('admin.dashboard');
     Route::get('/dashboard/wholesalers', 'DashboardController@loadWholesaler')->name('dashboard.wholesalers');
     Route::get('/dashboard/retailers', 'DashboardController@loadRetailer')->name('dashboard.retailers');
 
@@ -37,7 +38,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::post('approved_users/{user?}', 'ApproveRegistrationController@AcceptapprovedUsers')->name('approve.users');
     Route::resource('post_category', 'PostCategoryController');
     Route::resource('wholesaler.drugs', 'WholeSalerDrugsController');
-    Route::get('register', 'RegisterFormController@loadRegisterForm')->name('register.form');
+    Route::get('register', 'RegisterFormController@loadRegisterForm')->name('register.form')->middleware('guest');
     Route::post('register_user', 'RegisterFormController@saveNewUserForm')->name('save.user');
     Route::post('register', 'RegisterController@register')->name('register.form');
 
@@ -76,14 +77,20 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('retailer/invoicedetails/{id?}', 'RetailerinvoiceController@retailerinvoicedetail')->name('retailer.orderinvoicedetails');
     Route::get('retailer/retailer_shortagelist', 'RetailerShortagelistController@index')->name('retailer.retailer_shortagelist');
     Route::get('retailer/orders', 'RetailerOrdersController@index')->name('retailer.orders');
-    
-
+    Route::post('po/proforma/{porder?}', 'ProformaController@updateInvoiceToProforma')->name('proforma.update');
 
 
     Route::group(['prefix' => 'retailer'], function () {
         Route::resource('cart', 'RetailerCartController');
         Route::post('retailercart/{wholesaler?}', 'RetailerCartController@createPurchaseOrder')->name('create.purchase.order');
         Route::post('retailerpo/{wholesaler?}', 'RetailerCartController@savePurchaseOrder')->name('save.purchase.order');
+        Route::get('shortagelist', 'RetailerShortagelistController@viewShortageList')->name('shortagelist.view');
+        Route::get('savedshortagelist', 'RetailerShortagelistController@viewShortageList')->name('saved.shortagelist');
+        Route::get('shortagelist/create', 'RetailerShortagelistController@create')->name('create.shortagelist');
+        Route::post('shortagelist', 'RetailerShortagelistController@saveShortageList')->name('shortagelist.save');
+        Route::get('proforma', 'RetailerinvoiceController@listProforma')->name('proforma.list');
+        Route::get('proforma/details/{order?}', 'RetailerinvoiceController@getProformaInvoice')->name('proforma.view');
+        Route::get('proforma/process/{order?}', 'RetailerinvoiceController@updateProformaInvoice')->name('proforma.view');
     });
 
 
@@ -97,6 +104,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     });
 
 });
+
+Route::get('verify', 'Web\VerifyPinPageController@loadpage')->name('loadpin');
+Route::post('verify', 'Web\ConfirmPinController');
+// Route::get('verify', 'Web\VerifyPinPageController@sendVerify');
 
 
 Auth::routes(['register' => false]);

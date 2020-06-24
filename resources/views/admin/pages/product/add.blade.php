@@ -69,6 +69,14 @@
                         </div>
                     </div>
                     @include('admin.pages.wholesalers.products.additional_form')
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="LeadEmail">Product Image</label>
+                                <input type="file" class="form-control" name="product_image" id="product_image">
+                            </div>
+                        </div>
+                    </div>
 
                     {{--
                         <div class="row">
@@ -97,13 +105,13 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label for="Drug Code">Drug Code</label>
-                            <input type="text" name="code" class="form-control" id="LeadName" required="required">
+                            <input type="text" name="code" class="form-control" id="LeadName">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="Active Ingredients">Active Ingredients (Comma Seperated)</label>
-                            <input type="text" name="active_ingredients" class="form-control" id="active_ingredients" required="required">
+                            <input type="text" name="active_ingredients" class="form-control" id="active_ingredients">
                         </div>
                     </div>
                 </div>
@@ -111,7 +119,7 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label for="AssociatedName">Associated Name</label>
-                            <input type="text" name="associated_name" class="form-control" id="associated_name" required="required">
+                            <input type="text" name="associated_name" class="form-control" id="associated_name">
                         </div>
                     </div>
                 </div>
@@ -154,8 +162,20 @@
     function initSelectTags() {
         $(".manufact-select").select2({
             placeholder: 'Select Category Type',
-            width: '100%'
-        });
+            width: '100%',
+            // ajax: {
+            //     url: 'https://api.github.com/orgs/select2/repos',
+            //     data: function (params) {
+            //     var query = {
+            //         search: params.term,
+            //         type: 'public'
+            //     }
+
+            //     // Query parameters will be ?search=[term]&type=public
+            //     return query;
+            //     }
+            // }
+                    }); 
     }
     </script>
 @endsection

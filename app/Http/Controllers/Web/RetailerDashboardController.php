@@ -9,25 +9,35 @@ use Illuminate\Support\Facades\Auth;
 
 class RetailerDashboardController extends Controller
 {
+ 
     public function __construct(PurchaseOrders $purchaseOrders, User $user)
     {
         $this->middleware('auth');
         $this->middleware(['role:Retailer|Wholesaler']);
+        $this->middleware('check-pin');
         $this->purchaseOrders = $purchaseOrders;
         $this->user = $user;
     }
     public function loadDashboard()
     {
         $pageTitle = 'Retailers';
-        $retailer = Auth::user()->id;
-        $purchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->get();
+        $retailer = Auth::user();
+        $purchaseInvoices = $retailer->retailer_orders->where('invoice', '!=', '');
+        $purchaseOrders = $retailer->retailer_orders;
         $approvedPurchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->where('status', 'approved')->get();
+        $invoiceReceived = $this->purchaseOrders::where('retailer_id', $retailer)->where('invoice', '!=', null)->get();
+
+        $proforminvoices = collect($retailer->retailer_orders)->where('order_type', 'pro_forma');
+
+        $shortageList = $retailer->shortage;
+        if(is_null($shortageList)) {
+            $data = [];
+        }else{
+            $data = json_decode($shortageList->content, true);
+        }
+        $shortageList =  collect($data);
         $wholesalers = $this->user::isWholeSaler()->get();
-        // $retailer = Auth::user()->name;
-        // return $approvedPurchaseOrders->count();
-        // return $purchaseOrders;
-       // return $retailers;
-        return view('admin.pages.retailers.dashboard', compact('pageTitle', 'purchaseOrders','approvedPurchaseOrders', 'wholesalers', 'retailer'));
+        return view('admin.pages.retailers.dashboard', compact('pageTitle', 'purchaseOrders','approvedPurchaseOrders', 'wholesalers', 'retailer', 'invoiceReceived', 'shortageList', 'purchaseInvoices','proforminvoices'));
     }
 
     public function loadPurchaseOrderList()
@@ -47,14 +57,15 @@ class RetailerDashboardController extends Controller
     public function purchaseOrderDetails($purchaseOrderId = null)
     {
         $orderItems = $this->purchaseOrders::find($purchaseOrderId)->order_items;
-        // return $orderItems->order_items;
         $pageTitle = 'Order Details';
-        return view('admin.pages.retailers.order_details', compact('pageTitle','orderItems'));
+        $retailer = Auth::user()->id;
+        $purchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->get();
+        $wholesalers = $this->user::isWholeSaler()->get();
+        return view('admin.pages.retailers.order_details', compact('pageTitle','orderItems','purchaseOrders'));
     }
     public function WholesalerpurchaseOrderDetails($purchaseOrderId = null)
     {
         $orderItems = $this->purchaseOrders::find($purchaseOrderId)->order_items;
-        // return $orderItems;
         $pageTitle = 'Order Details';
         return view('admin.pages.wholesalers.purchaseorder', compact('pageTitle','orderItems'));
     }

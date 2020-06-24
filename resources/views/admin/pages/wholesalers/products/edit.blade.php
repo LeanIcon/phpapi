@@ -14,7 +14,7 @@
                 EDIT PRODUCTS
             </div>
             <div class="card-body">
-                <form method="POST" action="{{route('wholesaler_products.store')}}" enctype="multipart/form-data" >
+                <form method="POST" action="{{route('wholesaler_products.update', $product)}}" enctype="multipart/form-data" >
                     @csrf
                     <div class="row">
                         <div class="col-lg-12">
@@ -42,10 +42,11 @@
                             <div class="form-group">
                                 <label for="status-select" class="mr-2">Product</label>
                                 <select class="form-control custom-select" name="products_id" id="productCatSelect">
-                                    <option selected="">Select</option>
                                 @if (!is_null($products))
-                                    @foreach ($products as $products)
-                                        <option value="{{$products->name}}">{{$products->name}}</option>
+                                    @foreach ($products as $prod)
+                                        <option value="{{$prod->id}}" @if($prod->id == $product->products_id) {{ 'selected' }}
+                                            
+                                        @endif >{{$prod->name}}</option>
                                     @endforeach
                                 @endif
                                 </select>

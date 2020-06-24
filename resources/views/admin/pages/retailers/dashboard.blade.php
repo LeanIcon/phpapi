@@ -118,7 +118,7 @@ a {
     }
     ?>
 
-<h1 style="font-size: 50px; font-family:lora;"> Welcome Back! </h1>
+<h1 style="font-size: 50px; font-family:lora;"> Welcome! </h1>
                     
                 </div>
     <div class="col-lg-3">
@@ -152,14 +152,14 @@ a {
 
                 </div>
     <div class="col-lg-3">
-        <a href="{{route('retailer.retailer_invoice')}}" class="custom-card">
+        <a href="{{route('proforma.list')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Invoice Received</h4>
+                <h4 class="title-text mt-0">Pro-forma Invoice Received</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-secondary">2</h3>
+                    <h3 class="text-secondary">{{$proforminvoices->count()}}</h3>
                     <i class="dripicons-document-new card-eco-icon bg-icon-secondary align-self-center"></i>
-                </div>                                   
+                </div>
             </div><!--end card-body-->
         </div><!--end card-->
     </div><!--end -->
@@ -171,7 +171,7 @@ a {
             <div class="card-body">
                 <h4 class="title-text mt-0">Shortage List</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-warning">4</h3>
+                    <h3 class="text-warning">{{$shortageList->count()}}</h3>
                     <i class="dripicons-wallet card-eco-icon bg-icon-warning  align-self-center"></i>
                 </div>
             </div><!--end card-body-->
@@ -190,81 +190,86 @@ a {
                 </p>
 
                 
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="dataTables_length" id="datatable_length">
-                            <label>Show <select name="datatable_length" aria-controls="datatable" class="custom-select custom-select-sm form-control form-control-sm">
-                                <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select> entries</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="container h-100">
-                        <div class="d-flex justify-content-center h-100">
-                        <div class="searchbar">
-                        <input class="search_input" type="text" name="" placeholder="Search...">
-          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-                    </div>
-                     </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-@if ($wholesalers->isNotEmpty())
-    @foreach ($wholesalers as $wholesaler)
-               
-                    
-    <div class="col-md-6 col-xl-6">
-            <div class="card m-b-30">
-                <div class="card-body row">
-                    <div class="col-6">
-                        <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="img-fluid rounded-circle w-60"></a>
-                    </div>
-                    <div class="col-6 card-title align-self-center mb-0">
-                        <h5>{{$wholesaler->name}}</h5>
-                        <p class="m-0">{{$wholesaler->product_category()}}</p>
-                    </div>
-                </div>
-               
-                <div class="card-body">
-                    <div class="float-right btn-group btn-group-sm">
-                        <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}" class="btn btn-primary tooltips"><i class="fa fa-pencil"></i>View Products </a>
+                <table class="table" id="datatable">
+                    <thead>
+                        <tr>
+                            <th></th> 
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                          
                         
-                    </div>
-                    <ul class="social-links list-inline mb-0">
-                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fab fa-facebook"></i></a></li>
-                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fab fa-skype"></i></a></li>
-                    </ul>
-                </div>
+                            @if ($wholesalers->isNotEmpty())
+                                    @foreach ($wholesalers as $wholesaler) 
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                                <div class="col-md-12 col-xl-12">
+                                                    <div class="card m-b-30">
+                                                        <div class="card-body row">
+                                                            <div class="col-6">
+                                                                <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="img-fluid rounded-circle w-60"></a>
+                                                            </div>
+                                                            <div class="col-6 card-title align-self-center mb-0">
+                                                                <h5>{{$wholesaler->name}}</h5>
+                                                                <p class="m-0">{{$wholesaler->product_category()}}</p>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="card-body">
+                                                            <div class="float-right btn-group btn-group-sm">
+                                                                <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}" class="btn btn-primary tooltips"><i class="fa fa-pencil"></i>View Products </a>
+                                                                    
+                                                            </div>
+                                                            <ul class="social-links list-inline mb-0">
+                                                                <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                                                <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fab fa-facebook"></i></a></li>
+                                                                <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fab fa-skype"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr> 
+                                    @endforeach
+                                @endif 
+                    </tbody>
+                </table>
+
+                            <!--INVOICE RECEIVED NOTIFICATION-->
+                            @if ($purchaseInvoices->isNotEmpty())
+                            @foreach ($purchaseInvoices as $item)
+                            <script>
+                            var wholesaler = @json($item->get_wholesaler->name);
+                                        var options = {
+                                                body: "New Invoice from "+ wholesaler,
+                                                icon: "http://127.0.0.1:8000/admin/assets/images/NN.png",
+                                                dir : "ltr"
+                                                
+                                            };
+                                        
+                            notification = new Notification("Nnuro Desktop Notification", options);
+
+                            </script>
+                            @endforeach
+                            @endif
+                            <!--INVOICE RECEIVED NOTIFICATION ENDS HERE-->
+                        
             </div>
         </div>
-	@endforeach
-@endif
-</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 col-md-5">
-                            <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 10 of 14 entries</div>
-                        </div>
-                        <div class="col-sm-12 col-md-7">
-                            <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
-                                <ul class="pagination">
-                                    <li class="paginate_button page-item previous disabled" id="datatable_previous"><a href="#" aria-controls="datatable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                                    <li class="paginate_button page-item active"><a href="#" aria-controls="datatable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                    <li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                                    <li class="paginate_button page-item next" id="datatable_next"><a href="#" aria-controls="datatable" data-dt-idx="3" tabindex="0" class="page-link">Next</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                     
     </div>
+</div>
+         
     <!-- end col -->
 
+@endsection
+
+@section('page-js') 
+<script>
+    $(document).ready(function() {
+        $('#datatable').dataTable();
+    });
+</script>
 @endsection

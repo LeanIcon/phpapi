@@ -29,7 +29,7 @@
                                 </td>
                                 <td>
                                     <a href="{{route('retailer.orderinvoicedetails')}}"
-                                    class="d-inline-block align-middle mb-0 product-name">{{$item->get_retailer->name}}</a>
+                                    class="d-inline-block align-middle mb-0 product-name">{{$item->get_wholesaler->name}}</a>
                                 </td>
                                 <td>3/03/2019 4:29 PM</td>
                                 <td>

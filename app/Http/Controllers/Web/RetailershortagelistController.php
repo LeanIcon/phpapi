@@ -2,11 +2,24 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\ShortageList;
 use Illuminate\Http\Request;
-
+use App\Models\WholesalerProduct;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Cart;
 class RetailershortagelistController extends Controller
 {
+    public $product, $wholesalerProduct , $shortageList;
+    public function __construct(Product $product, WholesalerProduct $wholesalerProduct, ShortageList $shortageList)
+    {
+        $this->product = $product;
+        $this->wholesalerProduct = $wholesalerProduct;
+        $this->shortageList = $shortageList;
+        $this->middleware('auth');
+        $this->middleware(['role:Retailer']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,74 +27,60 @@ class RetailershortagelistController extends Controller
      */
     public function index()
     {
-        $pageTitle = 'Retailer_Shortagelist';
-        return view('admin.pages.retailers.retailer_shortagelist', compact('pageTitle'));
+        $retailer = Auth::user();
+        $shortageList = $retailer->shortage;
+        if(is_null($shortageList)) {
+            $data = [];
+        }else{
+            $data = json_decode($shortageList->content, true);
+        }
+        $shortageListItems =  collect($data);
+        $pageTitle = 'Shortage List Items';
+        $products = $this->wholesalerProduct::all();
+        return view('admin.pages.retailers.shortage.view', compact('products','pageTitle', 'shortageListItems'));
 
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Return new view to create shortage list
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        $pageTitle = 'Retailer_Shortagelist';
+        $products = $this->wholesalerProduct::all();
+        return view('admin.pages.retailers.retailer_shortagelist', compact('pageTitle', 'products'));
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function viewShortageList()
     {
-        //
+        $pageTitle  = ' Shortage List';
+        return view('admin.pages.retailers.shortage.shortage_list', compact('pageTitle'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function saveShortageList(Request $request)
     {
-        //
-    }
+        $shortlist = array();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        foreach(Cart::getContent() as $item)
+        {
+            $shortlist[$item->id]['id'] = $item->id;
+            $shortlist[$item->id]['name'] = $item->name;
+            $shortlist[$item->id]['description'] = $item->associatedModel->productDesc();
+        }
+        $data = collect($shortlist)->values() ;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        $pageTitle  = ' Shortage List';
+        $saveShortage = $this->shortageList::create([
+                    'user_id' => Auth::user()->id,
+                    'instance' => 'shortagelist',
+                    'content' => $data
+                ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        Cart::clear();
+        return view('admin.pages.retailers.shortage.shortage_list', compact('pageTitle'));
+
     }
 }

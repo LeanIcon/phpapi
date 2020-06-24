@@ -68,7 +68,7 @@
                                                 <td>{{$purchaseOrder->purchase_order->wholesaler->name}}</td>
                                             
                                                 <td>
-                                                    {{$purchaseOrder->manufacturer}}
+                                                    {{$purchaseOrder->manufacturer ?? $item->manufacturer_slug}}
                                                 </td>
                                                 <td> {{$purchaseOrder->price}}  </td>
                                                 {{-- <td><span class="badge badge-soft-warning">{{$purchaseOrder->status}}</span></td> --}}
@@ -102,7 +102,7 @@
     </div>-->
     <!-- end col -->
 </div>
-<!--  Modal content for the above example -->
+<!--  Modal content for the above examples -->
  
 <style>.bg-black {
     background-color: #000 !important;

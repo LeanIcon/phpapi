@@ -28,7 +28,6 @@ class PurchaseOrders extends Model
         return $query->where('status', 'approved');
     }
 
-
     public function order_items()
     {
         return $this->hasMany(PurchaseOrderItems::class,'purchase_order_id');
@@ -36,13 +35,18 @@ class PurchaseOrders extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
 
 
     public function get_retailer()
     {
         return $this->belongsTo(User::class, 'retailer_id', 'id');
+    }
+
+    public function get_wholesaler()
+    {
+        return $this->belongsTo(User::class, 'wholesaler_id', 'id');
     }
 
     /**

@@ -26,7 +26,7 @@ class RetailerWholesalersController extends Controller
     public function show($wholesalerId)
     {
         $wholesaler = $this->user::isWholeSaler()->where('id', $wholesalerId)->first();
-        $products = $wholesaler->wholesaler_products;
+        $products = $wholesaler->products;
         $details = $wholesaler->details;
         return view('admin.pages.retailers.wholesaler_details', compact('wholesaler','products', 'details'));
     }

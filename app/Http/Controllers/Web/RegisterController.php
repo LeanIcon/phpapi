@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Web;
 
 use App\User;
 use App\Models\Location;
+use App\Models\UserDetails;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Traits\SmsNotification;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -15,6 +17,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
+    use SmsNotification;
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -56,6 +59,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'location' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -72,20 +76,31 @@ class RegisterController extends Controller
         $location = strtolower(Location::find($data['location'])->name);
         $slug  = Str::slug($data['name']);
         $uname = $slug.'-'.$location;
+        $pin = User::generatePin();
+        $phone = '233'.Str::after($data['phone'], '0');
+
 
         $user = User::create([
             'type' => $data['type'],
             'name' =>  $data['name'],
+            'phone' => $phone,
             'username' =>  $uname,
+            'otp' => $pin,
             'slug' =>  $slug,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-
+        // %26
         if(User::activeUserAccess($user))
         {
-            return $user;
-        };
+            $msg = "Welcome: $user->name to Nnuro%0aYour Verification Code: $pin%0aConfirm code on proceed%0aThank you!!!";
+            $notify = $this->SendSMSNotify($user->phone, $msg); 
+            UserDetails::create([
+                'users_id' => $user->id, 
+                'town_id' => $data['region'], 
+                ]);
+                return $user;
+            };
 
         return $user;
     }

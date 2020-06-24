@@ -85,7 +85,7 @@ class ProductCategoryController extends Controller
     public function update(Request $request, $id)
     {
         $productCategory = $this->productCategory::find($id)->update($request->all());
-        return view('admin.pages.product_category.index');
+        return redirect()->route('product_category.index');
     }
 
     /**
@@ -94,8 +94,8 @@ class ProductCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+        
     }
 }

@@ -36,16 +36,15 @@ class WholesalerProductsController extends Controller
      */
     public function index()
     {
-        //$wholesalerProducts = $this->wholesalerProducts::all();
-        $wholesaler = Auth::user()->id;
-        $wholesalerProducts = $this->wholesalerProducts::where('wholesaler_id', $wholesaler)->get();
+        $wholesaler = Auth::user();
+        $wholesalerProducts = $wholesaler->wholesaler_products;
         return view('admin.pages.wholesalers.products', compact('wholesalerProducts'));
     }
+
     public function loadExpiryProducts()
     {
-        //$wholesalerProducts = $this->wholesalerProducts::all();
-        $wholesaler = Auth::user()->id;
-        $wholesalerProducts = $this->wholesalerProducts::where('wholesaler_id', $wholesaler)->get();
+        $wholesaler = Auth::user();
+        $wholesalerProducts = $wholesaler->wholesaler_products;
         return view('admin.pages.wholesalers.expiryproducts', compact('wholesalerProducts'));
         
     }
@@ -97,7 +96,9 @@ class WholesalerProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {        $products = $this->products::all();
+    { 
+
+        
         $products = $this->products::all();
         $product = $this->wholesalerProducts::find($id);
         $manufacturers  = $this->manufacturer::all();
@@ -114,7 +115,10 @@ class WholesalerProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $wholesalerProduct = $this->wholesaler_products::find($id)->update($request->all());
+        //$wholesalerProduct = $user->wholesaler_products()->update($request->all());
+        return redirect()->route('wholesaler_products.index');
     }
 
     /**

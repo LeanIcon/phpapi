@@ -17,7 +17,7 @@
     </div><!--end col-->
 </div>
 <!-- end page title end breadcrumb -->
-<div class="row">
+{{-- <div class="row">
     <div class="col-lg-4">
         <div class="card">
             <div class="card-body profile-card">                                    
@@ -110,14 +110,14 @@
         </div><!--end row-->                            
     </div><!--end col-->
     
-</div><!--end row-->
+</div><!--end row--> --}}
 
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
                 <a type="button" href="{{route('manufacture.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
-                <h4 class="header-title mt-0 mb-3">All Manufacturers</h4> 
+                {{-- <h4 class="header-title mt-0 mb-3"> Manufacturers</h4>  --}}
                 <div class="table-responsive dash-social">
                     <table id="datatable" class="table">
                         <thead class="thead-light">
@@ -132,26 +132,24 @@
                         </thead>
 
                         <tbody>
-
-                        <tr>
-
-                            @if ($manufacturers ?? ''->isNotEmpty())
-                                @foreach ($manufacturers ?? '' as $manufacture)
+ 
+                            @if ($manufacturers->isNotEmpty())
+                                @foreach ($manufacturers as $manufacture)
                                 <tr>
                                     <td>00{{$manufacture->id}}</td>
                                     <td>{{$manufacture->name}}</td>
                                     <td>{{$manufacture->status}}</td>
                                     <!--<td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>-->
                                     <td>
-                                        <a href="{{route('manufacture.edit', $manufacture->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                        <a href="{{route('manufacture.show', $manufacture->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>
-                                        {{-- <a id="deleteAction"><i class="fas fa-trash-alt text-danger font-16"></i></a> --}}
-                                        {{-- <form action="{{route('manufacture.destroy', $manufacture->id)}}" method="POST" >
+                                        <a href="{{route('manufacture.edit', $manufacture->id)}}" class="mr-1"><i class="fas fa-edit text-info font-12"></i></a>
+                                        <a href="{{route('manufacture.show', $manufacture->id)}}" class="mr-1"><i class="fas fa-eye text-danger font-12"></i></a>
+                                         {{--<a id="deleteAction"><i class="fas fa-trash-alt text-danger font-16"></i></a> --}}
+                                         <form action="{{route('manufacture.destroy', $manufacture->id)}}" method="POST" >
                                             @csrf
                                             @method('DELETE')
                                             <input type="hidden" name="id" value="{{$manufacture->id}}">
-                                            <button type="submit" class="btn btn-sm btn-default"><i class="fas fa-trash-alt text-danger font-16"></i></button>
-                                        </form> --}}
+                                            <button type="submit" class="btn btn-sm btn-default" class="mr-1"><i class="fas fa-trash-alt text-danger font-12"></i></button>
+                                        </form> 
                                     </td>
                                 </tr><!--end tr-->
                                 @endforeach
@@ -163,7 +161,18 @@
             </div><!--end card-body--> 
         </div><!--end card--> 
     </div><!--end col-->
+  
+
 </div><!--end row-->  
+
 @include('admin.pages.dashboard.modal-page')
 </div><!-- container -->
+@endsection
+
+@section('page-js') 
+<script>
+    $(document).ready(function() {
+        $('#datatable').dataTable();
+    });
+</script>
 @endsection
