@@ -11,13 +11,15 @@ use App\Models\ProductCategory;
 use App\Models\WholesalerProduct;
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategoryTypes;
+use App\Models\DrugClass;
+use App\Models\DosageForm;
 use Illuminate\Support\Facades\Auth;
 
 class WholesalerProductsController extends Controller
 {
-    public $manufacturer, $productCategory;
+    public $manufacturer, $productCategory, $drugClass, $dosageForm;
     public function __construct(Manufacturer $manufacturer, ProductCategory $productCategory, Product $products, ProductCategoryTypes $productCategoryTypes,
-    WholesalerProduct $wholesalerProducts, User $user)
+    WholesalerProduct $wholesalerProducts, DrugClass $drugClass, DosageForm $dosageForm, User $user)
     {
         $this->middleware('auth');
         $this->middleware(['role:Wholesaler']);
@@ -26,6 +28,8 @@ class WholesalerProductsController extends Controller
         $this->products = $products;
         $this->wholesalerProducts = $wholesalerProducts;
         $this->carbon = new Carbon();
+        $this->drugClass = $drugClass;
+        $this->dosageForm = $dosageForm;
         $this->productCategoryTypes = $productCategoryTypes;
     }
 
@@ -86,7 +90,13 @@ class WholesalerProductsController extends Controller
      */
     public function show($id)
     {
-        //
+        $products = $this->products::all();
+        $product = $this->wholesalerProducts::find($id);
+        $manufacturers  = $this->manufacturer::all();
+        $productCategoryTypes = $this->productCategoryTypes::all();
+        $productCategory  = $this->productCategory::all();
+        $dosageForm = $this->dosageForm::all();
+        return view('admin.pages.wholesalers.products.show', compact('manufacturers','products', 'product', 'productCategoryTypes', 'productCategory', 'dosageForm'));
     }
 
     /**
@@ -103,7 +113,9 @@ class WholesalerProductsController extends Controller
         $product = $this->wholesalerProducts::find($id);
         $manufacturers  = $this->manufacturer::all();
         $productCategoryTypes = $this->productCategoryTypes::all();
-        return view('admin.pages.wholesalers.products.edit', compact('manufacturers','products', 'product', 'productCategoryTypes'));
+        $productCategory  = $this->productCategory::all();
+        $dosageForm = $this->dosageForm::all();
+        return view('admin.pages.wholesalers.products.edit', compact('manufacturers','products', 'product', 'productCategoryTypes', 'productCategory', 'dosageForm'));
       }
 
     /**
@@ -116,9 +128,13 @@ class WholesalerProductsController extends Controller
     public function update(Request $request, $id)
     {
         
-        $wholesalerProduct = $this->wholesaler_products::find($id)->update($request->all());
-        //$wholesalerProduct = $user->wholesaler_products()->update($request->all());
+       // $products = $this->products::all();
+        $product = $this->wholesalerProducts::find($id)->update($request->all());
+       // $manufacturers  = $this->manufacturer::all();
+        //$productCategoryTypes = $this->productCategoryTypes::all();
+        //$productCategory  = $this->productCategory::all();
         return redirect()->route('wholesaler_products.index');
+       // return view('admin.pages.wholesalers.products.edit', compact('manufacturers','products', 'product', 'productCategoryTypes'));
     }
 
     /**
@@ -127,8 +143,12 @@ class WholesalerProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+       // $user = Auth::user();
+        //$product = $this->wholesalerProducts::find($id)->delete($request->all());
+        //$wholesalerProduct = $user->wholesaler_products()->delete($request->all());
+        $product = $this->wholesalerProducts::find($id)->delete($request->all());
+        return redirect()->route('wholesaler_products.index');
     }
 }
