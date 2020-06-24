@@ -53,6 +53,16 @@ class RetailerinvoiceController extends Controller
         return view('admin.pages.retailers.invoice.details', compact('proformaInvoiceItems', 'pageTitle','purchaseOrder'));
     }
 
+    public function updateProformaInvoice($order = null)
+    {
+        $user = Auth::user();
+        $pageTitle = 'Pro-forma Invoice';
+        $purchaseOrder = $this->purchaseOrders::find($order)->update(['status'=> 'Approved', 'delivery_status' => 'Pending']);
+        $proformaInvoiceItems = $this->purchaseOrders::find($order)->order_items;
+
+        return view('admin.pages.retailers.invoice.details', compact('proformaInvoiceItems', 'pageTitle','purchaseOrder'));
+    }
+
   //  public function invoicedetail()
    // {
    //     $pageTitle = 'Invoice details';
