@@ -91,7 +91,7 @@
            
 
 
-                    <div class="row" id="selectedDrugCat">
+                    <div class="row">
     <div class="col-md-6">
         <div class="form-group">
             <label for="LeadEmail">Dosage Form</label>

@@ -11,11 +11,10 @@
     <div class="row">
         <div class="col-lg-7 card">
             <div class="card-header">
-                EDIT PRODUCTS
+                VIEW PRODUCT
             </div>
             <div class="card-body">
                 <form method="POST" action="{{route('wholesaler_products.update', $product)}}" enctype="multipart/form-data" >
-                    @method('PUT')
                     @csrf
                     <div class="row">
                         <div class="col-lg-12">
@@ -70,7 +69,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="PhoneNo">Price</label>
-                                <input type="text" name="price" class="form-control" id="price" value="{{$product->price}}" required="">
+                                <input type="text" name="price" class="form-control" id="price" value="{{$product->price}}" disabled>
                             </div>
                         </div>
                        {{-- <div class="col-md-6">
@@ -78,7 +77,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                       <label for=" ExpiryMonth"> Expiry Month</label>
-                                      <select class="form-control custom-select" name="expiry_month" id="">
+                                      <select class="form-control custom-select" name="expiry_month" id="" disabled>
                                           <option value=""><?php $month=strtotime($product->expiry_date);$month=date('m',$month); echo $month;?></option>
                                          @for ($i = 1; $i <= 12; $i++)
                                             <option value="{{str_pad($i,2,'0',STR_PAD_LEFT)}}">{{str_pad($i,2,"0",STR_PAD_LEFT)}}</option>
@@ -89,7 +88,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                       <label for=" ExpiryYear"> Expiry Year</label>
-                                      <select class="form-control custom-select" name="expiry_year" id="">
+                                      <select class="form-control custom-select" name="expiry_year" id="" disabled> 
                                         <option value=""><?php $year=strtotime($product->expiry_date);$year=date('Y',$year); echo $year;?></option>
                                         @for ($i = 1990; $i <= date('Y')+10 ; $i++)
                                            <option value="{{$i}}">{{$i}}</option>
@@ -97,8 +96,8 @@
                                       </select>
                                     </div>
                                 </div>
-                            </div>
-                        </div> --}}
+                            </div> --}}
+                        </div>
                     
                     <div class="row">
                         <div class="col-lg-6">
@@ -234,8 +233,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-sm btn-primary">Save</button>
-                    <button type="button" class="btn btn-sm btn-danger">Cancel</button>
+                    
                 </div>
             </div> --}}
     </div><!--end row-->

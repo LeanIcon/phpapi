@@ -145,7 +145,7 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
     </div><!--end -->
 </a>
 
-    <div class="col-lg-3">
+  {{--  <div class="col-lg-6">
         <a href="{{ route('wholesaler_expiryproducts') }}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
@@ -155,9 +155,9 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
                     <i class="dripicons-wallet card-eco-icon bg-icon-warning  align-self-center"></i>
                 </div>
             </div><!--end card-body-->
-        </div><!--end card--></a>
+        </div><!--end card--></a> --}}
     </div><!--end col-->
-</div>
+</div> 
 <!--NOTIFICATION SYSTEM-->
 
 <button onclick="notifyMe()">Notify me!</button>
