@@ -1,4 +1,4 @@
-<div class="row" id="selectedDrugCat">
+<div class="row">
     <div class="col-md-6">
         <div class="form-group">
             <label for="LeadEmail">Dosage Form</label>
@@ -7,9 +7,7 @@
 
                 @if (!is_null($dosageForm))
                                     @foreach ($dosageForm as $dos)
-                                    <option value="{{$dos->id}}" @if($dos->id == $product->dosage_form_id) {{ 'selected' }}
-                                            
-                                            @endif >{{$dos->name}}</option>
+                                    <option value="{{$dos->id}}">{{$dos->name}}</option>
                                     
                                     @endforeach
                                 @endif
@@ -53,14 +51,14 @@
         </div>
     </div> -->
 
-<div class="row" id="selectedEquipCat">
+<!--<div class="row" id="selectedEquipCat">
     <div class="col-md-6">
         <div class="form-group">
             <label for="model">Machine / Equipment Model</label>
             <input class="form-control" type="text" name="model" id="model">
         </div>
     </div>
-</div>
+</div> -->
 
 
 

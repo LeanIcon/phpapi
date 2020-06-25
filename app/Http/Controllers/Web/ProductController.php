@@ -50,8 +50,9 @@ class ProductController extends Controller
         $dosageForm = $this->dosageForm::all();
         $drugClass = $this->drugClass::all();
         $productCategoryTypes = $this->productCategoryTypes::all();
-
-        return view('admin.pages.product.add', compact('manufacturers','productCategory','dosageForm', 'drugClass', 'productCategoryTypes'));
+        $product = $this->product::all();
+      //  return $dosageForm;
+        return view('admin.pages.product.add', compact('manufacturers','productCategory','dosageForm', 'drugClass', 'productCategoryTypes','product'));
     }
 
     /**
