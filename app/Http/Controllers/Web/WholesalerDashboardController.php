@@ -26,7 +26,7 @@ class WholesalerDashboardController extends Controller
         $pageTitle = 'Wholesaler';
         $wholesaler = Auth::user();
         $purchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler->id)->get();
-        $pendingPurchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler->id)->where('status', 'pending')->get();
+        $pendingPurchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler->id)->where('status', 'undefined') ->orWhere('status','pending')->get();
         $approvedPurchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler->id)->where('status', 'approved')->get();
         $retailers = $this->user::isRetailer()->get();
         $products = $wholesaler->wholesaler_products;
