@@ -164,7 +164,7 @@
                 processData: false,
                 success: function(data) {
                     console.log(data);
-                    /*window.location.href = "{{route('dashboard.index')}}" */
+                    window.location.href = "{{route('dashboard.index')}}" 
                 },
                 error: function(error) {
                     console.log(error.responseJSON);
