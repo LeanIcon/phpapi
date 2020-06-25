@@ -107,14 +107,15 @@
                                             </div><!--end col-->
                                             <div class="col-lg-6 align-self-end">
                                                 <div class="w-25 float-right"><strong class="font-14">Status :</strong> {{$purchaseOrder->purchase_order->status}}
-                                                    <form action="{{route('proforma.update', $purchaseOrder->purchase_order->id)}}" method="POST" >
-                                                        @csrf
-                                                        {{-- <label for="status-select" class="mr-2">Status</label> --}}
-                                                        <select name="status" class="custom-select" id="status-select">
-                                                            <option selected="">{{$purchaseOrder->purchase_order->status}}</option>
-                                                            <option value="pending">Approve</option>
-                                                            <option value="pending">Cancel</option>
-                                                        </select>
+                                                    <form id="updateProforma" method="POST" >
+                                                        <select name="status" class="custom-select" id="selStats"  required >
+                                                            <option value="" >Select</option>
+                                                            <option value="approve">Approve</option>
+                                                            <option value="cancel">Cancel</option>
+                                                        </select> <br> <br>
+                                                        <button id="updateBtn" type="submit" class="btn btn-primary">Approve</button>
+                                                        <input type="text" name="profomId" hidden value="{{$order}}" class="form-control">
+                                                    </form>
                                                 </div>
                                             </div><!--end col-->
                                         </div><!--end row-->
@@ -138,4 +139,37 @@
                                 </div><!--end card-->
                             </div><!--end col-->
                         </div>
+@endsection
+@section('page-js')
+    <script>
+        var selectedStatus;
+        $(document).ready(function(){
+            $("select#selStats").change(function(){
+                selectedStatus = $(this).children("option:selected").val();
+            });
+            var formData = $("#updateProforma").serialize();
+            $("#updateBtn").on('click', function(e){
+                e.preventDefault(); e.stopPropagation();
+                updateProforma(formData + '&status='+selectedStatus)
+            })
+        });
+
+        function updateProforma(data) {
+            console.log(data)
+            $.ajax({
+                data: data,
+                url: "{{url('admin/retailer/proforma/process')}}",
+                type: "POST",
+                dataType: 'json',
+                processData: false,
+                success: function(data) {
+                    console.log(data);
+                    /*window.location.href = "{{route('dashboard.index')}}" */
+                },
+                error: function(error) {
+                    console.log(error.responseJSON);
+                }
+            }) 
+        }
+    </script>
 @endsection
