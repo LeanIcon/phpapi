@@ -44,11 +44,11 @@
                                             <td>
                                             <a href="{{route('wholesaler_products.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                             <a href="{{route('wholesaler_products.show', $product->id)}}" class="mr-2"><i class="fas fa-eye text-info font-16"></i></a>
-                                          {{--  <form action="{{route('product.destroy', $product->id)}}" method="POST" >
+                                           <form action="{{route('wholesaler_products.destroy', $product->id)}}" method="POST" >
                                             @csrf
                                             @method('DELETE')
-                                            <input type="hidden" name="id" value="{{$wproduct->id}}">
-                                            <button type="submit" class="btn btn-sm btn-default" class="mr-1"><i class="fas fa-trash-alt text-danger font-12"></i></button> --}}
+                                            <input type="hidden" name="id" value="{{$product->id}}">
+                                            <button type="submit" class="btn btn-sm btn-default" class="mr-1"><i class="fas fa-trash-alt text-danger font-12"></i></button> 
                                         </form> 
                                         </td>
                                         </tr>

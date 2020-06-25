@@ -115,6 +115,7 @@ class WholesalerProductsController extends Controller
         $productCategoryTypes = $this->productCategoryTypes::all();
         $productCategory  = $this->productCategory::all();
         $dosageForm = $this->dosageForm::all();
+        //return $productCategory;
         return view('admin.pages.wholesalers.products.edit', compact('manufacturers','products', 'product', 'productCategoryTypes', 'productCategory', 'dosageForm'));
       }
 
@@ -145,9 +146,7 @@ class WholesalerProductsController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-       // $user = Auth::user();
-        //$product = $this->wholesalerProducts::find($id)->delete($request->all());
-        //$wholesalerProduct = $user->wholesaler_products()->delete($request->all());
+       
         $product = $this->wholesalerProducts::find($id)->delete($request->all());
         return redirect()->route('wholesaler_products.index');
     }
