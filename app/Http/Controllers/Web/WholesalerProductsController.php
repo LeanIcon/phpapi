@@ -150,4 +150,13 @@ class WholesalerProductsController extends Controller
         $product = $this->wholesalerProducts::find($id)->delete($request->all());
         return redirect()->route('wholesaler_products.index');
     }
+
+    public function getDetails($prodID)
+    {
+         $details=Product::where('id',$prodID)->get();
+        
+        return response()->json($details); 
+
+    }
+     
 }
