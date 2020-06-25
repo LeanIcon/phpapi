@@ -38,10 +38,12 @@
                             <div class="form-group">
                                 <label for="LeadEmail">Manufacturer</label>
                                 <select name="manufacturer_id" class="form-control custom-select" id="status-select">
-                                    <option selected="">Select</option>
+                                   <!-- <option selected="">Select</option> -->
                                     @if (!is_null($manufacturers))
-                                        @foreach ($manufacturers as $manufacturer)
-                                        <option value="{{$manufacturer->id}}">{{$manufacturer->name}}</option>
+                                        @foreach ($manufacturers as $manu)
+                                        <option value="{{$manu->id}}" @if($manu->id == $product->manufacturer_id) {{ 'selected' }}
+                                            
+                                        @endif >{{$manu->name}}</option>
                                         @endforeach
                                     @endif
                                 </select>
@@ -54,10 +56,13 @@
                             <div class="form-group">
                                 <label for="status-select" class="mr-2">Category</label>
                                 <select name="product_category_id" class="form-control custom-select" id="productCatSelect">
-                                    <option selected="">Select</option>
+                                   <!-- <option selected="">Select</option> -->
                                 @if (!is_null($productCategory))
-                                    @foreach ($productCategory as $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @foreach ($productCategory as $cat)
+                                    <option value="{{$cat->id}}" @if($cat->id == $product->product_category_id) {{ 'selected' }}
+                                            
+                                            @endif >{{$cat->name}}</option>
+                                    
                                     @endforeach
                                 @endif
                                 </select>
@@ -65,75 +70,106 @@
                         </div>
                     <div class="col-md-6">
                     <div class="form-group">
-                                <label for="status-select" class="mr-2">Product Category</label>
-                                <select name="product_category_id" class="form-control custom-select" id="productCatSelect">
-                                    <option selected="">Select</option>
-                                @if (!is_null($productCategoryTypes))
-                                    @foreach ($productCategoryTypes as $productcat)
-                                        <option value="{{$productcat->id}}">{{$productcat->name}}</option>
-                                    @endforeach
-                                @endif
-                                </select>
+                                <label for="status-select" class="mr-2">Generic Name</label>
+                                <input type="text" name="generic_name" class="form-control" id="price" value="{{$product->generic_name}}">
+                            </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                                <label for="status-select" class="mr-2">Drug Legal Status</label>
+                                <input type="text" name="drug_legal status" class="form-control" id="price" value="{{$product->drug_legal_status}}">
                             </div>
                 </div>
 
                 
                     </div>
-                <div class="row" id="selectedDrugCat">
-                    <div class="col-lg-6">
-                                <label for="LeadEmail">Drug Class</label>
-                                <select name="drug_class_id" class="form-control custom-select" id="status-select">
-                                    <option selected="">Select</option>
-                                    @if (!is_null($drugClass))
-                                        @foreach ($drugClass as $drug)
-                                        <option value="{{$drug->id}}">{{$drug->name}}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                        <div class="form-group">
-                        @if (!is_null($product))
-                            <label for="LeadEmail">Strength</label>
-                            <input type="text" class="form-control" id="LeadName" required="" name="strength" value="{{$product->strength}}">
+                
 
-                        @endif 
-                        </div>
-                </div>
+                    </div>
 
-               
-                <div class="col-md-6">
-                    <div class="form-group">
-                                <label for="status-select" class="mr-2">Dosage Form</label>
-                                <select name="dosage_id" class="form-control custom-select">
-                                    <option selected="">Select</option>
-                                @if (!is_null($dosageForm))
-                                    @foreach ($dosageForm as $dosage)
-                                        <option value="{{$dosage->id}}">{{$dosage->name}}</option>
+           
+
+
+                    <div class="row" id="selectedDrugCat">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="LeadEmail">Dosage Form</label>
+            <select name="dosage_form_id" class="form-control custom-select" id="status-select">
+                <!--<option selected="">Select</option> -->
+
+                @if (!is_null($dosageForm))
+                                    @foreach ($dosageForm as $dos)
+                                    <option value="{{$dos->id}}" @if($dos->id == $product->dosage_form_id) {{ 'selected' }}
+                                            
+                                            @endif >{{$dos->name}}</option>
+                                    
                                     @endforeach
                                 @endif
-                                </select>
-                            </div>
-                    </div>
-                        </div>
 
-    
+                
+            </select>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="status-select" class="mr-2">Drug Class</label>
+            <select name="drug_class_id" class="form-control custom-select" id="status-select">
+                <option selected="">Select</option>
+            @if (!is_null($drugClass))
+                @foreach ($drugClass as $dru)
+                    <option value="{{$dru->id}}" @if($dru->id == $product->drug_class_id) {{'selected'}} @endif>{{$dru->name}}</option>
+                @endforeach
+            @endif
+            </select>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group">
+            <label for="LeadName">Drug Strength</label>
+            <input type="text" name="strength" class="form-control" id="LeadName" value="{{$product->strength}}">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="PhoneNo">Packet Size</label>
+            <input type="text" name="packet_size" class="form-control" id="price" value="{{$product->packet_size}}">
+        </div>
+    </div>
+</div>
 
-                        </div>
 
-                        <div class="row" id="selectedEquipCat">
+  <!--  <div class="col-md-6">
+        <div class="form-group">
+            <label for="PhoneNo">Packet Size</label>
+            <input type="text" name="packet_size" class="form-control" id="price">
+        </div>
+    </div> -->
+
+<!--<div class="row" id="selectedEquipCat">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="model">Machine / Equipment Model</label>
+            <input class="form-control" type="text" name="model" id="model">
+        </div>
+    </div>
+</div> -->
+                    
+
+           
+            </div>            
+
+     <!--<div class="row" id="selectedEquipCat">
     <div class="col-md-12">
         <div class="form-group">
             <label for="model">Machine / Equipment Model</label>
             <input class="form-control" type="text" name="model" id="model">
         </div>
     </div>
-</div>
-                        
+</div>  -->
+                         
 
                 
-                {{--    @include('admin.pages.wholesalers.products.additional_form') --}}
-                    
                 </div>
 
                 <div  style = "margin-right: 50% !important"class="form-group"> 

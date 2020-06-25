@@ -41,7 +41,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="status-select" class="mr-2">Product</label>
-                                <select class="form-control custom-select" name="products_id" id="productCatSelect" disabled>
+                                <select class="form-control custom-select" name="products_id" id="productCatSelect">
                                 @if (!is_null($products))
                                     @foreach ($products as $prod)
                                         <option value="{{$prod->id}}" @if($prod->id == $product->products_id) {{ 'selected' }}

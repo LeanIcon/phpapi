@@ -26,10 +26,7 @@
         <script src="{{url('admin/assets/js/waves.min.js')}}"></script>
         <script src="{{url('admin/assets/js/jquery.slimscroll.min.js')}}"></script>
         <script src="{{url('admin/assets/plugins/moment/moment.js')}}"></script>
-        <script src="{{url('admin/assets/plugins/apexcharts/apexcharts.min.js')}}"></script>
-        <script src="{{url('admin/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js')}}"></script>
-        <script src="{{url('admin/assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
-        <script src="{{url('admin/assets/pages/jquery.eco_dashboard.init.js')}}"></script>
+
         <script src="{{url('admin/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
         <script src="{{url('admin/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
         <script src="{{url('admin/assets/plugins/datatables/buttons/dataTables.buttons.min.js')}}"></script>
@@ -37,6 +34,14 @@
 
         <!-- App js -->
         <script src="{{url('admin/assets/js/app.js')}}"></script>
+
+        <script>
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        </script>
 
         @yield('page-js')
     </body>
