@@ -60,7 +60,7 @@
                                 <input type="text" name="price" class="form-control" id="price" required="">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                      {{--  <div class="col-md-6">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -85,7 +85,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for=" ExpiryYear"> Type</label>
