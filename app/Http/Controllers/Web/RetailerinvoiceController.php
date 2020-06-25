@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Web;
 use Illuminate\Http\Request;
 use App\Models\PurchaseOrders;
 use App\Http\Controllers\Controller;
+use App\Models\InvoiceReceipt;
 use Illuminate\Support\Facades\Auth;
 
 class RetailerinvoiceController extends Controller
 {
-    public $purchaseOrders;
-    public function __construct(PurchaseOrders $purchaseOrders)
+    public $purchaseOrders, $invoiceReceipt;
+    public function __construct(PurchaseOrders $purchaseOrders, InvoiceReceipt $invoiceReceipt)
     {
         $this->purchaseOrders = $purchaseOrders;
+        $this->invoiceReceipt = $invoiceReceipt;
         $this->middleware('auth');
         $this->middleware(['role:Retailer']);
     }
@@ -40,32 +42,38 @@ class RetailerinvoiceController extends Controller
         $user = Auth::user();
         $pageTitle = 'Pro-forma Invoice';
         $proformaInvoice = $user->retailer_orders->where('order_type', '=', 'pro_forma');
+
         return view('admin.pages.retailers.invoice.pro_forma', compact('proformaInvoice', 'pageTitle'));
     }
-
+    
     public function getProformaInvoice($order = null)
     {
+        
         $user = Auth::user();
         $pageTitle = 'Pro-forma Invoice';
         $purchaseOrder = $this->purchaseOrders::find($order);
         $proformaInvoiceItems = $this->purchaseOrders::find($order)->order_items;
 
-        return view('admin.pages.retailers.invoice.details', compact('proformaInvoiceItems', 'pageTitle','purchaseOrder'));
+        return view('admin.pages.retailers.invoice.details', compact('proformaInvoiceItems', 'pageTitle','purchaseOrder','order'));
     }
 
-    public function updateProformaInvoice($order = null)
+    public function updateProformaInvoice(Request $request, $order = null)
     {
-        $user = Auth::user();
-        $pageTitle = 'Pro-forma Invoice';
-        $purchaseOrder = $this->purchaseOrders::find($order)->update(['status'=> 'Approved', 'delivery_status' => 'Pending']);
-        $proformaInvoiceItems = $this->purchaseOrders::find($order)->order_items;
 
-        return view('admin.pages.retailers.invoice.details', compact('proformaInvoiceItems', 'pageTitle','purchaseOrder'));
+        $receiptCode = $this->invoiceReceipt::generateInvoiceReceipt();
+        $code = $this->purchaseOrders::generateInvoiceCode();
+        $dvStatus = 'pending';
+        $orderType = 'invoice';
+
+        $updateStatus = $this->purchaseOrders::find($request->profomId)->update(['status' => $request->status, 'invoice' => $code, 'devlivery_status' => $dvStatus, 'order_type' => $orderType]);
+
+        $updateStats = $this->invoiceReceipt::create([
+            'invoice_id' => $request->profomId,
+            'receipt_no' => $receiptCode
+        ]);
+        // return $updateStatus ? redirect()->route('dashboard.index') : redirect()->route('dashboard.index');
+        return response()->json($updateStats, 200);
+
     }
 
-  //  public function invoicedetail()
-   // {
-   //     $pageTitle = 'Invoice details';
-   //     return view('admin.pages.retailers.invoicedetails');
-   // }
 }
