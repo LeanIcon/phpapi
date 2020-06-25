@@ -53,16 +53,39 @@
                         </div>
                     </div>
 
+                   <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="PhoneNo">Strength</label>
+                            <input type="text" name="strength" class="form-control" id="strength" disabled="disabled">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="PhoneNo">Pack Size</label>
+                            <input type="text" name="packsize" class="form-control" id="packsize" disabled="disabled">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="PhoneNo">Generic Name</label>
+                            <input type="text" name="generic" class="form-control" id="generic" disabled="disabled">
+                        </div>
+                    </div>
+                   </div>
+
+                    <br><br><br>
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="PhoneNo">Price</label>
-                                <input type="text" name="price" class="form-control" id="price" required="">
+                                <input type="text" name="price" class="form-control price" id="price" required="">
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-lg-6">
+                             <div class="row">
+                              {{--  <div class="col-lg-6">
                                     <div class="form-group">
                                       <label for=" ExpiryMonth"> Expiry Month</label>
                                       <select class="form-control custom-select" name="expiry_month" id="">
@@ -72,18 +95,18 @@
                                          @endfor
                                       </select>
                                     </div>
-                                </div>
+                                </div> 
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                       <label for=" ExpiryYear"> Expiry Year</label>
                                       <select class="form-control custom-select" name="expiry_year" id="">
                                         <option value="">Select Year</option>
-                                        @for ($i = 1990; $i <= date('Y')+10 ; $i++)
+                                        @for ($i = date('Y'); $i <= date('Y')+10 ; $i++)
                                            <option value="{{$i}}">{{$i}}</option>
                                         @endfor
                                       </select>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="col-lg-12">
@@ -159,29 +182,7 @@
 @section('page-js')
    <script src="{{url('admin/assets/plugins/select2/select2.min.js')}}"></script>
     <script>
-        $("#selectedDrugCat").hide();
-        $("#selectedEquipCat").hide();
-        var catslect;
-        $(document).ready(function(){
-            initSelectTags();
-            $("#productCatSelect").change(function(){
-                console.log(catslect);
-                catslect = $("#productCatSelect").val();
-                console.log(catslect);
-                if(catslect == '1') {
-                    $("#selectedDrugCat").show();
-                }else{
-                    $("#selectedDrugCat").hide();
-                }
-                if(catslect == '2') {
-                    $("#selectedEquipCat").show();
-                }else{
-                    $("#selectedEquipCat").hide();
-                }
-            });
-        });
-
-
+     
 
     function initSelectTags() {
         $(".manufact-select").select2({
@@ -189,5 +190,39 @@
             width: '100%'
         });
     }
+
+
+    $(document).on("keypress keyup blur", '.price', function (event) {
+        //this.value = this.value.replace(/[^0-9\.]/g,'');
+        $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
+
+     
+    $(document).ready(function(){
+        $('select[name="products_id"]').on('change',function(){
+            let prodID=$(this).val();
+            if(prodID){
+                 
+                $.ajax({
+                    url:'/WholesalerProducts/getDetails/'+prodID,
+                    type:'GET',
+                    dataType:'JSON',
+                    success:function(data){
+                        console.log(data[0]); 
+                        document.getElementById("strength").defaultValue  = data[0].strength;
+                        document.getElementById("packsize").defaultValue  = data[0].packet_size;
+                        document.getElementById("generic").defaultValue  = data[0].generic_name;
+                        }
+                    
+                });
+            }
+        });
+    });
+ 
+
+
     </script>
 @endsection
