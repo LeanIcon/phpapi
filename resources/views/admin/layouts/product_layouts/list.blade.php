@@ -77,22 +77,16 @@
 
                                       @role('Retailer')  <form method="POST" action="{{route('create.purchase.order', $wholesaler->id)}}" enctype="multipart/form-data" >
                                             <td>
-                                                @if (in_array($product->id, $pIds))
-                                                    ADDED
-                                                @else
                                                 <input class="form-control" value="1" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" type="number" name="quantity" id="quantity" />
-                                                @endif
                                             </td>
                                             <td>
                                                 @csrf
                                                 <input class="form-control" value="{{$product->id}}" name="id" type="hidden">
                                                 <input class="form-control" value="{{$product->products_id}}" name="products_id" type="hidden">
                                                 <input class="form-control" value="{{$product->formattedPrice()}}" name="price" type="hidden">@endrole
-                                                @role('Retailer') @if (in_array($product->id, $pIds)) 
-                                                ADDED
-                                                    @else
+                                                @role('Retailer')
                                                 <button type="submit" class="btn btn-sm btn-primary"> ADD</button>
-                                                @endif @endrole
+                                                 @endrole
                                             </td>
                                         </form>  
                                     </tr>
