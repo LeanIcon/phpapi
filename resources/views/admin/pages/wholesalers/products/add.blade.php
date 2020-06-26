@@ -16,28 +16,15 @@
             <div class="card-body">
                 <form method="POST" action="{{route('wholesaler_products.store')}}" enctype="multipart/form-data" >
                     @csrf
+
                     <div class="row">
-                        <div class="col-lg-12">
+                    <div class="col-md-6">
                             <div class="form-group">
-                                <label for="LeadName">Batch Number</label>
-                                <input type="text" class="form-control" name="batch_number" id="LeadName" required="">
+                                <label for="batchNumber">Batch Number</label>
+                                <input type="text" class="form-control" name="batch_number" id="batch_number" required="">
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="LeadEmail">Manufacturer</label>
-                                <select class="form-control custom-select" id="status-select">
-                                    <option selected="">Select</option>
-                                    @if ($manufacturers->isNotEmpty())
-                                        @foreach ($manufacturers as $manufacturer)
-                                        <option value="{{$manufacturer->id}}">{{$manufacturer->name}}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                            </div>
-                        </div>
+                    
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="status-select" class="mr-2">Product</label>
@@ -52,8 +39,7 @@
                             </div>
                         </div>
                     </div>
-
-                   <div class="row">
+                    <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="PhoneNo">Strength</label>
@@ -72,17 +58,38 @@
                             <input type="text" name="generic" class="form-control" id="generic" disabled="disabled">
                         </div>
                     </div>
-                   </div>
-
-                    <br><br><br>
-
+                    </div>
                     <div class="row">
-                        <div class="col-md-6">
+                    <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="category">Category Type</label>
+                                    <input type="text" name="category" id="category" class="form-control" disabled="disabled">
+                                </div>
+                            </div>
+                    
+                    <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="manufacturer"> Manufacturer</label>
+                                    <input type="text" name="manufacturer" id="manufacturer" class="form-control" disabled="disabled">
+                                </div>
+                    </div>
+                     
+                    
+
+                    </div>
+
+                   <div class="row">
+                   <div class="col-md-6">
                             <div class="form-group">
                                 <label for="PhoneNo">Price</label>
                                 <input type="text" name="price" class="form-control price" id="price" required="">
                             </div>
-                        </div>
+                    </div>
+                   </div>
+                   
+
+                    <div class="row">
+                        
                         <div class="col-md-6">
                              <div class="row">
                               {{--  <div class="col-lg-6">
@@ -108,20 +115,8 @@
                                     </div>
                                 </div> --}}
                             </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label for=" ExpiryYear"> Type</label>
-                                <select class="form-control custom-select" name="type" id="">
-                                    @if ($productCategoryTypes->isNotEmpty())
-                                        <option></option>
-                                        @foreach ($productCategoryTypes as $cattype)
-                                            <option value="{{$cattype->id}}">{{$cattype->name}}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                              </div>
-                        </div>
+                        </div> 
+                        
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary">Save</button>
                     <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Cancel</button>
@@ -212,9 +207,13 @@
                     dataType:'JSON',
                     success:function(data){
                         console.log(data[0]); 
+                        
                         document.getElementById("strength").defaultValue  = data[0].strength;
                         document.getElementById("packsize").defaultValue  = data[0].packet_size;
                         document.getElementById("generic").defaultValue  = data[0].generic_name;
+                        document.getElementById("category").defaultValue  = data[0].product_category_id;
+                        document.getElementById("manufacturer").defaultValue  = data[0].manufacturer_slug;
+
                         }
                     
                 });

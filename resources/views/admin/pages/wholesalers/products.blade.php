@@ -4,13 +4,13 @@
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? ''])
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card"> <!-- -->
             <div class="card-body">
-                <a type="button" href="{{route('wholesaler_products.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
+                <a type="button" href="{{route('product.import')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3 " >UPLOAD</a>
+
+                <a type="button" href="{{route('wholesaler_products.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3 mr-3" >+ Add New</a>
                 <h4 class="header-title mt-0 mb-3">  {{$pageTitle ?? 'Current Page'}}</h4>  
                 <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                    
-                    
                         <div class="col-sm-12">
                             <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                                 <thead>
@@ -44,12 +44,16 @@
                                             <td>
                                             <a href="{{route('wholesaler_products.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                             <a href="{{route('wholesaler_products.show', $product->id)}}" class="mr-2"><i class="fas fa-eye text-info font-16"></i></a>
-                                           <form action="{{route('wholesaler_products.destroy', $product->id)}}" method="POST" >
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="hidden" name="id" value="{{$product->id}}">
-                                            <button type="submit" class="btn btn-sm btn-default" class="mr-1"><i class="fas fa-trash-alt text-danger font-12"></i></button> 
-                                        </form> 
+                                            <a href="{{route('wholesaler_products.destroy', $product->id) }}"
+                                                    onclick="event.preventDefault();
+                                                    document.getElementById('deleteProd{{$product->id}}').submit();">
+                                                    <i class="fas fa-trash-alt text-danger font-12"></i>
+                                            </a>
+                                            <form id="deleteProd{{$product->id}}" action="{{route('wholesaler_products.destroy', $product->id)}}" method="POST" style="display: none;">
+                                                @method('DELETE')
+                                                <input type="hidden" name="id" value="{{$product->id}}">
+                                                @csrf
+                                            </form>
                                         </td>
                                         </tr>
                                         </tr>
