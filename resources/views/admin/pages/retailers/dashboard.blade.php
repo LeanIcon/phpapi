@@ -179,6 +179,8 @@ a {
     </div><!--end col-->
 </div>
 </a>
+<button onclick="notifyMe()">Notify me!</button>
+
 <div class="row">
     <div class="col-12">
         <div class="card">
