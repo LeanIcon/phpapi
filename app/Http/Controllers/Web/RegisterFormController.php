@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Web;
 
 use App\User;
+use App\Models\Region;
+use App\Models\Location;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Traits\SmsNotification;
@@ -11,11 +13,20 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterFormController extends Controller
 {
+    private $regions;
+    public $location;
+    public function __construct(Location $location,Region $regions)
+    {
+        $this->regions = $regions;
+        $this->location = $location;
+    }
     use SmsNotification;
     //
     public function loadRegisterForm()
     {
-        return view('admin.pages.register.signup');
+        $locations = $this->location::all();
+        $regions = $this->regions::all();
+        return view('admin.pages.register.signup', compact('regions','locations'));
     }
 
 
