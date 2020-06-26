@@ -151,7 +151,7 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
             <div class="card-body">
                 <h4 class="title-text mt-0">Invoices</h4>
                 <div class="d-flex justify-content-between">
-                    <h3 class="text-purple"></h3>
+                    <h3 class="text-purple">{{ $purchaseInvoices->count() }}</h3>
                     <i class="dripicons-wallet card-eco-icon bg-icon-warning  align-self-center"></i>
                 </div>
             </div><!--end card-body-->
