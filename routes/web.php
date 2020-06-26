@@ -60,6 +60,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('/wholesaler/invoice', 'WholesalerPurchaseOrderInvoiceController@index')->name('wholesaler.invoice');
     Route::get('/wholesaler/invoicedetails/{id?}', 'WholesalerPurchaseOrderInvoiceController@invoicedetail')->name('wholesaler.orderinvoicedetails');
     Route::post('/wholesaler/purchase-order/{id?}', 'WholesalerPurchaseOrderInvoiceController@UpdatePurchaseOrderStatus')->name('update.purchase.status');
+
+    Route::get('/wholesaler/product/upload', 'ProductUploadController@productImportview')->name('product.import');
+    Route::post('/wholesaler/product/collection', 'ProductUploadController@productImport')->name('product.collection');
+    Route::post('/wholesaler/product/upload', 'ProductUploadController@productImportCollection')->name('product.collections');
     
     
     /****************Retailers*******************/
