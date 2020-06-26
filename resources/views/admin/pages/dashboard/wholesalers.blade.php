@@ -18,10 +18,12 @@
                             <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                                 <thead>
                                     <tr role="row">
-                                        <th></th>
                                         <th>Name</th>
                                         <th>Location</th>
                                         <th>Contact person</th>
+                                        <th>Verifiction Code</th>
+                                        <th>Phone</th>
+                                        <th>Confirmed Status</th>
                                         <th>Status</th>
                                         <th>View List</th>
                                     </tr>
@@ -32,7 +34,6 @@
                                     @if ($wholesalers->isNotEmpty())
                                         @foreach ($wholesalers as $wholesaler)
                                             <tr role="row" class="odd">
-                                                <td></td>
                                                 <td >
                                                     <img src="{{$wholesaler->details->image_url ?? url('admin/assets/images/users/user-4.jpg')}}" alt="" height="52">
                                                     <p class="d-inline-block align-middle mb-0">
@@ -43,11 +44,13 @@
                                                 <td>
                                                     <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}">{{$wholesaler->details->contact_person ?? ''}}</a>
                                                 </td>
+                                                <td>{{$wholesaler->otp ?? ''}}</td>
+                                                <td>{{$wholesaler->phone ?? ''}}</td>
+                                                <td><span class= "badge badge-soft-{{$wholesaler->phone ? 'success' : 'warning'}}">{{$wholesaler->phone ? 'Confirmed' : 'Pending'}}</span></td>
                                                 <td>
                                                     <a href="{{route('approve.users', $wholesaler->id)}}">
                                                         <span class= "badge badge-soft-{{$wholesaler->hasRole('Wholesaler') ? 'success' : 'warning'}}">{{$wholesaler->hasRole('Wholesaler') ? 'Approved' : 'Pending Approval'}}</span></td>
                                                     </a>
-                                                    
                                                 <td>
                                                     <a href="{{route('retailer.wholesaler.show', $wholesaler->id)}}"><i class="far fa-eye text-danger"></i></a>
                                                 </td>

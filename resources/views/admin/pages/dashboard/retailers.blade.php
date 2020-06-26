@@ -19,12 +19,15 @@
                             <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                            
                                 <thead>
-                                    <tr>
-                                        <th>Retailer Name</th>
+                                    <tr role="row">
+                                        <th>Name</th>
                                         <th>Location</th>
-                                        <th>Contact Person</th>
-                                        <th>Status</th> 
-                                        <th>Action</th>
+                                        <th>Contact person</th>
+                                        <th>Verifiction Code</th>
+                                        <th>Phone</th>
+                                        <th>Confirmed Status</th>
+                                        <th>Status</th>
+                                        <th>View List</th>
                                     </tr>
                                 </thead>
 
@@ -40,6 +43,9 @@
                                             </td>
                                             <td>{{$retailer->details->location ?? ''}}</td>
                                             <td>{{$retailer->details->contact_person ?? ''}}</td>
+                                            <td>{{$retailer->otp ?? ''}}</td>
+                                            <td>{{$retailer->phone ?? ''}}</td>
+                                            <td><span class= "badge badge-soft-{{$retailer->phone ? 'success' : 'warning'}}">{{$retailer->phone ? 'Confirmed' : 'Pending'}}</span></td>
                                             <td>
                                             <a href="{{route('approve.users', $retailer->id)}}">
                                             <span class="badge badge-soft-{{$retailer->hasRole('Retailer') ? 'success' : 'warning'}}"> {{$retailer->hasRole('Retailer') ? 'Approved': 'Pending Approval'}}</span></td>
