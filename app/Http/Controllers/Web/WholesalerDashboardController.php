@@ -31,7 +31,8 @@ class WholesalerDashboardController extends Controller
         $retailers = $this->user::isRetailer()->get();
         $products = $wholesaler->wholesaler_products;
         $proforminvoices = collect($wholesaler->wholesaler_orders)->where('order_type', 'pro_forma');
-        return view('admin.pages.wholesalers.dashboard', compact('pageTitle','purchaseOrders', 'approvedPurchaseOrders', 'retailers','pendingPurchaseOrders','products','proforminvoices'));
+        $purchaseInvoices = $wholesaler->wholesaler_orders->where('invoice', '!=', '');
+        return view('admin.pages.wholesalers.dashboard', compact('pageTitle','purchaseOrders', 'approvedPurchaseOrders', 'retailers','pendingPurchaseOrders','products','proforminvoices','purchaseInvoices'));
     }
 
 
@@ -45,7 +46,7 @@ class WholesalerDashboardController extends Controller
     {
         $pageTitle = 'Purchase Order List';
         $wholesaler = Auth::user()->id;
-        $purchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler)->get();
+        $purchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler)->where('order_type','purchase_order')->get();
 
        // $approvedPurchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler)->where('status', 'approved')->get();
         $retailers = $this->user::isRetailer()->get();
