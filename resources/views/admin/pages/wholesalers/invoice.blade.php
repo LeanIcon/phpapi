@@ -38,7 +38,7 @@
                             <th class="border-top-0">Invoice</th>
                             <th class="border-top-0">Retailer</th>
                             <th class="border-top-0">Order Date/Time</th>
-                            <th class="border-top-0">Delivey Status</th>
+                            <th class="border-top-0">Status</th>
                         </tr><!--end tr-->
                         </thead>
                         <tbody>

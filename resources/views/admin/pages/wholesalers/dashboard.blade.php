@@ -145,17 +145,17 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
     </div><!--end -->
 </a>
 
-  {{--  <div class="col-lg-6">
-        <a href="{{ route('wholesaler_expiryproducts') }}" class="custom-card">
+   <div class="col-lg-3">
+        <a href="{{ route('wholesaler.invoice') }}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Expiring Products</h4>
+                <h4 class="title-text mt-0">Invoices</h4>
                 <div class="d-flex justify-content-between">
                     <h3 class="text-purple"></h3>
                     <i class="dripicons-wallet card-eco-icon bg-icon-warning  align-self-center"></i>
                 </div>
             </div><!--end card-body-->
-        </div><!--end card--></a> --}}
+        </div><!--end card--></a>
     </div><!--end col-->
 </div> 
 <!--NOTIFICATION SYSTEM-->
@@ -180,6 +180,25 @@ var retailers = @json($pendingPurchaseOrder->retailer->name);
 @endforeach
 @endif
 @endif
+{{-- @if (Session::get('notify') == 0)
+    @if ($purchaseInvoices->isNotEmpty())
+    @foreach ($purchaseInvoices as $purchaseInvoice)
+<script>
+var retailers = @json($purchaseInvoice->retailer->name);
+            var options = {
+                    body: "Pro Forma Invoice Accepted by "+ retailers,
+                    icon: "https://nnuro.com/assets/img/logo.png",
+                    dir : "ltr"
+                    
+                 };
+              
+ notification = new Notification("Nnuro Desktop Notification", options);
+
+
+</script>
+@endforeach
+@endif
+@endif --}}
 @if ($purchaseOrders->isNotEmpty())
                                         @foreach ($purchaseOrders as $purchaseOrder)
                                        
