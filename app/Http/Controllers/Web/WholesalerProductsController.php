@@ -156,10 +156,4 @@ class WholesalerProductsController extends Controller
         return response()->json($details); 
     }
 
-    public function productImportview(Request $request)
-    {
-         $details=Product::where('id',$prodID)->get();
-        return response()->json($details); 
-    }
-     
 }

@@ -4,7 +4,7 @@
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? ''])
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card"> <!-- -->
             <div class="card-body">
                 <a type="button" href="{{route('product.import')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3 " >UPLOAD</a>
 
