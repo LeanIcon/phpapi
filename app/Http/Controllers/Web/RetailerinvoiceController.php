@@ -46,6 +46,15 @@ class RetailerinvoiceController extends Controller
         return view('admin.pages.retailers.invoice.pro_forma', compact('proformaInvoice', 'pageTitle'));
     }
     
+    public function listInvoice(Request $request)
+    {
+        $user = Auth::user();
+        $pageTitle = 'Invoice';
+        $proformaInvoice = $user->retailer_orders->where('order_type', '=', 'invoice');
+
+        return view('admin.pages.retailers.invoice.invoice', compact('proformaInvoice', 'pageTitle'));
+    }
+    
     public function getProformaInvoice($order = null)
     {
         
@@ -55,6 +64,16 @@ class RetailerinvoiceController extends Controller
         $proformaInvoiceItems = $this->purchaseOrders::find($order)->order_items;
 
         return view('admin.pages.retailers.invoice.details', compact('proformaInvoiceItems', 'pageTitle','purchaseOrder','order'));
+    }
+    public function getInvoice($order = null)
+    {
+        
+        $user = Auth::user();
+        $pageTitle = 'Invoice';
+        $purchaseOrder = $this->purchaseOrders::find($order);
+        $proformaInvoiceItems = $this->purchaseOrders::find($order)->order_items;
+
+        return view('admin.pages.retailers.invoice.invoicedetails', compact('proformaInvoiceItems', 'pageTitle','purchaseOrder','order'));
     }
 
     public function updateProformaInvoice(Request $request, $order = null)

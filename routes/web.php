@@ -57,6 +57,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('/wholesaler/pendingpurchaseorder', 'WholesalerPurchaseOrdersController@pending')->name('wholesaler.pendingpurchaseorder');
     Route::get('/wholesaler/purchaseorderlist', 'WholesalerDashboardController@loadpurchasereceived')->name('wholesaler.purchaseorderlist');
     Route::get('/wholesaler/purchaseorderinvoice', 'WholesalerPurchaseOrderInvoiceController@index')->name('wholesaler.purchaseorderinvoice');
+    Route::get('/wholesaler/invoice', 'WholesalerPurchaseOrderInvoiceController@index')->name('wholesaler.invoice');
     Route::get('/wholesaler/invoicedetails/{id?}', 'WholesalerPurchaseOrderInvoiceController@invoicedetail')->name('wholesaler.orderinvoicedetails');
     Route::post('/wholesaler/purchase-order/{id?}', 'WholesalerPurchaseOrderInvoiceController@UpdatePurchaseOrderStatus')->name('update.purchase.status');
     
@@ -89,7 +90,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
         Route::get('shortagelist/create', 'RetailerShortagelistController@create')->name('create.shortagelist');
         Route::post('shortagelist', 'RetailerShortagelistController@saveShortageList')->name('shortagelist.save');
         Route::get('proforma', 'RetailerinvoiceController@listProforma')->name('proforma.list');
+        Route::get('invoice', 'RetailerinvoiceController@listInvoice')->name('invoice.list');
         Route::get('proforma/details/{order?}', 'RetailerinvoiceController@getProformaInvoice')->name('proforma.view');
+        Route::get('proforma/invoicedetails/{order?}', 'RetailerinvoiceController@getInvoice')->name('invoice.view');
         Route::post('proforma/process/{order?}', 'RetailerinvoiceController@updateProformaInvoice')->name('proforma.process');
     });
 
