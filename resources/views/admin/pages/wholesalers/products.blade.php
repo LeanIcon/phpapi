@@ -4,7 +4,7 @@
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? ''])
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card"> <!-- -->
             <div class="card-body">
                 <a type="button" href="{{route('wholesaler_products.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
                 <h4 class="header-title mt-0 mb-3">  {{$pageTitle ?? 'Current Page'}}</h4>  
