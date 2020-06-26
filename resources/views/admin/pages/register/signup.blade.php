@@ -168,7 +168,7 @@
                             // items += "<option value='" + key + "'>" + value + "</option>";
                             
                         for (var i = 0; i < data.length; i++) {
-                        items += "<option value='" + data[i].id + "'>" + data[i].name + "</option>";
+                        items += "<option value='" + data[i].name + "'>" + data[i].name + "</option>";
                         }
                         $('#location').empty().append(items);
                         }
