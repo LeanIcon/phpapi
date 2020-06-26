@@ -6,11 +6,11 @@
     <div class="col-12">
         <div class="card"> <!-- -->
             <div class="card-body">
-                <a type="button" href="{{route('wholesaler_products.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
+                <a type="button" href="{{route('product.import')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3 " >UPLOAD</a>
+
+                <a type="button" href="{{route('wholesaler_products.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3 mr-3" >+ Add New</a>
                 <h4 class="header-title mt-0 mb-3">  {{$pageTitle ?? 'Current Page'}}</h4>  
                 <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                    
-                    
                         <div class="col-sm-12">
                             <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                                 <thead>

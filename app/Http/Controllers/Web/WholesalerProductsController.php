@@ -152,9 +152,8 @@ class WholesalerProductsController extends Controller
 
     public function getDetails($prodID)
     {
-        $details=Product::where('id',$prodID)->get();        
+         $details=Product::where('id',$prodID)->get();
         return response()->json($details); 
-
     }
-     
+
 }
