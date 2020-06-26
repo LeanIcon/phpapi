@@ -47,11 +47,8 @@
                         <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                             <thead>
                                 <tr role="row">
-                                   
                                     <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 150px;">Products Description</th>
-                                   
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Manufacturer</th>
-                                   
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 130px;">Pack Size</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Unit Price</th>
                                     @role('Retailer')<th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 130px;">Quantity</th> 
@@ -64,7 +61,7 @@
                             @if ($products->isNotEmpty())
                                 @foreach ($products as $product)
                                     <tr>
-                                       <td> @foreach ($product->products as $item)
+                                    <td> @foreach ($product->products as $item)
                                                 {{$item->productDesc()}}
                                             @endforeach </td>
                                             <td> @foreach ($product->products as $item)
@@ -86,7 +83,7 @@
                                                 <input class="form-control" value="{{$product->formattedPrice()}}" name="price" type="hidden">@endrole
                                                 @role('Retailer')
                                                 <button type="submit" class="btn btn-sm btn-primary"> ADD</button>
-                                                 @endrole
+                                            @endrole
                                             </td>
                                         </form>  
                                     </tr>

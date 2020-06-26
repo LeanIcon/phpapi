@@ -44,12 +44,16 @@
                                             <td>
                                             <a href="{{route('wholesaler_products.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                             <a href="{{route('wholesaler_products.show', $product->id)}}" class="mr-2"><i class="fas fa-eye text-info font-16"></i></a>
-                                           <form action="{{route('wholesaler_products.destroy', $product->id)}}" method="POST" >
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="hidden" name="id" value="{{$product->id}}">
-                                            <button type="submit" class="btn btn-sm btn-default" class="mr-1"><i class="fas fa-trash-alt text-danger font-12"></i></button> 
-                                        </form> 
+                                            <a href="{{route('wholesaler_products.destroy', $product->id) }}"
+                                                    onclick="event.preventDefault();
+                                                    document.getElementById('deleteProd{{$product->id}}').submit();">
+                                                    <i class="fas fa-trash-alt text-danger font-12"></i>
+                                            </a>
+                                            <form id="deleteProd{{$product->id}}" action="{{route('wholesaler_products.destroy', $product->id)}}" method="POST" style="display: none;">
+                                                @method('DELETE')
+                                                <input type="hidden" name="id" value="{{$product->id}}">
+                                                @csrf
+                                            </form>
                                         </td>
                                         </tr>
                                         </tr>

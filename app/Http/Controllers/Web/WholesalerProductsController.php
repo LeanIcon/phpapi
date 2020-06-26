@@ -146,8 +146,7 @@ class WholesalerProductsController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-       
-        $product = $this->wholesalerProducts::find($id)->delete($request->all());
+        $product = $this->wholesalerProducts::find($id)->delete();
         return redirect()->route('wholesaler_products.index');
     }
 
