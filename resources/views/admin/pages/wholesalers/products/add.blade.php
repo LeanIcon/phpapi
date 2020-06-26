@@ -27,15 +27,8 @@
                     
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="status-select" class="mr-2">Product</label>
-                                <select class="form-control custom-select" name="products_id" id="productCatSelect">
-                                    <option selected="">Select</option>
-                                @if (!is_null($products))
-                                    @foreach ($products as $product)
-                                        <option value="{{$product->id}}">{{$product->name}}</option>
-                                    @endforeach
-                                @endif
-                                </select>
+                            <label for="batchNumber">Product Name</label>
+                                <input type="text" class="form-control" name="product_name" id="productname" required="">
                             </div>
                         </div>
                     </div>
@@ -43,45 +36,50 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="PhoneNo">Strength</label>
-                            <input type="text" name="strength" class="form-control" id="strength" disabled="disabled">
+                            <input type="text" name="strength" class="form-control" id="strength">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="PhoneNo">Pack Size</label>
-                            <input type="text" name="packsize" class="form-control" id="packsize" disabled="disabled">
+                            <input type="text" name="packet_size" class="form-control" id="packsize">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="PhoneNo">Generic Name</label>
-                            <input type="text" name="generic" class="form-control" id="generic" disabled="disabled">
+                            <label for="PhoneNo">Product Code</label>
+                            <input type="text" name="product_code" class="form-control" id="productcode">
                         </div>
                     </div>
                     </div>
                     <div class="row">
                     <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="category">Category Type</label>
-                                    <input type="text" name="category" id="category" class="form-control" disabled="disabled">
+                                <label for="PhoneNo">Drug Legal Status</label>
+                                <input type="text" name="drug_legal_status" class="form-control" id="druglegalstatus"> 
                                 </div>
                             </div>
                     
                     <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="manufacturer"> Manufacturer</label>
-                                    <input type="text" name="manufacturer" id="manufacturer" class="form-control" disabled="disabled">
+                                    <input type="text" name="manufacturer" id="manufacturer" class="form-control">
                                 </div>
                     </div>
                      
-                    
+                    <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="PhoneNo">Dosage Form</label>
+                                <input type="text" name="dosage_form" class="form-control" id="dosageform">
+                            </div>
+                    </div>
 
                     </div>
 
                    <div class="row">
-                   <div class="col-md-6">
+                   <div class="col-md-2">
                             <div class="form-group">
-                                <label for="PhoneNo">Price</label>
+                                <label for="PhoneNo">Set Price(GHc)</label>
                                 <input type="text" name="price" class="form-control price" id="price" required="">
                             </div>
                     </div>
@@ -196,30 +194,32 @@
     });
 
      
-    $(document).ready(function(){
-        $('select[name="products_id"]').on('change',function(){
-            let prodID=$(this).val();
-            if(prodID){
+    // $(document).ready(function(){
+    //     $('select[name="wholesaler_products_id"]').on('change',function(){
+    //         let prodID=$(this).val();
+    //         if(prodID){
                  
-                $.ajax({
-                    url:'/WholesalerProducts/getDetails/'+prodID,
-                    type:'GET',
-                    dataType:'JSON',
-                    success:function(data){
-                        console.log(data[0]); 
+    //             $.ajax({
+    //                 url:'/WholesalerProducts/getDetails/'+prodID,
+    //                 type:'GET',
+    //                 dataType:'JSON',
+    //                 success:function(data){
+    //                     console.log(data[0]); 
                         
-                        document.getElementById("strength").defaultValue  = data[0].strength;
-                        document.getElementById("packsize").defaultValue  = data[0].packet_size;
-                        document.getElementById("generic").defaultValue  = data[0].generic_name;
-                        document.getElementById("category").defaultValue  = data[0].product_category_id;
-                        document.getElementById("manufacturer").defaultValue  = data[0].manufacturer_slug;
+    //                     document.getElementById("strength").defaultValue  = data[0].strength;
+    //                     document.getElementById("packsize").defaultValue  = data[0].packet_size;
+    //                     document.getElementById("productcode").defaultValue  = data[0].product_code;
+    //                     document.getElementById("dosageform").defaultValue  = data[0].dosage_form;
+    //                     document.getElementById("manufacturer").defaultValue  = data[0].manufacturer;
+    //                     document.getElementById("druglegalstatus").defaultValue  = data[0].drug_legal_status;
 
-                        }
+
+    //                     }
                     
-                });
-            }
-        });
-    });
+    //             });
+    //         }
+    //     });
+    // });
  
 
 

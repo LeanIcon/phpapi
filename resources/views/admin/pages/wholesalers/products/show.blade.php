@@ -19,16 +19,8 @@
                     <div class="row">
                         <div class="col-lg-12">
                         <div class="form-group">
-                                <label for="status-select" class="mr-2">Product</label>
-                                <select class="form-control custom-select" name="products_id" disabled>
-                                @if (!is_null($products))
-                                    @foreach ($products as $prod)
-                                        <option value="{{$prod->id}}" @if($prod->id == $product->products_id) {{ 'selected' }}
-                                            
-                                        @endif >{{$prod->name}}</option>
-                                    @endforeach
-                                @endif
-                                </select>
+                        <label for="PhoneNo">Name</label>
+                                <input type="text" name="product_name" class="form-control" id="name" value="{{$product->product_name}}"disabled>
                             </div>
 
                         </div>
@@ -36,31 +28,14 @@
                     <div class="row">
                         <div class="col-md-6">
                         <div class="form-group">
-                                <label for="LeadEmail">Manufacturer</label>
-                                <select name="manufacturer_id" class="form-control custom-select" id="status-select" disabled>
-                                   <!-- <option selected="">Select</option> -->
-                                    @if (!is_null($manufacturers))
-                                        @foreach ($manufacturers as $manu)
-                                        <option value="{{$manu->id}}" @if($manu->id == $product->manufacturer_id) {{ 'selected' }}
-                                            
-                                        @endif >{{$manu->name}}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
+                        <label for="PhoneNo">Manufacturer</label>
+                                <input type="text" name="manufacturer" class="form-control" id="manufacturer" value="{{$product->manufacturer}}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                         <div class="form-group">
-                                <label for="status-select" class="mr-2">Generic Name</label>
-                                <select class="form-control custom-select" name="products_id" disabled>
-                                @if (!is_null($products))
-                                    @foreach ($products as $prod)
-                                        <option value="{{$prod->id}}" @if($prod->id == $product->products_id) {{ 'selected' }}
-                                            
-                                        @endif >{{$prod->generic_name}}</option>
-                                    @endforeach
-                                @endif
-                                </select>
+                        <label for="PhoneNo">Manufacturer</label>
+                                <input type="text" name="product_code" class="form-control" id="product_code" value="{{$product->product_code}}" disabled>
                             </div>
                         </div>
                     </div>
@@ -100,89 +75,35 @@
                         </div>
                     
                     <div class="row">
-                        <div class="col-lg-6">
-                        <div class="form-group">
-                                <label for="status-select" class="mr-2">Category</label>
-                                <select name="products_id" class="form-control custom-select" disabled>
-                                   <!-- <option selected="">Select</option> -->
-                                @if (!is_null($productCategory))
-                                    @foreach ($productCategory as $cat)
-                                    <option value="{{$cat->id}}" @if($cat->id == $product->product_category_id) {{ 'selected' }}
-                                            
-                                            @endif >{{$cat->name}}</option>
-                                    
-                                    @endforeach
-                                @endif
-                                </select>
-                            </div>
-                            </div>
+                        
                             <div class="form-group">
-                            <label for="status-select" class="mr-2">Drug Legal Status</label>
-                                <select class="form-control custom-select" name="products_id" disabled>
-                                @if (!is_null($products))
-                                    @foreach ($products as $prod)
-                                        <option value="{{$prod->id}}" @if($prod->id == $product->products_id) {{ 'selected' }}
-                                            
-                                        @endif >{{$prod->drug_legal_status}}</option>
-                                    @endforeach
-                                @endif
-                                </select>
+                            <label for="PhoneNo">Drug Legal Status</label>
+                                <input type="text" name="drug_legal_status" class="form-control" id="drug_legal_status" value="{{$product->drug_legal_status}}" disabled>
                             </div>
                         </div>
-
+                    
 
                         <div class="row">
                         <div class="col-lg-6">
                         <div class="form-group">
-                                <label for="status-select" class="mr-2">Strength</label>
-                                <select name="products_id" class="form-control custom-select" disabled>
-                                   <!-- <option selected="">Select</option> -->
-                                   @if (!is_null($products))
-                                    @foreach ($products as $prod)
-                                        <option value="{{$prod->id}}" @if($prod->id == $product->products_id) {{ 'selected' }}
-                                            
-                                        @endif >{{$prod->strength}}</option>
-                                    @endforeach
-                                @endif
-                                </select>
+                        <label for="PhoneNo">Strength</label>
+                                <input type="text" name="strength" class="form-control" id="strength" value="{{$product->strength}}" disabled>
                             </div>
                             </div>
                             <div class="form-group">
-                            <label for="status-select" class="mr-2">Packet Size</label>
-                                <select class="form-control custom-select" name="products_id" disabled>
-                                @if (!is_null($products))
-                                    @foreach ($products as $prod)
-                                        <option value="{{$prod->id}}" @if($prod->id == $product->products_id) {{ 'selected' }}
-                                            
-                                        @endif >{{$prod->packet_size}}</option>
-                                    @endforeach
-                                @endif
-                                </select>
+                            <label for="PhoneNo">Packet Size</label>
+                                <input type="text" name="packet_size" class="form-control" id="packet_size" value="{{$product->packet_size}}" disabled>
                             </div>
 
                             <div class="form-group">
-                            <label for="LeadEmail">Dosage Form</label>
-                                <select name="dosage_form_id" class="form-control custom-select" id="status-select" disabled>
-                                <!--<option selected="">Select</option> -->
-
-                                @if (!is_null($dosageForm))
-                                    @foreach ($dosageForm as $dos)
-                                    <option value="{{$dos->id}}" @if($dos->id == $product->dosage_form_id) {{ 'selected' }}
-                                            
-                                            @endif >{{$dos->name}}</option>
-                                    
-                                    @endforeach
-                                @endif
-
-                
-            </select>
+                            <label for="PhoneNo">Dosage Form</label>
+                                <input type="text" name="dosage_form" class="form-control" id="dosage_form" value="{{$product->dosage_form}}" disabled>
                             </div>
                         </div>
 
 
 
-
-                        </div>
+                    
                     
                     
                     <button type="submit" class="btn btn-sm btn-primary">Save</button>
