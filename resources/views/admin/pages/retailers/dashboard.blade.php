@@ -211,7 +211,8 @@ a {
                                                     <div class="card m-b-30">
                                                         <div class="card-body row">
                                                             <div class="col-6">
-                                                                <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="img-fluid rounded-circle w-60"></a>
+                                                                <img src="{{$wholesaler->details->image_url ?? url('admin/assets/images/users/user-4.jpg')}}" alt="" height="52">
+                                                                {{-- <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="img-fluid rounded-circle w-60"></a> --}}
                                                             </div>
                                                             <div class="col-6 card-title align-self-center mb-0">
                                                                 <h5>{{$wholesaler->name}}</h5>
