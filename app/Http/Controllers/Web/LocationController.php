@@ -101,7 +101,7 @@ class LocationController extends Controller
 
     public function getLocations($regID)
     {
-         $locationsX=Town::where('region_id',$regID)->get();
+         $locationsX=Location::where('region_id',$regID)->get();
         
         // $locationsX=Town::all();
         // return json_encode($locationsX);

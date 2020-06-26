@@ -73,7 +73,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $location = strtolower(Location::find($data['location'])->name);
+        //$location = strtolower(Location::find($data['location'])->name);
+        $location=$data['location'];
         $slug  = Str::slug($data['name']);
         $uname = $slug.'-'.$location;
         $pin = User::generatePin();
@@ -97,7 +98,9 @@ class RegisterController extends Controller
             $notify = $this->SendSMSNotify($user->phone, $msg); 
             UserDetails::create([
                 'users_id' => $user->id, 
-                'town_id' => $data['region'], 
+                'town_id' => $data['region'],
+                'location'=>$data['location'],
+                'reg_no'=>$data['reg_no'] 
                 ]);
                 return $user;
             };
