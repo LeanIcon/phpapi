@@ -41,30 +41,17 @@
             <!-- LOGO -->
             <div class="topbar-left">
                 <a href="{{route('dashboard.index')}}" class="logo">
-                    {{-- <span>
-                        <img src="{{url('admin/images/logo-sm.png')}}" alt="logo-small" class="logo-sm">
-                    </span>
-                    <span>
-                        <img src="{{url('admin/images/logo-dark.png')}}" alt="logo-large" class="logo-lg">
-                    </span>
-                    <span>
-                        <img src="{{url('admin/images/logo.png')}}" alt="logo-large" class="logo-light">
-                    </span> --}}
-                    
                 </a>
                 <span>
                 	<a href="{{route('dashboard.index')}}">
                         <img src="{{url('admin/assets/images/NN.png')}}" class="logo-light"  style="height: 80%">
                     </span>
                 </a>
-                
             </div>
             <!--end logo-->
             <!-- Navbar -->
             <nav class="navbar-custom">    
                 <ul class="list-unstyled topbar-nav float-right mb-0"> 
-                    
-
                     <li class="dropdown notification-list">
                         <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
                             aria-haspopup="false" aria-expanded="false">
@@ -117,7 +104,7 @@
                             {{--  <img src="{{url('assets/images/users/user-4.jpg')}}" alt="profile-user" class="rounded-circle" />   --}}
                             <span class="ml-1 nav-user-name hidden-sm">
                                 @auth
-                                {{ Auth::user()->name }} 
+                                {{ Auth::user()->name }}
                                 @endauth
                                 <i class="mdi mdi-chevron-down"></i> </span>
                         </a>
