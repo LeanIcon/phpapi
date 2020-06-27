@@ -15,11 +15,11 @@
                             <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                                 <thead>
                                     <tr role="row">
-                                       <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Product Description</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Manufacturer</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Pack Size</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 156px;">Unit Price</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 156px;">Status</th>
+                                       <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 110px;">Product Name</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Product Description</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Manufacturer</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 156px;">Pack Size</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 156px;">Price</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">Action</th>
                                     </tr>
                                 </thead>
@@ -29,17 +29,21 @@
                                     @if ($wholesalerProducts->isNotEmpty())
                                     @foreach ($wholesalerProducts as $product)
                                         <tr>
-                                            <td> @foreach ($product->products as $item)
+                                            <td> {{$product->product_name}}</td>
+                                             <!-- <td> @foreach ($product->products as $item)
                                                 {{$item->productDesc()}}
-                                            @endforeach </td>
-                                            <td> @foreach ($product->products as $item)
+                                            @endforeach </td>  -->
+                                            <td> {{$product->productDesc()}} {{$product->dosage_form}} </td>
+                                            <!-- <td> @foreach ($product->products as $item)
                                                 {{$item->manufacturer->name ?? $item->manufacturer_slug}}
-                                            @endforeach </td>
-                                            <td> @foreach ($product->products as $item)
+                                            @endforeach </td> -->
+                                            <td> {{$product->manufacturer}}</td>
+                                            <!-- <td> @foreach ($product->products as $item)
                                                 {{$item->packet_size}}
-                                            @endforeach </td>
-                                            <td>{{$product->price}}</td>
-                                            <td>{{$product->expiry_status}}  </td>
+                                            @endforeach </td> -->
+                                            <td>{{$product->packet_size}}</td>
+                                            <td>{{$product->price}}  </td>
+                                            
 
                                             <td>
                                             <a href="{{route('wholesaler_products.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
