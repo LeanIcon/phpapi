@@ -42,6 +42,7 @@ class WholesalerProductsController extends Controller
     {
         $wholesaler = Auth::user();
         $wholesalerProducts = $wholesaler->wholesaler_products;
+        //return $wholesalerProducts;
         return view('admin.pages.wholesalers.products', compact('wholesalerProducts'));
     }
 
@@ -63,7 +64,9 @@ class WholesalerProductsController extends Controller
         $products = $this->products::all();
         $manufacturers  = $this->manufacturer::all();
         $productCategoryTypes = $this->productCategoryTypes::all();
-        return view('admin.pages.wholesalers.products.add', compact('manufacturers', 'products', 'productCategoryTypes'));
+        $product = $this->wholesalerProducts::all();
+        //return $product;
+        return view('admin.pages.wholesalers.products.add', compact('manufacturers', 'products', 'productCategoryTypes', 'product'));
     }
 
     /**
@@ -115,7 +118,7 @@ class WholesalerProductsController extends Controller
         $productCategoryTypes = $this->productCategoryTypes::all();
         $productCategory  = $this->productCategory::all();
         $dosageForm = $this->dosageForm::all();
-        //return $productCategory;
+        //return $product;
         return view('admin.pages.wholesalers.products.edit', compact('manufacturers','products', 'product', 'productCategoryTypes', 'productCategory', 'dosageForm'));
       }
 
@@ -152,7 +155,7 @@ class WholesalerProductsController extends Controller
 
     public function getDetails($prodID)
     {
-         $details=Product::where('id',$prodID)->get();
+         $details=WholesalerProduct::where('id',$prodID)->get();
         return response()->json($details); 
     }
 
