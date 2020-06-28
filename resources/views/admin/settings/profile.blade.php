@@ -75,19 +75,21 @@
                                             @csrf
                                             @method('PUT')
                                             <div class="row">
-                                                <div class="col-lg-6">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="LeadName">Location</label>
-                                                        <input type="text" name="location" class="form-control" value="{{$details->location ?? 'Not Available'}}" id="LeadName" required="">
+                                                        <label for="LeadName">Contact Person</label>
+                                                        <input type="text" name="contact_person"  value="{{$details->contact_person ?? 'Not Available'}}" class="form-control" id="LeadName" required="">
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="LeadName">Digital Addres</label>
-                                                        <input type="text" name="digital_address" class="form-control" value="{{$details->digital_address ?? 'Not Available'}}" id="LeadName" required="">
+                                                        <label for="LeadName">Contact Person Phone</label>
+                                                        <input type="text"  name="contact_person_phone" class="form-control"  value="{{$details->contact_person_phone ?? 'Not Available'}}" id="LeadName" required="">
                                                     </div>
-                                                </div>
-                                            </div> 
+                                                </div> 
+
+                                            </div>
+
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
@@ -97,16 +99,18 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
-                                                        <label for="LeadName">Reg No.</label>
-                                                        <input type="text" name="reg_no" value="{{$details->reg_no ?? 'Not Available'}}" class="form-control" id="LeadName" required="">
+                                                        <label for="LeadName">Digital Addres</label>
+                                                        <input type="text" name="digital_address" class="form-control" value="{{$details->digital_address ?? 'Not Available'}}" id="LeadName" required="">
                                                     </div>
                                                 </div>
+
                                             </div> 
+ 
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
-                                                        <label for="LeadName">Contact Person</label>
-                                                        <input type="text" name="contact_person"  value="{{$details->contact_person ?? 'Not Available'}}" class="form-control" id="LeadName" required="">
+                                                        <label for="LeadName">Reg No.</label>
+                                                        <input type="text" name="reg_no" value="{{$details->reg_no ?? 'Not Available'}}" class="form-control" id="LeadName" required="">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -114,15 +118,12 @@
                                                         <label for="LeadName">Practise group</label>
                                                         <input type="text" name="practise_group"  value="{{$details->practise_group ?? 'Not Available'}}" class="form-control" id="LeadName" required="">
                                                     </div>
-                                                </div>
+                                                </div> 
+                                               
                                             </div> 
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="LeadName">Contact Person Phone</label>
-                                                        <input type="text"  name="contact_person_phone" class="form-control"  value="{{$details->contact_person_phone ?? 'Not Available'}}" id="LeadName" required="">
-                                                    </div>
-                                                </div>
+                                             
+                                            {{-- <div class="row">
+                                              
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="LeadName">Town</label>
@@ -131,18 +132,53 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label for="LeadEmail">Profile Image</label>
-                                                            <input type="file" class="form-control" name="profile_image" id="image">
-                                                        </div>
+                                            </div> --}}
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="LeadEmail">Profile Image</label>
+                                                        <input type="file" class="form-control" name="profile_image" id="image">
                                                     </div>
                                                 </div>
-                                            </div> 
-                                            <button class="btn btn-primary" type="submit" >Submit</button>
+                                            </div>  
+                                            
+                                            <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label for="LeadName">Region</label>
+                                                        <select class="form-control" name="region" id="" disabled="disabled"> 
+                                                        <option value="{{$details->town_id}}">{{$selectedRegion[0]->name}}</option>
+                                                            @foreach ($regions as $region)
+
+                                                            <option value="{{$region->id}}">{{$region->name}} </option> 
+                                                            @endforeach
+                                                        </select>
+
+                                                    </div>
+                                                    {{-- <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="LeadName">Location</label>
+                                                            <input type="text" name="location" class="form-control" value="{{$details->location ?? 'Not Available'}}" id="LeadName" required="">
+                                                        </div>
+                                                    </div>   --}}
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for ="locations">Location</label>
+                                                            <select class="form-control" name="location" id=""> 
+                                                            <option value="{{$details->location}}">{{$details->location}}</option>
+                                                                @foreach ($locations as $location) 
+                                                                <option value="{{$location->name}}">{{$location->name}} </option> 
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                            </div>
+
+                                                <button class="btn btn-primary" type="submit" >Submit</button>  
+                                        </div> 
+                                           
                                         </form>
                                 </div>
+                            </div>
                                 <!--end card-body-->
                             </div>
                             <!--end card-->

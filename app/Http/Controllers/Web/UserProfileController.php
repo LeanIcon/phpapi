@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\UserDetails;
+use App\Models\Region;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,7 +26,11 @@ class UserProfileController extends Controller
     {
         $user = Auth::user();
         $details = $user->details;
-        return view('admin.settings.profile', compact('details'));
+        $regions =Region::all();
+        $selectedRegion=Region::where('id','=',$details->town_id)->get(); 
+        $locations=Location::where('region_id','=',$details->town_id)->get();
+        //return $selectedRegion;
+        return view('admin.settings.profile', compact('details','regions','locations','selectedRegion'));
     }
 
     /**
