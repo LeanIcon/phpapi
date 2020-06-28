@@ -30,7 +30,7 @@ class UserProfileController extends Controller
         $selectedRegion=Region::where('id','=',$details->town_id)->get(); 
         $locations=Location::where('region_id','=',$details->town_id)->get();
         //return $selectedRegion;
-        return view('admin.settings.profile', compact('details','regions','locations','selectedRegion'));
+        return view('admin.settings.profile', compact('details','regions','locations','selectedRegion','user'));
     }
 
     /**

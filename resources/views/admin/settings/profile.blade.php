@@ -20,19 +20,19 @@
                                                         </span>
                                     </div>
                                     <div class="met-profile_user-detail">
-                                        <h5 class="met-user-name">User</h5>
-                                        <p class="mb-0 met-user-name-post"></p>
+                                    <h5 class="met-user-name">{{$user->name}}</h5>
+                                    <p class="mb-0 met-user-name-post">{{$user->type}}</p>
                                     </div>
                                 </div>
                             </div>
                             <!--end col-->
                             <div class="col-lg-4 ml-auto">
                                 <ul class="list-unstyled personal-detail">
-                                    <li class=""><i class="dripicons-phone mr-2 text-info font-18"></i> <b> phone </b> : {{$details->contact_person_phone ?? 'Not Available'}}</li>
+                                    <li class=""><i class="dripicons-phone mr-2 text-info font-18"></i> <b> phone </b> : {{$user->phone ?? 'Not Available'}}</li>
                                     <li class="mt-2"><i class="dripicons-mail text-info font-18 mt-2 mr-2"></i> <b> Email </b> : {{Auth::user()->email ?? 'Not Available'}}</li>
                                     <li class="mt-2"><i class="dripicons-location text-info font-18 mt-2 mr-2"></i> <b>Location</b> : {{$details->location ?? 'Not Available'}}</li>
                                 </ul>
-                                <div class="button-list btn-social-icon">
+                                {{-- <div class="button-list btn-social-icon">
                                     <button type="button" class="btn btn-blue btn-round">
                                         <i class="fab fa-facebook-f"></i>
                                     </button>
@@ -40,7 +40,7 @@
                                     <button type="button" class="btn btn-secondary btn-round ml-2">
                                         <i class="fab fa-twitter"></i>
                                     </button>
-                                </div>
+                                </div> --}}
                             </div>
                             <!--end col-->
                         </div>
