@@ -31,6 +31,7 @@
                         <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                             <thead>
                                 <tr role="row">
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 40px;">Wholesaler</th>  
                                      <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 40px;">Product Name</th>  
                                     <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 150px;">Product Description</th>
                                    {{-- <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 170px;">Description(Active Ingredient , Strength and Dosage Form)</th> --}}
@@ -48,6 +49,14 @@
                             @if ($products->isNotEmpty())
                                 @foreach ($products as $product)
                                     <tr>
+                                         @if (!is_null($wholesalers))
+                                                    @foreach($wholesalers as $wholesaler)
+                                                        @if($wholesaler->id == $product->wholesaler_id)
+                                                        <td> {{$wholesaler->name}}</td>
+                                                        @endif
+                                                    @endforeach
+                                                    
+                                            @endif
                                         
                                         <td> {{$product->product_name}} </td>
                                        <!-- <td> @foreach ($product->products as $item)

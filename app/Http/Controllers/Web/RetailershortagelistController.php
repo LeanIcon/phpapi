@@ -8,17 +8,19 @@ use Illuminate\Http\Request;
 use App\Models\WholesalerProduct;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 use Cart;
 class RetailershortagelistController extends Controller
 {
     public $product, $wholesalerProduct , $shortageList;
-    public function __construct(Product $product, WholesalerProduct $wholesalerProduct, ShortageList $shortageList)
+    public function __construct(Product $product, WholesalerProduct $wholesalerProduct, ShortageList $shortageList, User $user)
     {
         $this->product = $product;
         $this->wholesalerProduct = $wholesalerProduct;
         $this->shortageList = $shortageList;
         $this->middleware('auth');
         $this->middleware(['role:Retailer']);
+        $this->user = $user;
     }
     /**
      * Display a listing of the resource.
@@ -50,7 +52,9 @@ class RetailershortagelistController extends Controller
     {
         $pageTitle = 'Retailer_Shortagelist';
         $products = $this->wholesalerProduct::all();
-        return view('admin.pages.retailers.retailer_shortagelist', compact('pageTitle', 'products'));
+        $wholesalers = $this->user::isWholeSaler()->get();
+        //return $wholesalers;
+        return view('admin.pages.retailers.retailer_shortagelist', compact('pageTitle', 'products','wholesalers'));
 
     }
 
