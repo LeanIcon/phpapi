@@ -16,11 +16,11 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Register As') }}</label>
     
                                 <div class="col-md-6">
-                                    <select class="form-control" name="type" id="">
+                                    <select class="form-control " onchange="printAccountType(this)" name="type" id="type">
                                         <option value="">Select</option>
                                         <option value="wholesaler">Wholesaler</option>
                                         <option value="retailer">Retailer</option>
-                                        <option value="pharmacist">Pharmacist</option>
+                                        {{-- <option value="pharmacist">Pharmacist</option> --}}
                                     </select>
                                 </div>
                             
@@ -29,7 +29,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Region') }}</label>
                                 <div class="col-md-6">
                                     @if (!is_null($regions))
-                                    <select class="form-control" name="region" id="">
+                                    <select class="form-control" name="region" id="region">
                                         <option value="">Select Region</option>
                                         @foreach ($regions as $region)
                                             <option value="{{$region->id}}">{{$region->name}}</option>
@@ -65,7 +65,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            {{-- <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Registration No') }}</label>
     
                                 <div class="col-md-6">
@@ -76,7 +76,39 @@
                                         </span>
                                     @enderror
                                 </div>
+                            </div> --}}
+
+                            <div class="form-group row">
+                                <div class="row">
+                                <label for="name" class="col-md-3 col-form-label text-md-right">{{ __('Registration No') }}</label>
+                                    
+                                        <div class="col-md-2">
+                                            <div class="input field"> 
+                                                <input type="text" class="form-control" placeholder="" value="PC" readonly="readonly" name="PC">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="input field"> 
+                                                <input type="text" class="form-control" placeholder=""  readonly="readonly" name="AccountType" id="AccountType">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="input field"> 
+                                                <input type="text" class="form-control" placeholder=""  readonly="readonly" name="RegionCode" id="RegionCode">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="input field">
+                                                 
+                                                <input type="number" name="RegNo" class="form-control" placeholder="Reg Code" maxlength="4"/>
+                                            </div>
+                                        </div>
+
+                                      
+                                </div>
+                                 
                             </div>
+
                             <div class="form-group row">
                                 <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone / Mobile') }}</label>
     
@@ -154,6 +186,7 @@
     $(document).ready(function(){
         $('select[name="region"]').on('change',function(){
             let regID=$(this).val();
+
             if(regID){
                 console.log(regID);
                 $.ajax({
@@ -161,7 +194,7 @@
                     type:'GET',
                     dataType:'JSON',
                     success:function(data){
-                        console.log(data);
+                        console.log(data[0].code);
                         $('select[name="location"]').empty();
                         let items = '<option value="">Select Location </option>';
                        
@@ -172,11 +205,38 @@
                         }
                         $('#location').empty().append(items);
                         }
+                        //conlose.log(data[0].code);
+
                     
                 });
+                   
+                  $.ajax({
+                    url:'/region/getRegionDetails/'+regID,
+                    type:'GET',
+                    dataType:'JSON',
+                    success:function(data){
+                        console.log(data[0].code);
+                         $('#RegionCode').val(data[0].code);
+                        //conlose.log(data[0].code); 
+                    }
+                });  
             }
         });
     });
+
+
+    function printAccountType(e) {
+        console.log('We are here');
+        var accountID = $('#type').val();
+        let Acc='W';
+        if(accountID==='wholesaler'){
+             Acc='W';
+        }else{
+            Acc='R'
+        }
+        $('#AccountType').val(Acc); 
+    }
+
 </script>
 </body>
 </html>
