@@ -54,8 +54,9 @@ class RetailerCartController extends Controller
         $wholesaler = session()->put('wholesaler', $wholesaler);
 
         $options = array();
-        $product = $this->product::find($request->products_id);
-        Cart::add(array('id' => $product->id, 'name' => $product->name, 'price' => $request->price, 'quantity' => $request->quantity, $options, 'associatedModel' => $product));
+        $product = $this->wholesalerProduct::find($request->id);
+
+        Cart::add(array('id' => $product->id, 'name' => $product->product_name, 'price' => $request->price ?? 0, 'quantity' => $request->quantity, $options, 'associatedModel' => $product));
         
         return back();
         // return redirect()->route('cart.index');
@@ -70,7 +71,7 @@ class RetailerCartController extends Controller
     public function store(Request $request, $wholesaler = null)
     {
         $options = array();
-        $product = $this->product::find($request->products_id);
+        $product = $this->wholesalerProduct::find($request->id);
         Cart::add(array('id' => $product->id, 'name' => $product->name, 'price' => $request->price, 'quantity' => $request->quantity, $options, 'associatedModel' => $product));
 
         return back();

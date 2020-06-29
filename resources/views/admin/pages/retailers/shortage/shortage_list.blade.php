@@ -66,10 +66,11 @@
                         @if (Cart::getContent()->count() > 0)
                             @if (!Cart::isEmpty())
                                 @foreach (Cart::getContent() as $item)
+                                {{--  {{$item}}  --}}
                                     <tr>
-                                        <td>{{$item->name}}</td>
-                                        <td>{{$item->associatedModel->manufacturer->name ?? $item->manufacturer_slug}}</td>
+                                        <td>{{$item->associatedModel->product_name}}</td>
                                         <td>{{$item->associatedModel->productDescription()}} </td>
+                                        <td>{{$item->associatedModel->manufacturer ?? ''}}</td>
                                         <td> {{$item->price}}</td>
                                         <form action="{{route('cart.update',$item->id )}}" method="POST">
                                             @method('PUT')

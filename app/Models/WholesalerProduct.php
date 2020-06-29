@@ -56,6 +56,12 @@ class WholesalerProduct extends Model
         return $desc;
     }
 
+    public function productDescription()
+    {
+        $desc = "$this->dosage_form $this->active_ingredients $this->strength";
+        return $desc;
+    }
+
 
 
 }
