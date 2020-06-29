@@ -20,6 +20,7 @@
                                         <option value="">Select</option>
                                         <option value="wholesaler">Wholesaler</option>
                                         <option value="retailer">Retailer</option>
+                                        <option value="WR">Wholesaler/Retailer</option>
                                         {{-- <option value="pharmacist">Pharmacist</option> --}}
                                     </select>
                                 </div>
@@ -87,7 +88,7 @@
                                                 <input type="text" class="form-control" placeholder="" value="PC" readonly="readonly" name="PC">
                                             </div>
                                         </div>
-                                        <div class="col-md-1">
+                                        <div class="col-md-2">
                                             <div class="input field"> 
                                                 <input type="text" class="form-control" placeholder=""  readonly="readonly" name="AccountType" id="AccountType">
                                             </div>
@@ -231,6 +232,8 @@
         let Acc='W';
         if(accountID==='wholesaler'){
              Acc='W';
+        }else if(accountID==='WR'){
+            Acc='WR'
         }else{
             Acc='R'
         }
