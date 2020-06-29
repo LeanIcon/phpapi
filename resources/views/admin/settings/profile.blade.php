@@ -110,7 +110,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="LeadName">Reg No.</label>
-                                                        <input type="text" name="reg_no" value="{{$details->reg_no ?? 'Not Available'}}" class="form-control" id="LeadName" required="">
+                                                        <input type="text" name="reg_no" value="{{$details->reg_no ?? 'Not Available'}}" class="form-control" id="LeadName" required="" readonly="readonly">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">

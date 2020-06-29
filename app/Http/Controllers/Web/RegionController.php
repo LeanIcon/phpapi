@@ -103,4 +103,13 @@ class RegionController extends Controller
         $postRegion =  $this->postRegion::find($id)->delete();
         return redirect()->route('region.index');
     }
+
+    public function getRegionDetails($regID){
+        $region=Region::where('id',$regID)->get();
+        return response()->json($region);
+    }
+     
+     
+
+
 }
