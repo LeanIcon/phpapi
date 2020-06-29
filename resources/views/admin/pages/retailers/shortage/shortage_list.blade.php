@@ -66,7 +66,6 @@
                         @if (Cart::getContent()->count() > 0)
                             @if (!Cart::isEmpty())
                                 @foreach (Cart::getContent() as $item)
-                                {{--  {{$item}}  --}}
                                     <tr>
                                         <td>{{$item->associatedModel->product_name}}</td>
                                         <td>{{$item->associatedModel->productDescription()}} </td>
