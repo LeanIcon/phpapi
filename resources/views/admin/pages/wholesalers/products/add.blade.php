@@ -13,6 +13,15 @@
             <div class="card-header">
                 ADD NEW PRODUCTS
             </div>
+           @if ($errors->any())
+             <div class="alert alert-danger" id="errorDiv">
+                 <ul>
+                     @foreach ($errors->all() as $error)
+                         <li>{{ $error}}</li>
+                     @endforeach
+                 </ul>
+            </div>  
+           @endif
             <div class="card-body">
                 <form method="POST" action="{{route('wholesaler_products.store')}}" enctype="multipart/form-data" >
                     @csrf
@@ -186,6 +195,8 @@
 @section('page-js')
    <script src="{{url('admin/assets/plugins/select2/select2.min.js')}}"></script>
     <script>
+
+
      
 
     function initSelectTags() {
@@ -202,13 +213,22 @@
         if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
             event.preventDefault();
         }
+
     });
+    
+    setTimeout(function(){
+        $("#errorDiv").hide();
+    },3000);
 
      
       $(document).ready(function(){
           $('select[name="products_id"]').on('change',function(){
              let prodID=$(this).val();
              if(prodID){
+    // $(document).ready(function(){
+    //     $('select[name="wholesaler_products_id"]').on('change',function(){
+    //         let prodID=$(this).val();
+    //         if(prodID){
                  
                  $.ajax({
                      url:'/WholesalerProducts/getDetails/'+prodID,

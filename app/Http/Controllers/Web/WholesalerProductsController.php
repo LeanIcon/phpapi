@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use App\Models\WholesalerProduct;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\WholesalerProductStoreRequest;
 use App\Models\ProductCategoryTypes;
 use App\Models\DrugClass;
 use App\Models\DosageForm;
@@ -77,6 +78,14 @@ class WholesalerProductsController extends Controller
      */
     public function store(Request $request)
     {
+            $this->validate($request, [
+                'product_name' => 'unique:wholesaler_products,product_name'
+            ],
+            [
+                'unique' => 'Please you added this product already!'
+            ]
+        );
+
         $user = Auth::user();
         $date = $this->carbon::createFromDate($request->expiry_year, $request->expiry_month, 01)->toDateTimeString();
         $request['expiry_date'] = $date;
@@ -85,7 +94,7 @@ class WholesalerProductsController extends Controller
         return redirect()->route('wholesaler_products.index');
     }
 
-    /**
+    /**$
      * Display the specified resource.
      *
      * @param  int  $id

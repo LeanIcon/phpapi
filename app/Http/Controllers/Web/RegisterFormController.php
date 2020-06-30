@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\User;
 use App\Models\Region;
 use App\Models\Location;
+use App\Models\UserDetails;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Traits\SmsNotification;
@@ -43,10 +44,23 @@ class RegisterFormController extends Controller
         $user = $request['name'];
         $request['otp']  = $pin;
 
-        $msg = "Welcome: $user to Nnuro%0aYour Verification Code: $pin%0aConfirm code on login to proceed%0aThank you!!!";
-        $notify = $this->SendSMSNotify($request['phone'], $msg);
-
         $user = $user::create($request->all());
+
+        if(User::activeUserAccess($user))
+        {
+            $regNo=$request['PC']."/".$request['RegionCode']."/".$request['AccountType']."/".$request['RegNo'];
+            $msg = "Welcome: $user->name to Nnuro%0aYour Verification Code: $pin%0aConfirm code on proceed%0aThank you!!!";
+            $notify = $this->SendSMSNotify($user->phone, $msg); 
+            UserDetails::create([
+                'users_id' => $user->id, 
+                'town_id' => $request['region'],
+                'location'=>$request['location'],
+                'reg_no'=>$regNo
+                // 'reg_no'=>$data['PC'] 
+
+                ]);
+                return redirect()->route('dashboard.index');
+            };
         return redirect()->route('dashboard.index');
     }
 }

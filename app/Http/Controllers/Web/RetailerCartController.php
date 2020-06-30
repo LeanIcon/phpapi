@@ -178,7 +178,7 @@ class RetailerCartController extends Controller
                 'description' => $row->associatedModel->productDescription(),
                 'quantity' => $row->quantity,
                 'price' => $row->price,
-                'manufacturer' => $row->associatedModel->manufacturer_slug,
+                'manufacturer' => $row->associatedModel->manufacturer,
                 ]
             );
         }
