@@ -137,7 +137,7 @@
                                                 <div class="col-md-6">
                                                     <label for="LeadName">Region</label>
                                                     <select class="form-control" name="region" id="" disabled="disabled"> 
-                                                    <option value="{{$details->town_id}}">{{$selectedRegion[0]->name}}</option>
+                                                    <option value="{{$details->town_id ?? '0'}}">{{$selectedRegion[0]->name ?? 'Not Availabe'}}</option>
                                                         @foreach ($regions as $region)
 
                                                         <option value="{{$region->id}}">{{$region->name}} </option> 
