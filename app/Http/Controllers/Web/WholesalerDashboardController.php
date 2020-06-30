@@ -23,6 +23,7 @@ class WholesalerDashboardController extends Controller
     }
     public function loadDashboard()
     {
+        
         $pageTitle = 'Wholesaler';
         $wholesaler = Auth::user();
         $purchaseOrders = $this->purchaseOrders::where('wholesaler_id', $wholesaler->id)->get();
