@@ -11,7 +11,7 @@ use Spatie\Searchable\SearchResult;
 class Product extends ApiModel implements Searchable
 {
     protected $table = "products";
-    protected $fillable = ['name', 'image_url', 'code','active_ingredients', 'associated_name','dosage_form_id', 'packet_size', 'dosage_class_slug',
+    protected $fillable = ['name', 'image_url', 'code','active_ingredients', 'associated_name','dosage_form_id', 'packet_size', 'dosage_class_slug','product_code',
     ' category', 'strength', 'drug_class_id', 'type', 'product_category_id', 'product_category_id', 'manufacturer_id','dosage_form_slug','product_category_slug'];
 
 

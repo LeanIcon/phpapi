@@ -37,11 +37,23 @@ class ProductUploadController extends Controller
     {
         $import  = new WholesalerProductImport() ;
         $collection = Excel::toCollection($import, request()->file('file'));
-        // return $collection[0];
+
         foreach ($collection[0] as $key => $value) {
+            $product =  $this->product::create([
+                    'name'=> $value['brand_name'],
+                    'product_code' => $value['product_code'],
+                    'packet_size' => $value['pack_size'],
+                    'strength' =>$value['strength'] ,
+                    'status' => 1,
+                    'active_ingredients' => $value['generic_name'],
+                    'dosage_form' => $value['dosage_form'],
+                    'drug_legal_status' => $value['drug_legal_status'],
+                    'manufacturer_slug' => $value['manufacturer'],
+            ]);
             $this->wholesalerProduct::create([
                     'product_name'=> $value['brand_name'],
                     'price' => $value['price'],
+                    'products_id' => $product->id,
                     'product_code' => $value['product_code'],
                     'wholesaler_id' => Auth::user()->id,
                     'packet_size' => $value['pack_size'],

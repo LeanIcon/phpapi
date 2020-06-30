@@ -29,7 +29,7 @@
                                     @if ($wholesalerProducts->isNotEmpty())
                                     @foreach ($wholesalerProducts as $product)
                                         <tr>
-                                            <td> {{$product->products[0]['name'] ?? $product->product_name }}</td>
+                                            <td> {{$product->product_name}}</td>
                                              <!-- <td> @foreach ($product->products as $item)
                                                 {{$item->productDesc()}}
                                             @endforeach </td>  -->
