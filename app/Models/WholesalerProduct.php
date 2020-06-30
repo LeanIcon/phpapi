@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class WholesalerProduct extends Model
 {
     protected $table = 'wholesaler_products';
-    protected $fillable = ['batch_number', 'price', 'product_code','expiry_date', 'expiry_status','wholesaler_id','packet_size',
+    protected $fillable = ['batch_number', 'price', 'product_code','expiry_date', 'expiry_status','wholesaler_id','packet_size','active_ingredient',
     'strength', 'manufacturer_id', 'products_id', 'type', 'status', 'product_name','dosage_form', 'drug_legal_status','manufacturer'];
 
 
