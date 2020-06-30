@@ -125,7 +125,7 @@
                          
                             <th>ID</th>
                             <th>Name</th>                                                    
-                            <th>Status</th>
+                            {{-- <th>Status</th> --}}
                             <th>Action</th>
                         </tr><!--end tr-->
                         </thead>
@@ -137,7 +137,7 @@
                                 <tr>
                                     <td>{{$location->id}}</td>
                                     <td>{{$location->name}}</td>
-                                    <td> <span class="badge badge-md badge-soft-purple">Active</span></td>
+                                    {{-- <td> <span class="badge badge-md badge-soft-purple">Active</span></td> --}}
                                     <td>
                                         <a href="{{route('town.edit', $location->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                         <a href="{{route('town.show', $location->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>

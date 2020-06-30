@@ -2,21 +2,27 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\WholesalerProduct;
 use App\Http\Controllers\Controller;
-use App\Imports\WholesalerProductImport;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\WholesalerProductImport;
 
 class ProductUploadController extends Controller
 {
-    public function __construct()
+    public $wholesalerProduct, $product;
+    public function __construct(WholesalerProduct $wholesalerProduct, Product $product)
     {
-        
+        $this->wholesalerProduct = $wholesalerProduct;
+        $this->product = $product;
     }
     //
 
     public function productImportview()
     {
+        
         return view('admin.pages.wholesalers.products.product_upload');
     }
 
@@ -30,7 +36,24 @@ class ProductUploadController extends Controller
     public function productImport()
     {
         $import  = new WholesalerProductImport() ;
-        $collection = Excel::import($import, request()->file('file'));
-        return redirect()->route('dashboard.index');
+        $collection = Excel::toCollection($import, request()->file('file'));
+        // return $collection[0];
+        foreach ($collection[0] as $key => $value) {
+            $this->wholesalerProduct::create([
+                    'product_name'=> $value['brand_name'],
+                    'price' => $value['price'],
+                    'product_code' => $value['product_code'],
+                    'wholesaler_id' => Auth::user()->id,
+                    'packet_size' => $value['pack_size'],
+                    'strength' =>$value['strength'] ,
+                    'status' => 1,
+                    'active_ingredient' => $value['generic_name'],
+                    'dosage_form' => $value['dosage_form'],
+                    'drug_legal_status' => $value['drug_legal_status'],
+                    'manufacturer' => $value['manufacturer'],
+            ]);
+        }
+
+        return redirect()->route('wholesaler_products.index');
     }
 }
