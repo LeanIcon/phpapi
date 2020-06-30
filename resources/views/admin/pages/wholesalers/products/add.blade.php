@@ -27,8 +27,19 @@
                     
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label for="batchNumber">Product Name</label>
-                                <input type="text" class="form-control" name="product_name" id="productname" required="">
+                            <label for="status-select" class="mr-2">Category</label>
+                                <select name="products_id" class="form-control custom-select">
+                                    <option selected="">Select</option>
+                                @if (!is_null($products))
+                                    @foreach ($products as $pro)
+                                    <option value="{{$pro->id}}">{{$pro->name}}</option>
+                                    
+                                    @endforeach
+                                @endif
+                                </select>
+
+                            <!-- <label for="batchNumber">Product Name</label>
+                                <input type="text" class="form-control" name="product_name" id="productname" required=""> -->
                             </div>
                         </div>
                     </div>
@@ -194,32 +205,32 @@
     });
 
      
-    // $(document).ready(function(){
-    //     $('select[name="wholesaler_products_id"]').on('change',function(){
-    //         let prodID=$(this).val();
-    //         if(prodID){
+      $(document).ready(function(){
+          $('select[name="products_id"]').on('change',function(){
+             let prodID=$(this).val();
+             if(prodID){
                  
-    //             $.ajax({
-    //                 url:'/WholesalerProducts/getDetails/'+prodID,
-    //                 type:'GET',
-    //                 dataType:'JSON',
-    //                 success:function(data){
-    //                     console.log(data[0]); 
+                 $.ajax({
+                     url:'/WholesalerProducts/getDetails/'+prodID,
+                     type:'GET',
+                     dataType:'JSON',
+                     success:function(data){
+                         console.log(data[0]); 
                         
-    //                     document.getElementById("strength").defaultValue  = data[0].strength;
-    //                     document.getElementById("packsize").defaultValue  = data[0].packet_size;
-    //                     document.getElementById("productcode").defaultValue  = data[0].product_code;
-    //                     document.getElementById("dosageform").defaultValue  = data[0].dosage_form;
-    //                     document.getElementById("manufacturer").defaultValue  = data[0].manufacturer;
-    //                     document.getElementById("druglegalstatus").defaultValue  = data[0].drug_legal_status;
+                         document.getElementById("strength").defaultValue  = data[0].strength;
+                         document.getElementById("packsize").defaultValue  = data[0].packet_size;
+                         document.getElementById("productcode").defaultValue  = data[0].product_code;
+                         document.getElementById("dosageform").defaultValue  = data[0].dosage_form;
+                         document.getElementById("manufacturer").defaultValue  = data[0].manufacturer;
+                         document.getElementById("druglegalstatus").defaultValue  = data[0].drug_legal_status;
 
 
-    //                     }
+                         }
                     
-    //             });
-    //         }
-    //     });
-    // });
+                 });
+             }
+         });
+     });
  
 
 
