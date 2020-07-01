@@ -33,7 +33,8 @@
                     <table id="datatable" class="table">
                         <thead class="thead-light">
                         <tr>
-                            <th>Product Description</th>
+                            <th>Product</th>
+                            <th>Description</th>
                            {{-- <th>Product Description(Active Ingredient , Strength)</th> --}}
                             <th>Manufacturer</th>
                             <th>Pack Size</th>
@@ -46,7 +47,8 @@
                         @if ($products->isNotEmpty())
                             @foreach ($products as $product)
                                 <tr>
-                                <td>{{$product->productDesc() ?? 'NA'}}</td>
+                                    <td>{{$product->name ?? 'NA'}}</td>
+                                    <td>{{$product->productDesc() ?? 'NA'}}</td>
                                     <td>{{$product->manufacturer->name ?? $product->manufacturer_slug}}</td> 
                                     <td> {{$product->packet_size}}</td>
                                     <td>
