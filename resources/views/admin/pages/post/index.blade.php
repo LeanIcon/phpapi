@@ -17,7 +17,7 @@
     </div><!--end col-->
 </div>
 <!-- end page title end breadcrumb -->
-<div class="row">
+{{-- <div class="row">
     <div class="col-lg-4">
         <div class="card">
             <div class="card-body profile-card">                                    
@@ -110,7 +110,7 @@
         </div><!--end row-->                            
     </div><!--end col-->
     
-</div><!--end row-->
+</div><!--end row--> --}}
 
 <div class="row">
     <div class="col-12">
@@ -155,4 +155,12 @@
 </div><!--end row-->  
 @include('admin.pages.dashboard.modal-page')
 </div><!-- container -->
+@endsection
+
+@section('page-js') 
+<script>
+    $(document).ready(function() {
+        $('#datatable').dataTable();
+    });
+</script>
 @endsection

@@ -176,7 +176,7 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
                                         <th> Purchase ID</th>
                                         <th>Reatailer Name</th>
                                         <th>Status</th>
-                                        <th>View Purchase Order Details</th>
+                                        <th></th>
                                         
                                         
                                         
