@@ -21,7 +21,8 @@ class DrugClassController extends Controller
     public function index()
     {
         $drugClass = $this->drugClass::all();
-        return view('admin.pages.drug.drug_class', compact('drugClass'));
+        $pageTitle="Drug Class";
+        return view('admin.pages.drug.drug_class', compact('drugClass','pageTitle'));
     }
 
     /**

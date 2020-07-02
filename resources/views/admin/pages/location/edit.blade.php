@@ -12,7 +12,7 @@
                     <li class="breadcrumb-item"><a href="javascript:void(0);">Town</a></li>
                 </ol>
             </div>
-            <h4 class="page-title">Town</h4>
+            {{-- <h4 class="page-title">Town</h4> --}}
         </div><!--end page-title-box-->
     </div><!--end col-->
 </div>
@@ -20,10 +20,10 @@
 <div class="row">
     <div class="col-lg-8 card">
         <div class="card-header">
-            EDIT TOWN
+            Edit Location
         </div>
         <div class="card-body">
-            <form method="POST" action="{{route('town.update', $postTown->id)}}" enctype="multipart/form-data">
+            <form method="POST" action="{{route('location.update', $location->id)}}" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                <!-- <div class="row">
@@ -43,20 +43,21 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="PhoneNo">Name of Town</label>
-                            <input type="text" class="form-control" name="name" value="{{$postTown->name}}"id="Name" required="">
+                            <label for="location">Location Name</label>
+                            <input type="text" class="form-control" name="name" value="{{$location->name}}"id="Name" required="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="status-select" class="mr-2">Status</label>
-                            <select name="status" class="custom-select"  id="status-select">
-                                <option selected="">Select</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
+                            <label for="status-select" class="mr-2">Region</label>
+                            <select class="custom-select" name="region_id" id="region_id" disabled="disabled">
+                            <option selected="{{$location->region->id}}">{{$location->region->name}}</option>
+                                @if ($regions->isNotEmpty())
+                                    @foreach ($regions as $region)
+                                        <option value="{{$region->id}}">{{$region->name}}</option>
+                                    @endforeach
+                                @endif
+                            </select> 
                         </div>
                     </div>
                 </div> 

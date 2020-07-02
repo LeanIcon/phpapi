@@ -119,11 +119,11 @@
                 <a type="button" href="{{route('manufacture.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
                 {{-- <h4 class="header-title mt-0 mb-3"> Manufacturers</h4>  --}}
                 <div class="table-responsive dash-social">
-                    <table id="datatable" class="table">
+                    <table id="datatable" class="table table-hover">
                         <thead class="thead-light">
                         <tr>
                            <!-- <th>Lead</th>-->
-                            <th>ID</th>
+                            
                             <th>Name</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -136,7 +136,7 @@
                             @if ($manufacturers->isNotEmpty())
                                 @foreach ($manufacturers as $manufacture)
                                 <tr>
-                                    <td>00{{$manufacture->id}}</td>
+                                    
                                     <td>{{$manufacture->name}}</td>
                                     <td>{{$manufacture->status}}</td>
                                     <!--<td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>-->

@@ -16,7 +16,7 @@
                 <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                       
                         <div class="col-sm-12">
-                            <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                            <table id="datatable" class="table table-hover" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                            
                                 <thead>
                                     <tr role="row">

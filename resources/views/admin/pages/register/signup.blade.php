@@ -16,7 +16,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Register As') }}</label>
     
                                 <div class="col-md-6">
-                                    <select class="form-control " onchange="printAccountType(this)" name="type" id="type">
+                                    <select class="form-control " onchange="printAccountType(this)" name="type" id="type" required>
                                         <option value="">Select</option>
                                         <option value="wholesaler">Wholesaler</option>
                                         <option value="retailer">Retailer</option>
@@ -30,7 +30,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Region') }}</label>
                                 <div class="col-md-6">
                                     @if (!is_null($regions))
-                                    <select class="form-control" name="region" id="region">
+                                    <select class="form-control" name="region" id="region" required> 
                                         <option value="">Select Region</option>
                                         @foreach ($regions as $region)
                                             <option value="{{$region->id}}">{{$region->name}}</option>
@@ -44,7 +44,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
                                 <div class="col-md-6">
                                     @if (!is_null($locations))
-                                    <select class="form-control" name="location" id="location">
+                                    <select class="form-control" name="location" id="location" required>
                                         <option value="">Select Location</option>
                                         {{-- @foreach ($locations as $location)
                                             <option value="{{$location->id}}">{{$location->name}}</option>
@@ -90,18 +90,19 @@
                                         </div>
                                         <div class="col-md-2">
                                             <div class="input field"> 
-                                                <input type="text" class="form-control" placeholder=""  readonly="readonly" name="AccountType" id="AccountType">
+                                                <input type="text" class="form-control" placeholder=""  readonly="readonly" name="RegionCode" id="RegionCode">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="input field"> 
-                                                <input type="text" class="form-control" placeholder=""  readonly="readonly" name="RegionCode" id="RegionCode">
+                                                <input type="text" class="form-control" placeholder=""  readonly="readonly" name="AccountType" id="AccountType">
                                             </div>
                                         </div>
+                                       
                                         <div class="col-lg-2">
                                             <div class="input field">
                                                  
-                                                <input type="number" name="RegNo" class="form-control" placeholder="Reg Code" maxlength="4"/>
+                                                <input type="number" name="RegNo" class="form-control" placeholder="Reg Code" min="0000" max="9999" required>
                                             </div>
                                         </div>
 
@@ -189,36 +190,26 @@
             let regID=$(this).val();
 
             if(regID){
-                console.log(regID);
                 $.ajax({
                     url:'/location/getLocations/'+regID,
                     type:'GET',
                     dataType:'JSON',
-                    success:function(data){
-                        console.log(data[0].code);
+                    success:function(data){ 
                         $('select[name="location"]').empty();
-                        let items = '<option value="">Select Location </option>';
-                       
-                            // items += "<option value='" + key + "'>" + value + "</option>";
-                            
+                        let items = '<option value="">Select Location </option>'; 
                         for (var i = 0; i < data.length; i++) {
                         items += "<option value='" + data[i].name + "'>" + data[i].name + "</option>";
                         }
                         $('#location').empty().append(items);
-                        }
-                        //conlose.log(data[0].code);
-
-                    
+                        } 
                 });
                    
                   $.ajax({
                     url:'/region/getRegionDetails/'+regID,
                     type:'GET',
                     dataType:'JSON',
-                    success:function(data){
-                        console.log(data[0].code);
-                         $('#RegionCode').val(data[0].code);
-                        //conlose.log(data[0].code); 
+                    success:function(data){ 
+                         $('#RegionCode').val(data[0].code); 
                     }
                 });  
             }
@@ -226,8 +217,7 @@
     });
 
 
-    function printAccountType(e) {
-        console.log('We are here');
+    function printAccountType(e) { 
         var accountID = $('#type').val();
         let Acc='W';
         if(accountID==='wholesaler'){

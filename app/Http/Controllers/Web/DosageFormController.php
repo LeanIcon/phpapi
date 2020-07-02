@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class DosageFormController extends Controller
 {
+    public $pageTitle = 'Drug Dosage Form';
     public $dosageForm;
     public function __construct(DosageForm $dosageForm)
     {
@@ -21,7 +22,8 @@ class DosageFormController extends Controller
     public function index()
     {
         $dosageForm = $this->dosageForm::all();
-        return view('admin.pages.drug.dosage_form', compact('dosageForm'));
+        $pageTitle="Drug Dosage Form";
+        return view('admin.pages.drug.dosage_form', compact('dosageForm','pageTitle'));
     }
 
     /**

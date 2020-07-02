@@ -14,7 +14,7 @@
                             class="badge badge-danger badge-pill noti-icon-badge"> Orders</span> Purchase Invoice</h4>
                  
                 <div class="table-responsive">
-                    <table class="table table-hover mb-0" class="datatable">
+                    <table class="table table-hover mb-0" class="datatable" id="datatable">
                         <thead class="thead-light">
                         <tr>
                             <th class="border-top-0">Invoice</th>

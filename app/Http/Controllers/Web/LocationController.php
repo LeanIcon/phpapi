@@ -73,7 +73,10 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pageTitle = 'Location';
+        $regions = $this->region::all();
+        $location=$this->location::find($id); 
+        return view('admin.pages.location.edit', compact('regions','location','pageTitle'));
     }
 
     /**
@@ -85,7 +88,8 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $location =  $this->location::find($id)->update($request->all());
+        return redirect()->route('location.index');
     }
 
     /**
