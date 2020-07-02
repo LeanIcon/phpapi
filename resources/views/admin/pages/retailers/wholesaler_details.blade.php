@@ -136,30 +136,19 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <label for="LeadName">Region</label>
-                                                    <select class="form-control" name="region" id="" disabled="disabled"> 
-                                                    <option value="{{$details->town_id ?? '0'}}">{{$selectedRegion[0]->name ?? 'Not Availabe'}}</option>
-                                                        @foreach ($regions as $region)
-
-                                                        <option value="{{$region->id}}">{{$region->name}} </option> 
-                                                        @endforeach
-                                                    </select>
-
+                                                    <input type="file" value="{{$regions}}" class="form-control" name="region" id="image">
+                                                    
                                                 </div>
-                                                {{-- <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="LeadName">Location</label>
-                                                        <input type="text" name="location" class="form-control" value="{{$details->location ?? 'Not Available'}}" id="LeadName" required="">
-                                                    </div>
-                                                </div>   --}}
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for ="locations">Location</label>
-                                                        <select class="form-control" name="location" id=""> 
+                                                        <input type="file" value="{{$locations}}" class="form-control" name="region" id="image">
+                                                        {{--  <select class="form-control" name="location" id=""> 
                                                         <option value="{{$details->location}}">{{$details->location}}</option>
                                                             @foreach ($locations as $location) 
                                                             <option value="{{$location->name}}">{{$location->name}} </option> 
                                                             @endforeach
-                                                        </select>
+                                                        </select>  --}}
                                                     </div>
                                                 </div>
                                             </div>

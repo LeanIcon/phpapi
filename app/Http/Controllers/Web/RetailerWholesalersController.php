@@ -11,11 +11,12 @@ use App\Http\Controllers\Controller;
 class RetailerWholesalersController extends Controller
 {
     
-    public function __construct(User $user)
+    public function __construct(User $user, Location $locations)
     {
         $this->middleware('auth');
         $this->middleware(['role:Retailer|Admin']);
         $this->user = $user;
+        $this->locations  = $locations;
     }
 
     public function index()
@@ -28,11 +29,17 @@ class RetailerWholesalersController extends Controller
 
     public function show($wholesalerId)
     {
-        $wholesaler = $this->user::isWholeSaler()->where('id', $wholesalerId)->first();
+        // $wholesaler = $this->user::isWholeSaler()->where('id', $wholesalerId)->first();
+
+        $wholesaler = $this->user::find($wholesalerId);
         $products = $wholesaler->products;
         $details = $wholesaler->details;
-        $regions =Region::all();
-        $selectedRegion=Region::where('id','=',$details->town_id)->get(); 
+
+        $regions = $this->locations::find($details->town_id)->region;
+        $locations = $this->locations::find($details->town_id);
+
+        // $regions =Region::all();
+        // $selectedRegion=Region::where('id','=',$details->town_id)->get();
         $locations=Location::where('region_id','=',$details->town_id)->get();
         //return $locations;
         return view('admin.pages.retailers.wholesaler_details', compact('wholesaler','products', 'details','locations','selectedRegion','regions'));

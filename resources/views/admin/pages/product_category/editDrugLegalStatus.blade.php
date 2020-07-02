@@ -9,10 +9,10 @@
             <div class="float-right">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0);">NNURO</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">Product Category</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Drug Legal Status</a></li>
                 </ol>
             </div>
-            <h4 class="page-title">Product Category</h4>
+            <h4 class="page-title">Drug Legal Status</h4>
         </div><!--end page-title-box-->
     </div><!--end col-->
 </div>
@@ -20,28 +20,19 @@
 <div class="row">
     <div class="col-md-12 card">
         <div class="card-header">
-            Add New Product Category
+            Edit Drug Legal Status
         </div>
         <div class="card-body">
-            <form method="POST" action="{{route('product_category.store')}}" enctype="multipart/form-data" >
+            <form method="POST" action="{{route('product_category_types.update',$productCategoryTypes)}}" enctype="multipart/form-data" >
                 @csrf
+                @method('PUT')
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="productCategory">Category Name</label>
-                            <input type="text" name="name" class="form-control" id="productCategory" required="">
+                            <label for="drugLegalStatus">Drug Legal Status</label>
+                        <input type="text" name="name" class="form-control" id="" required="" value="{{$productCategoryTypes ->name}}">
                         </div>
-                    </div>
-                    {{-- <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="status-select" class="mr-2">Type</label>
-                            <select class="custom-select" name="status" id="status-select">
-                                <option>Select</option>
-                                <option value="drugs">Drugs</option>
-                                <option value="prescription">Prescription</option>
-                            </select>
-                        </div>
-                    </div> --}}
+                    </div> 
                 </div>
 
                 <button type="submit" class="btn btn-sm btn-primary">Save</button>

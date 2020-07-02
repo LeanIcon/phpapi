@@ -119,12 +119,11 @@
                 <a type="button" href="{{route('region.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
                 {{-- <h4 class="header-title mt-0 mb-3">All Regions</h4>  --}}
                 <div class="table-responsive dash-social">
-                    <table id="datatable" class="table">
+                    <table id="datatable" class="table table-hover">
                         <thead class="thead-light">
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            {{-- <th>Status</th> --}}
+                        <tr> 
+                            <th>Name</th> 
+                            <th>Code</th>
                             <th>Action</th>
                         </tr><!--end tr-->
                         </thead>
@@ -132,11 +131,9 @@
                         <tbody>
                             @if ($postRegion->isNotEmpty())
                             @foreach ($postRegion ?? '' as $region)
-                                <tr>
-                                    <td>{{$region->id}}</td>
-                                    <td>{{$region->name}}</td>
-                                    {{-- <td>{{$region->status}}</td> --}}
-                                    <!--<td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>-->
+                                <tr> 
+                                    <td>{{$region->name}}</td> 
+                                    <td>{{$region->code}}</td>
                                     <td>
                                         <a href="{{route('region.edit', $region->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                         <a href="{{route('region.show', $region->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>

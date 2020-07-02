@@ -96,6 +96,7 @@ class ProductCategoryController extends Controller
      */
     public function destroy(Request $request,$id)
     {
-        
+        $productCategory =  $this->productCategory::find($id)->delete($request->all());
+        return redirect()->route('product_category.index'); 
     }
 }

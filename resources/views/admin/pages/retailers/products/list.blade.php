@@ -49,15 +49,7 @@
                             @if ($products->isNotEmpty())
                                 @foreach ($products as $product)
                                     <tr>
-                                         @if (!is_null($wholesalers))
-                                                    @foreach($wholesalers as $wholesaler)
-                                                        @if($wholesaler->id == $product->wholesaler_id)
-                                                        <td> {{$wholesaler->name}}</td>
-                                                        @endif
-                                                    @endforeach
-                                                    
-                                            @endif
-                                        
+                                        <td> {{$product->user->name}}</td>
                                         <td> {{$product->product_name}} </td>
                                        <!-- <td> @foreach ($product->products as $item)
                                             {{$item->productDesc()}}

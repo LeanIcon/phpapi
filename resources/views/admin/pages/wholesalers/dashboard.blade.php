@@ -83,11 +83,19 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
     $timezone = date("e");
     /* If the time is less than 1200 hours, show good morning */
     if ($time < "12") {
+<<<<<<< HEAD
         echo "<h3 style= font-family:lora;>".  "Good morning" . " ".Auth::user()->firstname.","."</h3>";
     } else
     /* If the time is grater than or equal to 1200 hours, but less than 1700 hours, so good afternoon */
     if ($time >= "12" && $time < "17") {
         echo "<h3 style= font-family:lora;>". "Good afternoon" . " " . Auth::user()->firstname.","."</h3>";
+=======
+        echo "<h3 style= font-family:lora;>".  "Good morning" .Auth::user()->firstname .","."</h3>";
+    } else
+    /* If the time is grater than or equal to 1200 hours, but less than 1700 hours, so good afternoon */
+    if ($time >= "12" && $time < "17") {
+        echo "<h3 style= font-family:lora;>". "Good afternoon" .  Auth::user()->firstname .","."</h3>";
+>>>>>>> dev
     } else
     /* Should the time be between or equal to 1700 and 1900 hours, show good evening */
     if ($time >= "17" && $time < "19") {
@@ -95,7 +103,7 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
     } else
     /* Finally, show good night if the time is greater than or equal to 1900 hours */
     if ($time >= "19") {
-        echo "<h3 style= font-family:lora;>". "Good evening" . " " . Auth::user()->firstname.","."</h3>";
+        echo "<h3 style= font-family:lora;>". "Good evening" . Auth::user()->firstname .","."</h3>";
     }
     ?>
                     <h1 style="font-size: 50px; font-family:lora;"> Welcome! </h1>
@@ -176,7 +184,7 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
                                         <th> Purchase ID</th>
                                         <th>Reatailer Name</th>
                                         <th>Status</th>
-                                        <th>View Purchase Order Details</th>
+                                        <th></th>
                                         
                                         
                                         

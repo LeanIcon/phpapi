@@ -136,6 +136,7 @@ class User extends Authenticatable
         return $this->hasMany(PurchaseOrders::class, 'retailer_id');
     }
 
+
     public function posts()
     {
         return $this->hasMany(Post::class, "author_id");

@@ -30,7 +30,7 @@
                 <a type="button" href="{{route('product.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
                 {{-- <h4 class="header-title mt-0 mb-3">All PRODUCTS</h4>  --}}
                 <div class="table-responsive dash-social">
-                    <table id="datatable" class="table">
+                    <table id="datatable" class="table table-hover">
                         <thead class="thead-light">
                         <tr>
                             <th>Product Name</th>
@@ -47,8 +47,8 @@
                         @if ($products->isNotEmpty())
                             @foreach ($products as $product)
                                 <tr>
-                                    <td>{{ $product->name }}</td>
-                                <td>{{$product->productDesc() ?? 'NA'}}</td>
+                                    <td>{{$product->name ?? 'NA'}}</td>
+                                    <td>{{$product->productDesc() ?? 'NA'}}</td>
                                     <td>{{$product->manufacturer->name ?? $product->manufacturer_slug}}</td> 
                                     <td> {{$product->packet_size}}</td>
                                     <td>

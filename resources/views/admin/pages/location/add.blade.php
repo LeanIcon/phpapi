@@ -20,7 +20,7 @@
 <div class="row">
     <div class="col-lg-8 card">
         <div class="card-header">
-            ADD NEW LOCATION
+            Add New Location
         </div>
         <div class="card-body">
             <form method="POST" action="{{route('location.store')}}" enctype="multipart/form-data" >
@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="PhoneNo">Name of Location</label>
+                            <label for="PhoneNo">Location Name</label>
                             <input type="text" class="form-control" name="name" id="name" required="">
                         </div>
                     </div>
