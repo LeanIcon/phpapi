@@ -29,10 +29,16 @@
                                     @if ($wholesalerProducts->isNotEmpty())
                                     @foreach ($wholesalerProducts as $product)
                                         <tr>
-                                            <td> {{$product->product_name}}</td>
+                                            @foreach($products as $pro)
+                                                @if($pro->id == $product->products_id && $pro->product_code == $product->product_code)
+                                            
+                                            <td> {{$pro->name}}</td>
                                              <!-- <td> @foreach ($product->products as $item)
                                                 {{$item->productDesc()}}
                                             @endforeach </td>  -->
+                                            
+                                                @endif
+                                            @endforeach
                                             <td> {{$product->productDesc()}} {{$product->dosage_form}} </td>
                                             <!-- <td> @foreach ($product->products as $item)
                                                 {{$item->manufacturer->name ?? $item->manufacturer_slug}}

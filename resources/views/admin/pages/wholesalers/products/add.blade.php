@@ -36,7 +36,7 @@
                     
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label for="status-select" class="mr-2">Category</label>
+                            <label for="status-select" class="mr-2">Product</label>
                                 <select name="products_id" class="form-control custom-select">
                                     <option selected="">Select</option>
                                 @if (!is_null($products))
@@ -224,6 +224,7 @@
       $(document).ready(function(){
           $('select[name="products_id"]').on('change',function(){
              let prodID=$(this).val();
+             console.log(prodID);
              if(prodID){
     // $(document).ready(function(){
     //     $('select[name="wholesaler_products_id"]').on('change',function(){
@@ -231,7 +232,7 @@
     //         if(prodID){
                  
                  $.ajax({
-                     url:'/WholesalerProducts/getDetails/'+prodID,
+                     url:'/Products/getDetails/'+prodID,
                      type:'GET',
                      dataType:'JSON',
                      success:function(data){

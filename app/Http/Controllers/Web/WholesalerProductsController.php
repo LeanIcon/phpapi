@@ -41,10 +41,11 @@ class WholesalerProductsController extends Controller
      */
     public function index()
     {
+        $products = $this->products::all();
         $wholesaler = Auth::user();
         $wholesalerProducts = $wholesaler->wholesaler_products;
         //return $wholesalerProducts;
-        return view('admin.pages.wholesalers.products', compact('wholesalerProducts'));
+        return view('admin.pages.wholesalers.products', compact('wholesalerProducts','products'));
     }
 
     public function loadExpiryProducts()

@@ -155,4 +155,10 @@ class ProductController extends Controller
                 'name' => $name
             ];
     }
+
+    public function getDetails($prodID)
+    {
+         $products=Product::where('id',$prodID)->get();
+        return response()->json($products); 
+    }
 }

@@ -52,7 +52,7 @@ class WholesalerProduct extends Model
 
     public function productDesc()
     {
-        $desc = "$this->dosage_form $this->active_ingredients $this->strength";
+        $desc = "$this->active_ingredient $this->strength";
         return $desc;
     }
 

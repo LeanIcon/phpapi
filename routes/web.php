@@ -123,4 +123,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/location/getLocations/{regID}','Web\LocationController@getLocations')->name('location.get');
 Route::get('/region/getRegionDetails/{regID}','Web\RegionController@getRegionDetails')->name('region.get');
-Route::get('/WholesalerProducts/getDetails/{prodID}','Web\WholesalerProductsController@getDetails')->name('products.get');
+Route::get('/WholesalerProducts/getDetails/{prodID}','Web\WholesalerProductsController@getDetails')->name('products1.get');
+Route::get('/Products/getDetails/{prodID}','Web\ProductController@getDetails')->name('products.get');
