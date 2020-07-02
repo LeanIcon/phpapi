@@ -7,16 +7,15 @@
         <div class="card">
             <div class="card-body">
                 <button type="button" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" data-toggle="modal" data-animation="bounce" data-target=".bs-retailer-modal-lg">+ Add New</button>
-                <h4 class="header-title mt-0 mb-3"> {{$pageTitle ?? 'Current Page'}}</h4> 
-                 
+                
                 <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                      
+                <h4>.</h4>      
                         <div class="col-sm-12">
-                            <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                            <table id="datatable" class="table table-hover" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                                 <thead>
                                     <tr role="row">
                                         <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 285px;">Dosage Name</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Status</th>
+                                        {{-- <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 81px;">Status</th> --}}
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 83px;">Action</th>
                                     </tr>
                                 </thead>
@@ -25,14 +24,13 @@
                                     @if ($dosageForm->isNotEmpty())
                                         @foreach ($dosageForm as $item)
                                         <tr role="row" class="odd">
-                                            <td class="sorting_1">
-                                                <img src="../assets/images/products/img-2.png" alt="" height="52">
+                                            <td class="sorting_1"> 
                                                 <p class="d-inline-block align-middle mb-0">
                                                     <a href="" class="d-inline-block align-middle mb-0 product-name">{{$item->name}}</a>
                                                 </p>
                                             </td>
                                             
-                                            <td><span class="badge badge-soft-warning">Active</span></td>
+                                            {{-- <td><span class="badge badge-soft-warning">Active</span></td> --}}
                                             <td>
                                                 <a href=""><i class="far fa-edit text-info mr-1"></i></a>
                                                 <a href=""><i class="far fa-trash-alt text-danger"></i></a>
@@ -66,7 +64,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="LeadName">Dosage Form Name (*Capsule)</label>
+                                <label for="LeadName">Dosage Form Name </label>
                                 <input type="text" name="name" class="form-control" id="LeadName" required="">
                             </div>
                         </div>

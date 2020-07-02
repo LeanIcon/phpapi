@@ -119,13 +119,13 @@
                 <a type="button" href="{{route('product_category.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
                 {{-- <h4 class="header-title mt-0 mb-3"> Products Category</h4>  --}}
                 <div class="table-responsive dash-social">
-                    <table id="datatable" class="table">
+                    <table id="datatable" class="table table-hover">
                         <thead class="thead-light">
                         <tr>
-                            <th>ID</th>
+                            {{-- <th>ID</th> --}}
                             <th>Name</th>
-                            <th>Slug</th>
-                            <th>Date</th>
+                            {{-- <th>Slug</th> --}}
+                            {{-- <th>Date</th> --}}
                             <th>Action</th>
                         </tr><!--end tr-->
                         </thead>
@@ -133,15 +133,15 @@
                         @if ($productCategory->isNotEmpty())
                             @foreach ($productCategory as $category)
                                 <tr>
-                                    <td>{{$category->id}}</td>
+                                    {{-- <td>{{$category->id}}</td> --}}
                                     <td>{{$category->name}}</td>
-                                    <td>{{$category->slug}}</td>
-                                    <td> <span class="badge badge-md badge-soft-purple">New Lead</span></td>
+                                    {{-- <td>{{$category->slug}}</td> --}}
+                                    {{-- <td> <span class="badge badge-md badge-soft-purple">New Lead</span></td> --}}
                                     <td>
                                         <a href="{{route('product_category.edit', $category->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                         <a href="{{route('product_category.show', $category->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>
                                          {{--<a id="deleteAction"><i class="fas fa-trash-alt text-danger font-16"></i></a> --}}
-                                         <form action="{{route('post_category.destroy', $category->id)}}" method="POST" >
+                                         <form action="{{route('product_category.destroy', $category->id)}}" method="POST" >
                                             @csrf
                                             @method('DELETE')
                                             <input type="hidden" name="id" value="{{$category->id}}">

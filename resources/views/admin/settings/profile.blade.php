@@ -164,7 +164,8 @@
                                                         <div class="form-group">
                                                             <label for ="locations">Location</label>
                                                             <select class="form-control" name="location" id=""> 
-                                                            <option value="{{$details->location}}">{{$details->location}}</option>
+                                                             <option value="{{$details->location}}"> 
+                                                                {{$details->location}}</option> --}}
                                                                 @foreach ($locations as $location) 
                                                                 <option value="{{$location->name}}">{{$location->name}} </option> 
                                                                 @endforeach

@@ -18,9 +18,9 @@
 </div>
 <!-- end page title end breadcrumb -->
 <div class="row">
-    <div class="col-lg-8 card">
+    <div class="col-lg-12 card">
         <div class="card-header">
-            EDIT MANUFACTURER
+            Edit Manufacturer
         </div>
         <div class="card-body">
             <form method="POST" action="{{route('manufacture.update', $manufacturer->id)}}" enctype="multipart/form-data">
@@ -51,10 +51,11 @@
                         <div class="form-group">
                             <label for="status-select" class="mr-2">Status</label>
                             <select name="status" class="custom-select"  id="status-select">
-                                <option selected="">Select</option>
+                                <option value="{{$manufacturer->status}}"> {{$manufacturer->status}}</option>
+                                {{-- <option selected="">Select</option> --}}
                                 <option value="Pending">Pending</option>
                                 <option value="Suspended">Suspended</option>
-                                <option value="Verified">Verified</option>
+                                <option value="Approved">Approved</option>
                                 
                             </select>
                         </div>

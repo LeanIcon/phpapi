@@ -18,48 +18,22 @@
 </div>
 <!-- end page title end breadcrumb -->
 <div class="row">
-    <div class="col-lg-8 card">
+    <div class="col-lg-12 card">
         <div class="card-header">
-            ADD NEW PRODUCT CATEGORY
+             Product Category
         </div>
         <div class="card-body">
             <form method="POST" enctype="multipart/form-data" >
                 @csrf
-               <<div class="row">
+               <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="LeadName">Name</label>
                             <input type="text" name="name" value="{{$productCategory->name}}" class="form-control" id="LeadName" readonly required="">
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="type">Type</label>
-                            <input type="text" class="form-control" name="type" value="{{$productCategory->type}}" id="type" readonly required="">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="status-select" class="mr-2">Status</label>
-                            <select class="custom-select" value="{{$productCategory->status}}" name="status" id="status-select">
-                                <option selected="">Select</option>
-                                <option value="Available">Available</option>
-                                <option value="Hold">Hold</option>
-                                
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <!--<div class="form-group">
-                            <label for="PhoneNo">Type</label>
-                            <input type="text" class="form-control" id="PhoneNo" required="">
-                        </div>-->
-                    </div>
+                    </div> 
                 </div> 
-                <!--<button type="submit" class="btn btn-sm btn-primary">Save</button>-->  
-                <button type="button" class="btn btn-sm btn-danger">Cancel</button>             
+                <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Go Back</button>             
             </form>  
         </div>
     </div>

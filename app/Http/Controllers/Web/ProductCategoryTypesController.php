@@ -9,7 +9,7 @@ use App\Models\ProductCategoryTypes;
 
 class ProductCategoryTypesController extends Controller
 {
-    public $pageTitle = 'Product Category Types';
+    public $pageTitle = 'Drug Legal Status';
     public $productCategoryTypes, $productCategory;
     public function __construct(ProductCategoryTypes $productCategoryTypes, ProductCategory $productCategory)
     {
@@ -25,9 +25,9 @@ class ProductCategoryTypesController extends Controller
     {
         $productCategoryTypes = $this->productCategoryTypes::all();
 
-        $productCategory = $this->productCategory::all();
-        $pageTitle = $this->pageTitle;
-        return view('admin.pages.product_category.product-category-types', compact('productCategoryTypes', 'productCategory','pageTitle'));
+        //$productCategory = $this->productCategory::all();
+        $pageTitle = "Drug Legal Status";
+        return view('admin.pages.product_category.product-category-types', compact('productCategoryTypes','pageTitle'));
     }
 
     /**
@@ -37,7 +37,9 @@ class ProductCategoryTypesController extends Controller
      */
     public function create()
     {
-        //
+        $pageTitle = 'Drug Legal Status';
+        $productCategory = $this->productCategory::all();
+        return view('admin.pages.product_category.addDrugLegalStatus', compact('pageTitle', 'productCategory'));
     }
 
     /**
@@ -49,8 +51,7 @@ class ProductCategoryTypesController extends Controller
     public function store(Request $request)
     {
         $productCategoryTypes =   $this->productCategoryTypes::create($request->all());
-        return redirect()->route('product_category_types.index');
-
+        return redirect()->route('product_category_types.index'); 
     }
 
     /**
@@ -72,7 +73,8 @@ class ProductCategoryTypesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $productCategoryTypes = $this->productCategoryTypes::find($id);
+        return view('admin.pages.product_category.editDrugLegalStatus', compact('productCategoryTypes'));
     }
 
     /**
@@ -84,7 +86,8 @@ class ProductCategoryTypesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $productCategoryTypes = $this->productCategoryTypes::find($id)->update($request->all());
+        return redirect()->route('product_category_types.index');
     }
 
     /**

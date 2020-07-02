@@ -18,7 +18,7 @@
 </div>
 <!-- end page title end breadcrumb -->
 <div class="row">
-    <div class="col-lg-8 card">
+    <div class="col-lg-12 card">
         <div class="card-header">
             Add Manufacturer
         </div>
@@ -29,7 +29,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="manufactureName">Manufacturer Name</label>
-                            <input type="text" name="name" class="form-control" id="manufactureName" required="">
+                            <input type="text" name="name" class="form-control" id="manufactureName" required>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -37,8 +37,8 @@
                             <label for="status-select" class="mr-2">Status</label>
                             <select class="custom-select" name="status" id="status-select" required>
                                 <option value="">Select</option>
-                                <option value="pending">Pending</option>
-                                <option value="approved">Approved</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Approved">Approved</option>
                             </select>
                         </div>
                     </div>

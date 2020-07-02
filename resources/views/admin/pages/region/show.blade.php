@@ -20,37 +20,23 @@
 <div class="row">
     <div class="col-lg-8 card">
         <div class="card-header">
-            ADD NEW REGION
+             Region Details
         </div>
         <div class="card-body">
             <form method="POST" enctype="multipart/form-data" >
                 @csrf
-               <!-- <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label for="LeadName">Name</label>
-                            <input type="text" class="form-control" id="LeadName" required="">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="LeadEmail">Email</label>
-                            <input type="email" class="form-control" id="LeadEmail" required="">
-                        </div>
-                    </div>
-                </div>-->
+               
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="PhoneNo">Name of Region</label>
+                            <label for="PhoneNo">Region Name</label>
                             <input type="text" class="form-control" name="name" value="{{$postRegion->name}}"id="Name" readonly required="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="status-select" class="mr-2">Status</label>
-                            <input type="text" class="form-control" name="name" value="{{$postRegion->status}}"id="Name" readonly required="">
-
+                            <label for="regionCode" class="mr-2">Region Code</label>
+                        <input type="text" class="form-control" name="code" id="Code" required="" value="{{$postRegion->code}}"readonly>
                         </div>
                     </div>
                 </div> 

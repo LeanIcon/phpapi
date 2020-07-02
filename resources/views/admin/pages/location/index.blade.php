@@ -119,13 +119,11 @@
                 <a type="button" href="{{route('location.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
                 {{-- <h4 class="header-title mt-0 mb-3">All Towns</h4>  --}}
                 <div class="table-responsive dash-social">
-                    <table id="datatable" class="table">
+                    <table id="datatable" class="table table-hover">
                         <thead class="thead-light">
-                        <tr>
-                         
-                            <th>ID</th>
+                        <tr> 
                             <th>Name</th>                                                    
-                            {{-- <th>Status</th> --}}
+                            <th>Region</th>
                             <th>Action</th>
                         </tr><!--end tr-->
                         </thead>
@@ -134,13 +132,13 @@
 
                             @if ($locations->isNotEmpty())
                             @foreach ($locations as $location)
-                                <tr>
-                                    <td>{{$location->id}}</td>
+                                <tr> 
                                     <td>{{$location->name}}</td>
+                                    <td>{{$location->region->name}}</td>
                                     {{-- <td> <span class="badge badge-md badge-soft-purple">Active</span></td> --}}
                                     <td>
-                                        <a href="{{route('town.edit', $location->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                        <a href="{{route('town.show', $location->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>
+                                        <a href="{{route('location.edit', $location->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                        <a href="{{route('location.show', $location->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>
                                     </td>
                                 </tr><!--end tr-->
                             @endforeach

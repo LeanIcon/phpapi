@@ -18,9 +18,9 @@
 </div>
 <!-- end page title end breadcrumb -->
 <div class="row">
-    <div class="col-lg-8 card">
+    <div class="col-lg-12 card">
         <div class="card-header">
-            ADD NEW PRODUCT CATEGORY
+            Edit Product Category
         </div>
         <div class="card-body">
             <form method="POST" action="{{route('product_category.update', $productCategory->id)}}" enctype="multipart/form-data">
@@ -33,14 +33,14 @@
                             <input type="text" name="name" value="{{$productCategory->name}}" class="form-control" id="LeadName" required="">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    {{-- <div class="col-md-6">
                         <div class="form-group">
                             <label for="type">Type</label>
                             <input type="text" class="form-control" name="type" value="{{$productCategory->type}}" id="type" required="">
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="status-select" class="mr-2">Status</label>
@@ -58,7 +58,7 @@
                             <input type="text" class="form-control" id="PhoneNo" required="">
                         </div>-->
                     </div>
-                </div> 
+                </div>  --}}
                 <button type="submit" class="btn btn-sm btn-primary">Save</button>  
                 <button type="button" class="btn btn-sm btn-danger">Cancel</button>             
             </form>  
