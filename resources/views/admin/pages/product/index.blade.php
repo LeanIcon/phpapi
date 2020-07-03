@@ -33,8 +33,8 @@
                     <table id="datatable" class="table table-hover">
                         <thead class="thead-light">
                         <tr>
-                            <th>Product</th>
-                            <th>Description</th>
+                            <th>Product Name</th>
+                            <th>Product Description</th>
                            {{-- <th>Product Description(Active Ingredient , Strength)</th> --}}
                             <th>Manufacturer</th>
                             <th>Pack Size</th>

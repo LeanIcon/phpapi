@@ -56,12 +56,15 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $regNo=$data['PC']."/".$data['RegionCode']."/".$data['AccountType']."/".$data['RegNo'];
+        $phonenumber = '233'.Str::after($data['phone'], '0');
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'location' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:10'],
+            'phone'.$phonenumber => ['required', 'string', 'max:10', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'reg_no'.$regNo => ['unique:user_details'],
         ]);
     }
 
