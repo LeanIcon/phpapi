@@ -2,97 +2,8 @@
 
 @section('content')
 @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])
-<style>
-.searchbar{
-    margin-bottom: auto;
-    margin-top: auto;
-    height: 50px;
-    background-color: white;
-    border-radius: 70%;
-    padding: 10px;
-    }
 
-    .search_input{
-    color: black;
-    border: 0;
-    outline: 0;
-    background: none;
-    width: 0;
-    caret-color:transparent;
-    line-height: 40px;
-    transition: width 0.4s linear;
-    }
 
-    .searchbar:hover > .search_input{
-    padding: 0 10px;
-    width: 200px;
-    caret-color:green;
-    transition: width 0.4s linear;
-    }
-
-    .searchbar:hover > .search_icon{
-    background: green;
-    color: #e74c3c;
-    }
-
-    .search_icon{
-    height: 40px;
-    width: 40px;
-    float: right;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    color:green;
-    text-decoration:none;
-    }
-
-    i.fas {
-  
-  display: inline-block;
-  border-radius: 60px;
-  box-shadow: 2px 0px 2px #888;
-  padding: 0.5em 0.6em;
-
-}
-
-body{
-    margin-top:20px;
-    background: #f5f5f5;
-}
-.card {
-    border: none;
-    -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,1.0);
-    box-shadow: 0 1px 2px 0 rgba(0,0,0,1.0);
-    margin-bottom: 30px;
-}
-.w-60 {
-    width: 60px;
-}
-h1, h2, h3, h4, h5, h6 {
-    margin: 0 0 10px;
-    font-weight: 600;
-}
-.social-links li a {
-    -webkit-border-radius: 50%;
-    background-color: rgba(89,206,181,.85);
-    border-radius: 50%;
-    color: #fff;
-    display: inline-block;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    width: 30px;
-    font-size: 12px;
-}
-a {
-    color: #707070;
-}
-
-.page-wrapper {
-    padding-top: 50px;
-}
-    </style>
 <div class="row">
 <div class="col-lg-6 tags p-b-2">
 <?php
@@ -155,7 +66,7 @@ a {
         <a href="{{route('proforma.list')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Pro-forma Invoice Received</h4>
+                <h4 class="title-text mt-0">Pro Forma Invoice Received</h4>
                 <div class="d-flex justify-content-between">
                     <h3 class="text-secondary">{{$proforminvoices->count()}}</h3>
                     <i class="dripicons-document-new card-eco-icon bg-icon-secondary align-self-center"></i>

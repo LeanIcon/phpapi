@@ -33,10 +33,10 @@
     <a href="{{route('product.index')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Products</h4>
+                <h4 class="title-text mt-0">Medical Devices</h4>
                 <div class="d-flex justify-content-between">
                     <h3 class="text-secondary">{{$products->count()}}</h3>
-                    <i class="dripicons-jewel card-eco-icon bg-icon-secondary align-self-center"></i>
+                    <i class="dripicons-medical card-eco-icon bg-icon-secondary align-self-center"></i>
                 </div>   
 </a>                                
                 
