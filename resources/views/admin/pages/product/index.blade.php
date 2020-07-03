@@ -18,7 +18,7 @@
 </div>
 <!-- end page title end breadcrumb -->
 <div class="row">
-    @include('admin.layouts.components.stats-card',[$cardName = ' Total Product', $dataCount = $products->count()])
+    @include('admin.layouts.components.stats-card',[$cardName = ' Total Products', $dataCount = $products->count()])
     @include('admin.layouts.components.stats-card', [$cardName = ' Total Drugs', $dataCount = 50])
     @include('admin.layouts.components.stats-card', [$cardName = ' Total Medical Devices', $dataCount = 10])
 </div><!--end row-->
