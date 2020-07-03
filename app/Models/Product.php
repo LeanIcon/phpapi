@@ -5,10 +5,9 @@ namespace App\Models;
 use App\Casts\Json;
 use App\Models\WholesalerProduct;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Searchable\Searchable;
-use Spatie\Searchable\SearchResult;
 
-class Product extends ApiModel implements Searchable
+
+class Product extends ApiModel 
 {
     protected $table = "products";
     protected $fillable = ['name', 'image_url', 'code','active_ingredients', 'associated_name','dosage_form_id', 'packet_size', 'dosage_class_slug','product_code',
@@ -74,17 +73,8 @@ class Product extends ApiModel implements Searchable
     }
     
 
-     public function getSearchResult(): SearchResult
-    {
-        //$url = route('admin.pages.retailers.search', $this->id);
- 
-        return new SearchResult(
-            $this,
-            $this->name,
-            $this->strength
-            //$url
-        );
-    }
+     
+    
 
 
 }
