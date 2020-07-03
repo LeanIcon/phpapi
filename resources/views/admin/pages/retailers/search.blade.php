@@ -16,12 +16,12 @@
                             <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                                 <thead>
                                     <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 50px;"> Name </th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Product Description</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Active Ingredients</th>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 50px;">Wholesaler Name </th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Product Name</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Active Description</th>
                                         
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Packet Size</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Strength</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Manufacturer</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Pack Size</th>
                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Unit Price</th>
                                     </tr>
                                 </thead>
@@ -52,10 +52,10 @@
                         @endforeach
                     
                             <td>    <a href="{{route('retailer.wholesaler.show', $searchResult->searchable->wholesaler_id)}}">{{ $searchResult->searchable->product_name }}</a> </td>
-                            <td>   <a href="{{ $searchResult->url }}">{{ $searchResult->searchable->product_code }}, {{ $searchResult->searchable->active_ingredient }}, {{ $searchResult->searchable->strength }}, {{ $searchResult->searchable->dosage_form }}</a> </td>
+                            <td>   <a href="{{ $searchResult->url }}">{{ $searchResult->searchable->active_ingredient }} {{ $searchResult->searchable->strength }} {{ $searchResult->searchable->dosage_form }}</a> </td>
                             <td>   <a href="{{ $searchResult->url }}">{{ $searchResult->searchable->manufacturer }}</a>  </td>
                             <td>   <a href="{{ $searchResult->url }}">{{ $searchResult->searchable->packet_size }}</a>  </td>
-                            <td>   <a href="{{ $searchResult->url }}">{{ $searchResult->searchable->price }}</a>  </td>
+                            <td>   <a href="{{ $searchResult->url }}">{{ $searchResult->searchable->formattedPrice() }}</a>  </td>
                         
                     </tr>
                     @endforeach
