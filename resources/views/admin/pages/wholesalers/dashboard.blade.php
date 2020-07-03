@@ -8,70 +8,7 @@
    var window:Window 
     window.onload = notifyMe;
     </script>
- <style>
-.searchbar{
-    margin-bottom: auto;
-    margin-top: auto;
-    height: 50px;
-    background-color: white;
-    border-radius: 30px;
-    padding: 10px;
-    }
-https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
-    .search_input{
-    color: white;
-    border: 0;
-    outline: 0;
-    background: none;
-    width: 0;
-    caret-color:transparent;
-    line-height: 40px;
-    transition: width 0.4s linear;
-    }
 
-    .searchbar:hover > .search_input{
-    padding: 0 10px;
-    width: 200px;
-    caret-color:green;
-    transition: width 0.4s linear;
-    }
-
-    .searchbar:hover > .search_icon{
-    background: green;
-    color: #e74c3c;
-    }
-
-    .search_icon{
-    height: 40px;
-    width: 40px;
-    float: right;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    color:green;
-    text-decoration:none;
-    }
-
-    i.fas {
-  
-  display: inline-block;
-  border-radius: 60px;
-  box-shadow: 0px 0px 2px #888;
-  padding: 0.5em 0.6em;
-
-}
-
-.card-eco .card-eco-icon.bg-icon-warning {
-    background-color: red;
-    -webkit-box-shadow: 0px 5px 5px 0.25px rgba(255, 184, 34, 0.5);
-    box-shadow: 0px 5px 5px 0.25px rgba(255, 184, 34, 0.5);
-}
-
-.page-wrapper {
-    padding-top: 50px;
-}
-    </style>
 
 
 <div class="row">
@@ -105,10 +42,10 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
         <a href="{{route('wholesaler_products.index')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Total Products</h4>
+                <h4 class="title-text mt-0">Medical Devices</h4>
                 <div class="d-flex justify-content-between">
                     <h3 class="text-purple">{{$products->count()}}</h3>
-                    <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i>
+                    <i class="dripicons-medical card-eco-icon bg-icon-purple align-self-center"></i>
                 </div>
             </div><!--end card-body-->
         </div><!--end card-->
@@ -135,7 +72,7 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
         <a href="{{ route('wholesaler.purchaseorderinvoice') }}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Pro forma-Invoice</h4>
+                <h4 class="title-text mt-0">Pro Forma Invoice</h4>
                 <div class="d-flex justify-content-between">
                     <h3 class="text-purple">{{$proforminvoices->count()}}</h3>
                     <i class="dripicons-document-new card-eco-icon bg-icon-secondary align-self-center"></i>

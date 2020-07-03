@@ -5,7 +5,7 @@
             <h4 class="title-text mt-0">{{$cardName ?? 'Not Available'}}</h4>
             <div class="d-flex justify-content-between">
                 <h3 class="text-purple">{{$dataCount ?? '0'}}</h3>
-                <i class="dripicons-user-group card-eco-icon bg-icon-purple align-self-center"></i>
+                <i class="dripicons-medical card-eco-icon bg-icon-purple align-self-center"></i>
             </div>
         </div><!--end card-body-->
     </div><!--end card-->
