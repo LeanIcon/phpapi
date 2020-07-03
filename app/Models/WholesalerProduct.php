@@ -4,8 +4,10 @@ namespace App\Models;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class WholesalerProduct extends Model
+class WholesalerProduct extends Model  implements Searchable
 {
     protected $table = 'wholesaler_products';
     protected $fillable = ['batch_number', 'price', 'product_code','expiry_date', 'expiry_status','wholesaler_id','packet_size','active_ingredient',
@@ -62,6 +64,15 @@ class WholesalerProduct extends Model
         return $desc;
     }
 
-
-
+    public function getSearchResult(): SearchResult
+    {
+        //$url = route('admin.pages.retailers.search', $this->id);
+ 
+        return new SearchResult(
+            $this,
+            $this->product_name,
+            $this->product_code
+            //$url
+        );
+    }
 }

@@ -33,6 +33,7 @@ class RegisterFormController extends Controller
 
     public function saveNewUserForm(Request $request)
     {
+     
         $user = new User();
         $pin = User::generatePin();
         $senderId = 'NNURO';

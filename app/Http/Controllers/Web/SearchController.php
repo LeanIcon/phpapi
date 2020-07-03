@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Spatie\Searchable\Search;
 use Illuminate\Http\Request;
-use App\Models\Product;
+use App\Models\WholesalerProduct;
+use App\User;
 
 class SearchController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct(User $user){
+        $this->user = $user;
+
+    }
     public function index()
     {
         return view('admin.pages.retailers.search');
@@ -24,18 +24,22 @@ class SearchController extends Controller
      * @param  Request $request [description]
      * @return view      [description]
      */
-    public function search( Request $request)
+    public function search( Request $request, User $user)
     {
  
+        $this->user = $user;
+
         $searchterm = $request->input('query');
  
         $searchResults = (new Search())
-                    ->registerModel(Product::class, 'name')
-                    
+                    ->registerModel(WholesalerProduct::class, 'product_name')
+                    //->registerModel(Users::class, 'id')
                     ->perform($searchterm);
 
-       // return $searchResults;
+        $wholesalers = $this->user::isWholeSaler()->get();
+
+        //return $searchResults;
  
-        return view('admin.pages.retailers.search', compact('searchResults', 'searchterm'));
+        return view('admin.pages.retailers.search', compact('searchResults', 'searchterm', 'wholesalers', 'user'));
     }
 }
