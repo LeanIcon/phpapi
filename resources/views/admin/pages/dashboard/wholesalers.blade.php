@@ -81,24 +81,21 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="LeadName">First Name</label>
-                                <input type="text" name="firstname" class="form-control" id="LeadName" required="">
+                                <label for="LeadName">Company Name</label>
+                                <input type="text" name="name" class="form-control" id="LeadName" required="">
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="LeadEmail">Last Name</label>
-                                <input type="text" class="form-control" name="lastname" id="LeadEmail" required="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="LeadEmail">Email</label>
                                 <input type="email" name="email" class="form-control" id="LeadEmail" required="">
                             </div>
                         </div>
+
+                       
+                    </div>
+                    <div class="row">
+                        
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="LeadName">Phone</label>
@@ -106,9 +103,79 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="LeadEmail">Region</label>
+                                @if (!is_null($regions))
+                                <select class="form-control" name="region" id="region" required> 
+                                    <option value="">Select Region</option>
+                                    @foreach ($regions as $region)
+                                        <option value="{{$region->id}}">{{$region->name}}</option>
+                                    @endforeach
+                                </select>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="LeadName">Location</label>
+                                @if (!is_null($locations))
+                                    <select class="form-control" name="location" id="location" required>
+                                        <option value="">Select Location</option>
+                                        {{-- @foreach ($locations as $location)
+                                            <option value="{{$location->id}}">{{$location->name}}</option>
+                                        @endforeach --}}
+                                    </select>
+                                    @endif
+                            </div>
+                        </div>
+                    </div>
+
+
+                    
+
+                    <div class="row">
+                        <div class="form-group row">
+                            <div class="row">
+                            <label for="name" class="col-md-3 col-form-label text-md-right">{{ __('Registration No') }}</label>
+                                
+                                    <div class="col-md-2">
+                                        <div class="input field"> 
+                                            <input type="text" class="form-control" placeholder="" value="PC" readonly="readonly" name="PC">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="input field"> 
+                                            <input type="text" class="form-control" placeholder=""  readonly="readonly" name="RegionCode" id="RegionCode">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="input field"> 
+                                            <input type="text" class="form-control" placeholder=""  readonly="readonly" name="AccountType" id="AccountType" value="W">
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-lg-2">
+                                        <div class="input field">
+                                             
+                                            <input type="number" name="RegNo" class="form-control" placeholder="Reg Code" min="0000" max="9999" required>
+                                        </div>
+                                    </div> 
+                            </div>
+
+                        </div>
+                    </div>
+                    <br><br>
+
+
+                   
                     <input type="hidden" name="type" value="wholesaler">
-                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                    {{-- <input type="hidden" name="password" value="12345678">
+                     --}}
+                    <button type="submit" class="btn btn-sm btn-primary">Save</button> 
                     <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Cancel</button>
+                 
                 </form>
             </div>
         </div><!-- /.modal-content -->
@@ -116,11 +183,45 @@
 </div><!-- /.modal --> 
 @endsection
 
+ 
+
 
 @section('page-js') 
 <script>
     $(document).ready(function() {
         $('#datatable').dataTable();
     });
+
+    $(document).ready(function(){
+        $('select[name="region"]').on('change',function(){
+            let regID=$(this).val();
+
+            if(regID){
+                $.ajax({
+                    url:'/location/getLocations/'+regID,
+                    type:'GET',
+                    dataType:'JSON',
+                    success:function(data){ 
+                        $('select[name="location"]').empty();
+                        let items = '<option value="">Select Location </option>'; 
+                        for (var i = 0; i < data.length; i++) {
+                        items += "<option value='" + data[i].name + "'>" + data[i].name + "</option>";
+                        }
+                        $('#location').empty().append(items);
+                        } 
+                });
+                   
+                  $.ajax({
+                    url:'/region/getRegionDetails/'+regID,
+                    type:'GET',
+                    dataType:'JSON',
+                    success:function(data){ 
+                         $('#RegionCode').val(data[0].code); 
+                    }
+                });  
+            }
+        });
+    });
+ 
 </script>
 @endsection
