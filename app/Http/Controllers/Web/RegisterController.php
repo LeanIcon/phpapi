@@ -95,7 +95,7 @@ class RegisterController extends Controller
         if(User::activeUserAccess($user))
         {
             $regNo=$data['PC']."/".$data['RegionCode']."/".$data['AccountType']."/".$data['RegNo'];
-            $msg = "Welcome: $user->name to Nnuro%0aYour Verification Code: $pin%0aConfirm code on proceed%0aThank you!!!";
+            $msg = "Welcome: $user->name to Nnuro%0aYour Verification Code is $pin%0aKindly confirm code on proceed%0aThank you!!!";
             $notify = $this->SendSMSNotify($user->phone, $msg); 
             UserDetails::create([
                 'users_id' => $user->id, 

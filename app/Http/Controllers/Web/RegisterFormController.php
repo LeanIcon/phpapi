@@ -39,9 +39,9 @@ class RegisterFormController extends Controller
         $phone = '233'.Str::after($request->phone, '0');
         $request['phone'] = $phone;
         $request['password'] = Hash::make(12345678);
-        $request['name'] = $request->firstname.' '.$request->lastname;
-        $request['slug'] = Str::slug($request->firstname.' '.$request->lastname);
-        $user = $request['name'];
+        $request['name'] = $request->name;
+        $request['slug'] = Str::slug($request->name);
+        //$user = $request['name'];
         $request['otp']  = $pin;
 
         $user = $user::create($request->all());
@@ -49,7 +49,7 @@ class RegisterFormController extends Controller
         if(User::activeUserAccess($user))
         {
             $regNo=$request['PC']."/".$request['RegionCode']."/".$request['AccountType']."/".$request['RegNo'];
-            $msg = "Welcome: $user->name to Nnuro%0aYour Verification Code: $pin%0aConfirm code on proceed%0aThank you!!!";
+            $msg = "Welcome: $user->name to Nnuro%0aYour Verification Code is $pin%0aKindly confirm code on proceed%0aThank you!!!";
             $notify = $this->SendSMSNotify($user->phone, $msg); 
             UserDetails::create([
                 'users_id' => $user->id, 
@@ -59,7 +59,7 @@ class RegisterFormController extends Controller
                 // 'reg_no'=>$data['PC'] 
 
                 ]);
-                return redirect()->route('dashboard.index');
+                return redirect()->route('dashboard.wholesalers');
             };
         return redirect()->route('dashboard.index');
     }
