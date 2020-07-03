@@ -7,7 +7,6 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header text-center bg-dark text-white">{{ __('Sign Up') }}</div>
-
                     <div class="card-body">
                         <form method="POST" action="{{ route('register.form') }}">
                             @csrf
@@ -85,37 +84,41 @@
                                     
                                         <div class="col-md-2">
                                             <div class="input field"> 
-                                                <input type="text" class="form-control" placeholder="" value="PC" readonly="readonly" name="PC">
+                                                <input type="text" class="form-control @error('reg_no') is-invalid @enderror" placeholder="" value="PC" readonly="readonly" name="PC">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="input field"> 
-                                                <input type="text" class="form-control" placeholder=""  readonly="readonly" name="RegionCode" id="RegionCode">
+                                                <input type="text" class="form-control @error('reg_no') is-invalid @enderror" placeholder=""  readonly="readonly" name="RegionCode" id="RegionCode">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="input field"> 
-                                                <input type="text" class="form-control" placeholder=""  readonly="readonly" name="AccountType" id="AccountType">
+                                                <input type="text" class="form-control @error('reg_no') is-invalid @enderror" placeholder=""  readonly="readonly" name="AccountType" id="AccountType">
                                             </div>
                                         </div>
                                        
                                         <div class="col-lg-2">
                                             <div class="input field">
                                                  
-                                                <input type="number" name="RegNo" class="form-control" placeholder="Reg Code" min="0000" max="9999" required>
+                                                <input type="number" type="text" class="form-control @error('reg_no') is-invalid @enderror" name="RegNo" placeholder="Reg Code" min="0000" max="9999" required>
                                             </div>
                                         </div>
 
                                       
                                 </div>
-                                 
+                                      @error('reg_no')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                             </div>
 
                             <div class="form-group row">
                                 <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone / Mobile') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="name" autofocus>
+                                    <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
     
                                     @error('phone')
                                         <span class="invalid-feedback" role="alert">

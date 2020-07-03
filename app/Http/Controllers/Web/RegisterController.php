@@ -56,15 +56,16 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $regNo=$data['PC']."/".$data['RegionCode']."/".$data['AccountType']."/".$data['RegNo'];
-        $phonenumber = '233'.Str::after($data['phone'], '0');
+        $data['reg_no']=$data['PC']."/".$data['RegionCode']."/".$data['AccountType']."/".$data['RegNo'];
+        $data['phone'] = '233'.Str::after($data['phone'], '0');
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'location' => ['required', 'string', 'max:255'],
-            'phone'.$phonenumber => ['required', 'string', 'max:10', 'unique:users'],
+            'phone' => ['required', 'string', 'min:10', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'reg_no'.$regNo => ['unique:user_details'],
+            'reg_no' => ['unique:user_details'],
         ]);
     }
 
@@ -95,20 +96,22 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
         // %26
-        if(User::activeUserAccess($user))
+        if($user)
         {
-            $regNo=$data['PC']."/".$data['RegionCode']."/".$data['AccountType']."/".$data['RegNo'];
-            $msg = "Welcome: $user->name to Nnuro%0aYour Verification Code is $pin%0aKindly confirm code on proceed%0aThank you!!!";
-            $notify = $this->SendSMSNotify($user->phone, $msg); 
-            UserDetails::create([
-                'users_id' => $user->id, 
-                'town_id' => $data['region'],
-                'location'=>$data['location'],
-                'reg_no'=>$regNo
-                // 'reg_no'=>$data['PC'] 
-
-                ]);
-                return $user;
+            if (User::activeUserAccess($user)) {
+                $regNo=$data['PC']."/".$data['RegionCode']."/".$data['AccountType']."/".$data['RegNo'];
+                $msg = "Welcome: $user->name to Nnuro%0aYour Verification Code is $pin%0aKindly confirm code on proceed%0aThank you!!!";
+                $notify = $this->SendSMSNotify($user->phone, $msg); 
+                UserDetails::create([
+                    'users_id' => $user->id, 
+                    'town_id' => $data['region'],
+                    'location'=>$data['location'],
+                    'reg_no'=>$regNo
+                    // 'reg_no'=>$data['PC'] 
+    
+                    ]);
+                    return $user;
+            }
             };
 
         return $user;
