@@ -70,3 +70,11 @@
     </div>
 </div>
 @endsection
+
+@section('page-js') 
+<script>
+    $(document).ready(function() {
+        $('#datatable').dataTable();
+    });
+</script>
+@endsection
