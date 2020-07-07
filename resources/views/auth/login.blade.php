@@ -66,7 +66,7 @@
                         </div>
                         <div class="col-md-6 offset-md-0">
                          <a href="{{route('register.form')}}">
-                          <button type="button" class="btn btn-outline-dark btn-lg">
+                          <button type="button" class="btn btn-block login-btn mb-3 ">
                               {{ __('Sign Up') }}
                           </button></a>
                         </div>

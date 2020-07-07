@@ -45,11 +45,13 @@
                         <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                             <thead>
                                 <tr role="row">
+                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 170px;">Product Name</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 170px;">Description</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 130px;">Manufacturer</th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Price</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Pack Size</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Unit Price(GH₵)</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 120px;">Qty</th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 100px;">Action</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 195px;">Action</th>
                                 </tr>
                             </thead>
                             {{--  <p align="right"> <button type="submit" class="btn btn-primary btn-sm px-4 mt-0 mb-3" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg2">
@@ -66,9 +68,11 @@
                             @if (!Cart::isEmpty())
                                 @foreach (Cart::getContent() as $item)
                                     <tr>
+                                        <td>{{$item->associatedModel->product_name}}</td>
                                         <td>{{$item->associatedModel->productDesc()}} </td>
-                                        <td>{{$item->associatedModel->manufacturer->name ?? $item->manufacturer_slug}}</td>
-                                        <td> {{$item->price}}</td>
+                                        <td>{{$item->associatedModel->manufacturer ?? $item->manufacturer_slug}}</td>
+                                        <td>{{$item->associatedModel->packet_size}}</td>
+                                        <td> {{$item->price}}GH₵</td>
                                         <form action="{{route('cart.update',$item->id )}}" method="POST">
                                             @method('PUT')
                                         <td><input class="form-control" value="{{$item->quantity}}" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" type="number" name="quantity" id="quantity" /></td>
