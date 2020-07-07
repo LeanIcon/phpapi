@@ -26,20 +26,20 @@
                                     </tr>
                                 </thead>
     
-            @if(isset($searchResults))
-                @if ($searchResults-> isEmpty())
+            @if(isset($sor))
+                @if ($sor-> isEmpty())
                     <h2>Sorry, no products were found with the name <b>"{{ $searchterm }}"</b>.</h2>
                 @else
-                    <h2> We have found {{ $searchResults->count() }} products with the name  <b>"{{ $searchterm }}"</b></h2>
+                    <h2> We have found {{ $sor->count() }} products with the name  <b>"{{ $searchterm }}"</b></h2>
                     <hr />
                     
-                    @foreach($searchResults->groupByType() as $type => $modelSearchResults)
+                    @foreach($sor->groupByType() as $type => $modelSearchResults)
                     <!-- <h2>{{ ucwords($type) }}</h2> -->
     
                     @foreach($modelSearchResults as $searchResult)
 
                     <tbody>
-                    <tr role="row" class="odd">
+                    <tr role="row">
                         @foreach($wholesalers as $wholesaler)
 
                             @if ($wholesaler->id == $searchResult->searchable->wholesaler_id)
@@ -55,7 +55,7 @@
                             <td>   <a href="{{ $searchResult->url }}">{{ $searchResult->searchable->active_ingredient }} {{ $searchResult->searchable->strength }} {{ $searchResult->searchable->dosage_form }}</a> </td>
                             <td>   <a href="{{ $searchResult->url }}">{{ $searchResult->searchable->manufacturer }}</a>  </td>
                             <td>   <a href="{{ $searchResult->url }}">{{ $searchResult->searchable->packet_size }}</a>  </td>
-                            <td>   <a href="{{ $searchResult->url }}">{{ $searchResult->searchable->formattedPrice() }}</a>  </td>
+                            <td>   <a href="{{ $searchResult->url }}">{{ $searchResult->searchable->formattedprice() }}</a>  </td>
                         
                     </tr>
                     @endforeach
@@ -69,4 +69,13 @@
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('page-js') 
+<script>
+    $(document).ready(function() {
+        $('#datatable').dataTable();
+    });
+</script>
 @endsection
