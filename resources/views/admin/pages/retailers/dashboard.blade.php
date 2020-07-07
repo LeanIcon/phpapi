@@ -118,7 +118,7 @@
                                         <tr>
                                             <td></td>
                                             <td>
-                                                <div class="col-md-12 col-xl-12">
+                                                <div class="col-md-12 col-xl-12"style="width: 62rem;">
                                                     <div class="card m-b-30">
                                                         <div class="card-body row">
                                                             <div class="col-6">
