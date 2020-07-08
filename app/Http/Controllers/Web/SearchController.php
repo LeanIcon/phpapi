@@ -38,9 +38,9 @@ class SearchController extends Controller
 
         $wholesalers = $this->user::isWholeSaler()->get();
 
-        $sor = $searchResults->sortBy('packet_size');
+        $sor = $searchResults->sortBy('price');
 
-       //$sor;
+       return $sor;
  
         return view('admin.pages.retailers.search', compact('sor', 'searchterm', 'wholesalers', 'user'));
     }
