@@ -21,7 +21,7 @@
                                         <th></th>
                                         <th>Wholesaler Name </th>
                                         <th>Product Name</th>
-                                        <th>Active Description</th>
+                                        <th>Active Ingredients</th>
                                         <th>Manufacturer</th>
                                         <th>Pack Size</th>
                                         <th>Unit Price</th>
@@ -52,7 +52,7 @@
                             <td>   <a href="{{ $searchResult->url }}">{{ $searchResult->searchable->manufacturer }}</a>  </td>
                             <td>   <a href="{{ $searchResult->url }}">{{ $searchResult->searchable->packet_size }}</a>  </td>
                             <td>   <a href="{{ $searchResult->url }}">{{ $searchResult->searchable->formattedPrice() }}</a>  </td>
-                            <td><a href="" class="btn btn-success"> Add</a> </td>
+                            <td><a href="{{route('retailer.wholesaler.show', $searchResult->searchable->wholesaler_id)}}" class="btn btn-success"> RAISE P.O</a> </td>
                     </tr>
                     @endforeach
                     @endforeach
