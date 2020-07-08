@@ -40,7 +40,7 @@ class SearchController extends Controller
 
         $sor = $searchResults->sortBy('price');
 
-       return $sor;
+       //return $sor;
  
         return view('admin.pages.retailers.search', compact('sor', 'searchterm', 'wholesalers', 'user'));
     }
