@@ -6,8 +6,11 @@
     <div class="row">
         <div class="col-md-12">
             <form method="get" action="{{ route('retailer.search.result') }}" class="form-inline mr-auto">
-              <input type="text" name="query" value="{{ isset($searchterm) ? $searchterm : ''  }}" class="form-control col-sm-8"  placeholder="Search for Products here..." aria-label="Search">
-              <button class="btn aqua-gradient btn-rounded btn-sm my-0 waves-effect waves-light" type="submit">Search</button>
+               
+                <input type="text" name="query" value="{{ isset($searchterm) ? $searchterm : ''  }}" class="form-control col-sm-offset-4 col-sm-7"  placeholder="Search for Products here..." aria-label="Search">
+                <button class="btn btn-success btn-rounded btn-sm my-0 waves-effect waves-light" type="submit"><i class="fas fa-search"></i></button>
+               
+                
             </form>
             <br>
             <div class="row">
@@ -16,12 +19,13 @@
                                 <thead>
                                     <tr role="row">
                                         <th></th>
-                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product Name: activate to sort column descending" style="width: 50px;">Wholesaler Name </th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Product Name</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Active Description</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Manufacturer</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Pack Size</th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Unit Price</th>
+                                        <th>Wholesaler Name </th>
+                                        <th>Product Name</th>
+                                        <th>Active Description</th>
+                                        <th>Manufacturer</th>
+                                        <th>Pack Size</th>
+                                        <th>Unit Price</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead> <tbody>
                                 @if(isset($sor))
@@ -34,9 +38,8 @@
                     <!-- <h2>{{ ucwords($type) }}</h2> -->
                     @foreach($modelSearchResults as $searchResult)
                     <tr role="row" class="odd">
-                        
-                        @foreach($wholesalers as $wholesaler)
                         <td></td>
+                        @foreach($wholesalers as $wholesaler)
                             @if ($wholesaler->id == $searchResult->searchable->wholesaler_id)
                                 <td><a href="{{route('retailer.wholesaler.show', $searchResult->searchable->wholesaler_id)}}"> {{$wholesaler->name}} </a> </td>
                             @endif
@@ -49,6 +52,7 @@
                             <td>   <a href="{{ $searchResult->url }}">{{ $searchResult->searchable->manufacturer }}</a>  </td>
                             <td>   <a href="{{ $searchResult->url }}">{{ $searchResult->searchable->packet_size }}</a>  </td>
                             <td>   <a href="{{ $searchResult->url }}">{{ $searchResult->searchable->formattedPrice() }}</a>  </td>
+                            <td><a href="" class="btn btn-success"> Add</a> </td>
                     </tr>
                     @endforeach
                     @endforeach
