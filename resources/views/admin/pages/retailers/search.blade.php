@@ -41,7 +41,7 @@
                         <td></td>
                         @foreach($wholesalers as $wholesaler)
                             @if ($wholesaler->id == $searchResult->searchable->wholesaler_id)
-                                <td><a href="{{route('retailer.wholesaler.show', $searchResult->searchable->wholesaler_id)}}"> {{$wholesaler->name}} </a> </td>
+                                <td><img src="{{$wholesaler->details->image_url ?? url('admin/assets/images/users/user-4.jpg')}}" alt="" height="52"> <a href="{{route('retailer.wholesaler.show', $searchResult->searchable->wholesaler_id)}}"> {{$wholesaler->name}} </a> </td>
                             @endif
                             <!-- @if($searchResult->searchable->wholesaler_id == $wholesaler->id )
                                 <td> {{$wholesalers[0]['name']}}</td>
