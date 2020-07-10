@@ -65,15 +65,16 @@
                             @if (Auth::user()->hasRole('Retailer'))
                             <span class="badge badge-danger badge-pill noti-icon-badge">{{$retailpo->count()}}</span>
                             @endif
-                           
+
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-lg">
                             <!-- item-->
-                            <h6 class="dropdown-item-text">
+                            {{-- <h6 class="dropdown-item-text">
                                 Notifications (18)
-                            </h6>
+                            </h6> --}}
                             @if (Auth::user()->hasRole('Retailer'))
                                 @include('admin.layouts.notifications.retailer_notify')
+                                @include('admin.layouts.notifications.wholesaler_notify')
                             @endif
                             @auth
                             @if (Auth::user()->hasRole('Admin'))
