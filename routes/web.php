@@ -13,9 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-})->middleware('guest');
+// Route::get('/', function () {
+//     return view('auth.login');
+// })->middleware('guest');
 
 
 
+Route::get('/{vue?}', function () {
+    return view('app');
+})->where('vue', '[\/\w\.-]*')->name('home');
