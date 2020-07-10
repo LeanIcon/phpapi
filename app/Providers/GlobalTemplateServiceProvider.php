@@ -44,7 +44,7 @@ class GlobalTemplateServiceProvider extends ServiceProvider
         });
 
 
-        view()->composer(['admin.layouts.topbar'], function($view){
+        view()->composer(['admin.layouts.topbar', 'admin.settings.proformainvoicenotifypo'], function($view){
             $view->with('retailerInv', $this->retailerInvoices());
         });
 
@@ -116,7 +116,7 @@ class GlobalTemplateServiceProvider extends ServiceProvider
 
     public function retailerInvoices () {
         $user = Auth::user();
-        $reailerinv = $user->retailer_orders->where('order_type', '=', 'invoice');
+        $reailerinv = $user->retailer_orders->where('order_type', '=', 'pro_forma');
         return $reailerinv;
 
     }
