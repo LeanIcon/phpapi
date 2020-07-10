@@ -40,6 +40,10 @@ class GlobalTemplateServiceProvider extends ServiceProvider
         });
 
         view()->composer(['admin.layouts.topbar'], function($view){
+            $view->with('wholesalerpo', $this->wholesalerPurchaseOrders());
+        });
+
+        view()->composer(['admin.layouts.topbar'], function($view){
             $view->with('retailers', $this->getRetailers());
         });
 
@@ -87,6 +91,17 @@ class GlobalTemplateServiceProvider extends ServiceProvider
         $user = Auth::user();
         // $purchaseInvoices = $user->retailer_orders->where('invoice', '!=', '');
         $up = $user->retailer_orders;
+        // $approvedPurchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->where('status', 'approved')->get();
+        // $invoiceReceived = $this->purchaseOrders::where('retailer_id', $retailer)->where('invoice', '!=', null)->get();
+        return $up;
+
+        // $proforminvoices = collect($user->retailer_orders)->where('order_type', 'pro_forma');
+    }
+
+    public function wholesalerPurchaseOrders () {
+        $user = Auth::user();
+        // $purchaseInvoices = $user->retailer_orders->where('invoice', '!=', '');
+        $up = $user->wholesaler_orders;
         // $approvedPurchaseOrders = $this->purchaseOrders::where('retailer_id', $retailer)->where('status', 'approved')->get();
         // $invoiceReceived = $this->purchaseOrders::where('retailer_id', $retailer)->where('invoice', '!=', null)->get();
         return $up;

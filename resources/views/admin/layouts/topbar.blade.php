@@ -60,7 +60,7 @@
                             <span class="badge badge-danger badge-pill noti-icon-badge">{{$retailpo->count()}}</span>
                             @endif
                             @if (Auth::user()->hasRole('Wholesaler'))
-                            <span class="badge badge-danger badge-pill noti-icon-badge">{{$retailpo->count()}}</span>
+                            <span class="badge badge-danger badge-pill noti-icon-badge">{{$wholesalerpo->count()}}</span>
                             @endif
                             @if (Auth::user()->hasRole('Retailer'))
                             <span class="badge badge-danger badge-pill noti-icon-badge">{{$retailpo->count()}}</span>
@@ -72,7 +72,7 @@
                             {{-- <h6 class="dropdown-item-text">
                                 Notifications (18)
                             </h6> --}}
-                            @if (Auth::user()->hasRole('Retailer'))
+                            @if (Auth::user()->hasAnyRole('Retailer|Wholesaler'))
                                 @include('admin.layouts.notifications.retailer_notify')
                                 @include('admin.layouts.notifications.wholesaler_notify')
                             @endif
