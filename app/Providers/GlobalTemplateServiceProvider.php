@@ -43,6 +43,11 @@ class GlobalTemplateServiceProvider extends ServiceProvider
             $view->with('wholesalerpo', $this->wholesalerPurchaseOrders());
         });
 
+
+        view()->composer(['admin.layouts.topbar'], function($view){
+            $view->with('retailerInv', $this->retailerInvoices());
+        });
+
         view()->composer(['admin.layouts.topbar'], function($view){
             $view->with('retailers', $this->getRetailers());
         });
@@ -107,5 +112,12 @@ class GlobalTemplateServiceProvider extends ServiceProvider
         return $up;
 
         // $proforminvoices = collect($user->retailer_orders)->where('order_type', 'pro_forma');
+    }
+
+    public function retailerInvoices () {
+        $user = Auth::user();
+        $reailerinv = $user->retailer_orders->where('order_type', '=', 'invoice');
+        return $reailerinv;
+
     }
 }

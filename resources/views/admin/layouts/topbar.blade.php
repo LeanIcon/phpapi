@@ -63,7 +63,7 @@
                             <span class="badge badge-danger badge-pill noti-icon-badge">{{$wholesalerpo->count()}}</span>
                             @endif
                             @if (Auth::user()->hasRole('Retailer'))
-                            <span class="badge badge-danger badge-pill noti-icon-badge">{{$retailpo->count()}}</span>
+                            <span class="badge badge-danger badge-pill noti-icon-badge">{{$retailerInv->count()}}</span>
                             @endif
 
                         </a>
