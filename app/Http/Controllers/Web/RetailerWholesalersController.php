@@ -39,7 +39,7 @@ class RetailerWholesalersController extends Controller
         $locations = $this->locations::find($details->town_id);
 
         // $regions =Region::all();
-        // $selectedRegion=Region::where('id','=',$details->town_id)->get();
+        $selectedRegion=Region::where('id','=',$details->town_id)->get();
         $locations=Location::where('region_id','=',$details->town_id)->get();
         //return $locations;
         return view('admin.pages.retailers.wholesaler_details', compact('wholesaler','products', 'details','locations','selectedRegion','regions'));
