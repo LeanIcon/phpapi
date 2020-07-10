@@ -90,8 +90,8 @@
     </div><!--end col-->
 </div>
 </a>
-<button onclick="notifyMe()">Notify me!</button>
-
+{{--  <button onclick="notifyMe()">Notify me!</button>  --}}
+@include('admin.settings.proformainvoicenotifypo')
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -151,7 +151,7 @@
                     </tbody>
                 </table>
 
-                            <!--INVOICE RECEIVED NOTIFICATION-->
+                            {{--  <!--INVOICE RECEIVED NOTIFICATION-->
                             @if ($purchaseInvoices->isNotEmpty())
                             @foreach ($purchaseInvoices as $item)
                             <script>
@@ -168,7 +168,7 @@
                             </script>
                             @endforeach
                             @endif
-                            <!--INVOICE RECEIVED NOTIFICATION ENDS HERE-->
+                            <!--INVOICE RECEIVED NOTIFICATION ENDS HERE-->  --}}
                         
             </div>
         </div>

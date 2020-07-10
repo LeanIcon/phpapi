@@ -96,7 +96,8 @@
     </div><!--end col-->
 </div> 
 <!--NOTIFICATION SYSTEM-->
-@include('admin.settings.notifypo')
+@include('admin.settings.wholesalerorderinvoicenotifypo')
+@include('admin.settings.wholesalerpurchaseordernotifypo')
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -124,6 +125,7 @@
 
                                     @if ($purchaseOrders->isNotEmpty())
                                         @foreach ($purchaseOrders as $purchaseOrder)
+                                        @if($purchaseOrder->status=='pending')
                                             <tr role="row" class="odd">
                                                 <td class="sorting_1">
                                                     {{-- <img src="../assets/images/products/img-2.png" alt="" height="52"> --}}
@@ -139,6 +141,7 @@
                                                     <a href="{{route('wholesaler.order_details', $purchaseOrder->id)}}"><i class="far fa-eye text-danger"></i></a>
                                                 </td>
                                             </tr>
+                                            @endif
                                         @endforeach
                                     @endif
 
