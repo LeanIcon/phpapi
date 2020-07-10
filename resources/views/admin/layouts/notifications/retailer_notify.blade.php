@@ -4,7 +4,7 @@
     <!-- item-->
         @if ($retailerInv->count() > 0)
         @foreach ($retailerInv as $po)
-        <a href="{{route('retailer.purchaselist')}}" class="dropdown-item notify-item active">
+        <a href="{{route('invoice.list')}}" class="dropdown-item notify-item active">
             <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
             <p class="notify-details"> Raised Purchase Order
             <small class="text-muted">{{$po->status}}</small></p>
