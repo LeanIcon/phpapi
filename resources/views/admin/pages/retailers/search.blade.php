@@ -67,16 +67,6 @@
     </div>
 </div>
 @endsection
-<<<<<<< HEAD
-
-@section('page-js') 
-<script>
-    $(document).ready(function() {
-        $('#datatable').dataTable();
-    });
-</script>
-@endsection
-=======
 @section('page-js') 
 <script>
     $(document).ready(function() {
@@ -84,4 +74,3 @@
     });
 </script>
 @endsection
->>>>>>> dev

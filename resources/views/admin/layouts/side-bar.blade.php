@@ -134,6 +134,7 @@
                     <li><a href="{{route('region.index')}}">Region</a></li>
                     {{-- <li><a href="{{route('town.index')}}">Town</a></li> --}}
                     <li><a href="{{route('location.index')}}">Location</a></li>
+                    <li><a href="{{route('postadvert.index')}}">Advertisement</a></li>
                 </ul>
             </li><!--end nav-item-->
            <!-- <li class="nav-item">
