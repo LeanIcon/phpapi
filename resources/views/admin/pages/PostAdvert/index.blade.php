@@ -31,6 +31,7 @@
                         <tr>
                             <th>Title</th>
                             <th>Body</th>
+                            <th></th>
                              
                         </tr><!--end tr-->
                         </thead>
@@ -42,6 +43,11 @@
                                 
                                 <td>{{$pa->title}}</td>
                                 <td>{{$pa->body}}</td>
+                                <td>
+                                    <a href="{{route('postadvert.edit', $pa->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                    <a href="{{route('postadvert.show', $pa->id)}}"><i class="fas fa-eye text-danger font-16"></i></a>
+
+                                </td>
                                  
                                 @endforeach
                             @endif

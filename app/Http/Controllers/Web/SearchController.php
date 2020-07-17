@@ -27,19 +27,39 @@ class SearchController extends Controller
     public function search( Request $request, User $user)
     {
  
+        // $this->user = $user;
+
+        // $searchterm = $request->input('query');
+ 
+        // $searchResults = (new Search())
+        //             ->registerModel(WholesalerProduct::class, 'product_name')
+        //             //->registerModel(Users::class, 'id')
+        //             ->perform($searchterm);
+
+        // $wholesalers = $this->user::isWholeSaler()->get();
+
+        // //return $searchResults;
+ 
+        // return view('admin.pages.retailers.search', compact('searchResults', 'searchterm', 'wholesalers', 'user'));
         $this->user = $user;
 
-        $searchterm = $request->input('query');
- 
-        $searchResults = (new Search())
-                    ->registerModel(WholesalerProduct::class, 'product_name')
-                    //->registerModel(Users::class, 'id')
-                    ->perform($searchterm);
+    $searchterm = $request->input('query');
 
-        $wholesalers = $this->user::isWholeSaler()->get();
+    $searchResults = (new Search())
+                ->registerModel(WholesalerProduct::class, 'product_name', 'active_ingredient')
+                //->registerModel(Users::class, 'id')
+                ->perform($searchterm);
 
-        //return $searchResults;
- 
-        return view('admin.pages.retailers.search', compact('searchResults', 'searchterm', 'wholesalers', 'user'));
+    $wholesalers = $this->user::isWholeSaler()->get();
+
+    $sor = $searchResults->sortBy('price');
+
+   //return $sor;
+
+    return view('admin.pages.retailers.search', compact('sor', 'searchterm', 'wholesalers', 'user'));
     }
+
+    
+
+
 }

@@ -82,7 +82,9 @@ class PostAdvertController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pageTitle='Post Advert';
+        $postadvert = PostAdvert::find($id);
+        return view('admin.pages.postadvert.edit', compact('postadvert', 'pageTitle')); 
     }
 
     /**
@@ -94,7 +96,20 @@ class PostAdvertController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $pageTitle = 'Post Advert';
+        // $postadvert = PostAdvert::find($id)->update($request->all());
+        if ($request->has('post_image')) {
+            $img = $this->uploadImage($request);
+            $request['image'] =  $img['image_url'];
+        }
+        $postadvert=PostAdvert::find($id);
+        $postadvert->update([
+            'title'=>$request->title,
+            'body'=>$request->body,
+            'image'=>$request->post_image,
+        ]);
+        return redirect()->route('postadvert.index');
     }
 
     /**
