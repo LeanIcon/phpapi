@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\User;
 use App\Models\Region;
 use App\Models\Location;
+use App\PostAdvert;
 use Illuminate\Support\ServiceProvider;
 
 class GlobalTemplateServiceProvider extends ServiceProvider
@@ -47,6 +48,12 @@ class GlobalTemplateServiceProvider extends ServiceProvider
             $view->with('regions', $this->getRegions());
             // in_array()
         });
+        view()->composer(['admin.pages.retailers.dashboard'], function($view){
+            $view->with('postadvert', $this->getAdvert());
+        });
+        view()->composer(['admin.pages.retailers.wholesaler_details'], function($view){
+            $view->with('postadvert', $this->getAdvert());
+        });
 
     }
 
@@ -76,4 +83,11 @@ class GlobalTemplateServiceProvider extends ServiceProvider
         $regions=Region::all();
         return $regions;
     }
+    public function getAdvert()
+    {
+        $pageTitle = 'Adverts';
+        $postadvert = PostAdvert::all();
+        return $postadvert;
+    }
+
 }

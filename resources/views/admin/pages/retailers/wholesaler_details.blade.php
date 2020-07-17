@@ -68,6 +68,56 @@
         <!--end col-->
     </div>
     <!--end row-->
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body dash-info-carousel">
+                <div id="carousel_1" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        @if ($postadvert->isNotEmpty())
+                        @foreach ($postadvert as $pa)
+                           
+                        <div class="carousel-item">
+                            <div class="media mb-2 mt-3">
+                                <!--<div class="user-img-box">
+                                    <img src="../assets/images/users/user-5.jpg" alt="" class="rounded-circle"> 
+                                    <img src="../assets/images/flags/french_flag.jpg" alt="" class="flag">
+                                </div>-->
+                                <div class="media-body align-self-center text-truncate ml-3">
+                                    <h4 class="mt-0 font-weight-semibold text-dark font-24">{{$pa->title}}</h4>
+                                    <p class="text-muted text-uppercase mb-0 font-12"></p>
+                                    <h4 class="font-5 text-success font-weight-semibold">{{$pa->body}}</h4>
+                                </div><!--end media-body-->
+                            </div><!--end media-->
+                        </div><!--end carousel-item-->@endforeach
+                        @endif
+                        
+                        <div class="carousel-item active">
+                            <div class="media mb-2 mt-3">
+                                {{--  <div class="user-img-box">
+                                    <img src="../assets/images/users/user-6.jpg" alt="" class="rounded-circle">
+                                     <img src="../assets/images/flags/spain_flag.jpg" alt="" class="flag">
+                                    </div>--}}
+                                    <div class="media-body align-self-center text-truncate ml-3">
+                                        <h4 class="mt-0 font-weight-semibold text-dark font-24"></h4>
+                                        <p class="text-muted text-uppercase mb-0 font-12"></p>
+                                        <h4 class="font-18 text-success font-weight-semibold">Call To Advertise</h4>
+                                    </div><!--end media-body-->  
+                                </div><!--end media-->
+                            </div><!--end carousel-item-->
+                        </div><!--end carousel-inner--> 
+                        <a class="carousel-control-prev" href="#carousel_1" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span> 
+                            <span class="sr-only">Previous</span> 
+                        </a>
+                        <a class="carousel-control-next" href="#carousel_1" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span> 
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div><!--end carousel-->
+                </div><!--end card-body-->
+            </div><!--end card-->
+        </div><!--end col-->
+    </div>
     <div class="row">
         <div class="col-12">
             <div class="tab-content detail-list" id="pills-tabContent">

@@ -62,6 +62,8 @@
                                         <button type="submit" class="btn btn-primary btn-sm px-4 mt-0 mb-3" >
                                         <i href="" class="mdi mdi-plus-circle-outline mr-2"></i>Send Purchase Order</button></p>
                                 </form>
+                                <a href="javascript:history.back()" class=""><i class="fa fa-arrow-left"></i> Go Back </a>
+
                             <tbody>
 
                         @if (Cart::getContent()->count() > 0)
