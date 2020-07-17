@@ -32,16 +32,14 @@ class SearchController extends Controller
         $searchterm = $request->input('query');
  
         $searchResults = (new Search())
-                    ->registerModel(WholesalerProduct::class, 'product_name', 'active_ingredient')
+                    ->registerModel(WholesalerProduct::class, 'product_name')
                     //->registerModel(Users::class, 'id')
                     ->perform($searchterm);
 
         $wholesalers = $this->user::isWholeSaler()->get();
 
-        $sor = $searchResults->sortBy('price');
-
-       //return $sor;
+        //return $searchResults;
  
-        return view('admin.pages.retailers.search', compact('sor', 'searchterm', 'wholesalers', 'user'));
+        return view('admin.pages.retailers.search', compact('searchResults', 'searchterm', 'wholesalers', 'user'));
     }
 }

@@ -35,8 +35,8 @@
                         </div>
                         <div class="col-md-6">
                         <div class="form-group">
-                        <label for="PhoneNo">Product Code</label>
-                                <input type="text" name="product_code" class="form-control" id="product_code" value="{{$product->product_code}}" disabled>
+                        <label for="PhoneNo">Manufacturer</label>
+                                <input type="text" name="product_code" class="form-control" id="product_code" value="{{$product->product_code}}">
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
 
 
                         <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                         <div class="form-group">
                         <label for="PhoneNo">Strength</label>
                                 <input type="text" name="strength" class="form-control" id="strength" value="{{$product->strength}}">
@@ -111,25 +111,21 @@
                                 <input type="text" name="packet_size" class="form-control" id="packet_size" value="{{$product->packet_size}}">
                             </div>
 
-                        <div class="row">
-                        <div class="col-lg-6">
                             <div class="form-group">
                             <label for="PhoneNo">Dosage Form</label>
                                 <input type="text" name="dosage_form" class="form-control" id="dosage_form" value="{{$product->dosage_form}}">
+
+                
+            
                             </div>
                         </div>
-                            <div class="form-group">
-                            <label for="PhoneNo">Active Ingredient</label>
-                                <input type="text" name="dosage_form" class="form-control" id="active_ingredient" value="{{$product->active_ingredient}}">
-                            </div>
-                        
-                        </div>
+
 
 
 
                         </div>
                     
-                    </div>
+                    
                     <button type="submit" class="btn btn-sm btn-primary">Save</button>
                     <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Cancel</button>
             </form>

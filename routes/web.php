@@ -32,7 +32,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::resource('dosage_form', 'DosageFormController')->only(['index','store']);
     Route::resource('product_category_types', 'ProductCategoryTypesController')->only(['index','store']);
     Route::resource('post', 'PostController');
-    Route::resource('product', 'ProductController');
+    Route::resource('product', 'ProductController'); 
     Route::get('banner', 'FrontSettingsController@getBannerPage')->name('home.banner');
     Route::get('approved_users/{user?}', 'ApproveRegistrationController@approvedUsers')->name('approve.users');
     Route::post('approved_users/{user?}', 'ApproveRegistrationController@AcceptapprovedUsers')->name('approve.users');
@@ -70,6 +70,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('/retailer/dashboard', 'RetailerDashboardController@loadDashboard')->name('retailer.dashboard');
     Route::get('/retailer/wholesalers', 'RetailerWholesalersController@index')->name('retailer.wholesaler');
     Route::get('/retailer/wholesalers/{wholesaler?}', 'RetailerWholesalersController@show')->name('retailer.wholesaler.show');
+    Route::get('/retailer/retailers/{retailer?}', 'RetailerWholesalersController@showRetailer')->name('retailer.wholesaler.showRetailer');
+   
     Route::get('/retailer/products', 'RetailerDashboardController@loadProducts')->name('retailer.products');
     Route::get('/retailer/purchase-order-list', 'RetailerDashboardController@loadPurchaseOrderList')->name('retailer.purchaselist');
     Route::put('cart/update/{id}', 'RetailerCartController@update')->name('cart.update');
@@ -109,6 +111,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
         Route::resource('profile', 'UserProfileController');
         Route::resource('location', 'LocationController');
         Route::resource('product_category_types', 'ProductCategoryTypesController');
+        Route::resource('postadvert', 'PostAdvertController');
     });
 
 });

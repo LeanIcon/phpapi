@@ -41,7 +41,19 @@ class RetailerWholesalersController extends Controller
         // $regions =Region::all();
         $selectedRegion=Region::where('id','=',$details->town_id)->get();
         $locations=Location::where('region_id','=',$details->town_id)->get();
-        //return $locations;
+        //return $selectedRegion;
         return view('admin.pages.retailers.wholesaler_details', compact('wholesaler','products', 'details','locations','selectedRegion','regions'));
+    }
+
+    public function showRetailer($retailerId)
+    {
+        $retailer=$this->user::find($retailerId);
+        $details=$retailer->details; 
+        $locations = $this->locations::find($details->town_id);
+
+        // $regions =Region::all();
+        $selectedRegion=Region::where('id','=',$details->town_id)->get();
+        $locations=Location::where('region_id','=',$details->town_id)->get();
+        return view('admin.pages.retailers.retailer_details', compact('details','locations','selectedRegion','retailer'));
     }
 }

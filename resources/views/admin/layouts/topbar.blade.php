@@ -56,26 +56,15 @@
                         <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
                             aria-haspopup="false" aria-expanded="false">
                             <i class="dripicons-bell noti-icon"></i>
-                            @if (Auth::user()->hasRole('Admin'))
-                            <span class="badge badge-danger badge-pill noti-icon-badge">{{$retailpo->count()}}</span>
-                            @endif
-                            @if (Auth::user()->hasRole('Wholesaler'))
-                            <span class="badge badge-danger badge-pill noti-icon-badge">{{$wholesalerpo->count()}}</span>
-                            @endif
-                            @if (Auth::user()->hasRole('Retailer'))
-                            <span class="badge badge-danger badge-pill noti-icon-badge">{{$retailerInv->count()}}</span>
-                            @endif
-
+                            <span class="badge badge-danger badge-pill noti-icon-badge">2</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-lg">
                             <!-- item-->
-                            {{-- <h6 class="dropdown-item-text">
+                            <h6 class="dropdown-item-text">
                                 Notifications (18)
-                            </h6> --}}
-                            @if (Auth::user()->hasAnyRole('Retailer|Wholesaler'))
-                                @include('admin.layouts.notifications.retailer_notify')
-                                @include('admin.layouts.notifications.wholesaler_notify')
-                            @endif
+
+
+                            </h6>
                             @auth
                             @if (Auth::user()->hasRole('Admin'))
                             <div class="slimscroll notification-list">

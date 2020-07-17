@@ -52,8 +52,9 @@
                                             </a>
                                             
                                             <td>
-                                                <a href=""><i class="far fa-edit text-info mr-1"></i></a>
-                                                <a href=""><i class="far fa-trash-alt text-danger"></i></a>
+                                                {{-- <a href=""><i class="far fa-edit text-info mr-1"></i></a>
+                                                <a href=""><i class="far fa-trash-alt text-danger"></i></a> --}}
+                                                <a href="{{route('retailer.wholesaler.showRetailer', $retailer->id)}}"><i class="far fa-eye text-danger"></i></a>
                                             </td>
                                         </tr>
 

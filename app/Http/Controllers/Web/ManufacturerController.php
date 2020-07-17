@@ -22,6 +22,7 @@ class ManufacturerController extends Controller
      */
     public function index()
     {
+        //Alert::alert('Title', 'Message', 'Type');
         $pageTitle = 'Manufacturers';
         $manufacturers = $this->manufacturer::all();
         return view('admin.pages.manufacture.index', compact('manufacturers', 'pageTitle'));

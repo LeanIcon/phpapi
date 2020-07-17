@@ -20,16 +20,16 @@
                                                         </span>
                                     </div>
                                     <div class="met-profile_user-detail">
-                                        <h5 class="met-user-name">{{$wholesaler->name}}</h5>
-                                        <p class="mb-0 met-user-name-post">{{$wholesaler->type}}</p>
+                                        <h5 class="met-user-name">{{$retailer->name}}</h5>
+                                        <p class="mb-0 met-user-name-post">{{$retailer->type}}</p>
                                     </div>
                                 </div>
                             </div>
                             <!--end col-->
                             <div class="col-lg-4 ml-auto">
                                 <ul class="list-unstyled personal-detail">
-                                    <li class=""><i class="dripicons-phone mr-2 text-info font-18"></i> <b> phone </b> :{{$wholesaler->phone}}</li>
-                                    <li class="mt-2"><i class="dripicons-mail text-info font-18 mt-2 mr-2"></i> <b> Email </b> : {{$wholesaler->email}}</li>
+                                    <li class=""><i class="dripicons-phone mr-2 text-info font-18"></i> <b> phone </b> :{{$retailer->phone}}</li>
+                                    <li class="mt-2"><i class="dripicons-mail text-info font-18 mt-2 mr-2"></i> <b> Email </b> : {{$retailer->email}}</li>
                                     <li class="mt-2"><i class="dripicons-location text-info font-18 mt-2 mr-2"></i> <b>Location</b> : {{$details->location}}</li>
                                 </ul>
                                 <!--<div class="button-list btn-social-icon">
@@ -51,12 +51,10 @@
                 <!--end card-body-->
                 <div class="card-body">
                     <ul class="nav nav-pills mb-0" id="pills-tab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="education_detail_tab" data-toggle="pill" href="#education_detail">Products</a>
-                        </li>
+                        
                         @role('Admin')
                         <li class="nav-item">
-                            <a class="nav-link" id="general_detail_tab" data-toggle="pill" href="#general_detail">Profile</a>
+                            <a class="nav-link " id="general_detail_tab" data-toggle="pill" href="#general_detail">Profile</a>
                         </li>
                         @endrole
                     </ul>
@@ -77,7 +75,7 @@
                             <div class="card">
                                 <div class="card-body">
                                      
-                                        <form action="{{route('user.update',$wholesaler->id)}}" method="POST" enctype="multipart/form-data" >
+                                        <form action="{{route('user.update',$retailer->id)}}" method="POST" enctype="multipart/form-data" >
                                             @csrf
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -173,9 +171,9 @@
                 </div>
                 <!--end general detail-->
 
-                <div class="tab-pane fade show active" id="education_detail">
+                <div class="tab-pane fade show active" id="general_detail">
                     <div class="row">
-                        @include('admin.layouts.product_layouts.list', ['products' => $products])
+                        {{-- @include('admin.layouts.product_layouts.list', ['products' => $products]) --}}
                     </div>
                 </div>
                 <!--end education detail-->
