@@ -49,8 +49,9 @@
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 170px;">Description</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Avai.Color: activate to sort column ascending" style="width: 130px;">Manufacturer</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 69px;">Pack Size</th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 120px;">Unit Price(GH₵)</th>
-                                   {{-- <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 100px;">Action</th>  --}}
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 20px;">Unit Price(GH₵)</th>
+                                  {{--  <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 70px;">Quantity</th> --}}
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 18px;">Action</th> 
                                 </tr>
                             </thead>
                             {{--  <p align="right"> <button type="submit" class="btn btn-primary btn-sm px-4 mt-0 mb-3" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg2">
@@ -72,23 +73,23 @@
                                         <td>{{$item->associatedModel->manufacturer ?? ''}}</td>
                                         <td>{{$item->associatedModel->packet_size}}</td>
                                         <td> {{$item->price}} GH₵</td>
-                                        <form action="{{route('cart.update',$item->id )}}" method="POST">
+                                     {{--   <form action="{{route('cart.update',$item->id )}}" method="POST">
                                             @method('PUT')
-                                        {{--  <td><input class="form-control" value="{{$item->quantity}}" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" type="number" name="quantity" id="quantity" /></td>
+                                          <td><input class="form-control" value="{{$item->quantity}}" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" type="number" name="quantity" id="quantity" /></td>
                                         <td>
                                             <div class="row">
                                                 <div class="col-lg-4">
                                                     @csrf
                                                     <button type="submit" class="btn btn-sm btn-primary"> UPDATE</button>
                                                 </div>
-                                            </form>
+                                            </form> --}}
                                                 <div class="col-lg-4">
                                                     <form action="{{route('cart.destroy', $item->id)}}" method="POST">
                                                         @method('DELETE')
                                                         @csrf
-                                                        <button type="submit" class="btn btn-sm btn-danger"> REMOVE</button>
-                                                    </form>
-                                                </div>  --}}
+                                                      <td>  <button type="submit" class="btn btn-sm btn-danger"> REMOVE</button>
+                                                    </form> </td>
+                                                </div>  
                                             </div>
                                     </td>
                                     </tr>

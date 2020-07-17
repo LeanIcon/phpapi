@@ -69,7 +69,7 @@ a {
                                         <div class="card m-b-30">
                                             <div class="card-body row">
                                                 <div class="col-6">
-                                                    <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="img-fluid rounded-circle w-60"></a>
+                                                <img src="{{$retailer->details->image_url ?? url('admin/assets/images/users/user-4.jpg')}}" alt="" height="52">
                                                 </div>
                                                 <div class="col-6 card-title align-self-center mb-0">
                                                     <h5>Name: {{$retailer->name}}</h5>
