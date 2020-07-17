@@ -90,7 +90,121 @@
     </div><!--end col-->
 </div>
 </a>
+<div class="row">
+    <div class="col-lg-4">
+        {{--  <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-7 align-self-center">
+                        <div class="timer-data">
+                            <div class="icon-info mt-1 mb-4">
+                                <i class="mdi mdi-bullseye bg-soft-success"></i>
+                            </div>
+                            <h3 class="mt-0 text-dark">45k <span class="font-14">of 70k</span>
+                            </h3>
+                            <h4 class="mt-0 header-title text-truncate mb-1">Monthly Goal</h4>
+                            <p class="text-muted mb-0 text-truncate">It is a long established fact that a reader.</p>
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-5 align-self-center">
+                        <div class="mt-4">
+                            <span class="text-info">Complate</span>
+                             <small class="float-right text-muted ml-3 font-14">62%</small>
+                             <div class="progress mt-2" style="height:5px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 62%; border-radius:5px;" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                </div><!--end row-->
+            </div><!--end card-body-->
+        </div><!--end card-->  --}}
+    </div><!--end col-->
+    <div class="col-lg-4">
+        <div class="card">
+            {{--  <div class="card-body">
+                <div class="row">
+                    <div class="col-7 align-self-center">
+                        <div class="timer-data">
+                            <div class="icon-info mt-1 mb-4">
+                                <i class="mdi mdi-bullseye-arrow bg-soft-pink"></i>
+                            </div>
+                            <h3 class="mt-0 text-dark">26m <span class="font-14">of 30m</span></h3>
+                            <h4 class="mt-0 header-title text-truncate mb-1">Yearly Goal</h4>
+                            <p class="text-muted mb-0 text-truncate">It is a long established fact that a reader.</p>
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-5 align-self-center">
+                        <div class="mt-4"><span class="text-info">Complate</span> 
+                            <small class="float-right text-muted ml-3 font-14">81%</small>
+                            <div class="progress mt-2" style="height:5px;">
+                                <div class="progress-bar bg-pink" role="progressbar" style="width: 81%; border-radius:5px;" aria-valuenow="81" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                </div><!--end row-->
+            </div><!--end card-body-->  --}}
+        </div><!--end card-->
+    </div><!--end col-->
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body dash-info-carousel">
+                <h4 class="mt-0 header-title mb-0">Top Adverts</h4>
+                <div id="carousel_1" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        @if ($postadvert->isNotEmpty())
+                        @foreach ($postadvert as $pa)
+                           
+                        <div class="carousel-item">
+                            <div class="media mb-2 mt-3">
+                                <div class="user-img-box">
+                                    <img src="{{$pa->image}}" alt="" class="rounded-circle"> 
+                                   <!-- <img src="../assets/images/flags/french_flag.jpg" alt="" class="flag">
+                               --> </div>
+                                <div class="media-body align-self-center text-truncate ml-3">
+                                    <h4 class="mt-0 font-weight-semibold text-dark font-24">{{$pa->title}}</h4>
+                                    <p class="text-muted text-uppercase mb-0 font-12"></p>
+                                    <h4 class="font-5 text-success font-weight-semibold">{{$pa->body}}</h4>
+                                </div><!--end media-body-->
+                            </div><!--end media-->
+                        </div><!--end carousel-item-->@endforeach
+                        @endif
+                        
+                        <div class="carousel-item active">
+                            <div class="media mb-2 mt-3">
+                                {{--  <div class="user-img-box">
+                                    <img src="../assets/images/users/user-6.jpg" alt="" class="rounded-circle">
+                                     <img src="../assets/images/flags/spain_flag.jpg" alt="" class="flag">
+                                    </div>--}}
+                                    <div class="media-body align-self-center text-truncate ml-3">
+                                        <h4 class="mt-0 font-weight-semibold text-dark font-24"></h4>
+                                        <p class="text-muted text-uppercase mb-0 font-12"></p>
+                                        <h4 class="font-18 text-success font-weight-semibold">Call To Advertise</h4>
+                                    </div><!--end media-body-->  
+                                </div><!--end media-->
+                            </div><!--end carousel-item-->
+                        </div><!--end carousel-inner--> 
+                        <a class="carousel-control-prev" href="#carousel_1" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span> 
+                            <span class="sr-only">Previous</span> 
+                        </a>
+                        <a class="carousel-control-next" href="#carousel_1" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span> 
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div><!--end carousel-->
+                </div><!--end card-body-->
+            </div><!--end card-->
+        </div><!--end col-->
+    </div>
 <button onclick="notifyMe()">Notify me!</button>
+
+
+    {{--  <marquee>@if ($postadvert->isNotEmpty())
+        @foreach ($postadvert as $pa){{$pa->title}} : {{$pa->body}} |     @endforeach
+        @endif</marquee>      --}}
+ 
 
 <div class="row">
     <div class="col-12">
