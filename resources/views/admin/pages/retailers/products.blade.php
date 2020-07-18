@@ -130,7 +130,7 @@
                                 <img src="../assets/images/products/img-3.png" height="200" class="mr-4" alt="...">
                                 <div class="media-body align-self-center"> 
                                     <span class="badge badge-primary mb-2">654 sold</span>
-                                    <h4 class="mt-0">Wireless Headphone</h4>
+                                    <h4 class="mt-0">Wireless Headphones</h4>
                                     <p class="text-muted mb-0">$39.00</p>
                                 </div>
                             </div>
