@@ -81,5 +81,28 @@
     $(document).ready(function() {
         $('#datatable').dataTable();
     });
+
+
+    $(document).on('click', '.button', function (e) {
+    e.preventDefault();
+    var id = $(this).data('id');
+    swal({
+            title: "Are you sure!",
+            type: "error",
+            confirmButtonClass: "button",
+            confirmButtonText: "Yes!",
+            showCancelButton: true,
+        },
+        function() {
+            $.ajax({
+                type: "POST",
+                url: "{{url('/WholesalerProdut/destroy')}}",
+                data: {id:id},
+                success: function (data) {
+                              //
+                    }         
+            });
+    });
+});
 </script>
 @endsection

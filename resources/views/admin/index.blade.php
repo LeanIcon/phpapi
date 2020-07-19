@@ -1,6 +1,8 @@
 
         @include('admin.layouts.header')
         @include('admin.layouts.topbar')
+        @include('sweetalert::alert')
+
 
         <div class="page-wrapper">
             @include('admin.layouts.side-bar')
@@ -42,6 +44,7 @@
                 }
             });
         </script>
+        @include('sweetalert::alert')
 
         @yield('page-js')
     </body>
