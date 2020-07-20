@@ -52,26 +52,8 @@
                                                    >
                                                     <i class="fas fa-trash-alt text-danger font-12"></i>
                                             </a>
-                                            <form id="deleteProd{{$product->id}}" action="{{route('wholesaler_products.destroy', $product->id)}}" method="POST" style="display: none;">
-                                                @method('DELETE')
-                                                <input type="hidden" name="id" value="{{$product->id}}">
-                                                @csrf
-                                            </form>
-                                        </td>
-                                        </tr>
-                                        </tr>
-                                    @endforeach
-                                @endif
 
-                                </tbody>
-                            </table>
-                        </div> 
-                </div>
-            </div>
-        </div>
-    </div>
-    
-<!-- Modal -->
+                                                <!-- Modal -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -93,6 +75,26 @@
   </div>
 </div>
     <!-- end col -->
+                                            <form id="deleteProd{{$product->id}}" action="{{route('wholesaler_products.destroy', $product->id)}}" method="POST" style="display: none;">
+                                                @method('DELETE')
+                                                <input type="hidden" name="id" value="{{$product->id}}">
+                                                @csrf
+                                            </form>
+                                        </td>
+                                        </tr>
+                                        </tr>
+                                    @endforeach
+                                @endif
+
+                                </tbody>
+                            </table>
+                        </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
 </div>
 @endsection
 
