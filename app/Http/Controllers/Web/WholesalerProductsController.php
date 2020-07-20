@@ -100,7 +100,7 @@ class WholesalerProductsController extends Controller
         $request['expiry_date'] = $date;
         $request['expiry_status'] = 'active';
         $wholesalerProduct = $user->wholesaler_products()->create($request->all());
-        return redirect()->route('wholesaler_products.index')->withSuccessMessage('Product Successfully Added');
+        return redirect()->route('wholesaler_products.index');
     }
 
     /**$

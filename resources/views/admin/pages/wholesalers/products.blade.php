@@ -48,9 +48,8 @@
                                             <td>
                                             <a href="{{route('wholesaler_products.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                             <a href="{{route('wholesaler_products.show', $product->id)}}" class="mr-2"><i class="fas fa-eye text-info font-16"></i></a>
-                                            <a href="{{route('wholesaler_products.destroy', $product->id) }}"
-                                                    onclick="event.preventDefault();
-                                                    document.getElementById('deleteProd{{$product->id}}').submit();">
+                                            <a href="" data-toggle="modal" data-target="#exampleModalLong"
+                                                   >
                                                     <i class="fas fa-trash-alt text-danger font-12"></i>
                                             </a>
                                             <form id="deleteProd{{$product->id}}" action="{{route('wholesaler_products.destroy', $product->id)}}" method="POST" style="display: none;">
@@ -71,38 +70,48 @@
             </div>
         </div>
     </div>
+    
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="{{route('wholesaler_products.destroy', $product->id) }}
+" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Link</a>
+      </div>
+    </div>
+  </div>
+</div>
     <!-- end col -->
 </div>
 @endsection
 
 
 @section('page-js') 
+<script src="sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 <script>
     $(document).ready(function() {
         $('#datatable').dataTable();
     });
 
+    Swal.fire({
+    title: 'Error!',
+    text: 'Do you want to continue',
+    icon: 'error',
+    confirmButtonText: 'Cool'
+    })
 
-    $(document).on('click', '.button', function (e) {
-    e.preventDefault();
-    var id = $(this).data('id');
-    swal({
-            title: "Are you sure!",
-            type: "error",
-            confirmButtonClass: "button",
-            confirmButtonText: "Yes!",
-            showCancelButton: true,
-        },
-        function() {
-            $.ajax({
-                type: "POST",
-                url: "{{url('/WholesalerProdut/destroy')}}",
-                data: {id:id},
-                success: function (data) {
-                              //
-                    }         
-            });
-    });
-});
 </script>
 @endsection
