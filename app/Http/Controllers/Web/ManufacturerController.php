@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Web;
 
 use App\Models\Manufacturer;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller; 
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ManufacturerController extends Controller
 {
@@ -25,7 +26,16 @@ class ManufacturerController extends Controller
         //Alert::alert('Title', 'Message', 'Type');
         $pageTitle = 'Manufacturers';
         $manufacturers = $this->manufacturer::all();
+        
         return view('admin.pages.manufacture.index', compact('manufacturers', 'pageTitle'));
+    }
+    public function index1(){
+        $success='true';
+        $errorMessage='Error processing';
+        return response()->json([
+            'success' => $success,
+            'eMessage' => $errorMessage,
+        ]);
     }
 
     /**
@@ -98,10 +108,29 @@ class ManufacturerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request ,$id)
+    //public function destroy(Request $request ,$id)
+    public function destroy($id)
     {
         $pageTitle = 'Manufacturers';
-        $manufacturers = $this->manufacturer::find($id)->delete($request->all());
-        return redirect()->route('manufacture.index');
+        //$manufacturers = $this->manufacturer::find($id)->delete($request->all());
+        $delete=1;
+        if ($delete == 1) {
+            $success = true;
+            $message = "User deleted successfully";
+        } else {
+            $success = true;
+            $message = "User not found";
+        }
+
+        //  Return response
+        return response()->json([
+            'success' => $success,
+            'message' => $message,
+        ]);
+
+        // $success='true';
+        // $errorMessage='Error processing';
+        // return response()->json(['success'=>$success, 'eMessage'=>$errorMessage,]);
+        // return redirect()->route('manufacture.index');
     }
 }

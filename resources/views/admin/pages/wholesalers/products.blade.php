@@ -99,7 +99,7 @@
                 url: "{{url('/WholesalerProdut/destroy')}}",
                 data: {id:id},
                 success: function (data) {
-                              //
+                              // 
                     }         
             });
     });
