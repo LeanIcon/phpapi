@@ -86,10 +86,16 @@
                     </div>
 
                    <div class="row">
-                   <div class="col-md-2">
+                   <div class="col-md-3">
                             <div class="form-group">
                                 <label for="PhoneNo">Set Price(GHc)</label>
                                 <input type="text" name="price" class="form-control price" id="price" required="">
+                            </div>
+                    </div>
+                    <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="PhoneNo">Active Ingredients</label>
+                                <input type="text" name="active_ingredient" class="form-control price" id="price">
                             </div>
                     </div>
                    </div>
