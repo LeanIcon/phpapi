@@ -97,6 +97,8 @@
 </div> 
 <!--NOTIFICATION SYSTEM-->
 @include('admin.settings.notifypo')
+@include('admin.settings.wholesalerpurchaseordernotifypo')
+@include('admin.settings.wholesalerorderinvoicenotifypo')
 <div class="row">
     <div class="col-12">
         <div class="card">
