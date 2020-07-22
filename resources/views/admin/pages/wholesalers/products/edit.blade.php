@@ -48,6 +48,17 @@
                                 <input type="text" name="price" class="form-control" id="price" value="{{$product->price}}">
                             </div>
                         </div>
+
+
+                        <div class="col-md-6">
+                        <div class="form-group">
+                        <label for="PhoneNo">Active Ingredients</label>
+                                <input type="text" name="active_ingredient" class="form-control" id="active_ingredient" value="{{$product->active_ingredient}}">
+                            </div>
+                        </div>
+                    </div>
+
+
                        {{-- <div class="col-md-6">
                             <div class="row">
                                 <div class="col-lg-6">
@@ -76,7 +87,7 @@
                         </div> --}}
                     
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                         <div class="form-group">
                                 <label for="status-select" class="mr-2">Category</label>
                                 <select name="products_id" class="form-control custom-select" disabled>
@@ -93,29 +104,33 @@
                             </div>
                             </div>
                             <div class="form-group">
+                            <div class="col-md-8">
                             <label for="PhoneNo">Drug Legal Status</label>
                                 <input type="text" name="drug_legal_status" class="form-control" id="drug_legal_status" value="{{$product->drug_legal_status}}">
                             </div>
-                        </div>
+                            </div>
+                    </div>
 
 
                         <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-md-3">
                         <div class="form-group">
                         <label for="PhoneNo">Strength</label>
                                 <input type="text" name="strength" class="form-control" id="strength" value="{{$product->strength}}">
                             </div>
                             </div>
+                            <div class="col-md-3">
                             <div class="form-group">
                             <label for="PhoneNo">Packet Size</label>
                                 <input type="text" name="packet_size" class="form-control" id="packet_size" value="{{$product->packet_size}}">
                             </div>
-
+                            </div>
+                            <div class="col-md-3">
                             <div class="form-group">
                             <label for="PhoneNo">Dosage Form</label>
                                 <input type="text" name="dosage_form" class="form-control" id="dosage_form" value="{{$product->dosage_form}}">
 
-                
+                            </div>
             
                             </div>
                         </div>
@@ -123,9 +138,9 @@
 
 
 
-                        </div>
+                        
                     
-                    
+        
                     <button type="submit" class="btn btn-sm btn-primary">Save</button>
                     <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Cancel</button>
             </form>

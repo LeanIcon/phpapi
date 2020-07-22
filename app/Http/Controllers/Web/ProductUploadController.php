@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\WholesalerProductImport;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class ProductUploadController extends Controller
 {
     public $wholesalerProduct, $product;
@@ -66,6 +66,6 @@ class ProductUploadController extends Controller
             ]);
         }
 
-        return redirect()->route('wholesaler_products.index');
+        return redirect()->route('wholesaler_products.index')->withSuccessMessage('Products successfully added');
     }
 }

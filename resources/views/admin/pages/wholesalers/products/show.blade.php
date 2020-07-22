@@ -4,7 +4,10 @@
 <link href="{{url('admin/assets/plugins/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
-@include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? ''])
+{{--@include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? ''])--}}
+<div class="card-header text-center">
+    NNURO
+  </div>
 <div class="container-fluid">
     <!-- Page-Title -->
     <!-- end page title end breadcrumb -->
@@ -17,10 +20,17 @@
                 <form method="POST" action="{{route('wholesaler_products.update', $product)}}" enctype="multipart/form-data" >
                     @csrf
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-md-6">
                         <div class="form-group">
                         <label for="PhoneNo">Name</label>
                                 <input type="text" name="product_name" class="form-control" id="name" value="{{$product->product_name}}"disabled>
+                            </div>
+                        </div>
+
+                            <div class="col-md-6">
+                        <div class="form-group">
+                        <label for="PhoneNo">Active Ingredients</label>
+                                <input type="text" name="active_ingredient" class="form-control" id="name" value="{{$product->active_ingredient}}"disabled>
                             </div>
 
                         </div>
@@ -34,7 +44,7 @@
                         </div>
                         <div class="col-md-6">
                         <div class="form-group">
-                        <label for="PhoneNo">Manufacturer</label>
+                        <label for="PhoneNo">Product Code</label>
                                 <input type="text" name="product_code" class="form-control" id="product_code" value="{{$product->product_code}}" disabled>
                             </div>
                         </div>
@@ -46,6 +56,7 @@
                                 <label for="PhoneNo">Price</label>
                                 <input type="text" name="price" class="form-control" id="price" value="{{$product->price}}" disabled>
                             </div>
+                        
                         </div>
                        {{-- <div class="col-md-6">
                             <div class="row">
@@ -71,11 +82,11 @@
                                       </select>
                                     </div>
                                 </div>
-                            </div> --}}
-                        </div>
+                            </div> 
+                    </div>--}}
                     
-                    <div class="row">
-                        
+                    
+                    <div class="col-md-6">
                             <div class="form-group">
                             <label for="PhoneNo">Drug Legal Status</label>
                                 <input type="text" name="drug_legal_status" class="form-control" id="drug_legal_status" value="{{$product->drug_legal_status}}" disabled>
@@ -84,20 +95,23 @@
                     
 
                         <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-md-3">
                         <div class="form-group">
                         <label for="PhoneNo">Strength</label>
                                 <input type="text" name="strength" class="form-control" id="strength" value="{{$product->strength}}" disabled>
                             </div>
                             </div>
+                            <div class="col-md-3">
                             <div class="form-group">
                             <label for="PhoneNo">Packet Size</label>
                                 <input type="text" name="packet_size" class="form-control" id="packet_size" value="{{$product->packet_size}}" disabled>
                             </div>
-
+                            </div>
+                            <div class="col-md-3">
                             <div class="form-group">
                             <label for="PhoneNo">Dosage Form</label>
                                 <input type="text" name="dosage_form" class="form-control" id="dosage_form" value="{{$product->dosage_form}}" disabled>
+                            </div>
                             </div>
                         </div>
 
@@ -106,8 +120,8 @@
                     
                     
                     
-                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
-                    <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Cancel</button>
+                    </div>       <!-- <button type="submit" class="btn btn-sm btn-primary">Save</button> -->
+                    <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Go Back</button>
             </form>
             </div>
         </div>
