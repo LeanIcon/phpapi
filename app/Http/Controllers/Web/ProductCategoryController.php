@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Web;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller; 
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductCategoryController extends Controller
 {
@@ -47,7 +48,8 @@ class ProductCategoryController extends Controller
     public function store(Request $request)
     {
         $request['slug'] = Str::slug($request->name);
-        $productCategory = $this->productCategory::create($request->all());
+        $productCategory = $this->productCategory::create($request->all());  
+        Alert::success('Success',$request->name.' added sucessfully');
         return redirect()->route('product_category.index');
     }
 
@@ -85,6 +87,7 @@ class ProductCategoryController extends Controller
     public function update(Request $request, $id)
     {
         $productCategory = $this->productCategory::find($id)->update($request->all());
+        Alert::success('Success',$request->name.' edited sucessfully');
         return redirect()->route('product_category.index');
     }
 

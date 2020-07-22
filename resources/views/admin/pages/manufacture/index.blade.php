@@ -119,6 +119,8 @@
                 <a type="button" href="{{route('manufacture.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
                 {{-- <h4 class="header-title mt-0 mb-3"> Manufacturers</h4>  --}}
                 <div class="table-responsive dash-social">
+                    {{-- <a href="{{url('admin/settings/manufacture/index1')}}">route</a> --}}
+                <a href="{{route('manufacturer.index1')}}">route</a>
                     <table id="datatable" class="table table-hover">
                         <thead class="thead-light">
                         <tr>
@@ -143,13 +145,15 @@
                                     <td>
                                         <a href="{{route('manufacture.edit', $manufacture->id)}}" class="mr-1"><i class="fas fa-edit text-info font-12"></i></a>
                                         <a href="{{route('manufacture.show', $manufacture->id)}}" class="mr-1"><i class="fas fa-eye text-danger font-12"></i></a>
+                                        <a class="" onclick="removeItem('{{$manufacture->id}}', '{{$manufacture->name}}')"><i class="fas fa-trash-alt"></i></a>
+
                                          {{--<a id="deleteAction"><i class="fas fa-trash-alt text-danger font-16"></i></a> --}}
-                                         <form action="{{route('manufacture.destroy', $manufacture->id)}}" method="POST" >
+                                         {{-- <form action="{{route('manufacture.destroy', $manufacture->id)}}" method="POST" >
                                             @csrf
                                             @method('DELETE')
                                             <input type="hidden" name="id" value="{{$manufacture->id}}">
                                             <button type="submit" class="btn btn-sm btn-default" class="mr-1"><i class="fas fa-trash-alt text-danger font-12"></i></button>
-                                        </form> 
+                                        </form>  --}}
                                     </td>
                                 </tr><!--end tr-->
                                 @endforeach
@@ -162,6 +166,7 @@
         </div><!--end card--> 
     </div><!--end col-->
   
+    @include('sweetalert::alert')
 
 </div><!--end row-->  
 
@@ -174,5 +179,50 @@
     $(document).ready(function() {
         $('#datatable').dataTable();
     });
+
+    function removeItem(X, Y) {
+
+        swal({
+            title: "Delete?",
+            text: "Please ensure and then confirm!",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            reverseButtons: !0
+        }).then(function (e) {
+
+            if (e.value === true) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+                $.ajax({
+                    type: 'POST',
+                    url: "{{url('/Manufacture/delete')}}/" + X,
+                    data: {_token: CSRF_TOKEN},
+                    dataType: 'JSON',
+                    success: function (results) {
+
+                        if (results.success === true) {
+                            swal("Done!", results.message, "success");
+                        } else {
+                            swal("Error!", results.message, "error");
+                        }
+                    }
+                });
+
+            } else {
+                e.dismiss;
+            }
+
+        }, function (dismiss) {
+            return false;
+        })
+
+    }
+
+
+
+
 </script>
 @endsection
+

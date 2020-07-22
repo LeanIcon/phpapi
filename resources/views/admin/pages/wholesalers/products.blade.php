@@ -115,5 +115,29 @@
     confirmButtonText: 'Cool'
     })
 
+<<<<<<< HEAD
+=======
+    $(document).on('click', '.button', function (e) {
+    e.preventDefault();
+    var id = $(this).data('id');
+    swal({
+            title: "Are you sure!",
+            type: "error",
+            confirmButtonClass: "button",
+            confirmButtonText: "Yes!",
+            showCancelButton: true,
+        },
+        function() {
+            $.ajax({
+                type: "POST",
+                url: "{{url('/WholesalerProdut/destroy')}}",
+                data: {id:id},
+                success: function (data) {
+                              // 
+                    }         
+            });
+    });
+});
+>>>>>>> 6b873efd42c400c4ab0791de4742e870b00cc406
 </script>
 @endsection
