@@ -155,6 +155,7 @@ class WholesalerProductsController extends Controller
        // $manufacturers  = $this->manufacturer::all();
         //$productCategoryTypes = $this->productCategoryTypes::all();
         //$productCategory  = $this->productCategory::all();
+        Alert::success('Success',$request->name.' edited sucessfully');
         return redirect()->route('wholesaler_products.index');
        // return view('admin.pages.wholesalers.products.edit', compact('manufacturers','products', 'product', 'productCategoryTypes'));
     }
@@ -167,14 +168,13 @@ class WholesalerProductsController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $product = $this->wholesalerProducts::find($id)->delete();
-        
+        $product = $this->wholesalerProducts::find($id)->delete(); 
         return redirect()->route('wholesaler_products.index');
     }
 
     public function getDetails($prodID)
     {
-         $details=WholesalerProduct::where('id',$prodID)->get();
+        $details=WholesalerProduct::where('id',$prodID)->get();
         return response()->json($details); 
     }
 

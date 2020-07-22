@@ -119,7 +119,8 @@
                 <a type="button" href="{{route('manufacture.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
                 {{-- <h4 class="header-title mt-0 mb-3"> Manufacturers</h4>  --}}
                 <div class="table-responsive dash-social">
-                    <a href="{{url('/manufacture.index')}}">route</a>
+                    {{-- <a href="{{url('admin/settings/manufacture/index1')}}">route</a> --}}
+                <a href="{{route('manufacturer.index1')}}">route</a>
                     <table id="datatable" class="table table-hover">
                         <thead class="thead-light">
                         <tr>
@@ -180,43 +181,7 @@
     });
 
     function removeItem(X, Y) {
-        // console.log('we are here');
-        // swal({
-        //     title: "Are you sure",
-        //     text: "Delete " + Y + "?",
-        //     type: 'warning',
-        //     showCancelButton: true,
-        //     confirmButtonColor: '#3085d6',
-        //     cancelButtonColor: '#d33',
-        //     confirmButtonText: "Delete",
-        //     showLoaderOnConfirm: true,
-        //     preConfirm: function () {
-        //         return new Promise(function (resolve) {
-        //             $.ajax({
-        //                 //url: "{{url('/Manufacture/destroy')}}/"+X,
-        //                 url: '/Manufacturer/destroy'+X,
-        //                 type: 'POST',
-        //                 //data: {id:X},
-        //                 dataType: 'json',
-                        
-        //             })
-        //             .done(function (results) {
-        //                 if (results.success === true) {
-        //                     swal("Done!", results.eMessage, "success");
-        //                 } else {
-        //                     swal("Error!", results.e.Message, "error");
-        //                 }
-        //                 window.location.href = "{{url('/WholesalerProdut/destroy')}}";
 
-        //                 })
-        //             .fail(function () {
-        //                 swal('Oops...', 'Something went wrong with the processing. Try again !', 'error');
-        //                 //swal("Error!", results.e.Message, "error");
-        //             });
-        //         });
-        //     },
-        //     allowOutsideClick: false
-        // });
         swal({
             title: "Delete?",
             text: "Please ensure and then confirm!",
@@ -228,16 +193,20 @@
         }).then(function (e) {
 
             if (e.value === true) {
-                //var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                console.log('we are here');
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
                 $.ajax({
                     type: 'POST',
-                    url: '/Manufacture/index1',
-                    //data: {_token: CSRF_TOKEN},
+                    url: "{{url('/Manufacture/delete')}}/" + X,
+                    data: {_token: CSRF_TOKEN},
                     dataType: 'JSON',
                     success: function (results) {
-                        console.log('we are here');
- 
+
+                        if (results.success === true) {
+                            swal("Done!", results.message, "success");
+                        } else {
+                            swal("Error!", results.message, "error");
+                        }
                     }
                 });
 
@@ -248,7 +217,6 @@
         }, function (dismiss) {
             return false;
         })
-
 
     }
 

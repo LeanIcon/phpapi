@@ -6,6 +6,7 @@ use App\Models\Region;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegionController extends Controller
 {
@@ -51,6 +52,7 @@ class RegionController extends Controller
         $data =  $request->all();
        // $data['status'] = Str::slug($request->status);
         $postRegion = $this->postRegion::create($data);
+        Alert::success('Success',$request->name.' added sucessfully');
         
         return redirect()->route('region.index');
     }
@@ -76,7 +78,7 @@ class RegionController extends Controller
     public function edit($id)
     {
         $postRegion =  $this->postRegion::find($id);
-         return view('admin.pages.region.edit', compact('postRegion'));
+        return view('admin.pages.region.edit', compact('postRegion'));
     }
 
     /**
@@ -89,6 +91,7 @@ class RegionController extends Controller
     public function update(Request $request, $id)
     {
         $postRegion =  $this->postRegion::find($id)->update($request->all());
+        Alert::success('Success',$request->name.' edited sucessfully');
         return redirect()->route('region.index');
     }
 

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategoryTypes;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class ProductCategoryTypesController extends Controller
 {
@@ -51,6 +53,7 @@ class ProductCategoryTypesController extends Controller
     public function store(Request $request)
     {
         $productCategoryTypes =   $this->productCategoryTypes::create($request->all());
+        Alert::success('Success',$request->name.' added sucessfully');
         return redirect()->route('product_category_types.index'); 
     }
 
@@ -74,7 +77,9 @@ class ProductCategoryTypesController extends Controller
     public function edit($id)
     {
         $productCategoryTypes = $this->productCategoryTypes::find($id);
+        
         return view('admin.pages.product_category.editDrugLegalStatus', compact('productCategoryTypes'));
+        
     }
 
     /**
@@ -87,6 +92,7 @@ class ProductCategoryTypesController extends Controller
     public function update(Request $request, $id)
     {
         $productCategoryTypes = $this->productCategoryTypes::find($id)->update($request->all());
+        Alert::success('Success',$request->name.' edited sucessfully');
         return redirect()->route('product_category_types.index');
     }
 
