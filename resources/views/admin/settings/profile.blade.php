@@ -54,6 +54,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" id="general_detail_tab" data-toggle="pill" href="#general_detail">Profile</a>
                         </li>
+                        <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Back</button>
                     </ul>
                 </div>
                 <!--end card-body-->

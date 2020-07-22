@@ -7,6 +7,8 @@
         <div class="card">
             <div class="card-body">
                 <button type="button" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" data-toggle="modal" data-animation="bounce" data-target=".bs-wholesalers-modal-lg">+ Add New</button>
+                <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Back</button>
+
                 {{-- <h4 class="header-title mt-0 mb-3"> {{$pageTitle ?? 'Current Page'}}</h4>  --}}
                 
                 <h4 class="mt-0 header-title">Wholesalers</h4>

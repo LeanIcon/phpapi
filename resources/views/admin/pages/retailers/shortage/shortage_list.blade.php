@@ -19,7 +19,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
                         <div class="dataTables_length" id="datatable_length">
-                            <label>Show
+                            <label>Shows
                                 <select name="datatable_length" aria-controls="datatable" class="custom-select custom-select-sm form-control form-control-sm">
                                     <option value="10">10</option>
                                     <option value="25">25</option>
