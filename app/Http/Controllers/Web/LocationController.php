@@ -7,6 +7,7 @@ use App\Models\Region;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LocationController extends Controller
 {
@@ -51,6 +52,7 @@ class LocationController extends Controller
     {
         $data =  $request->all();
         $town = $this->location::create($data);
+        Alert::success('Success',$request->name.' added sucessfully');
         return redirect()->route('location.index');
     }
 
@@ -89,6 +91,7 @@ class LocationController extends Controller
     public function update(Request $request, $id)
     {
         $location =  $this->location::find($id)->update($request->all());
+        Alert::success('Success',$request->name.' edited sucessfully');
         return redirect()->route('location.index');
     }
 

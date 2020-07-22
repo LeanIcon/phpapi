@@ -4,7 +4,10 @@
 <link href="{{url('admin/assets/plugins/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
-@include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? ''])
+{{--@include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? '']) --}}
+<div class="card-header text-center">
+    NNURO
+  </div>
 <div class="container-fluid">
     <!-- Page-Title -->
     <!-- end page title end breadcrumb -->
@@ -86,10 +89,16 @@
                     </div>
 
                    <div class="row">
-                   <div class="col-md-2">
+                   <div class="col-md-3">
                             <div class="form-group">
                                 <label for="PhoneNo">Set Price(GHc)</label>
                                 <input type="text" name="price" class="form-control price" id="price" required="">
+                            </div>
+                    </div>
+                    <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="PhoneNo">Active Ingredients</label>
+                                <input type="text" name="active_ingredient" class="form-control price" id="price">
                             </div>
                     </div>
                    </div>

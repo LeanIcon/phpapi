@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Models\DrugClass;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DrugClassController extends Controller
 {
@@ -44,6 +45,7 @@ class DrugClassController extends Controller
     public function store(Request $request)
     {
         $drugClass = $this->drugClass::create($request->all());
+        Alert::success('Success',$request->name.' added sucessfully');
         return redirect()->route('drug_class.index');
     }
 
@@ -78,7 +80,9 @@ class DrugClassController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $drug = $this->drugClass::find($id)->update($request->all());
+        Alert::success('Success',$request->name.' edited sucessfully');
+        return redirect()->route('drug_class.index');
     }
 
     /**

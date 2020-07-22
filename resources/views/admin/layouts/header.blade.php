@@ -21,6 +21,9 @@
         <link href="{{url('admin/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
         {{-- <link href="{{url('admin/assets/plugins/datatables/jquery.datatables.min.css')}}" rel="stylesheet" type="text/css" /> --}}
         <link href="{{url('admin/assets/plugins/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
+        <script src="{{url('admin/assets/js/sweetalert2.js')}}" ></script>
+        <link href="{{url('admin/assets/css/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
+
 
 
     </head>
