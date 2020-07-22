@@ -100,6 +100,7 @@ class WholesalerProductsController extends Controller
         $request['expiry_date'] = $date;
         $request['expiry_status'] = 'active';
         $wholesalerProduct = $user->wholesaler_products()->create($request->all());
+        Alert::success('Success',$request->product_name.' added sucessfully');
         return redirect()->route('wholesaler_products.index')->withSuccessMessage('Product successfully added');
     }
 
@@ -152,16 +153,11 @@ class WholesalerProductsController extends Controller
         
        // $products = $this->products::all();
         $product = $this->wholesalerProducts::find($id)->update($request->all());
-<<<<<<< HEAD
        // $manufacturers  = $this->manufacturer::all();
         //$productCategoryTypes = $this->productCategoryTypes::all();
         //$productCategory  = $this->productCategory::all();
-        Alert::success('Success',$request->name.' edited sucessfully');
+        Alert::success('Success',$request->product_name.' edited sucessfully');
         return redirect()->route('wholesaler_products.index');
-=======
-       
-        return redirect()->route('wholesaler_products.index')->withSuccessMessage('Product successfully updated');
->>>>>>> modalprompt
        // return view('admin.pages.wholesalers.products.edit', compact('manufacturers','products', 'product', 'productCategoryTypes'));
     }
 

@@ -1,6 +1,9 @@
 @extends('admin.index')
 
 @section('content')
+<div class="card-header text-center">
+    NNURO
+  </div>
 
 <div class="container-fluid ext-center text-md-left">
 <!-- Page-Title -->

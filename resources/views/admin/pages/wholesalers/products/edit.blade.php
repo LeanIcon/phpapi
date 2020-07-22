@@ -4,7 +4,10 @@
 <link href="{{url('admin/assets/plugins/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
-@include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? ''])
+{{--@include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? ''])--}}
+<div class="card-header text-center">
+    NNURO
+  </div>
 <div class="container-fluid">
     <!-- Page-Title -->
     <!-- end page title end breadcrumb -->

@@ -111,15 +111,6 @@
         $('#datatable').dataTable();
     });
 
-
-    Swal.fire({
-    title: 'Error!',
-    text: 'Do you want to continue',
-    icon: 'error',
-    confirmButtonText: 'Cool'
-    })
-
-
     $(document).on('click', '.button', function (e) {
     e.preventDefault();
     var id = $(this).data('id');
