@@ -66,7 +66,7 @@
         <a href="{{route('proforma.list')}}" class="custom-card">
         <div class="card card-eco">
             <div class="card-body">
-                <h4 class="title-text mt-0">Pro Forma Invoice Received</h4>
+                <h4 class="title-text mt-0">Pro Forma Invoice</h4>
                 <div class="d-flex justify-content-between">
                     <h3 class="text-secondary">{{$proforminvoices->count()}}</h3>
                     <i class="dripicons-document-new card-eco-icon bg-icon-secondary align-self-center"></i>
@@ -203,7 +203,7 @@
         </div><!--end col-->
     </div>
 <button onclick="notifyMe()">Notify me!</button>
-
+@include('admin.settings.notifypo')
 
     {{--  <marquee>@if ($postadvert->isNotEmpty())
         @foreach ($postadvert as $pa){{$pa->title}} : {{$pa->body}} |     @endforeach
