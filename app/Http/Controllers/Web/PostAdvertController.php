@@ -51,13 +51,13 @@ class PostAdvertController extends Controller
     {
         if ($request->has('post_image')) {
             $img = $this->uploadImage($request);
-            $request['image'] =  $img['image_url'];
+            $request['image'] =  $img['image'];
         }
         $pageTitle = 'Advert';
         $postadvert = PostAdvert::create([
             'title'=>$request->title,
             'body'=>$request->body,
-            'image'=>$request->post_image,
+            'image'=>$request->image,
            
         ]); 
         return redirect()->route('postadvert.index');
@@ -94,23 +94,23 @@ class PostAdvertController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    // public function update(Request $request, $id)
+    // {
 
-        $pageTitle = 'Post Advert';
-        // $postadvert = PostAdvert::find($id)->update($request->all());
-        if ($request->has('post_image')) {
-            $img = $this->uploadImage($request);
-            $request['image'] =  $img['image_url'];
-        }
-        $postadvert=PostAdvert::find($id);
-        $postadvert->update([
-            'title'=>$request->title,
-            'body'=>$request->body,
-            'image'=>$request->post_image,
-        ]);
-        return redirect()->route('postadvert.index');
-    }
+    //     $pageTitle = 'Post Advert';
+    //     // $postadvert = PostAdvert::find($id)->update($request->all());
+    //     if ($request->has('post_image')) {
+    //         $img = $this->uploadImage($request);
+    //         $request['image'] =  $img['image_url'];
+    //     }
+    //     $postadvert=PostAdvert::find($id);
+    //     $postadvert->update([
+    //         'title'=>$request->title,
+    //         'body'=>$request->body,
+    //         'image'=>$request->post_image,
+    //     ]);
+    //     return redirect()->route('postadvert.index');
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -138,7 +138,7 @@ class PostAdvertController extends Controller
             return [
                 'status' => 200,
                 'response' => 'Image Uploaded Successfully',
-                'image_url' => $image_url,
+                'image' => $image_url,
                 'image_path' => "public\uploads",
                 'name' => $name
             ];
