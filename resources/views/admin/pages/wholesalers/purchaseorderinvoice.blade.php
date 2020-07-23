@@ -9,6 +9,7 @@
             <div class="card-body order-list">
                 <!--  <button type="button" class="btn btn-primary btn-sm px-4 mt-0 mb-3" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg2">
                       <i class="mdi mdi-plus-circle-outline mr-2"></i>New Room Allotment</button>-->
+                      <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Back</button>
 
                 <h4 class="header-title mt-0 mb-3"><span
                             class="badge badge-danger badge-pill noti-icon-badge"> Orders</span> Purchase Invoice</h4>

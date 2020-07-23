@@ -6,6 +6,8 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
+                    <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Back</button>
+
                     <h5 class="header-title pb-3 mt-0">Pro-Forma List</h5>
                     <div class="table-responsive">
                         <table class="table table-hover mb-0">

@@ -53,7 +53,10 @@
                     <ul class="nav nav-pills mb-0" id="pills-tab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="education_detail_tab" data-toggle="pill" href="#education_detail">Products</a>
+                            
                         </li>
+                        <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Back</button>
+
                         @role('Admin')
                         <li class="nav-item">
                             <a class="nav-link" id="general_detail_tab" data-toggle="pill" href="#general_detail">Profile</a>

@@ -6,6 +6,8 @@
     <div class="col-12">
         <div class="card"> <!-- -->
             <div class="card-body">
+                <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Back</button>
+
                 <a type="button" href="{{route('product.import')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3 " >UPLOAD</a>
 
                 <a type="button" href="{{route('wholesaler_products.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3 mr-3" >+ Add New</a>
