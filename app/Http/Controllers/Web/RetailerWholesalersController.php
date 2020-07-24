@@ -6,24 +6,27 @@ use App\User;
 use App\Models\Location;
 use App\Models\Region;
 use Illuminate\Http\Request;
+use App\Models\UserDetails;
 use App\Http\Controllers\Controller;
 
 class RetailerWholesalersController extends Controller
 {
     
-    public function __construct(User $user, Location $locations)
+    public function __construct(User $user, Location $locations,UserDetails $userDetails)
     {
         $this->middleware('auth');
         $this->middleware(['role:Retailer|Admin']);
         $this->user = $user;
         $this->locations  = $locations;
+        $this->userDetails = $userDetails;
     }
 
     public function index()
     {
         $wholesalers = $this->user::isWholeSaler()->get();
+        $userDetails = $this->userDetails->get();
         //return $wholesaler;
-        return view('admin.pages.retailers.wholesalers',compact('wholesalers'));
+        return view('admin.pages.retailers.wholesalers',compact('wholesalers', 'userDetails'));
     }
 
 
