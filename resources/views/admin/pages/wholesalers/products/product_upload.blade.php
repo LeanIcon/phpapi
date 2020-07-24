@@ -12,6 +12,8 @@
                 <div class="col-lg-6">
                     <div class="card bg-light mt-3">
                         <div class="card-header">
+                            <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Back</button>
+
                         <h6 class="font-weight-semibold">DATA IMPORT  - Products Collection</h6>
                         <hr>
                         </div>

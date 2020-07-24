@@ -8,6 +8,7 @@
     <div class="card">
     <div class="row">
         <div class="col-md-12">
+            <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Back</button>
             <form method="get" action="{{ route('retailer.search.result') }}" class="form-inline mr-auto">
                
                 <input type="text" name="query" value="{{ isset($searchterm) ? $searchterm : ''  }}" class="form-control col-sm-offset-4 col-sm-7"  placeholder="Search for Products here..." aria-label="Search">

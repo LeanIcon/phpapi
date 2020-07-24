@@ -9,7 +9,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                
+                <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Back</button>
                 <h4 class="header-title mt-0 mb-3">All {{$pageTitle ?? 'Current Page'}}</h4> 
                 
                 <h4 class="mt-0 header-title">Orders</h4>
