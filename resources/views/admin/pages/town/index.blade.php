@@ -117,6 +117,8 @@
         <div class="card">
             <div class="card-body">
                 <a type="button" href="{{route('town.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
+                <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Back</button>
+
                 <h4 class="header-title mt-0 mb-3">All Towns</h4> 
                 <div class="table-responsive dash-social">
                     <table id="datatable" class="table">

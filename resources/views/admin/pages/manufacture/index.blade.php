@@ -117,6 +117,8 @@
         <div class="card">
             <div class="card-body">
                 <a type="button" href="{{route('manufacture.create')}}" class="btn btn-gradient-primary waves-effect waves-light float-right mb-3" >+ Add New</a>
+                <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Back</button>
+
                 {{-- <h4 class="header-title mt-0 mb-3"> Manufacturers</h4>  --}}
                 <div class="table-responsive dash-social">
                     {{-- <a href="{{url('admin/settings/manufacture/index1')}}">route</a> --}}

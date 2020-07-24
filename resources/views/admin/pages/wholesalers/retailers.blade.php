@@ -12,7 +12,8 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="header-title mt-0 mb-3"> {{$pageTitle ?? 'Current Page'}}</h4> 
-                
+                <button type="button" onclick="history.back()" class="btn btn-sm btn-danger">Back</button>
+
                 {{-- <h4 class="mt-0 header-title">Retailers</h4>
                 <p class="text-muted mb-4 font-13">
                     Retailers.
