@@ -11,6 +11,8 @@ use App\Models\ProductCategory;
 use JD\Cloudder\Facades\Cloudder;
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategoryTypes;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class ProductController extends Controller
 {
@@ -69,6 +71,7 @@ class ProductController extends Controller
             $request['image_url'] =  $img['image_url'];
         }
        $product =  $this->product::create($request->all());
+       Alert::success('Success',$request->name.' added sucessfully');
         return redirect()->route('product.index');
     }
 
@@ -116,7 +119,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = $this->product::find($id)->update($request->all());
-        
+        Alert::success('Success',$request->name.' edited sucessfully');
         
         return redirect()->route('product.index');
     }

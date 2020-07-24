@@ -1,7 +1,10 @@
 @extends('admin.index')
 
 @section('content')
-@include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? ''])
+{{--@include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? 'Nnuro']) --}}
+<div class="card-header text-center">
+    NNURO
+  </div>
 <div class="row">
     <div class="col-12">
         <div class="card"> <!-- -->
@@ -35,7 +38,7 @@
                                              <!-- <td> @foreach ($product->products as $item)
                                                 {{$item->productDesc()}}
                                             @endforeach </td>  -->
-                                            <td> {{$product->productDesc()}} {{$product->dosage_form}} </td>
+                                            <td> {{$product->productDesc()}} {{$product->active_ingredient}} </td>
                                             <!-- <td> @foreach ($product->products as $item)
                                                 {{$item->manufacturer->name ?? $item->manufacturer_slug}}
                                             @endforeach </td> -->
@@ -50,11 +53,33 @@
                                             <td>
                                             <a href="{{route('wholesaler_products.edit', $product->id)}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                             <a href="{{route('wholesaler_products.show', $product->id)}}" class="mr-2"><i class="fas fa-eye text-info font-16"></i></a>
-                                            <a href="{{route('wholesaler_products.destroy', $product->id) }}"
-                                                    onclick="event.preventDefault();
-                                                    document.getElementById('deleteProd{{$product->id}}').submit();">
+                                            <a href="" data-toggle="modal" data-target="#exampleModalLong"
+                                            >
                                                     <i class="fas fa-trash-alt text-danger font-12"></i>
                                             </a>
+
+                                                <!-- Modal -->
+                                            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to remove {{$product->product_name}} from your list?</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <!-- <div class="modal-body">
+                                                Are you Sure you want to delete {{$product->product_name}}
+                                                </div> -->
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <a href="{{route('wholesaler_products.destroy', $product->id) }}" class="btn  btn btn-danger btn-lg active" role="button" aria-pressed="true" onclick="event.preventDefault();
+                                                                                                document.getElementById('deleteProd{{$product->id}}').submit();" >Yes!, Remove it</a>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                                <!-- end col -->
                                             <form id="deleteProd{{$product->id}}" action="{{route('wholesaler_products.destroy', $product->id)}}" method="POST" style="display: none;">
                                                 @method('DELETE')
                                                 <input type="hidden" name="id" value="{{$product->id}}">
@@ -73,15 +98,42 @@
             </div>
         </div>
     </div>
-    <!-- end col -->
+    
+
+</div>
 </div>
 @endsection
 
 
 @section('page-js') 
+<
+
 <script>
     $(document).ready(function() {
         $('#datatable').dataTable();
     });
+
+    $(document).on('click', '.button', function (e) {
+    e.preventDefault();
+    var id = $(this).data('id');
+    swal({
+            title: "Are you sure!",
+            type: "error",
+            confirmButtonClass: "button",
+            confirmButtonText: "Yes!",
+            showCancelButton: true,
+        },
+        function() {
+            $.ajax({
+                type: "POST",
+                url: "{{url('/WholesalerProdut/destroy')}}",
+                data: {id:id},
+                success: function (data) {
+                              // 
+                    }         
+            });
+    });
+});
+
 </script>
 @endsection

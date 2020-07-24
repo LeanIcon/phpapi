@@ -1,7 +1,7 @@
 @extends('admin.index')
 
 @section('content')
-@include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])
+{{--@include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle])--}}
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"></script>
 {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> --}}
 <script type="text/javascript">
@@ -10,7 +10,9 @@
     </script>
 
 
-
+<div class="card-header text-center">
+    NNURO
+  </div>
 <div class="row">
 <div class="col-lg-6 tags p-b-2">
     <?php
@@ -176,8 +178,8 @@
                     <div id="eco-dash1" class="chart-gutters"></div>
                 </div>
             </div>--><!--end card-body-->
-        </div><!--end card-->
-    </div><!--end col-->
+      <!--  </div> --><!--end card-->
+   <!-- </div> --><!--end col-->
     <!--<div class="col-lg-4">
         <div class="card">
             <div class="card-body">
@@ -218,11 +220,11 @@
                             </div>
                         </div>
                     </div>--><!--end col-->
-                </div><!--end row-->
-            </div><!--end card-body-->
-        </div><!--end card-->
-    </div><!--end col-->
-</div><!--end row-->
+              <!--  </div> --><!--end row-->
+           <!-- </div> --><!--end card-body-->
+      <!--  </div> --><!--end card-->
+    <!--</div> --><!--end col-->
+<!--</div> --><!--end row-->
 
 @endsection
 

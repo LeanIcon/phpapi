@@ -1,7 +1,11 @@
 @extends('admin.index')
 
 @section('content')
-@include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? ''])
+{{--@include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? ''])--}}
+
+<div class="card-header text-center">
+    NNURO
+  </div>
 <!--  Modal content for the above examples -->
 <style>.bg-black {
     background-color: #000 !important;

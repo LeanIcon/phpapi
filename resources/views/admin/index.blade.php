@@ -1,6 +1,8 @@
 
         @include('admin.layouts.header')
         @include('admin.layouts.topbar')
+        @include('sweetalert::alert')
+
 
         <div class="page-wrapper">
             @include('admin.layouts.side-bar')
@@ -30,6 +32,9 @@
         <script src="{{url('admin/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
         <script src="{{url('admin/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
         <script src="{{url('admin/assets/plugins/datatables/buttons/dataTables.buttons.min.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+        <!-- <script src="sweetalert2.all.min.js"></script> -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script> -->
        {{--   <script src="{{url('admin/pages/jquery.crm_leads.init.js')}}"></script>  --}}
 
         <!-- App js -->
@@ -42,6 +47,7 @@
                 }
             });
         </script>
+       
 
         @yield('page-js')
     </body>

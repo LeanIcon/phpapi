@@ -1,7 +1,10 @@
 @extends('admin.index')
 
 @section('content')
-@include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? ''])
+<div class="card-header text-center">
+    NNURO
+  </div>
+ {{-- @include('admin.layouts.components.breadcrumbs', ['pageTitle' => $pageTitle ?? '']) --}}
 <!--<div class="row">
     <div class="col-12">
         <div class="card">

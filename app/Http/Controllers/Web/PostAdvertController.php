@@ -7,7 +7,7 @@ use App\PostAdvert;
 use Illuminate\Http\Request;
 use JD\Cloudder\Facades\Cloudder;
 use App\Http\Controllers\Controller;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PostAdvertController extends Controller
 {  
@@ -60,6 +60,7 @@ class PostAdvertController extends Controller
             'image'=>$request->image,
            
         ]); 
+       
         return redirect()->route('postadvert.index');
     }
 
