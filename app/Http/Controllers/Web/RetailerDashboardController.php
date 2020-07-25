@@ -5,18 +5,20 @@ use App\User;
 use App\Http\Controllers\Controller;
 use App\Models\PurchaseOrders;
 use Illuminate\Http\Request;
+use App\Models\UserDetails;
 use Illuminate\Support\Facades\Auth;
 
 class RetailerDashboardController extends Controller
 {
  
-    public function __construct(PurchaseOrders $purchaseOrders, User $user)
+    public function __construct(PurchaseOrders $purchaseOrders, User $user, UserDetails $userDetails)
     {
         $this->middleware('auth');
         $this->middleware(['role:Retailer|Wholesaler']);
         $this->middleware('check-pin');
         $this->purchaseOrders = $purchaseOrders;
         $this->user = $user;
+        $this->userDetails = $userDetails;
     }
     public function loadDashboard()
     {
@@ -37,7 +39,8 @@ class RetailerDashboardController extends Controller
         }
         $shortageList =  collect($data);
         $wholesalers = $this->user::isWholeSaler()->get();
-        return view('admin.pages.retailers.dashboard', compact('pageTitle', 'purchaseOrders','approvedPurchaseOrders', 'wholesalers', 'retailer', 'invoiceReceived', 'shortageList', 'purchaseInvoices','proforminvoices'));
+        $userDetails = $this->userDetails->get();
+        return view('admin.pages.retailers.dashboard', compact('pageTitle', 'purchaseOrders','approvedPurchaseOrders', 'wholesalers', 'retailer', 'invoiceReceived', 'shortageList', 'purchaseInvoices','proforminvoices','userDetails'));
     }
 
     public function loadPurchaseOrderList()

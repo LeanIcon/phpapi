@@ -48,6 +48,9 @@ class GlobalTemplateServiceProvider extends ServiceProvider
             $view->with('regions', $this->getRegions());
             // in_array()
         });
+        view()->composer(['admin.pages.retailers.wholesalers'], function($view){
+            $view->with('postadvert', $this->getAdvert());
+        });
         view()->composer(['admin.pages.retailers.dashboard'], function($view){
             $view->with('postadvert', $this->getAdvert());
         });

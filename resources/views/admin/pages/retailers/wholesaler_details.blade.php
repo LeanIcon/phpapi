@@ -74,9 +74,10 @@
         <!--end col-->
     </div>
     <!--end row-->
-    <div class="col-lg-4">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-body dash-info-carousel">
+                <h4 class="mt-0 header-title mb-0">Top Adverts</h4>
                 <div id="carousel_1" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         @if ($postadvert->isNotEmpty())
@@ -84,15 +85,19 @@
                            
                         <div class="carousel-item">
                             <div class="media mb-2 mt-3">
-                                <!--<div class="user-img-box">
-                                    <img src="../assets/images/users/user-5.jpg" alt="" class="rounded-circle"> 
-                                    <img src="../assets/images/flags/french_flag.jpg" alt="" class="flag">
-                                </div>-->
-                                <div class="media-body align-self-center text-truncate ml-3">
+                                <div class="user-img-box">
+                                    <img class="d-block w-100"src="{{$pa->image}}" alt=""style="width: 70%; height: 290px;"> 
+                                   <!-- <img src="../assets/images/flags/french_flag.jpg" alt="" class="flag"> -->
+                                   <div class="media-body align-self-center text-truncate ml-3">
+                                    <h5 class="mt-0 font-weight-semibold text-dark font-24">{{$pa->title}}</h5>
+                                    <p class="font-5 text-success font-weight-semibold">{{$pa->body}}</p>
+                                </div>
+                                </div>
+                                <!-- <div class="media-body align-self-center text-truncate ml-3">
                                     <h4 class="mt-0 font-weight-semibold text-dark font-24">{{$pa->title}}</h4>
                                     <p class="text-muted text-uppercase mb-0 font-12"></p>
                                     <h4 class="font-5 text-success font-weight-semibold">{{$pa->body}}</h4>
-                                </div><!--end media-body-->
+                                </div>end media-body -->
                             </div><!--end media-->
                         </div><!--end carousel-item-->@endforeach
                         @endif
