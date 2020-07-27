@@ -1,6 +1,7 @@
 <style>
 .left-sidenav-menu{
     color:#141336;
+    position: fixed;
 }
 .bg-dark {
     background-color: #04031F !important;
