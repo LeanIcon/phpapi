@@ -1,5 +1,6 @@
 @if (!Cart::isEmpty())
 <div class="col-lg-3">
+<a href="{{route('retailer.dashboard')}}" class="btn btn-sm btn-danger pull-right" role="button" aria-pressed="true">Back To Dashboard</a><br><br>
     <div class="card">
        <a class="btn btn-default" href="{{route('shortagelist.view')}}">VIEW SHORTAGE LIST
            <i class="fa fa-1x far fa-list-alt" > <span class="badge badge-blue" >{{Cart::getContent()->count() ?? '0'}}</span>  </i>
@@ -27,6 +28,7 @@
 
                     @endforeach
                     @endif
+                    
                     <div class="col-sm-12">
                         <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                             <thead>

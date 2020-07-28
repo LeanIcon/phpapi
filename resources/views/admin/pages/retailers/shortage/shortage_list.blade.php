@@ -9,7 +9,7 @@
     
     <div class="col-lg-3">
         <div class="card">
-           <a class="btn btn-default" href="">SHORTAGE LIST
+           <a class="btn btn-default" href="{{route('create.shortagelist')}}">Back To Products
                <i class="fa fa-1x far fa-list-alt" ></i>
            </a>
         </div>
