@@ -6,18 +6,22 @@ use App\Models\Product;
 use App\Models\ShortageList;
 use Illuminate\Http\Request;
 use App\Models\WholesalerProduct;
+use App\Models\Shortagelistme;
+use App\Models\Shortagelistitems;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Cart;
 class RetailershortagelistController extends Controller
 {
-    public $product, $wholesalerProduct , $shortageList;
-    public function __construct(Product $product, WholesalerProduct $wholesalerProduct, ShortageList $shortageList, User $user)
+    public $product, $wholesalerProduct , $shortageList, $shortagelistme, $shortagelistitems;
+    public function __construct(Product $product, WholesalerProduct $wholesalerProduct, ShortageList $shortageList, Shortagelist $shortagelistme, Shortagelistitems $shortagelistitems, User $user)
     {
         $this->product = $product;
         $this->wholesalerProduct = $wholesalerProduct;
         $this->shortageList = $shortageList;
+        $this->shortagelistme = $shortagelistme;
+        $this->shortagelistitems = $shortagelistitems;
         $this->middleware('auth');
         $this->middleware(['role:Retailer']);
         $this->user = $user;
@@ -27,23 +31,23 @@ class RetailershortagelistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $retailer = Auth::user();
-        $shortageList = $retailer->shortage;
-        if(is_null($shortageList)) {
-            $data = [];
-        }else{
-            $data = json_decode($shortageList->content, true);
-        }
-        $shortageListItems =  collect($data);
-        $pageTitle = 'Shortage List Items';
-        $products = $this->wholesalerProduct::all();
+    // public function index()
+    // {
+    //     $retailer = Auth::user();
+    //     $shortageList = $retailer->shortage::all();
+    //     if(is_null($shortageList)) {
+    //         $data = [];
+    //     }else{
+    //         $data = json_decode($shortageList->content, true);
+    //     }
+    //     $shortageListItems =  collect($data);
+    //     $pageTitle = 'Shortage List Items';
+    //     $products = $this->wholesalerProduct::all();
+    //     return $shortageList;
+    //   // return $this->updateshortagelist();
+    //     return view('admin.pages.retailers.shortage.view', compact('products','pageTitle', 'shortageListItems'));
 
-      // return $this->updateshortagelist();
-        return view('admin.pages.retailers.shortage.view', compact('products','pageTitle', 'shortageListItems'));
-
-    }
+    // }
 
     /**
      * Return new view to create shortage list
@@ -75,32 +79,36 @@ class RetailershortagelistController extends Controller
      */
     public function saveShortageList(Request $request)
     {
-        $shortlist = array();
+        $wholesalers = $this->user::isWholeSaler()->get('id');
+        $retailer = Auth::user()->id;
+        $items = Cart::getContent();
 
+        $shortagelistme = $this->shortage::create([
+            'wholesaler_id' => $wholesalers,
+            'retailer_id' => $retailer,
+            'order_type' => 'shortagelist',
+            'wholesaler_visible' => 'true'
+        ]);
 
-        foreach(Cart::getContent() as $item)
-        {
-            $shortlist[$item->id]['id'] = $item->id;
-            $shortlist[$item->id]['name'] = $item->name;
-            $shortlist[$item->id]['description'] = $item->associatedModel->productDesc();
-            $shortlist[$item->id]['wholesaler_id'] = $item->associatedModel->wholesaler_id;
+        foreach ($items as $row) {
+            $this->shortagelistitems ::create(
+                [
+                'shortagelist_id' => $shortagelistme->id,
+                'product_name' => $row->name,
+                'description' => $row->associatedModel->productDescription(),
+                'manufacturer' => $row->associatedModel->manufacturer,
+                ]
+            );
         }
-        $data = collect($shortlist)->values() ;
 
-        $pageTitle  = ' Shortage List';
-        $saveShortage = $this->shortageList::create([
-                    'user_id' => Auth::user()->id,
-                    'instance' => 'shortagelist',
-                    'content' => $data
-                ]);
-
+        dd($shortagelistme);
         Cart::clear();
         return view('admin.pages.retailers.shortage.shortage_list', compact('pageTitle'));
 
     }
 
 
-    // public function updateshortagelist(){
+     
     //     $updateshort = array();
 
     //     $retailer = Auth::user();
