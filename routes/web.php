@@ -100,6 +100,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
         Route::get('proforma/details/{order?}', 'RetailerinvoiceController@getProformaInvoice')->name('proforma.view');
         Route::get('proforma/invoicedetails/{order?}', 'RetailerinvoiceController@getInvoice')->name('invoice.view');
         Route::post('proforma/process/{order?}', 'RetailerinvoiceController@updateProformaInvoice')->name('proforma.process');
+        Route::get('shortage/listitems', 'RetailerShortagelistController@getShortalistSession')->name('get.myshortage');
     });
 
 

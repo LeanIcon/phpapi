@@ -66,15 +66,24 @@ class RetailershortagelistController extends Controller
         return view('admin.pages.retailers.shortage.shortage_list', compact('pageTitle'));
     }
 
+
+    /**
+     * Rebuild Shortagelist Items with only Specific Content
+     *
+     * @param Request $request
+     * @return void
+     */
     public function saveShortageList(Request $request)
     {
         $shortlist = array();
+
 
         foreach(Cart::getContent() as $item)
         {
             $shortlist[$item->id]['id'] = $item->id;
             $shortlist[$item->id]['name'] = $item->name;
             $shortlist[$item->id]['description'] = $item->associatedModel->productDesc();
+            $shortlist[$item->id]['wholesaler_id'] = $item->associatedModel->wholesaler_id;
         }
         $data = collect($shortlist)->values() ;
 
