@@ -21,6 +21,7 @@ class RetailerCartController extends Controller
         $this->wholesalerProduct = $wholesalerProduct;
         $this->purchaseOrders = $purchaseOrders;
         $this->purchaseOrderItems = $purchaseOrderItems;
+        
     }
     /**
      * Display a listing of the resource.
@@ -55,9 +56,8 @@ class RetailerCartController extends Controller
 
         $options = array();
         $product = $this->wholesalerProduct::find($request->id);
-
         Cart::add(array('id' => $product->id, 'name' => $product->product_name, 'price' => $request->price ?? 0, 'quantity' => $request->quantity, $options, 'associatedModel' => $product));
-        
+        #return $shortageList;
         return back();
         // return redirect()->route('cart.index');
     }
@@ -186,4 +186,12 @@ class RetailerCartController extends Controller
         return redirect()->route('retailer.dashboard');
 
     }
+
+    
+
+
+
+
+
+
 }

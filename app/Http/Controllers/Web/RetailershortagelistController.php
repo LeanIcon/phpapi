@@ -36,10 +36,11 @@ class RetailershortagelistController extends Controller
         }else{
             $data = json_decode($shortageList->content, true);
         }
-        $shortageListItems =  collect($data);
+        $shortageListItems =  collect($data)->values();
         $pageTitle = 'Shortage List Items';
         $products = $this->wholesalerProduct::all();
-
+        
+       // return $shortageListItems;
       // return $this->updateshortagelist();
         return view('admin.pages.retailers.shortage.view', compact('products','pageTitle', 'shortageListItems'));
 
@@ -84,8 +85,12 @@ class RetailershortagelistController extends Controller
             $shortlist[$item->id]['name'] = $item->name;
             $shortlist[$item->id]['description'] = $item->associatedModel->productDesc();
             $shortlist[$item->id]['wholesaler_id'] = $item->associatedModel->wholesaler_id;
+            $shortlist[$item->id]['packet_size'] = $item->associatedModel->packet_size;
+            $shortlist[$item->id]['manufacturer'] = $item->associatedModel->manufacturer;
+            $shortlist[$item->id]['active_ingredients']=$item->associatedModel->active_ingredients;
+            $shortlist[$item->id]['drug_legal_status']=$item->associatedModel->drug_legal_status;
         }
-        $data = collect($shortlist)->values() ;
+        $data = collect($shortlist)->values();
 
         $pageTitle  = ' Shortage List';
         $saveShortage = $this->shortageList::create([
@@ -94,13 +99,28 @@ class RetailershortagelistController extends Controller
                     'content' => $data
                 ]);
 
+           // return $data;
         Cart::clear();
         return view('admin.pages.retailers.shortage.shortage_list', compact('pageTitle'));
 
     }
 
 
-    // public function updateshortagelist(){
+     
+
+     public function createPurchaseOrder(Request $request, $wholesaler = null)
+    {
+        $userId = Auth::user()->id;
+        $shortageList = $retailer->shortage;
+        $wholesaler = session()->put('wholesaler', $wholesaler);
+
+        $options = array();
+        $product = $retailer->shortage::find($request->id);
+        Cart::add(array('id' => $product->id, 'name' => $product->product_name, 'price' => $request->price ?? 0, 'quantity' => $request->quantity, $options, 'associatedModel' => $product));
+        #return $shortageList;
+        return back();
+        // return redirect()->route('cart.index');
+    }
     //     $updateshort = array();
 
     //     $retailer = Auth::user();

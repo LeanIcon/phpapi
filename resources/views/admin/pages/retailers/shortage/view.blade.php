@@ -41,15 +41,13 @@
                                     @if ($shortageListItems->count() > 0)
                                      @foreach ($shortageListItems as $item)
                                      <tr>
+                                        <td>{{$item['name']}}</td>
                                         <td>{{$item['description']}}</td>
-                                        <td>Manufacturer</td>
-                                        <td>Packet Size</td>
+                                        <td>{{$item['manufacturer']}}</td>
+                                        <td>{{$item['packet_size']}}</td>
+                                        
                                         <td>
-                                            <form action="">
-                                                <button class="btn btn-primary">
-                                                    ADD TO P.O
-                                                </button>
-                                            </form>
+                                            
                                             Actions
                                         </td>
                                         <td><!-- Button trigger modal-->
