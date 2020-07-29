@@ -110,8 +110,6 @@ class RetailershortagelistController extends Controller
 
      public function createPurchaseOrder(Request $request, $wholesaler = null)
     {
-        $userId = Auth::user()->id;
-        $shortageList = $retailer->shortage;
         $wholesaler = session()->put('wholesaler', $wholesaler);
 
         $options = array();

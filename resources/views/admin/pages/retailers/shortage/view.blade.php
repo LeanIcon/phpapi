@@ -48,7 +48,22 @@
                                         
                                         <td>
                                             
-                                            Actions
+                                            <form method="POST" action="{{route('create.purchase.order', $item['wholesaler_id'])}}" enctype="multipart/form-data" >
+                                            <td>
+                                                
+                                                <input class="form-control" value="1" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" type="number" name="quantity" id="quantity" />
+                                                
+                                            </td>
+                                            <td>
+                                                @csrf
+                                                <input class="form-control" value="{{$item['id']}}" name="id" type="hidden">
+                                               {{-- <input class="form-control" value="{{$product->products_id}}" name="products_id" type="hidden"> 
+                                                <input class="form-control" value="{{$product->formattedPrice()}}" name="price" type="hidden"> --}}
+                                                @role('Retailer') 
+                                                <button type="submit" data-toggle="modal" data-target="#modalCart" class="btn btn-sm btn-primary"> ADD</button>
+                                                 @endrole
+                                            </td>
+                                        </form>  
                                         </td>
                                         <td><!-- Button trigger modal-->
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCart">Raise PO New</button>
