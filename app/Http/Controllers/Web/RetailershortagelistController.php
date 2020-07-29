@@ -99,18 +99,13 @@ class RetailershortagelistController extends Controller
                     'content' => $data
                 ]);
 
-           // return $data;
+           return $saveShortage;
         Cart::clear();
         return view('admin.pages.retailers.shortage.shortage_list', compact('pageTitle'));
 
     }
-
-
-     
-
      
     //     $updateshort = array();
-
     //     $retailer = Auth::user();
     //     $shortageList = $retailer->shortage;
 
