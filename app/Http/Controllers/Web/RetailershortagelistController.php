@@ -108,17 +108,7 @@ class RetailershortagelistController extends Controller
 
      
 
-     public function createPurchaseOrder(Request $request, $wholesaler = null)
-    {
-        $wholesaler = session()->put('wholesaler', $wholesaler);
-
-        $options = array();
-        $product = $retailer->shortage::find($request->id);
-        Cart::add(array('id' => $product->id, 'name' => $product->product_name, 'price' => $request->price ?? 0, 'quantity' => $request->quantity, $options, 'associatedModel' => $product));
-        #return $shortageList;
-        return back();
-        // return redirect()->route('cart.index');
-    }
+     
     //     $updateshort = array();
 
     //     $retailer = Auth::user();
