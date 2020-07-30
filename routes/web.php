@@ -85,6 +85,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('retailer/retailer_shortagelist', 'RetailerShortagelistController@index')->name('retailer.retailer_shortagelist');
     Route::get('retailer/orders', 'RetailerOrdersController@index')->name('retailer.orders');
     Route::post('po/proforma/{porder?}', 'ProformaController@updateInvoiceToProforma')->name('proforma.update');
+    Route::get('cart/update/', 'RetailershortagelistController@updateshortagelist')->name('retailer.update');
 
 
     Route::group(['prefix' => 'retailer'], function () {
