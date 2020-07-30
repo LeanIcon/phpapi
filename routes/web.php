@@ -86,6 +86,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('retailer/orders', 'RetailerOrdersController@index')->name('retailer.orders');
     Route::post('po/proforma/{porder?}', 'ProformaController@updateInvoiceToProforma')->name('proforma.update');
     Route::get('cart/update/', 'RetailershortagelistController@updateshortagelist')->name('retailer.update');
+    
 
 
     Route::group(['prefix' => 'retailer'], function () {
@@ -132,3 +133,6 @@ Route::get('/region/getRegionDetails/{regID}','Web\RegionController@getRegionDet
 Route::get('/WholesalerProducts/getDetails/{prodID}','Web\WholesalerProductsController@getDetails')->name('products.get');
 Route::post('/Manufacture/delete/{id}','Web\ManufacturerController@delete')->name('manufacturer.delete');
 Route::get('/Manufacture/index1','Web\ManufacturerController@index1')->name('manufacturer.index1');
+
+Route::get('myshortagelist','Web\RetailerShortagelistController@retrieveshortagelist');
+

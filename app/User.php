@@ -113,7 +113,7 @@ class User extends Authenticatable
 
     public function shortage()
     {
-        return $this->hasOne(ShortageList::class, 'user_id');
+        return $this->hasMany(ShortageList::class, 'user_id');
     }
 
     public function products()

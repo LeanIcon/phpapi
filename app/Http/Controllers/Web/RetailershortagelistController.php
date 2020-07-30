@@ -40,6 +40,14 @@ class RetailershortagelistController extends Controller
         $pageTitle = 'Shortage List Items';
         $products = $this->wholesalerProduct::all();
         
+
+        //return $shortageListItems[0];
+        foreach($shortageListItems as $me){
+                dd($me['name']);
+        }
+
+        
+        
        // return $shortageListItems;
       // return $this->updateshortagelist();
         return view('admin.pages.retailers.shortage.view', compact('products','pageTitle', 'shortageListItems'));
@@ -78,6 +86,16 @@ class RetailershortagelistController extends Controller
     {
         $shortlist = array();
 
+        $retailer = Auth::user();
+        $shortageList = $retailer->shortage;
+        if(is_null($shortageList)) {
+            $data = [];
+        }else{
+            $data = json_decode($shortageList->content, true);
+        }
+        $shortageListItems =  collect($data)->values();
+        $mylist = array($shortageListItems);
+
 
         foreach(Cart::getContent() as $item)
         {
@@ -96,7 +114,7 @@ class RetailershortagelistController extends Controller
         $saveShortage = $this->shortageList::create([
                     'user_id' => Auth::user()->id,
                     'instance' => 'shortagelist',
-                    'content' => $data
+                    'content' => $data."NO"
                 ]);
 
         Cart::clear();
@@ -104,6 +122,32 @@ class RetailershortagelistController extends Controller
 
     }
 
+
+    public function retrieveshortagelist(Request $request){
+
+        $retailer = Auth::user();
+
+        $shortagelist = $retailer->shortage;
+        
+
+        $myshortage = [];
+
+        if(!$request->session->has('sshortage')) {
+            $request->session->put('sshortage', []);
+        }
+
+        foreach($shortagelist as $shortage){
+           $data[] = $shortage['content'];
+            
+        }
+
+        $sessionshortage  = $request->session->put('sshortage', $data);
+        // $getdata  = $request->session::get('sshortage');
+        
+        return $data;
+
+       
+    }
 
     
      
