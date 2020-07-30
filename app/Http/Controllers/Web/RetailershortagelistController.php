@@ -40,16 +40,6 @@ class RetailershortagelistController extends Controller
         $pageTitle = 'Shortage List Items';
         $products = $this->wholesalerProduct::all();
         
-
-        //return $shortageListItems[0];
-        foreach($shortageListItems as $me){
-                dd($me['name']);
-        }
-
-        
-        
-       // return $shortageListItems;
-      // return $this->updateshortagelist();
         return view('admin.pages.retailers.shortage.view', compact('products','pageTitle', 'shortageListItems'));
 
     }
@@ -94,7 +84,7 @@ class RetailershortagelistController extends Controller
             $data = json_decode($shortageList->content, true);
         }
         $shortageListItems =  collect($data)->values();
-        $mylist = array($shortageListItems);
+        
 
 
         foreach(Cart::getContent() as $item)
@@ -114,8 +104,8 @@ class RetailershortagelistController extends Controller
         $saveShortage = $this->shortageList::create([
                     'user_id' => Auth::user()->id,
                     'instance' => 'shortagelist',
-                    'content' => $data."NO"
-                ]);
+                    'content' => $data
+                ]); 
 
         Cart::clear();
         return view('admin.pages.retailers.shortage.shortage_list', compact('pageTitle'));
@@ -132,46 +122,23 @@ class RetailershortagelistController extends Controller
 
         $myshortage = [];
 
-        if(!$request->session->has('sshortage')) {
-            $request->session->put('sshortage', []);
+        if(!$request->session()->has('sshortage')) {
+            $request->session()->put('sshortage', []);
         }
 
         foreach($shortagelist as $shortage){
-           $data[] = $shortage['content'];
+           $data[] = json_decode($shortage['content'], true)[0];
             
         }
 
-        $sessionshortage  = $request->session->put('sshortage', $data);
-        // $getdata  = $request->session::get('sshortage');
+        $sessionshortage  = $request->session()->put('sshortage', $data);
+        $getdata  = $request->session()->get('sshortage');
         
-        return $data;
+        return $getdata;
 
        
     }
 
     
      
-    //     $updateshort = array();
-    //     $retailer = Auth::user();
-    //     $shortageList = $retailer->shortage;
-
-        
-
-    //     $options = array();
-    //     //$product = $this->wholesalerProduct::find($request->id);
-
-        
-
-        
-    //     foreach($shortageList as $shortge){
-    //         Cart::add(array());
-            
-    //     }
-
-        
-
-    //    // Cart::add(array('id' => $product->id, 'name' => $product->product_name, 'price' => $request->price ?? 0, 'quantity' => $request->quantity, $options, 'associatedModel' => $product));
-        
-    //     return $options;
-    // }
 }
