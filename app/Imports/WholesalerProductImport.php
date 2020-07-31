@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use Illuminate\Support\Str;
 use App\Models\WholesalerProduct;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -16,10 +17,12 @@ class WholesalerProductImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
+        $brand_name = Str::substr($row['brand_name'], 0, 3);
+        $generic_name = Str::substr($row['generic_name'], 0, 3);
+
         return new WholesalerProduct([
-            'product_code' => $row['product_code'] ,
             'wholesaler_id' => Auth::user()->id,
-            'packet_size' => $row ['pack_size'],
+            'packet_size' => $row['pack_size'],
             'strength' => $row['strength'],
             'manufacturer' => $row['manufacturer'],
             'product_name' => $row['brand_name'],

@@ -120,7 +120,7 @@ class ProductController extends Controller
     {
         $product = $this->product::find($id)->update($request->all());
         Alert::success('Success',$request->name.' edited sucessfully');
-        
+
         return redirect()->route('product.index');
     }
 
@@ -133,8 +133,7 @@ class ProductController extends Controller
     public function destroy(Request $request, $id)
     {
         $product = $this->product::find($id)->delete($request->all());
-        
-        
+
         return redirect()->route('product.index');
     }
 
@@ -157,5 +156,10 @@ class ProductController extends Controller
                 'image_path' => "public\uploads",
                 'name' => $name
             ];
+    }
+
+    public function returnSomething()
+    {
+        return "anything";
     }
 }
