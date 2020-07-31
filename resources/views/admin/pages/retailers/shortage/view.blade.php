@@ -38,17 +38,16 @@
                                 @include('admin.layouts.components.product-table-header')
 
                                 <tbody>
-                                    @if ($shortageListItems->count() > 0)
-                                     @foreach ($shortageListItems as $item['content'])
+                                    @if ($shortagelist->isNotEmpty())
+                                      @foreach ($shortagelist as $shortage)
                                      <tr>
-                                        <td>{{$item['content']['name']}}</td>
-                                        <td>{{$item['description']}}</td>
-                                        <td>{{$item['manufacturer']}}</td> 
-                                        <td>{{$item['packet_size']}}</td> 
+                                        <td>{{$shortage->id}}</td>
+                                        <td>{{$shortage->product_name}}</td>
+                                       
                                         
                                         <td>
                                             
-                                            <form method="POST" action="{{route('create.purchase.order', $item['wholesaler_id'])}}" enctype="multipart/form-data" >
+                                            <form method="POST" action="{{route('create.purchase.order', $shortage->wholesaler_id)}}" enctype="multipart/form-data" >
                                             <td>
                                                 
                                                 <input class="form-control" value="1" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" type="number" name="quantity" id="quantity" />
@@ -56,7 +55,7 @@
                                             </td>
                                             <td>
                                                 @csrf
-                                                <input class="form-control" value="{{$item['id']}}" name="id" type="hidden">
+                                                <input class="form-control" value="{{$shortage->id}}" name="id" type="hidden">
                                                {{-- <input class="form-control" value="{{$product->products_id}}" name="products_id" type="hidden"> 
                                                 <input class="form-control" value="{{$product->formattedPrice()}}" name="price" type="hidden"> --}}
                                                 @role('Retailer') 
@@ -72,11 +71,11 @@
 
                                            <td>
                                             
-                                            <form method="POST" action="{{route('update.purchase.order')}}" enctype="multipart/form-data" >
+                                            <form method="POST" action="{{route('update.purchase.order', $shortage->wholesaler_id)}}" enctype="multipart/form-data" >
                                               @method('PUT')
                                             <td>
                                                 @csrf
-                                                <input class="form-control" value="{{$item['id']}}" name="id" type="hidden">
+                                                <input class="form-control" value="{{$shortage->id}}" name="id" type="hidden">
                                                {{-- <input class="form-control" value="{{$product->products_id}}" name="products_id" type="hidden"> 
                                                 <input class="form-control" value="{{$product->formattedPrice()}}" name="price" type="hidden"> --}}
                                                 @role('Retailer') 

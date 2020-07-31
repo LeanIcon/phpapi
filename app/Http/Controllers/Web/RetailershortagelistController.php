@@ -39,7 +39,7 @@ class RetailershortagelistController extends Controller
 
         $retailer = Auth::user();
         $shortagelist = $retailer->shortagelistx;
-        return $shortagelist;
+       // return $shortagelist;
         //return $shortagelist;
        // return $shortagelist;
         // $kdata = new Collection();
@@ -77,7 +77,7 @@ class RetailershortagelistController extends Controller
         // $dd= $shortageList[0]->content;
         // $dy= response()->json($shortageList);
         //return $dy;
-        // $products = $this->wholesalerProduct::all();
+        $products = $this->wholesalerProduct::all();
         // // foreach($dh as $d){
         //     return $d['name'];
         // }
