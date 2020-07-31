@@ -111,9 +111,7 @@ class RetailershortagelistController extends Controller
     //     $options = array();
     //     //$product = $this->wholesalerProduct::find($request->id);
 
-        
 
-        
     //     foreach($shortageList as $shortge){
     //         Cart::add(array());
             

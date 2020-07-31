@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\WholesalerProductImport;
+use App\Models\DrugCode;
+use Illuminate\Support\Collection;
 use RealRashid\SweetAlert\Facades\Alert;
 class ProductUploadController extends Controller
 {
@@ -33,16 +35,42 @@ class ProductUploadController extends Controller
         $collection = Excel::toCollection($import, request()->file('file'));
     }
 
-    public function productImport()
+    public function productImport(Request $request)
     {
+        $user = Auth::user();
+
+        // Retrieve existing product codes
         $import  = new WholesalerProductImport() ;
         $collection = Excel::toCollection($import, request()->file('file'));
 
+        /**
+         * Instantiate a new Object Collection
+         */
+        $dcodeer = new Collection();
+        $newProduct = new Collection();
+        $collectProduct = new Collection();
+        $newProductUpdated = new Collection();
+
+        $newProductUpdated = $newProductUpdated->push($collection[0]);
+        $collProds = $collectProduct->push($newProductUpdated[0]);
+
+
         foreach ($collection[0] as $key => $value) {
+
+            $dcodeer->put('brand_name', $value['brand_name']);
+            $dcodeer->put('generic_name', $value['generic_name']);
+
+
+            /**
+             * Send generic and brand to return products
+             */
+            $genCode = $this->wholesalerProduct->getDrugCodeProducts($dcodeer);
+            $genCodeInc = $this->wholesalerProduct->generateDrugCodeInc($genCode, $dcodeer);
+
             $product =  $this->product::create([
                     'name'=> $value['brand_name'],
-                    'product_code' => $value['product_code'],
                     'packet_size' => $value['pack_size'],
+                    'product_code' => $genCodeInc,
                     'strength' =>$value['strength'] ,
                     'status' => 1,
                     'active_ingredients' => $value['generic_name'],
@@ -50,11 +78,12 @@ class ProductUploadController extends Controller
                     'drug_legal_status' => $value['drug_legal_status'],
                     'manufacturer_slug' => $value['manufacturer'],
             ]);
+
             $this->wholesalerProduct::create([
                     'product_name'=> $value['brand_name'],
                     'price' => $value['price'],
+                    'product_code' => $genCodeInc,
                     'products_id' => $product->id,
-                    'product_code' => $value['product_code'],
                     'wholesaler_id' => Auth::user()->id,
                     'packet_size' => $value['pack_size'],
                     'strength' =>$value['strength'] ,
