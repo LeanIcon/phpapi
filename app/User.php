@@ -11,6 +11,7 @@ use App\Models\PurchaseOrders;
 use App\Models\ProductCategory;
 use App\Models\ShortageList;
 use App\Models\WholesalerProduct;
+use App\Models\Shortage_listx;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -114,6 +115,10 @@ class User extends Authenticatable
     public function shortage()
     {
         return $this->hasMany(ShortageList::class, 'user_id');
+    }
+
+    public function shortagelistx(){
+        return $this->hasMany(Shortage_listx::class, 'retailer_id');
     }
 
     public function products()

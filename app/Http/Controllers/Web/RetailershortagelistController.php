@@ -6,14 +6,18 @@ use App\Models\Product;
 use App\Models\ShortageList;
 use Illuminate\Http\Request;
 use App\Models\WholesalerProduct;
+use App\Models\Shortage_listx;
+use App\Models\Shortage_list_items;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Cart;
+use Illuminate\Support\Collection;
+
 class RetailershortagelistController extends Controller
 {
-    public $product, $wholesalerProduct , $shortageList;
-    public function __construct(Product $product, WholesalerProduct $wholesalerProduct, ShortageList $shortageList, User $user)
+    public $product, $wholesalerProduct , $shortageList, $Shortage_listx, $Shortage_list_items;
+    public function __construct(Product $product, Shortage_listx $shortage_listx, Shortage_list_items $shortage_list_items, WholesalerProduct $wholesalerProduct, ShortageList $shortageList, User $user)
     {
         $this->product = $product;
         $this->wholesalerProduct = $wholesalerProduct;
@@ -21,6 +25,8 @@ class RetailershortagelistController extends Controller
         $this->middleware('auth');
         $this->middleware(['role:Retailer']);
         $this->user = $user;
+        $this->shortage_listx = $shortage_listx;
+        $this->shortage_list_items = $shortage_list_items;
     }
     /**
      * Display a listing of the resource.
@@ -29,18 +35,56 @@ class RetailershortagelistController extends Controller
      */
     public function index()
     {
+
+
         $retailer = Auth::user();
-        $shortageList = $retailer->shortage;
-        if(is_null($shortageList)) {
-            $data = [];
-        }else{
-            $data = json_decode($shortageList->content, true);
-        }
-        $shortageListItems =  collect($data)->values();
-        $pageTitle = 'Shortage List Items';
-        $products = $this->wholesalerProduct::all();
+        $shortagelist = $retailer->shortagelistx;
+        return $shortagelist;
+        //return $shortagelist;
+       // return $shortagelist;
+        // $kdata = new Collection();
+        // $ddata = [];
+        // $retailer = Auth::user();
+        // $shortageList = $retailer->shortage;
         
-        return view('admin.pages.retailers.shortage.view', compact('products','pageTitle', 'shortageListItems'));
+        // foreach ($shortageList as $key => $value) {
+        //     $d[] = json_decode($value['content'], true);
+        //     $index=0;
+        //     foreach ($d as $v) {
+        //         // if (!is_null($v)) {
+        //             $ddata[] = $v[$index];
+        //             $index++;
+        //         // }
+        //     }
+           
+            // for($i=0;$i<$d.count($d);$i++){
+            //     $ddata[]= $d[0];
+            // }
+        //}
+
+        //return $ddata;
+        // $count = count($shortageList);
+        // for($i=0;$i<$count;$i++){
+        //     echo $shortageList[$i]->content;
+        // }
+        //return $count;
+        // if(is_null($shortageList)) {
+        //     $data = [];
+        // }else{
+        //     $data = json_decode($shortageList, true);
+        // }
+        //$shortageListItems =  collect($data)->values();
+        // $dd= $shortageList[0]->content;
+        // $dy= response()->json($shortageList);
+        //return $dy;
+        // $products = $this->wholesalerProduct::all();
+        // // foreach($dh as $d){
+        //     return $d['name'];
+        // }
+        // dd($dh);
+        
+        // return view('admin.pages.retailers.shortage.view', compact('products','pageTitle', 'shortageListItems','dh'));
+        return view('admin.pages.retailers.shortage.view', compact('products','shortagelist'));
 
     }
 
@@ -81,11 +125,14 @@ class RetailershortagelistController extends Controller
         if(is_null($shortageList)) {
             $data = [];
         }else{
-            $data = json_decode($shortageList->content, true);
+            
+           // $data = json_decode($shortageList->content, true);
+            $data = json_decode($shortageList, true);
+           // $data = json_decode($shortageList->content, true);
         }
         $shortageListItems =  collect($data)->values();
         
-
+       // return $shortageListItems;
 
         foreach(Cart::getContent() as $item)
         {
@@ -107,13 +154,67 @@ class RetailershortagelistController extends Controller
                     'content' => $data
                 ]); 
 
+           // return $data;
+
         Cart::clear();
         return view('admin.pages.retailers.shortage.shortage_list', compact('pageTitle'));
 
     }
 
 
-    public function retrieveshortagelist(Request $request){
+
+
+    public function saveShortage(Request $request, $wholesaler = null)
+    {
+        $wholesaler = session()->get('wholesaler');
+        $retailer = Auth::user()->id;
+        $items = Cart::getContent();
+
+        foreach ($items as $row) {
+        $shortage_listx = $this->shortage_listx::create([
+            'wholesaler_id' => $row->associatedModel->wholesaler_id,
+            'retailer_id' => $retailer,
+            'product_name' => $row->name,
+            'products_id' => $row->associatedModel->id,
+            'description' => $row->associatedModel->productDescription(),
+            'manufacturer' => $row->associatedModel->manufacturer,
+        ]);
+        }
+      // $idX= $shortage_listx->id;
+
+        foreach ($items as $row) {
+            $this->shortage_list_items::create(
+                [
+               
+                'shortage_listx_id' => $shortage_listx->id,
+                'product_name' => $row->name,
+                'products_id' => $row->associatedModel->id,
+                'description' => $row->associatedModel->productDescription(),
+                'manufacturer' => $row->associatedModel->manufacturer,
+                ]
+            );
+        }
+
+      //  return $shortage_listx;
+        Cart::clear();
+        return redirect()->route('retailer.dashboard');
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function retrieveshortagelist(Request $request, $wholesaler = null){
 
         $retailer = Auth::user();
 
@@ -127,14 +228,15 @@ class RetailershortagelistController extends Controller
         }
 
         foreach($shortagelist as $shortage){
-           $data[] = json_decode($shortage['content'], true)[0];
+           $data[] = json_decode($shortage['content'], true);
             
         }
 
+        
         $sessionshortage  = $request->session()->put('sshortage', $data);
         $getdata  = $request->session()->get('sshortage');
         
-        return $getdata;
+        return redirect()->route('create.shortagelist');
 
        
     }

@@ -11,6 +11,7 @@ use App\Models\WholesalerProduct;
 use App\Models\PurchaseOrderItems;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RetailerCartController extends Controller
 {
@@ -55,8 +56,10 @@ class RetailerCartController extends Controller
 
         $options = array();
         $product = $this->wholesalerProduct::find($request->id);
+        //return $product;
+       // Alert::success('Success',$product->product_name.' added to Purchase Order sucessfully');
 
-        Cart::add(array('id' => $product->id, 'name' => $product->product_name, 'price' => $request->price ?? 0, 'quantity' => $request->quantity, $options, 'associatedModel' => $product));
+         Cart::add(array('id' => $product->id, 'name' => $product->product_name, 'price' => $request->price ?? 0, 'quantity' => $request->quantity, $options, 'associatedModel' => $product));
         
         return back();
         // return redirect()->route('cart.index');

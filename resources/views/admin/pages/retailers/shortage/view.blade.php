@@ -39,12 +39,12 @@
 
                                 <tbody>
                                     @if ($shortageListItems->count() > 0)
-                                     @foreach ($shortageListItems as $item)
+                                     @foreach ($shortageListItems as $item['content'])
                                      <tr>
-                                        <td>{{$item['name']}}</td>
+                                        <td>{{$item['content']['name']}}</td>
                                         <td>{{$item['description']}}</td>
-                                        <td>{{$item['manufacturer']}}</td>
-                                        <td>{{$item['packet_size']}}</td>
+                                        <td>{{$item['manufacturer']}}</td> 
+                                        <td>{{$item['packet_size']}}</td> 
                                         
                                         <td>
                                             
@@ -65,6 +65,37 @@
                                             </td>
                                         </form>  
                                         </td>
+
+
+
+
+
+                                           <td>
+                                            
+                                            <form method="POST" action="{{route('update.purchase.order')}}" enctype="multipart/form-data" >
+                                              @method('PUT')
+                                            <td>
+                                                @csrf
+                                                <input class="form-control" value="{{$item['id']}}" name="id" type="hidden">
+                                               {{-- <input class="form-control" value="{{$product->products_id}}" name="products_id" type="hidden"> 
+                                                <input class="form-control" value="{{$product->formattedPrice()}}" name="price" type="hidden"> --}}
+                                                @role('Retailer') 
+                                                <button type="submit" data-toggle="modal" data-target="#modalCart" class="btn btn-sm btn-primary"> ADDs</button>
+                                                 @endrole
+                                            </td>
+                                        </form>  
+                                        </td>
+
+
+
+
+
+
+
+
+
+
+
                                         
                                     </tr>
                                     @endforeach

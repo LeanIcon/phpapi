@@ -31,13 +31,21 @@ class RetailerDashboardController extends Controller
 
         $proforminvoices = collect($retailer->retailer_orders)->where('order_type', 'pro_forma');
 
+        // $shortageList = $retailer->shortage;
+        // if(is_null($shortageList)) {
+        //     $data = [];
+        // }else{
+        //     $data = json_decode($shortageList->content, true);
+        // }
+        // $shortageList =  collect($data);
         $shortageList = $retailer->shortage;
         if(is_null($shortageList)) {
             $data = [];
         }else{
-            $data = json_decode($shortageList->content, true);
+           // $data = json_decode($shortageList->content, true);
+            $data = json_decode($shortageList, true);
+           // $data = json_decode($shortageList->content, true);
         }
-        $shortageList =  collect($data);
         $wholesalers = $this->user::isWholeSaler()->get();
         $userDetails = $this->userDetails->get();
         return view('admin.pages.retailers.dashboard', compact('pageTitle', 'purchaseOrders','approvedPurchaseOrders', 'wholesalers', 'retailer', 'invoiceReceived', 'shortageList', 'purchaseInvoices','proforminvoices','userDetails'));

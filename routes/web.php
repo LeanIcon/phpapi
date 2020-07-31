@@ -96,13 +96,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
         Route::get('shortagelist', 'RetailerShortagelistController@viewShortageList')->name('shortagelist.view');
         Route::get('savedshortagelist', 'RetailerShortagelistController@viewShortageList')->name('saved.shortagelist');
         Route::get('shortagelist/create', 'RetailerShortagelistController@create')->name('create.shortagelist');
-        Route::post('shortagelist', 'RetailerShortagelistController@saveShortageList')->name('shortagelist.save');
+        Route::post('shortagelist', 'RetailerShortagelistController@saveShortage')->name('shortagelist.save');
         Route::get('proforma', 'RetailerinvoiceController@listProforma')->name('proforma.list');
         Route::get('invoice', 'RetailerinvoiceController@listInvoice')->name('invoice.list');
         Route::get('proforma/details/{order?}', 'RetailerinvoiceController@getProformaInvoice')->name('proforma.view');
         Route::get('proforma/invoicedetails/{order?}', 'RetailerinvoiceController@getInvoice')->name('invoice.view');
         Route::post('proforma/process/{order?}', 'RetailerinvoiceController@updateProformaInvoice')->name('proforma.process');
         Route::get('shortage/listitems', 'RetailerShortagelistController@getShortalistSession')->name('get.myshortage');
+        Route::put('retailercart/{wholesaler?}','RetailerShortagelistController@retrieveshortagelist')->name('update.purchase.order');
     });
 
 
@@ -134,5 +135,5 @@ Route::get('/WholesalerProducts/getDetails/{prodID}','Web\WholesalerProductsCont
 Route::post('/Manufacture/delete/{id}','Web\ManufacturerController@delete')->name('manufacturer.delete');
 Route::get('/Manufacture/index1','Web\ManufacturerController@index1')->name('manufacturer.index1');
 
-Route::get('myshortagelist','Web\RetailerShortagelistController@retrieveshortagelist');
+
 
