@@ -1,3 +1,4 @@
+/*jshint esversion:8 */
 import router from "./router";
 /**
  * First we will load all of this project's JavaScript dependencies which

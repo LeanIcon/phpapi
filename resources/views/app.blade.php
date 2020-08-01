@@ -9,7 +9,7 @@
         <meta content="Admin & Dashboard" name="description" />
         <meta content="nnuro" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="assets/images/favico.png">
 
         <!-- Bootstrap Css -->
         {{-- <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" /> --}}

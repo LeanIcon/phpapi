@@ -169,6 +169,7 @@ return [
         Darryldecode\Cart\CartServiceProvider::class,
         JD\Cloudder\CloudderServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
         /*
          * Application Service Providers...

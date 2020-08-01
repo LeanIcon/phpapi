@@ -1,21 +1,43 @@
 <template>
   <div>
-    <nav-bar></nav-bar>
-    <side-bar></side-bar>
-    <right-bar></right-bar>
+    <div class="row">
+      <stats :cardTitle="wholesalerTitle" :cardValue="0" ></stats>
+      <stats :cardTitle="retailerTitle" :cardValue="0" ></stats>
+      <stats :cardTitle="productTitle" :cardValue="0" ></stats>
+      <stats :cardTitle="orderTitle" :cardValue="0" ></stats>
+    </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <bar-card></bar-card>
+      </div>
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-body">
+              Data
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import NavBarVue from '../components/NavBar.vue'
-import SidebarVue from '../components/Sidebar.vue'
-import RightBarVue from '../components/RightBar.vue'
+import StatsCardVue from '../components/StatsCard.vue'
+import GraphCardVue from '../components/GraphCard.vue'
+
 export default {
-    components: {
-        'navBar' : NavBarVue,
-        'sideBar' : SidebarVue,
-        'rightBar' : RightBarVue
+  components: {
+    'stats': StatsCardVue,
+    'barCard': GraphCardVue
+  },
+  data() {
+    return {
+      wholesalerTitle: "Wholesaler",
+      retailerTitle: "Retailer",
+      productTitle: "Products",
+      orderTitle: "Orders",
     }
+  },
 
 }
 </script>
