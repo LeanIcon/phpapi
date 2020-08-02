@@ -36,6 +36,13 @@ Route::namespace('API')->group(function(){
 
 
 Route::apiResource('post', 'PostController');
+
+
+Route::group(['namespace' => 'API'], function() {
+    Route::apiResource('manufacturers', 'ManufacturerController');
+});
+
+Route::apiResource('admin_products', 'ProductController');
 Route::apiResource('region', 'RegionController');
 Route::apiResource('town', 'TownController');
 Route::apiResource('customer','CustomerController');

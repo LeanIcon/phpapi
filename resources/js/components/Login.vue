@@ -11,7 +11,7 @@
                                         <div>
                                             <div class="text-center">
                                                 <div>
-                                                    <a href="#" class="logo"><img src="assets/images/nnlogo.png" height="100" alt="logo"></a>
+                                                    <a href="#" class="logo"><img src="assets/images/nnurologo-dark.png" height="100" alt="logo"></a>
                                                 </div>
     
                                                 <h4 class="font-size-18 mt-4">Welcome Back !</h4>

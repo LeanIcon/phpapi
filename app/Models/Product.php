@@ -20,13 +20,22 @@ class Product extends ApiModel implements Searchable
         'active_ingredients' => Json::class
     ];
 
-    
+
+    public $appends = [
+        'manufacturer_name'
+    ];
+
     public function wholesalers()
     {
         return $this->belongsToMany(WholesalerProduct::class);
     }
-    
 
+
+    public function getManufacturerNameAttribute()
+    {
+        $maftr = Manufacturer::find($this->manufacturer_id);
+        return $maftr ?? 'na';
+    }
 
     public function scopeProductCategory($value)
     {

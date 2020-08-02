@@ -54,22 +54,51 @@
                                     </li>
                                 </ul>
                             </li>
-
                             <li>
-                                <router-link to="" class="has-arrow waves-effect">
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
                                     <i class=" ri-database-fill"></i>
                                     <span>Data Entry</span>
-                                </router-link>
+                                </a>
                                 <ul class="sub-menu mm-collapse" aria-expanded="false">
-                                    <li><router-link to="">Manufacturer</router-link></li>
-                                    <li><router-link to="">Product Categories</router-link></li>
-                                    <li><router-link to="">Drug Legal Status</router-link></li>
-                                    <li><router-link to="">Drug Class</router-link></li>
-                                    <li><router-link to="">Drug Dosage Form</router-link></li>
-                                    <li><router-link to="">Region</router-link></li>
-                                    <li><router-link to="">Location</router-link></li>
+                                    <li>
+                                        <router-link to="#" class="waves-effect">
+                                           Manufacturer
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link to="#" class="waves-effect">
+                                            Product Categories
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link to="#" class="waves-effect">
+                                            Drug Legal Status
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link to="#" class="waves-effect">
+                                            Drug Class
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link to="#" class="waves-effect">
+                                            Drug Dosage Form
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link to="#" class="waves-effect">
+                                           Region
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link to="#" class="waves-effect">
+                                           Location
+                                        </router-link>
+                                    </li>
                                 </ul>
                             </li>
+
+                            
 
                         </ul>
                     </div>

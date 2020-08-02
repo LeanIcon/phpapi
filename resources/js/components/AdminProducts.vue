@@ -16,61 +16,15 @@
                                         <label class="custom-control-label" for="customercheck">&nbsp;</label>
                                     </div>
                                 </th>
-                                <th>Customer</th>
-                                <th>Email</th>
-                                <th>Phone</th>
+                                <th>Product Name</th>
+                                <th>Product Description</th>
+                                <th>Manufacturer</th>
                                 <th>Wallet Balance</th>
-                                <th>Joining Date</th>
+                                <th>Packet Size</th>
                                 <th style="width: 120px;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customercheck1">
-                                        <label class="custom-control-label" for="customercheck1">&nbsp;</label>
-                                    </div>
-                                </td>
-
-                                <td>Carolyn Harvey</td>
-                                <td>CarolynHarvey@rhyta.com</td>
-                                <td>580-464-4694</td>
-
-                                <td>
-                                    $ 3245
-                                </td>
-                                <td>
-                                    06 Apr, 2020
-                                </td>
-                                <td>
-                                    <a href="javascript:void(0);" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-size-18"></i></a>
-                                    <a href="javascript:void(0);" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customercheck2">
-                                        <label class="custom-control-label" for="customercheck2">&nbsp;</label>
-                                    </div>
-                                </td>
-                                
-                                <td>Angelyn Hardin</td>
-                                <td>AngelynHardin@dayrep.com</td>
-                                <td>913-248-2690</td>
-                                
-                                <td>
-                                    $ 2435
-                                </td>
-                                <td>
-                                    05 Apr, 2020
-                                </td>
-                                <td>
-                                    <a href="javascript:void(0);" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-size-18"></i></a>
-                                    <a href="javascript:void(0);" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a>
-                                </td>
-                            </tr>
                             <tr>
                                 <td>
                                     <div class="custom-control custom-checkbox">
@@ -89,9 +43,9 @@
                                 <td>
                                     04 Apr, 2020
                                 </td>
-                                <td>
-                                    <a href="javascript:void(0);" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-size-18"></i></a>
-                                    <a href="javascript:void(0);" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a>
+                               <td>
+                                    <a href="javascript:void(0);" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-edit font-size-18"></i></a>
+                                    <a href="javascript:void(0);" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash font-size-18"></i></a>
                                 </td>
                             </tr>
             
@@ -140,6 +94,12 @@
 <script>
 export default {
 
+    data () {
+        return {
+            products: {},
+            manufacturers: {}
+        }
+    },
     methods: {
         loadUser() {
             this.$modal.show('retailer-modal');
@@ -149,8 +109,22 @@ export default {
         },
         hide () {
             this.$modal.hide('retailer-modal');
+        },
+        loadProduct() {
+            axios.get('admin_products')
+            .then((response) => console.log(response))
+            .catch((error) => console.log(error))
+        },
+        loadManufacturers() {
+            axios.get('manufacturers')
+            .then((response) => console.log(response))
+            .catch((error) => console.log(error))
         }
-    }
+    },
+    mounted() {
+        this.loadProduct();
+        this.loadManufacturers();
+    },
 
 }
 </script>

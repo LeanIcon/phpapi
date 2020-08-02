@@ -9,6 +9,7 @@ import WholealerPage from './pages/Wholesaler.vue';
 import DefaultPage from './pages/DefaultContainer';
 import Page404 from './pages/404.vue';
 import AdminProductsPage from './pages/admin/product/Products.vue';
+import AdProductsPage from './pages/admin/product/AddProduct.vue';
 
 
 Vue.use(VueRouter);
@@ -22,13 +23,10 @@ const routes = [
             { path: '/', component: DashboardPage },
             { path: 'retailers', component: RetailerPage },
             { path: 'wholesalers', component: WholealerPage },
-            { path: 'products', component: AdminProductsPage,
-                children: [
-                    {path: 'add', component: AdminProductsPage},
-                    {path: 'edit', component: AdminProductsPage},
-                    {path: 'view', component: AdminProductsPage},
-                ]
-            },
+            { path: 'products', component: AdminProductsPage},
+            { path: 'products/add', component: AdProductsPage},
+            { path: 'products/edit', component: AdProductsPage},
+            { path: 'products/view', component: AdProductsPage},
             { path: 'settings', component: DashboardPage },
             { path: '*', component: Page404 },
         ]
