@@ -10,27 +10,27 @@
                             <li class="menu-title">Menu</li>
 
                             <li class="mm-active">
-                                <router-link to="/admin" class="waves-effect active">
+                                <router-link to="/admin" active-class="active" class="waves-effect">
                                     <i class="ri-dashboard-line"></i><span class="badge badge-pill badge-success float-right">3</span>
                                     <span>Dashboard</span>
                                 </router-link>
                             </li>
 
                             <li>
-                                 <router-link to="/admin/retailers" class="waves-effect">
+                                 <router-link to="/admin/wholesalers" active-class="active" class="waves-effect">
                                      <i class="ri-store-3-fill"></i>
                                     <span>Wholesalers</span>
                                 </router-link>
                             </li>
 
                             <li>
-                                <router-link to="/admin/wholesalers" class="waves-effect">
+                                <router-link to="/admin/retailers" active-class="active" class="waves-effect">
                                     <i class="ri-store-3-fill"></i>
                                     <span>Retailers</span>
                                 </router-link>
                             </li>
                             <li>
-                                 <router-link to="#" class="waves-effect">
+                                 <router-link to="/admin/products" class="waves-effect" active-class="active">
                                    <i class="ri-shopping-bag-2-fill"></i>
                                     <span>Products</span>
                                 </router-link>

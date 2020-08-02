@@ -4,7 +4,7 @@
         <div class="card">
             <div class="card-body">
                 <div>
-                    <a href="javascript:void(0);" @click="loadUser" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Wholesaler</a>
+                    <a href="javascript:void(0);" @click="loadUser" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Product</a>
                 </div>
                 <div class="table-responsive mt-3">
                     <table class="table table-centered datatable dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;" id="DataTables_Table_0">

@@ -25,6 +25,7 @@
         {{-- <link rel="stylesheet" href="{{asset('assets/css/app.css')}}" type="text/css" id="app-style" > --}}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" type="text/css" id="app-style" >
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto" type="text/css" >
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" >
 
     </head>
     <body data-sidebar="dark">
@@ -39,6 +40,6 @@
         <script type="text/javascript" src="{{asset('assets/tempjs/simplebar/simplebar.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('assets/tempjs/node-waves/waves.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('assets/tempjs/app.js')}}"></script>
-        
+
     </body>
 </html>
