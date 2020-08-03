@@ -10,7 +10,7 @@
                     <!-- <a href="javascript:void(0);" @click="loadUser" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Product</a> -->
                 </div>
                 <div class="table-responsive mt-3">
-                    <table class="table table-centered datatable dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;" id="DataTables_Table_0">
+                    <table class="table table-centered dt-responsive nowrap no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead class="thead-light">
                             <tr>
                                 <th style="width: 20px;">
@@ -56,7 +56,7 @@
             <div class="col-md-12" v-show="products.links && products.meta" >
                 <!-- <pagination :data="laravelData" v-on:pagination-change-page="getResults"></pagination> -->
             <nav >
-                <ul class="pagination">
+                <ul class="pagination" style="cursor:pointer" >
                     <li class="page-item" :class="{'disabled': !products.links.prev , 'active': products.links.prev != null}">
                     <a class="page-link" @click="getPrevPage" >Previous</a>
                     </li>
@@ -168,7 +168,8 @@ export default {
             },
             products: {},
             manufacturers: {},
-            links: {}
+            links: {},
+            loading: false
         }
     },
     methods: {
@@ -182,6 +183,12 @@ export default {
             this.product.drug_class = product.drug_class
             this.product.strenght = product.strenght
             this.product.packet_size = product.packet_size
+        },
+        openLoader(){
+            if (this.loading) {
+                const loading = this.$vs.loading()
+            }
+            loading.close();
         },
         getResults(){
             if(typeof page === 'undefined') {
@@ -200,9 +207,13 @@ export default {
             this.$modal.show('retailer-modal');
         },
         async loadProduct(url = 'admin_products') {
+            this.loading = !this.loading
+            const loading = this.$vs.loading();
             await axios.get(url)
             .then(({data}) => {
                 this.products = data
+                this.loading != this.loading
+                loading.close();
                 })
             .catch((error) => console.log(error))
         },

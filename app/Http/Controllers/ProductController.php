@@ -8,15 +8,23 @@ use Illuminate\Http\Request;
 
 class ProductController extends ApiController
 {
+    private $product;
     public  function __construct(Product $product)
     {
         parent::__construct($product);
+        $this->product=  $product;
     }
 
-    public function index(Request $request)
+    // public function index(Request $request)
+    // {
+    //     $limit = $request->limit ?? 15;
+    //     $product = new ProductCollection(Product::paginate($limit));
+    //     return $product;
+    // }
+
+    public function store(Request $request)
     {
-        $limit = $request->limit ?? 15;
-        $product = new ProductCollection(Product::paginate($limit));
-        return $product;
+        $product = $this->product->create($request->all());
+        return  response()->json($product);
     }
 }

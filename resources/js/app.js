@@ -2,10 +2,12 @@
 import router from "./router";
 import VModal from "./plugins/vue-js-modal/index.nocss";
 import Vuesax   from "./plugins/vuesax/dist/vuesax.min";
-import "./plugins/vuesax/dist/vuesax.min";
+import VueNoty from './plugins/vue-noty/dist/vuejs-noty';
+import "./plugins/vuesax/dist/vuesax.min.css";
 import "./plugins/vue-js-modal/styles.css";
+import "./plugins/vue-noty/dist/vuejs-noty.css";
 
-
+// window.noty = require('vuejs-noty');
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -16,7 +18,8 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-Vue.component('pagination', require('laravel-vue-pagination'));
+// Vue.component('pagination', require('laravel-vue-pagination'));
+Vue.use(VueNoty);
 Vue.use(VModal);
 Vue.use(Vuesax);
 /**

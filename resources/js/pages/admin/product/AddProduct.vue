@@ -1,6 +1,6 @@
 <template>
   <div>
-  <form @submit.prevent.stop="addProduct" >
+  <form @submit.prevent="saveProduct" >
      <div class="card">
          <div class="card-body">
              <div class="row">
@@ -26,8 +26,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="control-label">Category</label>
-                        <select v-model="product.category" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                           <option value="" disabled hidden >Select</option>
+                        <select v-model="product.product_category_id" @change="onCategoryChang" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <option value="undefined" disabled >Select</option>
                             <option :value="category.id"  v-for="(category, index) in product_category.data" :key="index" >{{category.name}}</option>
                         </select>
                     </div>
@@ -36,7 +36,7 @@
                     <div class="form-group">
                         <label class="control-label">Category Type</label>
                         <select v-model="product.category_type" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                           <option value="" disabled hidden >Select</option>
+                            <option value="undefined" disabled >Select</option>
                             <option :value="category_type.id"  v-for="(category_type, index) in category_types.data" :key="index" >{{category_type.name}}</option>
                         </select>
                     </div>
@@ -46,8 +46,8 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="manufacturername">Dosage Form</label>
-                        <select v-model="product.dosage_form" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                            <option value="" disabled hidden >Select</option>
+                        <select v-model="product.dosage_form_id" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <option value="undefined" disabled >Select</option>
                             <option :value="dosage_form.id"  v-for="(dosage_form, index) in dosage_forms.data" :key="index" >{{dosage_form.name}}</option>
                         </select>
                     </div>
@@ -55,7 +55,7 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="manufacturerbrand">Drug Class</label>
-                       <select v-model="product.drug_class" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                       <select v-model="product.drug_class_id" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
                             <option value="" disabled hidden >Select</option>
                             <option :value="drug_class.id"  v-for="(drug_class, index) in drug_classes.data" :key="index" >{{drug_class.name}}</option>
                         </select>
@@ -66,7 +66,7 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="strenght">Strenght</label>
-                        <input  v-model="product.strenght" id="strenght" name="strenght" type="text" class="form-control">
+                        <input  v-model="product.strength" id="strenght" name="strenght" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -101,7 +101,7 @@
      </div>
      <div class="form-group">
          <div class="col-lg-5">
-        <button class="btn btn-primary col-md-5" >SAVE PRODUCT</button>
+        <button type="submit" class="btn btn-primary col-md-5" >SAVE PRODUCT</button>
          </div>
      </div>
   </div>
@@ -116,11 +116,11 @@ export default {
              product: {
                 manufacturer: '',
                 name: '',
-                category: '',
+                product_category_id: '',
                 category_type: '',
-                dosage_forms: '',
-                drug_classes: '',
-                strenght: '',
+                dosage_form_id: '',
+                drug_class_id: '',
+                strength: '',
                 packet_size: ''
             },
             manufacturers: {},
@@ -141,15 +141,31 @@ export default {
             this.product.category_type = product.category_type
             this.product.dosage_form = product.dosage_form
             this.product.drug_class = product.drug_class
-            this.product.strenght = product.strenght
+            this.product.strength = product.strength
             this.product.packet_size = product.packet_size
         },
-        async saveProduct(url = 'admin_products') {
-            await axios.post(url)
-            .then(({data}) => {
-                this.products = data
+        openNotification(position = null, color) {
+          const noti = this.$vs.notification({
+                color,
+                position,
+                title: 'Product Save',
+                text: 'Product Save Successfully'
+            })
+        },
+        onCategoryChang(category){
+            console.log("Category Change", this.product.product_category_id)
+            this.loadCategoryTypes(this.product.product_category_id)
+        },
+        saveProduct(url = 'admin_products') {
+            const data  = this.product;
+            axios.post('admin_products', data, {headers: {'Content-type': 'application/json'}})
+            .then((response) => {
+                    console.log(response)
+                    this.openNotification('top-right','success')
+                    this.product = {}
+                    // this.$noty.success("Product Save Successfully")
                 })
-            .catch((error) => console.log(error))
+            .catch(({response}) => console.log(response))
         },
         async loadManufacturers() {
             await axios.get('manufacturers')
@@ -183,8 +199,8 @@ export default {
             })
             .catch(({response}) => console.log(response))
         },
-        async loadCategoryTypes() {
-            await axios.get('category_types')
+        async loadCategoryTypes(category_type) {
+            await axios.get('category_types?product_category_id='+category_type)
             .then(({data}) => {
                 console.log(data.data);
                 this.category_types = data
@@ -198,7 +214,7 @@ export default {
         this.loadManufacturers();
         this.loadProductCategory();
         this.loadDosageForm();
-        this.loadCategoryTypes();
+        this.loadDrugClass();
     },
 
 }

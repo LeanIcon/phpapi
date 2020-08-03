@@ -46,6 +46,11 @@ Route::group(['namespace' => 'API'], function() {
     Route::apiResource('dosage_form','DosageFormController');
     Route::apiResource('drug_class','DrugClassController');
 
+    Route::group(['prefix' => 'admin'], function() {
+        Route::apiResource('wholesalers','WholesalerController');
+        Route::apiResource('retailers','RetailerController');
+    });
+
 });
 
 Route::apiResource('admin_products', 'ProductController');

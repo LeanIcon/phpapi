@@ -5,10 +5,12 @@ namespace App;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\Location;
+use App\Models\CommonModel;
 use App\Models\UserDetails;
 use Illuminate\Support\Str;
 use App\Models\ShortageList;
 use App\Models\PurchaseOrders;
+use App\Models\CommonFunctions;
 use App\Models\ProductCategory;
 use App\Models\WholesalerProduct;
 use Spatie\Permission\Models\Role;
@@ -18,10 +20,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable implements JWTSubject, CommonModel
 {
-    use HasRoles;
-    use Notifiable;
+    use HasRoles,
+        Notifiable,
+        CommonFunctions {
+            buildSearchParams as protected buildParams;
+        }
 
     CONST IS_ADMIN = 'admin';
     CONST IS_WHOLESALER = 'wholesaler';
