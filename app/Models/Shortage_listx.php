@@ -9,7 +9,7 @@ class Shortage_listx extends Model
 {
     protected $table = 'shortage_listx';
     protected $fillable = ['retailer_id', 'wholesaler_id', 'products_id', 'description', 'product_name',
-     'manufacturer'];
+     'manufacturer', 'dosage_form', 'active_ingredient', 'strength', 'packet_size'];
 
 
     // public $cast = [
@@ -76,7 +76,22 @@ class Shortage_listx extends Model
         return $this->product_name.' '.$this->description;
     }
 
+    public function formattedPrice()
+    {
+        $price = number_format($this->price, 2);
+        return $price;
+    }
 
+    public function productDesc()
+    {
+        $desc = "$this->dosage_form $this->active_ingredient $this->strength";
+        return $desc;
+    }
 
-    
+    public function productDescription()
+    {
+        $desc = "$this->dosage_form $this->active_ingredients $this->strength";
+        return $desc;
+    }
+
 }

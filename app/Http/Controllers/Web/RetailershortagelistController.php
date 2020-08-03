@@ -39,44 +39,6 @@ class RetailershortagelistController extends Controller
 
         $retailer = Auth::user();
         $shortagelist = $retailer->shortagelistx;
-       // return $shortagelist;
-        //return $shortagelist;
-       // return $shortagelist;
-        // $kdata = new Collection();
-        // $ddata = [];
-        // $retailer = Auth::user();
-        // $shortageList = $retailer->shortage;
-        
-        // foreach ($shortageList as $key => $value) {
-        //     $d[] = json_decode($value['content'], true);
-        //     $index=0;
-        //     foreach ($d as $v) {
-        //         // if (!is_null($v)) {
-        //             $ddata[] = $v[$index];
-        //             $index++;
-        //         // }
-        //     }
-           
-            // for($i=0;$i<$d.count($d);$i++){
-            //     $ddata[]= $d[0];
-            // }
-        //}
-
-        //return $ddata;
-        // $count = count($shortageList);
-        // for($i=0;$i<$count;$i++){
-        //     echo $shortageList[$i]->content;
-        // }
-        //return $count;
-        // if(is_null($shortageList)) {
-        //     $data = [];
-        // }else{
-        //     $data = json_decode($shortageList, true);
-        // }
-        //$shortageListItems =  collect($data)->values();
-        // $dd= $shortageList[0]->content;
-        // $dy= response()->json($shortageList);
-        //return $dy;
         $products = $this->wholesalerProduct::all();
         // // foreach($dh as $d){
         //     return $d['name'];
@@ -178,6 +140,10 @@ class RetailershortagelistController extends Controller
             'products_id' => $row->associatedModel->id,
             'description' => $row->associatedModel->productDescription(),
             'manufacturer' => $row->associatedModel->manufacturer,
+            'dosage_form' => $row->associatedModel->dosage_form,
+            'active_ingredients' => $row->associatedModel->active_ingredient,
+            'strength' => $row->associatedModel->strength,
+            'packet_size' => $row->associatedModel->packet_size ?? 'NULL'
         ]);
         }
       // $idX= $shortage_listx->id;
@@ -200,16 +166,6 @@ class RetailershortagelistController extends Controller
         return redirect()->route('retailer.dashboard');
 
     }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -241,6 +197,11 @@ class RetailershortagelistController extends Controller
        
     }
 
-    
+    public function removeshortage(Request $request, $id)
+    {
+        $product = $this->shortage_listx::find($id)->delete(); 
+        return redirect()->route('retailer.retailer_shortagelist');
+    }
+
      
 }

@@ -86,12 +86,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('retailer/orders', 'RetailerOrdersController@index')->name('retailer.orders');
     Route::post('po/proforma/{porder?}', 'ProformaController@updateInvoiceToProforma')->name('proforma.update');
     Route::get('cart/update/', 'RetailershortagelistController@updateshortagelist')->name('retailer.update');
+    Route::delete('retailer/retailer_shortagelist/{id?}','RetailerShortagelistController@removeshortage')->name('remove.shortage.list');
     
 
 
     Route::group(['prefix' => 'retailer'], function () {
         Route::resource('cart', 'RetailerCartController');
         Route::post('retailercart/{wholesaler?}', 'RetailerCartController@createPurchaseOrder')->name('create.purchase.order');
+        Route::post('shortage/{wholesaler?}', 'RetailerCartController@createpofromshortage')->name('create.createpo.shortage');
         Route::post('retailerpo/{wholesaler?}', 'RetailerCartController@savePurchaseOrder')->name('save.purchase.order');
         Route::get('shortagelist', 'RetailerShortagelistController@viewShortageList')->name('shortagelist.view');
         Route::get('savedshortagelist', 'RetailerShortagelistController@viewShortageList')->name('saved.shortagelist');
@@ -104,6 +106,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
         Route::post('proforma/process/{order?}', 'RetailerinvoiceController@updateProformaInvoice')->name('proforma.process');
         Route::get('shortage/listitems', 'RetailerShortagelistController@getShortalistSession')->name('get.myshortage');
         Route::put('retailercart/{wholesaler?}','RetailerShortagelistController@retrieveshortagelist')->name('update.purchase.order');
+        
     });
 
 

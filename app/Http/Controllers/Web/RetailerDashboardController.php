@@ -38,17 +38,11 @@ class RetailerDashboardController extends Controller
         //     $data = json_decode($shortageList->content, true);
         // }
         // $shortageList =  collect($data);
-        $shortageList = $retailer->shortage;
-        if(is_null($shortageList)) {
-            $data = [];
-        }else{
-           // $data = json_decode($shortageList->content, true);
-            $data = json_decode($shortageList, true);
-           // $data = json_decode($shortageList->content, true);
-        }
+        
+        $shortagelist = $retailer->shortagelistx;
         $wholesalers = $this->user::isWholeSaler()->get();
         $userDetails = $this->userDetails->get();
-        return view('admin.pages.retailers.dashboard', compact('pageTitle', 'purchaseOrders','approvedPurchaseOrders', 'wholesalers', 'retailer', 'invoiceReceived', 'shortageList', 'purchaseInvoices','proforminvoices','userDetails'));
+        return view('admin.pages.retailers.dashboard', compact('pageTitle', 'purchaseOrders','approvedPurchaseOrders', 'wholesalers', 'retailer', 'invoiceReceived', 'shortagelist', 'purchaseInvoices','proforminvoices','userDetails'));
     }
 
     public function loadPurchaseOrderList()

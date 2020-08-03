@@ -9,19 +9,21 @@ use Illuminate\Http\Request;
 use App\Models\PurchaseOrders;
 use App\Models\WholesalerProduct;
 use App\Models\PurchaseOrderItems;
+use App\Models\Shortage_listx;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class RetailerCartController extends Controller
 {
-    public $product, $wholesalerProduct, $purchaseOrders, $purchaseOrderItems;
-    public function __construct(Product $product, WholesalerProduct $wholesalerProduct, PurchaseOrders $purchaseOrders, PurchaseOrderItems $purchaseOrderItems )
+    public $product, $wholesalerProduct, $purchaseOrders, $purchaseOrderItems, $shortage_listx;
+    public function __construct(Product $product, WholesalerProduct $wholesalerProduct, PurchaseOrders $purchaseOrders, PurchaseOrderItems $purchaseOrderItems, Shortage_listx $shortage_listx )
     {
         $this->product = $product;
         $this->wholesalerProduct = $wholesalerProduct;
         $this->purchaseOrders = $purchaseOrders;
         $this->purchaseOrderItems = $purchaseOrderItems;
+        $this->shortage_listx = $shortage_listx;
     }
     /**
      * Display a listing of the resource.
@@ -64,6 +66,33 @@ class RetailerCartController extends Controller
         return back();
         // return redirect()->route('cart.index');
     }
+
+    public function createpofromshortage(Request $request, $wholesaler)
+    {
+        $userId = Auth::user()->id;
+        $wholesaler = session()->put('wholesaler', $wholesaler);
+
+        $options = array();
+        $shortage_listx = $this->shortage_listx::find($request->id);
+        //return $product;
+        Alert::success('Success',$shortage_listx->product_name.' added to Purchase Order sucessfully');
+
+         Cart::add(array('id' => $shortage_listx->products_id, 'name' => $shortage_listx->product_name, 'price' => $request->price ?? 0, 'quantity' => $request->quantity, $options, 'associatedModel' => $shortage_listx));
+
+        
+
+       // return back();
+         return redirect()->route('retailer.wholesaler.show');
+    }
+
+
+
+
+
+
+
+
+
 
     /**
      * Store a newly created resource in storage.

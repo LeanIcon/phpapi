@@ -41,61 +41,44 @@
                                     @if ($shortagelist->isNotEmpty())
                                       @foreach ($shortagelist as $shortage)
                                      <tr>
-                                        <td>{{$shortage->id}}</td>
                                         <td>{{$shortage->product_name}}</td>
+                                        <td>{{$shortage->productDesc()}}</td>
+                                        <td>{{$shortage->manufacturer}}</td>
+                                        <td>{{$shortage->packet_size}}</td>
+                                         
                                        
                                         
                                         <td>
                                             
-                                            <form method="POST" action="{{route('create.purchase.order', $shortage->wholesaler_id)}}" enctype="multipart/form-data" >
-                                            <td>
+                                            <form method="POST" action="{{route('create.createpo.shortage', $shortage->wholesaler_id)}}" enctype="multipart/form-data" >
                                                 
-                                                <input class="form-control" value="1" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" type="number" name="quantity" id="quantity" />
+                                                <input class="form-control" value="1" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" type="number" name="quantity" id="quantity" type="hidden"/>
                                                 
-                                            </td>
+                                            </td> 
                                             <td>
                                                 @csrf
                                                 <input class="form-control" value="{{$shortage->id}}" name="id" type="hidden">
-                                               {{-- <input class="form-control" value="{{$product->products_id}}" name="products_id" type="hidden"> 
-                                                <input class="form-control" value="{{$product->formattedPrice()}}" name="price" type="hidden"> --}}
+                                               {{-- <input class="form-control" value="{{$product->products_id}}" name="products_id" type="hidden"> --}}
+                                              {{-- <input class="form-control" value="{{$product->formattedPrice()}}" name="price" type="hidden"> --}}  
                                                 @role('Retailer') 
-                                                <button type="submit" data-toggle="modal" data-target="#modalCart" class="btn btn-sm btn-primary"> ADD</button>
+                                                <button type="submit" data-toggle="modal" data-target="#modalCart" class="btn btn-sm btn-primary"> Add To Purchase Order</button>
                                                  @endrole
                                             </td>
                                         </form>  
                                         </td>
-
-
-
-
-
-                                           <td>
-                                            
-                                            <form method="POST" action="{{route('update.purchase.order', $shortage->wholesaler_id)}}" enctype="multipart/form-data" >
-                                              @method('PUT')
-                                            <td>
-                                                @csrf
-                                                <input class="form-control" value="{{$shortage->id}}" name="id" type="hidden">
-                                               {{-- <input class="form-control" value="{{$product->products_id}}" name="products_id" type="hidden"> 
-                                                <input class="form-control" value="{{$product->formattedPrice()}}" name="price" type="hidden"> --}}
-                                                @role('Retailer') 
-                                                <button type="submit" data-toggle="modal" data-target="#modalCart" class="btn btn-sm btn-primary"> ADDs</button>
+                                           
+                                    <td>
+                                      @role('Retailer') 
+                                      <div class="col-lg-4">
+                                                    <form method="POST" action="{{route('remove.shortage.list', $shortage->id)}}" enctype="multipart/form-data">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm btn-danger"> REMOVE</button>
+                                                    </form>
+                                                </div>
+                                               {{-- <button type="submit" class="btn btn-sm btn-primary" a href= "{{route('remove.shortage.list', $shortage->id) }}" method="POST"> ADDs</button> --}}
                                                  @endrole
-                                            </td>
-                                        </form>  
-                                        </td>
-
-
-
-
-
-
-
-
-
-
-
-                                        
+                                    </td>
                                     </tr>
                                     @endforeach
                                    {{-- @else 
