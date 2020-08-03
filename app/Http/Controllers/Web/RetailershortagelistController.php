@@ -169,34 +169,6 @@ class RetailershortagelistController extends Controller
 
 
 
-
-    public function retrieveshortagelist(Request $request, $wholesaler = null){
-
-        $retailer = Auth::user();
-
-        $shortagelist = $retailer->shortage;
-        
-
-        $myshortage = [];
-
-        if(!$request->session()->has('sshortage')) {
-            $request->session()->put('sshortage', []);
-        }
-
-        foreach($shortagelist as $shortage){
-           $data[] = json_decode($shortage['content'], true);
-            
-        }
-
-        
-        $sessionshortage  = $request->session()->put('sshortage', $data);
-        $getdata  = $request->session()->get('sshortage');
-        
-        return redirect()->route('create.shortagelist');
-
-       
-    }
-
     public function removeshortage(Request $request, $id)
     {
         $product = $this->shortage_listx::find($id)->delete(); 
@@ -205,3 +177,7 @@ class RetailershortagelistController extends Controller
 
      
 }
+    //     return $options;
+    // }
+
+

@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use App\User;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
+use Illuminate\Database\Eloquent\Model;
 
 class WholesalerProduct extends Model  implements Searchable
 {
@@ -74,5 +75,59 @@ class WholesalerProduct extends Model  implements Searchable
             $this->product_code
             //$url
         );
+    }
+
+    /**
+     * Pick first 3 letters from brand name and generic name
+     *
+     * @param [type] $data
+     * @return String
+     */
+    public function generateDrugCode($data)
+    {
+        $brand_name = Str::substr($data['brand_name'], 0, 3);
+        $generic_name = Str::substr($data['generic_name'], 0, 3);
+        $drugCode = "$brand_name$generic_name";
+
+        return $drugCode;
+    }
+
+    /**
+     * Get last product from Collection
+     * Generic Code Increment
+     * @param [type] $data
+     * @return String
+     */
+    public function getDrugCodeProducts($inComingProdCode)
+    {
+        $getLastProd =  self::where('product_code', 'like', '%'. $this->generateDrugCode($inComingProdCode) .'%')->get();
+
+        if($getLastProd->count() > 0) {
+            $getLastProd = collect($getLastProd)->last();
+            return $getLastProd->product_code;
+        }
+
+        return $inComingProdCode = $this->generateDrugCode($inComingProdCode);
+    }
+
+    /**
+     * Pick first 3 letters from brand name and generic name
+     * Generic Code Increment
+     * @param [type] $data
+     * @return String
+     */
+    public function generateDrugCodeInc($productIn, $codeComb)
+    {
+        $idxCode = 0;
+        $code = $this->generateDrugCode($codeComb);
+        if(Str::of($productIn)->exactly($code)) {
+            $genCode = $idxCode+=1;
+            return  "$productIn$genCode";
+        }
+        $getLastDig = Str::after($productIn, $code);
+        $getLastDig+=1;
+
+        return "$code$getLastDig";
+
     }
 }
