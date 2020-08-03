@@ -1,10 +1,13 @@
 <template>
   <div>
-      <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
                 <div>
-                    <a href="javascript:void(0);" @click="loadUser" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Product</a>
+                    <router-link to="products/add" class="btn btn-success mb-2">
+                        <i class="fa fa-plus-square"></i>
+                        Add Product
+                    </router-link>
+                    <!-- <a href="javascript:void(0);" @click="loadUser" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Product</a> -->
                 </div>
                 <div class="table-responsive mt-3">
                     <table class="table table-centered datatable dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;" id="DataTables_Table_0">
@@ -19,33 +22,29 @@
                                 <th>Product Name</th>
                                 <th>Product Description</th>
                                 <th>Manufacturer</th>
-                                <th>Wallet Balance</th>
                                 <th>Packet Size</th>
                                 <th style="width: 120px;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr v-for="(product, index) in products.data" :key="index" >
                                 <td>
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="customercheck3">
                                         <label class="custom-control-label" for="customercheck3">&nbsp;</label>
                                     </div>
                                 </td>
-                                
-                                <td>Carrie Thompson</td>
-                                <td>CarrieThompson@rhyta.com</td>
-                                <td>734-819-9286</td>
-                                
+
+                                <td>{{product.name}}</td>
+                                <td>{{productDesc(product)}}</td>
+                                <td>{{product.product_code}}</td>
+
                                 <td>
-                                    $ 2653
-                                </td>
-                                <td>
-                                    04 Apr, 2020
+                                    {{product.packet_size}}
                                 </td>
                                <td>
-                                    <a href="javascript:void(0);" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-edit font-size-18"></i></a>
-                                    <a href="javascript:void(0);" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash font-size-18"></i></a>
+                                    <a href="javascript:void(0);" @click.prevent="editProduct(product)" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-edit font-size-18"></i></a>
+                                    <a href="javascript:void(0);" @click.prevent="viewProduct(product)" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash font-size-18"></i></a>
                                 </td>
                             </tr>
             
@@ -54,37 +53,105 @@
                     </table>
                 </div>
             </div>
+            <div class="col-md-12" v-show="products.links && products.meta" >
+                <!-- <pagination :data="laravelData" v-on:pagination-change-page="getResults"></pagination> -->
+            <nav >
+                <ul class="pagination">
+                    <li class="page-item" :class="{'disabled': !products.links.prev , 'active': products.links.prev != null}">
+                    <a class="page-link" @click="getPrevPage" >Previous</a>
+                    </li>
+                    <span class="mr-3"></span>
+                    <li class="page-item" :class="{'disabled': !products.links.next, 'active': products.links.next != null}">
+                    <a class="page-link" @click="getNextPage" >Next</a>
+                    </li>
+                </ul>
+            </nav>
+            </div>
         </div>
-    </div>
-     <modal name="retailer-modal">
+     <modal name="product-modal"
+            :width="700"
+            :height="500"
+            :adaptive="true"
+     >
         <div class="card">
             <div class="card-header">
-                Retailer
+                PRODUCT
             </div>
             <div class="card-body">
                <form action="" class="form" >
                    <div class="row">
-                       <div class="col-lg-6 p-1">
-                           <label for="">First Name</label>
-                           <input type="text" class="form-control" >
-                       </div>
-                       <div class="col-lg-6 p-1">
-                            <label for="">Last Name</label>
-                           <input type="text" class="form-control" >
-                       </div>
-                   </div>
-                   <div class="row">
-                       <div class="col-lg-6 p-1">
-                            <label for="">Location Name</label>
-                           <input type="text" class="form-control" >
-                       </div>
-                       <div class="col-lg-6 p-1">
-                            <label for="">Position Name</label>
-                           <input type="text" class="form-control" >
-                       </div>
-                   </div>
-               </form>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="manufacturername">Manufacturer</label>
+                         <select v-model="product.manufacturer" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <option data-select2-id="3">Select</option>
+                            <option value="EL">Electronic</option>
+                            <option value="FA">Fashion</option>
+                            <option value="FI">Fitness</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="name">Product Name</label>
+                        <input v-model="product.name" id="name" name="name" type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Category</label>
+                        <select v-model="product.category" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <option data-select2-id="3">Select</option>
+                            <option value="EL">Electronic</option>
+                            <option value="FA">Fashion</option>
+                            <option value="FI">Fitness</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Category Type</label>
+                        <select v-model="product.category_type" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <option data-select2-id="3">Select</option>
+                            <option value="EL">Electronic</option>
+                            <option value="FA">Fashion</option>
+                            <option value="FI">Fitness</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+              <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="manufacturername">Dosage Form</label>
+                        <input  v-model="product.dosage_form" id="dosage_form" name="dosage_form" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="manufacturerbrand">Drug Class</label>
+                        <input v-model="product.drug_class" id="drug_class" name="dosage_class" type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+              <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="strenght">Strenght</label>
+                        <input  v-model="product.strenght" id="strenght" name="strenght" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="packet_size">Packet Size</label>
+                        <input v-model="product.packet_size" id="packet_size" name="packet_size" type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
                <button class="btn btn-primary" >SAVE</button>
+               </form>
             </div>
         </div>
     </modal>
@@ -96,29 +163,75 @@ export default {
 
     data () {
         return {
+             product: {
+                manufacturer: '',
+                name: '',
+                category: '',
+                category_type: '',
+                dosage_form: '',
+                drug_class: '',
+                strenght: '',
+                packet_size: ''
+            },
             products: {},
-            manufacturers: {}
+            manufacturers: {},
+            links: {}
         }
     },
     methods: {
+        editProduct(product){
+            this.$modal.show('product-modal');
+            this.product.name = product.name
+            this.product.manufacturer = product.manufacturer
+            this.product.category = product.category
+            this.product.category_type = product.category_type
+            this.product.dosage_form = product.dosage_form
+            this.product.drug_class = product.drug_class
+            this.product.strenght = product.strenght
+            this.product.packet_size = product.packet_size
+            console.log("Edit Product", product)
+        },
+        getResults(){
+            if(typeof page === 'undefined') {
+                page = 1;
+                axios.get('admin_products?page='+ page)
+                .then(({data}) => {
+                    this.products = data
+                    })
+                .catch((error) => console.log(error))
+            }
+        },
+        viewProduct(product){
+            console.log("View Product", product)
+        },
         loadUser() {
             this.$modal.show('retailer-modal');
         },
-        show () {
-            this.$modal.show('retailer-modal');
-        },
-        hide () {
-            this.$modal.hide('retailer-modal');
-        },
-        loadProduct() {
-            axios.get('admin_products')
-            .then((response) => console.log(response))
+        async loadProduct(url = 'admin_products') {
+            await axios.get(url)
+            .then(({data}) => {
+                this.products = data
+                })
             .catch((error) => console.log(error))
         },
-        loadManufacturers() {
-            axios.get('manufacturers')
-            .then((response) => console.log(response))
-            .catch((error) => console.log(error))
+        async loadManufacturers() {
+            await axios.get('manufacturers')
+            .then(({data}) => console.log(data))
+            .catch(({response}) => console.log(response))
+        },
+        productDesc(product){
+            return product.active_ingredients + ' ' + product.strength;
+        },
+        getNextPage(){
+            this.loadProduct(this.products.links.next);
+        },
+        getPrevPage(){
+        this.loadProduct(this.products.links.prev);
+        },
+    },
+    computed: {
+        productDescription() {
+            return product.active_ingredients + product.strength;
         }
     },
     mounted() {
