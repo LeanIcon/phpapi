@@ -37,7 +37,7 @@
 
                                 <td>{{product.name}}</td>
                                 <td>{{productDesc(product)}}</td>
-                                <td>{{product.product_code}}</td>
+                                <td>{{product.manufacturer.name}}</td>
 
                                 <td>
                                     {{product.packet_size}}
@@ -83,11 +83,9 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="manufacturername">Manufacturer</label>
-                         <select v-model="product.manufacturer" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                            <option data-select2-id="3">Select</option>
-                            <option value="EL">Electronic</option>
-                            <option value="FA">Fashion</option>
-                            <option value="FI">Fitness</option>
+                         <select v-model="product.manufacturer.id" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <option>Select</option>
+                            <option :value="manufacturer.id"  v-for="(manufacturer, index) in manufacturers.data" :key="index" >{{manufacturer.name}}</option>
                         </select>
                     </div>
                 </div>
@@ -103,10 +101,8 @@
                     <div class="form-group">
                         <label class="control-label">Category</label>
                         <select v-model="product.category" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                            <option data-select2-id="3">Select</option>
-                            <option value="EL">Electronic</option>
-                            <option value="FA">Fashion</option>
-                            <option value="FI">Fitness</option>
+                            <option>Select</option>
+                            <option :value="manufacturer.id"  v-for="(manufacturer, index) in manufacturers" :key="index" >{{manufacturer.name}}</option>
                         </select>
                     </div>
                 </div>
@@ -115,9 +111,6 @@
                         <label class="control-label">Category Type</label>
                         <select v-model="product.category_type" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
                             <option data-select2-id="3">Select</option>
-                            <option value="EL">Electronic</option>
-                            <option value="FA">Fashion</option>
-                            <option value="FI">Fitness</option>
                         </select>
                     </div>
                 </div>
@@ -150,8 +143,8 @@
                     </div>
                 </div>
             </div>
-               <button class="btn btn-primary" >SAVE</button>
-               </form>
+                <button class="btn btn-primary" >UPDATE</button>
+                </form>
             </div>
         </div>
     </modal>
@@ -189,7 +182,6 @@ export default {
             this.product.drug_class = product.drug_class
             this.product.strenght = product.strenght
             this.product.packet_size = product.packet_size
-            console.log("Edit Product", product)
         },
         getResults(){
             if(typeof page === 'undefined') {
@@ -216,7 +208,10 @@ export default {
         },
         async loadManufacturers() {
             await axios.get('manufacturers')
-            .then(({data}) => console.log(data))
+            .then(({data}) => {
+                console.log(data.data);
+                this.manufacturers = data
+            })
             .catch(({response}) => console.log(response))
         },
         productDesc(product){

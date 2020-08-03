@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DrugClass extends Model
+class DrugClass extends ApiModel
 {
     const DOSAGE_CLASS_ANAL = 'analgesics';
     const DOSAGE_CLASS_ANTI = 'antibacterial';

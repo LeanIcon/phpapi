@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductCategoryTypes extends Model
+class ProductCategoryTypes extends ApiModel
 {
     const TYPE_PRES = 'prescription';
     const TYPE_OTC = 'otc';

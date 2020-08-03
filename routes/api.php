@@ -40,12 +40,17 @@ Route::apiResource('post', 'PostController');
 
 Route::group(['namespace' => 'API'], function() {
     Route::apiResource('manufacturers', 'ManufacturerController');
+    Route::apiResource('category','CategoryController');
+    Route::apiResource('product_category','ProductCategoryController');
+    Route::apiResource('category_types','CategoryTypesController');
+    Route::apiResource('dosage_form','DosageFormController');
+    Route::apiResource('drug_class','DrugClassController');
+
 });
 
 Route::apiResource('admin_products', 'ProductController');
 Route::apiResource('region', 'RegionController');
 Route::apiResource('town', 'TownController');
 Route::apiResource('customer','CustomerController');
-Route::apiResource('category','CategoryController');
 
 Route::get('coviddata', 'ConvidDataController@getCovidData');

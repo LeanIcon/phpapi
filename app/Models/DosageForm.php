@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DosageForm extends Model
+class DosageForm extends ApiModel
 {
     const DOSAGE_FORM_CAPS = 'capsules';
     const DOSAGE_FORM_TABS = 'tablets';

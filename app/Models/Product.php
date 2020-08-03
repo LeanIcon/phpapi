@@ -22,7 +22,7 @@ class Product extends ApiModel implements Searchable
 
 
     public $appends = [
-        'manufacturer_name'
+        'manufacturer'
     ];
 
     public function wholesalers()
@@ -31,7 +31,7 @@ class Product extends ApiModel implements Searchable
     }
 
 
-    public function getManufacturerNameAttribute()
+    public function getManufacturerAttribute()
     {
         $maftr = Manufacturer::find($this->manufacturer_id);
         return $maftr ?? 'na';

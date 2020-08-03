@@ -2081,13 +2081,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2117,7 +2110,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.product.drug_class = product.drug_class;
       this.product.strenght = product.strenght;
       this.product.packet_size = product.packet_size;
-      console.log("Edit Product", product);
     },
     getResults: function getResults() {
       var _this = this;
@@ -2166,6 +2158,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     loadManufacturers: function loadManufacturers() {
+      var _this3 = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
@@ -2174,7 +2168,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context2.next = 2;
                 return axios.get('manufacturers').then(function (_ref3) {
                   var data = _ref3.data;
-                  return console.log(data);
+                  console.log(data.data);
+                  _this3.manufacturers = data;
                 })["catch"](function (_ref4) {
                   var response = _ref4.response;
                   return console.log(response);
@@ -3581,6 +3576,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -3700,17 +3703,195 @@ __webpack_require__.r(__webpack_exports__);
         name: '',
         category: '',
         category_type: '',
-        dosage_form: '',
-        drug_class: '',
+        dosage_forms: '',
+        drug_classes: '',
         strenght: '',
         packet_size: ''
-      }
+      },
+      manufacturers: {},
+      drug_classes: {},
+      dosage_forms: {},
+      product_category: {},
+      category_types: {},
+      links: {}
     };
   },
   methods: {
-    addProduct: function addProduct() {
-      console.log(this.product);
+    editProduct: function editProduct(product) {
+      this.$modal.show('product-modal');
+      this.product.name = product.name;
+      this.product.manufacturer = product.manufacturer;
+      this.product.category = product.category;
+      this.product.category_type = product.category_type;
+      this.product.dosage_form = product.dosage_form;
+      this.product.drug_class = product.drug_class;
+      this.product.strenght = product.strenght;
+      this.product.packet_size = product.packet_size;
+    },
+    saveProduct: function saveProduct() {
+      var _arguments = arguments,
+          _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var url;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                url = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : 'admin_products';
+                _context.next = 3;
+                return axios.post(url).then(function (_ref) {
+                  var data = _ref.data;
+                  _this.products = data;
+                })["catch"](function (error) {
+                  return console.log(error);
+                });
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    loadManufacturers: function loadManufacturers() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.get('manufacturers').then(function (_ref2) {
+                  var data = _ref2.data;
+                  console.log(data.data);
+                  _this2.manufacturers = data;
+                })["catch"](function (_ref3) {
+                  var response = _ref3.response;
+                  return console.log(response);
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    loadProductCategory: function loadProductCategory() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return axios.get('product_category').then(function (_ref4) {
+                  var data = _ref4.data;
+                  console.log(data.data);
+                  _this3.product_category = data;
+                })["catch"](function (_ref5) {
+                  var response = _ref5.response;
+                  return console.log(response);
+                });
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    loadDosageForm: function loadDosageForm() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return axios.get('dosage_form').then(function (_ref6) {
+                  var data = _ref6.data;
+                  console.log(data.data);
+                  _this4.dosage_forms = data;
+                })["catch"](function (_ref7) {
+                  var response = _ref7.response;
+                  return console.log(response);
+                });
+
+              case 2:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    loadDrugClass: function loadDrugClass() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return axios.get('drug_class').then(function (_ref8) {
+                  var data = _ref8.data;
+                  console.log(data.data);
+                  _this5.drug_classes = data;
+                })["catch"](function (_ref9) {
+                  var response = _ref9.response;
+                  return console.log(response);
+                });
+
+              case 2:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
+    loadCategoryTypes: function loadCategoryTypes() {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.next = 2;
+                return axios.get('category_types').then(function (_ref10) {
+                  var data = _ref10.data;
+                  console.log(data.data);
+                  _this6.category_types = data;
+                })["catch"](function (_ref11) {
+                  var response = _ref11.response;
+                  return console.log(response);
+                });
+
+              case 2:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }))();
     }
+  },
+  computed: {},
+  mounted: function mounted() {
+    this.loadManufacturers();
+    this.loadProductCategory();
+    this.loadDosageForm();
+    this.loadCategoryTypes();
   }
 });
 
@@ -41409,7 +41590,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(_vm.productDesc(product)))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(product.product_code))]),
+                      _c("td", [_vm._v(_vm._s(product.manufacturer.name))]),
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
@@ -41568,8 +41749,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.product.manufacturer,
-                              expression: "product.manufacturer"
+                              value: _vm.product.manufacturer.id,
+                              expression: "product.manufacturer.id"
                             }
                           ],
                           staticClass:
@@ -41590,8 +41771,8 @@ var render = function() {
                                   return val
                                 })
                               _vm.$set(
-                                _vm.product,
-                                "manufacturer",
+                                _vm.product.manufacturer,
+                                "id",
                                 $event.target.multiple
                                   ? $$selectedVal
                                   : $$selectedVal[0]
@@ -41600,22 +41781,23 @@ var render = function() {
                           }
                         },
                         [
-                          _c("option", { attrs: { "data-select2-id": "3" } }, [
-                            _vm._v("Select")
-                          ]),
+                          _c("option", [_vm._v("Select")]),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "EL" } }, [
-                            _vm._v("Electronic")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "FA" } }, [
-                            _vm._v("Fashion")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "FI" } }, [
-                            _vm._v("Fitness")
-                          ])
-                        ]
+                          _vm._l(_vm.manufacturers.data, function(
+                            manufacturer,
+                            index
+                          ) {
+                            return _c(
+                              "option",
+                              {
+                                key: index,
+                                domProps: { value: manufacturer.id }
+                              },
+                              [_vm._v(_vm._s(manufacturer.name))]
+                            )
+                          })
+                        ],
+                        2
                       )
                     ])
                   ]),
@@ -41697,22 +41879,23 @@ var render = function() {
                           }
                         },
                         [
-                          _c("option", { attrs: { "data-select2-id": "3" } }, [
-                            _vm._v("Select")
-                          ]),
+                          _c("option", [_vm._v("Select")]),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "EL" } }, [
-                            _vm._v("Electronic")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "FA" } }, [
-                            _vm._v("Fashion")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "FI" } }, [
-                            _vm._v("Fitness")
-                          ])
-                        ]
+                          _vm._l(_vm.manufacturers, function(
+                            manufacturer,
+                            index
+                          ) {
+                            return _c(
+                              "option",
+                              {
+                                key: index,
+                                domProps: { value: manufacturer.id }
+                              },
+                              [_vm._v(_vm._s(manufacturer.name))]
+                            )
+                          })
+                        ],
+                        2
                       )
                     ])
                   ]),
@@ -41764,18 +41947,6 @@ var render = function() {
                         [
                           _c("option", { attrs: { "data-select2-id": "3" } }, [
                             _vm._v("Select")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "EL" } }, [
-                            _vm._v("Electronic")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "FA" } }, [
-                            _vm._v("Fashion")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "FI" } }, [
-                            _vm._v("Fitness")
                           ])
                         ]
                       )
@@ -41940,7 +42111,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("button", { staticClass: "btn btn-primary" }, [
-                  _vm._v("SAVE")
+                  _vm._v("UPDATE")
                 ])
               ])
             ])
@@ -45516,22 +45687,27 @@ var render = function() {
                           }
                         },
                         [
-                          _c("option", { attrs: { "data-select2-id": "3" } }, [
-                            _vm._v("Select")
-                          ]),
+                          _c(
+                            "option",
+                            { attrs: { value: "", disabled: "", hidden: "" } },
+                            [_vm._v("Select")]
+                          ),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "EL" } }, [
-                            _vm._v("Electronic")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "FA" } }, [
-                            _vm._v("Fashion")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "FI" } }, [
-                            _vm._v("Fitness")
-                          ])
-                        ]
+                          _vm._l(_vm.manufacturers.data, function(
+                            manufacturer,
+                            index
+                          ) {
+                            return _c(
+                              "option",
+                              {
+                                key: index,
+                                domProps: { value: manufacturer.id }
+                              },
+                              [_vm._v(_vm._s(manufacturer.name))]
+                            )
+                          })
+                        ],
+                        2
                       )
                     ])
                   ]),
@@ -45613,22 +45789,24 @@ var render = function() {
                           }
                         },
                         [
-                          _c("option", { attrs: { "data-select2-id": "3" } }, [
-                            _vm._v("Select")
-                          ]),
+                          _c(
+                            "option",
+                            { attrs: { value: "", disabled: "", hidden: "" } },
+                            [_vm._v("Select")]
+                          ),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "EL" } }, [
-                            _vm._v("Electronic")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "FA" } }, [
-                            _vm._v("Fashion")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "FI" } }, [
-                            _vm._v("Fitness")
-                          ])
-                        ]
+                          _vm._l(_vm.product_category.data, function(
+                            category,
+                            index
+                          ) {
+                            return _c(
+                              "option",
+                              { key: index, domProps: { value: category.id } },
+                              [_vm._v(_vm._s(category.name))]
+                            )
+                          })
+                        ],
+                        2
                       )
                     ])
                   ]),
@@ -45678,22 +45856,27 @@ var render = function() {
                           }
                         },
                         [
-                          _c("option", { attrs: { "data-select2-id": "3" } }, [
-                            _vm._v("Select")
-                          ]),
+                          _c(
+                            "option",
+                            { attrs: { value: "", disabled: "", hidden: "" } },
+                            [_vm._v("Select")]
+                          ),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "EL" } }, [
-                            _vm._v("Electronic")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "FA" } }, [
-                            _vm._v("Fashion")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "FI" } }, [
-                            _vm._v("Fitness")
-                          ])
-                        ]
+                          _vm._l(_vm.category_types.data, function(
+                            category_type,
+                            index
+                          ) {
+                            return _c(
+                              "option",
+                              {
+                                key: index,
+                                domProps: { value: category_type.id }
+                              },
+                              [_vm._v(_vm._s(category_type.name))]
+                            )
+                          })
+                        ],
+                        2
                       )
                     ])
                   ])
@@ -45706,35 +45889,67 @@ var render = function() {
                         _vm._v("Dosage Form")
                       ]),
                       _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.product.dosage_form,
-                            expression: "product.dosage_form"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          id: "dosage_form",
-                          name: "dosage_form",
-                          type: "text"
-                        },
-                        domProps: { value: _vm.product.dosage_form },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.product.dosage_form,
+                              expression: "product.dosage_form"
                             }
-                            _vm.$set(
-                              _vm.product,
-                              "dosage_form",
-                              $event.target.value
-                            )
+                          ],
+                          staticClass:
+                            "form-control select2 select2-hidden-accessible",
+                          attrs: {
+                            "data-select2-id": "1",
+                            tabindex: "-1",
+                            "aria-hidden": "true"
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.product,
+                                "dosage_form",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
                           }
-                        }
-                      })
+                        },
+                        [
+                          _c(
+                            "option",
+                            { attrs: { value: "", disabled: "", hidden: "" } },
+                            [_vm._v("Select")]
+                          ),
+                          _vm._v(" "),
+                          _vm._l(_vm.dosage_forms.data, function(
+                            dosage_form,
+                            index
+                          ) {
+                            return _c(
+                              "option",
+                              {
+                                key: index,
+                                domProps: { value: dosage_form.id }
+                              },
+                              [_vm._v(_vm._s(dosage_form.name))]
+                            )
+                          })
+                        ],
+                        2
+                      )
                     ])
                   ]),
                   _vm._v(" "),
@@ -45744,35 +45959,67 @@ var render = function() {
                         _vm._v("Drug Class")
                       ]),
                       _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.product.drug_class,
-                            expression: "product.drug_class"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          id: "drug_class",
-                          name: "dosage_class",
-                          type: "text"
-                        },
-                        domProps: { value: _vm.product.drug_class },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.product.drug_class,
+                              expression: "product.drug_class"
                             }
-                            _vm.$set(
-                              _vm.product,
-                              "drug_class",
-                              $event.target.value
-                            )
+                          ],
+                          staticClass:
+                            "form-control select2 select2-hidden-accessible",
+                          attrs: {
+                            "data-select2-id": "1",
+                            tabindex: "-1",
+                            "aria-hidden": "true"
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.product,
+                                "drug_class",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
                           }
-                        }
-                      })
+                        },
+                        [
+                          _c(
+                            "option",
+                            { attrs: { value: "", disabled: "", hidden: "" } },
+                            [_vm._v("Select")]
+                          ),
+                          _vm._v(" "),
+                          _vm._l(_vm.drug_classes.data, function(
+                            drug_class,
+                            index
+                          ) {
+                            return _c(
+                              "option",
+                              {
+                                key: index,
+                                domProps: { value: drug_class.id }
+                              },
+                              [_vm._v(_vm._s(drug_class.name))]
+                            )
+                          })
+                        ],
+                        2
+                      )
                     ])
                   ])
                 ]),
