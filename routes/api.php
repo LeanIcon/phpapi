@@ -39,14 +39,17 @@ Route::apiResource('post', 'PostController');
 
 
 Route::group(['namespace' => 'API'], function() {
+    Route::apiResource('users', 'UserController');
     Route::apiResource('manufacturers', 'ManufacturerController');
     Route::apiResource('category','CategoryController');
     Route::apiResource('product_category','ProductCategoryController');
     Route::apiResource('category_types','CategoryTypesController');
+    Route::apiResource('wholesaler_products','WholesalerProductsController');
     Route::apiResource('dosage_form','DosageFormController');
     Route::apiResource('drug_class','DrugClassController');
-
+    
     Route::group(['prefix' => 'admin'], function() {
+        Route::apiResource('user', 'WholesalerRetailerUserController');
         Route::apiResource('wholesalers','WholesalerController');
         Route::apiResource('retailers','RetailerController');
     });

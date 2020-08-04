@@ -19,7 +19,18 @@ class WholesalerController extends ApiController
 
     public function index(Request $request)
     {
-        $retailers = $this->user::isWholesaler()->with('details')->get();
-        return new UserResource($retailers);
+        $users = $this->user::isWholesaler()->with('details')->get();
+        return new UserResource($users);
+    }
+
+    public function show(Request $request, $id)
+    {
+
+        $users = $this->user::find($id);
+        $data['user'] = $users;
+        $data['details'] = $users->details;
+        $data['products'] = $users->products;
+        return response()->json(['data' => $data]);
+        // return new UserResource($users);
     }
 }

@@ -5,7 +5,7 @@ namespace App\Models;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
-class WholesalerProduct extends Model
+class WholesalerProduct extends ApiModel
 {
     protected $table = 'wholesaler_products';
     protected $fillable = ['batch_number', 'price', 'product_code','expiry_date', 'expiry_status','wholesaler_id','packet_size',
