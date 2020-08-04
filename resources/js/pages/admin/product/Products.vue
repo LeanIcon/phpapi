@@ -41,5 +41,7 @@ export default {
 </script>
 
 <style>
-
+  table > * {
+        font-family: 'Roboto' !important;
+    }
 </style>

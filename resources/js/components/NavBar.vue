@@ -36,10 +36,10 @@
                         </form>
 
                         <div class="dropdown dropdown-mega d-none d-lg-block ml-2">
-                            <button type="button" class="btn header-item waves-effect" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                            <!-- <button type="button" class="btn header-item waves-effect" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
                                 Mega Menu
                                 <i class="mdi mdi-chevron-down"></i> 
-                            </button>
+                            </button> -->
                             <div class="dropdown-menu dropdown-megamenu">
                                 <div class="row">
                                     <div class="col-sm-8">
@@ -189,9 +189,9 @@
                         </div>
 
                         <div class="dropdown d-none d-sm-inline-block">
-                            <button type="button" class="btn header-item waves-effect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <!-- <button type="button" class="btn header-item waves-effect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="" src="assets/images/flags/us.jpg" alt="Header Language" height="16">
-                            </button>
+                            </button> -->
                             <div class="dropdown-menu dropdown-menu-right">
                     
                                 <!-- item-->
@@ -217,9 +217,9 @@
                         </div>
 
                         <div class="dropdown d-none d-lg-inline-block ml-1">
-                            <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <!-- <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="ri-apps-2-line"></i>
-                            </button>
+                            </button> -->
                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                                 <div class="px-lg-2">
                                     <div class="row no-gutters">

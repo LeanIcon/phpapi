@@ -7,6 +7,9 @@ import "./plugins/vuesax/dist/vuesax.min.css";
 import "./plugins/vue-js-modal/styles.css";
 import "./plugins/vue-noty/dist/vuejs-noty.css";
 
+import  "../../public/assets/css/app.css";
+// import  "../../public/assets/css/bootstrap.min.css";
+
 // window.noty = require('vuejs-noty');
 /**
  * First we will load all of this project's JavaScript dependencies which

@@ -11,12 +11,14 @@ import Page404 from './pages/404.vue';
 import AdminProductsPage from './pages/admin/product/Products.vue';
 import AdProductsPage from './pages/admin/product/AddProduct.vue';
 import UserDetailsPage from './pages/UserDetailsPage.vue';
+import RetailerDetailsPage from './pages/RetailerDetailsPage';
 
 
 Vue.use(VueRouter);
 
 const routes = [
     { path: '/', component: LoginPage },
+    { path: '/register', component: LoginPage },
     {
         path: '/admin',
         component: DefaultPage,
@@ -25,6 +27,7 @@ const routes = [
             { path: 'retailers', component: RetailerPage },
             { path: 'wholesalers', component: WholealerPage },
             { path: 'user/details/:userId', component: UserDetailsPage, name: 'user_details', props: true },
+            { path: 'user/page/:userId', component: RetailerDetailsPage, name: 'user_page', props: true },
             { path: 'products', component: AdminProductsPage},
             { path: 'products/add', component: AdProductsPage},
             { path: 'products/edit', component: AdProductsPage},

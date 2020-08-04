@@ -4,7 +4,7 @@
         <div class="card">
             <div class="card-body">
                 <div>
-                    <a href="javascript:void(0);" @click="loadUser" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Retailer</a>
+                    <a href="javascript:void(0);" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Retailer</a>
                 </div>
                 <div class="table-responsive mt-3">
                     <table class="table table-centered datatable dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;" id="DataTables_Table_0">
@@ -16,85 +16,43 @@
                                         <label class="custom-control-label" for="customercheck">&nbsp;</label>
                                     </div>
                                 </th>
-                                <th>Customer</th>
-                                <th>Email</th>
+                                <th>Name</th>
+                                <th>Location</th>
+                                <th>Contact Person</th>
+                                <th>Verification Code</th>
                                 <th>Phone</th>
-                                <th>Wallet Balance</th>
-                                <th>Joining Date</th>
+                                <th>Confirmation</th>
+                                <th>Status</th>
                                 <th style="width: 120px;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customercheck1">
-                                        <label class="custom-control-label" for="customercheck1">&nbsp;</label>
-                                    </div>
-                                </td>
-
-                                <td>Carolyn Harvey</td>
-                                <td>CarolynHarvey@rhyta.com</td>
-                                <td>580-464-4694</td>
-
-                                <td>
-                                    $ 3245
-                                </td>
-                                <td>
-                                    06 Apr, 2020
-                                </td>
-                                <td>
-                                    <a href="javascript:void(0);" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-size-18"></i></a>
-                                    <a href="javascript:void(0);" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customercheck2">
-                                        <label class="custom-control-label" for="customercheck2">&nbsp;</label>
-                                    </div>
-                                </td>
-                                
-                                <td>Angelyn Hardin</td>
-                                <td>AngelynHardin@dayrep.com</td>
-                                <td>913-248-2690</td>
-                                
-                                <td>
-                                    $ 2435
-                                </td>
-                                <td>
-                                    05 Apr, 2020
-                                </td>
-                                <td>
-                                    <a href="javascript:void(0);" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-size-18"></i></a>
-                                    <a href="javascript:void(0);" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
+                            <tr v-for="(user, index) in users.data" :key="index" >
                                 <td>
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="customercheck3">
                                         <label class="custom-control-label" for="customercheck3">&nbsp;</label>
                                     </div>
                                 </td>
-                                
-                                <td>Carrie Thompson</td>
-                                <td>CarrieThompson@rhyta.com</td>
-                                <td>734-819-9286</td>
-                                
+
+                                <td>{{user.name}}</td>
+                                <td>{{user.details.location}}</td>
+                                <td>{{user.details.contact_person}}</td>
+                                <td>{{user.otp}}</td>
+                                <td>{{user.phone}}</td>
+
                                 <td>
-                                    $ 2653
+                                    {{user.is_active}}
                                 </td>
                                 <td>
-                                    04 Apr, 2020
+                                    {{user.pin_confirmed}}
                                 </td>
                                 <td>
-                                    <a href="javascript:void(0);" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-edit font-size-18"></i></a>
-                                    <a href="javascript:void(0);" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash font-size-18"></i></a>
+                                    <a href="javascript:void(0);" @click="editUser(user)" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-edit font-size-18"></i></a>
+                                    <a href="javascript:void(0);" @click="viewUser(user)" class="mr-3 text-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-eye font-size-18"></i></a>
+                                    <a href="javascript:void(0);" @click="deleteUser(user)" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash font-size-18"></i></a>
                                 </td>
                             </tr>
-            
 
                         </tbody>
                     </table>
@@ -102,7 +60,7 @@
             </div>
         </div>
     </div>
-     <modal name="retailer-modal">
+     <modal name="user-modal">
         <div class="card">
             <div class="card-header">
                 Retailer
@@ -111,22 +69,22 @@
                <form action="" class="form" >
                    <div class="row">
                        <div class="col-lg-6 p-1">
-                           <label for="">First Name</label>
-                           <input type="text" class="form-control" >
+                           <label for="">Name</label>
+                           <input v-model="selectedUser.name" type="text" class="form-control" >
                        </div>
                        <div class="col-lg-6 p-1">
-                            <label for="">Last Name</label>
-                           <input type="text" class="form-control" >
+                            <label for="">Email</label>
+                           <input v-model="selectedUser.email" type="text" class="form-control" >
                        </div>
                    </div>
                    <div class="row">
                        <div class="col-lg-6 p-1">
-                            <label for="">Location Name</label>
-                           <input type="text" class="form-control" >
+                            <label for="">Location </label>
+                           <input v-model="selectedUser.location" type="text" class="form-control" >
                        </div>
                        <div class="col-lg-6 p-1">
-                            <label for="">Position Name</label>
-                           <input type="text" class="form-control" >
+                            <label for="">Contact Person</label>
+                           <input v-model="selectedUser.contact_person" type="text" class="form-control" >
                        </div>
                    </div>
                </form>
@@ -140,17 +98,52 @@
 <script>
 export default {
 
-    methods: {
-        loadUser() {
-            this.$modal.show('retailer-modal');
-        },
-        show () {
-            this.$modal.show('retailer-modal');
-        },
-        hide () {
-            this.$modal.hide('retailer-modal');
+    data () {
+        return {
+            users: {},
+            user_details: {},
+            loading: false,
+            selectedUser: {
+                name: '',
+                email: '',
+                phone: '',
+                location: '',
+                contact_person: ''
+            },
+            view: false
         }
-    }
+    },
+
+    methods: {
+        async loadUsers(url = 'retailers') {
+            this.loading = !this.loading
+            const loading = this.$vs.loading();
+            await axios.get(`admin/${url}`)
+            .then(({data}) => {
+                this.users = data
+                this.loading != this.loading
+                loading.close();
+                })
+            .catch((error) => console.log(error))
+        },
+        editUser(user){
+            this.selectedUser.name = user.name;
+            this.selectedUser.email = user.email;
+            this.selectedUser.phone = user.phone;
+            this.selectedUser.location = user.details.location ?? 'na';
+            this.selectedUser.contact_person = user.details.contact_person ;
+            this.$modal.show('user-modal');
+        },
+        viewUser(user){
+            this.$router.push({name: 'user_page', params: {'userId': user.id}})
+        },
+        deleteUser(user){
+
+        },
+    },
+    mounted() {
+        this.loadUsers();
+    },
 
 }
 </script>

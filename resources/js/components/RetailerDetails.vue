@@ -19,7 +19,7 @@
                             <!--end col-->
                             <div class="col-lg-4 ml-auto">
                                 <ul class="list-unstyled personal-detail">
-                                    <li class=""><i class="fa fa-phone mr-2 text-info font-18"></i> <b> phone </b> {{user.phone}}</li>
+                                    <li class=""><i class="fa fa-phone mr-2 text-info font-18"></i> <b> Phone </b> {{user.phone}}</li>
                                     <li class="mt-2"><i class="fa fa-phone text-info font-18 mt-2 mr-2"></i> <b> Email </b> : {{user.email}}</li>
                                     <li class="mt-2"><i class="fa fa-phone text-info font-18 mt-2 mr-2"></i> <b>Location</b> : {{userLocation(user)}}</li>
                                 </ul>
@@ -36,14 +36,15 @@
             <!--end card-->
         </div>
 
-        <div>
+        <div class="row" >
+            <div class="col-lg-12">
             <div class="card">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs profile-tab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-selected="false">Products</a> 
+                        <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-selected="false">Orders</a> 
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-selected="false">Profile</a>
                     </li>
                     <li class="nav-item">
@@ -52,20 +53,19 @@
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div class="tab-pane active" id="home" role="tabpanel">
+                    <div class="tab-pane " id="home" role="tabpanel">
                         <div class="card-body">
-                            <product-table :wholesalerId="user.id" ></product-table>
+                            <!-- <product-table :wholesalerId="wholesaleUser" ></product-table> -->
                         </div>
                     </div>
                     <!--second tab-->
-                    <div class="tab-pane" id="profile" role="tabpanel">
+                    <div class="tab-pane active" id="profile" role="tabpanel">
                         <div class="card-body">
-                           <details-form :userdetails="user.details" ></details-form>
+                           <detail-form :userdetails="user.details" ></detail-form>
                         </div>
                     </div>
                     <div class="tab-pane " id="settings" role="tabpanel">
-                        <div class="card-body">
-                             <div class="col-lg-8 ml-auto mr-auto mt-5">
+                        <div class="col-lg-8 ml-auto mr-auto mt-5">
                         <div class="card-title">Application Wide Settings / Configurations</div>
                         <div class="card-body">
                             <form action="">
@@ -98,9 +98,9 @@
                             </form>
                         </div>
                         </div>
-                        </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
   </div>
@@ -113,7 +113,7 @@ export default {
     props: ['userId'],
     components:{
         'productTable': ProductTableVue,
-        'detailsForm' : DetailsFormVue
+        'detailForm': DetailsFormVue
     },
     data () {
         return {

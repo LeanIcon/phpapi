@@ -33,7 +33,7 @@ class WholesalerRetailerUserController extends ApiController
             return response()->json(['data' => $data]);
         }
         if($checkRoleR){
-            $data[]['user'] = $user;
+            $data['user'] = $user;
             $user->details;
             $user->retailer_orders;
             unset($data['user']['roles']);

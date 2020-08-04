@@ -249,5 +249,8 @@ export default {
 </script>
 
 <style>
-
+     table, input, a, label {
+        font-family: 'Roboto' !important;
+    }
+</style>
 </style>
