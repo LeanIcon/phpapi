@@ -85,8 +85,14 @@ export default {
     },
     methods: {
         loginUser() {
-            console.log(this.user);
+            this.$store.dispatch('account/userLogin', this.user)
+            // this.$store.commit('loginCreds', this.user);
         }
+    },
+    computed: {
+        // useracc() {
+        //     return this.$store.state.account.useraccount;
+        // }
     },
     mounted(){
         console.log("Login Page Mounted..");

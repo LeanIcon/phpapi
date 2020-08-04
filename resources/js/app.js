@@ -6,8 +6,14 @@ import VueNoty from './plugins/vue-noty/dist/vuejs-noty';
 import "./plugins/vuesax/dist/vuesax.min.css";
 import "./plugins/vue-js-modal/styles.css";
 import "./plugins/vue-noty/dist/vuejs-noty.css";
+import store from "./store/store";
 
-import  "../../public/assets/css/app.css";
+
+// import Vuex from 'vuex';
+
+
+// import  "../../public/assets/css/app.css";
+import  "../../public/css/app.css";
 // import  "../../public/assets/css/bootstrap.min.css";
 
 // window.noty = require('vuejs-noty');
@@ -25,6 +31,7 @@ window.Vue = require('vue');
 Vue.use(VueNoty);
 Vue.use(VModal);
 Vue.use(Vuesax);
+// Vue.use(Vuex);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -46,5 +53,6 @@ Vue.use(Vuesax);
 
 const app = new Vue({
     router,
+    store
     // el: '#app',
 }).$mount("#app");
