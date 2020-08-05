@@ -5,8 +5,8 @@
 <div class="card-header text-center">
     NNURO
   </div>
+  <a href="{{route('retailer.retailer_shortagelist')}}" class="btn btn-sm btn-danger pull-right" role="button" aria-pressed="true">Back To Your Shortage List</a><br><br>
 <div class="row">
-    
     <div class="col-lg-3">
         <div class="card">
            <a class="btn btn-default" href="">Purchase Order List
