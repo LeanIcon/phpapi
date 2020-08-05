@@ -160,7 +160,7 @@
                                 <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right mt-1">11</span><i class="ri-settings-2-line align-middle mr-1"></i> Settings</a>
                                 <a class="dropdown-item" href="#"><i class="ri-lock-unlock-line align-middle mr-1"></i> Lock screen</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="#"><i class="ri-shut-down-line align-middle mr-1 text-danger"></i> Logout</a>
+                                <a class="dropdown-item text-danger" @click.prevent="logout"><i class="ri-shut-down-line align-middle mr-1 text-danger"></i> Logout</a>
                             </div>
                         </div>
 
@@ -180,11 +180,15 @@ export default {
     computed: {
         loggedInUser() {
             return this.$store.getters.account;
+        },
+    },
+    methods: {
+        logout() {
+            this.$store.dispatch('account/userLogout')
         }
     },
     mounted(){
         console.log("Nav Bar Mounted..");
-        console.log(this.loggedInUser);
     }
 }
 </script>

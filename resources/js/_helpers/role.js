@@ -6,3 +6,10 @@ export const Role = {
     Retailer: 'Retailer',
     User: 'User'
 };
+
+
+export const UserTypes = {
+    admin: 'admin',
+    wholesaler: 'wholesaler',
+    retailer: 'retailer'
+};

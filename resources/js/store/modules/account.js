@@ -6,9 +6,8 @@ const state = {
 
     authUser: {},
     isAuth: false,
-    accountGetter: {
-        name: "James Bond"
-    },
+    userType: null,
+    userRole: []
 };
 
 const mutations = {
@@ -17,7 +16,16 @@ const mutations = {
         localStorage.setItem('auth', true);
         state.authUser = JSON.parse(localStorage.getItem('user'));
         state.isAuth = JSON.parse(localStorage.getItem('auth'));
+        state.userType = data.user.type;
+        state.userRole = data.user.role;
         router.push({name: 'admin'});
+    },
+    'USER_LOGOUT'(state){
+        localStorage.removeItem('user');
+        localStorage.removeItem('auth');
+        state.authUser = {};
+        state.isAuth = false;
+        router.replace('/login');
     }
 };
 
@@ -31,6 +39,9 @@ const actions = {
         }).catch(({response}) =>{
             console.log(response.data);
         });
+    },
+    userLogout({commit}){
+            commit('USER_LOGOUT');
     }
 
 };
@@ -42,10 +53,9 @@ const getters = {
     userAuth: state => {
         return state.isAuth;
     },
-    returnFrmAccGetter: state => {
-        return state.accountGetter;
-    }
-
+    userType: state => {
+        return state.userType;
+    },
 };
 
 

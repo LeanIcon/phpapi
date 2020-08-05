@@ -1,6 +1,9 @@
 /*jshint esversion:8 */
 import Vue  from 'vue';
 import VueRouter  from "vue-router";
+import store from './store/store';
+import { UserTypes } from './_helpers/role';
+
 // import Login  from "./components/Login.vue";
 import LoginPage  from "./pages/LoginPage.vue";
 import DashboardPage from './pages/DashboardPage.vue';
@@ -11,20 +14,36 @@ import Page404 from './pages/404.vue';
 import AdminProductsPage from './pages/admin/product/Products.vue';
 import AdProductsPage from './pages/admin/product/AddProduct.vue';
 import UserDetailsPage from './pages/UserDetailsPage.vue';
-import RetailerDetailsPage from './pages/RetailerDetailsPage';
+import RetailerDetailsPage from './pages/RetailerDetailsPage.vue';
+import WholesaleDashboardPage from './pages/wholesaler/WholesalerDashboardPage.vue';
+import RetailDashboardPage from './pages/retailer/RetailerDashboardPage.vue';
+import BasicLayout from './layouts/BasicLayout';
+import RegisterPage from './pages/RegisterPage';
+import RecoverPasswordPage from './pages/RecoverPasswordPage.vue';
 
 
 Vue.use(VueRouter);
 
 const routes = [
-    { path: '/', component: LoginPage },
-    { path: '/register', component: LoginPage },
-    { path: '/login', component: LoginPage },
+    {
+        path: '/',
+        component: BasicLayout,
+        meta: {redirectIfAuthenticated: true },
+        children: [
+            { path: '/', component: LoginPage },
+            { path: 'login', component: LoginPage },
+            { path: 'register', component: RegisterPage },
+            { path: '/register', component: RegisterPage },
+            { path: '/recover_password', component: RecoverPasswordPage },
+        ]
+    },
     {
         path: '/admin',
         component: DefaultPage,
+        meta: {requiredAuth: true},
         children: [
             { path: '/', component: DashboardPage,  name: 'admin' },
+            { path: '/dashboard', component: DashboardPage,  name: 'admin.dashboard' },
             { path: 'retailers', component: RetailerPage },
             { path: 'wholesalers', component: WholealerPage },
             { path: 'user/details/:userId', component: UserDetailsPage, name: 'user_details', props: true },
@@ -41,7 +60,8 @@ const routes = [
         path: '/wholesale',
         component: DefaultPage,
         children: [
-            { path: '/', component: DashboardPage, name: 'wholesaler' },
+            { path: '/', component: WholesaleDashboardPage, name: 'wholesaler' },
+            { path: '/dashboard', component: WholesaleDashboardPage, name: 'wholesaler.dashboard' },
             { path: 'retailers', component: RetailerPage },
             { path: 'user/details/:userId', component: UserDetailsPage, name: 'wholesale_details', props: true },
             { path: 'user/page/:userId', component: RetailerDetailsPage, name: 'wholesale_page', props: true },
@@ -56,7 +76,8 @@ const routes = [
         path: '/retail',
         component: DefaultPage,
         children: [
-            { path: '/', component: DashboardPage,  name: 'retailer' },
+            { path: '/', component: RetailDashboardPage,  name: 'retailer' },
+            { path: '/dashboard', component: RetailDashboardPage,  name: 'retailer.dashboard' },
             { path: 'wholesalers', component: WholealerPage },
             { path: 'user/details/:userId', component: UserDetailsPage, name: 'retail_details', props: true },
             { path: 'user/page/:userId', component: RetailerDetailsPage, name: 'retail_page', props: true },
@@ -67,6 +88,8 @@ const routes = [
             { path: '*', component: Page404 },
         ]
     },
+    
+    { path: '*', component: Page404 },
 
 ];
 
@@ -83,14 +106,74 @@ const router = new VueRouter({
     }
 });
 
-router.beforeEach((to, from, next) => {
-    const publicPages = ['/login', '/register', 'home','/'];
+
+// const authWholesaler = (to, from, next) => {
+//     if (store.getters['account/userType'] == UserTypes.wholesaler) {
+//         next({name: 'wholesaler'});
+//         return;
+//     } else {
+//         next();
+//     }
+// };
+
+// const authRetailer = (to, from, next) => {
+//     if (store.getters['account/userType'] == UserTypes.retailer) {
+//         next({name: 'retailer'});
+//         return;
+//     } else {
+//         next();
+//     }
+// };
+
+// const authAdmin = (to, from, next) => {
+//     if (store.getters['account/userType'] == UserTypes.retailer) {
+//         next({name: 'retailer'});
+//         return;
+//     } else {
+//         next();
+//     }
+// };
+
+// const authSysAdmin = store.getters['account/userType'];
+
+router.beforeEach( async (to, from, next) => {
+    const publicPages = ['/login', '/register', 'home','/', '/recover_password'];
     const authRequired = !publicPages.includes(to.path);
     const loggedIn = localStorage.getItem('user');
+    const isAuth = localStorage.getItem('user');
+
+    const checkAuth = await store.getters['account/userAuth'];
+    const checType = await store.getters['account/userType'];
+
+
+    // if(checkAuth) {
+
+    // }
+    
+    if (to.matched.some(m => m.meta.redirectIfAuthenticated) && isAuth) {
+        return next('/admin/dashboard');
+    }
+
 
     // let isPermitted = _.includes()
 
-    if (authRequired && !loggedIn) {
+    // if(to.matched.some(m => m.meta.requiredAuth)) {
+
+    //     if(store.getters['account/userAuth']) {
+    //         if (authSysAdmin == UserTypes.admin) {
+    //             next('/admin');
+    //         }
+    //         if (authSysAdmin == UserTypes.retailer) {
+    //             next('/retailer');
+    //         }
+    //         if (authSysAdmin == UserTypes.wholesaler) {
+    //             next('/wholesaler');
+    //         }
+    //     }
+    //     next('/login');
+    // }
+
+    if (authRequired && !loggedIn ) {
         next('/login');
     } else {
         next();
