@@ -11,19 +11,26 @@ use App\Models\WholesalerProduct;
 use App\Models\PurchaseOrderItems;
 use App\Models\Shortage_listx;
 use App\Http\Controllers\Controller;
+use App\User;
+use App\Models\Location;
+use App\Models\Region;
+use App\Models\UserDetails;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class RetailerCartController extends Controller
 {
     public $product, $wholesalerProduct, $purchaseOrders, $purchaseOrderItems, $shortage_listx;
-    public function __construct(Product $product, WholesalerProduct $wholesalerProduct, PurchaseOrders $purchaseOrders, PurchaseOrderItems $purchaseOrderItems, Shortage_listx $shortage_listx )
+    public function __construct(Product $product, WholesalerProduct $wholesalerProduct, PurchaseOrders $purchaseOrders, PurchaseOrderItems $purchaseOrderItems, Shortage_listx $shortage_listx, User $user,Location $locations,UserDetails $userDetails )
     {
         $this->product = $product;
         $this->wholesalerProduct = $wholesalerProduct;
         $this->purchaseOrders = $purchaseOrders;
         $this->purchaseOrderItems = $purchaseOrderItems;
         $this->shortage_listx = $shortage_listx;
+        $this->user = $user;
+        $this->locations  = $locations;
+        $this->userDetails = $userDetails;
     }
     /**
      * Display a listing of the resource.
@@ -70,10 +77,21 @@ class RetailerCartController extends Controller
     public function createpofromshortage(Request $request, $wholesaler)
     {
         $userId = Auth::user()->id;
-        $wholesaler = session()->put('wholesaler', $wholesaler);
-
+      //  $wholesaler = session()->put('wholesaler', $wholesaler);
+      //  return $wholesaler;
+        $wholesaler = $this->user::find($wholesaler);
         $options = array();
         $shortage_listx = $this->shortage_listx::find($request->id);
+        
+        $details = $wholesaler->details;
+
+        $regions = $this->locations::find($details->town_id)->region;
+        $locations = $this->locations::find($details->town_id);
+        $products = $wholesaler->products;
+
+        // $regions =Region::all();
+        $selectedRegion=Region::where('id','=',$details->town_id)->get();
+        $locations=Location::where('region_id','=',$details->town_id)->get();
         //return $product;
         Alert::success('Success',$shortage_listx->product_name.' added to Purchase Order sucessfully');
 
@@ -82,7 +100,7 @@ class RetailerCartController extends Controller
         
 
        // return back();
-         return redirect()->route('retailer.wholesaler.show');
+         return view('admin.pages.retailers.wholesaler_details', compact('wholesaler','products', 'details','locations','selectedRegion','regions'));
     }
 
 
