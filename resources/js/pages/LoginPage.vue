@@ -10,7 +10,7 @@ export default {
 
     components: {
         'login': LoginVue
-    }
+    },
 
 }
 </script>

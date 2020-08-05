@@ -1,10 +1,10 @@
 /*jshint esversion:8 */
 // import 
-const API_URL = 'http:127.0.0.1:8000/api';
+// const API_URL = 'http:127.0.0.1:8000/api';
 class AuthService {
     login(user) {
         return axios
-            .post(API_URL + 'login', {
+            .post('login', {
                 username: user.name,
                 password: user.password
             })
@@ -21,7 +21,7 @@ class AuthService {
     }
 
     register(user){
-        return axios.post(API_URL + 'register', {
+        return axios.post('register', {
             username: user.name,
             email: user.email,
             password: user.password

@@ -4,7 +4,7 @@
             <div class="card-body">
                 <div>
                     <router-link to="products/add" class="btn btn-success mb-2">
-                        <i class="fa fa-plus-square"></i>
+                        <i class="fas fa-plus-square"></i>
                         Add Product
                     </router-link>
                     <!-- <a href="javascript:void(0);" @click="loadUser" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Product</a> -->

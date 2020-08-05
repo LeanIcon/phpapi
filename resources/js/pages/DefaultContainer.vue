@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-bar></nav-bar>
+    <nav-bar :authUser="authUser" ></nav-bar>
     <side-bar></side-bar>
     <right-bar></right-bar>
     <div class="main-content">
@@ -27,7 +27,19 @@ export default {
         'sideBar' : SidebarVue,
         'rightBar' : RightBarVue,
         'breadCrumb': BreadCrumbVue
-    }
+    },
+    computed: {
+      userLogin() {
+         return  this.$store.getters.account;
+       },
+       authUser() {
+           return this.$store.getters['account/loggedInUser'];
+        }
+       
+    },
+    mounted() {
+      console.log("Default Container Mounted", this.authUser)
+    },
 
 }
 </script>

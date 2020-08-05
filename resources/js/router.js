@@ -24,7 +24,7 @@ const routes = [
         path: '/admin',
         component: DefaultPage,
         children: [
-            { path: '/', component: DashboardPage },
+            { path: '/', component: DashboardPage,  name: 'admin' },
             { path: 'retailers', component: RetailerPage },
             { path: 'wholesalers', component: WholealerPage },
             { path: 'user/details/:userId', component: UserDetailsPage, name: 'user_details', props: true },
@@ -34,6 +34,36 @@ const routes = [
             { path: 'products/edit', component: AdProductsPage},
             { path: 'products/view', component: AdProductsPage},
             { path: 'settings', component: DashboardPage },
+            { path: '*', component: Page404 },
+        ]
+    },
+    {
+        path: '/wholesale',
+        component: DefaultPage,
+        children: [
+            { path: '/', component: DashboardPage, name: 'wholesaler' },
+            { path: 'retailers', component: RetailerPage },
+            { path: 'user/details/:userId', component: UserDetailsPage, name: 'wholesale_details', props: true },
+            { path: 'user/page/:userId', component: RetailerDetailsPage, name: 'wholesale_page', props: true },
+            { path: 'products', component: AdminProductsPage},
+            { path: 'products/add', component: AdProductsPage},
+            { path: 'products/edit', component: AdProductsPage},
+            { path: 'products/view', component: AdProductsPage},
+            { path: '*', component: Page404 },
+        ]
+    },
+    {
+        path: '/retail',
+        component: DefaultPage,
+        children: [
+            { path: '/', component: DashboardPage,  name: 'retailer' },
+            { path: 'wholesalers', component: WholealerPage },
+            { path: 'user/details/:userId', component: UserDetailsPage, name: 'retail_details', props: true },
+            { path: 'user/page/:userId', component: RetailerDetailsPage, name: 'retail_page', props: true },
+            { path: 'products', component: AdminProductsPage},
+            { path: 'products/add', component: AdProductsPage},
+            { path: 'products/edit', component: AdProductsPage},
+            { path: 'products/view', component: AdProductsPage},
             { path: '*', component: Page404 },
         ]
     },
@@ -57,6 +87,8 @@ router.beforeEach((to, from, next) => {
     const publicPages = ['/login', '/register', 'home','/'];
     const authRequired = !publicPages.includes(to.path);
     const loggedIn = localStorage.getItem('user');
+
+    // let isPermitted = _.includes()
 
     if (authRequired && !loggedIn) {
         next('/login');

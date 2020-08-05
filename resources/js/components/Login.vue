@@ -87,15 +87,18 @@ export default {
         loginUser() {
             this.$store.dispatch('account/userLogin', this.user)
             // this.$store.commit('loginCreds', this.user);
-        }
+        },
     },
     computed: {
-        // useracc() {
-        //     return this.$store.state.account.useraccount;
-        // }
+        useracc() {
+            return this.$store.state.account.isAuth;
+        },
+        authUser() {
+           return this.$store.getters['account/returnFrmAccGetter'];
+        }
     },
     mounted(){
-        console.log("Login Page Mounted..");
+        
     }
 
 }

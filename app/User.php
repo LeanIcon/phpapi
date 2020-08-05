@@ -50,7 +50,7 @@ class User extends Authenticatable implements JWTSubject, CommonModel
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'roles'
     ];
 
     /**
