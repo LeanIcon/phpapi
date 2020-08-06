@@ -7,6 +7,7 @@ import "./plugins/vuesax/dist/vuesax.min.css";
 import "./plugins/vue-js-modal/styles.css";
 import "./plugins/vue-noty/dist/vuejs-noty.css";
 import store from "./store/store";
+import Modal from 'vmodal';
 
 
 // import Vuex from 'vuex';
@@ -29,8 +30,9 @@ window.Vue = require('vue');
 
 // Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.use(VueNoty);
-Vue.use(VModal);
+Vue.use(VModal, {dynamicDefault: { draggable: true, resizable: true , height: "auto"} });
 Vue.use(Vuesax);
+Vue.component('modemodal', Modal);
 // Vue.use(Vuex);
 /**
  * The following block of code may be used to automatically register your

@@ -185,6 +185,9 @@ export default {
     methods: {
         logout() {
             this.$store.dispatch('account/userLogout')
+            .then(() => {
+                this.$router.push('/login')
+            })
         }
     },
     mounted(){

@@ -14,6 +14,13 @@ export default new Vuex.Store({
         account
     },
     plugins: [createPersistedState({
+        key: 'vuex',
+        reducer(val){
+            if (val.account.isAuth === false) {
+                return {};
+            }
+            return val;
+        },
         storage: {
             getItem: (key) => ls.get(key),
             setItem: (key, value) => ls.set(key, value),

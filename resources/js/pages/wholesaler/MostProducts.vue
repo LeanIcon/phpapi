@@ -10,18 +10,15 @@
                     <button class="btn btn-primary" @click="previewSelectedItems" >
                         <i class="ri-file-list-fill"></i>
                         Preview Select Products</button>
+                    <button class="btn btn-primary" @click="lookNewModal" >
+                        <i class="ri-file-list-fill"></i>
+                        Look New Modal</button>
                     <!-- <a href="javascript:void(0);" @click="loadUser" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Product</a> -->
                 </div>
                 <div class="table-responsive mt-3">
                     <table class="table table-centered dt-responsive nowrap no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead class="thead-light">
                             <tr>
-                                <!-- <th style="width: 20px;">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customercheck">
-                                        <label class="custom-control-label" for="customercheck">&nbsp;</label>
-                                    </div>
-                                </th> -->
                                 <th>Product Name</th>
                                 <th>Product Description</th>
                                 <th>Manufacturer</th>
@@ -32,12 +29,6 @@
                         </thead>
                         <tbody>
                             <tr v-for="(product, index) in products.data" :key="index" >
-                                <!-- <td>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customercheck3">
-                                        <label class="custom-control-label" for="customercheck3">&nbsp;</label>
-                                    </div>
-                                </td> -->
 
                                 <td>{{product.name}}</td>
                                 <td>{{productDesc(product)}}</td>
@@ -58,7 +49,6 @@
                 </div>
             </div>
             <div class="col-md-12" v-show="products.links && products.meta" >
-                <!-- <pagination :data="laravelData" v-on:pagination-change-page="getResults"></pagination> -->
             <nav >
                 <ul class="pagination" style="cursor:pointer" >
                     <li class="page-item" :class="{'disabled': !products.links.prev , 'active': products.links.prev != null}">
@@ -72,15 +62,21 @@
             </nav>
             </div>
         </div>
+
         <modal name="product-preview-modal"
             :width="700"
-            :height="500"
-            :adaptive="true" >
+            :adaptive="true"
+            :height="600"
+             >
             <div class="card">
             <div class="card-header">
                 SELECTED LIST
             </div>
             <div class="card-body">
+                <button class="btn btn-primary" @click="saveBulkSave" >
+                        <i class="ri-file-list-fill"></i>
+                        SAVE
+                </button>
             <div class="table-responsive mt-3">
                     <table class="table table-centered dt-responsive nowrap no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead class="thead-light">
@@ -89,7 +85,7 @@
                                 <th>Product Description</th>
                                 <th>Manufacturer</th>
                                 <th>Packet Size</th>
-                                <th>Price</th>
+                                <th>Price(&cent;)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -99,7 +95,7 @@
                                 <td>{{product.manufacturer.name}}</td>
                                 <td>{{product.packet_size}}</td>
                                 <td style="width: 75px;" >
-                                    <input v-model="product.price" type="text" class="form-control">
+                                    {{product.price}}
                                 </td>
                             </tr>
 
@@ -148,6 +144,9 @@ export default {
             this.product.strenght = product.strenght
             this.product.packet_size = product.packet_size
         },
+        lookNewModal(){
+            this.$refs.somemodal.show();
+        },
         updateCheck(){
             if(this.selected_products.length == this.products.data.length) {
                 this.isCheckAll = true;
@@ -157,6 +156,18 @@ export default {
             // this.selected_products.push(event.target.value);
             console.log(this.selected_products);
             console.log(Object.values(this.selected_products).length);
+        },
+       async saveBulkSave(){
+            this.loading = !this.loading
+            const loading = this.$vs.loading();
+            const data = this.selected_products
+            await axios.post('save_bulk', data, {headers: {'Content-type': 'application/json'}})
+                .then(({data}) => {
+                    console.log(data)
+                    this.loading != this.loading
+                    loading.close();
+                    })
+                .catch(({response}) => console.log(response.data))
         },
         openLoader(){
             if (this.loading) {
@@ -194,7 +205,6 @@ export default {
         async loadManufacturers() {
             await axios.get('manufacturers')
             .then(({data}) => {
-                console.log(data.data);
                 this.manufacturers = data
             })
             .catch(({response}) => console.log(response))

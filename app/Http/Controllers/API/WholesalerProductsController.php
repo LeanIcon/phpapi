@@ -14,4 +14,11 @@ class WholesalerProductsController extends ApiController
     {
         parent::__construct($wholesalerProducts);
     }
+
+
+    public function bulkSave(Request $request)
+    {
+        $data =[];
+        return $request;
+    }
 }

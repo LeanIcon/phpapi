@@ -19,14 +19,14 @@ const mutations = {
         state.userType = data.user.type;
         state.userRole = data.user.role;
         // router.push({name: 'admin'});
-        router.forward();
+        location.reload();
     },
     'USER_LOGOUT'(state){
-        localStorage.removeItem('user');
-        localStorage.removeItem('auth');
-        state.authUser = {};
+        // localStorage.removeItem('user');
+        // localStorage.removeItem('auth');
+        // state.authUser = {};
         state.isAuth = false;
-        router.replace('/login');
+        // router.replace('/login');
     }
 };
 
@@ -41,8 +41,17 @@ const actions = {
             console.log(response.data);
         });
     },
-    userLogout({commit}){
+    userLogout: ({commit, dispatch}) => {
+        return new Promise((resolve, reject) => {
             commit('USER_LOGOUT');
+            state.isAuth = false;
+            localStorage.removeItem('user');
+            localStorage.removeItem('auth');
+            localStorage.removeItem('vuex');
+            state.authUser = {};
+            resolve();
+            // router.replace('/login');
+        });
     }
 
 };
