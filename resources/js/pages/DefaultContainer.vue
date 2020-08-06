@@ -61,8 +61,6 @@ export default {
         }
     },
     mounted() {
-      console.log("Default Container Mounted User", this.authUser, "User Admin: ", this.isAdmin, "Wholesaler: ", this.isWholesaler, "Retailer: ", this.isRetailer)
-      console.table(UserTypes);
     },
 
 }

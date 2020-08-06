@@ -20,6 +20,8 @@ import RetailDashboardPage from './pages/retailer/RetailerDashboardPage.vue';
 import BasicLayout from './layouts/BasicLayout';
 import RegisterPage from './pages/RegisterPage';
 import RecoverPasswordPage from './pages/RecoverPasswordPage.vue';
+import WholesalerProducts from './pages/wholesaler/WholesalerProducts.vue';
+import WholesalerProductAdd from './pages/wholesaler/WholesalerProductAdd.vue';
 
 
 Vue.use(VueRouter);
@@ -65,10 +67,10 @@ const routes = [
             { path: 'retailers', component: RetailerPage },
             { path: 'user/details/:userId', component: UserDetailsPage, name: 'wholesale_details', props: true },
             { path: 'user/page/:userId', component: RetailerDetailsPage, name: 'wholesale_page', props: true },
-            { path: 'products', component: AdminProductsPage},
-            { path: 'products/add', component: AdProductsPage},
-            { path: 'products/edit', component: AdProductsPage},
-            { path: 'products/view', component: AdProductsPage},
+            { path: 'products', component: WholesalerProducts},
+            { path: 'products/add', component: WholesalerProductAdd},
+            { path: 'products/edit', component: WholesalerProductAdd},
+            { path: 'products/view', component: WholesalerProductAdd},
             { path: '*', component: Page404 },
         ]
     },
@@ -88,7 +90,6 @@ const routes = [
             { path: '*', component: Page404 },
         ]
     },
-    
     { path: '*', component: Page404 },
 
 ];
@@ -144,14 +145,27 @@ router.beforeEach( async (to, from, next) => {
 
     const checkAuth = await store.getters['account/userAuth'];
     const checType = await store.getters['account/userType'];
+    console.log("Auth User Type ", checType);
 
 
-    // if(checkAuth) {
-
-    // }
-    
     if (to.matched.some(m => m.meta.redirectIfAuthenticated) && isAuth) {
-        return next('/admin/dashboard');
+        if(checType == UserTypes.admin){
+            console.log("IS ADMIN ROOUTE");
+            next({name: 'admin'});
+            return;
+        }
+        if(checType == UserTypes.wholesaler){
+            console.log("IS W ROOUTE");
+            next({name: 'wholesaler'});
+            return;
+        }
+        if(checType == UserTypes.retailer){
+            console.log("IS R ROOUTE");
+            next({name: 'retailer'});
+            return;
+        }else{
+            next();
+        }
     }
 
 

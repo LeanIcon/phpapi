@@ -39,8 +39,9 @@
                                     {{product.price.toLocaleString()}}
                                 </td>
                                <td>
-                                    <a href="javascript:void(0);" @click.prevent="editProduct(product)" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-edit font-size-18"></i></a>
-                                    <a href="javascript:void(0);" @click.prevent="viewProduct(product)" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash font-size-18"></i></a>
+                                    <a href="javascript:void(0);" @click.prevent="editProduct(product)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-edit-box-fill font-size-18"></i></a>
+                                    <a href="javascript:void(0);" @click.prevent="viewProduct(product)" class="mr-1 text-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-eye-fill font-size-18"></i></a>
+                                    <a href="javascript:void(0);" @click.prevent="deleteProduct(product)" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="ri-delete-bin-line font-size-18"></i></a>
                                 </td>
                             </tr>
             
@@ -86,11 +87,14 @@ export default {
                 })
             .catch((error) => console.log(error))
         },
-        editProduct() {
-
+        editProduct(product) {
+            this.$emit('editItem', product);
         },
-        viewProduct(){
-
+        viewProduct(product){
+             console.log('View Product', product);
+        },
+        deleteProduct(product){
+             console.log('Delete Product', product);
         },
         productDesc(product){
             let active_ing = product.active_ingredients ?? '';

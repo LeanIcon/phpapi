@@ -3,51 +3,55 @@
         <div class="card">
             <div class="card-body">
                 <div>
-                    <router-link to="products/add" class="btn btn-success mb-2">
+                    <!-- <router-link to="products/add" class="btn btn-success mb-2">
                         <i class="ri-add-box-line"></i>
                         Add Product
-                    </router-link>
+                    </router-link> -->
+                    <button class="btn btn-primary" @click="previewSelectedItems" >
+                        <i class="ri-file-list-fill"></i>
+                        Preview Select Products</button>
                     <!-- <a href="javascript:void(0);" @click="loadUser" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Product</a> -->
                 </div>
                 <div class="table-responsive mt-3">
                     <table class="table table-centered dt-responsive nowrap no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead class="thead-light">
                             <tr>
-                                <th style="width: 20px;">
+                                <!-- <th style="width: 20px;">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="customercheck">
                                         <label class="custom-control-label" for="customercheck">&nbsp;</label>
                                     </div>
-                                </th>
+                                </th> -->
                                 <th>Product Name</th>
                                 <th>Product Description</th>
                                 <th>Manufacturer</th>
                                 <th>Packet Size</th>
+                                <th>Price</th>
                                 <th style="width: 120px;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="(product, index) in products.data" :key="index" >
-                                <td>
+                                <!-- <td>
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="customercheck3">
                                         <label class="custom-control-label" for="customercheck3">&nbsp;</label>
                                     </div>
-                                </td>
+                                </td> -->
 
                                 <td>{{product.name}}</td>
                                 <td>{{productDesc(product)}}</td>
                                 <td>{{product.manufacturer.name}}</td>
-
-                                <td>
-                                    {{product.packet_size}}
+                                <td>{{product.packet_size}}</td>
+                                <td style="width: 150px;" >
+                                    <input v-model="product.price" type="text" class="form-control">
                                 </td>
-                               <td>
-                                    <a href="javascript:void(0);" @click.prevent="editProduct(product)" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-edit-box-fill font-size-18"></i></a>
-                                    <a href="javascript:void(0);" @click.prevent="viewProduct(product)" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="ri-delete-bin-line font-size-18"></i></a>
+                                <td>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox"  v-model="selected_products" :value="product" @change="updateCheck()"  >
+                                    </div>
                                 </td>
                             </tr>
-            
 
                         </tbody>
                     </table>
@@ -60,7 +64,7 @@
                     <li class="page-item" :class="{'disabled': !products.links.prev , 'active': products.links.prev != null}">
                     <a class="page-link" @click="getPrevPage" >Previous</a>
                     </li>
-                    <span class="mr-3"></span>
+                        <span class="mr-3"></span>
                     <li class="page-item" :class="{'disabled': !products.links.next, 'active': products.links.next != null}">
                     <a class="page-link" @click="getNextPage" >Next</a>
                     </li>
@@ -68,95 +72,52 @@
             </nav>
             </div>
         </div>
-     <modal name="product-modal"
+        <modal name="product-preview-modal"
             :width="700"
             :height="500"
-            :adaptive="true"
-     >
-        <div class="card">
+            :adaptive="true" >
+            <div class="card">
             <div class="card-header">
-                PRODUCT
+                SELECTED LIST
             </div>
             <div class="card-body">
-               <form action="" class="form" >
-                   <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="manufacturername">Manufacturer</label>
-                         <select v-model="product.manufacturer.id" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                            <option>Select</option>
-                            <option :value="manufacturer.id"  v-for="(manufacturer, index) in manufacturers.data" :key="index" >{{manufacturer.name}}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="name">Product Name</label>
-                        <input v-model="product.name" id="name" name="name" type="text" class="form-control">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="control-label">Category</label>
-                        <select v-model="product.category" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                            <option>Select</option>
-                            <option :value="manufacturer.id"  v-for="(manufacturer, index) in manufacturers" :key="index" >{{manufacturer.name}}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="control-label">Category Type</label>
-                        <select v-model="product.category_type" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                            <option data-select2-id="3">Select</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-              <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="manufacturername">Dosage Form</label>
-                        <input  v-model="product.dosage_form" id="dosage_form" name="dosage_form" type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="manufacturerbrand">Drug Class</label>
-                        <input v-model="product.drug_class" id="drug_class" name="dosage_class" type="text" class="form-control">
-                    </div>
-                </div>
-            </div>
-              <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="strenght">Strenght</label>
-                        <input  v-model="product.strenght" id="strenght" name="strenght" type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="packet_size">Packet Size</label>
-                        <input v-model="product.packet_size" id="packet_size" name="packet_size" type="text" class="form-control">
-                    </div>
-                </div>
-            </div>
-                <button class="btn btn-primary" >UPDATE</button>
-                </form>
-            </div>
-        </div>
-    </modal>
-  </div>
-</template>
+            <div class="table-responsive mt-3">
+                    <table class="table table-centered dt-responsive nowrap no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Product Description</th>
+                                <th>Manufacturer</th>
+                                <th>Packet Size</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(product, index) in selected_products" :key="index" >
+                                <td>{{product.name}}</td>
+                                <td>{{productDesc(product)}}</td>
+                                <td>{{product.manufacturer.name}}</td>
+                                <td>{{product.packet_size}}</td>
+                                <td style="width: 75px;" >
+                                    <input v-model="product.price" type="text" class="form-control">
+                                </td>
+                            </tr>
 
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+        </modal>
+</div>
+</template>
 <script>
 export default {
 
     data () {
         return {
-             product: {
+            product: {
+                id: '',
                 manufacturer: '',
                 name: '',
                 category: '',
@@ -164,17 +125,20 @@ export default {
                 dosage_form: '',
                 drug_class: '',
                 strenght: '',
-                packet_size: ''
+                packet_size: '',
+                price: ''
             },
             products: {},
             manufacturers: {},
             links: {},
+            selected_products: [],
+            isCheckAll: false,
             loading: false
         }
     },
     methods: {
-        editProduct(product){
-            this.$modal.show('product-modal');
+        previewSelectedItems(product){
+            this.$modal.show('product-preview-modal');
             this.product.name = product.name
             this.product.manufacturer = product.manufacturer
             this.product.category = product.category
@@ -183,6 +147,16 @@ export default {
             this.product.drug_class = product.drug_class
             this.product.strenght = product.strenght
             this.product.packet_size = product.packet_size
+        },
+        updateCheck(){
+            if(this.selected_products.length == this.products.data.length) {
+                this.isCheckAll = true;
+            }else{
+                this.isCheckAll = false;
+            }
+            // this.selected_products.push(event.target.value);
+            console.log(this.selected_products);
+            console.log(Object.values(this.selected_products).length);
         },
         openLoader(){
             if (this.loading) {
@@ -249,8 +223,7 @@ export default {
 </script>
 
 <style>
-     table, input, a, label {
+     /* table, input, a, label {
         font-family: 'Roboto' !important;
-    }
-</style>
+    } */
 </style>

@@ -1,76 +1,23 @@
 <template>
   <div>
-        <div class="card">
-            <div class="card-body">
-                <div>
-                    <router-link to="products/add" class="btn btn-success mb-2">
-                        <i class="ri-add-box-line"></i>
-                        Add Product
-                    </router-link>
-                    <!-- <a href="javascript:void(0);" @click="loadUser" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Product</a> -->
+      <div class="card">
+          <div class="card-body">
+              <div>
+                <router-link to="products/add" class="btn btn-success mb-2">
+                    <i class="ri-add-box-line"></i>
+                    Add Product
+                </router-link>
+                <router-link to="products/add" class="btn btn-primary mb-2">
+                    <i class="ri-inbox-unarchive-fill"></i>
+                    UPLOAD
+                </router-link>
                 </div>
-                <div class="table-responsive mt-3">
-                    <table class="table table-centered dt-responsive nowrap no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                        <thead class="thead-light">
-                            <tr>
-                                <th style="width: 20px;">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customercheck">
-                                        <label class="custom-control-label" for="customercheck">&nbsp;</label>
-                                    </div>
-                                </th>
-                                <th>Product Name</th>
-                                <th>Product Description</th>
-                                <th>Manufacturer</th>
-                                <th>Packet Size</th>
-                                <th style="width: 120px;">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(product, index) in products.data" :key="index" >
-                                <td>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customercheck3">
-                                        <label class="custom-control-label" for="customercheck3">&nbsp;</label>
-                                    </div>
-                                </td>
-
-                                <td>{{product.name}}</td>
-                                <td>{{productDesc(product)}}</td>
-                                <td>{{product.manufacturer.name}}</td>
-
-                                <td>
-                                    {{product.packet_size}}
-                                </td>
-                               <td>
-                                    <a href="javascript:void(0);" @click.prevent="editProduct(product)" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-edit-box-fill font-size-18"></i></a>
-                                    <a href="javascript:void(0);" @click.prevent="viewProduct(product)" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="ri-delete-bin-line font-size-18"></i></a>
-                                </td>
-                            </tr>
-            
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-12" v-show="products.links && products.meta" >
-                <!-- <pagination :data="laravelData" v-on:pagination-change-page="getResults"></pagination> -->
-            <nav >
-                <ul class="pagination" style="cursor:pointer" >
-                    <li class="page-item" :class="{'disabled': !products.links.prev , 'active': products.links.prev != null}">
-                    <a class="page-link" @click="getPrevPage" >Previous</a>
-                    </li>
-                    <span class="mr-3"></span>
-                    <li class="page-item" :class="{'disabled': !products.links.next, 'active': products.links.next != null}">
-                    <a class="page-link" @click="getNextPage" >Next</a>
-                    </li>
-                </ul>
-            </nav>
-            </div>
-        </div>
+            <product-table :wholesalerId="authUser.id"  @editItem="editProduct" ></product-table>
+          </div>
+      </div>
      <modal name="product-modal"
             :width="700"
-            :height="500"
+            :height="600"
             :adaptive="true"
      >
         <div class="card">
@@ -142,6 +89,12 @@
                         <input v-model="product.packet_size" id="packet_size" name="packet_size" type="text" class="form-control">
                     </div>
                 </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="packet_size">Price</label>
+                        <input v-model="product.price" id="packet_size" name="packet_size" type="text" class="form-control">
+                    </div>
+                </div>
             </div>
                 <button class="btn btn-primary" >UPDATE</button>
                 </form>
@@ -152,8 +105,11 @@
 </template>
 
 <script>
+import ProductTableVue from '../../components/ProductTable.vue';
 export default {
-
+    components: {
+        'productTable' : ProductTableVue
+    },
     data () {
         return {
              product: {
@@ -164,7 +120,8 @@ export default {
                 dosage_form: '',
                 drug_class: '',
                 strenght: '',
-                packet_size: ''
+                packet_size: '',
+                price: ''
             },
             products: {},
             manufacturers: {},
@@ -175,7 +132,7 @@ export default {
     methods: {
         editProduct(product){
             this.$modal.show('product-modal');
-            this.product.name = product.name
+            this.product.name = product.name ?? product.product_name
             this.product.manufacturer = product.manufacturer
             this.product.category = product.category
             this.product.category_type = product.category_type
@@ -183,12 +140,6 @@ export default {
             this.product.drug_class = product.drug_class
             this.product.strenght = product.strenght
             this.product.packet_size = product.packet_size
-        },
-        openLoader(){
-            if (this.loading) {
-                const loading = this.$vs.loading()
-            }
-            loading.close();
         },
         getResults(){
             if(typeof page === 'undefined') {
@@ -206,21 +157,9 @@ export default {
         loadUser() {
             this.$modal.show('retailer-modal');
         },
-        async loadProduct(url = 'admin_products') {
-            this.loading = !this.loading
-            const loading = this.$vs.loading();
-            await axios.get(url)
-            .then(({data}) => {
-                this.products = data
-                this.loading != this.loading
-                loading.close();
-                })
-            .catch((error) => console.log(error))
-        },
         async loadManufacturers() {
             await axios.get('manufacturers')
             .then(({data}) => {
-                console.log(data.data);
                 this.manufacturers = data
             })
             .catch(({response}) => console.log(response))
@@ -238,10 +177,13 @@ export default {
     computed: {
         productDescription() {
             return product.active_ingredients + product.strength;
+        },
+        authUser() {
+          return this.$store.getters['account/userData'];
         }
     },
     mounted() {
-        this.loadProduct();
+        console.log(this.authUser)
         this.loadManufacturers();
     },
 
@@ -249,8 +191,8 @@ export default {
 </script>
 
 <style>
-     table, input, a, label {
+     /* table, input, a, label {
         font-family: 'Roboto' !important;
-    }
+    } */
 </style>
 </style>

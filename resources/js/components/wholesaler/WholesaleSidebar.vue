@@ -20,25 +20,25 @@
                             </li>
 
                             <li>
-                                <router-link to="/retailers" active-class="active" class="waves-effect">
+                                <router-link to="/wholesale/retailers" active-class="active" class="waves-effect">
                                     <i class="ri-store-3-fill"></i>
                                     <span>Retailers</span>
                                 </router-link>
                             </li>
                             <li>
-                                <router-link to="/products" class="waves-effect" active-class="active">
+                                <router-link to="/wholesale/products" class="waves-effect" active-class="active">
                                     <i class="ri-shopping-bag-2-fill"></i>
                                     <span>Products</span>
                                 </router-link>
                             </li>
                             <li>
-                                <router-link to="/purchase_orders" class="waves-effect" active-class="active">
+                                <router-link to="/wholesale/purchase_orders" class="waves-effect" active-class="active">
                                     <i class="ri-shopping-bag-2-fill"></i>
                                     <span>Purchase Orders</span>
                                 </router-link>
                             </li>
                             <li>
-                                <router-link to="/invoice" class="waves-effect" active-class="active">
+                                <router-link to="/wholesale/invoice" class="waves-effect" active-class="active">
                                     <i class="ri-shopping-bag-2-fill"></i>
                                     <span>Invoice</span>
                                 </router-link>

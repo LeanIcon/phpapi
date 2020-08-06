@@ -18,7 +18,8 @@ const mutations = {
         state.isAuth = JSON.parse(localStorage.getItem('auth'));
         state.userType = data.user.type;
         state.userRole = data.user.role;
-        router.push({name: 'admin'});
+        // router.push({name: 'admin'});
+        router.forward();
     },
     'USER_LOGOUT'(state){
         localStorage.removeItem('user');
@@ -55,6 +56,9 @@ const getters = {
     },
     userType: state => {
         return state.userType;
+    },
+    userData: state => {
+        return state.authUser.user;
     },
 };
 
