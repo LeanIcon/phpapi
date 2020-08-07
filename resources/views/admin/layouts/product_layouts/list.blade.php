@@ -1,6 +1,7 @@
  @if (!Cart::isEmpty())
     <div class="col-lg-3">
         <div class="card">
+            
            <a class="btn btn-default" href="{{route('retailer.purchaselist')}}">Create Purchase Order
                <i class="fa fa-1x far fa-list-alt" > <span class="badge badge-blue" >{{Cart::getContent()->count() ?? '0'}}</span>  </i>
            </a>

@@ -93,7 +93,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::group(['prefix' => 'retailer'], function () {
         Route::resource('cart', 'RetailerCartController');
         Route::post('retailercart/{wholesaler?}', 'RetailerCartController@createPurchaseOrder')->name('create.purchase.order');
-        Route::post('shortage/{wholesaler?}', 'RetailerCartController@createpofromshortage')->name('create.createpo.shortage');
+        Route::post('retailer/{whole?}', 'RetailerCartController@createpofromshortage')->name('create.createpo.shortage');
         Route::post('retailerpo/{wholesaler?}', 'RetailerCartController@savePurchaseOrder')->name('save.purchase.order');
         Route::get('shortagelist', 'RetailerShortagelistController@viewShortageList')->name('shortagelist.view');
         Route::get('savedshortagelist', 'RetailerShortagelistController@viewShortageList')->name('saved.shortagelist');

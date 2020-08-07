@@ -30,9 +30,11 @@ class RetailerWholesalersController extends Controller
     }
 
 
-    public function show($wholesalerId)
+    public function show(Request $request, $wholesalerId)
     {
         // $wholesaler = $this->user::isWholeSaler()->where('id', $wholesalerId)->first();
+
+        $request->session()->put('po_wholesaler_id', $wholesalerId);
 
         $wholesaler = $this->user::find($wholesalerId);
         $products = $wholesaler->products;
