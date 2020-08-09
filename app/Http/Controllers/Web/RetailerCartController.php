@@ -95,7 +95,7 @@ class RetailerCartController extends Controller
         $regions =Region::all();
        $selectedRegion=Region::where('id','=',$details->town_id)->get();
         $locations=Location::where('region_id','=',$details->town_id)->get();
-       // return $wholesaler;
+       //return $wholesaler;
         Alert::success('Success',$shortage_listx->product_name.' has been added to '.$wholesaler->name."'s Purchase Order");
 
          Cart::add(array('id' => $shortage_listx->products_id, 'name' => $shortage_listx->product_name, 'price' => $request->price ?? 0, 'quantity' => $request->quantity, $options, 'associatedModel' => $shortage_listx));
