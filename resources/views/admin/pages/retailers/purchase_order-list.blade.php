@@ -81,7 +81,6 @@
                                             <td>{{$item->associatedModel->manufacturer ?? $item->manufacturer_slug}}</td>
                                             <td>{{$item->associatedModel->packet_size}}</td>
                                             <td> GH₵{{$item->price}}</td>
-                                            <td>{{$item->associatedModel->wholesaler->id}}</td>
                                             <form action="{{route('cart.update',$item->id )}}" method="POST">
                                                 @method('PUT')
                                             <td><input class="form-control" value="{{$item->quantity}}" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" type="number" name="quantity" id="quantity" /></td>

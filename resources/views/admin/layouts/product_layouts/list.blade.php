@@ -1,12 +1,19 @@
+@php
+    $myWholesaler = (int)request()->session()->get('po_wholesaler_id');
+@endphp
  @if (!Cart::isEmpty())
-    <div class="col-lg-3">
-        <div class="card">
-            
-           <a class="btn btn-default" href="{{route('retailer.purchaselist')}}">Create Purchase Order
-               <i class="fa fa-1x far fa-list-alt" > <span class="badge badge-blue" >{{Cart::getContent()->count() ?? '0'}}</span>  </i>
-           </a>
-        </div>
-    </div>
+    @foreach (Cart::getContent() as $item)
+        @if($myWholesaler == $item->associatedModel->wholesaler->id) 
+            <div class="col-lg-3">
+                <div class="card">
+                    
+                   <a class="btn btn-default" href="{{route('retailer.purchaselist')}}">Create Purchase Order
+                       <i class="fa fa-1x far fa-list-alt" > <span class="badge badge-blue" >{{Cart::getContent()->count() ?? '0'}}</span>  </i>
+                   </a>
+                </div>
+            </div>
+        @endif
+  @endforeach      
 @endif
 <div class="col-12">
     <div class="card">
