@@ -32,7 +32,7 @@
                                 </router-link>
                             </li>
                             <li>
-                                <router-link to="/retail/purchase_orders" class="waves-effect" active-class="active">
+                                <router-link to="/retail/shortage/create" class="waves-effect" active-class="active">
                                     <i class="ri-shopping-bag-2-fill"></i>
                                     <span>Shortage List</span>
                                 </router-link>
@@ -40,7 +40,7 @@
                             <li>
                                 <router-link to="/purchase_orders" class="waves-effect" active-class="active">
                                     <i class="ri-shopping-bag-2-fill"></i>
-                                    <span>Purchase Comparison</span>
+                                    <span>Price Comparison</span>
                                 </router-link>
                             </li>
                             <li>

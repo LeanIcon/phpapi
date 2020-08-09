@@ -12,6 +12,7 @@ class WholesalerProductsController extends ApiController
     private $wholesalerProducts;
     public function __construct(WholesalerProduct $wholesalerProducts)
     {
+        $this->middleware('auth:api');
         parent::__construct($wholesalerProducts);
     }
 

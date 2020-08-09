@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <stats :cardTitle="medDevices" :cardValue="0" ></stats>
-      <stats :cardTitle="purchaseOrdersReceived" :cardValue="0" ></stats>
+      <stats :cardTitle="purchaseOrdersReceived" :cardValue="purchase_orders_count" ></stats>
       <stats :cardTitle="proForma" :cardValue="0" ></stats>
       <stats :cardTitle="inVoices" :cardValue="0" ></stats>
     </div>
@@ -43,10 +43,45 @@ export default {
   data() {
     return {
       medDevices: "Medical Devices",
-      purchaseOrdersReceived: "Purchase Order Received",
+      purchaseOrdersReceived: "Purchase Orders",
       proForma: "Pro Forma Invoice",
       inVoices: "Invoices",
+      wholesalerId: 0,
+      purchase_orders: {},
+      purchase_orders_count: 0,
     }
+  },
+  methods: {
+    async loadPurchaseOrders(url = 'retailer_purchase_order') {
+            this.loading = !this.loading
+            const loading = this.$vs.loading();
+            await axios.get(`${url}`)
+            .then(({data}) => {
+                this.purchase_orders = data
+                this.purchase_orders_count = data.purchase_orders_count
+                console.log(this.purchase_orders);
+                console.log("Count PO'S: ", this.purchase_orders_count);
+                this.loading != this.loading
+                loading.close();
+                })
+            .catch(({response}) => {
+                this.loading != this.loading
+                loading.close();
+                }
+            )
+        },
+  },
+  computed : {
+    axiosParams() {
+        const params = new URLSearchParams();
+            params.append('wholesaler_id', this.wholesalerId);
+        return params;
+    }
+  },
+  mounted() {
+    this.wholesalerId = JSON.parse(localStorage.getItem('user')).user.id;
+    console.log(this.wholesalerId);
+    this.loadPurchaseOrders();
   },
 
 }

@@ -7,41 +7,62 @@ use App\Models\PurchaseOrders;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ApiController;
+use App\Models\PurchaseOrderItems;
 
 class RetailerPurchaseOrderController extends ApiController
 {
-    public function __construct(PurchaseOrders $purchaseOrders)
+    public $purchaseOrders, $purchaseOrderItems;
+    public function __construct(PurchaseOrders $purchaseOrders, PurchaseOrderItems $purchaseOrderItems)
     {
         $this->middleware('auth:api');
         $this->middleware(['role:Retailer']);
         parent::__construct($purchaseOrders);
+        $this->purchaseOrders = $purchaseOrders;
+        $this->purchaseOrderItems = $purchaseOrderItems;
+    }
+
+
+
+    public function purchaseOrderCount()
+    {
+        $user = Auth::user();
+        $purchase_orders = $user->retailer_orders;
+        $data['purchase_orders'] = $purchase_orders;
+        $data['purchase_orders_count'] = $purchase_orders->count();
+
+        return response()->json($data, 200);
     }
 
     public function savePurchaseOrders(Request $request)
     {
         $user = Auth::user();
-        $items = $request->all();
+        $items = collect($request->purchaseOrders);
+
         $purchaseOrder = $this->purchaseOrders::create([
             'wholesaler_id' => $request->wholesaler_id,
             'retailer_id' => $user->id ,
             'status' => 'pending',
             'total' => $request->total,
             'order_type' => 'purchase_order',
-            'wholesaler_visible' => 'true'
+            'wholesaler_visible' => 'true',
+            'invoice' => 0,
+            'delivery_status' => 0,
         ]);
 
         foreach ($items as $row) {
-           $this->purchaseOrderItems::create(
+            $itemsSaved =  $this->purchaseOrderItems::create(
                 [
                 'purchase_order_id' => $purchaseOrder->id,
-                'product_name' => $row->name,
-                'products_id' => $row->products_id,
-                'description' => $row->productDescription(),
-                'quantity' => $row->quantity,
-                'price' => $row->price,
-                'manufacturer' => $row->manufacturer_slug,
+                'product_name' => $row['name'] ?? $row['product_name'],
+                'products_id' => $row['products_id'],
+                'description' => $row['productDescription'] ?? '',
+                'quantity' => $row['quantity'],
+                'price' => $row['price'],
+                'manufacturer' => $row['manufacturer_slug'] ?? $row['manufacturer'],
                 ]
             );
         }
+
+        return response()->json($itemsSaved);
     }
 }

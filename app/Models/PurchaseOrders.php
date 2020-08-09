@@ -17,11 +17,21 @@ class PurchaseOrders extends ApiModel
 
     // ];
 
+    public $appends = [
+        'wholesaler_name'
+    ];
+
     public static function generateInvoiceCode()
     {
         $num = 1;
         $code = str_pad($num, 4, '0', STR_PAD_LEFT);
         return $code;
+    }
+
+    public function getWholesalerNameAttribute()
+    {
+        $maftr = User::find($this->wholesaler_id)->name;
+        return $maftr ?? 'na';
     }
 
     public function scopeIsApproved($query)

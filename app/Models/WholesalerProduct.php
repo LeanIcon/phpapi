@@ -12,13 +12,20 @@ class WholesalerProduct extends ApiModel
     'strength', 'manufacturer_id', 'products_id', 'type', 'status', 'product_name','dosage_form', 'drug_legal_status','manufacturer'];
 
 
-    // public $appends = [
-    //     'category'
-    // ];
+    public $appends = [
+        'wholesaler_name'
+    ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+
+    public function getWholesalerNameAttribute()
+    {
+        $maftr = User::find($this->wholesaler_id)->name;
+        return $maftr ?? 'na';
     }
 
 

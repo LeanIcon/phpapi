@@ -1,7 +1,16 @@
 <template>
   <div>
+      <!-- <div class="row">
+              <div class="form-group col-lg-4">
+                    <label for="manufacturername">Wholelsalers</label>
+                    <select v-model="selectedUser" @change="userChanged($event)" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                    <option value="" disabled hidden >Select</option>
+                    <option :value="user.id"  v-for="(user, index) in wholersalers.data" :key="index" >{{user.name}}</option>
+                </select>
+            </div>
+        </div> -->
     <div class="table-responsive mt-3">
-                    <button class="btn btn-info" @click="previewSweetModal()">Check Items  {{getPurchaseOrderQty}}</button>
+                    <button class="btn btn-info" @click="previewSweetModal()">Check Items  {{getPurchaseOrderQty}}</button> {{calculateTotal}}
                     <table class="table table-centered dt-responsive nowrap no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead class="thead-light">
                             <tr>
@@ -29,10 +38,11 @@
                                     {{product.price.toLocaleString()}}
                                 </td>
                                 <td  style="width: 75px;">
-                                    <input v-model.number="product.qty" type="text" class="form-control">
+                                    <input v-model.number="product.quantity" type="text" class="form-control">
                                 </td>
-                                <td >
-                                     {{product.price * qty}}
+                                <td>
+                                    <h6 v-if="product.quantity > 0" >{{formatPrice(product.price) * product.quantity}}</h6>
+                                    <!-- <h6  v-else>{{formatPrice(product.price) * product.quantity}}</h6> -->
                                 </td>
                                 <td>
                                     <vs-checkbox v-model="po_products" :val="product" >
@@ -89,10 +99,10 @@
                                     {{product.price.toLocaleString()}}
                                 </td>
                                 <td  style="width: 75px;">
-                                    <input v-model.number="product.qty" type="text" class="form-control">
+                                    <input v-model.number="product.quantity" type="text" class="form-control">
                                 </td>
                                 <td>
-                                   {{product.price * qty}}
+                                   {{product.price * quantity}}
                                 </td>
                                <td>
                                     <vs-checkbox>
@@ -121,11 +131,13 @@ export default {
                 drug_class: '',
                 strenght: '',
                 packet_size: '',
-                price: 0,
-                qty: 0
+                price: '',
+                quantity: 0,
+                line_total: 0
             },
             // price: 0,
-            qty: 0,
+            quantity: 0,
+            total: 0,
             products: {},
             manufacturers: {},
             links: {},
@@ -135,6 +147,22 @@ export default {
         }
     },
     methods: {
+        async loadWholesalers(url = 'wholesalers') {
+            this.loading = !this.loading
+            const loading = this.$vs.loading();
+            await axios.get(`admin/${url}`)
+            .then(({data}) => {
+                this.wholersalers = data
+                this.loading != this.loading
+                loading.close();
+                })
+            .catch(({response}) => {
+                alert("Please try loading page again...")
+                this.loading != this.loading
+                loading.close();
+                }
+            )
+        },
         async loadProduct(url = 'wholesaler_products') {
             this.loading = !this.loading
             const loading = this.$vs.loading();
@@ -157,11 +185,17 @@ export default {
         async savePurchaseOrder(){
             this.loading = !this.loading
             const loading = this.$vs.loading();
-            await axios.post('purchase_orders_save', this.po_products)
+            const data = {
+                    purchaseOrders: this.po_products,
+                    wholesaler_id: this.wholesalerId,
+                    total: this.calculateTotal
+                };
+            await axios.post('purchase_orders_save', data)
             .then(({data}) => {
                 this.loading != this.loading
                 console.log(data)
                 loading.close();
+                this.$router.push({name: 'retailer.dashboard'});
                 })
             .catch(({response}) => {
                 console.log(response)
@@ -189,12 +223,18 @@ export default {
             console.log(this.selected_products);
             console.log(Object.values(this.selected_products).length);
         },
+        formatPrice(price){
+            var formattedPrice = parseFloat(price);
+            return formattedPrice;
+            console.log(formattedPrice);
+        },
+        formatLineTotal(qty){
+            var lineTotal = this.formatPrice * qty;
+            return lineTotal ?? 0;
+        },
         productDesc(product){
             let active_ing = product.active_ingredients ?? '';
             return active_ing + ' ' + product.strength;
-        },
-        formatCurrency(value){
-            return value.toLocaleString();
         },
         getNextPage(){
             this.loadProduct(this.products.links.next);
@@ -204,6 +244,11 @@ export default {
         },
     },
     computed: {
+        calculateTotal(){
+            return  this.po_products.reduce((total, p) => {
+                return total + p.price * p.quantity
+            }, 0)
+        },
         changedWholesaler(){
             return this.wholesalerId
         },
@@ -211,7 +256,7 @@ export default {
             console.log(Object.values(this.po_products).length);
             console.log(Object.values(this.po_products));
             return Object.values(this.po_products).length
-        }, 
+        },
     axiosParams() {
         const params = new URLSearchParams();
             params.append('wholesaler_id', this.wholesalerId);

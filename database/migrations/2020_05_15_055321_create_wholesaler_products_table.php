@@ -14,12 +14,20 @@ class CreateWholesalerProductsTable extends Migration {
 	{
 		Schema::create('wholesaler_products', function(Blueprint $table)
 		{
-			$table->integer('id', true);
+			$table->unsignedBigInteger('id');
 			$table->string('batch_number', 191);
-			$table->decimal('price', 19, 8)->default(0.00000000);
+			$table->decimal('price', 19, 2)->default(0.00);
 			$table->dateTime('expiry_date');
 			$table->string('expiry_status', 191);
 			$table->string('type', 191);
+			$table->string('product_name')->nullable();
+			$table->string('product_code')->nullable();
+			$table->string('active_ingredient')->nullable();
+			$table->string('strength')->nullable();
+			$table->string('dosage_form')->nullable();
+			$table->string('packet_size')->nullable();
+			$table->string('manufacturer')->nullable();
+			$table->string('drug_legal_status')->nullable();
 			$table->integer('status')->nullable()->default(1);
 			$table->timestamps();
 			$table->softDeletes();
