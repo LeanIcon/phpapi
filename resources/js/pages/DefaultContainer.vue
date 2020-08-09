@@ -60,8 +60,20 @@ export default {
           return this.$store.getters['account/userType'];
         }
     },
-    mounted() {
-    },
+    created(){
+      console.log("Default Container Mounted")
+      axios.interceptors.response.use(undefined, function(err){
+        return new Promise(function(resolve, reject){
+          if(err.stateus === 401 && err.config && !err.config__isRetryRequest){
+            this.$store.dispatch('account/userLogout')
+            .then(() => {
+                this.$router.push('/login')
+            })
+          }
+          throw err;
+        })
+      });
+    }
 
 }
 </script>

@@ -1,32 +1,35 @@
 /*jshint esversion:8 */
 
-import router from "../../router";
+// import router from "../../router";
 
 const state = {
 
     authUser: {},
     isAuth: false,
     userType: null,
-    userRole: []
+    userRole: [],
+    token: localStorage.getItem('access_token') || ''
 };
 
 const mutations = {
     'SET_USER'(state, data){
         localStorage.setItem('user', JSON.stringify(data));
         localStorage.setItem('auth', true);
+        localStorage.setItem('access_token', data.user.accessToken);
         state.authUser = JSON.parse(localStorage.getItem('user'));
         state.isAuth = JSON.parse(localStorage.getItem('auth'));
+        state.token = data.user.accessToken;
         state.userType = data.user.type;
         state.userRole = data.user.role;
         // router.push({name: 'admin'});
         location.reload();
     },
+    'AUTH_SUCCESS'(state, data){
+        state.token = data.user.accessToken;
+    },
     'USER_LOGOUT'(state){
-        // localStorage.removeItem('user');
-        // localStorage.removeItem('auth');
-        // state.authUser = {};
         state.isAuth = false;
-        // router.replace('/login');
+        localStorage.removeItem('access_token');
     }
 };
 
@@ -36,6 +39,7 @@ const actions = {
             email: user.email,
             password: user.password
         }).then((response) => {
+            commit('AUTH_SUCCESS', response.data);
             commit('SET_USER', response.data);
         }).catch(({response}) =>{
             console.log(response.data);
@@ -59,6 +63,9 @@ const actions = {
 const getters = {
     loggedInUser: state => {
         return state.authUser.user.name;
+    },
+    isLoggedIn: state => {
+        return !!state.token;
     },
     userAuth: state => {
         return state.isAuth;

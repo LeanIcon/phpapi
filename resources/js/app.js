@@ -7,14 +7,17 @@ import "./plugins/vuesax/dist/vuesax.min.css";
 import "./plugins/vue-js-modal/styles.css";
 import "./plugins/vue-noty/dist/vuejs-noty.css";
 import store from "./store/store";
-import Modal from 'vmodal';
+import SweetModal from 'sweet-modal-vue/src/plugin.js';
+
+// import Modal from 'vmodal';
+// import Axios from "axios";
 
 
 // import Vuex from 'vuex';
 
 
 // import  "../../public/assets/css/app.css";
-import  "../../public/css/app.css";
+// import  "../../public/css/app.css";
 // import  "../../public/assets/css/bootstrap.min.css";
 
 // window.noty = require('vuejs-noty');
@@ -32,8 +35,29 @@ window.Vue = require('vue');
 Vue.use(VueNoty);
 Vue.use(VModal, {dynamicDefault: { draggable: true, resizable: true , height: "auto"} });
 Vue.use(Vuesax);
-Vue.component('modemodal', Modal);
+// Vue.component('modemodal', Modal);
+Vue.use(SweetModal);
 // Vue.use(Vuex);
+
+const token = localStorage.getItem('access_token');
+if(token) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+}
+
+window.axios.interceptors.response.use(function(response){
+    return response;
+}, function (error) {
+    if (401 === error.response.status) {
+        store.dispatch('account/userLogout')
+        .then(() => {
+            router.push('/login');
+        });
+    }else{
+        return Promise.reject(error);
+    }
+});
+
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -55,6 +79,6 @@ Vue.component('modemodal', Modal);
 
 const app = new Vue({
     router,
-    store
+    store,
     // el: '#app',
 }).$mount("#app");

@@ -13,34 +13,40 @@
                             <li class="menu-title">Menu</li>
 
                             <li class="mm-active">
-                                <router-link to="/admin" active-class="active" class="waves-effect">
+                                <router-link to="/retail" active-class="active" class="waves-effect">
                                     <i class="ri-dashboard-line"></i><span class="badge badge-pill badge-success float-right">3</span>
                                     <span>Dashboard</span>
                                 </router-link>
                             </li>
 
                             <li>
-                                <router-link to="/retailers" active-class="active" class="waves-effect">
+                                <router-link to="/retail/wholesaler" active-class="active" class="waves-effect">
                                     <i class="ri-store-3-fill"></i>
                                     <span>Wholesaler</span>
                                 </router-link>
                             </li>
                             <li>
-                                <router-link to="/products" class="waves-effect" active-class="active">
-                                    <i class="ri-shopping-bag-2-fill"></i>
-                                    <span>Products</span>
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link to="/purchase_orders" class="waves-effect" active-class="active">
+                                <router-link to="/retail/purchase_orders" class="waves-effect" active-class="active">
                                     <i class="ri-shopping-bag-2-fill"></i>
                                     <span>Purchase Orders</span>
                                 </router-link>
                             </li>
                             <li>
+                                <router-link to="/retail/purchase_orders" class="waves-effect" active-class="active">
+                                    <i class="ri-shopping-bag-2-fill"></i>
+                                    <span>Shortage List</span>
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="/purchase_orders" class="waves-effect" active-class="active">
+                                    <i class="ri-shopping-bag-2-fill"></i>
+                                    <span>Purchase Comparison</span>
+                                </router-link>
+                            </li>
+                            <li>
                                 <router-link to="/invoice" class="waves-effect" active-class="active">
                                     <i class="ri-shopping-bag-2-fill"></i>
-                                    <span>Invoice</span>
+                                    <span>Profile</span>
                                 </router-link>
                             </li>
 

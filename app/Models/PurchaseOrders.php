@@ -5,13 +5,14 @@ namespace App\Models;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
-class PurchaseOrders extends Model
+class PurchaseOrders extends ApiModel
 {
     protected $table = 'purchase_orders';
     protected $fillable = ['wholesaler_id','retailer_id', 'products_id', 'description', 'product_name', 'total', 'invoice',
     'quantity', 'price', 'manufacturer' ,'order_type','wholesaler_visible', 'status' , 'devlivery_status'];
 
 
+    // protected $with = ['order_items'];
     // public $cast = [
 
     // ];

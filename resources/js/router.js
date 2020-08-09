@@ -22,6 +22,7 @@ import RegisterPage from './pages/RegisterPage';
 import RecoverPasswordPage from './pages/RecoverPasswordPage.vue';
 import WholesalerProducts from './pages/wholesaler/WholesalerProducts.vue';
 import WholesalerProductAdd from './pages/wholesaler/WholesalerProductAdd.vue';
+import WholesalerDetails from './pages/retailer/WholesalerDetails.vue';
 
 
 Vue.use(VueRouter);
@@ -80,7 +81,7 @@ const routes = [
         children: [
             { path: '/', component: RetailDashboardPage,  name: 'retailer' },
             { path: '/dashboard', component: RetailDashboardPage,  name: 'retailer.dashboard' },
-            { path: 'wholesalers', component: WholealerPage },
+            { path: 'wholesaler', component: WholesalerDetails, name: 'wholesaler.detail' },
             { path: 'user/details/:userId', component: UserDetailsPage, name: 'retail_details', props: true },
             { path: 'user/page/:userId', component: RetailerDetailsPage, name: 'retail_page', props: true },
             { path: 'products', component: AdminProductsPage},

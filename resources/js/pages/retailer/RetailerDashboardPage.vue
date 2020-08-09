@@ -7,7 +7,14 @@
       <stats :cardTitle="inVoices" :cardValue="0" ></stats>
     </div>
     <div class="row">
-      <div class="col-lg-8">
+        <div class="col-lg-12">
+          <div class="card">
+          <div class="card-body">
+            <retailer-wholesaler></retailer-wholesaler>
+        </div>
+        </div>
+      </div>
+      <!-- <div class="col-lg-8">
         <bar-card></bar-card>
       </div>
       <div class="col-lg-4">
@@ -16,7 +23,7 @@
               Data
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -24,12 +31,14 @@
 <script>
 import StatsCardVue from '../../components/StatsCard.vue'
 import GraphCardVue from '../../components/GraphCard.vue'
+import RetailerWholesalerVue from './RetailerWholesaler.vue'
 
 
 export default {
   components: {
     'stats' : StatsCardVue,
-    'barCard' :  GraphCardVue
+    'barCard' :  GraphCardVue,
+    'retailerWholesaler' : RetailerWholesalerVue
   },
   data() {
     return {
