@@ -14,6 +14,9 @@ class CreateShortageListTable extends Migration
     public function up()
     {
         Schema::create('shortage_list', function (Blueprint $table) {
+            $table->bigIncrements('id')->unsigned();
+            $table->string('reference')->nullable();
+            $table->string('reference_code')->nullable();
             $table->string('user_id');
             $table->string('instance');
             $table->longText('content');

@@ -8,7 +8,7 @@ class ShortageList extends ApiModel
 {
     protected $table = 'shortage_list';
 
-    protected $fillable = ['user_id' ,'instance', 'content'];
+    protected $fillable = ['user_id' ,'instance', 'content', 'reference', 'reference_code'];
 
     protected $casts = [
         'content' => Json::class

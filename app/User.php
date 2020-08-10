@@ -119,7 +119,7 @@ class User extends Authenticatable implements JWTSubject, CommonModel
 
     public function shortage()
     {
-        return $this->hasOne(ShortageList::class, 'user_id');
+        return $this->hasMany(ShortageList::class, 'user_id');
     }
 
     public function products()
