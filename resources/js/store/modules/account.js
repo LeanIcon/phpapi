@@ -35,7 +35,7 @@ const mutations = {
 
 const actions = {
     userLogin({commit}, user){
-        axios.post('https://nnuroadmin.herokuapp.com/apiauth/login', {
+        axios.post('https://nnuroadmin.herokuapp.com/api/auth/login', {
             email: user.email,
             password: user.password
         }).then((response) => {
