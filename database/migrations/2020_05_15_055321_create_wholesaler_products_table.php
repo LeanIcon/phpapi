@@ -14,7 +14,7 @@ class CreateWholesalerProductsTable extends Migration {
 	{
 		Schema::create('wholesaler_products', function(Blueprint $table)
 		{
-			$table->unsignedBigInteger('id');
+			$table->bigIncrements('id');
 			$table->string('batch_number', 191);
 			$table->decimal('price', 19, 2)->default(0.00);
 			$table->dateTime('expiry_date');

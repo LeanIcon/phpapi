@@ -14,7 +14,7 @@ class CreatePurchaseOrderItemsTable extends Migration {
 	{
 		Schema::create('purchase_order_items', function(Blueprint $table)
 		{
-			$table->bigInteger('id', true)->unsigned();
+			$table->bigIncrements('id');
 			$table->bigInteger('purchase_order_id');
 			$table->integer('products_id')->nullable();
 			$table->string('product_name', 191);
