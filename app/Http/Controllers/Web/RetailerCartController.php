@@ -79,6 +79,7 @@ class RetailerCartController extends Controller
         //$userId = Auth::user()->id;
         $wholesaler = $this->user::find($whole);
         $whole = $wholesaler->id;
+       // return $whole;
         // $request->session()->put('po_wholesaler_id', $whole);
 
       //  return $wholesaler;
