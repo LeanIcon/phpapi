@@ -1,6 +1,6 @@
 /*jshint esversion:8 */
 
-const API_URL = 'http:127.0.0.1:8000/api';
+const API_URL = process.env.MIX_APP_URL;
 
 class UserService {
     getPublicContent() {
