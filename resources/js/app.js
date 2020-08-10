@@ -45,8 +45,12 @@ Vue.filter('formatDate', function(value) {
     }
 });
 // Vue.use(Vuex);
-axios.defaults.headers.common['Accept'] = 'application/json';
-axios.defaults.headers.common['Content-Type'] = 'application/json';
+// axios.defaults.headers.common['Accept'] = 'application/json';
+// axios.defaults.headers.common['Content-Type'] = 'application/json';
+
+window.axios.defaults.headers.get['Accept'] = 'application/json'; // default header for all get request
+window.axios.defaults.headers.post['Accept'] = 'application/json';
+
 
 const token = localStorage.getItem('access_token');
 if(token) {
