@@ -119,8 +119,6 @@ export default {
             await axios.get(`${url}`)
             .then(({data}) => {
                 this.shortage_list_content = data
-                console.log(this.shortage_list_content.id);
-
                 this.loading != this.loading
                 loading.close();
                 })

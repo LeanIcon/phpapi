@@ -47,7 +47,7 @@ Route::group(['namespace' => 'API'], function() {
 
     Route::apiResource('wholesaler_products','WholesalerProductsController');
     Route::apiResource('wholesaler_products','WholesalerProductsController');
-
+    
     Route::post('save_bulk','WholesalerProductsController@bulkSave');
     Route::apiResource('purchase_orders','RetailerPurchaseOrderController');
     Route::post('purchase_orders_save','RetailerPurchaseOrderController@savePurchaseOrders');
@@ -55,9 +55,12 @@ Route::group(['namespace' => 'API'], function() {
     Route::get('view_purchase_order_items/{id?}','RetailerPurchaseOrderController@loadPurchaseOrderItems');
     Route::post('save_shortage_list','ShortagListController@createShortageList');
     Route::get('load_shortage_list','ShortagListController@loadShortageList');
-
+    
     Route::apiResource('dosage_form','DosageFormController');
     Route::apiResource('drug_class','DrugClassController');
+
+
+    Route::apiResource('location', 'LocationController');
 
     Route::group(['prefix' => 'admin'], function() {
         Route::apiResource('user', 'WholesalerRetailerUserController');

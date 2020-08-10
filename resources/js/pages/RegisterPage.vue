@@ -3,7 +3,7 @@
         <div>
             <div class="container-fluid p-0">
                 <div class="row no-gutters">
-                    <div class="col-lg-4">
+                    <div class="col-lg-5">
                         <div class="authentication-page-content p-4 d-flex align-items-center min-vh-100">
                             <div class="w-100">
                                 <div class="row justify-content-center">
@@ -17,40 +17,86 @@
                                                 <p class="text-muted">All fields are required</p>
                                             </div>
 
-                                            <div class="p-2 mt-5">
-                                                <form class="form-horizontal" action="index.html">
+                                            <div class="p-2 mt-1">
+                                                <form class="form-horizontal">
+                                                    <div class="form-group mb-2">
+                                                        <label for="type">Register As</label>
+                                                        <select v-model="register_type" class="form-control" name="type" id="type">
+                                                            <option value="R">Retailer</option>
+                                                            <option value="W">Wholesaler</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group  mb-2 col-lg-6">
+                                                            <label for="region">Region</label>
+                                                             <select v-model="region_code" class="form-control" name="region" @change="onRegionChange" id="region">
+                                                             <option value="null"  disabled  >Select Region</option>
+                                                            <option :value="region"  v-for="(region, index) in regions.data" :key="index" >{{region.name}}</option>
+                                                        </select>
+                                                        </div>
+                                                        <div class="form-group  mb-2 col-lg-6">
+                                                            <label for="location">Location</label>
+                                                            <select class="form-control" name="location" @change="onLocationChange" id="location">
+                                                             <option value="null" disabled >Select Location</option>
+                                                            <option :value="location.id"  v-for="(location, index) in locations.data" :key="index" >{{location.name}}</option>
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                      <div class="form-group ">
+                                                        <label for="userpassword">Registration No</label>
+                                                        <div class="row">
+                                                            <div class="col-md-3 p-1">
+                                                                <input type="text" class="form-control" id="prefix" :disabled="true" v-model="prefix" placeholder="PC">
+                                                            </div>
+                                                            <div class="col-md-2 p-1">
+                                                                <input type="text" :value="retRegCode" class="form-control" id="region_code" :disabled="true" placeholder="">
+                                                            </div>
+                                                            <div class="col-md-2 p-1">
+                                                                <input type="text" v-model="register_type" class="form-control" id="account_type" :disabled="true" placeholder="">
+                                                            </div>
+                                                            <div class="col-md-3 p-1">
+                                                                <input type="text" v-model="pc_code" @keyup="getRegCode" class="form-control" id="reg_code" placeholder="Reg Code">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group  mb-2 col-lg-6">
+                                                            <label for="useremail">Company Name</label>
+                                                            <input type="text" class="form-control" id="useremail" placeholder="Company Name">
+                                                        </div>
+                                                        <div class="form-group  mb-2 col-lg-6">
+                                                            <label for="username">Email</label>
+                                                            <input type="email" class="form-control" id="username" placeholder="Location">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group  mb-2 col-lg-6">
+                                                            <label for="phone">Phone</label>
+                                                            <input type="text" class="form-control" id="phone" placeholder="Enter email">
+                                                        </div>
+                                                        <div class="form-group  mb-2 col-lg-6">
+                                                            <label for="password">Password</label>
+                                                            <input type="password" class="form-control" id="password" placeholder="Enter Phone">
+                                                        </div>
+                                                    </div>
 
-                                                    <div class="form-group auth-form-group-custom mb-4">
-                                                        <i class="ri-mail-line auti-custom-input-icon"></i>
-                                                        <label for="useremail">Email</label>
-                                                        <input type="email" class="form-control" id="useremail" placeholder="Enter email">
-                                                    </div>
-                    
-                                                    <div class="form-group auth-form-group-custom mb-4">
-                                                        <i class="ri-user-2-line auti-custom-input-icon"></i>
-                                                        <label for="username">Username</label>
-                                                        <input type="text" class="form-control" id="username" placeholder="Enter username">
-                                                    </div>
-                            
-                                                    <div class="form-group auth-form-group-custom mb-4">
-                                                        <i class="ri-lock-2-line auti-custom-input-icon"></i>
-                                                        <label for="userpassword">Password</label>
-                                                        <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
-                                                    </div>
-                            
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                        <div class="text-left">
+                                                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Register</button>
+                                                        </div>
 
-                                                    <div class="text-center">
-                                                        <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Register</button>
+                                                        </div>
                                                     </div>
 
-                                                    <div class="mt-4 text-center">
+                                                    <div class="mt-1 text-center">
                                                         <p class="mb-0">By registering you agree to the NNURO <a href="#" class="text-primary">Terms of Use</a></p>
                                                     </div>
                                                 </form>
                                             </div>
 
-                                            <div class="mt-5 text-center">
-                                                <p>Already have an account ? <a @click="loadLogin" class="font-weight-medium text-primary a-login"> Login</a> </p>
+                                            <div class="mt-1 text-center">
+                                                <p>Already have an account ? <a @click="loadLogin()" class="font-weight-medium text-primary a-login"> Login</a> </p>
                                             </div>
                                         </div>
 
@@ -59,7 +105,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8">
+                    <div class="col-lg-7">
                         <div class="authentication-bg">
                             <div class="bg-overlay"></div>
                         </div>
@@ -86,24 +132,97 @@ export default {
                 location: '',
                 company_name: '',
                 reg_no: '',
-            }
+            },
+            regions: {},
+            locations: {},
+            region_id: 0,
+            region_code: '',
+            register_type: '',
+            prefix: 'PC',
+            location: '',
+            pc_code: ''
+
         }
     },
     methods: {
         registerUser() {
             // this.$store.dispatch('account/userRegister', this.user)
-               this.$router.replace('/register');
+            this.$router.replace('/register');
         },
         loadLogin(){
             this.$router.replace('/login');
+        },
+        async loadRegions() {
+            this.loading = !this.loading
+            const loading = this.$vs.loading();
+            await axios.get('region')
+            .then(({data}) => {
+                this.regions = data
+                console.log(this.regions)
+                this.loading != this.loading
+                loading.close();
+                })
+            .catch(({response}) => {
+                this.loading != this.loading
+                loading.close();
+                }
+            )
+        },
+        async loadLocations() {
+            this.loading = !this.loading
+            const loading = this.$vs.loading();
+            await axios.get('location', {
+                params: this.axiosRegionParams
+            })
+            .then(({data}) => {
+                this.locations = data
+                this.loading != this.loading
+                loading.close();
+                })
+            .catch(({response}) => {
+                this.loading != this.loading
+                loading.close();
+                }
+            )
+        },
+        onRegionChange(){
+            console.log(this.region_code);
+            this.region_id = this.region_code.id
+            this.loadLocations();
+            this.getRegCode();
+        },
+        onLocationChange(){
+
+        },
+        getRegCode(){
+            var regCode = this.prefix+'/'+this.region_code.code+'/'+this.register_type+'/'+this.pc_code;
+            console.log(regCode);
+            return regCode;
+        },
+        getRegionCode(){
+
+        },
+        getRegisterType(){
+
         }
     },
     computed: {
-
+        retRegCode(){
+            var regCode = this.region_code.code;
+            console.log(regCode)
+            return regCode;
+        },
+        axiosRegionParams() {
+        const params = new URLSearchParams();
+            if (this.region_id > 0) {
+                params.append('region_id', this.region_id);
+            }
+            return params;
+        }
     },
-    mounted(){
-    }
-
+    mounted() {
+        this.loadRegions();
+    },
 }
 </script>
 
