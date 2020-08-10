@@ -48,7 +48,7 @@
                                 <th>Product Name</th>
                                 <th>Manufacturer</th>
                                 <th>Price</th>
-                                <th>Qty</th>
+                                <th class="text-left">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -62,7 +62,14 @@
                                 </td>
 
                                 <td>
-                                    {{item.quantity}}
+                                    <vs-button
+                                            success
+                                            size="small"
+                                            border
+                                            @click="viewShortageList(shortage.reference, shortage.content)"
+                                        >
+                                        ADD TO P.O
+                                    </vs-button>
                                 </td>
                             </tr>
                         </tbody>

@@ -14,7 +14,7 @@ class ShortagListController extends ApiController
     public $shortageList;
     public function __construct(ShortageList $shortageList)
     {
-        // $this->middleware('auth:api');
+        $this->middleware('auth:api');
         parent::__construct($shortageList);
         $this->shortageList = $shortageList;
     }

@@ -6451,6 +6451,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   // props: ['purchase_order'],
   data: function data() {
@@ -59370,7 +59377,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("th", [_vm._v("Price")]),
                   _vm._v(" "),
-                  _c("th", [_vm._v("Qty")])
+                  _c("th", { staticClass: "text-left" }, [_vm._v("Action")])
                 ])
               ]),
               _vm._v(" "),
@@ -59406,13 +59413,31 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c("td", [
-                      _vm._v(
-                        "\n                                  " +
-                          _vm._s(item.quantity) +
-                          "\n                              "
-                      )
-                    ])
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "vs-button",
+                          {
+                            attrs: { success: "", size: "small", border: "" },
+                            on: {
+                              click: function($event) {
+                                return _vm.viewShortageList(
+                                  _vm.shortage.reference,
+                                  _vm.shortage.content
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                      ADD TO P.O\n                                  "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
                   ])
                 }),
                 0
