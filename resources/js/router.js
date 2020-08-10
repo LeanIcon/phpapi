@@ -26,6 +26,8 @@ import WholesalerDetails from './pages/retailer/WholesalerDetails.vue';
 import ShortageListPage from './pages/retailer/ShortageListPage.vue';
 import PurchaseOrderList from './pages/retailer/PurchaseOrderList.vue';
 import ShortageListCreatePage from './pages/retailer/ShortageListCreatePage.vue';
+import WholesalerPurchaseOrderList from './pages/wholesaler/PurchaseOrderList.vue';
+import PurchaseOrderView from './pages/wholesaler/PurchaseOrderView.vue';
 
 
 Vue.use(VueRouter);
@@ -72,6 +74,8 @@ const routes = [
             { path: 'user/details/:userId', component: UserDetailsPage, name: 'wholesale_details', props: true },
             { path: 'user/page/:userId', component: RetailerDetailsPage, name: 'wholesale_page', props: true },
             { path: 'products', component: WholesalerProducts},
+            { path: 'purchase_orders', component: WholesalerPurchaseOrderList},
+            { path: 'purchase_orders/:purchase_order_id/view', component: PurchaseOrderView, name: 'purchase_order.view', props: true},
             { path: 'products/add', component: WholesalerProductAdd},
             { path: 'products/edit', component: WholesalerProductAdd},
             { path: 'products/view', component: WholesalerProductAdd},
@@ -86,7 +90,7 @@ const routes = [
             { path: '/dashboard', component: RetailDashboardPage,  name: 'retailer.dashboard' },
             { path: 'wholesaler', component: WholesalerDetails, name: 'wholesaler.detail' },
             { path: 'user/details/:userId', component: UserDetailsPage, name: 'retail_details', props: true },
-            { path: 'user/page/:userId', component: RetailerDetailsPage, name: 'retail_page', props: true },
+            { path: 'user/page/:userId', component: RetailerDetailsPage, name: 'retail_page' },
             { path: 'shortagelist', component: ShortageListPage},
             { path: 'shortage/create', component: ShortageListCreatePage},
             { path: 'purchase_orders', component: PurchaseOrderList},

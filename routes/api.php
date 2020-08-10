@@ -46,12 +46,18 @@ Route::group(['namespace' => 'API'], function() {
     Route::apiResource('category_types','CategoryTypesController');
 
     Route::apiResource('wholesaler_products','WholesalerProductsController');
-    Route::apiResource('wholesaler_products','WholesalerProductsController');
+    Route::post('wholesaler_save_single','WholesalerProductsController@saveSingleProduct');
     
     Route::post('save_bulk','WholesalerProductsController@bulkSave');
     Route::apiResource('purchase_orders','RetailerPurchaseOrderController');
+
     Route::post('purchase_orders_save','RetailerPurchaseOrderController@savePurchaseOrders');
     Route::get('retailer_purchase_order','RetailerPurchaseOrderController@purchaseOrderCount');
+
+    Route::post('purchase_orders_save','WholesalerPurchaseOrderController@savePurchaseOrders');
+    Route::get('wholesaler_purchase_order','WholesalerPurchaseOrderController@purchaseOrderCount');
+    Route::get('wholesaler_purchase_order_view/{id?}','WholesalerPurchaseOrderController@loadPurchaseOrderItems');
+
     Route::get('view_purchase_order_items/{id?}','RetailerPurchaseOrderController@loadPurchaseOrderItems');
     Route::post('save_shortage_list','ShortagListController@createShortageList');
     Route::get('load_shortage_list','ShortagListController@loadShortageList');

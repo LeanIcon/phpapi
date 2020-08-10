@@ -37,6 +37,13 @@ Vue.use(VModal, {dynamicDefault: { draggable: true, resizable: true , height: "a
 Vue.use(Vuesax);
 // Vue.component('modemodal', Modal);
 Vue.use(SweetModal);
+
+
+Vue.filter('formatDate', function(value) {
+    if (value) {
+      return moment(String(value)).format('MM/DD/YYYY hh:mm');
+    }
+});
 // Vue.use(Vuex);
 
 const token = localStorage.getItem('access_token');

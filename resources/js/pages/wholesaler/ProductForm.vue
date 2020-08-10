@@ -168,7 +168,7 @@ export default {
         },
         saveProduct(url = 'wholesaler_products') {
             const data  = this.product;
-            axios.post('wholesaler_products', data, {headers: {'Content-type': 'application/json'}})
+            axios.post('wholesaler_save_single', data, {headers: {'Content-type': 'application/json'}})
             .then((response) => {
                     console.log(response)
                     this.openNotification('top-right','success')

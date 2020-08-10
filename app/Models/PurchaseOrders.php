@@ -18,7 +18,8 @@ class PurchaseOrders extends ApiModel
     // ];
 
     public $appends = [
-        'wholesaler_name'
+        'wholesaler_name',
+        'retailer_name'
     ];
 
     public static function generateInvoiceCode()
@@ -29,6 +30,12 @@ class PurchaseOrders extends ApiModel
     }
 
     public function getWholesalerNameAttribute()
+    {
+        $maftr = User::find($this->wholesaler_id)->name;
+        return $maftr ?? 'na';
+    }
+
+    public function getRetailerNameAttribute()
     {
         $maftr = User::find($this->wholesaler_id)->name;
         return $maftr ?? 'na';
