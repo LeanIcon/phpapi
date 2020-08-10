@@ -45,6 +45,8 @@ Vue.filter('formatDate', function(value) {
     }
 });
 // Vue.use(Vuex);
+axios.defaults.headers.common['Accept'] = 'application/json';
+axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 const token = localStorage.getItem('access_token');
 if(token) {
