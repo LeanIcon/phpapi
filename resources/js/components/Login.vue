@@ -102,6 +102,7 @@ export default {
         }
     },
     mounted(){
+        console.log(process.env.MIX_APP_URL);
     }
 
 }
