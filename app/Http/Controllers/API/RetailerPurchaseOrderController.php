@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\PurchaseOrders;
+use App\Models\PurchaseOrderItems;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ApiController;
-use App\Models\PurchaseOrderItems;
 
 class RetailerPurchaseOrderController extends ApiController
 {
@@ -33,6 +34,12 @@ class RetailerPurchaseOrderController extends ApiController
         return response()->json($data, 200);
     }
 
+    public function loadPurchaseOrderItems(Request $request, $id)
+    {
+        $order_items =  $this->purchaseOrders::find($id)->order_items;
+        return response()->json($order_items, 200);
+    }
+
     public function savePurchaseOrders(Request $request)
     {
         $user = Auth::user();
@@ -47,6 +54,7 @@ class RetailerPurchaseOrderController extends ApiController
             'wholesaler_visible' => 'true',
             'invoice' => 0,
             'delivery_status' => 0,
+            'reference' => Str::uuid()
         ]);
 
         foreach ($items as $row) {

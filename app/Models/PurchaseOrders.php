@@ -9,7 +9,7 @@ class PurchaseOrders extends ApiModel
 {
     protected $table = 'purchase_orders';
     protected $fillable = ['wholesaler_id','retailer_id', 'products_id', 'description', 'product_name', 'total', 'invoice',
-    'quantity', 'price', 'manufacturer' ,'order_type','wholesaler_visible', 'status' , 'devlivery_status'];
+    'quantity', 'price', 'manufacturer' ,'order_type','wholesaler_visible', 'status' , 'devlivery_status','reference'];
 
 
     // protected $with = ['order_items'];

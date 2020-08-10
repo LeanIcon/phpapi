@@ -186,8 +186,25 @@ export default {
                 }
             )
         },
-        savePurchaseOrder(){
-
+        async saveShortageList(){
+            this.loading = !this.loading
+            const loading = this.$vs.loading();
+            const data = {
+                    shortageList: this.shortage_list,
+                };
+            await axios.post('purchase_orders_save', data)
+            .then(({data}) => {
+                this.loading != this.loading
+                console.log(data)
+                loading.close();
+                this.$router.push({name: 'retailer.dashboard'});
+                })
+            .catch(({response}) => {
+                console.log(response)
+                this.loading != this.loading
+                loading.close();
+                }
+            )
         },
         previewSweetModal(){
             this.$refs.review_po.open();

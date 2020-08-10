@@ -259,7 +259,9 @@ export default {
         },
     axiosParams() {
         const params = new URLSearchParams();
-            params.append('wholesaler_id', this.wholesalerId);
+        if (this.selectedUser > 0) {
+            params.append('wholesaler_id', this.selectedUser);
+        }
         return params;
     }
     },

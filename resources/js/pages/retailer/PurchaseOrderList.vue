@@ -23,7 +23,7 @@
                     <vs-button
                         size="small"
                         border
-                        @click="viewDetails(po_order.id)"
+                        @click="viewDetails(po_order.id, po_order.total, po_order.reference)"
                     >
                     View Items
                 </vs-button>
@@ -35,35 +35,33 @@
     </div>
     </div>
     <sweet-modal ref="review_po" width="70%" >
+            <h5 class="float-left">PO-REFERENCE: {{reference}}</h5>
             <table class="table table-centered dt-responsive nowrap no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead class="thead-light">
                             <tr>
                                 <th>Product Name</th>
-                                <th>Product Description</th>
                                 <th>Manufacturer</th>
-                                <th>Packet Size</th>
                                 <th>Price</th>
                                 <th>Qty</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(purchase_order_items, index) in po_products" :key="index" >
-                                <td>{{product.name ? product.name : product.product_name}}</td>
-                                <td>{{productDesc(product)}}</td>
-                                <td>{{product.manufacturer.name ? product.manufacturer.name : product.manufacturer}}</td>
+                            <tr v-for="(item, index) in purchase_order_items" :key="index" >
+                                <td>{{item.name ? item.name : item.product_name}}</td>
+                                <td>{{item.manufacturer.name ? item.manufacturer.name : item.manufacturer}}</td>
 
                                 <td>
-                                    {{product.packet_size}}
+                                    {{item.price}}
                                 </td>
 
                                 <td>
-                                    {{product.price.toLocaleString()}}
+                                    {{item.quantity}}
                                 </td>
-                                <td>
-                                    <vs-checkbox>
-                                    </vs-checkbox>
-                                    <!-- <a href="javascript:void(0);" @click.prevent="editProduct(product)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-edit-box-fill font-size-18"></i></a> -->
-                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td class="font-14 text-dark bold">Total : </td>
+                                <td class="font-14 text-dark bold">{{poTotal}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -78,7 +76,10 @@ export default {
     data() {
         return {
             purchase_orders: {},
-            purchase_order_items: {}
+            purchase_order_items: {},
+            pod_id: 0,
+            poTotal: '',
+            reference: null
         }
     },
     methods: {
@@ -98,13 +99,14 @@ export default {
                 }
             )
         },
-        async loadPurchaseOrdersItems(){
+        async loadPurchaseOrdersItems(id){
             this.loading = !this.loading
-            const loading = this.$vs.loading();
-            await axios.get(`${url}`)
+            const loading = this.$vs.loading(id);
+            await axios.get('view_purchase_order_items/' + this.pod_id)
             .then(({data}) => {
-                this.purchase_orders = data.purchase_orders
-                console.log(this.purchase_orders);
+                console.log(id)
+                this.purchase_order_items = data
+                console.log(this.purchase_order_items);
                 this.loading != this.loading
                 loading.close();
                 })
@@ -114,8 +116,12 @@ export default {
                 }
             )
         },
-        viewDetails(po_orderId){
+        viewDetails(po_orderId, total, reference){
+            this.pod_id = po_orderId;
+            this.poTotal = total;
+            this.reference = reference ? reference.substring(0, 15) : ''
             this.$refs.review_po.open();
+            this.loadPurchaseOrdersItems();
             console.log(po_orderId);
         }
     },

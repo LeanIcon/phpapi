@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ShortageList extends Model
+class ShortageList extends ApiModel
 {
     protected $table = 'shortage_list';
 
@@ -14,10 +14,15 @@ class ShortageList extends Model
         'content' => Json::class
     ];
 
-    
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    
+
+
+    public function shortlist_items()
+    {
+        $this->hasMany(ShortageListItems::class, 'shortage_id');
+    }
+
 }

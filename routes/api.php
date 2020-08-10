@@ -52,6 +52,8 @@ Route::group(['namespace' => 'API'], function() {
     Route::apiResource('purchase_orders','RetailerPurchaseOrderController');
     Route::post('purchase_orders_save','RetailerPurchaseOrderController@savePurchaseOrders');
     Route::get('retailer_purchase_order','RetailerPurchaseOrderController@purchaseOrderCount');
+    Route::get('view_purchase_order_items/{id?}','RetailerPurchaseOrderController@loadPurchaseOrderItems');
+    Route::post('shortage_list','ShortagListController@createShortageList');
 
     Route::apiResource('dosage_form','DosageFormController');
     Route::apiResource('drug_class','DrugClassController');
