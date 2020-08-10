@@ -57544,7 +57544,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control",
-          attrs: { type: "text", id: "phone", placeholder: "Enter email" }
+          attrs: { type: "text", id: "phone", placeholder: "Enter Phone" }
         })
       ]),
       _vm._v(" "),
@@ -57556,7 +57556,7 @@ var staticRenderFns = [
           attrs: {
             type: "password",
             id: "password",
-            placeholder: "Enter Phone"
+            placeholder: "Enter Password"
           }
         })
       ])

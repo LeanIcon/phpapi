@@ -72,11 +72,11 @@
                                                     <div class="row">
                                                         <div class="form-group  mb-2 col-lg-6">
                                                             <label for="phone">Phone</label>
-                                                            <input type="text" class="form-control" id="phone" placeholder="Enter email">
+                                                            <input type="text" class="form-control" id="phone" placeholder="Enter Phone">
                                                         </div>
                                                         <div class="form-group  mb-2 col-lg-6">
                                                             <label for="password">Password</label>
-                                                            <input type="password" class="form-control" id="password" placeholder="Enter Phone">
+                                                            <input type="password" class="form-control" id="password" placeholder="Enter Password">
                                                         </div>
                                                     </div>
 
