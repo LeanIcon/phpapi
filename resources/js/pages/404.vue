@@ -20,7 +20,7 @@
 export default {
     methods: {
         loadDashboard(){
-           this.$router.replace('/admin')
+           this.$router.back();
         }
     }
 

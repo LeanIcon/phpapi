@@ -4169,7 +4169,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     loadDashboard: function loadDashboard() {
-      this.$router.replace('/admin');
+      this.$router.back();
     }
   }
 });
