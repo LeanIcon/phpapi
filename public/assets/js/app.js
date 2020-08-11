@@ -2632,7 +2632,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    console.log("https://nnuroadmin.herokuapp.com/");
+    // console.log(process.env.MIX_APP_URL);
+    console.log("development");
   }
 });
 
@@ -102360,7 +102361,9 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 window.moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; // window.axios.defaults.baseURL = 'http://localhost/phpapi/public/api';
 
-window.axios.defaults.baseURL = 'https://nnuroadmin.herokuapp.com/api';
+if (false) {} else {
+  window.axios.defaults.baseURL = 'http://localhost/phpapi/public/api';
+}
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -119544,7 +119547,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
 
 router.beforeEach( /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(to, from, next) {
-    var publicPages, authRequired, loggedIn, isAuth, checkAuth, checType;
+    var publicPages, authRequired, loggedIn, isAuth, checkRoles, checkAuth, checType;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -119554,59 +119557,67 @@ router.beforeEach( /*#__PURE__*/function () {
             loggedIn = localStorage.getItem('user');
             isAuth = localStorage.getItem('user');
             _context.next = 6;
-            return _store_store__WEBPACK_IMPORTED_MODULE_3__["default"].getters['account/userAuth'];
+            return _store_store__WEBPACK_IMPORTED_MODULE_3__["default"].getters['account/userRoles'];
 
           case 6:
-            checkAuth = _context.sent;
+            checkRoles = _context.sent;
             _context.next = 9;
-            return _store_store__WEBPACK_IMPORTED_MODULE_3__["default"].getters['account/userType'];
+            return _store_store__WEBPACK_IMPORTED_MODULE_3__["default"].getters['account/userAuth'];
 
           case 9:
+            checkAuth = _context.sent;
+            _context.next = 12;
+            return _store_store__WEBPACK_IMPORTED_MODULE_3__["default"].getters['account/userType'];
+
+          case 12:
             checType = _context.sent;
 
             if (!(to.matched.some(function (m) {
               return m.meta.redirectIfAuthenticated;
             }) && isAuth)) {
-              _context.next = 23;
+              _context.next = 29;
               break;
             }
 
             if (!(checType == _helpers_role__WEBPACK_IMPORTED_MODULE_4__["UserTypes"].admin)) {
-              _context.next = 14;
+              _context.next = 18;
               break;
             }
 
+            console.log(checkRoles);
             next({
               name: 'admin'
             });
             return _context.abrupt("return");
 
-          case 14:
+          case 18:
             if (!(checType == _helpers_role__WEBPACK_IMPORTED_MODULE_4__["UserTypes"].wholesaler)) {
-              _context.next = 17;
+              _context.next = 22;
               break;
             }
 
+            console.log(checkRoles);
             next({
               name: 'wholesaler'
             });
             return _context.abrupt("return");
 
-          case 17:
+          case 22:
             if (!(checType == _helpers_role__WEBPACK_IMPORTED_MODULE_4__["UserTypes"].retailer)) {
-              _context.next = 22;
+              _context.next = 28;
               break;
             }
 
+            console.log(checkRoles);
             next({
               name: 'retailer'
             });
             return _context.abrupt("return");
 
-          case 22:
+          case 28:
             next();
 
-          case 23:
+          case 29:
             // let isPermitted = _.includes()
             // if(to.matched.some(m => m.meta.requiredAuth)) {
             //     if(store.getters['account/userAuth']) {
@@ -119628,7 +119639,7 @@ router.beforeEach( /*#__PURE__*/function () {
               next();
             }
 
-          case 24:
+          case 30:
           case "end":
             return _context.stop();
         }
@@ -119726,6 +119737,9 @@ var getters = {
   },
   userData: function userData(state) {
     return state.authUser.user;
+  },
+  userRoles: function userRoles(state) {
+    return state.userRole;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

@@ -154,6 +154,7 @@ router.beforeEach( async (to, from, next) => {
     const loggedIn = localStorage.getItem('user');
     const isAuth = localStorage.getItem('user');
 
+    const checkRoles = await store.getters['account/userRoles'];
     const checkAuth = await store.getters['account/userAuth'];
     const checType = await store.getters['account/userType'];
     // console.log("Auth User Type ", checType);
@@ -161,14 +162,17 @@ router.beforeEach( async (to, from, next) => {
 
     if (to.matched.some(m => m.meta.redirectIfAuthenticated) && isAuth) {
         if(checType == UserTypes.admin){
+            console.log(checkRoles);
             next({name: 'admin'});
             return;
         }
         if(checType == UserTypes.wholesaler){
+            console.log(checkRoles);
             next({name: 'wholesaler'});
             return;
         }
         if(checType == UserTypes.retailer){
+            console.log(checkRoles);
             next({name: 'retailer'});
             return;
         }else{

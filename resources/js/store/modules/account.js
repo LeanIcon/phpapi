@@ -76,6 +76,9 @@ const getters = {
     userData: state => {
         return state.authUser.user;
     },
+    userRoles: state => {
+        return state.userRole;
+    },
 };
 
 
