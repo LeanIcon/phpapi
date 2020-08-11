@@ -41,7 +41,7 @@
                                             {{product.price}}
                                         </td>
                                         <td  style="width: 75px;">
-                                            <input v-model.number="product.qty" type="text" class="form-control">
+                                            <input v-model.number="product.quantity" type="text" class="form-control">
                                             <small>{{calculateLinTotal}}</small>
                                         </td>
                                         <td>
@@ -103,7 +103,7 @@
                                     {{product.price}}
                                 </td>
                                 <td  style="width: 75px;">
-                                    <input v-model.number="product.qty" type="text" class="form-control">
+                                    <input v-model.number="product.quantity" type="text" class="form-control">
                                 </td>
                                <td>
                                     <vs-checkbox>
@@ -150,7 +150,6 @@ export default {
     },
     methods: {
         async loadProduct(url = 'wholesaler_products') {
-            console.log("Loading wholesaler Products")
             this.loading = !this.loading
             const loading = this.$vs.loading();
             await axios.get(`${url}`, {params: this.axiosParams})

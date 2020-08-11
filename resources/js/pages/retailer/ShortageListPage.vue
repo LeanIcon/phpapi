@@ -124,7 +124,7 @@ export default {
             const loading = this.$vs.loading();
             await axios.get(`${url}`)
             .then(({data}) => {
-                this.shortage_list_content = data
+                this.shortage_list_content = data.shortageList
                 this.loading != this.loading
                 loading.close();
                 })

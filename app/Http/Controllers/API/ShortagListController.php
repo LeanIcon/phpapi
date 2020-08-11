@@ -24,7 +24,11 @@ class ShortagListController extends ApiController
     {
         $user = Auth::user();
         $shortageList = $user->shortage;
-        return response()->json($shortageList, 200);
+        $count = $user->shortage->count();
+        $data ['count'] = $count;
+        $data ['shortageList'] = $shortageList;
+
+        return response()->json($data, 200);
     }
 
     public function createShortageList(Request $request)

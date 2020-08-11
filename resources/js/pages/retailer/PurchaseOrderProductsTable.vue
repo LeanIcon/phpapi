@@ -190,11 +190,12 @@ export default {
                     wholesaler_id: this.wholesalerId,
                     total: this.calculateTotal
                 };
-            await axios.post('purchase_orders_save', data)
+            await axios.post('retail_purchase_orders_save', data)
             .then(({data}) => {
                 this.loading != this.loading
                 console.log(data)
                 loading.close();
+                this.$store.dispatch('purchase_orders/clearSelectedProduct')
                 this.$router.push({name: 'retailer.dashboard'});
                 })
             .catch(({response}) => {
@@ -213,7 +214,7 @@ export default {
         checkUpdate(){
             console.log(this.po_products);
         },
-       updateCheck(){
+        updateCheck(){
             if(this.po_products.length == this.products.data.length) {
                 this.isCheckAll = true;
             }else{

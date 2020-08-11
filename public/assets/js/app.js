@@ -5950,11 +5950,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   total: _this3.calculateTotal
                 };
                 _context3.next = 5;
-                return axios.post('purchase_orders_save', data).then(function (_ref5) {
+                return axios.post('retail_purchase_orders_save', data).then(function (_ref5) {
                   var data = _ref5.data;
                   _this3.loading != _this3.loading;
                   console.log(data);
                   loading.close();
+
+                  _this3.$store.dispatch('purchase_orders/clearSelectedProduct');
 
                   _this3.$router.push({
                     name: 'retailer.dashboard'
@@ -6119,7 +6121,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       inVoices: "Invoices",
       wholesalerId: 0,
       purchase_orders: {},
-      purchase_orders_count: 0
+      purchase_orders_count: 0,
+      shortage_list_count: 0
     };
   },
   methods: {
@@ -6140,9 +6143,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.get("".concat(url)).then(function (_ref) {
                   var data = _ref.data;
                   _this.purchase_orders = data;
-                  _this.purchase_orders_count = data.purchase_orders_count; // console.log(this.purchase_orders);
-                  // console.log("Count PO'S: ", this.purchase_orders_count);
-
+                  _this.purchase_orders_count = data.purchase_orders_count;
                   _this.loading != _this.loading;
                   loading.close();
                 })["catch"](function (_ref2) {
@@ -6158,19 +6159,53 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    loadShortageListProducts: function loadShortageListProducts() {
+      var _arguments2 = arguments,
+          _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var url, loading;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                url = _arguments2.length > 0 && _arguments2[0] !== undefined ? _arguments2[0] : 'load_shortage_list';
+                _this2.loading = !_this2.loading;
+                loading = _this2.$vs.loading();
+                _context2.next = 5;
+                return axios.get("".concat(url)).then(function (_ref3) {
+                  var data = _ref3.data;
+                  _this2.shortage_list_count = data.count; // this.purchase_orders_count = data.purchase_orders_count
+
+                  console.log(data);
+                  _this2.loading != _this2.loading;
+                  loading.close();
+                })["catch"](function (_ref4) {
+                  var response = _ref4.response;
+                  _this2.loading != _this2.loading;
+                  loading.close();
+                });
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   },
-  computed: {
-    axiosParams: function axiosParams() {
-      var params = new URLSearchParams();
-      params.append('wholesaler_id', this.wholesalerId);
-      return params;
-    }
+  computed: {// axiosParams() {
+    //     const params = new URLSearchParams();
+    //         params.append('wholesaler_id', this.wholesalerId);
+    //     return params;
+    // }
   },
   mounted: function mounted() {
-    this.wholesalerId = JSON.parse(localStorage.getItem('user')).user.id; // console.log(this.wholesalerId);
-
+    // this.wholesalerId = JSON.parse(localStorage.getItem('user')).user.id;
     this.loadPurchaseOrders();
+    this.loadShortageListProducts();
   }
 });
 
@@ -6463,10 +6498,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 url = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : 'wholesaler_products';
-                console.log("Loading wholesaler Products");
                 _this.loading = !_this.loading;
                 loading = _this.$vs.loading();
-                _context.next = 6;
+                _context.next = 5;
                 return axios.get("".concat(url), {
                   params: _this.axiosParams
                 }).then(function (_ref) {
@@ -6482,7 +6516,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   loading.close();
                 });
 
-              case 6:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -6786,7 +6820,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 5;
                 return axios.get("".concat(url)).then(function (_ref) {
                   var data = _ref.data;
-                  _this.shortage_list_content = data;
+                  _this.shortage_list_content = data.shortageList;
                   _this.loading != _this.loading;
                   loading.close();
                 })["catch"](function (_ref2) {
@@ -81446,7 +81480,12 @@ var render = function() {
       "div",
       { staticClass: "row" },
       [
-        _c("stats", { attrs: { cardTitle: _vm.shortageList, cardValue: 0 } }),
+        _c("stats", {
+          attrs: {
+            cardTitle: _vm.shortageList,
+            cardValue: _vm.shortage_list_count
+          }
+        }),
         _vm._v(" "),
         _c("stats", {
           attrs: {
@@ -81463,7 +81502,7 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-lg-12" }, [
+      _c("div", { staticClass: "col-lg-6" }, [
         _c("div", { staticClass: "card" }, [
           _c(
             "div",
@@ -81762,14 +81801,14 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model.number",
-                              value: product.qty,
-                              expression: "product.qty",
+                              value: product.quantity,
+                              expression: "product.quantity",
                               modifiers: { number: true }
                             }
                           ],
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: product.qty },
+                          domProps: { value: product.quantity },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
@@ -81777,7 +81816,7 @@ var render = function() {
                               }
                               _vm.$set(
                                 product,
-                                "qty",
+                                "quantity",
                                 _vm._n($event.target.value)
                               )
                             },
@@ -81992,14 +82031,14 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model.number",
-                            value: product.qty,
-                            expression: "product.qty",
+                            value: product.quantity,
+                            expression: "product.quantity",
                             modifiers: { number: true }
                           }
                         ],
                         staticClass: "form-control",
                         attrs: { type: "text" },
-                        domProps: { value: product.qty },
+                        domProps: { value: product.quantity },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
@@ -82007,7 +82046,7 @@ var render = function() {
                             }
                             _vm.$set(
                               product,
-                              "qty",
+                              "quantity",
                               _vm._n($event.target.value)
                             )
                           },
@@ -119190,12 +119229,20 @@ var mutations = {
       count = Object.keys(state.selected_products).length;
       state.select_product_count = count;
     }
+  },
+  'CLEAR_PRODUCTS': function CLEAR_PRODUCTS(state) {
+    state.select_product_count = 0;
+    state.selected_products = [];
   }
 };
 var actions = {
   saveSelectedProduct: function saveSelectedProduct(_ref, product) {
     var commit = _ref.commit;
     commit('SET_PRODUCTS', product);
+  },
+  clearSelectedProduct: function clearSelectedProduct(_ref2) {
+    var commit = _ref2.commit;
+    commit('CLEAR_PRODUCTS');
   }
 };
 var getters = {

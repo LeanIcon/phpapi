@@ -51,7 +51,7 @@ Route::group(['namespace' => 'API'], function() {
     Route::post('save_bulk','WholesalerProductsController@bulkSave');
     Route::apiResource('purchase_orders','RetailerPurchaseOrderController');
 
-    Route::post('purchase_orders_save','RetailerPurchaseOrderController@savePurchaseOrders');
+    Route::post('retail_purchase_orders_save','RetailerPurchaseOrderController@savePurchaseOrders');
     Route::get('retailer_purchase_order','RetailerPurchaseOrderController@purchaseOrderCount');
 
     Route::post('purchase_orders_save','WholesalerPurchaseOrderController@savePurchaseOrders');

@@ -26,11 +26,18 @@ const mutations = {
             state.select_product_count = count;
         }
     },
+    'CLEAR_PRODUCTS':(state) => {
+        state.select_product_count = 0;
+        state.selected_products = [];
+    }
 };
 
 const actions = {
     saveSelectedProduct({commit}, product){
         commit('SET_PRODUCTS', product);
+    },
+    clearSelectedProduct({commit}){
+        commit('CLEAR_PRODUCTS');
     },
 };
 
