@@ -9,9 +9,16 @@
     <div class="row">
         <div class="col-lg-6">
           <div class="card">
-          <div class="card-body">
-            <retailer-wholesaler></retailer-wholesaler>
+            <div class="card-body">
+              <retailer-wholesaler></retailer-wholesaler>
+          </div>
         </div>
+      </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <shortage-list-page></shortage-list-page>
+          </div>
         </div>
       </div>
       <!-- <div class="col-lg-8">
@@ -32,13 +39,15 @@
 import StatsCardVue from '../../components/StatsCard.vue'
 import GraphCardVue from '../../components/GraphCard.vue'
 import RetailerWholesalerVue from './RetailerWholesaler.vue'
+import ShortageListPageVue from './ShortageListPage.vue'
 
 
 export default {
   components: {
     'stats' : StatsCardVue,
     'barCard' :  GraphCardVue,
-    'retailerWholesaler' : RetailerWholesalerVue
+    'retailerWholesaler' : RetailerWholesalerVue,
+    'shortageListPage' : ShortageListPageVue
   },
   data() {
     return {

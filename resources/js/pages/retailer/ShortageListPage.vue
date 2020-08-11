@@ -12,16 +12,16 @@
                     <!-- <a href="javascript:void(0);" @click="loadUser" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Product</a> -->
             </div>
 
-                <div class="alert alert-info col-md-3 ml-auto">
+                <div class="alert alert-info col-md-6 col-xs-6 col-sm-6 ml-auto">
                    Item Added Purchase Order {{selectProductCount}}
                 </div>
             </div>
         <table class="table table-centered dt-responsive nowrap no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
             <thead class="thead-light">
                 <tr>
-                    <th>ShortaeList ID</th>
-                    <th>Reference</th>
-                    <th>Number of Products</th>
+                    <th>ID</th>
+                    <th>Ref</th>
+                    <th>#Products</th>
                     <th style="width: 120px;">Action</th>
                 </tr>
             </thead>

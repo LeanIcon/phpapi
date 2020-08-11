@@ -200,6 +200,7 @@ export default {
                 })
             .catch(({response}) => {
                 console.log(response)
+                this.$router.push({name: 'retailer.dashboard'})
                 this.loading != this.loading
                 loading.close();
                 }

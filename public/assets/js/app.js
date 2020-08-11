@@ -5964,6 +5964,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 })["catch"](function (_ref6) {
                   var response = _ref6.response;
                   console.log(response);
+
+                  _this3.$router.push({
+                    name: 'retailer.dashboard'
+                  });
+
                   _this3.loading != _this3.loading;
                   loading.close();
                 });
@@ -6068,6 +6073,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_StatsCard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/StatsCard.vue */ "./resources/js/components/StatsCard.vue");
 /* harmony import */ var _components_GraphCard_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/GraphCard.vue */ "./resources/js/components/GraphCard.vue");
 /* harmony import */ var _RetailerWholesaler_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RetailerWholesaler.vue */ "./resources/js/pages/retailer/RetailerWholesaler.vue");
+/* harmony import */ var _ShortageListPage_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ShortageListPage.vue */ "./resources/js/pages/retailer/ShortageListPage.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -6104,6 +6110,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -6111,7 +6125,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   components: {
     'stats': _components_StatsCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     'barCard': _components_GraphCard_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    'retailerWholesaler': _RetailerWholesaler_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    'retailerWholesaler': _RetailerWholesaler_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    'shortageListPage': _ShortageListPage_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
@@ -6228,6 +6243,20 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -81511,6 +81540,12 @@ var render = function() {
             1
           )
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-6" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-body" }, [_c("shortage-list-page")], 1)
+        ])
       ])
     ])
   ])
@@ -81539,67 +81574,81 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "table-responsive mt-3" }, [
-      _c(
-        "table",
-        {
-          staticClass: "table table-centered dt-responsive nowrap no-footer",
-          staticStyle: {
-            "border-collapse": "collapse",
-            "border-spacing": "0",
-            width: "100%"
-          }
-        },
-        [
+      _c("div", { staticClass: "table-responsive" }, [
+        _c("table", { staticClass: "table text-nowrap" }, [
           _vm._m(0),
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(_vm.wholesalers.data, function(wholesaler, index) {
-              return _c("tr", { key: index }, [
-                _c("td", [_vm._v("Image")]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(wholesaler.name))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(wholesaler.phone))]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
-                      typeof wholesaler.details.location != "undefined"
-                        ? wholesaler.details.location
-                        : "Not Availabe"
-                    )
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "td",
-                  [
+            [
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._l(_vm.wholesalers.data, function(wholesaler, index) {
+                return _c("tr", { key: index }, [
+                  _c("td", [
+                    _c("div", { staticClass: "d-flex align-items-center" }, [
+                      _c("div", { staticClass: "mr-0" }),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "text-default font-weight-semibold",
+                            attrs: { href: "#" }
+                          },
+                          [_vm._v(_vm._s(wholesaler.name))]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "text-muted font-size-sm" }, [
+                          _c("span", {
+                            staticClass: "badge badge-mark border-blue mr-1"
+                          }),
+                          _vm._v(
+                            "\r\n                                    " +
+                              _vm._s(wholesaler.phone) +
+                              "\r\n                                "
+                          )
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("span", { staticClass: "text-muted" }, [
+                      _vm._v(
+                        _vm._s(
+                          wholesaler.details.location == null
+                            ? "Not Availabe"
+                            : wholesaler.details.location
+                        )
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(2, true),
+                  _vm._v(" "),
+                  _c("td", [
                     _c(
-                      "vs-button",
+                      "a",
                       {
-                        attrs: { size: "small", border: "" },
+                        attrs: { href: "#" },
                         on: {
                           click: function($event) {
+                            $event.preventDefault()
                             return _vm.viewDetails(wholesaler.id)
                           }
                         }
                       },
-                      [
-                        _vm._v(
-                          "\r\n                                View\r\n                            "
-                        )
-                      ]
+                      [_vm._m(3, true)]
                     )
-                  ],
-                  1
-                )
-              ])
-            }),
-            0
+                  ])
+                ])
+              })
+            ],
+            2
           )
-        ]
-      )
+        ])
+      ])
     ])
   ])
 }
@@ -81608,18 +81657,46 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "thead-light" }, [
+    return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Wholesaler Logo")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Wholesaler Name")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Phone Number")]),
         _vm._v(" "),
         _c("th", [_vm._v("Location")]),
         _vm._v(" "),
-        _c("th", { staticStyle: { width: "120px" } }, [_vm._v("Action")])
+        _c("th", [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Action")]),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "text-center", staticStyle: { width: "20px" } },
+          [_c("i", { staticClass: "icon-arrow-down12" })]
+        )
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticClass: "table-active table-border-double" }, [
+      _c("td", { attrs: { colspan: "5" } }, [_vm._v("Wholesalers")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("span", { staticClass: "badge bg-blue" }, [_vm._v("Active")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-primary" }, [
+      _c("i", { staticClass: "ri-eye-fill font-size-18" })
     ])
   }
 ]
@@ -82145,13 +82222,20 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "alert alert-info col-md-3 ml-auto" }, [
-                _vm._v(
-                  "\n                 Item Added Purchase Order " +
-                    _vm._s(_vm.selectProductCount) +
-                    "\n              "
-                )
-              ])
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "alert alert-info col-md-6 col-xs-6 col-sm-6 ml-auto"
+                },
+                [
+                  _vm._v(
+                    "\n                 Item Added Purchase Order " +
+                      _vm._s(_vm.selectProductCount) +
+                      "\n              "
+                  )
+                ]
+              )
             ]),
             _vm._v(" "),
             _c(
@@ -82322,11 +82406,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "thead-light" }, [
       _c("tr", [
-        _c("th", [_vm._v("ShortaeList ID")]),
+        _c("th", [_vm._v("ID")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Reference")]),
+        _c("th", [_vm._v("Ref")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Number of Products")]),
+        _c("th", [_vm._v("#Products")]),
         _vm._v(" "),
         _c("th", { staticStyle: { width: "120px" } }, [_vm._v("Action")])
       ])
