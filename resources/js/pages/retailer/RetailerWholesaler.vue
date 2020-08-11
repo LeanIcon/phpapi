@@ -52,7 +52,10 @@ export default {
                 this.loading != this.loading
                 loading.close();
                 })
-            .catch((error) => console.log(error))
+            .catch(({reponse}) => {
+                console.log(reponse)
+                }
+            )
         },
         viewDetails(w){
             this.$router.push({name: 'wholesaler.detail', params: {'userId': w} })

@@ -2,6 +2,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import account from './modules/account';
+import products from './modules/products';
+import purchase_orders from './modules/purchase_orders';
+import shortage_list from './modules/shortage_list';
 import createPersistedState from "vuex-persistedstate";
 import SecureLS from "secure-ls";
 var ls = new SecureLS({isCompression: false});
@@ -11,7 +14,10 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     modules: {
-        account
+        account,
+        products,
+        purchase_orders,
+        shortage_list
     },
     plugins: [createPersistedState({
         key: 'vuex',
@@ -29,7 +35,6 @@ export default new Vuex.Store({
     })],
     state: {
         user: {},
-        products: []
     },
     mutations: {
         loginCreds(state, user) {

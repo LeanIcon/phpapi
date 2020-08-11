@@ -145,7 +145,7 @@ export default {
             this.product.packet_size = product.packet_size
         },
         openNotification(position = null, color) {
-          const noti = this.$vs.notification({
+            const noti = this.$vs.notification({
                 color,
                 position,
                 title: 'Product Save',
@@ -153,14 +153,12 @@ export default {
             })
         },
         onCategoryChang(category){
-            console.log("Category Change", this.product.product_category_id)
             this.loadCategoryTypes(this.product.product_category_id)
         },
         saveProduct(url = 'admin_products') {
             const data  = this.product;
             axios.post('admin_products', data, {headers: {'Content-type': 'application/json'}})
             .then((response) => {
-                    console.log(response)
                     this.openNotification('top-right','success')
                     this.product = {}
                     // this.$noty.success("Product Save Successfully")
@@ -170,7 +168,6 @@ export default {
         async loadManufacturers() {
             await axios.get('manufacturers')
             .then(({data}) => {
-                console.log(data.data);
                 this.manufacturers = data
             })
             .catch(({response}) => console.log(response))
@@ -178,7 +175,6 @@ export default {
         async loadProductCategory() {
             await axios.get('product_category')
             .then(({data}) => {
-                console.log(data.data);
                 this.product_category = data
             })
             .catch(({response}) => console.log(response))
@@ -186,7 +182,6 @@ export default {
         async loadDosageForm() {
             await axios.get('dosage_form')
             .then(({data}) => {
-                console.log(data.data);
                 this.dosage_forms = data
             })
             .catch(({response}) => console.log(response))
@@ -194,7 +189,6 @@ export default {
         async loadDrugClass() {
             await axios.get('drug_class')
             .then(({data}) => {
-                console.log(data.data);
                 this.drug_classes = data
             })
             .catch(({response}) => console.log(response))
@@ -202,7 +196,6 @@ export default {
         async loadCategoryTypes(category_type) {
             await axios.get('category_types?product_category_id='+category_type)
             .then(({data}) => {
-                console.log(data.data);
                 this.category_types = data
             })
             .catch(({response}) => console.log(response))

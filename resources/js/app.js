@@ -41,7 +41,7 @@ Vue.use(SweetModal);
 
 Vue.filter('formatDate', function(value) {
     if (value) {
-      return moment(String(value)).format('MM/DD/YYYY hh:mm');
+        return moment(String(value)).format('MM/DD/YYYY hh:mm');
     }
 });
 // Vue.use(Vuex);

@@ -132,13 +132,13 @@ export default {
                 strenght: '',
                 packet_size: '',
                 price: 0,
-                qty: 0,
+                quantity: 0,
                 line_total: 0
             },
             // price: 0,
             wholersalerId: 0,
             selectedUser: '',
-            qty: 0,
+            quantity: 0,
             products: {},
             manufacturers: {},
             wholersalers: {},
@@ -168,8 +168,6 @@ export default {
             )
         },
         userChanged(event){
-            console.log("Wholesaler Target Value: ", event.target.value);
-            console.log("Wholesaler Selected: ", this.selectedUser);
             this.loadProduct();
         },
         async loadWholesalers(url = 'wholesalers') {
@@ -197,7 +195,6 @@ export default {
             await axios.post('save_shortage_list', data)
             .then(({data}) => {
                 this.loading != this.loading
-                console.log(data)
                 loading.close();
                 this.$router.push({name: 'retailer.dashboard'});
                 })
@@ -247,8 +244,8 @@ export default {
             return this.wholesalerId
         },
         getPurchaseOrderQty(){
-            console.log(Object.values(this.shortage_list).length);
-            console.log(Object.values(this.shortage_list));
+            // console.log(Object.values(this.shortage_list).length);
+            // console.log(Object.values(this.shortage_list));
             return Object.values(this.shortage_list).length
         },
     axiosParams() {

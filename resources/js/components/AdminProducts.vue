@@ -190,37 +190,37 @@ export default {
             }
             loading.close();
         },
-        getResults(){
-            if(typeof page === 'undefined') {
-                page = 1;
-                axios.get('admin_products?page='+ page)
-                .then(({data}) => {
-                    this.products = data
-                    })
-                .catch((error) => console.log(error))
-            }
-        },
+        // getResults(){
+        //     if(typeof page === 'undefined') {
+        //         page = 1;
+        //         axios.get('admin_products?page='+ page)
+        //         .then(({data}) => {
+        //             this.products = data
+        //             })
+        //         .catch((error) => console.log(error))
+        //     }
+        // },
         viewProduct(product){
             console.log("View Product", product)
         },
         loadUser() {
             this.$modal.show('retailer-modal');
         },
-        async loadProduct(url = 'admin_products') {
-            this.loading = !this.loading
-            const loading = this.$vs.loading();
-            await axios.get(url)
-            .then(({data}) => {
-                this.products = data
-                this.loading != this.loading
-                loading.close();
-                })
-            .catch((error) => console.log(error))
-        },
+        // async loadProduct(url = 'admin_products') {
+        //     this.loading = !this.loading
+        //     const loading = this.$vs.loading();
+        //     await axios.get(url)
+        //     .then(({data}) => {
+        //         this.products = data
+        //         this.loading != this.loading
+        //         loading.close();
+        //         })
+        //     .catch((error) => console.log(error))
+        // },
         async loadManufacturers() {
             await axios.get('manufacturers')
             .then(({data}) => {
-                console.log(data.data);
+                // console.log(data.data);
                 this.manufacturers = data
             })
             .catch(({response}) => console.log(response))
@@ -238,11 +238,19 @@ export default {
     computed: {
         productDescription() {
             return product.active_ingredients + product.strength;
-        }
+        },
+        productDescription() {
+            return product.active_ingredients + product.strength;
+        },
+        adminProducts () {
+            return this.$store.getters['products/getAllProduct'];
+        },
     },
     mounted() {
-        this.loadProduct();
+        // this.loadProduct();
         this.loadManufacturers();
+        this.products = this.adminProducts
+
     },
 
 }

@@ -59,8 +59,8 @@ export default {
             .then(({data}) => {
                 this.purchase_orders = data
                 this.purchase_orders_count = data.purchase_orders_count
-                console.log(this.purchase_orders);
-                console.log("Count PO'S: ", this.purchase_orders_count);
+                // console.log(this.purchase_orders);
+                // console.log("Count PO'S: ", this.purchase_orders_count);
                 this.loading != this.loading
                 loading.close();
                 })
@@ -80,7 +80,7 @@ export default {
   },
   mounted() {
     this.wholesalerId = JSON.parse(localStorage.getItem('user')).user.id;
-    console.log(this.wholesalerId);
+    // console.log(this.wholesalerId);
     this.loadPurchaseOrders();
   },
 

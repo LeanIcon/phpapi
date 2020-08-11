@@ -120,14 +120,7 @@ export default {
             )
         },
         viewDetails(po_orderId, ref){
-
             this.$router.push({name: 'purchase_order.view', params:{'purchase_order_id': po_orderId}})
-            // this.pod_id = po_orderId;
-            // this.poTotal = total;
-            // this.reference = reference ? reference.substring(0, 15) : ''
-            // this.$refs.review_po.open();
-            // this.loadPurchaseOrdersItems();
-            // console.log(po_orderId);
         }
     },
     mounted() {

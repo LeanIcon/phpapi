@@ -191,7 +191,6 @@ export default {
         }
     },
     mounted(){
-        console.log("Nav Bar Mounted..");
     }
 }
 </script>

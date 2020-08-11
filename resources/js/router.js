@@ -154,22 +154,19 @@ router.beforeEach( async (to, from, next) => {
 
     const checkAuth = await store.getters['account/userAuth'];
     const checType = await store.getters['account/userType'];
-    console.log("Auth User Type ", checType);
+    // console.log("Auth User Type ", checType);
 
 
     if (to.matched.some(m => m.meta.redirectIfAuthenticated) && isAuth) {
         if(checType == UserTypes.admin){
-            console.log("IS ADMIN ROOUTE");
             next({name: 'admin'});
             return;
         }
         if(checType == UserTypes.wholesaler){
-            console.log("IS W ROOUTE");
             next({name: 'wholesaler'});
             return;
         }
         if(checType == UserTypes.retailer){
-            console.log("IS R ROOUTE");
             next({name: 'retailer'});
             return;
         }else{

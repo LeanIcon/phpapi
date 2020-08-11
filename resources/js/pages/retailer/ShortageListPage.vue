@@ -3,13 +3,19 @@
     <div class="table-responsive mt-3">
         <div class="card">
         <div class="card-body">
+            <div class="row">
             <div>
                 <router-link to="/retail/shortage/create" class="btn btn-success mb-2">
                     <i class="ri-add-box-line"></i>
-                    Create Shortage List
+                    Create Shortage List 
                 </router-link>
                     <!-- <a href="javascript:void(0);" @click="loadUser" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Product</a> -->
+            </div>
+
+                <div class="alert alert-info col-md-3 ml-auto">
+                   Item Added Purchase Order {{selectProductCount}}
                 </div>
+            </div>
         <table class="table table-centered dt-responsive nowrap no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
             <thead class="thead-light">
                 <tr>
@@ -66,7 +72,7 @@
                                             success
                                             size="small"
                                             border
-                                            @click="viewShortageList(shortage.reference, shortage.content)"
+                                            @click="addToPurchaseOrderList(item)"
                                         >
                                         ADD TO P.O
                                     </vs-button>
@@ -133,9 +139,7 @@ export default {
             const loading = this.$vs.loading(id);
             await axios.get('view_purchase_order_items/' + this.pod_id)
             .then(({data}) => {
-                console.log(id)
                 this.shortage_list_content = data
-                console.log(this.shortage_list_content);
                 this.loading != this.loading
                 loading.close();
                 })
@@ -148,13 +152,20 @@ export default {
         viewShortageList(reference, content){
             this.shortage_list = JSON.parse(content);
             this.reference = reference ? reference.substring(0, 15) : ''
-            console.log(this.shortage_list);
             this.$refs.review_shortagelist.open();
-            // this.loadPurchaseOrdersItems();
         },
         shortageItemsCount(content){
             var list = JSON.parse(content);
             return Object.keys(list).length
+        },
+        addToPurchaseOrderList(item){
+            console.log(item)
+            this.$store.dispatch('purchase_orders/saveSelectedProduct', item)
+        }
+    },
+    computed: {
+        selectProductCount(){
+            return this.$store.getters['purchase_orders/getSelectedProductCount'];
         }
     },
     mounted() {

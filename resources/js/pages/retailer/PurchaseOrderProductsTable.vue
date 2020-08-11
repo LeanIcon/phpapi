@@ -10,7 +10,7 @@
             </div>
         </div> -->
     <div class="table-responsive mt-3">
-                    <button class="btn btn-info" @click="previewSweetModal()">Check Items  {{getPurchaseOrderQty}}</button> {{calculateTotal}}
+                    <button class="btn btn-info" @click="previewSweetModal()">Check Items  {{selectProductCount}}</button> {{!Number.isNaN(calculateTotal) ? calculateTotal : ''}}
                     <table class="table table-centered dt-responsive nowrap no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead class="thead-light">
                             <tr>
@@ -82,7 +82,7 @@
                                 <th>Price</th>
                                 <th>Qty</th>
                                 <th>Line Total</th>
-                                <th style="width: 120px;">Action</th>
+                                <!-- <th style="width: 120px;">Action</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -104,11 +104,11 @@
                                 <td>
                                    {{product.price * quantity}}
                                 </td>
-                               <td>
+                               <!-- <td>
                                     <vs-checkbox>
                                     </vs-checkbox>
-                                    <!-- <a href="javascript:void(0);" @click.prevent="editProduct(product)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-edit-box-fill font-size-18"></i></a> -->
-                                </td>
+                                    <a href="javascript:void(0);" @click.prevent="editProduct(product)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-edit-box-fill font-size-18"></i></a>
+                                </td> -->
                             </tr>
                         </tbody>
                     </table>
@@ -219,14 +219,10 @@ export default {
             }else{
                 this.isCheckAll = false;
             }
-            // this.po_products.push(event.target.value);
-            console.log(this.selected_products);
-            console.log(Object.values(this.selected_products).length);
         },
         formatPrice(price){
             var formattedPrice = parseFloat(price);
             return formattedPrice;
-            console.log(formattedPrice);
         },
         formatLineTotal(qty){
             var lineTotal = this.formatPrice * qty;
@@ -253,8 +249,6 @@ export default {
             return this.wholesalerId
         },
         getPurchaseOrderQty(){
-            console.log(Object.values(this.po_products).length);
-            console.log(Object.values(this.po_products));
             return Object.values(this.po_products).length
         },
     axiosParams() {
@@ -263,6 +257,12 @@ export default {
             params.append('wholesaler_id', this.selectedUser);
         }
         return params;
+    },
+    selectPurchaseOrderProducts(){
+        return this.$store.getters['purchase_orders/getSelectedProducts'];
+    },
+    selectProductCount(){
+        return this.$store.getters['purchase_orders/getSelectedProductCount'];
     }
     },
     watch: {
@@ -272,6 +272,7 @@ export default {
     },
     mounted () {
         this.loadProduct();
+        this.po_products = this.selectPurchaseOrderProducts;
     }
 
 
