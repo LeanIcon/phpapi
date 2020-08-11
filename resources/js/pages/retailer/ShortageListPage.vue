@@ -12,8 +12,8 @@
                     <!-- <a href="javascript:void(0);" @click="loadUser" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Product</a> -->
             </div>
 
-                <div class="alert alert-info col-md-6 col-xs-6 col-sm-6 ml-auto">
-                   Item Added Purchase Order {{selectProductCount}}
+                <div class="ml-auto">
+                  <button class="btn btn-info" @click="previewPOModal()" > Items in P.O List {{selectProductCount}}</button>
                 </div>
             </div>
         <table class="table table-centered dt-responsive nowrap no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -82,12 +82,19 @@
                     </table>
                 <!-- <sweet-button slot="button">SAVE</sweet-button> -->
         </sweet-modal>
+        <sweet-modal ref="review_po" width="70%" >
+          <purchase-order-items :po_products="selectPurchaseOrderProducts" @savePO="savePurchaseOrder" ></purchase-order-items>
+        </sweet-modal>
     </div>
 </template>
 
 <script>
+import PurchaseOrderItemsVue from './PurchaseOrderItems.vue';
 export default {
     // props: ['purchase_order'],
+    components: {
+        'purchaseOrderItems': PurchaseOrderItemsVue
+    },
     data() {
         return {
             product: {
@@ -149,6 +156,12 @@ export default {
                 }
             )
         },
+        savePurchaseOrder(){
+            console.log("Saving Purchase Order Please wait...");
+        },
+        previewPOModal(){
+            this.$refs.review_po.open();
+        },
         viewShortageList(reference, content){
             this.shortage_list = JSON.parse(content);
             this.reference = reference ? reference.substring(0, 15) : ''
@@ -166,7 +179,10 @@ export default {
     computed: {
         selectProductCount(){
             return this.$store.getters['purchase_orders/getSelectedProductCount'];
-        }
+        },
+        selectPurchaseOrderProducts(){
+        return this.$store.getters['purchase_orders/getSelectedProducts'];
+    },
     },
     mounted() {
         this.loadShortageList();

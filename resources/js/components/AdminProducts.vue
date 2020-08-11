@@ -206,17 +206,17 @@ export default {
         loadUser() {
             this.$modal.show('retailer-modal');
         },
-        // async loadProduct(url = 'admin_products') {
-        //     this.loading = !this.loading
-        //     const loading = this.$vs.loading();
-        //     await axios.get(url)
-        //     .then(({data}) => {
-        //         this.products = data
-        //         this.loading != this.loading
-        //         loading.close();
-        //         })
-        //     .catch((error) => console.log(error))
-        // },
+        async loadProduct(url = 'admin_products') {
+            this.loading = !this.loading
+            const loading = this.$vs.loading();
+            await axios.get(url)
+            .then(({data}) => {
+                this.products = data
+                this.loading != this.loading
+                loading.close();
+                })
+            .catch((error) => console.log(error))
+        },
         async loadManufacturers() {
             await axios.get('manufacturers')
             .then(({data}) => {
@@ -247,9 +247,9 @@ export default {
         },
     },
     mounted() {
-        // this.loadProduct();
+        this.loadProduct();
         this.loadManufacturers();
-        this.products = this.adminProducts
+        // this.products = this.adminProducts
 
     },
 

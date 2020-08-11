@@ -100,7 +100,12 @@
                                     </li>
                                 </ul>
                             </li>
-
+                            <li>
+                                 <router-link to="/admin/feedback" class="waves-effect" active-class="active">
+                                   <i class="ri-chat-1-line"></i>
+                                    <span>FeedBacks</span>
+                                </router-link>
+                            </li>
                             
 
                         </ul>

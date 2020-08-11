@@ -28,6 +28,7 @@ import PurchaseOrderList from './pages/retailer/PurchaseOrderList.vue';
 import ShortageListCreatePage from './pages/retailer/ShortageListCreatePage.vue';
 import WholesalerPurchaseOrderList from './pages/wholesaler/PurchaseOrderList.vue';
 import PurchaseOrderView from './pages/wholesaler/PurchaseOrderView.vue';
+import FeedBackPage from './pages/FeedBackPage.vue';
 
 
 Vue.use(VueRouter);
@@ -61,6 +62,7 @@ const routes = [
             { path: 'products/edit', component: AdProductsPage},
             { path: 'products/view', component: AdProductsPage},
             { path: 'settings', component: DashboardPage },
+            { path: 'feedback', component: FeedBackPage },
             { path: '*', component: Page404 },
         ]
     },

@@ -32,6 +32,7 @@
         </div>
       </div> -->
     </div>
+      
   </div>
 </template>
 
@@ -101,7 +102,10 @@ export default {
     //     const params = new URLSearchParams();
     //         params.append('wholesaler_id', this.wholesalerId);
     //     return params;
-    // }
+    // },
+    selectPurchaseOrderProducts(){
+        return this.$store.getters['purchase_orders/getSelectedProducts'];
+    },
   },
   mounted() {
     // this.wholesalerId = JSON.parse(localStorage.getItem('user')).user.id;
