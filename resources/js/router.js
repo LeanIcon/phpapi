@@ -2,7 +2,7 @@
 import Vue  from 'vue';
 import VueRouter  from "vue-router";
 import store from './store/store';
-import { UserTypes } from './_helpers/role';
+import { UserTypes, Role } from './_helpers/role';
 
 // import Login  from "./components/Login.vue";
 import LoginPage  from "./pages/LoginPage.vue";
@@ -50,6 +50,23 @@ const routes = [
         path: '/admin',
         component: DefaultPage,
         meta: {requiredAuth: true},
+         beforeEnter: async (to, from, next) => {
+             var hasPermission = await store.getters['account/userRoles'] ;
+            try {
+                if (hasPermission.includes(Role.Admin)) {
+                    next();
+                }else{
+                    if (hasPermission.includes(Role.Retailer)) {
+                        next({name: 'retailer.dashboard'});
+                    }
+                    if (hasPermission.includes(Role.Wholesaler)) {
+                        next({name: 'wholesaler.dashboard'});
+                    }
+                }
+            } catch (error) {
+                next();
+            }
+        },
         children: [
             { path: '/', component: DashboardPage,  name: 'admin' },
             { path: '/dashboard', component: DashboardPage,  name: 'admin.dashboard' },
@@ -69,6 +86,24 @@ const routes = [
     {
         path: '/wholesale',
         component: DefaultPage,
+        meta: {requiredAuth: true},
+        beforeEnter: async (to, from, next) => {
+            var hasPermission = await store.getters['account/userRoles'] ;
+           try {
+               if (hasPermission.includes(Role.Wholesaler)) {
+                   next();
+               }else{
+                   if (hasPermission.includes(Role.Retailer)) {
+                       next({name: 'retailer.dashboard'});
+                   }
+                   if (hasPermission.includes(Role.Admin)) {
+                       next({name: 'admin.dashboard'});
+                   }
+               }
+           } catch (error) {
+               next();
+           }
+       },
         children: [
             { path: '/', component: WholesaleDashboardPage, name: 'wholesaler' },
             { path: '/dashboard', component: WholesaleDashboardPage, name: 'wholesaler.dashboard' },
@@ -87,6 +122,25 @@ const routes = [
     {
         path: '/retail',
         component: DefaultPage,
+        meta: {requiredAuth: true,},
+        beforeEnter: async (to, from, next) => {
+            var hasPermission = await store.getters['account/userRoles'] ;
+            console.log(hasPermission.includes(Role.Retailer));
+           try {
+               if (hasPermission.includes(Role.Retailer)) {
+                   next();
+               }else{
+                   if (hasPermission.includes(Role.Wholesaler)) {
+                       next({name: 'wholesaler.dashboard'});
+                   }
+                   if (hasPermission.includes(Role.Admin)) {
+                       next({name: 'admin.dashboard'});
+                   }
+               }
+           } catch (error) {
+               next();
+           }
+       },
         children: [
             { path: '/', component: RetailDashboardPage,  name: 'retailer' },
             { path: '/dashboard', component: RetailDashboardPage,  name: 'retailer.dashboard' },
@@ -119,32 +173,35 @@ const router = new VueRouter({
 });
 
 
-// const authWholesaler = (to, from, next) => {
-//     if (store.getters['account/userType'] == UserTypes.wholesaler) {
-//         next({name: 'wholesaler'});
-//         return;
-//     } else {
-//         next();
-//     }
-// };
+const authAdmin = async (to, from, next) => {
+    const checkRoles = await store.getters['account/userRoles'];
+    if (checkRoles.includes(Role.Admin)) {
+        next({name: 'admin.dashboard'});
+        return;
+    } else {
+        next();
+    }
+};
 
-// const authRetailer = (to, from, next) => {
-//     if (store.getters['account/userType'] == UserTypes.retailer) {
-//         next({name: 'retailer'});
-//         return;
-//     } else {
-//         next();
-//     }
-// };
+const authRetailer = async (to, from, next) => {
+    const checkRoles = await store.getters['account/userRoles'];
+    if (checkRoles.includes(Role.Retailer)) {
+        next({name: 'retailer.dashboard'});
+        return;
+    } else {
+        next();
+    }
+};
 
-// const authAdmin = (to, from, next) => {
-//     if (store.getters['account/userType'] == UserTypes.retailer) {
-//         next({name: 'retailer'});
-//         return;
-//     } else {
-//         next();
-//     }
-// };
+const authWholesaler = async (to, from, next) => {
+    const checkRoles = await store.getters['account/userRoles'];
+    if (checkRoles.includes(Role.Wholesaler)) {
+        next({name: 'wholesaler.dashboard'});
+        return;
+    } else {
+        next();
+    }
+};
 
 // const authSysAdmin = store.getters['account/userType'];
 
@@ -153,8 +210,13 @@ router.beforeEach( async (to, from, next) => {
     const authRequired = !publicPages.includes(to.path);
     const loggedIn = localStorage.getItem('user');
     const isAuth = localStorage.getItem('user');
-
     const checkRoles = await store.getters['account/userRoles'];
+
+    const { authorize } = to.meta;
+
+    // console.log(checkRoles.includes(Role.Wholesaler));
+
+
     const checkAuth = await store.getters['account/userAuth'];
     const checType = await store.getters['account/userType'];
     // console.log("Auth User Type ", checType);
@@ -162,18 +224,15 @@ router.beforeEach( async (to, from, next) => {
 
     if (to.matched.some(m => m.meta.redirectIfAuthenticated) && isAuth) {
         if(checType == UserTypes.admin){
-            console.log(checkRoles);
-            next({name: 'admin'});
+            next({name: 'admin.dashboard'});
             return;
         }
         if(checType == UserTypes.wholesaler){
-            console.log(checkRoles);
-            next({name: 'wholesaler'});
+            next({name: 'wholesaler.dashboard'});
             return;
         }
         if(checType == UserTypes.retailer){
-            console.log(checkRoles);
-            next({name: 'retailer'});
+            next({name: 'retailer.dashboard'});
             return;
         }else{
             next();
@@ -181,7 +240,32 @@ router.beforeEach( async (to, from, next) => {
     }
 
 
-    // let isPermitted = _.includes()
+    if (to.matched.some(m => m.meta.adminAuth)) {
+        if(checkRoles.includes(Role.Admin)){
+            next();
+        }else{
+            next({name: 'admin.dashboard'});
+        }
+    }
+    else if (to.matched.some(m => m.meta.wholesalerAuth)) {
+        if(checkRoles.includes(Role.Wholesaler)){
+            next();
+        }else{
+            next({name: 'wholesaler.dashboard'});
+        }
+    }
+    else if (to.matched.some(m => m.meta.wholesalerAuth)) {
+        if(checkRoles.includes(Role.Retailer)){
+            next();
+        }else{
+            next({name: 'retail.dashboard'});
+        }
+    }
+
+
+
+    // let isPermitted = _.includes();
+    // let isPermitted = _.includes();
 
     // if(to.matched.some(m => m.meta.requiredAuth)) {
 

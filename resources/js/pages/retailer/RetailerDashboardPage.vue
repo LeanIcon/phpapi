@@ -86,7 +86,6 @@ export default {
             .then(({data}) => {
                 this.shortage_list_count = data.count
                 // this.purchase_orders_count = data.purchase_orders_count
-                console.log(data);
                 this.loading != this.loading
                 loading.close();
                 })

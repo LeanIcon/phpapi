@@ -7,7 +7,7 @@
       <stats :cardTitle="inVoices" :cardValue="0" ></stats>
     </div>
     <div class="row">
-      <div class="col-lg-8">
+      <!-- <div class="col-lg-8">
         <bar-card></bar-card>
       </div>
       <div class="col-lg-4">
@@ -16,7 +16,7 @@
               Data
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

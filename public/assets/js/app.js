@@ -6318,7 +6318,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   var data = _ref3.data;
                   _this2.shortage_list_count = data.count; // this.purchase_orders_count = data.purchase_orders_count
 
-                  console.log(data);
                   _this2.loading != _this2.loading;
                   loading.close();
                 })["catch"](function (_ref4) {
@@ -79170,7 +79169,9 @@ var render = function() {
                                         {
                                           staticClass: "waves-effect",
                                           attrs: {
-                                            to: "/admin",
+                                            to: {
+                                              name: "wholesaler.dashboard"
+                                            },
                                             "active-class": "active"
                                           }
                                         },
@@ -85065,27 +85066,10 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-lg-8" }, [_c("bar-card")], 1),
-      _vm._v(" "),
-      _vm._m(0)
-    ])
+    _c("div", { staticClass: "row" })
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-4" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-body" }, [
-          _vm._v("\n            Data\n        ")
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -119363,6 +119347,53 @@ var routes = [{
   meta: {
     requiredAuth: true
   },
+  beforeEnter: function () {
+    var _beforeEnter = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(to, from, next) {
+      var hasPermission;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _store_store__WEBPACK_IMPORTED_MODULE_3__["default"].getters['account/userRoles'];
+
+            case 2:
+              hasPermission = _context.sent;
+
+              try {
+                if (hasPermission.includes(_helpers_role__WEBPACK_IMPORTED_MODULE_4__["Role"].Admin)) {
+                  next();
+                } else {
+                  if (hasPermission.includes(_helpers_role__WEBPACK_IMPORTED_MODULE_4__["Role"].Retailer)) {
+                    next({
+                      name: 'retailer.dashboard'
+                    });
+                  }
+
+                  if (hasPermission.includes(_helpers_role__WEBPACK_IMPORTED_MODULE_4__["Role"].Wholesaler)) {
+                    next({
+                      name: 'wholesaler.dashboard'
+                    });
+                  }
+                }
+              } catch (error) {
+                next();
+              }
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    function beforeEnter(_x, _x2, _x3) {
+      return _beforeEnter.apply(this, arguments);
+    }
+
+    return beforeEnter;
+  }(),
   children: [{
     path: '/',
     component: _pages_DashboardPage_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
@@ -119412,6 +119443,56 @@ var routes = [{
 }, {
   path: '/wholesale',
   component: _pages_DefaultContainer__WEBPACK_IMPORTED_MODULE_9__["default"],
+  meta: {
+    requiredAuth: true
+  },
+  beforeEnter: function () {
+    var _beforeEnter2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(to, from, next) {
+      var hasPermission;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _store_store__WEBPACK_IMPORTED_MODULE_3__["default"].getters['account/userRoles'];
+
+            case 2:
+              hasPermission = _context2.sent;
+
+              try {
+                if (hasPermission.includes(_helpers_role__WEBPACK_IMPORTED_MODULE_4__["Role"].Wholesaler)) {
+                  next();
+                } else {
+                  if (hasPermission.includes(_helpers_role__WEBPACK_IMPORTED_MODULE_4__["Role"].Retailer)) {
+                    next({
+                      name: 'retailer.dashboard'
+                    });
+                  }
+
+                  if (hasPermission.includes(_helpers_role__WEBPACK_IMPORTED_MODULE_4__["Role"].Admin)) {
+                    next({
+                      name: 'admin.dashboard'
+                    });
+                  }
+                }
+              } catch (error) {
+                next();
+              }
+
+            case 4:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    function beforeEnter(_x4, _x5, _x6) {
+      return _beforeEnter2.apply(this, arguments);
+    }
+
+    return beforeEnter;
+  }(),
   children: [{
     path: '/',
     component: _pages_wholesaler_WholesalerDashboardPage_vue__WEBPACK_IMPORTED_MODULE_15__["default"],
@@ -119460,6 +119541,57 @@ var routes = [{
 }, {
   path: '/retail',
   component: _pages_DefaultContainer__WEBPACK_IMPORTED_MODULE_9__["default"],
+  meta: {
+    requiredAuth: true
+  },
+  beforeEnter: function () {
+    var _beforeEnter3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(to, from, next) {
+      var hasPermission;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.next = 2;
+              return _store_store__WEBPACK_IMPORTED_MODULE_3__["default"].getters['account/userRoles'];
+
+            case 2:
+              hasPermission = _context3.sent;
+              console.log(hasPermission.includes(_helpers_role__WEBPACK_IMPORTED_MODULE_4__["Role"].Retailer));
+
+              try {
+                if (hasPermission.includes(_helpers_role__WEBPACK_IMPORTED_MODULE_4__["Role"].Retailer)) {
+                  next();
+                } else {
+                  if (hasPermission.includes(_helpers_role__WEBPACK_IMPORTED_MODULE_4__["Role"].Wholesaler)) {
+                    next({
+                      name: 'wholesaler.dashboard'
+                    });
+                  }
+
+                  if (hasPermission.includes(_helpers_role__WEBPACK_IMPORTED_MODULE_4__["Role"].Admin)) {
+                    next({
+                      name: 'admin.dashboard'
+                    });
+                  }
+                }
+              } catch (error) {
+                next();
+              }
+
+            case 5:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }));
+
+    function beforeEnter(_x7, _x8, _x9) {
+      return _beforeEnter3.apply(this, arguments);
+    }
+
+    return beforeEnter;
+  }(),
   children: [{
     path: '/',
     component: _pages_retailer_RetailerDashboardPage_vue__WEBPACK_IMPORTED_MODULE_16__["default"],
@@ -119519,106 +119651,230 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       };
     }
   }
-}); // const authWholesaler = (to, from, next) => {
-//     if (store.getters['account/userType'] == UserTypes.wholesaler) {
-//         next({name: 'wholesaler'});
-//         return;
-//     } else {
-//         next();
-//     }
-// };
-// const authRetailer = (to, from, next) => {
-//     if (store.getters['account/userType'] == UserTypes.retailer) {
-//         next({name: 'retailer'});
-//         return;
-//     } else {
-//         next();
-//     }
-// };
-// const authAdmin = (to, from, next) => {
-//     if (store.getters['account/userType'] == UserTypes.retailer) {
-//         next({name: 'retailer'});
-//         return;
-//     } else {
-//         next();
-//     }
-// };
-// const authSysAdmin = store.getters['account/userType'];
+});
+
+var authAdmin = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(to, from, next) {
+    var checkRoles;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.next = 2;
+            return _store_store__WEBPACK_IMPORTED_MODULE_3__["default"].getters['account/userRoles'];
+
+          case 2:
+            checkRoles = _context4.sent;
+
+            if (!checkRoles.includes(_helpers_role__WEBPACK_IMPORTED_MODULE_4__["Role"].Admin)) {
+              _context4.next = 8;
+              break;
+            }
+
+            next({
+              name: 'admin.dashboard'
+            });
+            return _context4.abrupt("return");
+
+          case 8:
+            next();
+
+          case 9:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+
+  return function authAdmin(_x10, _x11, _x12) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var authRetailer = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(to, from, next) {
+    var checkRoles;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.next = 2;
+            return _store_store__WEBPACK_IMPORTED_MODULE_3__["default"].getters['account/userRoles'];
+
+          case 2:
+            checkRoles = _context5.sent;
+
+            if (!checkRoles.includes(_helpers_role__WEBPACK_IMPORTED_MODULE_4__["Role"].Retailer)) {
+              _context5.next = 8;
+              break;
+            }
+
+            next({
+              name: 'retailer.dashboard'
+            });
+            return _context5.abrupt("return");
+
+          case 8:
+            next();
+
+          case 9:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }));
+
+  return function authRetailer(_x13, _x14, _x15) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+var authWholesaler = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(to, from, next) {
+    var checkRoles;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            _context6.next = 2;
+            return _store_store__WEBPACK_IMPORTED_MODULE_3__["default"].getters['account/userRoles'];
+
+          case 2:
+            checkRoles = _context6.sent;
+
+            if (!checkRoles.includes(_helpers_role__WEBPACK_IMPORTED_MODULE_4__["Role"].Wholesaler)) {
+              _context6.next = 8;
+              break;
+            }
+
+            next({
+              name: 'wholesaler.dashboard'
+            });
+            return _context6.abrupt("return");
+
+          case 8:
+            next();
+
+          case 9:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6);
+  }));
+
+  return function authWholesaler(_x16, _x17, _x18) {
+    return _ref3.apply(this, arguments);
+  };
+}(); // const authSysAdmin = store.getters['account/userType'];
+
 
 router.beforeEach( /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(to, from, next) {
-    var publicPages, authRequired, loggedIn, isAuth, checkRoles, checkAuth, checType;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(to, from, next) {
+    var publicPages, authRequired, loggedIn, isAuth, checkRoles, authorize, checkAuth, checType;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context7.prev = _context7.next) {
           case 0:
             publicPages = ['/login', '/register', 'home', '/', '/recover_password'];
             authRequired = !publicPages.includes(to.path);
             loggedIn = localStorage.getItem('user');
             isAuth = localStorage.getItem('user');
-            _context.next = 6;
+            _context7.next = 6;
             return _store_store__WEBPACK_IMPORTED_MODULE_3__["default"].getters['account/userRoles'];
 
           case 6:
-            checkRoles = _context.sent;
-            _context.next = 9;
+            checkRoles = _context7.sent;
+            authorize = to.meta.authorize; // console.log(checkRoles.includes(Role.Wholesaler));
+
+            _context7.next = 10;
             return _store_store__WEBPACK_IMPORTED_MODULE_3__["default"].getters['account/userAuth'];
 
-          case 9:
-            checkAuth = _context.sent;
-            _context.next = 12;
+          case 10:
+            checkAuth = _context7.sent;
+            _context7.next = 13;
             return _store_store__WEBPACK_IMPORTED_MODULE_3__["default"].getters['account/userType'];
 
-          case 12:
-            checType = _context.sent;
+          case 13:
+            checType = _context7.sent;
 
             if (!(to.matched.some(function (m) {
               return m.meta.redirectIfAuthenticated;
             }) && isAuth)) {
-              _context.next = 29;
+              _context7.next = 27;
               break;
             }
 
             if (!(checType == _helpers_role__WEBPACK_IMPORTED_MODULE_4__["UserTypes"].admin)) {
-              _context.next = 18;
+              _context7.next = 18;
               break;
             }
 
-            console.log(checkRoles);
             next({
-              name: 'admin'
+              name: 'admin.dashboard'
             });
-            return _context.abrupt("return");
+            return _context7.abrupt("return");
 
           case 18:
             if (!(checType == _helpers_role__WEBPACK_IMPORTED_MODULE_4__["UserTypes"].wholesaler)) {
-              _context.next = 22;
+              _context7.next = 21;
               break;
             }
 
-            console.log(checkRoles);
             next({
-              name: 'wholesaler'
+              name: 'wholesaler.dashboard'
             });
-            return _context.abrupt("return");
+            return _context7.abrupt("return");
 
-          case 22:
+          case 21:
             if (!(checType == _helpers_role__WEBPACK_IMPORTED_MODULE_4__["UserTypes"].retailer)) {
-              _context.next = 28;
+              _context7.next = 26;
               break;
             }
 
-            console.log(checkRoles);
             next({
-              name: 'retailer'
+              name: 'retailer.dashboard'
             });
-            return _context.abrupt("return");
+            return _context7.abrupt("return");
 
-          case 28:
+          case 26:
             next();
 
-          case 29:
-            // let isPermitted = _.includes()
+          case 27:
+            if (to.matched.some(function (m) {
+              return m.meta.adminAuth;
+            })) {
+              if (checkRoles.includes(_helpers_role__WEBPACK_IMPORTED_MODULE_4__["Role"].Admin)) {
+                next();
+              } else {
+                next({
+                  name: 'admin.dashboard'
+                });
+              }
+            } else if (to.matched.some(function (m) {
+              return m.meta.wholesalerAuth;
+            })) {
+              if (checkRoles.includes(_helpers_role__WEBPACK_IMPORTED_MODULE_4__["Role"].Wholesaler)) {
+                next();
+              } else {
+                next({
+                  name: 'wholesaler.dashboard'
+                });
+              }
+            } else if (to.matched.some(function (m) {
+              return m.meta.wholesalerAuth;
+            })) {
+              if (checkRoles.includes(_helpers_role__WEBPACK_IMPORTED_MODULE_4__["Role"].Retailer)) {
+                next();
+              } else {
+                next({
+                  name: 'retail.dashboard'
+                });
+              }
+            } // let isPermitted = _.includes();
+            // let isPermitted = _.includes();
             // if(to.matched.some(m => m.meta.requiredAuth)) {
             //     if(store.getters['account/userAuth']) {
             //         if (authSysAdmin == UserTypes.admin) {
@@ -119633,22 +119889,24 @@ router.beforeEach( /*#__PURE__*/function () {
             //     }
             //     next('/login');
             // }
+
+
             if (authRequired && !loggedIn) {
               next('/login');
             } else {
               next();
             }
 
-          case 30:
+          case 29:
           case "end":
-            return _context.stop();
+            return _context7.stop();
         }
       }
-    }, _callee);
+    }, _callee7);
   }));
 
-  return function (_x, _x2, _x3) {
-    return _ref.apply(this, arguments);
+  return function (_x19, _x20, _x21) {
+    return _ref4.apply(this, arguments);
   };
 }());
 /* harmony default export */ __webpack_exports__["default"] = (router);

@@ -13,7 +13,7 @@
                             <li class="menu-title">Menu</li>
 
                             <li class="mm-active">
-                                <router-link to="/admin" active-class="active" class="waves-effect">
+                                <router-link :to="{name: 'wholesaler.dashboard'}" active-class="active" class="waves-effect">
                                     <i class="ri-dashboard-line"></i><span class="badge badge-pill badge-success float-right">3</span>
                                     <span>Dashboard</span>
                                 </router-link>
