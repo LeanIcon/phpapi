@@ -63,6 +63,16 @@ export default {
     }
   },
   methods: {
+    openNotification(position = null, color, text = 'Unprovided') {
+          const noti = this.$vs.notification({
+            square: true,
+            flat: true,
+            color,
+            position,
+            title: text,
+            // text: ''
+          })
+        },
     async loadPurchaseOrders(url = 'retailer_purchase_order') {
             this.loading = !this.loading
             const loading = this.$vs.loading();
@@ -70,11 +80,13 @@ export default {
             .then(({data}) => {
                 this.purchase_orders = data
                 this.purchase_orders_count = data.purchase_orders_count
+                this.openNotification('top-right', 'success','Loading P.O Complete')
                 this.loading != this.loading
                 loading.close();
                 })
             .catch(({response}) => {
                 this.loading != this.loading
+                this.openNotification('top-right', 'error','Could not load P.O')
                 loading.close();
                 }
             )
@@ -86,11 +98,13 @@ export default {
             .then(({data}) => {
                 this.shortage_list_count = data.count
                 // this.purchase_orders_count = data.purchase_orders_count
+                this.openNotification('top-right', 'success','Loading Shortage List Complete')
                 this.loading != this.loading
                 loading.close();
                 })
             .catch(({response}) => {
                 this.loading != this.loading
+                this.openNotification('top-right', 'error','Unable to Load Shortage List... Reload Page or Try Again!!!')
                 loading.close();
                 }
             )
@@ -107,6 +121,7 @@ export default {
     },
   },
   mounted() {
+    this.openNotification('top-right', 'success','Welcome');
     // this.wholesalerId = JSON.parse(localStorage.getItem('user')).user.id;
     this.loadPurchaseOrders();
     this.loadShortageListProducts();

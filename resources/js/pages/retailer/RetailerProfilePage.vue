@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-8">
         <div class="card">
           <div class="row no-gutters align-items-center">
             <div class="col-md-4">
@@ -9,22 +9,22 @@
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <h5 class="card-title">Identity: {{authUser.name}}</h5>
+                <p class="card-text">Location: {{authUser.details.location ==  null ? 'Not Availabe' : authUser.details.location}}</p>
+                <p class="card-text">Status: <small class="text-muted">Active</small></p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-4">
         <div class="card">
           <div class="row no-gutters align-items-center">
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <h5 class="card-title">Contact Details</h5>
+                <p class="card-text">Contact Person: {{authUser.details.contact_person ==  null ? 'Not Availabe' : authUser.details.contact_person}}</p>
+                <p class="card-text">Status:<small class="text-muted"> Active</small></p>
               </div>
             </div>
           </div>
@@ -49,7 +49,7 @@
                   <div class="tab-content border border-top-0 p-4">
                       <div class="tab-pane fade" id="desc" role="tabpanel">
                           <div>
-                              <detail-form></detail-form>
+                              <detail-form :userdetails="authUser.details"></detail-form>
                           </div>
                       </div>
                       <div class="tab-pane fade active show" id="specifi" role="tabpanel">
@@ -168,6 +168,14 @@ export default {
       pos_demos: false,
       product_expiry: false
     }
+  },
+  computed: {
+    authUser() {
+      return this.$store.getters['account/userData'];
+    }
+  },
+  mounted() {
+    console.log(this.authUser)
   }
 
 }

@@ -66,6 +66,8 @@ class User extends Authenticatable implements JWTSubject, CommonModel
         'product_category'
     ];
 
+    protected $with = ['details'];
+
     /**
      * Undocumented function
      *

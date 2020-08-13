@@ -3,12 +3,12 @@
       <form @submit.prevent="updateUser" >
 
     <div class="row">
-         <div class="col-lg-8">
-              <div class="row">
+        <div class="col-lg-8">
+            <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="manufacturername">Contact Person</label>
-                         <input  v-model="details.contact_person" id="contact_person" name="contact_person" type="text" class="form-control">
+                        <input  v-model="details.contact_person" id="contact_person" name="contact_person" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-              <div class="row">
+            <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="strenght">Business Address</label>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-              <div class="row">
+            <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="image">Profile Image</label>
@@ -103,26 +103,38 @@ export default {
         }
     },
     methods: {
+        openNotification(position = null, color, text = 'Unprovided') {
+          const noti = this.$vs.notification({
+            square: true,
+            flat: true,
+            color,
+            position,
+            title: text,
+            // text: ''
+            })
+        },
         updateUser(){
             console.log(this.details)
         },
         async loadRegions(url = 'region') {
-            console.log("Loading regions...");
             this.loading = !this.loading
             const loading = this.$vs.loading();
             await axios.get(`${url}`)
             .then(({data}) => {
                 this.regions = data
+                this.openNotification('top-right', 'success', 'Loading User Details and Profile Complete');
                 this.loading != this.loading
                 loading.close();
                 })
-            .catch((error) => console.log(error))
+            .catch((error) =>{
+                this.openNotification('top-right', 'error', 'Unable to complete Request Please Try Again');
+                    loading.close();
+            })
         },
     },
     mounted() {
         this.loadRegions();
         this.details = this.userdetails;
-        console.log("Loggin Details...", this.details);
     },
 
 }

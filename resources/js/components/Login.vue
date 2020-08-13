@@ -24,14 +24,12 @@
                                                         <i class="ri-user-2-line auti-custom-input-icon"></i>
                                                         <label for="username">Username</label>
                                                         <input type="text" v-model="user.email" class="form-control" id="username" placeholder="Enter username">
-                                                        <small>{{user.email}}</small>
                                                     </div>
 
                                                     <div class="form-group auth-form-group-custom mb-4">
                                                         <i class="ri-lock-2-line auti-custom-input-icon"></i>
                                                         <label for="userpassword">Password</label>
                                                         <input type="password" v-model="user.password"  class="form-control" id="userpassword" placeholder="Enter password">
-                                                        <small>{{user.password}}</small>
                                                     </div>
 
                                                     <div class="custom-control custom-checkbox">
@@ -103,7 +101,7 @@ export default {
     },
     mounted(){
         // console.log(process.env.MIX_APP_URL);
-        console.log(process.env.NODE_ENV);
+        // console.log(process.env.NODE_ENV);
     }
 
 }
