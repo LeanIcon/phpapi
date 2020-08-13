@@ -1,9 +1,8 @@
 <template>
   <div>
       <form @submit.prevent="updateUser" >
-     <div class="card">
-         <div class="card-body">
-             <div class="row">
+
+    <div class="row">
          <div class="col-lg-8">
               <div class="row">
                 <div class="col-lg-6">
@@ -72,15 +71,13 @@
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
      </div>
+  </div>
      <div class="form-group">
          <div class="col-lg-5">
         <button type="submit" class="btn btn-primary col-md-5" >UPDATE</button>
          </div>
      </div>
-  </div>
     </form>
   </div>
 </template>

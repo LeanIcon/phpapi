@@ -25,8 +25,10 @@ import WholesalerProductAdd from './pages/wholesaler/WholesalerProductAdd.vue';
 import WholesalerDetails from './pages/retailer/WholesalerDetails.vue';
 import ShortageListPage from './pages/retailer/ShortageListPage.vue';
 import PurchaseOrderList from './pages/retailer/PurchaseOrderList.vue';
+import RetailerProfilePage from './pages/retailer/RetailerProfilePage.vue';
 import ShortageListCreatePage from './pages/retailer/ShortageListCreatePage.vue';
 import WholesalerPurchaseOrderList from './pages/wholesaler/PurchaseOrderList.vue';
+import PriceComparisonPage from './pages/PriceComparisonPage.vue';
 import PurchaseOrderView from './pages/wholesaler/PurchaseOrderView.vue';
 import FeedBackPage from './pages/FeedBackPage.vue';
 
@@ -64,7 +66,7 @@ const routes = [
                     }
                 }
             } catch (error) {
-                next();
+                next({name: 'login'});
             }
         },
         children: [
@@ -101,7 +103,7 @@ const routes = [
                    }
                }
            } catch (error) {
-               next();
+                next({name: 'login', query:{redirectFrom: to.fullPath} });
            }
        },
         children: [
@@ -125,7 +127,6 @@ const routes = [
         meta: {requiredAuth: true,},
         beforeEnter: async (to, from, next) => {
             var hasPermission = await store.getters['account/userRoles'] ;
-            console.log(hasPermission.includes(Role.Retailer));
            try {
                if (hasPermission.includes(Role.Retailer)) {
                    next();
@@ -138,7 +139,7 @@ const routes = [
                    }
                }
            } catch (error) {
-               next();
+                next({name: 'login'});
            }
        },
         children: [
@@ -152,6 +153,8 @@ const routes = [
             { path: 'purchase_orders', component: PurchaseOrderList},
             { path: 'products/edit', component: AdProductsPage},
             { path: 'products/view', component: AdProductsPage},
+            { path: 'price_comparison', component: PriceComparisonPage, name: 'retailer.price.comparison'},
+            { path: 'profile', component: RetailerProfilePage, name: 'retailer.profle'},
             { path: '*', component: Page404 },
         ]
     },
@@ -203,23 +206,16 @@ const authWholesaler = async (to, from, next) => {
     }
 };
 
-// const authSysAdmin = store.getters['account/userType'];
-
 router.beforeEach( async (to, from, next) => {
     const publicPages = ['/login', '/register', 'home','/', '/recover_password'];
     const authRequired = !publicPages.includes(to.path);
     const loggedIn = localStorage.getItem('user');
     const isAuth = localStorage.getItem('user');
+
     const checkRoles = await store.getters['account/userRoles'];
-
-    const { authorize } = to.meta;
-
-    // console.log(checkRoles.includes(Role.Wholesaler));
-
-
     const checkAuth = await store.getters['account/userAuth'];
     const checType = await store.getters['account/userType'];
-    // console.log("Auth User Type ", checType);
+
 
 
     if (to.matched.some(m => m.meta.redirectIfAuthenticated) && isAuth) {
@@ -240,48 +236,28 @@ router.beforeEach( async (to, from, next) => {
     }
 
 
-    if (to.matched.some(m => m.meta.adminAuth)) {
-        if(checkRoles.includes(Role.Admin)){
-            next();
-        }else{
-            next({name: 'admin.dashboard'});
-        }
-    }
-    else if (to.matched.some(m => m.meta.wholesalerAuth)) {
-        if(checkRoles.includes(Role.Wholesaler)){
-            next();
-        }else{
-            next({name: 'wholesaler.dashboard'});
-        }
-    }
-    else if (to.matched.some(m => m.meta.wholesalerAuth)) {
-        if(checkRoles.includes(Role.Retailer)){
-            next();
-        }else{
-            next({name: 'retail.dashboard'});
-        }
-    }
-
-
-
-    // let isPermitted = _.includes();
-    // let isPermitted = _.includes();
-
-    // if(to.matched.some(m => m.meta.requiredAuth)) {
-
-    //     if(store.getters['account/userAuth']) {
-    //         if (authSysAdmin == UserTypes.admin) {
-    //             next('/admin');
-    //         }
-    //         if (authSysAdmin == UserTypes.retailer) {
-    //             next('/retailer');
-    //         }
-    //         if (authSysAdmin == UserTypes.wholesaler) {
-    //             next('/wholesaler');
-    //         }
+    // if (to.matched.some(m => m.meta.adminAuth)) {
+    //     if(checkRoles.includes(Role.Admin)){
+    //         next();
+    //     }else{
+    //         next({name: 'admin.dashboard'});
     //     }
-    //     next('/login');
     // }
+    // else if (to.matched.some(m => m.meta.wholesalerAuth)) {
+    //     if(checkRoles.includes(Role.Wholesaler)){
+    //         next();
+    //     }else{
+    //         next({name: 'wholesaler.dashboard'});
+    //     }
+    // }
+    // else if (to.matched.some(m => m.meta.wholesalerAuth)) {
+    //     if(checkRoles.includes(Role.Retailer)){
+    //         next();
+    //     }else{
+    //         next({name: 'retail.dashboard'});
+    //     }
+    // }
+
 
     if (authRequired && !loggedIn ) {
         next('/login');

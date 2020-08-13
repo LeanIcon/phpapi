@@ -5,7 +5,7 @@
     <whole-sale-side-bar v-if="isWholesaler"></whole-sale-side-bar>
     <retail-side-bar v-if="isRetailer"></retail-side-bar>
     <right-bar></right-bar>
-    <div class="main-content">
+    <div class="main-content pr-1">
       <div class="page-content">
           <div class="container-fluid">
             <!-- start page title -->

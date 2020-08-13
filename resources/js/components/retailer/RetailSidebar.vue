@@ -1,6 +1,5 @@
 <template>
     <div class="vertical-menu mm-active">
-
                 <div data-simplebar="init" class="h-100 mm-show"><div class="simplebar-wrapper" style="margin: 0px;">
                     <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer">
                         </div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: -16.8px; bottom: 0px;">
@@ -38,13 +37,13 @@
                                 </router-link>
                             </li>
                             <li>
-                                <router-link to="/purchase_orders" class="waves-effect" active-class="active">
+                                <router-link :to="{name: 'retailer.price.comparison'}" class="waves-effect" active-class="active">
                                     <i class="ri-shopping-bag-2-fill"></i>
                                     <span>Price Comparison</span>
                                 </router-link>
                             </li>
                             <li>
-                                <router-link to="/invoice" class="waves-effect" active-class="active">
+                                <router-link :to="{name: 'retailer.profle'}" class=" waves-effect" active-class="active">
                                     <i class="ri-shopping-bag-2-fill"></i>
                                     <span>Profile</span>
                                 </router-link>

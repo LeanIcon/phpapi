@@ -6,10 +6,10 @@
                         <div class="navbar-brand-box">
                             <a href="#" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="assets/images/nnlogo.png" alt="" height="22">
+                                    <img :src="'/assets/images/nnlogo.png'" alt="" height="22">
                                 </span>
                                 <span class="#">
-                                    <img src="assets/images/nnlogo.png" alt="" height="20">
+                                    <img :src="'/assets/images/nnlogo.png'" alt="" height="20">
                                 </span>
                             </a>
 
