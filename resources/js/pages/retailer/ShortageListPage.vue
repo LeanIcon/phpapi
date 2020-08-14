@@ -126,17 +126,29 @@ export default {
         }
     },
     methods: {
+          openNotification(position = null, color, text = 'Unprovided') {
+          const noti = this.$vs.notification({
+            square: true,
+            flat: true,
+            color,
+            position,
+            title: text,
+            // text: ''
+            })
+        },
         async loadShortageList(url = 'load_shortage_list') {
             this.loading = !this.loading
             const loading = this.$vs.loading();
             await axios.get(`${url}`)
             .then(({data}) => {
                 this.shortage_list_content = data.shortageList
+                this.openNotification('top-right', 'success', 'Loading Shortage List Complete');
                 this.loading != this.loading
                 loading.close();
                 })
             .catch(({response}) => {
                 this.loading != this.loading
+                this.openNotification('top-right', 'danger', 'Unable to load Shortage List')
                 loading.close();
                 }
             )

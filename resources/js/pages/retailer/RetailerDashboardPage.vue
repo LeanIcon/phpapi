@@ -98,13 +98,13 @@ export default {
             .then(({data}) => {
                 this.shortage_list_count = data.count
                 // this.purchase_orders_count = data.purchase_orders_count
-                this.openNotification('top-right', 'success','Loading Shortage List Complete')
+                // this.openNotification('top-right', 'success','Loading Shortage List Complete')
                 this.loading != this.loading
                 loading.close();
                 })
             .catch(({response}) => {
                 this.loading != this.loading
-                this.openNotification('top-right', 'error','Unable to Load Shortage List... Reload Page or Try Again!!!')
+                // this.openNotification('top-right', 'error','Unable to Load Shortage List... Reload Page or Try Again!!!')
                 loading.close();
                 }
             )
@@ -121,7 +121,7 @@ export default {
     },
   },
   mounted() {
-    this.openNotification('top-right', 'success','Welcome');
+    // this.openNotification('top-right', 'success','Welcome');
     // this.wholesalerId = JSON.parse(localStorage.getItem('user')).user.id;
     this.loadPurchaseOrders();
     this.loadShortageListProducts();

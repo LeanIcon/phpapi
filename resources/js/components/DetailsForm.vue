@@ -1,7 +1,6 @@
 <template>
   <div>
-      <form @submit.prevent="updateUser" >
-
+    <form @submit.prevent="updateUser" >
     <div class="row">
         <div class="col-lg-8">
             <div class="row">

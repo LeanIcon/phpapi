@@ -83,19 +83,30 @@ export default {
         }
     },
     methods: {
+        openNotification(position = null, color, text = 'Unprovided') {
+          const noti = this.$vs.notification({
+            square: true,
+            flat: true,
+            color,
+            position,
+            title: text,
+            // text: ''
+            })
+        },
         async loadPurchaseOrders(url = 'retailer_purchase_order') {
             this.loading = !this.loading
             const loading = this.$vs.loading();
             await axios.get(`${url}`)
             .then(({data}) => {
                 this.purchase_orders = data.purchase_orders
-                console.log(this.purchase_orders);
                 this.loading != this.loading
+                this.openNotification('top-right','success', 'Purchase Order Loaded')
                 loading.close();
                 })
             .catch(({response}) => {
                 this.loading != this.loading
                 loading.close();
+                    this.openNotification('top-right','danger', 'Unable to load Purchase Orders Try Again')
                 }
             )
         },
@@ -104,9 +115,7 @@ export default {
             const loading = this.$vs.loading(id);
             await axios.get('view_purchase_order_items/' + this.pod_id)
             .then(({data}) => {
-                console.log(id)
                 this.purchase_order_items = data
-                console.log(this.purchase_order_items);
                 this.loading != this.loading
                 loading.close();
                 })
@@ -122,7 +131,6 @@ export default {
             this.reference = reference ? reference.substring(0, 15) : ''
             this.$refs.review_po.open();
             this.loadPurchaseOrdersItems();
-            console.log(po_orderId);
         }
     },
     mounted() {
