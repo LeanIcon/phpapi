@@ -1,51 +1,8 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col-lg-8">
-        <div class="card">
-          <div class="row no-gutters align-items-center">
-            <div class="col-md-4">
-              <img
-                class="card-img img-fluid"
-                :src="'/assets/images/small/img-2.jpg'"
-                alt="Card image"
-              />
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Identity: {{authUser.name}}</h5>
-                <p
-                  class="card-text"
-                >Location: {{authUser.details.location == null ? 'Not Availabe' : authUser.details.location}}</p>
-                <p class="card-text">
-                  Status:
-                  <small class="text-muted">Active</small>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="card">
-          <div class="row no-gutters align-items-center">
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Contact Details</h5>
-                <p
-                  class="card-text"
-                >Contact Person: {{authUser.details.contact_person == null ? 'Not Availabe' : authUser.details.contact_person}}</p>
-                <p class="card-text">
-                  Status:
-                  <small class="text-muted">Active</small>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <top-profile :profile="authUser" />
       <!-- End of Top Card -->
+      <div class="row">
       <div class="col-lg-12">
         <div class="card">
           <div class="card-body">
@@ -110,10 +67,12 @@
 import { UserTypes } from '../../_helpers/role'
 import DetailsFormVue from "../../components/DetailsForm.vue";
 import ApplicationSettingsVue from "../../components/ApplicationSettings.vue";
+import TopProfileCardVue from '../../components/TopProfileCard.vue';
 export default {
   components: {
-    detailForm: DetailsFormVue,
-    appSettings: ApplicationSettingsVue,
+    'detailForm': DetailsFormVue,
+    'appSettings': ApplicationSettingsVue,
+    'topProfile' : TopProfileCardVue
   },
   data() {
     return {
@@ -137,7 +96,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.authUser);
   },
 };
 </script>

@@ -176,35 +176,35 @@ const router = new VueRouter({
 });
 
 
-const authAdmin = async (to, from, next) => {
-    const checkRoles = await store.getters['account/userRoles'];
-    if (checkRoles.includes(Role.Admin)) {
-        next({name: 'admin.dashboard'});
-        return;
-    } else {
-        next();
-    }
-};
+// const authAdmin = async (to, from, next) => {
+//     const checkRoles = await store.getters['account/userRoles'];
+//     if (checkRoles.includes(Role.Admin)) {
+//         next({name: 'admin.dashboard'});
+//         return;
+//     } else {
+//         next();
+//     }
+// };
 
-const authRetailer = async (to, from, next) => {
-    const checkRoles = await store.getters['account/userRoles'];
-    if (checkRoles.includes(Role.Retailer)) {
-        next({name: 'retailer.dashboard'});
-        return;
-    } else {
-        next();
-    }
-};
+// const authRetailer = async (to, from, next) => {
+//     const checkRoles = await store.getters['account/userRoles'];
+//     if (checkRoles.includes(Role.Retailer)) {
+//         next({name: 'retailer.dashboard'});
+//         return;
+//     } else {
+//         next();
+//     }
+// };
 
-const authWholesaler = async (to, from, next) => {
-    const checkRoles = await store.getters['account/userRoles'];
-    if (checkRoles.includes(Role.Wholesaler)) {
-        next({name: 'wholesaler.dashboard'});
-        return;
-    } else {
-        next();
-    }
-};
+// const authWholesaler = async (to, from, next) => {
+//     const checkRoles = await store.getters['account/userRoles'];
+//     if (checkRoles.includes(Role.Wholesaler)) {
+//         next({name: 'wholesaler.dashboard'});
+//         return;
+//     } else {
+//         next();
+//     }
+// };
 
 router.beforeEach( async (to, from, next) => {
     const publicPages = ['/login', '/register', 'home','/', '/recover_password'];
