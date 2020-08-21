@@ -28,19 +28,19 @@ class RolesTableSeeder extends Seeder
         $role = Role::create(['name' => 'Customer']);
 
         $user1 = User::find(1);
-        $adminrole = Role::findByName('Admin', 'api');
+        $adminrole = Role::findByName('Admin');
         $user1->assignRole([$adminrole->id]);
 
         $user1 = User::find(2);
-        $wholesalerrole = Role::findByName('Wholesaler', 'api');
+        $wholesalerrole = Role::findByName('Wholesaler');
         $user1->assignRole([$wholesalerrole->id]);
 
         $user1 = User::find(3);
-        $retailerrole = Role::findByName('Retailer', 'api');
+        $retailerrole = Role::findByName('Retailer');
         $user1->assignRole([$retailerrole->id]);
 
         $user1 = User::find(4);
-        $customerrole = Role::findByName('Customer', 'api');
+        $customerrole = Role::findByName('Customer');
         $user1->assignRole([$customerrole->id]);
     }
 }

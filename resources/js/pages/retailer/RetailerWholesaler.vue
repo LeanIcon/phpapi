@@ -39,8 +39,15 @@
                     <td><span class="text-muted">{{wholesaler.details.location ==  null ? 'Not Availabe' : wholesaler.details.location }}</span></td>
                     <td><span class="badge bg-blue">Active</span></td>
                     <td>
-                        <a href="#" @click.prevent="viewDetails(wholesaler.id)" ><span class="text-primary"><i class="ri-eye-fill font-size-18"></i></span></a>
-                        </td>
+                         <vs-button
+                        size="small"
+                        success
+                        border
+                            @click="viewDetails(wholesaler.id)"
+                        >
+                            View Products
+                        </vs-button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -71,8 +78,8 @@ export default {
                 }
             )
         },
-        viewDetails(w){
-            this.$router.push({name: 'wholesaler.detail', params: {'userId': w} })
+        viewDetails(userId){
+            this.$router.push({name: 'wholesaler.products', params: {'id': userId} })
         }
     },
     mounted() {

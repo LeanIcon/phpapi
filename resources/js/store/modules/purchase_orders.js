@@ -15,6 +15,7 @@ const mutations = {
             state.selected_products.push(data);
             count = Object.keys(state.selected_products).length;
             state.select_product_count = count;
+            console.log(count);
             return;
         }
         if (state.selected_products.some(product => product.products_id === data.products_id)) {
@@ -24,6 +25,7 @@ const mutations = {
             state.selected_products.push(data);
             count = Object.keys(state.selected_products).length;
             state.select_product_count = count;
+            console.log(count);
         }
     },
     'CLEAR_PRODUCTS':(state) => {

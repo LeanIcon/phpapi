@@ -1,7 +1,7 @@
 <template>
   <div>
-      <!-- <div class="row">
-              <div class="form-group col-lg-4">
+        <!-- <div class="row">
+            <div class="form-group col-lg-4">
                     <label for="manufacturername">Wholelsalers</label>
                     <select v-model="selectedUser" @change="userChanged($event)" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
                     <option value="" disabled hidden >Select</option>
@@ -10,7 +10,7 @@
             </div>
         </div> -->
     <div class="table-responsive mt-3">
-                    <button class="btn btn-info" @click="previewSweetModal()">Check Items  {{selectProductCount}}</button> {{!Number.isNaN(calculateTotal) ? calculateTotal : ''}}
+                    <button class="btn btn-info" @click="previewSweetModal()">Check Items  {{getPurchaseOrderQty}}</button> {{!Number.isNaN(calculateTotal) ? calculateTotal : ''}}
                     <table class="table table-centered dt-responsive nowrap no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead class="thead-light">
                             <tr>
@@ -47,14 +47,12 @@
                                 <td>
                                     <vs-checkbox v-model="po_products" :val="product" >
                                     </vs-checkbox>
-                                    <!-- <a href="javascript:void(0);" @click.prevent="editProduct(product)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-edit-box-fill font-size-18"></i></a> -->
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             <div class="col-md-12" v-show="products.links && products.meta" >
-                <!-- <pagination :data="laravelData" v-on:pagination-change-page="getResults"></pagination> -->
             <nav >
                 <ul class="pagination" style="cursor:pointer" >
                     <li class="page-item" :class="{'disabled': !products.links.prev , 'active': products.links.prev != null}">
@@ -133,11 +131,9 @@ export default {
             .then(({data}) => {
                 this.products = data
                 this.loading != this.loading
-                // console.log(this.products)
                 loading.close();
                 })
             .catch(({response}) => {
-                // console.log(response)
                 this.loading != this.loading
                 loading.close();
                 }
@@ -214,11 +210,12 @@ export default {
         },
         getPurchaseOrderQty(){
             return Object.values(this.po_products).length
+            console.log(Object.values(this.po_products).length);
         },
     axiosParams() {
         const params = new URLSearchParams();
-        if (this.selectedUser > 0) {
-            params.append('wholesaler_id', this.selectedUser);
+        if (this.selectedUser > 0 || this.wholesalerId > 0) {
+            params.append('wholesaler_id', this.selectedUser ?? this.wholesalerId);
         }
         return params;
     },
@@ -237,6 +234,7 @@ export default {
     mounted () {
         this.loadProduct();
         this.po_products = this.selectPurchaseOrderProducts;
+        console.log("PO Page", this.wholesalerId)
     }
 
 
