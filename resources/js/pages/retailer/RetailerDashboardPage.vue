@@ -16,10 +16,15 @@
       </div>
         <div class="col-lg-6">
           <div class="card">
+            <div class="card-header">ADVERTS</div>
+          </div>
+          <side-adert />
+
+          <!-- <div class="card">
             <div class="card-body">
               <shortage-list-page></shortage-list-page>
           </div>
-        </div>
+        </div> -->
       </div>
       <!-- <div class="col-lg-8">
         <bar-card></bar-card>
@@ -32,15 +37,17 @@
         </div>
       </div> -->
     </div>
-      
+
   </div>
 </template>
 
 <script>
+
 import StatsCardVue from '../../components/StatsCard.vue'
 import GraphCardVue from '../../components/GraphCard.vue'
 import RetailerWholesalerVue from './RetailerWholesaler.vue'
 import ShortageListPageVue from './ShortageListPage.vue'
+import SideAdvertVue from '../../components/SideAdvert.vue'
 
 
 export default {
@@ -48,7 +55,8 @@ export default {
     'stats' : StatsCardVue,
     'barCard' :  GraphCardVue,
     'retailerWholesaler' : RetailerWholesalerVue,
-    'shortageListPage' : ShortageListPageVue
+    'shortageListPage' : ShortageListPageVue,
+    'sideAdert' : SideAdvertVue
   },
   data() {
     return {

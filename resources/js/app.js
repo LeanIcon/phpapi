@@ -8,6 +8,7 @@ import "./plugins/vue-js-modal/styles.css";
 import "./plugins/vue-noty/dist/vuejs-noty.css";
 import store from "./store/store";
 import SweetModal from 'sweet-modal-vue/src/plugin.js';
+import carousel from 'vue-owl-carousel2';
 
 // import Modal from 'vmodal';
 // import Axios from "axios";
