@@ -64,7 +64,7 @@ class RetailerPurchaseOrderController extends ApiController
                 'product_name' => $row['name'] ?? $row['product_name'],
                 'products_id' => $row['products_id'],
                 'description' => $row['productDescription'] ?? '',
-                'quantity' => $row['quantity'],
+                'quantity' => $row['quantity'] ?? 0,
                 'price' => $row['price'],
                 'manufacturer' => $row['manufacturer_slug'] ?? $row['manufacturer'],
                 ]

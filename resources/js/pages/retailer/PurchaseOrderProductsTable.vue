@@ -190,6 +190,7 @@ export default {
         },
         productDesc(product){
             let active_ing = product.active_ingredients ?? '';
+            let generic = product.name ?? '';
             return active_ing + ' ' + product.strength;
         },
         getNextPage(){

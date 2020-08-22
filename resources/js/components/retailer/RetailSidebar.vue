@@ -12,8 +12,8 @@
                             <li class="menu-title">Menu</li>
 
                             <li class="mm-active">
-                                <router-link to="/retail" active-class="active" class="waves-effect">
-                                    <i class="ri-dashboard-line"></i><span class="badge badge-pill badge-success float-right">3</span>
+                                <router-link :to="{name: 'retailer.dashboard'}" active-class="active" class="waves-effect">
+                                    <i class="ri-dashboard-line"></i>
                                     <span>Dashboard</span>
                                 </router-link>
                             </li>

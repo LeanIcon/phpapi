@@ -11,11 +11,11 @@ use App\Http\Controllers\ApiController;
 
 class WholesalerProductsController extends ApiController
 {
-    private $wholesalerProducts;
-    public function __construct(WholesalerProduct $wholesalerProducts)
+    private $wholesalerProduct;
+    public function __construct(WholesalerProduct $wholesalerProduct)
     {
-        $this->middleware('auth:api');
-        parent::__construct($wholesalerProducts);
+        // $this->middleware('auth:api');
+        parent::__construct($wholesalerProduct);
     }
 
 
