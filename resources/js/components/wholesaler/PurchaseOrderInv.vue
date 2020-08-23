@@ -94,10 +94,8 @@ export default {
             const loading = this.$vs.loading(id);
             await axios.get('wholesaler_purchase_order_view/' + this.purchase_order_id)
             .then(({data}) => {
-                console.log(id)
                 this.purchase_order = data.purchase_order
                 this.purchase_order_items = data.purchase_order.order_items
-                console.log(this.purchase_order_items);
                 this.loading != this.loading
                 loading.close();
                 })

@@ -74,6 +74,7 @@ export default {
 
     data() {
         return {
+        pageReload: false,
             user: {
                 email: '',
                 password: ''
