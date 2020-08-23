@@ -4,7 +4,7 @@
           <div class="card">
                     <div class="card-body">
                         <div>
-                            FILTERS
+                             <h4  class="leading">PURCHASE ORDERS</h4>
                         </div>
         <table class="table table-centered dt-responsive nowrap no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
             <thead class="thead-light">
@@ -18,9 +18,9 @@
             <tbody>
                 <tr v-for="(po_order, index) in purchase_orders" :key="index">
                 <td>PO-{{po_order.id}}</td>
-                <td>{{po_order.wholesaler_name}}</td>
+                <td>{{po_order.retailer_name}}</td>
                 <td>
-                    <span class="badge" :class="{'badge-info' : po_order.status == 'pending'}" >PENDING</span>
+                    <span class="badge" :class="{'badge-info' : po_order.status == 'pending', 'badge-success' : po_order.status == 'processed'}" >{{po_order.status}}</span>
                 </td>
                 <td>
                     <vs-button

@@ -3,19 +3,13 @@
       <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <div>
+                <!-- <div>
                     <a href="javascript:void(0);" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Retailer</a>
-                </div>
+                </div> -->
                 <div class="table-responsive mt-3">
                     <table class="table table-centered datatable dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;" id="DataTables_Table_0">
                         <thead class="thead-light">
                             <tr>
-                                <th style="width: 20px;">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customercheck">
-                                        <label class="custom-control-label" for="customercheck">&nbsp;</label>
-                                    </div>
-                                </th>
                                 <th>Name</th>
                                 <th>Location</th>
                                 <th>Contact Person</th>
@@ -28,12 +22,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="(user, index) in users.data" :key="index" >
-                                <td>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customercheck3">
-                                        <label class="custom-control-label" for="customercheck3">&nbsp;</label>
-                                    </div>
-                                </td>
+                                <!-- -->
 
                                 <td>{{user.name}}</td>
                                 <td>{{user.details.location}}</td>

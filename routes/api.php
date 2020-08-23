@@ -57,12 +57,14 @@ Route::group(['namespace' => 'API'], function() {
 
     Route::post('purchase_orders_save','WholesalerPurchaseOrderController@savePurchaseOrders');
     Route::get('wholesaler_purchase_order','WholesalerPurchaseOrderController@purchaseOrderCount');
+    Route::get('wholesaler_dashboard_stats','WholesalerDashboardStatsController@loadDashboardStats');
+    Route::post('process_purchase_order_w','WholesalerPurchaseOrderController@proccessPurchaseOrder');
     Route::get('wholesaler_purchase_order_view/{id?}','WholesalerPurchaseOrderController@loadPurchaseOrderItems');
 
     Route::get('view_purchase_order_items/{id?}','RetailerPurchaseOrderController@loadPurchaseOrderItems');
     Route::post('save_shortage_list','ShortagListController@createShortageList');
     Route::get('load_shortage_list','ShortagListController@loadShortageList');
-    
+
     Route::apiResource('dosage_form','DosageFormController');
     Route::apiResource('drug_class','DrugClassController');
 

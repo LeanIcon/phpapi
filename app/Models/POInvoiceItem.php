@@ -8,7 +8,7 @@ class POInvoiceItem extends Model
 {
     protected $table = 'po_invoice_items';
 
-    protected $fillable = [ 'products_id', 'description', 'product_name', 'purchase_order_id',
+    protected $fillable = [ 'products_id', 'description', 'product_name', 'purchase_order_id', 'line_total',
     'quantity', 'price', 'manufacturer' ,'order_type'];
 
 

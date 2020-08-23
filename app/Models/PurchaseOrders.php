@@ -37,7 +37,7 @@ class PurchaseOrders extends ApiModel
 
     public function getRetailerNameAttribute()
     {
-        $maftr = User::find($this->wholesaler_id)->name;
+        $maftr = User::find($this->retailer_id)->name;
         return $maftr ?? 'na';
     }
 

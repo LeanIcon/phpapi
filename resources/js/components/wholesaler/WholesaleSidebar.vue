@@ -38,9 +38,15 @@
                                 </router-link>
                             </li>
                             <li>
-                                <router-link to="/wholesale/invoice" class="waves-effect" active-class="active">
+                                <router-link :to="{name: 'wholesaler.invoices'}" class="waves-effect" active-class="active">
                                     <i class="ri-shopping-bag-2-fill"></i>
                                     <span>Invoice</span>
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{name: 'wholesaler.profle'}" class=" waves-effect" active-class="active">
+                                    <i class="ri-shopping-bag-2-fill"></i>
+                                    <span>Profile</span>
                                 </router-link>
                             </li>
 

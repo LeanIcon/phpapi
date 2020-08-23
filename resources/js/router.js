@@ -26,6 +26,7 @@ import WholesalerDetails from './pages/retailer/WholesalerDetails.vue';
 import ShortageListPage from './pages/retailer/ShortageListPage.vue';
 import PurchaseOrderList from './pages/retailer/PurchaseOrderList.vue';
 import RetailerProfilePage from './pages/retailer/RetailerProfilePage.vue';
+
 import ShortageListCreatePage from './pages/retailer/ShortageListCreatePage.vue';
 import WholesalerPurchaseOrderList from './pages/wholesaler/PurchaseOrderList.vue';
 import PriceComparisonPage from './pages/PriceComparisonPage.vue';
@@ -33,6 +34,8 @@ import PurchaseOrderView from './pages/wholesaler/PurchaseOrderView.vue';
 import FeedBackPage from './pages/FeedBackPage.vue';
 import RetailerWholesaler from './pages/retailer/RetailerWholesaler.vue';
 import WholesalerProductsPage from './pages/retailer/WholesalerProducts.vue';
+import WholesalerProfilePage from './pages/wholesaler/WholeSalerProfilePage.vue';
+import WholesalerInvoiceList from './pages/wholesaler/WholesalerInvoiceList.vue';
 
 
 Vue.use(VueRouter);
@@ -120,6 +123,8 @@ const routes = [
             { path: 'products/add', component: WholesalerProductAdd},
             { path: 'products/edit', component: WholesalerProductAdd},
             { path: 'products/view', component: WholesalerProductAdd},
+            { path: 'settings/profile', component: WholesalerProfilePage, name: 'wholesaler.profle'},
+            { path: 'orders/invoice_list', component: WholesalerInvoiceList, name: 'wholesaler.invoices'},
             { path: '*', component: Page404 },
         ]
     },

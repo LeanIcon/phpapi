@@ -417,20 +417,23 @@ export default {
                     purchaseOrders: this.mitems,
                     total: this.poTotalValue
                 };
-        console.log(data);
-        // const loading = this.$vs.loading(id);
-        // await axios
-        //     .post("wholesaler_purchase_order_view/" + this.purchase_order_id)
-        //     .then(({ data }) => {
-        //         this.purchase_order = data.purchase_order;
-        //         this.purchase_order_items = data.purchase_order.order_items;
-        //         this.loading != this.loading;
-        //         loading.close();
-        //     })
-        // .catch(({ response }) => {
-        //   this.loading != this.loading;
-        //   loading.close();
-        // });
+        const loading = this.$vs.loading({
+            text: "Processing Purchase Order",
+            type: "rectangle"
+        });
+        await axios
+            .post("process_purchase_order_w", data)
+            .then(({ data }) => {
+                this.loading != this.loading;
+                loading.close();
+                console.log(data);
+                this.$router.replace({name: 'wholesaler.dashboard'});
+            })
+        .catch(({ response }) => {
+            this.loading != this.loading;
+            loading.close();
+            this.$router.replace({name: 'wholesaler.dashboard'});
+        });
     },
     formatPrice(price) {
       return Number.parseFloat(price);

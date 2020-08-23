@@ -56,42 +56,36 @@ class WholesalerPurchaseOrderController extends ApiController
         return response()->json(['message'=> 'Processing Unsuccessfull try again']);
     }
 
-    
-
-    public function savePurchaseOrders(Request $request)
+    public function proccessPurchaseOrder(Request $request)
     {
         $user = Auth::user();
+        $request['status'] = 'processed';
         $items = collect($request->purchaseOrders);
+        $code = $this->purchaseOrders::generateInvoiceCode();
+        $dvStatus = 'pending';
 
-        $purchaseOrder = $this->purchaseOrders::find($request->purchaseId);
-        return $purchaseOrder;
-        // create([
-        //     'wholesaler_id' => $request->wholesaler_id,
-        //     'retailer_id' => $user->id ,
-        //     'status' => 'pending',
-        //     'total' => $request->total,
-        //     'order_type' => 'purchase_order',
-        //     'wholesaler_visible' => 'true',
-        //     'invoice' => 0,
-        //     'delivery_status' => 0,
-        //     'reference' => Str::uuid()
-        // ]);
+        $purchaseOrder = $this->purchaseOrders::find($request->purchaseOrderId);
+        $purchaseOrder->update(['status' => $request->status, 'invoice' => $code, 'devlivery_status' => $dvStatus, 'approved_total' => $request->total ]);
 
         foreach ($items as $row) {
             $itemsSaved =  $this->pOInvoiceItem::create(
                 [
-                'purchase_order_id' => $purchaseOrder->id,
+                'purchase_order_id' => $request->purchaseOrderId,
                 'product_name' => $row['name'] ?? $row['product_name'],
                 'products_id' => $row['products_id'],
                 'description' => $row['productDescription'] ?? '',
                 'quantity' => $row['quantity'] ?? 0,
                 'price' => $row['price'],
+                'line_total' => (float)$row['price'] * (int)$row['quantity'],
                 'manufacturer' => $row['manufacturer_slug'] ?? $row['manufacturer'],
                 ]
             );
         }
 
-        return response()->json($itemsSaved);
+        if($itemsSaved->id) {
+            return response()->json(['message'=> 'Order Proccessed Successfull']);
+        }
+        return response()->json(['message'=> 'Problem proccessing order try again']);
     }
 
 }
