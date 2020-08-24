@@ -163,42 +163,42 @@ export default {
                     this.product = {}
                     // this.$noty.success("Product Save Successfully")
                 })
-            .catch(({response}) => console.log(response))
+            .catch(({response}) => console.log("Error"))
         },
         async loadManufacturers() {
             await axios.get('manufacturers')
             .then(({data}) => {
                 this.manufacturers = data
             })
-            .catch(({response}) => console.log(response))
+            .catch(({response}) => console.log("Error"))
         },
         async loadProductCategory() {
             await axios.get('product_category')
             .then(({data}) => {
                 this.product_category = data
             })
-            .catch(({response}) => console.log(response))
+            .catch(({response}) => console.log("Error"))
         },
         async loadDosageForm() {
             await axios.get('dosage_form')
             .then(({data}) => {
                 this.dosage_forms = data
             })
-            .catch(({response}) => console.log(response))
+            .catch(({response}) => console.log("Error"))
         },
         async loadDrugClass() {
             await axios.get('drug_class')
             .then(({data}) => {
                 this.drug_classes = data
             })
-            .catch(({response}) => console.log(response))
+            .catch(({response}) => console.log("Error"))
         },
         async loadCategoryTypes(category_type) {
             await axios.get('category_types?product_category_id='+category_type)
             .then(({data}) => {
                 this.category_types = data
             })
-            .catch(({response}) => console.log(response))
+            .catch(({response}) => console.log("Error"))
         },
     },
     computed: {

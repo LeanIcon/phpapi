@@ -10,9 +10,6 @@
                     <button class="btn btn-primary" @click="previewSelectedItems" >
                         <i class="ri-file-list-fill"></i>
                         Preview Select Products</button>
-                    <button class="btn btn-primary" @click="lookNewModal" >
-                        <i class="ri-file-list-fill"></i>
-                        Look New Modal</button>
                     <!-- <a href="javascript:void(0);" @click="loadUser" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Product</a> -->
                 </div>
                 <div class="table-responsive mt-3">
@@ -163,11 +160,10 @@ export default {
             const data = this.selected_products
             await axios.post('save_bulk', data, {headers: {'Content-type': 'application/json'}})
                 .then(({data}) => {
-                    console.log(data)
                     this.loading != this.loading
                     loading.close();
                     })
-                .catch(({response}) => console.log(response.data))
+                .catch(({response}) => console.log("Error"))
         },
         openLoader(){
             if (this.loading) {
@@ -182,7 +178,7 @@ export default {
                 .then(({data}) => {
                     this.products = data
                     })
-                .catch((error) => console.log(error))
+                .catch((error) => console.log("Error"))
             }
         },
         viewProduct(product){
@@ -200,7 +196,7 @@ export default {
                 this.loading != this.loading
                 loading.close();
                 })
-            .catch((error) => console.log(error))
+            .catch((error) => console.log("Error"))
         },
         async loadManufacturers() {
             await axios.get('manufacturers')

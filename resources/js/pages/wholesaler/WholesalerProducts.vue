@@ -148,7 +148,7 @@ export default {
                 .then(({data}) => {
                     this.products = data
                     })
-                .catch((error) => console.log(error))
+                .catch((error) => console.log("Error"))
             }
         },
         viewProduct(product){
@@ -162,7 +162,7 @@ export default {
             .then(({data}) => {
                 this.manufacturers = data
             })
-            .catch(({response}) => console.log(response))
+            .catch(({response}) => console.log("Error"))
         },
         productDesc(product){
             return product.active_ingredients + ' ' + product.strength;
@@ -183,7 +183,6 @@ export default {
         }
     },
     mounted() {
-        console.log(this.authUser)
         this.loadManufacturers();
     },
 
