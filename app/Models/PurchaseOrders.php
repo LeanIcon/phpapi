@@ -22,7 +22,7 @@ class PurchaseOrders extends ApiModel
         'retailer_name'
     ];
 
-    public static function generateInvoiceCode()
+    public static function generateInvoiceCode($invNum = null)
     {
         $num = 1;
         $code = str_pad($num, 4, '0', STR_PAD_LEFT);
@@ -49,6 +49,11 @@ class PurchaseOrders extends ApiModel
     public function order_items()
     {
         return $this->hasMany(PurchaseOrderItems::class,'purchase_order_id');
+    }
+
+    public function invoice_items()
+    {
+        return $this->hasMany(POInvoiceItem::class,'purchase_order_id');
     }
 
     public function user()

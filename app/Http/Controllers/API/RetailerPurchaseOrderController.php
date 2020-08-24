@@ -40,6 +40,16 @@ class RetailerPurchaseOrderController extends ApiController
         return response()->json($order_items, 200);
     }
 
+    public function loadInvoiceItems(Request $request, $id)
+    {
+        $purchase_order =  $this->purchaseOrders::find($id);
+        $invoice_items = $purchase_order->invoice_items;
+
+        $data['invoice_items'] = $invoice_items;
+        return response()->json($data, 200);
+    }
+
+
     public function savePurchaseOrders(Request $request)
     {
         $user = Auth::user();

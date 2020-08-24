@@ -48,18 +48,24 @@ Route::group(['namespace' => 'API'], function() {
     Route::apiResource('wholesaler_products','WholesalerProductsController');
     Route::get('wholesaler_products/search','WholesalerProductsController@search');
     Route::post('wholesaler_save_single','WholesalerProductsController@saveSingleProduct');
-    
+
     Route::post('save_bulk','WholesalerProductsController@bulkSave');
     Route::apiResource('purchase_orders','RetailerPurchaseOrderController');
 
     Route::post('retail_purchase_orders_save','RetailerPurchaseOrderController@savePurchaseOrders');
     Route::get('retailer_purchase_order','RetailerPurchaseOrderController@purchaseOrderCount');
+    Route::get('retailer_dashboard_stats','RetailerDashboardStatsController@loadDashboardStats');
 
     Route::post('purchase_orders_save','WholesalerPurchaseOrderController@savePurchaseOrders');
     Route::get('wholesaler_purchase_order','WholesalerPurchaseOrderController@purchaseOrderCount');
     Route::get('wholesaler_dashboard_stats','WholesalerDashboardStatsController@loadDashboardStats');
     Route::post('process_purchase_order_w','WholesalerPurchaseOrderController@proccessPurchaseOrder');
     Route::get('wholesaler_purchase_order_view/{id?}','WholesalerPurchaseOrderController@loadPurchaseOrderItems');
+
+    Route::get('load_invoice_items/{id?}','WholesalerPurchaseOrderController@loadInvoiceItems');
+    // Route::get('load_invoice_items/{id?}','RetailerPurchaseOrderController@loadInvoiceItems');
+    Route::get('get_invoice_items/{id?}','InvoiceItemController@loadInvoiceItems');
+
 
     Route::get('view_purchase_order_items/{id?}','RetailerPurchaseOrderController@loadPurchaseOrderItems');
     Route::post('save_shortage_list','ShortagListController@createShortageList');

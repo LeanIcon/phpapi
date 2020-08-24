@@ -43,6 +43,12 @@
                                 </router-link>
                             </li>
                             <li>
+                                <router-link :to="{name: 'retailer.invoice'}" class="waves-effect" active-class="active">
+                                    <i class="ri-shopping-bag-2-fill"></i>
+                                    <span>Invoice</span>
+                                </router-link>
+                            </li>
+                            <li>
                                 <router-link :to="{name: 'retailer.profle'}" class=" waves-effect" active-class="active">
                                     <i class="ri-shopping-bag-2-fill"></i>
                                     <span>Profile</span>

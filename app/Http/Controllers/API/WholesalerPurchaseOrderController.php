@@ -38,7 +38,15 @@ class WholesalerPurchaseOrderController extends ApiController
         $order_items = $purchase_order->order_items;
 
         $data['purchase_order'] = $purchase_order;
-        // $data['order_items'] = $order_items;
+        return response()->json($data, 200);
+    }
+
+    public function loadInvoiceItems(Request $request, $id)
+    {
+        $purchase_order =  $this->purchaseOrders::find($id);
+        $invoice_items = $purchase_order->invoice_items;
+
+        $data['invoice_items'] = $invoice_items;
         return response()->json($data, 200);
     }
 

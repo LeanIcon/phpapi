@@ -35,7 +35,9 @@ import FeedBackPage from './pages/FeedBackPage.vue';
 import RetailerWholesaler from './pages/retailer/RetailerWholesaler.vue';
 import WholesalerProductsPage from './pages/retailer/WholesalerProducts.vue';
 import WholesalerProfilePage from './pages/wholesaler/WholeSalerProfilePage.vue';
+
 import WholesalerInvoiceList from './pages/wholesaler/WholesalerInvoiceList.vue';
+import RetailerInvoiceList from './pages/retailer/RetailerInvoiceList.vue';
 
 
 Vue.use(VueRouter);
@@ -163,6 +165,7 @@ const routes = [
             { path: 'products/edit', component: AdProductsPage},
             { path: 'products/view', component: AdProductsPage},
             { path: 'price_comparison', component: PriceComparisonPage, name: 'retailer.price.comparison'},
+            { path: 'order/invoice_list', component: RetailerInvoiceList, name: 'retailer.invoice'},
             { path: 'profile', component: RetailerProfilePage, name: 'retailer.profle'},
             { path: '*', component: Page404 },
         ]
