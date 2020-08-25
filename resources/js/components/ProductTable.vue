@@ -36,7 +36,7 @@
                                 </td>
 
                                 <td>
-                                    {{product.price.toLocaleString()}}
+                                    N/A
                                 </td>
                                <td>
                                     <a href="javascript:void(0);" @click.prevent="editProduct(product)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-edit-box-fill font-size-18"></i></a>
@@ -78,14 +78,18 @@ export default {
         async loadProduct(url = 'wholesaler_products') {
             this.loading = !this.loading
             const loading = this.$vs.loading();
-            await axios.get(`${url}?wholesaler_id=${this.wholesalerId}`)
+            await axios.get(`${url}`)
             .then(({data}) => {
                 this.products = data
                 this.loading != this.loading
                 console.log(this.products)
                 loading.close();
                 })
-            .catch((error) => console.log(error))
+            .catch(({response}) => {
+                this.loading != this.loading
+                loading.close();
+                console.log(response.data)
+            })
         },
         editProduct(product) {
             this.$emit('editItem', product);

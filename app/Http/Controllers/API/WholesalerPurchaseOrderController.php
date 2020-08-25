@@ -80,7 +80,7 @@ class WholesalerPurchaseOrderController extends ApiController
                 [
                 'purchase_order_id' => $request->purchaseOrderId,
                 'product_name' => $row['name'] ?? $row['product_name'],
-                'products_id' => $row['products_id'],
+                'product_id' => $row['product_id'],
                 'description' => $row['productDescription'] ?? '',
                 'quantity' => $row['quantity'] ?? 0,
                 'price' => $row['price'],

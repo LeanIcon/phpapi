@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Casts\Json;
 use App\Models\WholesalerProduct;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
@@ -29,6 +30,13 @@ class Product extends ApiModel implements Searchable
     public function wholesalers()
     {
         return $this->belongsToMany(WholesalerProduct::class);
+    }
+
+
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 
 
@@ -80,9 +88,8 @@ class Product extends ApiModel implements Searchable
 
     public function dosageform(){
         return $this->belongsTo(DosageForm::class,'dosage_form_id');
-        
     }
-    
+
 
      public function getSearchResult(): SearchResult
     {

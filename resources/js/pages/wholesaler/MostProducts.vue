@@ -9,7 +9,7 @@
                     </router-link> -->
                     <button class="btn btn-primary" @click="previewSelectedItems" >
                         <i class="ri-file-list-fill"></i>
-                        Preview Select Products</button>
+                        Preview Select Products {{numberOfProducts}}</button>
                     <!-- <a href="javascript:void(0);" @click="loadUser" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Product</a> -->
                 </div>
                 <div class="table-responsive mt-3">
@@ -35,9 +35,8 @@
                                     <input v-model="product.price" type="text" class="form-control">
                                 </td>
                                 <td>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox"  v-model="selected_products" :value="product" @change="updateCheck()"  >
-                                    </div>
+                                    <vs-checkbox v-model="multiple_products" :val="product" >
+                                    </vs-checkbox>
                                 </td>
                             </tr>
 
@@ -86,7 +85,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(product, index) in selected_products" :key="index" >
+                            <tr v-for="(product, index) in multiple_products" :key="index" >
                                 <td>{{product.name}}</td>
                                 <td>{{productDesc(product)}}</td>
                                 <td>{{product.manufacturer.name}}</td>
@@ -121,12 +120,18 @@ export default {
                 packet_size: '',
                 price: ''
             },
+            myprod: {
+                product_id: 0,
+                price: 0
+            },
             products: {},
             manufacturers: {},
             links: {},
             selected_products: [],
             isCheckAll: false,
-            loading: false
+            loading: false,
+            multiple_products: [],
+            copyItems: []
         }
     },
     methods: {
@@ -151,19 +156,40 @@ export default {
                 this.isCheckAll = false;
             }
             // this.selected_products.push(event.target.value);
-            console.log(this.selected_products);
-            console.log(Object.values(this.selected_products).length);
+            // console.log(this.selected_products);
+            // console.log(Object.values(this.selected_products).length);
         },
-       async saveBulkSave(){
+        async saveBulkSave(){
             this.loading = !this.loading
             const loading = this.$vs.loading();
-            const data = this.selected_products
-            await axios.post('save_bulk', data, {headers: {'Content-type': 'application/json'}})
+            const data = this.multiple_products
+            const products = this.getPriceAndProduct();
+            this.copyItems= [];
+            await axios.post('save_bulk', products, {headers: {'Content-type': 'application/json'}})
                 .then(({data}) => {
+                    console.log(data);
                     this.loading != this.loading
                     loading.close();
                     })
-                .catch(({response}) => console.log("Error"))
+                .catch(({response}) => {
+                    this.loading != this.loading
+                    loading.close();
+                    console.log(response.data)
+                    })
+        },
+        getPriceAndProduct() {
+            let numofItem = Object.keys(this.multiple_products).length;
+            var vm = this;
+            if (numofItem > 0) {
+                this.multiple_products.forEach(function(item){
+                    const data = {
+                        'product_id' : item.id,
+                        'price' : item.price,
+                    }
+                vm.copyItems.push(data)
+                })
+                return this.copyItems;
+            }
         },
         openLoader(){
             if (this.loading) {
@@ -207,6 +233,7 @@ export default {
         },
         productDesc(product){
             return product.active_ingredients + ' ' + product.strength;
+
         },
         getNextPage(){
             this.loadProduct(this.products.links.next);
@@ -218,6 +245,11 @@ export default {
     computed: {
         productDescription() {
             return product.active_ingredients + product.strength;
+        },
+        numberOfProducts() {
+            // console.log(this.multiple_products);
+            let numofItem = Object.keys(this.multiple_products).length;
+            console.log(numofItem);
         }
     },
     mounted() {

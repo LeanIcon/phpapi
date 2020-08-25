@@ -148,6 +148,7 @@ export default {
                     wholesaler_id: this.wholesalerId,
                     total: this.calculateTotal
                 };
+             
             await axios.post('retail_purchase_orders_save', data)
             .then(({data}) => {
                 this.loading != this.loading

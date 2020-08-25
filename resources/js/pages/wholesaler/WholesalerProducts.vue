@@ -112,7 +112,7 @@ export default {
     },
     data () {
         return {
-             product: {
+            product: {
                 manufacturer: '',
                 name: '',
                 category: '',
@@ -179,7 +179,7 @@ export default {
             return product.active_ingredients + product.strength;
         },
         authUser() {
-          return this.$store.getters['account/userData'];
+            return this.$store.getters['account/userData'];
         }
     },
     mounted() {
