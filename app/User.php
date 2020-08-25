@@ -220,4 +220,5 @@ class User extends Authenticatable implements JWTSubject, CommonModel
         return [];
     }
 
+    protected $guard_name = 'api';
 }
