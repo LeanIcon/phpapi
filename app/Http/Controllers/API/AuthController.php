@@ -39,7 +39,7 @@ class AuthController extends Controller
             'phone_no' => $request->input('phone_no'),
             'digital_address' => $request->input('digital_address'),
             'location' => $request->input('location'),
-            'password' => Hash::make($request->input('password'), ),
+            'password' => Hash::make($request->input('password')),
         ]);
         return response()->json(['message' => 'Success', $newUser->id,
         ], 200);
