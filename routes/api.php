@@ -36,7 +36,7 @@ Route::namespace('API')->group(function(){
 
 
 Route::apiResource('post', 'PostController');
-
+Route::apiResource('post_category', 'PostCategoryController');
 
 Route::group(['namespace' => 'API'], function() {
     Route::apiResource('users', 'UserController');
@@ -73,6 +73,8 @@ Route::group(['namespace' => 'API'], function() {
 
     Route::apiResource('dosage_form','DosageFormController');
     Route::apiResource('drug_class','DrugClassController');
+
+
 
 
     Route::apiResource('location', 'LocationController');
