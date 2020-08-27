@@ -84,7 +84,7 @@
                                         </router-link>
                                     </li>
                                     <li>
-                                        <router-link to="#" class="waves-effect">
+                                        <router-link to="/admin/drug-dosage-form" class="waves-effect">
                                             Drug Dosage Form
                                         </router-link>
                                     </li>

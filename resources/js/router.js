@@ -13,6 +13,7 @@ import DefaultPage from './pages/DefaultContainer';
 import Page404 from './pages/404.vue';
 import AdminProductsPage from './pages/admin/product/Products.vue';
 import AdProductsPage from './pages/admin/product/AddProduct.vue';
+import DosageFormPage from './pages/admin/product/DosageForm.vue';
 import UserDetailsPage from './pages/UserDetailsPage.vue';
 import RetailerDetailsPage from './pages/RetailerDetailsPage.vue';
 import WholesaleDashboardPage from './pages/wholesaler/WholesalerDashboardPage.vue';
@@ -93,7 +94,7 @@ const routes = [
             { path: 'manufacturers', component: DashboardPage },
             { path: 'product-category', component: DashboardPage },
             { path: 'drug-class', component: DashboardPage },
-            { path: 'drug-dosage-form', component: DashboardPage },
+            { path: 'drug-dosage-form', component: DosageFormPage },
             { path: 'location', component: DashboardPage },
             { path: 'region', component: DashboardPage },
             { path: 'feedback', component: FeedBackPage },
