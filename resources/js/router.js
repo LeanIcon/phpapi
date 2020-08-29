@@ -14,7 +14,13 @@ import Page404 from './pages/404.vue';
 import AdminProductsPage from './pages/admin/product/Products.vue';
 import AdProductsPage from './pages/admin/product/AddProduct.vue';
 import DosageFormPage from './pages/admin/product/DosageForm.vue';
+import AdDosagePage from './pages/admin/product/AddDosage.vue';
+import DrugClassPage from './pages/admin/product/DrugClass.vue';
+import ManufacturerPage from './pages/admin/product/Manufacturer.vue';
+import AdManufacturerPage from './pages/admin/product/AddManufacturer.vue';
+import CategoryPage from './pages/admin/product/DrugLegalStatus.vue';
 import UserDetailsPage from './pages/UserDetailsPage.vue';
+import RegionPage from './pages/admin/product/Region.vue';
 import RetailerDetailsPage from './pages/RetailerDetailsPage.vue';
 import WholesaleDashboardPage from './pages/wholesaler/WholesalerDashboardPage.vue';
 import RetailDashboardPage from './pages/retailer/RetailerDashboardPage.vue';
@@ -91,12 +97,14 @@ const routes = [
             { path: 'settings', component: DashboardPage },
             { path: 'news', component: DashboardPage },
             { path: 'news/category', component: DashboardPage },
-            { path: 'manufacturers', component: DashboardPage },
-            { path: 'product-category', component: DashboardPage },
-            { path: 'drug-class', component: DashboardPage },
+            { path: 'manufacturers', component: ManufacturerPage },
+            { path: 'manufacturers/add', component: AdManufacturerPage},
+            { path: 'product-category', component: CategoryPage },
+            { path: 'drug-class', component: DrugClassPage },
             { path: 'drug-dosage-form', component: DosageFormPage },
+            {path: 'drug-dosage-form/add', component: AdDosagePage},
             { path: 'location', component: DashboardPage },
-            { path: 'region', component: DashboardPage },
+            { path: 'region', component: RegionPage },
             { path: 'feedback', component: FeedBackPage },
             { path: '*', component: Page404 },
         ]
