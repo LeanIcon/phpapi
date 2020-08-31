@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\User;
+use App\Models\UserDetails;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -33,16 +35,36 @@ class AuthController extends Controller
         if ($data->fails()) {
             return response()->json(['error' => $data->errors()], 401);
         }
-        $newUser = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'phone_no' => $request->input('phone_no'),
-            'digital_address' => $request->input('digital_address'),
-            'location' => $request->input('location'),
-            'password' => Hash::make($request->input('password')),
+
+        $request['slug'] = Str::slug($request->name);
+        $pin = User::generatePin();
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_no' => $request->phone_no,
+            'slug' => $request->slug,
+            'otp' => $pin,
+            'password' => Hash::make($request->passwor),
         ]);
-        return response()->json(['message' => 'Success', $newUser->id,
-        ], 200);
+
+
+        // if(User::activeUserAccess($user))
+        // {
+
+        //     // $msg = "Welcome: $user->name to Nnuro%0aYour Verification Code: $pin%0aConfirm code on proceed%0aThank you!!!";
+        //     // $notify = $this->SendSMSNotify($user->phone, $msg); 
+        //     UserDetails::create([
+        //         'user_id' => $user->id,
+        //         'town_id' => $request->region_id,
+        //         'location'=>$request->location_id,
+        //         'reg_no'=> $request->reg_no
+        //         // 'reg_no'=>$data['PC']
+
+        //         ]);
+        //         return $user;
+        //     };
+        return response()->json(['message' => 'Success', $user ], 200);
     }
     /**
      * Show the form for creating a new resource.

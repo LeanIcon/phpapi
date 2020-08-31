@@ -45,6 +45,13 @@ const actions = {
             console.log(response.data);
         });
     },
+    userRegister({commit}, user){
+        axios.post('auth/register_user', user).then((response) => {
+            console.log(response);
+        }).catch(({response}) =>{
+            console.log(response.data);
+        });
+    },
     userLogout: ({commit, dispatch}) => {
         return new Promise((resolve, reject) => {
             commit('USER_LOGOUT');
