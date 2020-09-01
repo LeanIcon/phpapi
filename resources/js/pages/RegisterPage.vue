@@ -22,7 +22,7 @@
                                                     <div class="form-group mb-2">
                                                         <label for="type">Register As</label>
                                                         <select v-model="register_type" class="form-control" name="type" id="type">
-                                                            <option :value="types.short_code" v-for="(types, index) in registerOptions" :key="index" >{{types.name}}</option>
+                                                            <option :value="types" v-for="(types, index) in registerOptions" :key="index" >{{types.name}}</option>
                                                             <!-- <option value="R">Retailer</option>
                                                             <option value="W">Wholesaler</option> -->
                                                         </select>
@@ -53,7 +53,7 @@
                                                                 <input type="text" :value="retRegCode" class="form-control" id="region_code" :disabled="true" placeholder="">
                                                             </div>
                                                             <div class="col-md-2 p-1">
-                                                                <input type="text" v-model="register_type" class="form-control" id="account_type" :disabled="true" placeholder="">
+                                                                <input type="text" v-model="getRtypeAbb" class="form-control" id="account_type" :disabled="true" placeholder="">
                                                             </div>
                                                             <div class="col-md-3 p-1">
                                                                 <input type="text" v-model="pc_code" @keyup="getRegCode" class="form-control" id="reg_code" placeholder="Reg Code">
@@ -73,7 +73,7 @@
                                                     <div class="row">
                                                         <div class="form-group  mb-2 col-lg-6">
                                                             <label for="phone">Phone</label>
-                                                            <input type="text" v-model.number="user.phone_no" class="form-control" id="phone" placeholder="Enter Phone">
+                                                            <input type="text" v-model.number="user.phone" class="form-control" id="phone" placeholder="Enter Phone">
                                                         </div>
                                                         <div class="form-group  mb-2 col-lg-6">
                                                             <label for="password">Password</label>
@@ -130,7 +130,7 @@ export default {
                 password: '',
                 password_confirmation: '',
                 name: '',
-                phone_no: '',
+                phone: '',
                 type: '',
                 region_id: '',
                 location_id: '',
@@ -151,10 +151,12 @@ export default {
     },
     methods: {
         registerUser() {
+            console.log("Registering...", this.user.name);
             this.user.reg_no = this.getRegCode();
             this.user.region_id = this.region_code.id;
+            this.user.type = this.register_type.type;
             this.user.location_id = this.location;
-            this.$store.dispatch('account/userRegister', this.user)
+            this.$store.dispatch('account/userRegister', this.user);
         },
         loadLogin(){
             this.$router.replace('/login');
@@ -200,20 +202,24 @@ export default {
 
         },
         getRegCode(){
-            var regCode = this.prefix+'/'+this.region_code.code+'/'+this.register_type+'/'+this.pc_code;
+            var regCode = this.prefix+'/'+this.region_code.code+'/'+this.register_type.short_code+'/'+this.pc_code;
             return regCode;
         },
         getRegionCode(){
 
         },
         getRegisterType(){
+            return this.register_type.short_code;
+        },
 
-        }
     },
     computed: {
         retRegCode(){
             var regCode = this.region_code.code;
             return regCode;
+        },
+        getRtypeAbb(){
+            return this.register_type.short_code;
         },
         axiosRegionParams() {
         const params = new URLSearchParams();

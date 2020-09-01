@@ -21,6 +21,7 @@ class UsersSeeder extends Seeder
         if($driver == 'mysql') {
             DB::statement("SET FOREIGN_KEY_CHECKS=0");
             DB::table('users')->truncate();
+            DB::table('user_details')->truncate();
         }
 
         DB::table('users')->insert([
