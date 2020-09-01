@@ -186,7 +186,7 @@ class User extends Authenticatable implements JWTSubject, CommonModel
 
     public function details()
     {
-        return $this->hasOne(UserDetails::class,'users_id');
+        return $this->hasOne(UserDetails::class,'user_id');
     }
 
     public function getProductCategoryAttribute()

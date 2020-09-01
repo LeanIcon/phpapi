@@ -2,11 +2,19 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use App\Traits\ApiResponses;
+use Illuminate\Http\Response;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
+    use ApiResponses;
     /**
      * A list of the exception types that are not reported.
      *
@@ -36,6 +44,7 @@ class Handler extends ExceptionHandler
      */
     public function report(Throwable $exception)
     {
+        
         parent::report($exception);
     }
 
@@ -50,6 +59,33 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if($exception instanceof HttpException && $request->wantsJson()){
+
+            $code = $exception->getStatusCode();
+            $message = Response::$statusTexts[$code];
+    }
+
+    if($exception instanceof ModelNotFoundException  && $request->wantsJson()){
+        $model = strtolower(class_basename($exception->getModel()));
+        return $this->errorResponse("Does not exits any instance of {$model} with given id", Response::HTTP_NOT_FOUND);
+    }
+
+    if($exception instanceof AuthorizationException && $request->wantsJson()){
+        return $this->errorResponse($exception->getMessage(), Response::HTTP_FORBIDDEN);
+    }
+
+    if($exception instanceof AuthenticationException && $request->wantsJson()){
+        return $this->errorResponse($exception->getMessage(), Response::HTTP_UNAUTHORIZED);
+    }
+
+    if($exception instanceof ValidationException && $request->wantsJson()){
+        $errors = $exception->validator->errors()->getMessages();
+        return $this->errorResponse($errors, Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    if(env('APP_DEBUG', false)){
         return parent::render($request, $exception);
+    }
+    return parent::render($request, $exception);
     }
 }

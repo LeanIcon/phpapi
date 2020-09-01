@@ -25,8 +25,8 @@
                                 <!-- -->
 
                                 <td>{{user.name}}</td>
-                                <td>{{user.details.location}}</td>
-                                <td>{{user.details.contact_person}}</td>
+                                <td>{{getLocation(user)}}</td>
+                                <td>{{getContactPerson(user)}}</td>
                                 <td>{{user.otp}}</td>
                                 <td>{{user.phone}}</td>
 
@@ -125,6 +125,12 @@ export default {
         },
         viewUser(user){
             this.$router.push({name: 'user_page', params: {'userId': user.id}})
+        },
+        getLocation(user){
+            return user.details?.location ?? "Not Available";
+        },
+        getContactPerson(user){
+            return user.details?.contact_person ?? "Not Available";
         },
         deleteUser(user){
 

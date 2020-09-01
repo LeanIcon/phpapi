@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\API;
 
 use App\User;
+use App\Models\UserDetails;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -25,24 +27,49 @@ class AuthController extends Controller
     public function createUser(Request $request)
     {
 
-        $data = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'required|unique:users',
             'password' => 'required|string|min:6',
         ]);
 
-        if ($data->fails()) {
-            return response()->json(['error' => $data->errors()], 401);
+        if( $validator->fails() ) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $validator->errors()->all()
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
-        $newUser = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'phone_no' => $request->input('phone_no'),
-            'digital_address' => $request->input('digital_address'),
-            'location' => $request->input('location'),
-            'password' => Hash::make($request->input('password')),
+
+        $request['slug'] = Str::slug($request->name);
+        $pin = User::generatePin();
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'slug' => $request->slug,
+            'otp' => $pin,
+            'type' => $request->type,
+            'password' => Hash::make($request->password),
         ]);
-        return response()->json(['message' => 'Success', $newUser->id,
-        ], 200);
+
+
+        if(User::activeUserAccess($user))
+        {
+
+            // $msg = "Welcome: $user->name to Nnuro%0aYour Verification Code: $pin%0aConfirm code on proceed%0aThank you!!!";
+            // $notify = $this->SendSMSNotify($user->phone, $msg); 
+            UserDetails::create([
+                'user_id' => $user->id,
+                'town_id' => $request->region_id,
+                'location'=>$request->location_id,
+                'reg_no'=> $request->reg_no
+                // 'reg_no'=>$data['PC']
+
+                ]);
+                return response()->json(['success' => true, 'message' => 'Registration Successful', $user ], 200);
+            };
+        return response()->json(['success' => true, 'message' => 'Registration Successful', $user ], 200);
     }
     /**
      * Show the form for creating a new resource.

@@ -22,8 +22,9 @@
                                                     <div class="form-group mb-2">
                                                         <label for="type">Register As</label>
                                                         <select v-model="register_type" class="form-control" name="type" id="type">
-                                                            <option value="R">Retailer</option>
-                                                            <option value="W">Wholesaler</option>
+                                                            <option :value="types" v-for="(types, index) in registerOptions" :key="index" >{{types.name}}</option>
+                                                            <!-- <option value="R">Retailer</option>
+                                                            <option value="W">Wholesaler</option> -->
                                                         </select>
                                                     </div>
                                                     <div class="row">
@@ -36,7 +37,7 @@
                                                         </div>
                                                         <div class="form-group  mb-2 col-lg-6">
                                                             <label for="location">Location</label>
-                                                            <select class="form-control" name="location" @change="onLocationChange" id="location">
+                                                            <select class="form-control" v-model="location" name="location" @change="onLocationChange" id="location">
                                                              <option value="null" disabled >Select Location</option>
                                                             <option :value="location.id"  v-for="(location, index) in locations.data" :key="index" >{{location.name}}</option>
                                                         </select>
@@ -52,7 +53,7 @@
                                                                 <input type="text" :value="retRegCode" class="form-control" id="region_code" :disabled="true" placeholder="">
                                                             </div>
                                                             <div class="col-md-2 p-1">
-                                                                <input type="text" v-model="register_type" class="form-control" id="account_type" :disabled="true" placeholder="">
+                                                                <input type="text" v-model="getRtypeAbb" class="form-control" id="account_type" :disabled="true" placeholder="">
                                                             </div>
                                                             <div class="col-md-3 p-1">
                                                                 <input type="text" v-model="pc_code" @keyup="getRegCode" class="form-control" id="reg_code" placeholder="Reg Code">
@@ -62,28 +63,28 @@
                                                     <div class="row">
                                                         <div class="form-group  mb-2 col-lg-6">
                                                             <label for="useremail">Company Name</label>
-                                                            <input type="text" class="form-control" id="useremail" placeholder="Company Name">
+                                                            <input type="text" v-model="user.name" class="form-control" id="useremail" placeholder="Company Name">
                                                         </div>
                                                         <div class="form-group  mb-2 col-lg-6">
                                                             <label for="username">Email</label>
-                                                            <input type="email" class="form-control" id="username" placeholder="Location">
+                                                            <input type="email" v-model="user.email" class="form-control" id="username" placeholder="Location">
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="form-group  mb-2 col-lg-6">
                                                             <label for="phone">Phone</label>
-                                                            <input type="text" class="form-control" id="phone" placeholder="Enter Phone">
+                                                            <input type="text" v-model.number="user.phone" class="form-control" id="phone" placeholder="Enter Phone">
                                                         </div>
                                                         <div class="form-group  mb-2 col-lg-6">
                                                             <label for="password">Password</label>
-                                                            <input type="password" class="form-control" id="password" placeholder="Enter Password">
+                                                            <input type="password" v-model="user.password" class="form-control" id="password" placeholder="Enter Password">
                                                         </div>
                                                     </div>
 
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                         <div class="text-left">
-                                                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Register</button>
+                                                            <button @click.prevent="registerUser" class="btn btn-primary w-md waves-effect waves-light" type="submit">Register</button>
                                                         </div>
 
                                                         </div>
@@ -118,6 +119,8 @@
 
 
 <script>
+
+import registerTypes from '../datautil/registertypes'
 export default {
 
     data() {
@@ -128,11 +131,13 @@ export default {
                 password_confirmation: '',
                 name: '',
                 phone: '',
-                region: '',
-                location: '',
+                type: '',
+                region_id: '',
+                location_id: '',
                 company_name: '',
                 reg_no: '',
             },
+            registerOptions: [],
             regions: {},
             locations: {},
             region_id: 0,
@@ -146,8 +151,12 @@ export default {
     },
     methods: {
         registerUser() {
-            // this.$store.dispatch('account/userRegister', this.user)
-            this.$router.replace('/register');
+            console.log("Registering...", this.user.name);
+            this.user.reg_no = this.getRegCode();
+            this.user.region_id = this.region_code.id;
+            this.user.type = this.register_type.type;
+            this.user.location_id = this.location;
+            this.$store.dispatch('account/userRegister', this.user);
         },
         loadLogin(){
             this.$router.replace('/login');
@@ -158,7 +167,6 @@ export default {
             await axios.get('region')
             .then(({data}) => {
                 this.regions = data
-                console.log(this.regions)
                 this.loading != this.loading
                 loading.close();
                 })
@@ -186,7 +194,6 @@ export default {
             )
         },
         onRegionChange(){
-            console.log(this.region_code);
             this.region_id = this.region_code.id
             this.loadLocations();
             this.getRegCode();
@@ -195,22 +202,24 @@ export default {
 
         },
         getRegCode(){
-            var regCode = this.prefix+'/'+this.region_code.code+'/'+this.register_type+'/'+this.pc_code;
-            console.log(regCode);
+            var regCode = this.prefix+'/'+this.region_code.code+'/'+this.register_type.short_code+'/'+this.pc_code;
             return regCode;
         },
         getRegionCode(){
 
         },
         getRegisterType(){
+            return this.register_type.short_code;
+        },
 
-        }
     },
     computed: {
         retRegCode(){
             var regCode = this.region_code.code;
-            console.log(regCode)
             return regCode;
+        },
+        getRtypeAbb(){
+            return this.register_type.short_code;
         },
         axiosRegionParams() {
         const params = new URLSearchParams();
@@ -222,6 +231,7 @@ export default {
     },
     mounted() {
         this.loadRegions();
+        this.registerOptions = registerTypes;
     },
 }
 </script>
