@@ -19,6 +19,9 @@ import DrugClassPage from './pages/admin/product/DrugClass.vue';
 import ManufacturerPage from './pages/admin/product/Manufacturer.vue';
 import AdManufacturerPage from './pages/admin/product/AddManufacturer.vue';
 import CategoryPage from './pages/admin/product/DrugLegalStatus.vue';
+import NewsPage from './pages/admin/NewsPostTable.vue';
+import AdNewsPage from './pages/admin/AddNews.vue';
+import LocationPage from './pages/admin/Location.vue';
 import UserDetailsPage from './pages/UserDetailsPage.vue';
 import RegionPage from './pages/admin/product/Region.vue';
 import RetailerDetailsPage from './pages/RetailerDetailsPage.vue';
@@ -101,9 +104,11 @@ const routes = [
             { path: 'manufacturers/add', component: AdManufacturerPage},
             { path: 'product-category', component: CategoryPage },
             { path: 'drug-class', component: DrugClassPage },
+            {path: 'news-post', component: NewsPage},
+            {path: 'add-news', component: AdNewsPage},
             { path: 'drug-dosage-form', component: DosageFormPage },
-            {path: 'drug-dosage-form/add', component: AdDosagePage},
-            { path: 'location', component: DashboardPage },
+            { path: 'drug-dosage-form/add', component: AdDosagePage},
+            { path: 'location', component: LocationPage },
             { path: 'region', component: RegionPage },
             { path: 'feedback', component: FeedBackPage },
             { path: '*', component: Page404 },

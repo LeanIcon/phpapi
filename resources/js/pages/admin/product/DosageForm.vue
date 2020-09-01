@@ -61,7 +61,10 @@
                            <label for="">Dosage Form Name</label>
                            <input v-model="dosage_form.name" type="text" class="form-control" >
                        </div>
-                       
+                        <suglify :slugify="dosage_form.name" :slug.sync="dosage_form.slug">
+                    <input slot-scope="{inputBidding}" v-bind="inputBidding"
+               type="text" class="form-control" placeholder="Slug ..." hidden>
+</suglify>
                    </div>
                    
                </form>
@@ -74,12 +77,15 @@
 </template>
 
 <script>
+import VueSuglify from 'vue-suglify'
 export default {
+   // components: { VueSuglify },
     data() {
             return {
                 dosage_forms: {},
                 dosage_form: {
                 name: '',
+                slug: ''
                 },
                 id: '',
             }
@@ -102,13 +108,12 @@ export default {
             adddosage() {
                 axios.post('dosage_form',{
                         'name': this.dosage_form.name,
-                        
+                        'slug':this.dosage_form.slug
                     })
                     .then((res) => {
                         console.log(res.data);
                         this.dosage_form.name = '';
-                        this.loading != this.loading
-                        loading.close()
+                        this.loaddosage()
                         $('dosage_form-modal').modal('hide');
                         
                     })
@@ -125,7 +130,7 @@ export default {
             },
 
             showAlert(){
-            this.$swal('Manufacturer added successfully');
+            this.$swal('Dosage Form added successfully');
         },
 
             productmodal(){

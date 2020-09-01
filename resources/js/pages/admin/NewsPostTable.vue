@@ -1,134 +1,169 @@
 <template>
-  <div>
+<div>
+        <div class="col-lg-12">
         <div class="card">
-              <h4 class="leading">NEWS / POST ITEM</h4>
             <div class="card-body">
                 <div>
-                    <router-link to="products/add" class="btn btn-success mb-2">
-                        <i class="ri-add-box-line"></i>
-                        Add Product
-                    </router-link>
-                    <!-- <a href="javascript:void(0);" @click="loadUser" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Product</a> -->
+                    <router-link to="/admin/add-news" class="waves-effect">
+                                            News Posts
+                                        </router-link>
                 </div>
                 <div class="table-responsive mt-3">
-                    <table class="table table-centered dt-responsive nowrap no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <table class="table table-centered datatable dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;" id="DataTables_Table_0">
                         <thead class="thead-light">
                             <tr>
-                                <th>Product Name</th>
-                                <th>Product Description</th>
-                                <th>Manufacturer</th>
-                                <th>Packet Size</th>
+                                <th style="width: 20px;">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customercheck">
+                                        <label class="custom-control-label" for="customercheck">&nbsp;</label>
+                                    </div>
+                                </th>
+                                <th>Title</th>
+                                <th>Body</th>
+                                <th>Post Image </th>
+                               
                                 <th style="width: 120px;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <tr v-for="(post, index) in posts.data" :key="index">
+                                <td>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customercheck3">
+                                        <label class="custom-control-label" for="customercheck3">&nbsp;</label>
+                                    </div>
+                                </td>
 
-
+                                <td>{{ post.title }}</td>
+                                <td>{{ post.body }}</td>
+        
+                                
+                                <td>
+                                    <!-- <a href="javascript:void(0);" @click="editUser(user)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class=" ri-edit-box-line font-size-18"></i></a>
+                                    <a href="javascript:void(0);" @click="viewUser(user)" class="mr-1 text-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-eye-fill font-size-18"></i></a> -->
+                                    <a href="javascript:void(0);" @click="deletedru(post.id, index)" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="ri-delete-bin-line font-size-18"></i></a>
+                                </td>
+                            </tr>
 
                         </tbody>
                     </table>
+                                <pagination :data="posts" @pagination-change-page="getResults"></pagination>
                 </div>
-            </div>
-            <div class="col-md-12" v-show="products.links && products.meta" >
-                <!-- <pagination :data="laravelData" v-on:pagination-change-page="getResults"></pagination> -->
-            <nav >
-                <ul class="pagination" style="cursor:pointer" >
-                    <li class="page-item" :class="{'disabled': !products.links.prev , 'active': products.links.prev != null}">
-                    <a class="page-link" @click="getPrevPage" >Previous</a>
-                    </li>
-                    <span class="mr-3"></span>
-                    <li class="page-item" :class="{'disabled': !products.links.next, 'active': products.links.next != null}">
-                    <a class="page-link" @click="getNextPage" >Next</a>
-                    </li>
-                </ul>
-            </nav>
             </div>
         </div>
-     <modal name="product-modal"
-            :width="700"
-            :height="500"
-            :adaptive="true"
-     >
+    </div>
+    <modal name="news-modal">
         <div class="card">
             <div class="card-header">
-                PRODUCT
+                Drug Class
             </div>
             <div class="card-body">
-               <form action="" class="form" >
+               <form method = "post" name="postnews" id="postnews" action="#" enctype="multipart/form-data" @submit.prevent="addnews">
                    <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="manufacturername">Manufacturer</label>
-                         <select v-model="product.manufacturer.id" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                            <option>Select</option>
-                            <option :value="manufacturer.id"  v-for="(manufacturer, index) in manufacturers.data" :key="index" >{{manufacturer.name}}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="name">Product Name</label>
-                        <input v-model="product.name" id="name" name="name" type="text" class="form-control">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="control-label">Category</label>
-                        <select v-model="product.category" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                            <option>Select</option>
-                            <option :value="manufacturer.id"  v-for="(manufacturer, index) in manufacturers" :key="index" >{{manufacturer.name}}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="control-label">Category Type</label>
-                        <select v-model="product.category_type" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                            <option data-select2-id="3">Select</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-              <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="manufacturername">Dosage Form</label>
-                        <input  v-model="product.dosage_form" id="dosage_form" name="dosage_form" type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="manufacturerbrand">Drug Class</label>
-                        <input v-model="product.drug_class" id="drug_class" name="dosage_class" type="text" class="form-control">
-                    </div>
-                </div>
-            </div>
-              <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="strenght">Strenght</label>
-                        <input  v-model="product.strenght" id="strenght" name="strenght" type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="packet_size">Packet Size</label>
-                        <input v-model="product.packet_size" id="packet_size" name="packet_size" type="text" class="form-control">
-                    </div>
-                </div>
-            </div>
-                <button class="btn btn-primary" >UPDATE</button>
-                </form>
+                       <div class="col-lg-6 p-1">
+                           <label for="">Title</label>
+                           <input v-model="post.title" type="text" class="form-control" >
+                       </div>
+                       <div class="col-lg-6 p-1">
+                           <label for="">Image</label>
+                           <input type="file" accept="image/*" @change="onChange" />
+                            <div id="preview">
+                            <img v-if="post.imageUrl" :src="post.image" />
+                        </div>
+                       </div>
+                   </div>
+                   <div class="row">
+                       <label for="">Content</label>
+                       <textarea v-model="post.body" name="body" class="form-control" id="" cols="30" rows="10"></textarea>
+                   </div>
+                   <button class="btn btn-primary" >SAVE</button>
+               </form>
+               
             </div>
         </div>
     </modal>
-  </div>
+</div>
 </template>
 
 <script>
 export default {
+     data() {
+            return {
+                posts: {},
+                post: {
+                title: '',
+                image: '',
+                body: ''
+                }
+            }
+        },
+        
+        methods: {
+
+            getResults(page = 1) {
+			axios.get('post?page=' + page)
+				.then(response => {
+					this.drug_class = response.data;
+                });
+            },
+
+            async addnews() {
+                axios.post('post',{
+                        'title': this.post.title,
+                        'image': this.post.image,
+                        'body': this.post.body
+                        
+                    })
+                    .then((res) => {
+                        console.log(res.data);
+                        this.post.title = '',
+                        this.post.image = '',
+                        this.post.body = '',
+                        this.loading != this.loading
+                        this.$swal('News added successfully');
+                        loading.close()
+                        $('news-modal').modal('hide');
+                        
+                    })
+                    .catch((err) =>{
+                        console.log(err);
+                    })
+            },        
+
+             deletedru(id, index) {
+                axios.delete('post/'+id)
+                    .then(resp => {
+                    this.drug_classes.data.splice(index, 1)
+                    this.$swal('News Post deleted successfully');
+                            })
+                .catch(error => {
+                    console.log(error);
+                    })
+                },
+
+            newsmodal(){
+                this.$modal.show('news-modal');
+            },
+
+
+            async loaddrugclass(url = 'post') {
+            this.loading = !this.loading
+            const loading = this.$vs.loading();
+            await axios.get(url)
+            .then(({data}) => {
+                this.drug_classes = data
+                this.loading != this.loading
+                loading.close();
+                })
+            .catch((error) => console.log(error))
+            
+            }
+            
+        },
+
+        mounted() {
+        this.loaddrugclass();
+    },
 
 
 }
@@ -138,5 +173,4 @@ export default {
      table, input, a, label {
         font-family: 'Roboto' !important;
     }
-</style>
 </style>

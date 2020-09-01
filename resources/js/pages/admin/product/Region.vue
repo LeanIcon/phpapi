@@ -18,6 +18,7 @@
                                 </th>
                                 <th>ID</th>
                                 <th>Region</th>
+                                <th>Code</th>
                                
                                 <th style="width: 120px;">Action</th>
                             </tr>
@@ -33,6 +34,7 @@
 
                                 <td>{{ region.id }}</td>
                                 <td>{{ region.name }}</td>
+                                <td>{{region.code}}</td>
                                 
                                 <td>
                                     <!-- <a href="javascript:void(0);" @click="editUser(user)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class=" ri-edit-box-line font-size-18"></i></a>
@@ -59,6 +61,10 @@
                            <label for="">Region</label>
                            <input v-model="region.name" type="text" class="form-control" >
                        </div>
+                       <div class="col-lg-6 p-1">
+                           <label for="">Code</label>
+                           <input v-model="region.code" type="text" class="form-control">
+                       </div>
                        
                    </div>    
                </form>
@@ -76,6 +82,7 @@ export default {
                 regions: {},
                 region: {
                 name: '',
+                code: ''
                 }
             }
         },
@@ -83,7 +90,7 @@ export default {
         methods: {
 
             showAlert(){
-            this.$swal('Manufacturer added successfully');
+            this.$swal('Region added successfully');
         },
 
             deletereg(id, index) {
@@ -101,12 +108,14 @@ export default {
             addreg() {
                 axios.post('region',{
                         'name': this.region.name,
+                        'code': this.region.code
                         
                     })
                     .then((res) => {
                         console.log(res.data);
                         this.region.name = '';
-                        this.loading != this.loading
+                        this.region.code = '';
+                        this.loadregion()
                          this.$swal('Region added successfully');
                         loading.close()
                         $('region-modal').modal('hide');

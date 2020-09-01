@@ -80,7 +80,7 @@ export default {
                 category_type: {
                 name: '',
                 },
-                id: ''
+                
             }
         },
         
@@ -106,7 +106,7 @@ export default {
                     .then((res) => {
                         console.log(res.data);
                         this.category_type.name = '';
-                        this.loadcattypes
+                        this.loadcattypes()
                         this.loading != this.loading
                         loading.close()
                         $('category_type-modal').modal('hide');

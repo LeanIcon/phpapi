@@ -46,7 +46,7 @@
                                 </a>
                                 <ul class="sub-menu mm-collapse" aria-expanded="false">
                                     <li>
-                                        <router-link to="#" class="waves-effect">
+                                        <router-link to="/admin/news-post" class="waves-effect">
                                             News Posts
                                         </router-link>
                                     </li>
@@ -94,7 +94,7 @@
                                         </router-link>
                                     </li>
                                     <li>
-                                        <router-link to="#" class="waves-effect">
+                                        <router-link to="/admin/location" class="waves-effect">
                                            Location
                                         </router-link>
                                     </li>

@@ -99,7 +99,7 @@ export default {
                     .then((res) => {
                         console.log(res.data);
                         this.drug_class.name = '';
-                        this.loading != this.loading
+                        this.loaddrugclass()
                         this.$swal('Drug Class added successfully');
                         loading.close()
                         $('drug_class-modal').modal('hide');

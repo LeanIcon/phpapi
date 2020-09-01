@@ -60,6 +60,19 @@
                        <div class="col-lg-6 p-1">
                            <label for="">Manufacturer Name</label>
                            <input v-model="manufacturer.name" type="text" class="form-control" >
+
+                           <suglify :slugify="manufacturer.name" :slug.sync="manufacturer.slug">
+                    <input slot-scope="{inputBidding}" v-bind="inputBidding"
+               type="text" class="form-control" placeholder="Slug ..." hidden>
+                </suglify>
+                       </div>
+                       <div class="col-lg-6 p-1">
+                           <label for="manufacturerbrand">Status</label>
+                            <select v-model="manufacturer.status" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <option v-for="option in options" v-bind:value="option.value">
+                            {{ option.text }}
+                                </option>
+                            </select>
                        </div>
                        
                    </div>
@@ -75,17 +88,26 @@
 
 <script>
 export default {
+   // components: { VueSuglify },
     data() {
             return {
                 manufacturers: {},
                 manufacturer: {
                 name: '',
+                status: '',
+                slug: ''
                 },
                 id: '',
+                options: [
+      { text: 'Pending', value: 0 },
+      { text: 'Approved', value: 1 },
+      
+    ]
             }
         },
         
         methods: {
+            
 
             deletemanu(id, index) {
                 axios.delete('manufacturers/'+id)
@@ -129,11 +151,16 @@ export default {
             addmanu() {
                 axios.post('manufacturers',{
                         'name': this.manufacturer.name,
+                        'status': this.manufacturer.status,
+                        'slug': this.manufacturer.slug
                         
                     })
                     .then((res) => {
                         console.log(res.data);
                         this.manufacturer.name = '';
+                        this.manufacturer.status = '';
+                        this.manufacturer.slug = ''
+                        this.loadmanu()
                         this.loading != this.loading
                         loading.close()
                         this.loadmanu();

@@ -10,6 +10,7 @@ import store from "./store/store";
 import SweetModal from 'sweet-modal-vue/src/plugin.js';
 import carousel from 'vue-owl-carousel2';
 import VueSweetalert2 from 'vue-sweetalert2';
+import VueSuglify from "vue-suglify";
 
 // import Modal from 'vmodal';
 // import Axios from "axios";
@@ -41,6 +42,7 @@ Vue.use(Vuesax);
 // Vue.component('modemodal', Modal);
 Vue.use(SweetModal);
 Vue.use(VueSweetalert2);
+Vue.component("suglify", VueSuglify); 
 
 
 Vue.filter('formatDate', function(value) {
