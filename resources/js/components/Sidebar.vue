@@ -89,6 +89,11 @@
                                         </router-link>
                                     </li>
                                     <li>
+                                        <router-link to="/admin/category-types" class="waves-effect">
+                                           Category Types
+                                        </router-link>
+                                    </li>
+                                    <li>
                                         <router-link to="/admin/region" class="waves-effect">
                                            Region
                                         </router-link>

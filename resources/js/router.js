@@ -24,6 +24,7 @@ import AdNewsPage from './pages/admin/AddNews.vue';
 import LocationPage from './pages/admin/Location.vue';
 import UserDetailsPage from './pages/UserDetailsPage.vue';
 import RegionPage from './pages/admin/product/Region.vue';
+import ProductCategoryPage from './pages/admin/product/ProductCategory.vue';
 import RetailerDetailsPage from './pages/RetailerDetailsPage.vue';
 import WholesaleDashboardPage from './pages/wholesaler/WholesalerDashboardPage.vue';
 import RetailDashboardPage from './pages/retailer/RetailerDashboardPage.vue';
@@ -103,6 +104,7 @@ const routes = [
             { path: 'manufacturers', component: ManufacturerPage },
             { path: 'manufacturers/add', component: AdManufacturerPage},
             { path: 'product-category', component: CategoryPage },
+            { path: 'category-types', component:ProductCategoryPage},
             { path: 'drug-class', component: DrugClassPage },
             {path: 'news-post', component: NewsPage},
             {path: 'add-news', component: AdNewsPage},

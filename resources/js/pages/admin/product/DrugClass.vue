@@ -60,7 +60,10 @@
                            <label for="">Drug Class Name</label>
                            <input v-model="drug_class.name" type="text" class="form-control" >
                        </div>
-                       
+                       <suglify :slugify="drug_class.name" :slug.sync="drug_class.slug">
+                    <input slot-scope="{inputBidding}" v-bind="inputBidding"
+               type="text" class="form-control" placeholder="Slug ..." hidden>
+                </suglify>
                    </div>
                    <button class="btn btn-primary" >SAVE</button>
                </form>
@@ -78,6 +81,7 @@ export default {
                 drug_classes: {},
                 drug_class: {
                 name: '',
+                slug: ''
                 }
             }
         },
@@ -94,11 +98,12 @@ export default {
             adddrugcl() {
                 axios.post('drug_class',{
                         'name': this.drug_class.name,
-                        
+                        'slug': this.drug_class.slug
                     })
                     .then((res) => {
                         console.log(res.data);
                         this.drug_class.name = '';
+                        this.drug_class.slug = ''
                         this.loaddrugclass()
                         this.$swal('Drug Class added successfully');
                         loading.close()
