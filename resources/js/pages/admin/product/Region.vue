@@ -62,7 +62,7 @@
                            <input v-model="region.name" type="text" class="form-control" >
                        </div>
                        <div class="col-lg-6 p-1">
-                           <label for="">Code</label>
+                           <label for=""> Region Code</label>
                            <input v-model="region.code" type="text" class="form-control">
                        </div>
                        
@@ -82,7 +82,7 @@ export default {
                 regions: {},
                 region: {
                 name: '',
-                code: ''
+                code: '',
                 }
             }
         },

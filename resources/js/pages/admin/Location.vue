@@ -60,7 +60,13 @@
                            <label for="">Location</label>
                            <input v-model="location.name" type="text" class="form-control" >
                        </div>
-                       
+                        <div>
+                       <label for="regionname">Region</label>
+                        <select v-model="location.region_id" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <option value="undefined" disabled >Select</option>
+                            <option :value="region.id"  v-for="(region, index) in regions.data" :key="index" >{{region.name}}</option>
+                        </select>
+                       </div>
                    </div>
                    <button class="btn btn-primary" >SAVE</button>
                </form>
@@ -76,13 +82,23 @@ export default {
      data() {
             return {
                 locations: {},
+                regions: {},
                 location: {
                 name: '',
+                region_id: ''
                 }
             }
         },
         
         methods: {
+
+            async loadreg() {
+            await axios.get('region')
+            .then(({data}) => {
+                this.regions = data
+            })
+            .catch(({response}) => console.log("Error"))
+        },
 
             getResults(page = 1) {
 			axios.get('location?page=' + page)
@@ -97,12 +113,12 @@ export default {
             addloc() {
                 axios.post('location',{
                         'name': this.location.name,
-                        
+                        'region_id': this.location.region_id
                     })
                     .then((res) => {
                         console.log(res.data);
-                        this.drug_class.name = '';
-                        this.loading != this.loading
+                        this.location.name = '';
+                        this.loadloc()
                         this.$swal('Location added successfully');
                         loading.close()
                         $('location-modal').modal('hide');
@@ -116,7 +132,7 @@ export default {
              deletedru(id, index) {
                 axios.delete('location/'+id)
                     .then(resp => {
-                    this.drug_classes.data.splice(index, 1)
+                    this.locations.data.splice(index, 1)
                     this.$swal('Location deleted successfully');
                             })
                 .catch(error => {
@@ -147,6 +163,7 @@ export default {
         mounted() {
         this.loadloc();
         this.getResults();
+        this.loadreg();
     },
 
 
