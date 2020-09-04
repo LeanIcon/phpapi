@@ -4,19 +4,28 @@
         <div class="card-header">Price Comparison</div>
           <div class="card-body">
             <vs-table>
+              <template #header>
+                  <vs-input v-model="search" border placeholder="Search" />
+              </template>
               <template #thead>
                 <vs-tr>
                   <vs-th>Name</vs-th>
-                  <vs-th>Email</vs-th>
-                  <vs-th>Id</vs-th>
+                  <vs-th>Description</vs-th>
+                  <vs-th>Manufacturer</vs-th>
+                  <vs-th>Packet Size</vs-th>
+                  <vs-th>Action</vs-th>
                 </vs-tr>
               </template>
               <template #tbody>
-                <vs-tr :key="i" v-for="(tr, i) in users" :data="tr">
+                <vs-tr :key="i" v-for="(tr, i) in $vs.getPage($vs.getSearch(products, search), page, max)"
+                    :data="tr">
                     <vs-td>{{ tr.name }}</vs-td>
-                    <vs-td>{{ tr.email }}</vs-td>
-                    <vs-td>{{ tr.id }}</vs-td>
+                    <vs-td>{{ tr.strength }}</vs-td>
+                    <vs-td>{{ tr.packet_size }}</vs-td>
                 </vs-tr>
+              </template>
+              <template #footer>
+                <vs-pagination v-model="page" :length="$vs.getLength(products, max)" />
               </template>
             </vs-table>
           </div>
@@ -33,77 +42,146 @@ export default {
   },
   data() {
     return {
-      users: [
-        {
-          id: 1,
-          name: "Leanne Graham",
-          username: "Bret",
-          email: "Sincere@april.biz",
-          website: "hildegard.org",
-        },
-        {
-          id: 2,
-          name: "Ervin Howell",
-          username: "Antonette",
-          email: "Shanna@melissa.tv",
-          website: "anastasia.net",
-        },
-        {
-          id: 3,
-          name: "Clementine Bauch",
-          username: "Samantha",
-          email: "Nathan@yesenia.net",
-          website: "ramiro.info",
-        },
-        {
-          id: 4,
-          name: "Patricia Lebsack",
-          username: "Karianne",
-          email: "Julianne.OConner@kory.org",
-          website: "kale.biz",
-        },
-        {
-          id: 5,
-          name: "Chelsey Dietrich",
-          username: "Kamren",
-          email: "Lucio_Hettinger@annie.ca",
-          website: "demarco.info",
-        },
-        {
-          id: 6,
-          name: "Mrs. Dennis Schulist",
-          username: "Leopoldo_Corkery",
-          email: "Karley_Dach@jasper.info",
-          website: "ola.org",
-        },
-        {
-          id: 7,
-          name: "Kurtis Weissnat",
-          username: "Elwyn.Skiles",
-          email: "Telly.Hoeger@billy.biz",
-          website: "elvis.io",
-        },
-        {
-          id: 8,
-          name: "Nicholas Runolfsdottir V",
-          username: "Maxime_Nienow",
-          email: "Sherwood@rosamond.me",
-          website: "jacynthe.com",
-        },
-        {
-          id: 9,
-          name: "Glenna Reichert",
-          username: "Delphine",
-          email: "Chaim_McDermott@dana.io",
-          website: "conrad.com",
-        },
-        {
-          id: 10,
-          name: "Clementina DuBuque",
-          username: "Moriah.Stanton",
-          email: "Rey.Padberg@karina.biz",
-          website: "ambrose.net",
-        },
+      search: '',
+      page: 1,
+      max: 3,
+      products: [
+          {
+              "id": 1,
+              "name": "ALDOMET ",
+              "slug": null,
+              "image_url": null,
+              "created_at": "2020-08-25T16:48:00.000000Z",
+              "updated_at": "2020-08-25T16:48:00.000000Z",
+              "code": null,
+              "nhis_code": null,
+              "product_code": "ALDMET1",
+              "status": null,
+              "active_ingredients": "METHYLDOPA",
+              "dosage_form_id": null,
+              "drug_class_id": null,
+              "associated_name": null,
+              "strength": "250mg",
+              "packet_size": "10X3",
+              "product_category_id": null,
+              "manufacturer_id": null,
+              "dosage_form_slug": null,
+              "drug_class_slug": null,
+              "manufacturer_slug": null,
+              "product_category_slug": null,
+              "brand_name": null,
+              "generic_name": null,
+              "therapeutic_class": null,
+              "drug_legal_status": null,
+              "manufacturer": "na",
+              "pivot": {
+                  "wholesaler_id": 2,
+                  "product_id": 1,
+                  "price": "50.00"
+              }
+          },
+          {
+              "id": 2,
+              "name": "ALDOMET",
+              "slug": null,
+              "image_url": null,
+              "created_at": "2020-08-25T16:48:00.000000Z",
+              "updated_at": "2020-08-25T16:48:00.000000Z",
+              "code": null,
+              "nhis_code": null,
+              "product_code": "ALDMET2",
+              "status": null,
+              "active_ingredients": "METHYLDOPA",
+              "dosage_form_id": null,
+              "drug_class_id": null,
+              "associated_name": null,
+              "strength": "500 mg",
+              "packet_size": "30",
+              "product_category_id": null,
+              "manufacturer_id": null,
+              "dosage_form_slug": null,
+              "drug_class_slug": null,
+              "manufacturer_slug": null,
+              "product_category_slug": null,
+              "brand_name": null,
+              "generic_name": null,
+              "therapeutic_class": null,
+              "drug_legal_status": null,
+              "manufacturer": "na",
+              "pivot": {
+                  "wholesaler_id": 2,
+                  "product_id": 2,
+                  "price": "10.00"
+              }
+          },
+          {
+              "id": 3,
+              "name": "APEXTITE FORTE",
+              "slug": null,
+              "image_url": null,
+              "created_at": "2020-08-25T16:48:01.000000Z",
+              "updated_at": "2020-08-25T16:48:01.000000Z",
+              "code": null,
+              "nhis_code": null,
+              "product_code": "APEAPE1",
+              "status": null,
+              "active_ingredients": "APEXTITE FORTE",
+              "dosage_form_id": null,
+              "drug_class_id": null,
+              "associated_name": null,
+              "strength": "200ml",
+              "packet_size": "5",
+              "product_category_id": null,
+              "manufacturer_id": null,
+              "dosage_form_slug": null,
+              "drug_class_slug": null,
+              "manufacturer_slug": null,
+              "product_category_slug": null,
+              "brand_name": null,
+              "generic_name": null,
+              "therapeutic_class": null,
+              "drug_legal_status": null,
+              "manufacturer": "na",
+              "pivot": {
+                  "wholesaler_id": 2,
+                  "product_id": 3,
+                  "price": "7.00"
+              }
+          },
+          {
+              "id": 4,
+              "name": "MARCAINE",
+              "slug": null,
+              "image_url": null,
+              "created_at": "2020-08-25T16:48:01.000000Z",
+              "updated_at": "2020-08-25T16:48:01.000000Z",
+              "code": null,
+              "nhis_code": null,
+              "product_code": "MARBUP1",
+              "status": null,
+              "active_ingredients": "BUPIVACAINE",
+              "dosage_form_id": null,
+              "drug_class_id": null,
+              "associated_name": null,
+              "strength": "4ml",
+              "packet_size": "30",
+              "product_category_id": null,
+              "manufacturer_id": null,
+              "dosage_form_slug": null,
+              "drug_class_slug": null,
+              "manufacturer_slug": null,
+              "product_category_slug": null,
+              "brand_name": null,
+              "generic_name": null,
+              "therapeutic_class": null,
+              "drug_legal_status": null,
+              "manufacturer": "na",
+              "pivot": {
+                  "wholesaler_id": 2,
+                  "product_id": 4,
+                  "price": "9.00"
+              }
+          }
       ],
     };
   },

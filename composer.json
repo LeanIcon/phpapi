@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "ajcastro/eager-load-pivot-relations": "^0.2.2",
         "algolia/scout-extended": "^1.9",
         "bumbummen99/shoppingcart": "^2.9",
         "darryldecode/cart": "^4.1",
