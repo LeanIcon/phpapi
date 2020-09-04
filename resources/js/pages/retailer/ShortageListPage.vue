@@ -53,7 +53,7 @@
                                 <th>Wholesaler</th>
                                 <th>Product Name</th>
                                 <th>Manufacturer</th>
-                                <th>Price</th>
+                                <th>GH₵ Price</th>
                                 <th class="text-left">Action</th>
                             </tr>
                         </thead>
@@ -64,7 +64,7 @@
                                 <td>{{item.manufacturer.name ? item.manufacturer.name : item.manufacturer}}</td>
 
                                 <td>
-                                    {{item.price}}
+                                   GH₵ {{item.price}}
                                 </td>
 
                                 <td>

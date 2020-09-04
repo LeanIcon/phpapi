@@ -26,7 +26,7 @@ export default {
      
     colLength: {
       type: String,
-      default: "3",
+      default: "4",
     },
   },
 
