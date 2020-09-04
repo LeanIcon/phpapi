@@ -4,21 +4,21 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
-                            <a href="#" class="logo logo-dark">
+                            <!-- <a href="#" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img :src="'/assets/images/nnlogo.png'" alt="" height="22">
                                 </span>
                                 <span class="#">
                                     <img :src="'/assets/images/nnlogo.png'" alt="" height="20">
                                 </span>
-                            </a>
+                            </a> -->
 
                             <a href="#" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="assets/images/nnlogo.png" alt="" height="22">
+                                    <img src="assets/images/nnlogo.png" alt="" height="50">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/nnlogo.png" alt="" height="20">
+                                    <img src="assets/images/nnlogo.png" alt="" height="50">
                                 </span>
                             </a>
                         </div>
@@ -151,7 +151,7 @@
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <!-- <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-2.jpg" alt="Header Avatar"> -->
                                 <span class="d-none d-xl-inline-block ml-1">{{authUser}}</span>
-                                <!-- <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i> -->
+                                 <i class="mdi mdi-arrow-down d-none d-xl-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!-- item-->

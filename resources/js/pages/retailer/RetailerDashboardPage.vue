@@ -3,7 +3,7 @@
     <div class="row">  
          <stats :cardTitle="shortageList" :cardValue="shortage_list_count"> </stats>
       <stats :cardTitle="purchaseOrdersReceived" :cardValue="purchase_orders_count" ></stats>
-      <stats :cardTitle="proForma" :cardValue="proforma_count" ></stats>
+      <!-- <stats :cardTitle="proForma" :cardValue="proforma_count" ></stats> -->
       <stats :cardTitle="inVoices" :cardValue="proforma_count" ></stats>
     </div>
     <div class="row">

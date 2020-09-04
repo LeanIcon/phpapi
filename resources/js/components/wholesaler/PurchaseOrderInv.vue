@@ -41,8 +41,8 @@
                                                     <th>Description</th>
                                                     <th>Manufacturer</th>
                                                     <th class="text-right">Quantity</th>
-                                                    <th class="text-right">Unit Cost</th>
-                                                    <th class="text-right">Total</th>
+                                                    <th class="text-right">Unit Cost(GH₵)</th>
+                                                    <th class="text-right">Total(GH₵)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -51,8 +51,8 @@
                                                     <td>{{item.product_name}}</td>
                                                     <td class="text-right">{{item.manufacturer}} </td>
                                                     <td class="text-right"> {{item.quantity}} </td>
-                                                    <td class="text-right"> {{item.price}}</td>
-                                                    <td class="text-right"> {{item.price}}</td>
+                                                    <td class="text-right"> {{item.price}}(GH₵)</td>
+                                                    <td class="text-right"> {{item.price}}(GH₵)</td>
                                                 </tr>
 
                                             </tbody>

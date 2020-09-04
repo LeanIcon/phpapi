@@ -13,12 +13,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="table-active table-border-double">
-                    <td colspan="5">Wholesalers</td>
+                <!-- <tr class="table-active table-border-double">
+                    <td colspan="5">Wholesalers</td> -->
                     <!-- <td class="text-right">
                         <span class="progress-meter" id="today-progress" data-progress="30"><svg width="20" height="20"><g transform="translate(10,10)"><g class="progress-meter"><path d="M0,8A8,8 0 1,1 0,-8A8,8 0 1,1 0,8Z" style="fill: rgb(255, 255, 255); stroke: rgb(121, 134, 203); stroke-width: 1.5;"></path><path style="fill: rgb(121, 134, 203);" d="M4.898587196589413e-16,-8A8,8 0 0,1 7.608452130361228,2.472135954999579L0,0Z"></path></g></g></svg></span>
                     </td> -->
-                </tr>
+                <!-- </tr> -->
                 <tr v-for="(wholesaler, index) in wholesalers.data" :key="index">
                     <td>
                         <div class="d-flex align-items-center">

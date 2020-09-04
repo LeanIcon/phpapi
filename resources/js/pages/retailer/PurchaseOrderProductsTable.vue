@@ -35,13 +35,13 @@
                                 </td>
 
                                 <td>
-                                    {{product.price.toLocaleString()}}
+                                   GH₵ {{product.price.toLocaleString()}}
                                 </td>
                                 <td  style="width: 75px;">
                                     <input v-model.number="product.quantity" type="text" class="form-control">
                                 </td>
                                 <td>
-                                    <h6 v-if="product.quantity > 0" >{{formatPrice(product.price) * product.quantity}}</h6>
+                                    <h6 v-if="product.quantity > 0" >GH₵ {{formatPrice(product.price) * product.quantity}}</h6>
                                     <!-- <h6  v-else>{{formatPrice(product.price) * product.quantity}}</h6> -->
                                 </td>
                                 <td>
