@@ -9,8 +9,12 @@ use App\Http\Controllers\ApiController;
 
 class DosageFormController extends ApiController
 {
+    
     public function __construct(DosageForm $dosageForm)
     {
         parent::__construct($dosageForm);
     }
+
+   
+
 }

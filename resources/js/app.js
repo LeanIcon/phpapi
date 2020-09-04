@@ -9,6 +9,8 @@ import "./plugins/vue-noty/dist/vuejs-noty.css";
 import store from "./store/store";
 import SweetModal from 'sweet-modal-vue/src/plugin.js';
 import carousel from 'vue-owl-carousel2';
+import VueSweetalert2 from 'vue-sweetalert2';
+import VueSuglify from "vue-suglify";
 
 // import Modal from 'vmodal';
 // import Axios from "axios";
@@ -32,12 +34,15 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-// Vue.component('pagination', require('laravel-vue-pagination'));
+
+Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.use(VueNoty);
 Vue.use(VModal, {dynamicDefault: { draggable: true, resizable: true , height: "auto"} });
 Vue.use(Vuesax);
 // Vue.component('modemodal', Modal);
 Vue.use(SweetModal);
+Vue.use(VueSweetalert2);
+Vue.component("suglify", VueSuglify); 
 
 
 Vue.filter('formatDate', function(value) {

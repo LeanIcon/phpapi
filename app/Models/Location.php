@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Location extends ApiModel
 {
     protected $table = 'locations';
-    protected $fillable = ['name', 'region_id', 'town_id'];
+    protected $fillable = ['name', 'code', 'region_id', 'town_id'];
 
 
     public function getLocationName($location)
