@@ -23,21 +23,21 @@ class WholesalerProductsController extends ApiController
         parent::__construct($wholesalerProduct);
     }
 
-    // public function index(Request $request)
-    // {
-    //     $user = Auth::user();
-    //     return $this->Resource::collection($user->product);
+    public function index(Request $request)
+    {
+        $user = Auth::user();
+        return $this->Resource::collection($user->product);
 
-    //     // $products = $user->product;
-    //     // return response()->json($products);
-    // }
-
+        // $products = $user->product;
+        // return response()->json($products);
+    }
 
     public function bulkSave(Request $request)
     {
         $user = Auth::user();
         $saveProds = $user->product()->attach($request->all());
-        return response()->json($saveProds);
+
+        return response()->json(['message' => 'Product Added Successfully']);
     }
 
     public function saveSingleProduct(Request $request)

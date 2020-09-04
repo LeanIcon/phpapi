@@ -1,6 +1,6 @@
 /*jshint esversion:8 */
 
-// import router from "../../router";
+import router from "../../router";
 
 const state = {
 
@@ -47,9 +47,9 @@ const actions = {
     },
     userRegister({commit}, user){
         axios.post('auth/register_user', user).then((response) => {
-            console.log(response);
+            router.replace('/login');
         }).catch(({response}) =>{
-            console.log(response.data);
+            return;
         });
     },
     userLogout: ({commit, dispatch}) => {

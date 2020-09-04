@@ -36,7 +36,7 @@
                             </div>
                         </div>
                     </td>
-                    <td><span class="text-muted">{{wholesaler.details.location ==  null ? 'Not Availabe' : wholesaler.details.location }}</span></td>
+                    <td><span class="text-muted">{{getLocation(wholesaler)}}</span></td>
                     <td><span class="badge bg-blue">Active</span></td>
                     <td>
                          <vs-button
@@ -80,7 +80,13 @@ export default {
         },
         viewDetails(userId){
             this.$router.push({name: 'wholesaler.products', params: {'id': userId} })
-        }
+        },
+        getLocation(user){
+            return user.details?.location ?? "Not Available";
+        },
+        getContactPerson(user){
+            return user.details?.contact_person ?? "Not Available";
+        },
     },
     mounted() {
         this.loadWholesalers();

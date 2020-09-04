@@ -141,7 +141,7 @@ class User extends Authenticatable implements JWTSubject, CommonModel
 
     public function product()
     {
-        return $this->belongsToMany(Product::class, 'wholesaler_products', 'wholesaler_id')->withPivot('price');
+        return $this->belongsToMany(Product::class, 'wholesaler_products', 'wholesaler_id');
     }
 
     public function retailer_orders()
@@ -172,7 +172,7 @@ class User extends Authenticatable implements JWTSubject, CommonModel
 
     public function product_category()
     {
-        $prod_ids = collect($this->wholesaler_products)->pluck('products_id');
+        $prod_ids = collect($this->wholesaler_products)->pluck('product_id');
         $productCatIds = Product::whereIn('id', $prod_ids)->pluck('product_category_id');
         $prod_ids = $this->returnProductCats($productCatIds);
         return $prod_ids;

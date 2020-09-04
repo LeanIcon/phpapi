@@ -35,7 +35,7 @@
                                 </td>
 
                                 <td>
-                                    {{product.price.toLocaleString()}}
+                                    Price
                                 </td>
                                 <td  style="width: 75px;">
                                     <input v-model.number="product.quantity" type="text" class="form-control">
@@ -52,7 +52,7 @@
                         </tbody>
                     </table>
                 </div>
-            <div class="col-md-12" v-show="products.links && products.meta" >
+            <!-- <div class="col-md-12" v-show="products.links && products.meta" >
             <nav >
                 <ul class="pagination" style="cursor:pointer" >
                     <li class="page-item" :class="{'disabled': !products.links.prev , 'active': products.links.prev != null}">
@@ -64,7 +64,7 @@
                     </li>
                 </ul>
             </nav>
-        </div>
+        </div> -->
 
         <sweet-modal ref="review_po" width="70%" >
             <purchase-order-items :po_products="selectPurchaseOrderProducts" @savePO="savePurchaseOrder" ></purchase-order-items>
@@ -122,7 +122,7 @@ export default {
                 }
             )
         },
-        async loadProduct(url = 'wholesaler_products') {
+        async loadProduct(url = 'retailer_wholesaler_products') {
             this.loading = !this.loading
             const loading = this.$vs.loading();
             await axios.get(`${url}`, {
@@ -131,6 +131,7 @@ export default {
             .then(({data}) => {
                 this.products = data
                 this.loading != this.loading
+                console.log(data);
                 loading.close();
                 })
             .catch(({response}) => {
@@ -148,7 +149,6 @@ export default {
                     wholesaler_id: this.wholesalerId,
                     total: this.calculateTotal
                 };
-             
             await axios.post('retail_purchase_orders_save', data)
             .then(({data}) => {
                 this.loading != this.loading
