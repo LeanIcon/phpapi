@@ -1,6 +1,30 @@
 <template>
   <div>
     <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="form-group col-md-3">
+              <label for="name">By Name</label>
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="name">By Manufacturers</label>
+                <div class="center con-selects">
+        <vs-select
+            filter
+            placeholder="Filter"
+            v-model="value"
+          >
+        <vs-option label="manufacturers" v-for="(item) in manufacturers" :key="item.id" value="item.id">
+          {{item.name}}
+        </vs-option>
+
+      </vs-select>
+    </div>
+            </div>
+
+          </div>
+        </div>
         <div class="card-header">Price Comparison</div>
           <div class="card-body">
             <vs-table>
@@ -42,6 +66,8 @@ export default {
   },
   data() {
     return {
+      manufacturers: {},
+      value: '',
       search: '',
       page: 1,
       max: 3,
@@ -204,6 +230,14 @@ export default {
           loading.close();
         });
     },
+    async loadManufacturers() {
+        await axios.get('manufacturers')
+        .then(({data}) => {
+            console.log(data.data);
+            this.manufacturers = data
+        })
+        .catch(({response}) => console.log(response))
+    },
   },
   computed: {
     isRetailer() {
@@ -212,6 +246,7 @@ export default {
   },
   mounted() {
     this.loadProduct();
+    this.loadManufacturers();
   },
 };
 </script>
