@@ -25,6 +25,13 @@
                                 </router-link>
                             </li>
                             <li>
+                                <router-link :to="{name: 'retailer.price.comparison'}" class="waves-effect" active-class="active">
+                                    <i class="ri-shopping-bag-2-fill"></i>
+                                    <span>Price Comparison</span>
+                                </router-link>
+                            </li>
+                            
+                            <li>
                                 <router-link to="/retail/purchase_orders" class="waves-effect" active-class="active">
                                     <i class="ri-shopping-bag-2-fill"></i>
                                     <span>Purchase Orders</span>
@@ -36,12 +43,7 @@
                                     <span>Shortage List</span>
                                 </router-link>
                             </li>
-                            <li>
-                                <router-link :to="{name: 'retailer.price.comparison'}" class="waves-effect" active-class="active">
-                                    <i class="ri-shopping-bag-2-fill"></i>
-                                    <span>Price Comparison</span>
-                                </router-link>
-                            </li>
+                            
                             <li>
                                 <router-link :to="{name: 'retailer.invoice'}" class="waves-effect" active-class="active">
                                     <i class="ri-shopping-bag-2-fill"></i>

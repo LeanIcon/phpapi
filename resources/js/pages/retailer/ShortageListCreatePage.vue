@@ -4,7 +4,7 @@
           <div class="card-body">
               <div class="row">
               <div class="form-group col-lg-4">
-                    <label for="manufacturername">Wholelsalers</label>
+                    <label for="wholesalername">Wholelsalers</label>
                     <select v-model="selectedUser" @change="userChanged($event)" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
                     <option value="" disabled hidden >Select</option>
                     <option :value="user.id"  v-for="(user, index) in wholersalers.data" :key="index" >{{user.name}}</option>

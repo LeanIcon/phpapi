@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="row">
-      <stats :cardTitle="shortageList" :cardValue="shortage_list_count" ></stats>
+    <div class="row">  
+         <stats :cardTitle="shortageList" :cardValue="shortage_list_count"> </stats>
       <stats :cardTitle="purchaseOrdersReceived" :cardValue="purchase_orders_count" ></stats>
       <stats :cardTitle="proForma" :cardValue="proforma_count" ></stats>
       <stats :cardTitle="inVoices" :cardValue="proforma_count" ></stats>
@@ -60,7 +60,7 @@ export default {
   },
   data() {
     return {
-      shortageList: "Shortagle List",
+      shortageList: "Shortage List",
       purchaseOrdersReceived: "Purchase Orders",
       proForma: "Pro Forma Invoice",
       inVoices: "Invoices",

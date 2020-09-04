@@ -9,7 +9,7 @@
       <div class="page-content">
           <div class="container-fluid">
             <!-- start page title -->
-              <bread-crumb></bread-crumb>
+              <bread-crumb v-if="isRetailer"></bread-crumb>
             <!-- end page title -->
             <router-view></router-view>
           </div>
