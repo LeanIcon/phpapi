@@ -41,7 +41,7 @@
                             <tr>
                                 <th>Product Name</th>
                                 <th>Manufacturer</th>
-                                <th>Price</th>
+                                <th>GH₵ Price</th>
                                 <th>Qty</th>
                             </tr>
                         </thead>
@@ -51,7 +51,7 @@
                                 <td>{{item.manufacturer.name ? item.manufacturer.name : item.manufacturer}}</td>
 
                                 <td>
-                                    {{item.price}}
+                                   GH₵ {{item.price}}
                                 </td>
 
                                 <td>
@@ -61,7 +61,7 @@
                             <tr>
                                 <td colspan="2"></td>
                                 <td class="font-14 text-dark bold">Total : </td>
-                                <td class="font-14 text-dark bold">{{poTotal}}</td>
+                                <td class="font-14 text-dark bold">GH₵ {{poTotal}}</td>
                             </tr>
                         </tbody>
                     </table>

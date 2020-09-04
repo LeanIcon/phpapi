@@ -30,13 +30,13 @@
                                 </td>
 
                                 <td>
-                                    {{product.price.toLocaleString()}}
+                                    {{product.price.toLocaleString()}}(GH₵)
                                 </td>
                                 <td>
                                     {{product.quantity}}
                                 </td>
                                 <td>
-                                    {{!Number.isNaN(product.price * product.quantity) ? product.price * product.quantity : ''}}
+                                    {{!Number.isNaN(product.price * product.quantity) ? product.price * product.quantity : ''}}(GH₵)
                                 </td>
                             <!-- <td>
                                     <vs-checkbox>
