@@ -9,18 +9,28 @@ use Illuminate\Http\Request;
 use App\Models\PurchaseOrders;
 use App\Models\WholesalerProduct;
 use App\Models\PurchaseOrderItems;
+use App\Models\Shortage_listx;
 use App\Http\Controllers\Controller;
+use App\User;
+use App\Models\Location;
+use App\Models\Region;
+use App\Models\UserDetails;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RetailerCartController extends Controller
 {
-    public $product, $wholesalerProduct, $purchaseOrders, $purchaseOrderItems;
-    public function __construct(Product $product, WholesalerProduct $wholesalerProduct, PurchaseOrders $purchaseOrders, PurchaseOrderItems $purchaseOrderItems )
+    public $product, $wholesalerProduct, $purchaseOrders, $purchaseOrderItems, $shortage_listx;
+    public function __construct(Product $product, WholesalerProduct $wholesalerProduct, PurchaseOrders $purchaseOrders, PurchaseOrderItems $purchaseOrderItems, Shortage_listx $shortage_listx, User $user,Location $locations,UserDetails $userDetails )
     {
         $this->product = $product;
         $this->wholesalerProduct = $wholesalerProduct;
         $this->purchaseOrders = $purchaseOrders;
         $this->purchaseOrderItems = $purchaseOrderItems;
+        $this->shortage_listx = $shortage_listx;
+        $this->user = $user;
+        $this->locations  = $locations;
+        $this->userDetails = $userDetails;
     }
     /**
      * Display a listing of the resource.
@@ -55,12 +65,55 @@ class RetailerCartController extends Controller
 
         $options = array();
         $product = $this->wholesalerProduct::find($request->id);
+        //return $product;
+       // Alert::success('Success',$product->product_name.' added to Purchase Order sucessfully');
 
-        Cart::add(array('id' => $product->id, 'name' => $product->product_name, 'price' => $request->price ?? 0, 'quantity' => $request->quantity, $options, 'associatedModel' => $product));
+         Cart::add(array('id' => $product->id, 'name' => $product->product_name, 'price' => $request->price ?? 0, 'quantity' => $request->quantity, $options, 'associatedModel' => $product));
         
         return back();
         // return redirect()->route('cart.index');
     }
+
+    public function createpofromshortage(Request $request, $whole)
+    {
+        //$userId = Auth::user()->id;
+        $wholesaler = $this->user::find($whole);
+        $whole = $wholesaler->id;
+        // $request->session()->put('po_wholesaler_id', $whole);
+
+      //  return $wholesaler;
+        //$wholesalerone = $this->user::find($wholesaler);
+        $options = array();
+        $shortage_listx = $this->shortage_listx::find($request->id);
+        
+        $details = $wholesaler->details;
+
+        $regions = $this->locations::find($details->town_id)->region;
+        $locations = $this->locations::find($details->town_id);
+        $products = $wholesaler->products;
+
+        $regions =Region::all();
+       $selectedRegion=Region::where('id','=',$details->town_id)->get();
+        $locations=Location::where('region_id','=',$details->town_id)->get();
+       //return $wholesaler;
+        Alert::success('Success',$shortage_listx->product_name.' has been added to '.$wholesaler->name."'s Purchase Order");
+
+         Cart::add(array('id' => $shortage_listx->products_id, 'name' => $shortage_listx->product_name, 'price' => $request->price ?? 0, 'quantity' => $request->quantity, $options, 'associatedModel' => $shortage_listx));
+
+        
+
+        //return back();
+         return view('admin.pages.retailers.wholesaler_details', compact('wholesaler','products', 'details','locations','selectedRegion','regions'));
+    }
+
+
+
+
+
+
+
+
+
 
     /**
      * Store a newly created resource in storage.

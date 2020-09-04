@@ -38,95 +38,51 @@
                                 @include('admin.layouts.components.product-table-header')
 
                                 <tbody>
-                                    @if ($shortageListItems->count() > 0)
-                                     @foreach ($shortageListItems as $item)
+                                    @if ($shortagelist->isNotEmpty())
+                                      @foreach ($shortagelist as $shortage)
                                      <tr>
-                                        <td>{{$item['description']}}</td>
-                                        <td>Manufacturer</td>
-                                        <td>Packet Size</td>
+                                        <td>{{$shortage->product_name}}</td>
+                                        <td>{{$shortage->productDesc()}}</td>
+                                        <td>{{$shortage->manufacturer}}</td>
+                                        <td>{{$shortage->packet_size}}</td>
+                                         
+                                       
+                                        
                                         <td>
-                                            <form action="">
-                                                <button class="btn btn-primary">
-                                                    ADD TO P.O
-                                                </button>
-                                            </form>
-                                            Actions
+                                            
+                                            <form method="POST" action="{{route('create.createpo.shortage', $shortage->wholesaler_id)}}" enctype="multipart/form-data" >
+                                                
+                                                <input class="form-control" value="1" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" type="number" name="quantity" id="quantity" type="hidden"/>
+                                                
+                                            </td> 
+                                            <td>
+                                                @csrf
+                                                <input class="form-control" value="{{$shortage->id}}" name="id" type="hidden">
+                                               {{-- <input class="form-control" value="{{$product->products_id}}" name="products_id" type="hidden"> --}}
+                                              {{-- <input class="form-control" value="{{$product->formattedPrice()}}" name="price" type="hidden"> --}}  
+                                                @role('Retailer') 
+                                                <button type="submit" data-toggle="modal" data-target="#modalCart" class="btn btn-sm btn-primary"> Add To Purchase Order</button>
+                                                 @endrole
+                                            </td>
+                                        </form>  
                                         </td>
-                                        <td><!-- Button trigger modal-->
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCart">Raise PO New</button>
-                                            
-                                            <!-- Modal: modalCart -->
-                                            <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                              aria-hidden="true">
-                                              <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                  <!--Header-->
-                                                  <div class="modal-header">
-                                                    <h4 class="modal-title" id="myModalLabel">You are raising purchase order to  Oscar</h4>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                      <span aria-hidden="true">×</span>
-                                                    </button>
-                                                  </div>
-                                                  <!--Body-->
-                                                  <div class="modal-body">
-                                            
-                                                    <table class="table table-hover">
-                                                      <thead>
-                                                        <tr>
-                                                          <th>#</th>
-                                                          <th>Product name</th>
-                                                          <th>Price</th>
-                                                          <th>Select</th>
-                                                        </tr>
-                                                      </thead>
-                                                      <tbody>
-                                                        <tr>
-                                                          <th scope="row">1</th>
-                                                          <td>Product 1</td>
-                                                          <td>100$</td>
-                                                          <td><input  type="checkbox"></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <th scope="row">2</th>
-                                                          <td>Product 2</td>
-                                                          <td>100$</td>
-                                                          <td><input  type="checkbox"></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <th scope="row">3</th>
-                                                          <td>Product 3</td>
-                                                          <td>100$</td>
-                                                          <td><input  type="checkbox"></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <th scope="row">4</th>
-                                                          <td>Product 4</td>
-                                                          <td>100$</td>
-                                                          <td><input  type="checkbox"></td>
-                                                        </tr>
-                                                        <tr class="total">
-                                                          <th scope="row">5</th>
-                                                          <td>Total</td>
-                                                          <td>400$</td>
-                                                          <td></td>
-                                                        </tr>
-                                                      </tbody>
-                                                    </table>
-                                            
-                                                  </div>
-                                                  <!--Footer-->
-                                                  <div class="modal-footer">
-                                                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-                                                    <button class="btn btn-primary">Checkout</button>
-                                                  </div>
+                                           
+                                    <td>
+                                      @role('Retailer') 
+                                      <div class="col-lg-4">
+                                                    <form method="POST" action="{{route('remove.shortage.list', $shortage->id)}}" enctype="multipart/form-data">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm btn-danger"> REMOVE</button>
+                                                    </form>
                                                 </div>
-                                              </div>
-                                            </div>
-                                            <!-- Modal: modalCart --></td>
+                                               {{-- <button type="submit" class="btn btn-sm btn-primary" a href= "{{route('remove.shortage.list', $shortage->id) }}" method="POST"> ADDs</button> --}}
+                                                 @endrole
+                                    </td>
                                     </tr>
                                     @endforeach
-                                    @else
-                                    <h4 class="text-center" >No Shortage List Found</h4>
+                                   {{-- @else 
+                                    <h4 class="text-center" >No Shortage List Found</h4> --}}
                                     @endif
                                 </tbody>
                             </table>

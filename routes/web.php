@@ -85,22 +85,28 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Web'], function() {
     Route::get('retailer/retailer_shortagelist', 'RetailerShortagelistController@index')->name('retailer.retailer_shortagelist');
     Route::get('retailer/orders', 'RetailerOrdersController@index')->name('retailer.orders');
     Route::post('po/proforma/{porder?}', 'ProformaController@updateInvoiceToProforma')->name('proforma.update');
+    Route::get('cart/update/', 'RetailershortagelistController@updateshortagelist')->name('retailer.update');
+    Route::delete('retailer/retailer_shortagelist/{id?}','RetailerShortagelistController@removeshortage')->name('remove.shortage.list');
+    
 
 
     Route::group(['prefix' => 'retailer'], function () {
         Route::resource('cart', 'RetailerCartController');
         Route::post('retailercart/{wholesaler?}', 'RetailerCartController@createPurchaseOrder')->name('create.purchase.order');
+        Route::post('retailer/{whole?}', 'RetailerCartController@createpofromshortage')->name('create.createpo.shortage');
         Route::post('retailerpo/{wholesaler?}', 'RetailerCartController@savePurchaseOrder')->name('save.purchase.order');
         Route::get('shortagelist', 'RetailerShortagelistController@viewShortageList')->name('shortagelist.view');
         Route::get('savedshortagelist', 'RetailerShortagelistController@viewShortageList')->name('saved.shortagelist');
         Route::get('shortagelist/create', 'RetailerShortagelistController@create')->name('create.shortagelist');
-        Route::post('shortagelist', 'RetailerShortagelistController@saveShortageList')->name('shortagelist.save');
+        Route::post('shortagelist', 'RetailerShortagelistController@saveShortage')->name('shortagelist.save');
         Route::get('proforma', 'RetailerinvoiceController@listProforma')->name('proforma.list');
         Route::get('invoice', 'RetailerinvoiceController@listInvoice')->name('invoice.list');
         Route::get('proforma/details/{order?}', 'RetailerinvoiceController@getProformaInvoice')->name('proforma.view');
         Route::get('proforma/invoicedetails/{order?}', 'RetailerinvoiceController@getInvoice')->name('invoice.view');
         Route::post('proforma/process/{order?}', 'RetailerinvoiceController@updateProformaInvoice')->name('proforma.process');
         Route::get('shortage/listitems', 'RetailerShortagelistController@getShortalistSession')->name('get.myshortage');
+        Route::put('retailercart/{wholesaler?}','RetailerShortagelistController@retrieveshortagelist')->name('update.purchase.order');
+        
     });
 
 
@@ -131,3 +137,6 @@ Route::get('/region/getRegionDetails/{regID}','Web\RegionController@getRegionDet
 Route::get('/WholesalerProducts/getDetails/{prodID}','Web\WholesalerProductsController@getDetails')->name('products.get');
 Route::post('/Manufacture/delete/{id}','Web\ManufacturerController@delete')->name('manufacturer.delete');
 Route::get('/Manufacture/index1','Web\ManufacturerController@index1')->name('manufacturer.index1');
+
+
+

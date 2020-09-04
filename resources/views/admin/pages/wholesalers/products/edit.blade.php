@@ -24,7 +24,7 @@
                         <div class="col-lg-12">
                         <div class="form-group">
                         <label for="PhoneNo">Name</label>
-                                <input type="text" name="product_name" class="form-control" id="name" value="{{$product->product_name}}"disabled>
+                                <input type="text" name="product_name" class="form-control" id="name" value="{{$product->product_name}}"readonly>
                             </div>
 
                         </div>

@@ -5,8 +5,8 @@
 <div class="card-header text-center">
     NNURO
   </div>
+  <a href="{{route('retailer.retailer_shortagelist')}}" class="btn btn-sm btn-danger pull-right" role="button" aria-pressed="true">Back To Your Shortage List</a><br><br>
 <div class="row">
-    
     <div class="col-lg-3">
         <div class="card">
            <a class="btn btn-default" href="">Purchase Order List
@@ -68,37 +68,41 @@
                                 <a href="javascript:history.back()" class=""><i class="fa fa-arrow-left"></i> Go Back </a>
 
                             <tbody>
-
+                                @php
+                                    $myWholesaler = (int)request()->session()->get('po_wholesaler_id');
+                                @endphp
                         @if (Cart::getContent()->count() > 0)
                             @if (!Cart::isEmpty())
                                 @foreach (Cart::getContent() as $item)
-                                    <tr>
-                                        <td>{{$item->associatedModel->product_name}}</td>
-                                        <td>{{$item->associatedModel->productDesc()}} </td>
-                                        <td>{{$item->associatedModel->manufacturer ?? $item->manufacturer_slug}}</td>
-                                        <td>{{$item->associatedModel->packet_size}}</td>
-                                        <td> {{$item->price}}GH₵</td>
-                                        <form action="{{route('cart.update',$item->id )}}" method="POST">
-                                            @method('PUT')
-                                        <td><input class="form-control" value="{{$item->quantity}}" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" type="number" name="quantity" id="quantity" /></td>
-                                        <td>
-                                            <div class="row">
-                                                <div class="col-lg-4">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-sm btn-primary"> UPDATE</button>
-                                                </div>
-                                            </form>
-                                                <div class="col-lg-4">
-                                                    <form action="{{route('cart.destroy', $item->id)}}" method="POST">
-                                                        @method('DELETE')
+                                    @if($myWholesaler == $item->associatedModel->wholesaler->id) 
+                                        <tr>
+                                            <td>{{$item->associatedModel->product_name}}</td>
+                                            <td>{{$item->associatedModel->productDesc()}} </td>
+                                            <td>{{$item->associatedModel->manufacturer ?? $item->manufacturer_slug}}</td>
+                                            <td>{{$item->associatedModel->packet_size}}</td>
+                                            <td> GH₵{{$item->price}}</td>
+                                            <form action="{{route('cart.update',$item->id )}}" method="POST">
+                                                @method('PUT')
+                                            <td><input class="form-control" value="{{$item->quantity}}" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" type="number" name="quantity" id="quantity" /></td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
                                                         @csrf
-                                                        <button type="submit" class="btn btn-sm btn-danger"> REMOVE</button>
-                                                    </form>
+                                                        <button type="submit" class="btn btn-sm btn-primary"> UPDATE</button>
+                                                    </div>
+                                                </form>
+                                                    <div class="col-lg-4">
+                                                        <form action="{{route('cart.destroy', $item->id)}}" method="POST">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-sm btn-danger"> REMOVE</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                    </td>
-                                    </tr>
-                                    </tr>
+                                        </td>
+                                        </tr>
+                                        </tr>
+                                    @endif
                                 @endforeach
                             @endif
                         @endif
