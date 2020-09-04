@@ -31,7 +31,7 @@ class WholesalerProduct extends ApiModel
 
    public function products()
    {
-        return $this->belongsToMany(Product::class, 'wholesaler_products', 'id','products_id');
+        return $this->belongsToMany(Product::class, 'wholesaler_products', 'id','product_id');
    }
 
     public function order_items()
@@ -68,7 +68,5 @@ class WholesalerProduct extends ApiModel
         $desc = "$this->dosage_form $this->active_ingredients $this->strength";
         return $desc;
     }
-
-
 
 }

@@ -55,6 +55,8 @@ Route::group(['namespace' => 'API'], function() {
     Route::post('retail_purchase_orders_save','RetailerPurchaseOrderController@savePurchaseOrders');
     Route::get('retailer_purchase_order','RetailerPurchaseOrderController@purchaseOrderCount');
     Route::get('retailer_dashboard_stats','RetailerDashboardStatsController@loadDashboardStats');
+    Route::get('retailer_wholesaler_products','RetailerWholesalerProductController@loadWholesalerProducts');
+    Route::get('retail_wholesalers_products','RetailerWholesalerProductController@loadRetailWholesalerProducts');
 
     Route::post('purchase_orders_save','WholesalerPurchaseOrderController@savePurchaseOrders');
     Route::get('wholesaler_purchase_order','WholesalerPurchaseOrderController@purchaseOrderCount');
