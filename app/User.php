@@ -141,7 +141,7 @@ class User extends Authenticatable implements JWTSubject, CommonModel
 
     public function product()
     {
-        return $this->belongsToMany(Product::class, 'wholesaler_products', 'wholesaler_id');
+        return $this->belongsToMany(Product::class, 'wholesaler_products', 'wholesaler_id')->withPivot('price');
     }
 
     public function retailer_orders()
