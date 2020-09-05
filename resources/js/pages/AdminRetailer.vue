@@ -13,11 +13,11 @@
                                 <th>Name</th>
                                 <th>Location</th>
                                 <th>Contact Person</th>
-                                <!-- <th>Verification Code</th> -->
-                                <th>Phone</th>
-                                <!-- <th>Confirmation</th>
+                                 <th>Verification Code</th>
+                                 <th>Confirmation</th>
+                                 <th>Phone</th>
                                 <th>Status</th>
-                                <th style="width: 120px;">Action</th> -->
+                                <th style="width: 120px;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,7 +27,7 @@
                                 <td>{{user.name}}</td>
                                 <td>{{getLocation(user)}}</td>
                                 <td>{{getContactPerson(user)}}</td>
-                                <!-- <td>{{user.otp}}</td>
+                                 <td>{{user.otp}}</td>
                                 <td>{{user.phone}}</td>
 
                                 <td>
@@ -35,7 +35,7 @@
                                 </td>
                                 <td>
                                     {{user.pin_confirmed}}
-                                </td> -->
+                                </td> 
                                 <td>
                                     <!-- <a href="javascript:void(0);" @click="editUser(user)" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-edit font-size-18"></i></a> -->
                                     <a href="javascript:void(0);" @click="viewUser(user)" class="mr-3 text-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-eye font-size-18"></i></a>

@@ -103,7 +103,7 @@ export default {
             getResults(page = 1) {
 			axios.get('location?page=' + page)
 				.then(response => {
-					this.location = response.data;
+					this.locations = response.data;
                 })
                 .catch((err) =>{
                         console.log(err);
