@@ -93,7 +93,7 @@
                 </div>
             </div>
             <!-- <div class="form-group">
-                <label for="productdesc">Product Description</label>
+                <label for="productdesc">Product Descriptions</label>
                 <textarea class="form-control" id="productdesc" rows="5"></textarea>
             </div> -->
         </div>
