@@ -118,7 +118,7 @@
               <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <label for="manufacturername">Dosage Form</label>
+                        <label for="manufacturername">Dosage Forms</label>
                         <input  v-model="product.dosage_form" id="dosage_form" name="dosage_form" type="text" class="form-control">
                     </div>
                 </div>
