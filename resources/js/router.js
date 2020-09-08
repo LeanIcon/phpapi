@@ -24,6 +24,7 @@ import AdNewsPage from './pages/admin/AddNews.vue';
 import LocationPage from './pages/admin/Location.vue';
 import UserDetailsPage from './pages/UserDetailsPage.vue';
 import RegionPage from './pages/admin/product/Region.vue';
+import AdminRetailerPage from './pages/AdminRetailer.vue';
 import ProductCategoryPage from './pages/admin/product/ProductCategory.vue';
 import RetailerDetailsPage from './pages/RetailerDetailsPage.vue';
 import WholesaleDashboardPage from './pages/wholesaler/WholesalerDashboardPage.vue';
@@ -90,7 +91,7 @@ const routes = [
         children: [
             { path: '/', component: DashboardPage,  name: 'admin' },
             { path: '/dashboard', component: DashboardPage,  name: 'admin.dashboard' },
-            { path: 'retailers', component: RetailerPage },
+            { path: 'retailers', component: AdminRetailerPage },
             { path: 'wholesalers', component: WholealerPage },
             { path: 'user/details/:userId', component: UserDetailsPage, name: 'user_details', props: true },
             { path: 'user/page/:userId', component: RetailerDetailsPage, name: 'user_page', props: true },

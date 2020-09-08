@@ -85,6 +85,7 @@
 </template>
 
 <script>
+import { UserTypes } from '../_helpers/role'
 export default {
 
     data () {
@@ -102,6 +103,23 @@ export default {
             view: false
         }
     },
+
+    computed: {
+        userLogin() {
+          return  this.$store.getters.account;
+      },
+
+        isAdmin() {
+          return this.$store.getters['account/userType'] == UserTypes.admin ;
+        },
+
+        userType() {
+          return this.$store.getters['account/userType'];
+        }
+    },
+
+
+
 
     methods: {
         async loadUsers(url = 'retailers') {

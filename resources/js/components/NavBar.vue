@@ -155,10 +155,10 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!-- item-->
-                                <a class="dropdown-item" href="#"><i class="ri-user-line align-middle mr-1"></i> Profile</a>
-                                <a class="dropdown-item" href="#"><i class="ri-wallet-2-line align-middle mr-1"></i> My Wallet</a>
+                                <!-- <a class="dropdown-item" href="#"><i class="ri-user-line align-middle mr-1"></i> Profile</a> -->
+                                <!-- <a class="dropdown-item" href="#"><i class="ri-wallet-2-line align-middle mr-1"></i> My Wallet</a> -->
                                 <!-- <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right mt-1">11</span><i class="ri-settings-2-line align-middle mr-1"></i> Settings</a> -->
-                                <a class="dropdown-item" href="#"><i class="ri-lock-unlock-line align-middle mr-1"></i> Lock screen</a>
+                                <!-- <a class="dropdown-item" href="#"><i class="ri-lock-unlock-line align-middle mr-1"></i> Lock screen</a> -->
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item text-danger" @click.prevent="logout"><i class="ri-shut-down-line align-middle mr-1 text-danger"></i> Logout</a>
                             </div>
