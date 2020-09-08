@@ -27,11 +27,11 @@
                                     </div>
                                 </td> -->
 
-                                <td> <img style="width:75px;" :src="'/assets/images/product/img-6.png'" :alt="product.name ? product.name : product.product_name"> {{product.name ? product.name : product.product_name}}</td>
+                                <td> <img style="width:75px;" :src="'/assets/images/product/img-6.png'" :alt="product.name ? product.name : product.product_name"> </td>
 
                                 <td>{{productDesc(product)}}</td>
-                                <td>{{product.manufacturer.name ? product.manufacturer.name : product.manufacturer}}</td>
-
+                                <td>{{product.manufacturer.name || product.manufacturer}}</td>
+                                 
                                 <td>
                                     {{product.packet_size}}
                                 </td>
