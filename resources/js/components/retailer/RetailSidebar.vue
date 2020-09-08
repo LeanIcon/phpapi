@@ -9,7 +9,7 @@
                     <div id="sidebar-menu" class="mm-active">
                         <!-- Left Menu Start -->
                         <ul class="metismenu list-unstyled mm-show" id="side-menu">
-                            <li class="menu-title">Menu</li>
+                            <!-- <li class="menu-title">Menu</li> -->
 
                             <li class="mm-active">
                                 <router-link :to="{name: 'retailer.dashboard'}" active-class="active" class="waves-effect">

@@ -65,7 +65,7 @@
               <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <label for="strenght">Strenght</label>
+                        <label for="strenght">Strength</label>
                         <input  v-model="product.strength" id="strenght" name="strenght" type="text" class="form-control">
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                 </div>
             </div>
             <!-- <div class="form-group">
-                <label for="productdesc">Product Description</label>
+                <label for="productdesc">Product Descriptions</label>
                 <textarea class="form-control" id="productdesc" rows="5"></textarea>
             </div> -->
         </div>

@@ -27,4 +27,11 @@ class ProductController extends ApiController
         $product = $this->product->create($request->all());
         return  response()->json($product);
     }
+
+    public function search(Request $request)
+    {
+        $product=$this->product->get();
+        return response()->json($product);
+         
+    }
 }
