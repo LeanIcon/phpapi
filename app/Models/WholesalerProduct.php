@@ -34,6 +34,11 @@ class WholesalerProduct extends ApiModel
         return $this->belongsToMany(Product::class, 'wholesaler_products', 'id','product_id');
    }
 
+   public function product()
+   {
+        return $this->belongsTo(Product::class, 'id');
+   }
+
     public function order_items()
     {
         return $this->hasMany(PurchaseOrderItems::class);
