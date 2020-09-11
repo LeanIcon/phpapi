@@ -3,6 +3,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import account from './modules/account';
 import products from './modules/products';
+import wholesalers from './modules/wholesalers';
 import purchase_orders from './modules/purchase_orders';
 import shortage_list from './modules/shortage_list';
 import createPersistedState from "vuex-persistedstate";
@@ -17,7 +18,8 @@ export default new Vuex.Store({
         account,
         products,
         purchase_orders,
-        shortage_list
+        shortage_list,
+        wholesalers
     },
     plugins: [createPersistedState({
         key: 'vuex',

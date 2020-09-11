@@ -13,6 +13,7 @@ class RetailerWholesalerProductController extends ApiController
     public function __construct(User $user, WholesalerProduct $wholesalerProduct)
     {
         parent::__construct($wholesalerProduct);
+        $this->wholesalerProduct = $wholesalerProduct;
         $this->user = $user;
     }
     public function loadWholesalerProducts(Request $request)
@@ -26,7 +27,8 @@ class RetailerWholesalerProductController extends ApiController
     {
         $wholesalers = $this->user::isWholesaler()->with('product')->get()->pluck('product')->flatten();
         // $wholesalers = $this->user::isWholesaler()->with('products')->get();
-
+        // $wholesalers = $this->wholesalerProduct->with('product')->get();
+        
         return response()->json($wholesalers);
     }
 }
