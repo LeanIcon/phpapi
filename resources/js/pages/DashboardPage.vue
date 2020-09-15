@@ -4,7 +4,7 @@
       <stats :cardTitle="wholesalerTitle" :cardValue="0" ></stats>
       <stats :cardTitle="retailerTitle" :cardValue="0" ></stats>
       <stats :cardTitle="productTitle" :cardValue="0" ></stats>
-      <stats :cardTitle="orderTitle" :cardValue="0" ></stats>
+      <!-- <stats :cardTitle="orderTitle" :cardValue="0" ></stats> -->
     </div>
     <div class="row">
       <div class="col-lg-8">

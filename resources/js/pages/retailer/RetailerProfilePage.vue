@@ -30,7 +30,7 @@
                       aria-selected="true"
                     >System / Application Settings</a>
                   </li>
-                  <li class="nav-item" v-if="isWholesaler" >
+                  <!-- <li class="nav-item" v-if="isWholesaler" >
                     <a
                       class="nav-link"
                       id="product-tab"
@@ -39,7 +39,7 @@
                       role="tab"
                       aria-selected="true"
                     >Products</a>
-                  </li>
+                  </li> -->
                 </ul>
                 <div class="tab-content border border-top-0 p-4">
                   <div class="tab-pane fade" id="profile" role="tabpanel">
@@ -50,9 +50,9 @@
                   <div class="tab-pane fade active show" id="specifi" role="tabpanel">
                     <app-settings />
                   </div>
-                  <div class="tab-pane fade" id="product" role="tabpanel">
+                  <!-- <div class="tab-pane fade" id="product" role="tabpanel">
                     <h4>Loading Products</h4>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>

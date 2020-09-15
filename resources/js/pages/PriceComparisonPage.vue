@@ -1,26 +1,6 @@
 <template>
 <div>
     <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="form-group col-md-3">
-                    <label for="name">By Name</label>
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="name">By Manufacturers</label>
-                    <div class="center con-selects">
-                        <vs-select filter placeholder="Filter" v-model="value">
-                            <vs-option label="manufacturers" v-for="(item) in manufacturers" :key="item.id" value="item.id">
-                                {{item.name}}
-                            </vs-option>
-
-                        </vs-select>
-                    </div>
-                </div>
-
-            </div>
-        </div>
         <div class="card-header">Price Comparison</div>
         <div class="card-body">
             <vs-table>

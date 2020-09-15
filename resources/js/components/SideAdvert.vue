@@ -1,10 +1,11 @@
 <template>
   <div>
       <carousel :autoplay="true" :nav="false" :items=2 :margin=5 >
-              <img src="https://placeimg.com/150/90/any?1">
-              <img src="https://placeimg.com/150/90/any?2">
-              <img src="https://placeimg.com/150/90/any?3">
-              <img src="https://placeimg.com/150/90/any?4">
+              <img src="assets/images/nnlogo.png">
+              <img src="assets/images/AD.jpg">
+              <img src="assets/images/AD 2.jpg">
+              <img src="assets/images/AD3.jpg">
+              
           </carousel>
   </div>
 </template>
