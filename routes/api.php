@@ -89,6 +89,11 @@ Route::group(['namespace' => 'API'], function() {
 
 });
 
+
+Route::get('/wholesaler/product/upload', 'ProductUploadController@productImportview')->name('product.import');
+Route::post('/wholesaler/product/collection', 'ProductUploadController@productImport')->name('product.collection');
+Route::post('/wholesaler/product/upload', 'ProductUploadController@productImportCollection')->name('product.collections');
+
 Route::apiResource('admin_products', 'ProductController');
 Route::get('admin_products/search', 'ProductController@search');
 Route::get('product/search', 'ProductController@search');

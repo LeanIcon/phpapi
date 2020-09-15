@@ -25,6 +25,8 @@ class ProductUploadController extends Controller
     {
         $import  = new WholesalerProductImport() ;
         $collection = Excel::toCollection($import, request()->file('file'));
+        
+        return response()->json($collection);
     }
 
     public function productImport()

@@ -232,7 +232,6 @@ export default {
         },
         getPurchaseOrderQty() {
             return Object.values(this.po_products).length
-            // console.log(Object.values(this.po_products).length);
         },
         axiosParams() {
             const params = new URLSearchParams();
