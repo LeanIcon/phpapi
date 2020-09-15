@@ -2676,11 +2676,19 @@ body[data-layout=horizontal][data-layout-size=boxed] .navbar-header {
   color: #505d69;
 }
 
+.select2-container .select2-selection--multiple .select2-search__field::-webkit-input-placeholder {
+  color: #505d69;
+}
+
 .select2-container .select2-selection--multiple .select2-search__field::-moz-placeholder {
   color: #505d69;
 }
 
 .select2-container .select2-selection--multiple .select2-search__field:-ms-input-placeholder {
+  color: #505d69;
+}
+
+.select2-container .select2-selection--multiple .select2-search__field::-ms-input-placeholder {
   color: #505d69;
 }
 
