@@ -44,7 +44,7 @@ export default {
             /*
               Make the request to the POST /single-file URL
             */
-            axios.post('/single-file',
+            axios.post('/wholesaler/product/collection',
                     formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'

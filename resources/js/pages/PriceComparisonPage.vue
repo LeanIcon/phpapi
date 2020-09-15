@@ -2,28 +2,24 @@
 <div>
     <div class="card">
         <div class="card-body">
-          <div class="row">
-            <div class="form-group col-md-3">
-              <label for="name">By Name</label>
-                <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <div class="form-group col-md-3">
-              <label for="name">By Manufacturers</label>
-                <div class="center con-selects">
-        <vs-select
-            filter
-            placeholder="Filter"
-            v-model="value"
-          >
-        <vs-option label="manufacturers" v-for="(item) in manufacturers" :key="item.id" value="item.id">
-          {{item.name}}
-        </vs-option>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="name">By Name</label>
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="name">By Manufacturers</label>
+                    <div class="center con-selects">
+                        <vs-select filter placeholder="Filter" v-model="value">
+                            <vs-option label="manufacturers" v-for="(item) in manufacturers" :key="item.id" value="item.id">
+                                {{item.name}}
+                            </vs-option>
 
-      </vs-select>
-    </div>
-            </div>
+                        </vs-select>
+                    </div>
+                </div>
 
-          </div>
+            </div>
         </div>
         <div class="card-header">Price Comparison</div>
         <div class="card-body">
@@ -44,7 +40,14 @@
                     <vs-tr :key="i" v-for="(tr, i) in $vs.getPage($vs.getSearch(products, search), page, max)" :data="tr">
                         <vs-td>{{ tr.name }}</vs-td>
                         <vs-td>{{ tr.strength }}</vs-td>
+                        <vs-td>{{ tr.strength }}</vs-td>
                         <vs-td>{{ tr.packet_size }}</vs-td>
+                        <div class="center">
+                            <vs-button flat @click="addToPurchaseOrderList(tr)">
+                                ADD TO P.O
+                            </vs-button>
+                        </div>
+
                     </vs-tr>
                 </template>
                 <template #footer>
@@ -67,146 +70,12 @@ export default {
     },
     data() {
         return {
+            manufacturers: {},
+            value: 0,
             search: '',
             page: 1,
             max: 10,
-            products: [{
-                    "id": 1,
-                    "name": "ALDOMET ",
-                    "slug": null,
-                    "image_url": null,
-                    "created_at": "2020-08-25T16:48:00.000000Z",
-                    "updated_at": "2020-08-25T16:48:00.000000Z",
-                    "code": null,
-                    "nhis_code": null,
-                    "product_code": "ALDMET1",
-                    "status": null,
-                    "active_ingredients": "METHYLDOPA",
-                    "dosage_form_id": null,
-                    "drug_class_id": null,
-                    "associated_name": null,
-                    "strength": "250mg",
-                    "packet_size": "10X3",
-                    "product_category_id": null,
-                    "manufacturer_id": null,
-                    "dosage_form_slug": null,
-                    "drug_class_slug": null,
-                    "manufacturer_slug": null,
-                    "product_category_slug": null,
-                    "brand_name": null,
-                    "generic_name": null,
-                    "therapeutic_class": null,
-                    "drug_legal_status": null,
-                    "manufacturer": "na",
-                    "pivot": {
-                        "wholesaler_id": 2,
-                        "product_id": 1,
-                        "price": "50.00"
-                    }
-                },
-                {
-                    "id": 2,
-                    "name": "ALDOMET",
-                    "slug": null,
-                    "image_url": null,
-                    "created_at": "2020-08-25T16:48:00.000000Z",
-                    "updated_at": "2020-08-25T16:48:00.000000Z",
-                    "code": null,
-                    "nhis_code": null,
-                    "product_code": "ALDMET2",
-                    "status": null,
-                    "active_ingredients": "METHYLDOPA",
-                    "dosage_form_id": null,
-                    "drug_class_id": null,
-                    "associated_name": null,
-                    "strength": "500 mg",
-                    "packet_size": "30",
-                    "product_category_id": null,
-                    "manufacturer_id": null,
-                    "dosage_form_slug": null,
-                    "drug_class_slug": null,
-                    "manufacturer_slug": null,
-                    "product_category_slug": null,
-                    "brand_name": null,
-                    "generic_name": null,
-                    "therapeutic_class": null,
-                    "drug_legal_status": null,
-                    "manufacturer": "na",
-                    "pivot": {
-                        "wholesaler_id": 2,
-                        "product_id": 2,
-                        "price": "10.00"
-                    }
-                },
-                {
-                    "id": 3,
-                    "name": "APEXTITE FORTE",
-                    "slug": null,
-                    "image_url": null,
-                    "created_at": "2020-08-25T16:48:01.000000Z",
-                    "updated_at": "2020-08-25T16:48:01.000000Z",
-                    "code": null,
-                    "nhis_code": null,
-                    "product_code": "APEAPE1",
-                    "status": null,
-                    "active_ingredients": "APEXTITE FORTE",
-                    "dosage_form_id": null,
-                    "drug_class_id": null,
-                    "associated_name": null,
-                    "strength": "200ml",
-                    "packet_size": "5",
-                    "product_category_id": null,
-                    "manufacturer_id": null,
-                    "dosage_form_slug": null,
-                    "drug_class_slug": null,
-                    "manufacturer_slug": null,
-                    "product_category_slug": null,
-                    "brand_name": null,
-                    "generic_name": null,
-                    "therapeutic_class": null,
-                    "drug_legal_status": null,
-                    "manufacturer": "na",
-                    "pivot": {
-                        "wholesaler_id": 2,
-                        "product_id": 3,
-                        "price": "7.00"
-                    }
-                },
-                {
-                    "id": 4,
-                    "name": "MARCAINE",
-                    "slug": null,
-                    "image_url": null,
-                    "created_at": "2020-08-25T16:48:01.000000Z",
-                    "updated_at": "2020-08-25T16:48:01.000000Z",
-                    "code": null,
-                    "nhis_code": null,
-                    "product_code": "MARBUP1",
-                    "status": null,
-                    "active_ingredients": "BUPIVACAINE",
-                    "dosage_form_id": null,
-                    "drug_class_id": null,
-                    "associated_name": null,
-                    "strength": "4ml",
-                    "packet_size": "30",
-                    "product_category_id": null,
-                    "manufacturer_id": null,
-                    "dosage_form_slug": null,
-                    "drug_class_slug": null,
-                    "manufacturer_slug": null,
-                    "product_category_slug": null,
-                    "brand_name": null,
-                    "generic_name": null,
-                    "therapeutic_class": null,
-                    "drug_legal_status": null,
-                    "manufacturer": "na",
-                    "pivot": {
-                        "wholesaler_id": 2,
-                        "product_id": 4,
-                        "price": "9.00"
-                    }
-                }
-            ],
+            products: [],
         };
     },
     methods: {
@@ -231,6 +100,10 @@ export default {
                     loading.close();
                 });
         },
+        addToPurchaseOrderList(item) {
+            console.log(item)
+            this.$store.dispatch('purchase_orders/saveSelectedProduct', item)
+        }
     },
     computed: {
         isRetailer() {
