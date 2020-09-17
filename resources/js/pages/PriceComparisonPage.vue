@@ -1,6 +1,26 @@
 <template>
 <div>
     <div class="card">
+        <!-- <div class="card-body">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="name">By Name</label>
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="name">By Manufacturers</label>
+                    <div class="center con-selects">
+                        <vs-select filter placeholder="Filter" v-model="value">
+                            <vs-option label="manufacturers" v-for="(item) in manufacturers" :key="item.id" value="item.id">
+                                {{item.name}}
+                            </vs-option>
+
+                        </vs-select>
+                    </div>
+                </div>
+
+            </div>
+        </div> -->
         <div class="card-header">Price Comparison</div>
         <div class="card-body">
             <vs-table>
@@ -13,15 +33,19 @@
                         <vs-th>Description</vs-th>
                         <vs-th>Manufacturer</vs-th>
                         <vs-th>Packet Size</vs-th>
+                        <vs-th>Wholesaler</vs-th>
+                        <vs-th>Price</vs-th>
                         <vs-th>Action</vs-th>
                     </vs-tr>
                 </template>
                 <template #tbody>
                     <vs-tr :key="i" v-for="(tr, i) in $vs.getPage($vs.getSearch(products, search), page, max)" :data="tr">
-                        <vs-td>{{ tr.name }}</vs-td>
-                        <vs-td>{{ tr.strength }}</vs-td>
+                        <vs-td>{{ tr.product_name }}</vs-td>
+                        <vs-td>{{ productDescription(tr) }}</vs-td>
                         <vs-td>{{ tr.strength }}</vs-td>
                         <vs-td>{{ tr.packet_size }}</vs-td>
+                        <vs-td>{{ tr.wholesaler_name }}</vs-td>
+                        <vs-td>{{ tr.price }}</vs-td>
                         <div class="center">
                             <vs-button flat @click="addToPurchaseOrderList(tr)">
                                 ADD TO P.O
@@ -70,6 +94,7 @@ export default {
                     data
                 }) => {
                     this.products = data;
+                    // console.log(data)
                     this.loading != this.loading;
                     loading.close();
                 })
@@ -80,8 +105,12 @@ export default {
                     loading.close();
                 });
         },
+        productDescription(product) {
+            var description = product.product.active_ingredients + ' ' + product.product.strength + ' ' + (((product || {}).product || {}).dosage_form || '') ?? '';
+            return description;
+        },
         addToPurchaseOrderList(item) {
-            console.log(item)
+            // console.log(item)
             this.$store.dispatch('purchase_orders/saveSelectedProduct', item)
         }
     },
