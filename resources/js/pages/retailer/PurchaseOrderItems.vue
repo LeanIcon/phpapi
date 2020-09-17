@@ -62,7 +62,7 @@ export default {
             this.$emit('savePO');
         },
         formatPrice(product) {
-            var formattedPrice = parseFloat(product.pivot.price);
+            var formattedPrice = parseFloat(product.price);
             return formattedPrice;
         },
     },

@@ -25,10 +25,10 @@ class RetailerWholesalerProductController extends ApiController
 
     public function loadRetailWholesalerProducts()
     {
-        $wholesalers = $this->user::isWholesaler()->with('product')->get()->pluck('product')->flatten();
+        // $wholesalers = $this->user::isWholesaler()->with('product')->get()->pluck('product')->flatten();
         // $wholesalers = $this->user::isWholesaler()->with('products')->get();
-        // $wholesalers = $this->wholesalerProduct->with('product')->get();
-        
+        $wholesalers = $this->wholesalerProduct->with('product')->get();
+
         return response()->json($wholesalers);
     }
 }
