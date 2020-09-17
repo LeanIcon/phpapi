@@ -42,7 +42,7 @@ const actions = {
             commit('AUTH_SUCCESS', response.data);
             commit('SET_USER', response.data);
         }).catch(({response}) =>{
-            console.log(response.data);
+            console.log(response);
         });
     },
     userRegister({commit}, user){
