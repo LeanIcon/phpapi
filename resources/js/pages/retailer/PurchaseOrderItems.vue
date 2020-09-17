@@ -11,9 +11,9 @@
                 <th>Product Description</th>
                 <th>Manufacturer</th>
                 <th>Packet Size</th>
-                <th>Price (GH &cent;) </th>
+                <th>Price GH₵ </th>
                 <th>Qty</th>
-                <th>Line Total (GH &cent;) </th>
+                <th>Line Total GH₵ </th>
                 <!-- <th style="width: 120px;">Action</th> -->
             </tr>
         </thead>

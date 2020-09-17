@@ -17,7 +17,7 @@
         </div> -->
 
     <div class="table-responsive mt-3">
-        <button class="btn btn-info" @click="previewSweetModal()">Cost of Selected Products {{getPurchaseOrderQty}}</button> {{!Number.isNaN(calculateTotal) ? calculateTotal : '0'}}
+        <button class="btn btn-info" @click="previewSweetModal()">Cost of Selected Products {{getPurchaseOrderQty}}</button> <!--{{!Number.isNaN(calculateTotal) ? calculateTotal : ''}} -->
         <table class="table table-centered dt-responsive nowrap no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
             <thead class="thead-light">
                 <tr>
@@ -25,9 +25,9 @@
                     <th>Product Description</th>
                     <th>Manufacturer</th>
                     <th>Packet Size</th>
-                    <th>Price (GH &cent;)</th>
+                    <th>Price(GH₵)</th>
                     <th>Qty</th>
-                    <th>Line Total</th>
+                    <!-- <th>Line Total</th> -->
                     <th style="width: 120px;">Action</th>
                 </tr>
             </thead>
@@ -47,10 +47,10 @@
                     <td style="width: 95px;">
                         <input v-model.number="product.quantity" type="number" class="form-control">
                     </td>
-                    <td>
-                        <!-- <h6 v-if="product.quantity > 0">GH₵ {{formatPrice(product.price) * product.quantity}}</h6> -->
-                        <!-- <h6  v-else>{{formatPrice(product.price) * product.quantity}}</h6> -->
-                    </td>
+                    <!-- <td>
+                         <h6 v-if="product.quantity > 0">GH₵ {{formatPrice(product.price) * product.quantity}}</h6> 
+                         <h6  v-else>{{formatPrice(product.price) * product.quantity}}</h6>
+                    </td> -->
                     <td>
                         <vs-checkbox v-model="po_products" :val="product">
                         </vs-checkbox>
