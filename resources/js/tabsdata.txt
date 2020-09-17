@@ -1,0 +1,31 @@
+<section class="tab-card">
+        <div class="tabs">
+            <div class="row">
+                <div class="col-md-5">
+                    <b-nav tabs>
+                        <b-nav-item to="#" :active="$route.hash === '#' || $route.hash === ''">
+                            One
+                        </b-nav-item>
+                        <b-nav-item to="#two" :active="$route.hash === '#two'">
+                            Two
+                        </b-nav-item>
+                        <b-nav-item to="#three" :active="$route.hash === '#three'">
+                            Three
+                        </b-nav-item>
+                    </b-nav>
+                </div>
+                <div class="col-md-7">Next Content</div>
+            </div>
+            <div class="tab-content">
+                <div :class="['tab-pane', { 'active': $route.hash === '#' || $route.hash === '' }]" class="p-2">
+                    <p>Tab One (default) with no hash</p>
+                </div>
+                <div :class="['tab-pane', { 'active': $route.hash === '#two' }]" class="p-2">
+                    <p>Tab One with hash #two</p>
+                </div>
+                <div :class="['tab-pane', { 'active': $route.hash === '#three' }]" class="p-2">
+                    <p>Tab One with hash #three</p>
+                </div>
+            </div>
+        </div>
+    </section>

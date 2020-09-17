@@ -18,7 +18,8 @@ const mutations = {
             console.log(count);
             return;
         }
-        if (state.selected_products.some(product => product.products_id === data.products_id)) {
+        if (state.selected_products.some(product => product.product_id === data.product_id)) {
+            console.log(data)
             alert("Item Already added");
             return;
         }else{
