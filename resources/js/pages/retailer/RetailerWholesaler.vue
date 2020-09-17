@@ -86,9 +86,11 @@ export default {
             })
         },
         getLocation(user) {
+            console.log(user)
             return user.details?.location ?? "Not Available";
         },
         getContactPerson(user) {
+            console.log(user)
             return user.details?.contact_person ?? "Not Available";
         },
     },
