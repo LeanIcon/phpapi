@@ -28,18 +28,18 @@
                                 </a> -->
                                 </div>
                                 <div>
-                                    <a href="#" class="text-default font-weight-semibold">{{wholesaler.name}}</a>
-                                    <div class="text-muted font-size-sm">
+                                    <p class="text-default font-weight-semibold">{{wholesaler.name}}</p>
+                                    <!-- <div class="text-muted font-size-sm">
                                         <span class="badge badge-mark border-blue mr-1"></span>
                                         {{wholesaler.phone}}
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </td>
                         <td><span class="text-muted">{{getLocation(wholesaler)}}</span></td>
-                        <td><span class="badge bg-blue">Active</span></td>
+                        <td style="color:green">Active</td>
                         <td>
-                            <vs-button size="small" success border @click="viewDetails(wholesaler)">
+                            <vs-button color="success" size="small" type="filled"  @click="viewDetails(wholesaler)">
                                 View Products
                             </vs-button>
                         </td>
@@ -101,6 +101,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.vs-button {
+  margin: 1px;
+}
 </style>

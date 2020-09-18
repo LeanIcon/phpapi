@@ -2,8 +2,9 @@
 <div>
     <div class="card">
         <div class="card-body">
-            Wholesaler's Name: <strong>{{getWholesalerData.name}}</strong> <br>
-            Wholesalers Email: <strong>{{getWholesalerData.email}}</strong>
+             Name: <strong>{{getWholesalerData.name}}</strong> <br>
+             Email: <strong>{{getWholesalerData.email}}</strong> <br>
+             Contact:<strong>{{getWholesalerData.phone}}</strong>
         </div>
     </div>
     <!-- <div class="row">
@@ -33,18 +34,18 @@
             </thead>
             <tbody>
                 <tr v-for="(product, index) in products.data" :key="index">
-                    <td> <img style="width:75px;" class="mg-fluid img-thumbnail" :src="'/assets/images/product/drugsamp.jpg'" :alt="product.name ? product.name : product.product_name"> {{product.name ? product.name : product.product_name}}</td>
-                    <td>{{productDesc(product)}}</td>
-                    <td>{{product.manufacturer.name ? product.manufacturer.name : product.manufacturer}}</td>
+                    <td> <img style="width:75px;" class="rounded-circle" :src="'/assets/images/product/drugsamp.jpg'" :alt="product.name ? product.name : product.product_name"> {{product.name ? product.name : product.product_name}}</td>
+                    <td style="width: 100px;">{{productDesc(product)}}</td>
+                    <td style="width: 190px;">{{product.manufacturer.name ? product.manufacturer.name : product.manufacturer}}</td>
 
-                    <td>
+                    <td style="width: 190px;">
                         {{product.packet_size}}
                     </td>
 
-                    <td>
+                    <td style="width: 150px;">
                         {{formatPrice(product)}}
                     </td>
-                    <td style="width: 95px;">
+                    <td style="width: 90px;">
                         <input v-model.number="product.quantity" type="number" class="form-control">
                     </td>
                     <!-- <td>
@@ -52,7 +53,7 @@
                          <h6  v-else>{{formatPrice(product.price) * product.quantity}}</h6>
                     </td> -->
                     <td>
-                        <vs-checkbox v-model="po_products" :val="product">
+                        <vs-checkbox v-model="po_products"  color="success" :val="product" style="width: 20px; height:20px;">
                         </vs-checkbox>
                     </td>
                 </tr>

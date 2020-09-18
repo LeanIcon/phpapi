@@ -25,7 +25,13 @@
         <div class="card-body">
             <vs-table>
                 <template #header>
-                    <vs-input v-model="search" border placeholder="Search" />
+                    <form class="app-search d-none d-lg-block">
+                            <div class="position-relative">
+                                <vs-input v-model="search" border placeholder="Click here to search for a product" />
+                                
+                            </div>
+                        </form>
+                    
                 </template>
                 <template #thead>
                     <vs-tr>
