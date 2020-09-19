@@ -2,6 +2,7 @@
 <div>
     <div class="card">
         <div class="card-body">
+            <small class="text-info"><strong> Check Boxes Under Action to Add to Your Product Catalogue *</strong></small>
             <div>
                 <!-- <router-link to="products/add" class="btn btn-success mb-2">
                         <i class="ri-add-box-line"></i>
@@ -186,14 +187,19 @@ export default {
                 .then(({
                     data
                 }) => {
-                    console.log(data);
+                    this.$modal.hide('product-preview-modal');
                     this.loading != this.loading
                     loading.close();
+                    this.$router.push({
+                        name: 'wholesaler.dashboard'
+                    })
+
                 })
                 .catch(({
                     response
                 }) => {
                     this.loading != this.loading
+                    this.$modal.hide('product-preview-modal');
                     loading.close();
                     this.$router.push({
                         name: 'wholesaler.dashboard'

@@ -6,7 +6,7 @@
                 <label for="">Choice of Adding Product</label>
                 <select v-model="selectComp" class="form-control">
                     <option value="null" disabled>Select Mode to Add Product</option>
-                    <option value="product-form">Single Product</option>
+                    <option value="null" disabled>Single Product</option>
                     <option value="most-product"> Multiple Choices</option>
                 </select>
             </div>
@@ -24,7 +24,7 @@ import MostProductsVue from './MostProducts.vue'
 export default {
     data() {
         return {
-            selectComp: 'product-form'
+            selectComp: 'most-product'
         }
     },
     components: {
