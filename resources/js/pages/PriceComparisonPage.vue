@@ -26,12 +26,12 @@
             <vs-table>
                 <template #header>
                     <form class="app-search d-none d-lg-block">
-                            <div class="position-relative">
-                                <vs-input v-model="search" border placeholder="Click here to search for a product" />
-                                
-                            </div>
-                        </form>
-                    
+                        <div class="position-relative">
+                            <vs-input v-model="search" border placeholder="Click here to search for a product" />
+
+                        </div>
+                    </form>
+
                 </template>
                 <template #thead>
                     <vs-tr>
@@ -46,10 +46,10 @@
                 </template>
                 <template #tbody>
                     <vs-tr :key="i" v-for="(tr, i) in $vs.getPage($vs.getSearch(products, search), page, max)" :data="tr">
-                        <vs-td>{{ tr.product_name }}</vs-td>
+                        <vs-td>{{ tr.product.name }}</vs-td>
                         <vs-td>{{ productDescription(tr) }}</vs-td>
-                        <vs-td>{{ tr.strength }}</vs-td>
-                        <vs-td>{{ tr.packet_size }}</vs-td>
+                        <vs-td>{{ tr.product.manufacturer.name }}</vs-td>
+                        <vs-td>{{ tr.product.packet_size }}</vs-td>
                         <vs-td>{{ tr.wholesaler_name }}</vs-td>
                         <vs-td>{{ tr.price }}</vs-td>
                         <div class="center">
@@ -100,7 +100,7 @@ export default {
                     data
                 }) => {
                     this.products = data;
-                    // console.log(data)
+                    console.log(data)
                     this.loading != this.loading;
                     loading.close();
                 })

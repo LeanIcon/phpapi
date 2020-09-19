@@ -22,7 +22,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="manufacturername">Manufacturer</label>
-                                <select v-model="product.manufacturer.id" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                <select v-model="product.manufacturer.id" disabled class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
                                     <option>Select</option>
                                     <option :value="manufacturer.id" v-for="(manufacturer, index) in manufacturers.data" :key="index">{{manufacturer.name}}</option>
                                 </select>
@@ -31,7 +31,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="name">Product Name</label>
-                                <input v-model="product.name" id="name" name="name" type="text" class="form-control">
+                                <input v-model="product.name" id="name" name="name" type="text" disabled class="form-control">
                             </div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Category</label>
-                                <select v-model="product.category" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                <select v-model="product.category" disabled class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
                                     <option>Select</option>
                                     <option :value="manufacturer.id" v-for="(manufacturer, index) in manufacturers" :key="index">{{manufacturer.name}}</option>
                                 </select>
@@ -48,7 +48,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Category Type</label>
-                                <select v-model="product.category_type" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                <select disabled v-model="product.category_type" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
                                     <option data-select2-id="3">Select</option>
                                 </select>
                             </div>
@@ -58,13 +58,13 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="manufacturername">Dosage Form</label>
-                                <input v-model="product.dosage_form" id="dosage_form" name="dosage_form" type="text" class="form-control">
+                                <input v-model="product.dosage_form" disabled id="dosage_form" name="dosage_form" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="manufacturerbrand">Drug Class</label>
-                                <input v-model="product.drug_class" id="drug_class" name="dosage_class" type="text" class="form-control">
+                                <input v-model="product.drug_class" disabled id="drug_class" name="dosage_class" type="text" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -72,23 +72,23 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="strenght">Strength</label>
-                                <input v-model="product.strenght" id="strenght" name="strenght" type="text" class="form-control">
+                                <input v-model="product.strenght" disabled id="strenght" name="strenght" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="packet_size">Packet Size</label>
-                                <input v-model="product.packet_size" id="packet_size" name="packet_size" type="text" class="form-control">
+                                <input v-model="product.packet_size" disabled id="packet_size" name="packet_size" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="packet_size">Price</label>
-                                <input v-model="product.price" id="packet_size" name="packet_size" type="text" class="form-control">
+                                <input v-model.trim="product.price" id="packet_size" name="packet_size" type="text" class="form-control">
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-primary">UPDATE</button>
+                    <button @click.prevent="updateProduct" class="btn btn-primary">UPDATE</button>
                 </form>
             </div>
         </div>
@@ -105,6 +105,7 @@ export default {
     data() {
         return {
             product: {
+                id: '',
                 manufacturer: '',
                 name: '',
                 category: '',
@@ -124,14 +125,46 @@ export default {
     methods: {
         editProduct(product) {
             this.$modal.show('product-modal');
-            this.product.name = product.name ?? product.product_name
-            this.product.manufacturer = product.manufacturer
-            this.product.category = product.category
-            this.product.category_type = product.category_type
-            this.product.dosage_form = product.dosage_form
-            this.product.drug_class = product.drug_class
-            this.product.strenght = product.strenght
-            this.product.packet_size = product.packet_size
+            this.product.id = product.id
+            this.product.name = product.product.name ?? product.product_name
+            this.product.manufacturer = product.product.manufacturer
+            this.product.category = product.product.category
+            this.product.category_type = product.product.category_type
+            this.product.dosage_form = product.product.dosage_form
+            this.product.drug_class = product.product.drug_class
+            this.product.strenght = product.product.strenght
+            this.product.packet_size = product.product.packet_size
+            this.product.price = product.price
+        },
+        async updateProduct() {
+            const loading = this.$vs.loading();
+            console.log('object :>> ', this.product);
+            let data = {
+                'price': this.product.price
+            }
+            console.log(data)
+            await axios.put(`wholesaler_products/${this.product.id}`, data)
+                .then(({
+                    data
+                }) => {
+                    this.$modal.hide('product-modal');
+                    console.log(data)
+                    this.loading != this.loading
+                    location.reload();
+                    loading.close();
+                })
+                .catch(({
+                    response
+                }) => {
+                    this.$modal.hide('product-modal');
+                    this.loading != this.loading
+                    loading.close();
+                    location.reload();
+                    // this.$router.push({
+                    //     name: 'wholesaler.dashboard'
+                    // })
+                    console.log(response.data)
+                })
         },
         getResults() {
             if (typeof page === 'undefined') {

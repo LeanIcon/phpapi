@@ -11,6 +11,7 @@ class WholesalerProduct extends ApiModel
     protected $fillable = ['batch_number', 'price', 'product_code','expiry_date', 'expiry_status','wholesaler_id','packet_size',
     'strength', 'manufacturer_id', 'product_id', 'type', 'status', 'product_name','dosage_form', 'drug_legal_status','manufacturer'];
 
+    public $with = ['product'];
 
     public $appends = [
         'wholesaler_name'

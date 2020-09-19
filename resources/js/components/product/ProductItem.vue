@@ -3,7 +3,7 @@
     <td data-th="ID" class="text-center">{{product.id}}</td>
     <td data-th="Product Name">{{product.product_name}}</td>
     <td data-th="Product Desc." class="text-left"> {{product.manufacturer}} </td>
-    <th data-th="Packet Size">Packet Size</th>
+    <td data-th="Packet Size">Packet Size</td>
     <td data-th="Price" class="text-right" style="width: 100px;">{{price}}</td>
     <td data-th="Action" class="text-right">
     <td>
