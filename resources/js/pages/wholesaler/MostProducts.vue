@@ -190,9 +190,6 @@ export default {
                     this.$modal.hide('product-preview-modal');
                     this.loading != this.loading
                     loading.close();
-                    this.$router.push({
-                        name: 'wholesaler.dashboard'
-                    })
 
                 })
                 .catch(({

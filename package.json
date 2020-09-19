@@ -44,6 +44,7 @@
         "sweet-modal-vue": "^2.0.0",
         "vmodal": "^0.1.13",
         "vue": "^2.5.17",
+        "vue-picture-input": "^2.1.6",
         "vue-router": "^3.4.0",
         "vue-suglify": "^1.0.14",
         "vue-sweetalert2": "^3.0.6",

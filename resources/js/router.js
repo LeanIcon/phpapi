@@ -144,7 +144,7 @@ const routes = [
             { path: 'retailers', component: RetailerPage },
             { path: 'user/details/:userId', component: UserDetailsPage, name: 'wholesale_details', props: true },
             { path: 'user/page/:userId', component: RetailerDetailsPage, name: 'wholesale_page', props: true },
-            { path: 'products', component: WholesalerProducts, name: 'wholesaler.products'},
+            { path: 'products', component: WholesalerProducts},
             { path: 'purchase_orders', component: WholesalerPurchaseOrderList},
             { path: 'purchase_orders/:purchase_order_id/view', component: PurchaseOrderView, name: 'purchase_order.view', props: true},
             { path: 'products/add', component: WholesalerProductAdd},
