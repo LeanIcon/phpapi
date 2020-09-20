@@ -82,12 +82,12 @@
                 <textarea class="form-control" id="productdesc" rows="5"></textarea>
             </div> -->
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
 
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label for="image">Product Image</label>
+                                    <label for="image">Drug Image</label>
                                     <picture-input />
                                 </div>
                             </div>

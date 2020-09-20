@@ -93,7 +93,29 @@ export default {
             shortage_lists: false,
             pos_demos: false,
             product_expiry: false,
+            region: {}
         };
+    },
+    methods: {
+        async loadRegions(url = 'region') {
+            this.loading = !this.loading
+            const loading = this.$vs.loading();
+            await axios.get(`${url}`)
+                .then(({
+                    data
+                }) => {
+                    console.log(data)
+                    // this.region = data
+                    // console.log(this.region)
+                    this.openNotification('top-right', 'success', 'Loading User Details and Profile Complete');
+                    this.loading != this.loading
+                    loading.close();
+                })
+                .catch((error) => {
+                    this.openNotification('top-right', 'error', 'Unable to complete Request Please Try Again');
+                    loading.close();
+                })
+        },
     },
     computed: {
         authUser() {
@@ -107,6 +129,7 @@ export default {
         },
     },
     mounted() {
+        this.loadRegions()
         console.log(this.authUser);
     },
 };
