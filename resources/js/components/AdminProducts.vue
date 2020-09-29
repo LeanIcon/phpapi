@@ -174,12 +174,9 @@ export default {
     methods: {
         fetch(){
                 axios.get('product/search', { params: {keywords: this.keywords }})
-                .then(({
-                    data
-                }) => {
-                    this.products = data
-                    console.log(data)
-                })
+                .then(response => this.products = response.data,
+                    console.log("Working")
+                )
                 .catch(error => {});
         },
         editProduct(product) {
