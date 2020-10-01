@@ -155,6 +155,12 @@ class User extends Authenticatable implements JWTSubject, CommonModel
     }
 
 
+    public function app_settings()
+    {
+        return $this->hasOne(AppSettings::class);
+    }
+
+
     public function loginUserName($data)
     {
         $location = new Location();
