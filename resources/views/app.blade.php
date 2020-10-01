@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>Admin Panel</title>
+        <title>Nnuro Admin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Admin & Dashboard" name="description" />
         <meta content="nnuro" name="author" />

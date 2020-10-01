@@ -88,7 +88,7 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="image">Drug Image</label>
-                                    <picture-input />
+                                    <picture-input ref="pictureInput" @change="onPictureChanged" :removable="true" @remove="onPictureRemoved" accept="image/jpeg, image/png"></picture-input>
                                 </div>
                             </div>
                         </div>
@@ -127,6 +127,7 @@ export default {
                 strength: '',
                 packet_size: ''
             },
+            productImage: '',
             manufacturers: {},
             drug_classes: {},
             dosage_forms: {},
@@ -163,7 +164,9 @@ export default {
             const data = this.product;
             axios.post('admin_products', data, {
                     headers: {
-                        'Content-type': 'application/json'
+                        'Content-type': 'multipart/form-data',
+                        // 'Content-type': 'application/json',
+
                     }
                 })
                 .then((response) => {
@@ -218,6 +221,18 @@ export default {
                 .catch(({
                     response
                 }) => console.log("Error"))
+        },
+        onPictureChanged() {
+            console.log("New Picture loaded")
+            if (this.$refs.pictureInput.file) {
+                this.productImage = this.$refs.pictureInput.file
+                // console.log(this.productImage)
+            } else {
+                console.log("Image Upload not Supported")
+            }
+        },
+        onPictureRemoved() {
+            console.log("Picture Removed")
         },
         async loadCategoryTypes(category_type) {
             await axios.get('category_types?product_category_id=' + category_type)
