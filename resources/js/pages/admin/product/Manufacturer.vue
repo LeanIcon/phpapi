@@ -169,11 +169,11 @@ export default {
 
             editmanufacturer(id){
                 console.log(id)
-                axios.put('manufacturers/'+ id, this.manufacturer.name
+                axios.put('manufacturers/'+ id, this.manufacturer.id
                     )
                     .then(resp => {
                         this.manufacturer.name = ''
-                        this.$swal('Manufacturer edited successfully');
+                        this.$swal('Manufacturer dedited successfully');
                     })
                     .catch(error => {
                     console.log(error);
