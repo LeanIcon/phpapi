@@ -88,7 +88,7 @@
 
 
     <modal name="manu-modal">
-    <form method="POST"  name="manu" id="manu" action="#" enctype="multipart/form-data" @submit.prevent="editmanufacturer">
+    <form method="PUT"  name="manu" id="manu" action="#" enctype="multipart/form-data" @submit.prevent="editmanufacturer(id)">
         <div class="card">
             <div class="card-header">
                 Manufacturer
@@ -105,7 +105,7 @@
                    </div>
                    
                </form>
-               <button v-on:click="editAlert" class="btn btn-primary">SAVE</button>
+               <button class="btn btn-primary">SAVE</button>
             </div>
         </div>
     </form>
@@ -167,15 +167,10 @@ export default {
                 
             },
 
-            editmanufacturer(){
-                let formData = new FormData();
-            formData.append("name", this.manufacturer.name);
-                axios.post('manufacturers/' + this.id,{
-                   
-                   params: {
-                     data: formData
-                },
-                })
+            editmanufacturer(id){
+                console.log(id)
+                axios.put('manufacturers/'+ id, this.manufacturer.name
+                    )
                     .then(resp => {
                         this.manufacturer.name = ''
                         this.$swal('Manufacturer edited successfully');
