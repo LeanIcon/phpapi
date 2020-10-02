@@ -5,9 +5,8 @@
             <div>
                 <router-link to="products/add" class="btn btn-success mb-2">
                     <i class="ri-add-box-line"></i>
-                    Add Products
+                    Add Product
                 </router-link>
-                <input type="text" v-model="keywords">
                 <!-- <a href="javascript:void(0);" @click="loadUser" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Product</a> -->
             </div>
             <div class="table-responsive mt-3">
@@ -28,7 +27,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <div v-if="products.length > 0" />
                         <tr v-for="(product, index) in products.data" :key="index">
                             <td>
                                 <div class="custom-control custom-checkbox">
@@ -54,9 +52,9 @@
                 </table>
             </div>
         </div>
-        <!-- <div class="col-md-12" v-show="products.links && products.meta"> -->
+        <div class="col-md-12" v-show="products.links && products.meta">
             <!-- <pagination :data="laravelData" v-on:pagination-change-page="getResults"></pagination> -->
-            <!-- <nav>
+            <nav>
                 <ul class="pagination" style="cursor:pointer">
                     <li class="page-item" :class="{'disabled': !products.links.prev , 'active': products.links.prev != null}">
                         <a class="page-link" @click="getPrevPage">Previous</a>
@@ -67,7 +65,7 @@
                     </li>
                 </ul>
             </nav>
-        </div> -->
+        </div>
     </div>
     <modal name="product-modal" :width="700" :height="500" :adaptive="true">
         <div class="card">
@@ -163,22 +161,13 @@ export default {
                 strenght: '',
                 packet_size: ''
             },
-            products: [],
+            products: {},
             manufacturers: {},
             links: {},
-            loading: false,
-            keywords: null,
-            products: []
+            loading: false
         }
     },
     methods: {
-        fetch(){
-                axios.get('product/search', { params: {keywords: this.keywords }})
-                .then(response => this.products = response.data,
-                    console.log("Working")
-                )
-                .catch(error => {});
-        },
         editProduct(product) {
             this.$modal.show('product-modal');
             this.product.name = product.name
@@ -264,12 +253,6 @@ export default {
         // this.products = this.adminProducts
 
     },
-
-    watch: {
-        keywords(after, before) {
-             this.fetch();
-         }
-     },
 
 }
 </script>
