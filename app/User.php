@@ -5,6 +5,7 @@ namespace App;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\Location;
+use App\Models\AppSettings;
 use App\Models\CommonModel;
 use App\Models\UserDetails;
 use Illuminate\Support\Str;

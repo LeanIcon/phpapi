@@ -6,6 +6,7 @@ import products from './modules/products';
 import wholesalers from './modules/wholesalers';
 import purchase_orders from './modules/purchase_orders';
 import shortage_list from './modules/shortage_list';
+import appsettings from "./modules/appsettings";
 import createPersistedState from "vuex-persistedstate";
 import SecureLS from "secure-ls";
 var ls = new SecureLS({isCompression: false});
@@ -19,7 +20,8 @@ export default new Vuex.Store({
         products,
         purchase_orders,
         shortage_list,
-        wholesalers
+        wholesalers,
+        appsettings
     },
     plugins: [createPersistedState({
         key: 'vuex',

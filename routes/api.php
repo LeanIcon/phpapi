@@ -77,6 +77,10 @@ Route::group(['namespace' => 'API'], function() {
     Route::apiResource('drug_class','DrugClassController');
 
 
+    Route::post('app_settings','AppSettingsController@saveAppSettings');
+    Route::get('app_settings','AppSettingsController@getAppSettings');
+
+
 
 
     Route::apiResource('location', 'LocationController');
@@ -100,5 +104,8 @@ Route::get('product/search', 'ProductController@search');
 Route::apiResource('region', 'RegionController');
 Route::apiResource('town', 'TownController');
 Route::apiResource('customer','CustomerController');
+// Route::get('app_settings','AppSettingsController@saveAppSettings');
+
+// Route::put('app_settings','AppSettingsController');
 
 Route::get('coviddata', 'ConvidDataController@getCovidData');

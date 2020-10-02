@@ -104,9 +104,6 @@ export default {
                 .then(({
                     data
                 }) => {
-                    console.log(data)
-                    // this.region = data
-                    // console.log(this.region)
                     this.openNotification('top-right', 'success', 'Loading User Details and Profile Complete');
                     this.loading != this.loading
                     loading.close();
