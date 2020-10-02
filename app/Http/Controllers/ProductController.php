@@ -30,7 +30,7 @@ class ProductController extends ApiController
 
     public function search(Request $request)
     {
-        $product = $this->product::where('name', $request->keywords)->get();
+        $product=$this->product->get();
         return response()->json($product);
          
     }

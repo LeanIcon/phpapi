@@ -6,16 +6,6 @@
       <!-- <stats :cardTitle="proForma" :cardValue="proforma_count" ></stats> -->
       <stats :cardTitle="inVoices" :cardValue="proforma_count" ></stats>
     </div>
-  <div class="row">
-    <div class="h-25 d-inline-block" style="width: 1240px; height: 50px">
-      <div class="card">
-       <div class="card-body dash-info-carousel">
-       <h4 class="mt-0 header-title mb-0">Top Adverts</h4>
-       <mainadvert></mainadvert>
-       </div>
-       </div>
-    </div>
-  </div>
     <div class="row">
         <div class="col-lg-6">
           <div class="card">
@@ -58,7 +48,6 @@ import GraphCardVue from '../../components/GraphCard.vue'
 import RetailerWholesalerVue from './RetailerWholesaler.vue'
 import ShortageListPageVue from './ShortageListPage.vue'
 import SideAdvertVue from '../../components/SideAdvert.vue'
-import MainAdvertVue from '../../components/MainAdvert.vue'
 
 
 export default {
@@ -67,8 +56,7 @@ export default {
     'barCard' :  GraphCardVue,
     'retailerWholesaler' : RetailerWholesalerVue,
     'shortageListPage' : ShortageListPageVue,
-    'sideAdert' : SideAdvertVue,
-    'mainadvert': MainAdvertVue
+    'sideAdert' : SideAdvertVue
   },
   data() {
     return {
