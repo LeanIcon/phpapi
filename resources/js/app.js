@@ -42,7 +42,7 @@ Vue.use(Vuesax);
 // Vue.component('modemodal', Modal);
 Vue.use(SweetModal);
 Vue.use(VueSweetalert2);
-Vue.component("suglify", VueSuglify); 
+Vue.component("suglify", VueSuglify);
 
 
 Vue.filter('formatDate', function(value) {
@@ -69,7 +69,8 @@ window.axios.interceptors.response.use(function(response){
     if (401 === error.response.status) {
         store.dispatch('account/userLogout')
         .then(() => {
-            router.push('/login');
+            // router.push('/login');
+            location.reload();
         });
     }else{
         return Promise.reject(error);
