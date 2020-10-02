@@ -35,7 +35,7 @@
                                 <td>{{ manufacturer.name }}</td>
                                 
                                 <td>
-                                    <!-- <a href="javascript:void(0);" @click="editUser(user)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class=" ri-edit-box-line font-size-18"></i></a> -->
+                                     <a href="javascript:void(0);" @click.prevent="editmanu(manufacturer)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class=" ri-edit-box-line font-size-18"></i></a> 
                                     <!-- <a href="javascript:void(0);" @click="viewUser(user)" class="mr-1 text-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-eye-fill font-size-18"></i></a> -->
                                     <a href="javascript:void(0);" v-on:click="deletemanu(manufacturer.id, index)" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="ri-delete-bin-line font-size-18"></i></a>
                                 </td>
@@ -83,6 +83,44 @@
         </div>
     </form>
     </modal>
+
+
+
+
+    <modal name="manu-modal">
+    <form method="PUT"  name="manu" id="manu" action="#" enctype="multipart/form-data" @submit.prevent="editmanufacturer(id)">
+        <div class="card">
+            <div class="card-header">
+                Manufacturer
+            </div>
+            <div class="card-body">
+               <form action="" class="form" >
+                   <div class="row">
+                       <div class="col-lg-6 p-1">
+                           <label for="manufacturername">Manufacturer Name</label>
+                           <input v-model="manufacturer.name" type="text" class="form-control" name="name" id="name">
+                       </div>
+            
+                       
+                   </div>
+                   
+               </form>
+               <button class="btn btn-primary">SAVE</button>
+            </div>
+        </div>
+    </form>
+    </modal>
+
+
+
+
+
+
+
+
+
+
+
 </div>
 </template>
 
@@ -120,10 +158,38 @@ export default {
                     })
                 },
 
+
+            editmanu(manufacturer){
+                this.$modal.show('manu-modal');
+                this.manufacturer.name = manufacturer.name,
+                //this.manufacturer.status = manufacturer.status,
+                console.log("Worked")
+                
+            },
+
+            editmanufacturer(id){
+                console.log(id)
+                axios.put('manufacturers/'+ id, this.manufacturer.id
+                    )
+                    .then(resp => {
+                        this.manufacturer.name = ''
+                        this.$swal('Manufacturer dedited successfully');
+                    })
+                    .catch(error => {
+                    console.log(error);
+                    })
+            },
+
+            
              showAlert(){
             this.$swal('Manufacturer added successfully');
             },
             
+            editAlert(){
+            this.$swal('Manufacturer added successfully');
+            },
+
+
             async loadmanu(url = 'manufacturers') {
             this.loading = !this.loading
             const loading = this.$vs.loading();
@@ -138,6 +204,10 @@ export default {
             },    
             productmodal(){
                 this.$modal.show('manufacturer-modal');
+            },
+
+            manumodal(){
+                this.$modal.show('manu-modal')
             },
 
             getResults(page = 1) {
@@ -175,7 +245,9 @@ export default {
         mounted() {""
         this.loadmanu();
         this.getResults();
-    },
+        
+
+    },  
 
 }
 
