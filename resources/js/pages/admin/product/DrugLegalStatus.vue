@@ -35,8 +35,8 @@
                                 <td>{{ category_type.name }}</td>
                                 
                                 <td>
-                                    <!-- <a href="javascript:void(0);" @click="editUser(user)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class=" ri-edit-box-line font-size-18"></i></a>
-                                    <a href="javascript:void(0);" @click="viewUser(user)" class="mr-1 text-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-eye-fill font-size-18"></i></a> -->
+                                    <a href="javascript:void(0);" @click="editcattype(category_type)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class=" ri-edit-box-line font-size-18"></i></a>
+                                    <!-- <a href="javascript:void(0);" @click="viewUser(user)" class="mr-1 text-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-eye-fill font-size-18"></i></a> -->
                                     <a href="javascript:void(0);" v-on:click="deletedrul(category_type.id, index)" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="ri-delete-bin-line font-size-18"></i></a>
                                 </td>
                             </tr>
@@ -69,6 +69,35 @@
         </div>
         </form>
     </modal>
+
+
+
+
+    <modal name="edit-modal">
+        <form method = "PUT" name="category_type" id="category_type" action="#" enctype="multipart/form-data" @submit.prevent="editcatype">
+        <div class="card">
+            <div class="card-header">
+                Drug Legal Status
+            </div>
+            <div class="card-body">
+                   <div class="row">
+                       <div class="col-lg-6 p-1">
+                           <label for="">Drug Legal Status Name</label>
+                           <input v-model="category_type.name" type="text" class="form-control" >
+                       </div>
+                       
+                   </div>
+                   
+               
+               <button class="btn btn-primary" >SAVE</button>
+            </div>
+        </div>
+        </form>
+    </modal>
+
+
+
+
 </div>
 </template>
 
@@ -79,12 +108,33 @@ export default {
                 category_types: {},
                 category_type: {
                 name: '',
+                id: ''
                 },
                 
             }
         },
         
         methods: {
+
+            editcattype(category_type){
+                 this.$modal.show('edit-modal');
+                this.category_type.name = category_type.name,
+                this.category_type.id = category_type.id
+            },
+
+            editcatype(){
+                var id = this.category_type.id
+                axios.put('category_types/'+ id, this.category_type
+                    )
+                    .then(resp => {
+                        this.category_type.name = ''
+                        this.loadcattypes()
+                        this.$swal('Drug Legal Status edited successfully');
+                    })
+                    .catch(error => {
+                    console.log(error);
+                    })
+            },
 
 
             showAlert(){

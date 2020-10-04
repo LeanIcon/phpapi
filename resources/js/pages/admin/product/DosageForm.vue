@@ -35,7 +35,7 @@
                                 <td>{{ dosage_form.name }}</td>
                                 
                                 <td>
-                                    <!-- <a href="javascript:void(0);" @click="editUser(user)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class=" ri-edit-box-line font-size-18"></i></a> -->
+                                     <a href="javascript:void(0);"  @click="editdos(dosage_form)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class=" ri-edit-box-line font-size-18"></i></a>
                                     <!-- <a href="javascript:void(0);" @click="viewUser(user)" class="mr-1 text-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-eye-fill font-size-18"></i></a> -->
                                     <a href="javascript:void(0);" v-on:click="deletedos(dosage_form.id, index)" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="ri-delete-bin-line font-size-18"></i></a>
                                 </td>
@@ -49,7 +49,7 @@
         </div>
     </div>
 <modal name="dosage_form-modal">
-    <form method = "post" name="dosage_form" id="dosage_form" action="#" enctype="multipart/form-data" @submit.prevent="adddosage">
+    <form method = "PUT" name="dosage_form" id="dosage_form" action="#" enctype="multipart/form-data" @submit.prevent="adddosage">
         <div class="card">
             <div class="card-header">
                 Dosage Form
@@ -73,11 +73,41 @@
         </div>
     </form>
     </modal>
+
+
+    <modal name="dos-modal">
+    <form method="PUT" action="#" enctype="multipart/form-data" @submit.prevent="editdosageform">
+        <div class="card">
+            <div class="card-header">
+                Dosage Form
+            </div>
+            <div class="card-body">
+
+               <form action="" class="form" >
+                   <div class="row">
+                       <div class="col-lg-6 p-1">
+                           <label for="dosageform">Dosage Form Name</label>
+                           <input v-model="dosage_form.name" type="text" class="form-control" name="name" id="name">
+                       </div>
+                         <suglify :slugify="dosage_form.name" :slug.sync="dosage_form.slug">
+                    <input slot-scope="{inputBidding}" v-bind="inputBidding"
+               type="text" class="form-control" placeholder="Slug ..." hidden>
+                         </suglify>
+                   </div>
+                   
+               </form>
+               <button v-on:click="showAlert" class="btn btn-primary" >SAVE</button>
+            </div>
+        </div>
+    </form>
+    </modal>
+
+
 </div>
 </template>
 
 <script>
-import VueSuglify from 'vue-suglify'
+//import VueSuglify from 'vue-suglify'
 export default {
    // components: { VueSuglify },
     data() {
@@ -85,13 +115,37 @@ export default {
                 dosage_forms: {},
                 dosage_form: {
                 name: '',
-                slug: ''
+                slug: '',
+                id: ''
                 },
                 id: '',
             }
         },
         
         methods: {
+            editdos(dosage_form){
+                this.$modal.show('dos-modal');
+                this.dosage_form.name = dosage_form.name,
+                this.dosage_form.id = dosage_form.id
+                
+                //console.log(this.dosage_form.name)
+                
+            },
+
+
+            editdosageform(){
+                var id = this.dosage_form.id
+                axios.put('dosage_form/'+ id, this.dosage_form
+                    )
+                    .then(resp => {
+                        this.dosage_form.name = ''
+                        this.loaddosage()
+                        this.$swal('Dosage Form edited successfully');
+                    })
+                    .catch(error => {
+                    console.log(error);
+                    })
+            },
 
 
             deletedos(id, index) {
@@ -152,7 +206,7 @@ export default {
             
         },
 
-        mounted() {
+        mounted() {""
         this.loaddosage();
         this.getResults();
     },
