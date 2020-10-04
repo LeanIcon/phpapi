@@ -26,7 +26,6 @@ class WholesalerProductsController extends ApiController
     public function index(Request $request)
     {
         $user = Auth::user();
-
         // return $user->wholesaler_products;
         return $this->Resource::collection($user->wholesaler_products);
 

@@ -15,7 +15,7 @@ class RetailerWholesalerProductController extends ApiController
         parent::__construct($wholesalerProduct);
         $this->wholesalerProduct = $wholesalerProduct;
         $this->user = $user;
-        $this->middleware('auth:api');
+        // $this->middleware('auth:api');
     }
     public function loadWholesalerProducts(Request $request)
     {
