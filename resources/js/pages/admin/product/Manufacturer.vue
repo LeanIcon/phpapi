@@ -88,7 +88,7 @@
 
 
     <modal name="manu-modal">
-    <form method="PUT"  name="manu" id="manu" action="#" enctype="multipart/form-data" @submit.prevent="editmanufacturer(id)">
+    <form method="PUT"  name="manu" id="manu" action="#" enctype="multipart/form-data" @submit.prevent="editmanufacturer">
         <div class="card">
             <div class="card-header">
                 Manufacturer
@@ -99,9 +99,20 @@
                        <div class="col-lg-6 p-1">
                            <label for="manufacturername">Manufacturer Name</label>
                            <input v-model="manufacturer.name" type="text" class="form-control" name="name" id="name">
+                           <suglify :slugify="manufacturer.name" :slug.sync="manufacturer.slug">
+                    <input slot-scope="{inputBidding}" v-bind="inputBidding"
+               type="text" class="form-control" placeholder="Slug ..." hidden>
+                </suglify>
                        </div>
             
-                       
+                       <div class="col-lg-6 p-1">
+                           <label for="manufacturerbrand">Status</label>
+                            <select v-model="manufacturer.status" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <option v-for="option in options" v-bind:value="option.value">
+                            {{ option.text }}
+                                </option>
+                            </select>
+                       </div>
                    </div>
                    
                </form>
@@ -131,6 +142,7 @@ export default {
             return {
                 manufacturers: {},
                 manufacturer: {
+                id: '',
                 name: '',
                 status: '',
                 slug: ''
@@ -162,18 +174,20 @@ export default {
             editmanu(manufacturer){
                 this.$modal.show('manu-modal');
                 this.manufacturer.name = manufacturer.name,
-                //this.manufacturer.status = manufacturer.status,
+                this.manufacturer.id = manufacturer.id,
+                this.manufacturer.status = manufacturer.status,
                 console.log("Worked")
                 
             },
 
-            editmanufacturer(id){
-                console.log(id)
-                axios.put('manufacturers/'+ id, this.manufacturer.id
+            editmanufacturer(){
+                var id = this.manufacturer.id
+                axios.put('manufacturers/'+ id, this.manufacturer
                     )
                     .then(resp => {
                         this.manufacturer.name = ''
-                        this.$swal('Manufacturer dedited successfully');
+                        this.loadmanu()
+                        this.$swal('Manufacturer edited successfully');
                     })
                     .catch(error => {
                     console.log(error);

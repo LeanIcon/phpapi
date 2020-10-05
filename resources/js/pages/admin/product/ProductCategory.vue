@@ -18,7 +18,7 @@
                                 </th>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Type</th>
+                                <!-- <th>Type</th> -->
                                
                                 <th style="width: 120px;">Action</th>
                             </tr>
@@ -34,11 +34,11 @@
 
                                 <td>{{ productcat.id }}</td>
                                 <td>{{ productcat.name }}</td>
-                                <td>{{productcat.type}}</td>
+                                <!-- <td>{{productcat.type}}</td> -->
                                 
                                 <td>
-                                    <!-- <a href="javascript:void(0);" @click="editUser(user)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class=" ri-edit-box-line font-size-18"></i></a>
-                                    <a href="javascript:void(0);" @click="viewUser(user)" class="mr-1 text-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-eye-fill font-size-18"></i></a> -->
+                                     <a href="javascript:void(0);" @click="editprodcat(productcat)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class=" ri-edit-box-line font-size-18"></i></a>
+                                    <!-- <a href="javascript:void(0);" @click="viewUser(user)" class="mr-1 text-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-eye-fill font-size-18"></i></a> -->
                                     <a href="javascript:void(0);" v-on:click="deleteprocat(productcat.id, index)" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="ri-delete-bin-line font-size-18"></i></a>
                                 </td>
                             </tr>
@@ -58,12 +58,20 @@
                <form method = "post" name="product_category" id="product_category" action="#" enctype="multipart/form-data" @submit.prevent="addpro">
                    <div class="row">
                        <div class="col-lg-6 p-1">
-                           <label for="">Name</label>
+                           <label for="">Category Type Name</label>
                            <input v-model="productcat.name" type="text" class="form-control" >
                        </div>
-                       <div class="col-lg-6 p-1">
+                       <!-- <div class="col-lg-6 p-1">
                            <label for=""> Type</label>
                            <input v-model="productcat.type" type="text" class="form-control">
+                       </div> -->
+                       <div class="col-lg-6 p-1">
+                           <label for="productcatbrand">Status</label>
+                            <select v-model="productcat.status" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <option v-for="option in options" v-bind:value="option.value">
+                            {{ option.text }}
+                                </option>
+                            </select>
                        </div>
                        <suglify :slugify="productcat.name" :slug.sync="productcat.slug">
                     <input slot-scope="{inputBidding}" v-bind="inputBidding"
@@ -75,6 +83,50 @@
             </div>
         </div>
     </modal>
+
+
+
+    <modal name="manu-modal">
+    <form method="PUT"  name="manu" id="productcat" action="#" enctype="multipart/form-data" @submit.prevent="editprocat">
+        <div class="card">
+            <div class="card-header">
+                Category Type
+            </div>
+            <div class="card-body">
+               <form action="" class="form" >
+                   <div class="row">
+                       <div class="col-lg-6 p-1">
+                           <label for="manufacturername">Category Type Name</label>
+                           <input v-model="productcat.name" type="text" class="form-control" name="name" id="name">
+                           <suglify :slugify="productcat.name" :slug.sync="productcat.slug">
+                    <input slot-scope="{inputBidding}" v-bind="inputBidding"
+               type="text" class="form-control" placeholder="Slug ..." hidden>
+                </suglify>
+                       </div>
+            
+                       <div class="col-lg-6 p-1">
+                           <label for="manufacturerbrand">Status</label>
+                            <select v-model="productcat.status" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <option v-for="option in options" v-bind:value="option.value">
+                            {{ option.text }}
+                                </option>
+                            </select>
+                       </div>
+                   </div>
+                   
+               </form>
+               <button class="btn btn-primary">SAVE</button>
+            </div>
+        </div>
+    </form>
+    </modal>
+
+
+
+
+
+
+
 </div>
 </template>
 
@@ -88,11 +140,42 @@ export default {
                 type: '',
                 status: '',
                 slug: ''
-                }
+                },
+                id: '',
+                options: [
+      { text: 'Pending', value: 0 },
+      { text: 'Approved', value: 1 },
+      
+    ]
             }
         },
         
         methods: {
+
+            editprodcat(productcat){
+                this.$modal.show('manu-modal');
+                this.productcat.name = productcat.name,
+                this.productcat.id = productcat.id,
+                this.productcat.status = productcat.status,
+                console.log("Worked")
+                
+            },
+
+            editprocat(){
+                var id = this.productcat.id
+                axios.put('product_category/'+ id, this.productcat
+                    )
+                    .then(resp => {
+                        this.productcat.name = ''
+                        this.productcat.status - ''
+                        this.loadproductcategory()
+                        this.$swal('Product Category edited successfully');
+                    })
+                    .catch(error => {
+                    console.log(error);
+                    })
+            },
+
 
             showAlert(){
             this.$swal('Product Category added successfully');
@@ -124,7 +207,7 @@ export default {
                         this.productcat.type = '';
                         this.productcat.status = '';
                         this.productcat.slug = '';
-                        this.loadregion()
+                        this.loadproductcategory()
                          this.$swal('Product Category added successfully');
                         loading.close()
                         $('pro-modal').modal('hide');
@@ -139,7 +222,7 @@ export default {
                 this.$modal.show('pro-modal');
             },
 
-            async loadregion(url = 'product_category') {
+            async loadproductcategory(url = 'product_category') {
             this.loading = !this.loading
             await axios.get(url)
             .then(({data}) => {
@@ -154,7 +237,7 @@ export default {
         },
 
         mounted() {
-        this.loadregion();
+        this.loadproductcategory();
     },
 
 }
