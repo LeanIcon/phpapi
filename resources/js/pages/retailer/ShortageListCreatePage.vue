@@ -27,14 +27,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(product, index) in products.data" :key="index">
+                        <tr v-for="(product) in products" :key="product.id">
                             <td>{{product.wholesaler_name ? product.wholesaler_name : ''}}</td>
-                            <td>{{product.name ? product.name : product.product_name}}</td>
-                            <td>{{productDesc(product)}}</td>
-                            <td>{{product.manufacturer.name ? product.manufacturer.name : product.manufacturer}}</td>
+                            <td>{{product.product.name}}</td>
+                            <td>Product Description</td>
+                            <td>{{product.manufacturer}}</td>
 
                             <td>
-                                {{product.packet_size}}
+                                {{product.product.packet_size}}
                             </td>
 
                             <td>
@@ -53,20 +53,9 @@
                     </tbody>
                 </table>
             </div>
+            <!-- {{shortage_list}} -->
         </div>
-        <div class="col-md-12" v-show="products.links && products.meta">
-            <nav>
-                <ul class="pagination" style="cursor:pointer">
-                    <li class="page-item" :class="{'disabled': !products.links.prev , 'active': products.links.prev != null}">
-                        <a class="page-link" @click="getPrevPage">Previous</a>
-                    </li>
-                    <span class="mr-3"></span>
-                    <li class="page-item" :class="{'disabled': !products.links.next, 'active': products.links.next != null}">
-                        <a class="page-link" @click="getNextPage">Next</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+
     </div>
 
     <sweet-modal ref="review_po" width="70%">
@@ -88,17 +77,17 @@
             </thead>
             <tbody>
                 <tr v-for="(product, index) in shortage_list" :key="index">
-                    <td>{{product.wholesaler_name ? product.wholesaler_name : ''}}</td>
-                    <td>{{product.name ? product.name : product.product_name}}</td>
-                    <td>{{productDesc(product)}}</td>
-                    <td>{{product.manufacturer.name ? product.manufacturer.name : product.manufacturer}}</td>
+                     <td>{{product.wholesaler_name ? product.wholesaler_name : ''}}</td>
+                            <td>{{product.product.name}}</td>
+                            <td>Product Description</td>
+                            <td>{{product.manufacturer}}</td>
 
                     <td>
                         {{product.packet_size}}
                     </td>
 
                     <td>
-                        {{product.price}}
+                         {{product.product.packet_size}}
                     </td>
                     <td style="width: 75px;">
                         <input v-model.number="product.quantity" type="text" class="form-control">
@@ -106,7 +95,7 @@
                     <td>
                         <vs-checkbox>
                         </vs-checkbox>
-                        <!-- <a href="javascript:void(0);" @click.prevent="editProduct(product)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-edit-box-fill font-size-18"></i></a> -->
+                        <a href="javascript:void(0);" @click.prevent="editProduct(product)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-edit-box-fill font-size-18"></i></a>
                     </td>
                 </tr>
             </tbody>
@@ -147,7 +136,7 @@ export default {
         }
     },
     methods: {
-        async loadProduct(url = 'wholesaler_products') {
+        async loadProduct(url = 'retail_wholesalers_products') {
             this.loading = !this.loading
             const loading = this.$vs.loading();
             await axios.get(`${url}`, {
@@ -158,7 +147,7 @@ export default {
                 }) => {
                     this.products = data
                     this.loading != this.loading
-                    // console.log(this.products)
+                    console.log(this.products)
                     loading.close();
                 })
                 .catch(({
@@ -242,6 +231,10 @@ export default {
         },
         getPrevPage() {
             this.loadProduct(this.products.links.prev);
+        },
+        productDescription(product) {
+            var description = product.product.active_ingredients + ' ' + product.product.strength + ' ' + (((product || {}).product || {}).dosage_form || '') ?? '';
+            return description;
         },
     },
     computed: {

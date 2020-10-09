@@ -20,6 +20,8 @@ class RetailerWholesalerProductController extends ApiController
     public function loadWholesalerProducts(Request $request)
     {
         $wholesaler = $this->user::find($request->wholesaler_id);
+
+        return $wholesaler;
         return $this->Resource::collection($wholesaler->product);
         return response()->json($wholesaler);
     }
