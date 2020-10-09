@@ -37,8 +37,8 @@
                                 <td>{{region.code}}</td>
                                 
                                 <td>
-                                    <!-- <a href="javascript:void(0);" @click="editUser(user)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class=" ri-edit-box-line font-size-18"></i></a>
-                                    <a href="javascript:void(0);" @click="viewUser(user)" class="mr-1 text-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-eye-fill font-size-18"></i></a> -->
+                                     <a href="javascript:void(0);" @click="editreg(region)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class=" ri-edit-box-line font-size-18"></i></a>
+                                    <!-- <a href="javascript:void(0);" @click="viewUser(user)" class="mr-1 text-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-eye-fill font-size-18"></i></a> -->
                                     <a href="javascript:void(0);" v-on:click="deletereg(region.id, index)" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="ri-delete-bin-line font-size-18"></i></a>
                                 </td>
                             </tr>
@@ -72,6 +72,40 @@
             </div>
         </div>
     </modal>
+
+
+
+
+    <modal name="reg-modal">
+        <div class="card">
+            <div class="card-header">
+                Region
+            </div>
+            <div class="card-body">
+               <form method = "PUT" name="reg" id="reg" action="#" enctype="multipart/form-data" @submit.prevent="editregion">
+                   <div class="row">
+                       <div class="col-lg-6 p-1">
+                           <label for="">Region</label>
+                           <input v-model="region.name" type="text" class="form-control" name="name" id="name">
+                       </div>
+                       <div class="col-lg-6 p-1">
+                           <label for=""> Region Code</label>
+                           <input v-model="region.code" type="text" class="form-control" name="code" id="code">
+                       </div>
+                       
+                   </div>    
+                   <button class="btn btn-primary" >SAVE</button>
+               </form>
+               
+            </div>
+        </div>
+    </modal>
+
+
+
+
+
+
 </div>
 </template>
 
@@ -88,6 +122,32 @@ export default {
         },
         
         methods: {
+
+
+            editreg(region){
+                this.$modal.show('reg-modal');
+                this.region.name = region.name,
+                this.region.id = region.id,
+                this.region.code = region.code
+                
+                
+            },
+
+            editregion(){
+                var id = this.region.id
+                axios.put('region/'+ id, this.region
+                    )
+                    .then(resp => {
+                        this.region.name = ''
+                        this.region.code = ''
+                        this.loadregion()
+                        this.$swal('Region edited successfully');
+                    })
+                    .catch(error => {
+                    console.log(error);
+                    })
+            },
+
 
             showAlert(){
             this.$swal('Region added successfully');
