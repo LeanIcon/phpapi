@@ -54,9 +54,9 @@
                 </table>
             </div>
         </div>
-        <!-- <div class="col-md-12" v-show="products.links && products.meta"> -->
+        <div class="col-md-12" v-show="products.links && products.meta">
             <!-- <pagination :data="laravelData" v-on:pagination-change-page="getResults"></pagination> -->
-            <!-- <nav>
+            <nav>
                 <ul class="pagination" style="cursor:pointer">
                     <li class="page-item" :class="{'disabled': !products.links.prev , 'active': products.links.prev != null}">
                         <a class="page-link" @click="getPrevPage">Previous</a>
@@ -67,7 +67,7 @@
                     </li>
                 </ul>
             </nav>
-        </div> -->
+        </div>
     </div>
     <modal name="product-modal" :width="700" :height="500" :adaptive="true">
         <div class="card">
@@ -172,13 +172,13 @@ export default {
         }
     },
     methods: {
-        fetch(){
-                axios.get('product/search', { params: {keywords: this.keywords }})
-                .then(response => this.products = response.data,
-                    console.log("Working")
-                )
-                .catch(error => {});
-        },
+        // fetch(){
+        //         axios.get('product/search', { params: {keywords: this.keywords }})
+        //         .then(response => this.products = response.data,
+        //             console.log("Working")
+        //         )
+        //         .catch(error => {});
+        // },
         editProduct(product) {
             this.$modal.show('product-modal');
             this.product.name = product.name
@@ -267,9 +267,9 @@ export default {
 
     watch: {
         keywords(after, before) {
-             this.fetch();
-         }
-     },
+            this.fetch();
+        }
+    },
 
 }
 </script>
