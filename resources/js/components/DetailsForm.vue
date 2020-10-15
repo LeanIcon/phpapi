@@ -57,10 +57,9 @@
                         {{regions}}
                         <div class="form-group">
                             <label for="practise_group">Region</label>
-                            <select v-model="details.town_id" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <select class="form-control " aria-hidden="true">
                                 <option value="" disabled hidden>Select</option>
-
-                                <!-- <option :value="region.id" v-for="(region) in regions.data" :key="region.id">{{region.name}}</option> -->
+                                <option :value="region.id" v-for="(region) in regions.data" :key="region.id">{{region.name}}</option>
                             </select>
                         </div>
                     </div>
@@ -89,7 +88,7 @@ export default {
     components: {
         PictureInput
     },
-    props: ['userdetails', 'regions'],
+    props: ['userdetails'],
     data() {
         return {
             user: {},
@@ -104,7 +103,7 @@ export default {
                 region_id: '',
                 town_id: ''
             },
-            // regions: {}
+            regions: []
         }
     },
     methods: {
@@ -121,28 +120,29 @@ export default {
         updateUser() {
             console.log(this.details)
         },
-        // async loadRegions(url = 'region') {
-        //     this.loading = !this.loading
-        //     const loading = this.$vs.loading();
-        //     await axios.get(`${url}`)
-        //         .then(({
-        //             data
-        //         }) => {
-        //             this.regions = data
-        //             console.log(this.regions)
-        //             this.openNotification('top-right', 'success', 'Loading User Details and Profile Complete');
-        //             this.loading != this.loading
-        //             loading.close();
-        //         })
-        //         .catch((error) => {
-        //             this.openNotification('top-right', 'error', 'Unable to complete Request Please Try Again');
-        //             loading.close();
-        //         })
-        // },
+        async loadRegions(url = 'region') {
+            this.loading = !this.loading
+            const loading = this.$vs.loading();
+            await axios.get(`${url}`)
+                .then(({
+                    data
+                }) => {
+                    this.regions = data
+                    // console.log(this.regions)
+                    this.openNotification('top-right', 'success', 'Loading User Details and Profile Complete');
+                    this.loading != this.loading
+                    loading.close();
+                })
+                .catch((error) => {
+                    this.openNotification('top-right', 'error', 'Unable to complete Request Please Try Again');
+                    loading.close();
+                })
+        },
     },
     mounted() {
-        // this.loadRegions();
+        this.loadRegions();
         this.details = this.userdetails;
+        console.log(this.userdetails)
     },
 
 }

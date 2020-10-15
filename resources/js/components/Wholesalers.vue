@@ -1,6 +1,6 @@
 <template>
-  <div>
-      <div class="col-lg-12">
+<div>
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
                 <div>
@@ -10,12 +10,6 @@
                     <table class="table table-centered datatable dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;" id="DataTables_Table_0">
                         <thead class="thead-light">
                             <tr>
-                                <th style="width: 20px;">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customercheck">
-                                        <label class="custom-control-label" for="customercheck">&nbsp;</label>
-                                    </div>
-                                </th>
                                 <th>Name</th>
                                 <th>Location</th>
                                 <th>Contact Person</th>
@@ -27,17 +21,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(user, index) in users.data" :key="index" >
-                                <td>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customercheck3">
-                                        <label class="custom-control-label" for="customercheck3">&nbsp;</label>
-                                    </div>
-                                </td>
-
+                            <tr v-for="(user, index) in users.data" :key="index">
                                 <td>{{user.name}}</td>
-                                <td>{{user.details.location}}</td>
-                                <td>{{user.details.contact_person}}</td>
+                                <td>{{userLocation(user)}}</td>
+                                <td>{{userContactPrsn(user)}}</td>
                                 <td>{{user.otp}}</td>
                                 <td>{{user.phone}}</td>
 
@@ -60,45 +47,48 @@
             </div>
         </div>
     </div>
-     <modal name="user-modal">
+    <modal name="user-modal">
         <div class="card">
             <div class="card-header">
                 Wholesalers
             </div>
             <div class="card-body">
-               <form action="" class="form" >
-                   <div class="row">
-                       <div class="col-lg-6 p-1">
-                           <label for="">First Name</label>
-                           <input v-model="selectedUser.name" type="text" class="form-control" >
-                       </div>
-                       <div class="col-lg-6 p-1">
+                <form action="" class="form">
+                    <div class="row">
+                        <div class="col-lg-6 p-1">
+                            <label for="">First Name</label>
+                            <input v-model="selectedUser.name" type="text" class="form-control">
+                        </div>
+                        <div class="col-lg-6 p-1">
                             <label for="">Email</label>
-                           <input v-model="selectedUser.email" type="text" class="form-control" >
-                       </div>
-                   </div>
-                   <div class="row">
-                       <div class="col-lg-6 p-1">
+                            <input v-model="selectedUser.email" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 p-1">
                             <label for="">Location </label>
-                           <input v-model="selectedUser.location" type="text" class="form-control" >
-                       </div>
-                       <div class="col-lg-6 p-1">
+                            <select class="form-control " aria-hidden="true" v-model="selectedUser.location">
+                                <option value="" disabled hidden>Location</option>
+                                <option :value="region.id" v-for="(region) in locations" :key="region.id">{{region.name}}</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 p-1">
                             <label for="">Contact Person</label>
-                           <input v-model="selectedUser.contact_person" type="text" class="form-control" >
-                       </div>
-                   </div>
-               </form>
-               <button class="btn btn-primary" >SAVE</button>
+                            <input v-model="selectedUser.contact_person" type="text" class="form-control">
+                        </div>
+                    </div>
+                </form>
+                <button class="btn btn-primary">SAVE</button>
             </div>
         </div>
     </modal>
-  </div>
+</div>
 </template>
 
 <script>
 export default {
 
-    data () {
+    data() {
         return {
             users: {},
             user_details: {},
@@ -110,7 +100,9 @@ export default {
                 location: '',
                 contact_person: ''
             },
-            view: false
+            view: false,
+            regions: [],
+            locations: [],
         }
     },
 
@@ -119,30 +111,74 @@ export default {
             this.loading = !this.loading
             const loading = this.$vs.loading();
             await axios.get(`admin/${url}`)
-            .then(({data}) => {
-                this.users = data
-                this.loading != this.loading
-                loading.close();
+                .then(({
+                    data
+                }) => {
+                    this.users = data
+                    this.loading != this.loading
+                    loading.close();
                 })
-            .catch((error) => console.log(error))
+                .catch((error) => console.log(error))
         },
-        editUser(user){
+        editUser(user) {
             this.selectedUser.name = user.name;
             this.selectedUser.email = user.email;
             this.selectedUser.phone = user.phone;
             this.selectedUser.location = user.details.location ?? 'na';
-            this.selectedUser.contact_person = user.details.contact_person ;
+            this.selectedUser.contact_person = user.details.contact_person;
             this.$modal.show('user-modal');
         },
-        viewUser(user){
-            this.$router.push({name: 'user_details', params: {'userId': user.id}})
+        viewUser(user) {
+            this.$router.push({
+                name: 'user_details',
+                params: {
+                    'userId': user.id
+                }
+            })
         },
-        deleteUser(user){
+        userLocation(user) {
+            var location = (((user || {}).details || {}).location || '') ?? '';
+            return location;
+        },
+        userContactPrsn(user) {
+            var contactperson = (((user || {}).details || {}).contact_person || '') ?? '';
+            return contactperson;
+        },
+        openNotification(position = null, color, text = 'Unprovided') {
+            const noti = this.$vs.notification({
+                square: true,
+                flat: true,
+                color,
+                position,
+                title: text,
+                // text: ''
+            })
+        },
+        async loadLocations(url = 'location') {
+            this.loading = !this.loading
+            const loading = this.$vs.loading();
+            await axios.get(`${url}`)
+                .then(({
+                    data
+                }) => {
+                    this.locations = data
+                    // console.log(this.regions)
+                    this.openNotification('top-right', 'success', 'Loading User Details and Profile Complete');
+                    this.loading != this.loading
+                    loading.close();
+                })
+                .catch((error) => {
+                    this.openNotification('top-right', 'error', 'Unable to complete Request Please Try Again');
+                    loading.close();
+                })
+        },
+        deleteUser(user) {
 
         },
     },
     mounted() {
         this.loadUsers();
+        this.loadLocations();
     },
 
 }

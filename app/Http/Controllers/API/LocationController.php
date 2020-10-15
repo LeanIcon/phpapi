@@ -13,4 +13,11 @@ class LocationController extends ApiController
     {
         parent::__construct($location);
     }
+
+
+    public function index(Request $request)
+    {
+        $locations = Location::all();
+        return \response()->json($locations);
+    }
 }
