@@ -85,6 +85,7 @@ Route::group(['namespace' => 'API'], function() {
 
 
     Route::apiResource('location', 'LocationController');
+    Route::get('get_locations', 'LocationController@loadLocations');
 
     Route::group(['prefix' => 'admin'], function() {
         Route::apiResource('user', 'WholesalerRetailerUserController');

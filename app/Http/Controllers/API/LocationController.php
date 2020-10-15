@@ -15,7 +15,8 @@ class LocationController extends ApiController
     }
 
 
-    public function index(Request $request)
+
+    public function loadLocations(Request $request)
     {
         $locations = Location::all();
         return \response()->json($locations);
