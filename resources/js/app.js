@@ -11,6 +11,10 @@ import SweetModal from 'sweet-modal-vue/src/plugin.js';
 import carousel from 'vue-owl-carousel2';
 import VueSweetalert2 from 'vue-sweetalert2';
 import VueSuglify from "vue-suglify";
+import Vue from 'vue'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
+
 
 // import Modal from 'vmodal';
 // import Axios from "axios";
@@ -43,7 +47,10 @@ Vue.use(Vuesax);
 Vue.use(SweetModal);
 Vue.use(VueSweetalert2);
 Vue.component("suglify", VueSuglify);
-
+// Install BootstrapVue
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
 
 Vue.filter('formatDate', function(value) {
     if (value) {
