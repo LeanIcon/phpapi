@@ -44,6 +44,7 @@ Route::group(['namespace' => 'API'], function() {
     Route::apiResource('category','CategoryController');
     Route::apiResource('product_category','ProductCategoryController');
     Route::apiResource('category_types','CategoryTypesController');
+    Route::get('adminstats','AdminDashboardController@loadStats');
 
     Route::apiResource('wholesaler_products','WholesalerProductsController');
     Route::get('wholesaler_products/search','WholesalerProductsController@search');
@@ -84,6 +85,7 @@ Route::group(['namespace' => 'API'], function() {
 
 
     Route::apiResource('location', 'LocationController');
+    Route::get('get_locations', 'LocationController@loadLocations');
 
     Route::group(['prefix' => 'admin'], function() {
         Route::apiResource('user', 'WholesalerRetailerUserController');

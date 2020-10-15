@@ -154,7 +154,7 @@ export default {
                 // text: ''
             })
         },
-        async loadLocations(url = 'location') {
+        async loadLocations(url = 'get_locations') {
             this.loading = !this.loading
             const loading = this.$vs.loading();
             await axios.get(`${url}`)

@@ -120,7 +120,7 @@ export default {
         updateUser() {
             console.log(this.details)
         },
-        async loadRegions(url = 'region') {
+        async loadRegions(url = 'get_locations') {
             this.loading = !this.loading
             const loading = this.$vs.loading();
             await axios.get(`${url}`)
