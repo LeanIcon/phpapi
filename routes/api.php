@@ -44,6 +44,7 @@ Route::group(['namespace' => 'API'], function() {
     Route::apiResource('category','CategoryController');
     Route::apiResource('product_category','ProductCategoryController');
     Route::apiResource('category_types','CategoryTypesController');
+    Route::get('adminstats','AdminDashboardController@loadStats');
 
     Route::apiResource('wholesaler_products','WholesalerProductsController');
     Route::get('wholesaler_products/search','WholesalerProductsController@search');
