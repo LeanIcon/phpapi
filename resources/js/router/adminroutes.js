@@ -11,6 +11,8 @@ import CategoryPage from '../pages/admin/product/DrugLegalStatus.vue';
 import NewsPage from '../pages/admin/NewsPostTable.vue';
 import AdNewsPage from '../pages/admin/AddNews.vue';
 import LocationPage from '../pages/admin/Location.vue';
+import AdminRolePage from '../pages/admin/AdminRolePage.vue';
+import AdminPermissionPage from '../pages/admin/AdminPermissionPage.vue';
 import UserDetailsPage from '../pages/UserDetailsPage.vue';
 import RegionPage from '../pages/admin/product/Region.vue';
 import AdminRetailerPage from '../pages/AdminRetailer.vue';
@@ -46,5 +48,8 @@ export default [
     { path: 'location', component: LocationPage },
     { path: 'region', component: RegionPage },
     { path: 'feedback', component: FeedBackPage },
+    { path: 'roles', component: AdminRolePage },
+    { path: 'permissions', component: AdminPermissionPage },
+    { path: 'users', component: FeedBackPage },
     { path: '*', component: Page404 },
 ]
