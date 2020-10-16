@@ -1,9 +1,9 @@
 <template>
 <div>
     <div class="row">
-        <stats :cardTitle="wholesalerTitle" :cardValue="productCount"></stats>
+        <stats :cardTitle="wholesalerTitle" :cardValue="wholesalerCount"></stats>
         <stats :cardTitle="retailerTitle" :cardValue="retailerCount"></stats>
-        <stats :cardTitle="productTitle" :cardValue="wholesalerCount"></stats>
+        <stats :cardTitle="productTitle" :cardValue="productCount"></stats>
         <!-- <stats :cardTitle="orderTitle" :cardValue="0" ></stats> -->
     </div>
     <div class="row">

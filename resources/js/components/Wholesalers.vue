@@ -16,7 +16,7 @@
                                 <th>Verification Code</th>
                                 <th>Phone</th>
                                 <th>Confirmation</th>
-                                <th>Status</th>
+                                <th>User Status</th>
                                 <th style="width: 120px;">Action</th>
                             </tr>
                         </thead>
@@ -29,10 +29,10 @@
                                 <td>{{user.phone}}</td>
 
                                 <td>
-                                    {{user.is_active}}
+                                    {{user.pin_confirmed}}
                                 </td>
                                 <td>
-                                    {{user.pin_confirmed}}
+                                    {{userStatus(user)}}
                                 </td>
                                 <td>
                                     <a href="javascript:void(0);" @click="editUser(user)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class=" ri-edit-box-line font-size-18"></i></a>
@@ -79,6 +79,7 @@
                         <div class="col-lg-6 p-1">
                             <label for="">User Status</label>
                             <select name="" id="" class="form-control" v-model="selectedUser.status">
+                                <option value="">User Status</option>
                                 <option value="1"> Active</option>
                                 <option value="0"> Inactive</option>
                             </select>
@@ -195,7 +196,12 @@ export default {
                     loading.close();
                 })
         },
-
+        userStatus(user) {
+            if (user.status) {
+                return "Active";
+            }
+            return "Not Active"
+        },
         deleteUser(user) {
 
         },

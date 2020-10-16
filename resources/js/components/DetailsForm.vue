@@ -54,7 +54,6 @@
                     </div>
 
                     <div class="col-lg-6">
-                        {{regions}}
                         <div class="form-group">
                             <label for="practise_group">Region</label>
                             <select class="form-control " aria-hidden="true">
@@ -120,7 +119,7 @@ export default {
         updateUser() {
             console.log(this.details)
         },
-        async loadRegions(url = 'get_locations') {
+        async loadRegions(url = 'region') {
             this.loading = !this.loading
             const loading = this.$vs.loading();
             await axios.get(`${url}`)
