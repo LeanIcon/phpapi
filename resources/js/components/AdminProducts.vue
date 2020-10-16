@@ -75,12 +75,12 @@
                 PRODUCT
             </div>
             <div class="card-body">
-                <form action="" class="form">
+                <form method="PUT" name="product-modal" id="pro-modal" action="#" enctype="multipart/form-data" @submit.prevent="editpro">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="manufacturername">Manufacturer</label>
-                                <select v-model="product.manufacturer.id" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                <select v-model="product.manufacturer_id" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
                                     <option>Select</option>
                                     <option :value="manufacturer.id" v-for="(manufacturer, index) in manufacturers.data" :key="index">{{manufacturer.name}}</option>
                                 </select>
@@ -88,7 +88,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="name">Product Name</label>
+                                <label for="name">Brand Name</label>
                                 <input v-model="product.name" id="name" name="name" type="text" class="form-control">
                             </div>
                         </div>
@@ -96,18 +96,16 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Category</label>
-                                <select v-model="product.category" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                                    <option>Select</option>
-                                    <option :value="manufacturer.id" v-for="(manufacturer, index) in manufacturers" :key="index">{{manufacturer.name}}</option>
-                                </select>
+                                <label class="control-label">Generic Name</label>
+                                <input v-model="product.active_ingredients" id="active_ingredients" name="active_ingredients" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Category Type</label>
-                                <select v-model="product.category_type" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                                    <option data-select2-id="3">Select</option>
+                                <label class="control-label">Drug Legal Status</label>
+                                <select v-model="product.drug_legal_status" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                    <option>Select</option>
+                                    <option :value="category_type.id" v-for="(category_type, index) in category_types.data" :key="index">{{category_type.name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -118,16 +116,16 @@
                                 <label for="manufacturername">Dosage Form</label>
                                 <select v-model="product.dosage_form" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
                                     <option>Select</option>
-                                    <option :value="dosage_form.id" v-for="(dosage_form, index) in drugclasses.data" :key="index">{{dosage_form.name}}</option>
+                                    <option :value="dosage_form.id" v-for="(dosage_form, index) in dosage_forms.data" :key="index">{{dosage_form.name}}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="drugclassname">Therapeutic Class</label>
-                                <select v-model="product.drug_class_id" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                <select v-model="product.therapeutic_class" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
                                     <option>Select</option>
-                                    <option :value="drug_class.id" v-for="(drug_class, index) in drugclasses.data" :key="index">{{drug_class.name}}</option>
+                                    <option :value="drug_class.name" v-for="(drug_class, index) in drugclasses.data" :key="index">{{drug_class.name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -160,7 +158,7 @@ export default {
     data() {
         return {
             product: {
-                manufacturer: '',
+                manufacturer_id: '',
                 name: '',
                 category: '',
                 category_type: '',
@@ -168,13 +166,19 @@ export default {
                 drug_class: '',
                 strength: '',
                 packet_size: '',
-                id: '',
-                drug_class: ''
+                drug_class: '',
+                drug_legal_status: '',
+                therapeutic_class: '',
+                active_ingredients: ''
             },
+            
             products: [],
             manufacturers: {},
             drugclasses: {},
             links: {},
+            dosage_forms: {},
+            drug_legal_statuses: {},
+            category_types: {},
             loading: false,
             keywords: null,
             products: []
@@ -198,6 +202,9 @@ export default {
             this.product.drug_class = product.drug_class
             this.product.strength = product.strength
             this.product.packet_size = product.packet_size
+            this.product.drug_legal_status = product.drug_legal_status
+            this.product.active_ingredients = product.active_ingredients
+            this.product.id = product.id
         },
         openLoader() {
             if (this.loading) {
@@ -241,12 +248,13 @@ export default {
                     )
                     .then(resp => {
                         this.product.name = '',
-                        this.product.id = '',
                         this.product.manufacturer = '',
                         this.product.dosage_form = '',
                         this.product.strength = '',
                         this.product.packet_size = '',
                         this.product.drug_class = '',
+                        this.product.active_ingredients = '',
+                        this.product.category_type = ''
                         this.loadProduct()
                         this.$modal.hide('product-modal')
                         this.$swal('Product edited successfully');
@@ -282,13 +290,27 @@ export default {
                 }) => console.log(response))
         },
 
-
-        async loaddosageform() {
-            await axios.get('drug_class')
+        async loaddruglegalstatus() {
+            await axios.get('category_types')
                 .then(({
                     data
                 }) => {
-                    this.drugclasses = data
+                    this.category_types = data
+                    // console.log(data);
+                })
+                .catch(({
+                    response
+                }) => console.log(response))
+        },
+
+
+
+        async loaddosageform() {
+            await axios.get('dosage_form')
+                .then(({
+                    data
+                }) => {
+                    this.dosage_forms = data
                     // console.log(data);
                 })
                 .catch(({
@@ -322,6 +344,8 @@ export default {
         this.loadProduct();
         this.loadManufacturers();
         this.loaddrugclass();
+        this.loaddosageform();
+        this.loaddruglegalstatus();
         // this.products = this.adminProducts
 
     },
