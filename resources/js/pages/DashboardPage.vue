@@ -1,11 +1,15 @@
 <template>
 <div>
     <div class="row">
-        <stats :cardTitle="wholesalerTitle" :cardValue="productCount"></stats>
+        <stats :cardTitle="wholesalerTitle" :cardValue="wholesalerCount"></stats>
         <stats :cardTitle="retailerTitle" :cardValue="retailerCount"></stats>
-        <stats :cardTitle="productTitle" :cardValue="wholesalerCount"></stats>
+        <stats :cardTitle="productTitle" :cardValue="productCount"></stats>
+        <stats :cardTitle="visitsTitle" :cardValue="visitsCount"></stats>
+        <stats :cardTitle="poTitle" :cardValue="poCounts"></stats>
+        <stats :cardTitle="invoiceTitle" :cardValue="invoiceCount"></stats>
         <!-- <stats :cardTitle="orderTitle" :cardValue="0" ></stats> -->
     </div>
+    <!--
     <div class="row">
         <div class="col-lg-8">
             <bar-card></bar-card>
@@ -18,6 +22,7 @@
             </div>
         </div>
     </div>
+     -->
 </div>
 </template>
 
@@ -36,9 +41,15 @@ export default {
             retailerTitle: "Retailer",
             productTitle: "Products",
             orderTitle: "Orders",
+            visitsTitle: "Total Visits",
+            poTitle: "Purchase Orders",
+            invoiceTitle: "Total Invoices",
             productCount: 0,
             retailerCount: 0,
             wholesalerCount: 0,
+            poCounts: 0,
+            visitsCount: 0,
+            invoiceCount: 0,
         }
     },
     methods: {
@@ -51,6 +62,8 @@ export default {
                     this.productCount = data.productcount
                     this.retailerCount = data.retailercount
                     this.wholesalerCount = data.wholesalercount
+                    this.invoiceCount = data.invoiceCount
+                    this.poCounts = data.purchaseOrdersCount
                     console.log(data)
                     // this.loading != this.loading;
                     // loading.close();

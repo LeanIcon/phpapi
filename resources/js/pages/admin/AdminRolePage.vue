@@ -4,7 +4,7 @@
         <div class="card">
             <div class="card-body">
                 <div>
-                    <a href="javascript:void(0);" class="btn btn-success mb-2"> Add Role </a>
+                    <a href="javascript:void(0);" @click="$bvModal.show('add-role-modal')" class="btn btn-success mb-2"> Add Role </a>
                 </div>
                 <div class="table-responsive mt-3">
                     <table class="table table-centered datatable dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;" id="DataTables_Table_0">
@@ -13,7 +13,6 @@
                                 <th>ID</th>
                                 <th>Role Name</th>
                                 <th>Guard Name</th>
-
                                 <th style="width: 120px;">Action</th>
                             </tr>
                         </thead>
@@ -28,8 +27,26 @@
                             </tr>
                         </tbody>
                     </table>
-                    <b-modal id="add-role-modal" title="BootstrapVue">
-                        <p class="my-4">Hello from modal!</p>
+                    <b-modal id="add-role-modal" title="Add Application Role">
+                        <form class="form">
+                            <div class="form-group">
+                                <label for="rolename">Role Name</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="rolename">Default Guard</label>
+                                <input type="text" class="form-control" value="api" :disabled="true">
+                            </div>
+                        </form>
+                        <template v-slot:modal-footer="{cancel }">
+                            <b-button size="md" variant="danger" @click="cancel()">
+                                Cancel
+                            </b-button>
+                            <!-- Button with custom close trigger value -->
+                            <b-button size="md" variant="outline-primary" @click="saveRole()">
+                                SAVE
+                            </b-button>
+                        </template>
                     </b-modal>
                 </div>
             </div>
@@ -58,6 +75,12 @@ export default {
                 }) => {
                     console.log(response)
                 });
+        },
+        saveRole() {
+            return;
+        },
+        cancel() {
+            return;
         }
     },
     mounted() {
@@ -68,5 +91,7 @@ export default {
 </script>
 
 <style>
-
+.modal-backdrop {
+    background-color: rgba(109, 109, 109, 0.178)
+}
 </style>

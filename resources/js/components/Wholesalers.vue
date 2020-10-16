@@ -16,7 +16,7 @@
                                 <th>Verification Code</th>
                                 <th>Phone</th>
                                 <th>Confirmation</th>
-                                <th>Status</th>
+                                <th>User Status</th>
                                 <th style="width: 120px;">Action</th>
                             </tr>
                         </thead>
@@ -29,10 +29,10 @@
                                 <td>{{user.phone}}</td>
 
                                 <td>
-                                    {{user.is_active}}
+                                    {{userConfirmStatus(user)}}
                                 </td>
                                 <td>
-                                    {{user.pin_confirmed}}
+                                    {{userStatus(user)}}
                                 </td>
                                 <td>
                                     <a href="javascript:void(0);" @click="editUser(user)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class=" ri-edit-box-line font-size-18"></i></a>
@@ -47,7 +47,7 @@
             </div>
         </div>
     </div>
-    <modal name="user-modal">
+    <modal name="user-modal" :height="400">
         <div class="card">
             <div class="card-header">
                 Wholesalers
@@ -76,9 +76,17 @@
                             <label for="">Contact Person</label>
                             <input v-model="selectedUser.contact_person" type="text" class="form-control">
                         </div>
+                        <div class="col-lg-6 p-1">
+                            <label for="">User Status</label>
+                            <select name="" id="" class="form-control" v-model="selectedUser.status">
+                                <option value="">User Status</option>
+                                <option value="1"> Active</option>
+                                <option value="0"> Inactive</option>
+                            </select>
+                        </div>
                     </div>
                 </form>
-                <button class="btn btn-primary">SAVE</button>
+                <button @click="updateUser" class="btn btn-primary">SAVE</button>
             </div>
         </div>
     </modal>
@@ -94,10 +102,12 @@ export default {
             user_details: {},
             loading: false,
             selectedUser: {
+                id: '',
                 name: '',
                 email: '',
                 phone: '',
                 location: '',
+                status: '',
                 contact_person: ''
             },
             view: false,
@@ -115,12 +125,14 @@ export default {
                     data
                 }) => {
                     this.users = data
+                    console.log(this.users)
                     this.loading != this.loading
                     loading.close();
                 })
                 .catch((error) => console.log(error))
         },
         editUser(user) {
+            this.selectedUser.id = user.id;
             this.selectedUser.name = user.name;
             this.selectedUser.email = user.email;
             this.selectedUser.phone = user.phone;
@@ -136,8 +148,21 @@ export default {
                 }
             })
         },
+        updateUser() {
+            console.log(this.selectedUser)
+            axios.post('update_status', data)
+                .then((response) => {
+                    console.log(response)
+                    this.openNotification('top-right', 'success')
+                    this.product = {}
+                    // this.$noty.success("Product Save Successfully")
+                })
+                .catch(({
+                    response
+                }) => console.log("Error"))
+        },
         userLocation(user) {
-            var location = (((user || {}).details || {}).location || '') ?? '';
+            var location = (((user || {}).details || {}).user_location || '') ?? '';
             return location;
         },
         userContactPrsn(user) {
@@ -171,6 +196,18 @@ export default {
                     this.openNotification('top-right', 'error', 'Unable to complete Request Please Try Again');
                     loading.close();
                 })
+        },
+        userStatus(user) {
+            if (user.status) {
+                return "Active";
+            }
+            return "Not Active"
+        },
+        userConfirmStatus(user) {
+            if (user.pin_confirmed) {
+                return "Confirmed";
+            }
+            return "Not Confirmed"
         },
         deleteUser(user) {
 

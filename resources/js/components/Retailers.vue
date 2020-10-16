@@ -1,6 +1,6 @@
 <template>
-  <div>
-      <div class="col-lg-12">
+<div>
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
                 <!-- <div>
@@ -21,7 +21,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(user, index) in users.data" :key="index" >
+                            <tr v-for="(user, index) in users.data" :key="index">
                                 <!-- -->
 
                                 <td>{{user.name}}</td>
@@ -49,45 +49,45 @@
             </div>
         </div>
     </div>
-     <modal name="user-modal">
+    <modal name="user-modal">
         <div class="card">
             <div class="card-header">
                 Retailer
             </div>
             <div class="card-body">
-               <form action="" class="form" >
-                   <div class="row">
-                       <div class="col-lg-6 p-1">
-                           <label for="">Name</label>
-                           <input v-model="selectedUser.name" type="text" class="form-control" >
-                       </div>
-                       <div class="col-lg-6 p-1">
+                <form action="" class="form">
+                    <div class="row">
+                        <div class="col-lg-6 p-1">
+                            <label for="">Name</label>
+                            <input v-model="selectedUser.name" type="text" class="form-control">
+                        </div>
+                        <div class="col-lg-6 p-1">
                             <label for="">Email</label>
-                           <input v-model="selectedUser.email" type="text" class="form-control" >
-                       </div>
-                   </div>
-                   <div class="row">
-                       <div class="col-lg-6 p-1">
+                            <input v-model="selectedUser.email" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 p-1">
                             <label for="">Location </label>
-                           <input v-model="selectedUser.location" type="text" class="form-control" >
-                       </div>
-                       <div class="col-lg-6 p-1">
+                            <input v-model="selectedUser.location" type="text" class="form-control">
+                        </div>
+                        <div class="col-lg-6 p-1">
                             <label for="">Contact Person</label>
-                           <input v-model="selectedUser.contact_person" type="text" class="form-control" >
-                       </div>
-                   </div>
-               </form>
-               <button class="btn btn-primary" >SAVE</button>
+                            <input v-model="selectedUser.contact_person" type="text" class="form-control">
+                        </div>
+                    </div>
+                </form>
+                <button class="btn btn-primary">SAVE</button>
             </div>
         </div>
     </modal>
-  </div>
+</div>
 </template>
 
 <script>
 export default {
 
-    data () {
+    data() {
         return {
             users: {},
             user_details: {},
@@ -108,31 +108,38 @@ export default {
             this.loading = !this.loading
             const loading = this.$vs.loading();
             await axios.get(`admin/${url}`)
-            .then(({data}) => {
-                this.users = data
-                this.loading != this.loading
-                loading.close();
+                .then(({
+                    data
+                }) => {
+                    this.users = data
+                    this.loading != this.loading
+                    loading.close();
                 })
-            .catch((error) => console.log(error))
+                .catch((error) => console.log(error))
         },
-        editUser(user){
+        editUser(user) {
             this.selectedUser.name = user.name;
             this.selectedUser.email = user.email;
             this.selectedUser.phone = user.phone;
             this.selectedUser.location = user.details.location ?? 'na';
-            this.selectedUser.contact_person = user.details.contact_person ;
+            this.selectedUser.contact_person = user.details.contact_person;
             this.$modal.show('user-modal');
         },
-        viewUser(user){
-            this.$router.push({name: 'user_page', params: {'userId': user.id}})
+        viewUser(user) {
+            this.$router.push({
+                name: 'user_page',
+                params: {
+                    'userId': user.id
+                }
+            })
         },
-        getLocation(user){
-            return user.details?.location ?? "Not Available";
+        getLocation(user) {
+            return user.details?.user_location ?? "Not Available";
         },
-        getContactPerson(user){
+        getContactPerson(user) {
             return user.details?.contact_person ?? "Not Available";
         },
-        deleteUser(user){
+        deleteUser(user) {
 
         },
     },
