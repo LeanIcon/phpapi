@@ -162,14 +162,11 @@ export default {
         },
         saveProduct(url = 'admin_products') {
             const data = this.product;
-            axios.post('admin_products', data, {
-                    headers: {
-                        'Content-type': 'multipart/form-data',
-                        // 'Content-type': 'application/json',
-
-                    }
-                })
+            // console.log(this.product);
+            // return;
+            axios.post('admin_products', data)
                 .then((response) => {
+                    console.log(response)
                     this.openNotification('top-right', 'success')
                     this.product = {}
                     // this.$noty.success("Product Save Successfully")

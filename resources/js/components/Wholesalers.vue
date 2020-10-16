@@ -47,7 +47,7 @@
             </div>
         </div>
     </div>
-    <modal name="user-modal">
+    <modal name="user-modal" :height="400">
         <div class="card">
             <div class="card-header">
                 Wholesalers
@@ -76,9 +76,16 @@
                             <label for="">Contact Person</label>
                             <input v-model="selectedUser.contact_person" type="text" class="form-control">
                         </div>
+                        <div class="col-lg-6 p-1">
+                            <label for="">User Status</label>
+                            <select name="" id="" class="form-control" v-model="selectedUser.status">
+                                <option value="1"> Active</option>
+                                <option value="0"> Inactive</option>
+                            </select>
+                        </div>
                     </div>
                 </form>
-                <button class="btn btn-primary">SAVE</button>
+                <button @click="updateUser" class="btn btn-primary">SAVE</button>
             </div>
         </div>
     </modal>
@@ -94,10 +101,12 @@ export default {
             user_details: {},
             loading: false,
             selectedUser: {
+                id: '',
                 name: '',
                 email: '',
                 phone: '',
                 location: '',
+                status: '',
                 contact_person: ''
             },
             view: false,
@@ -121,6 +130,7 @@ export default {
                 .catch((error) => console.log(error))
         },
         editUser(user) {
+            this.selectedUser.id = user.id;
             this.selectedUser.name = user.name;
             this.selectedUser.email = user.email;
             this.selectedUser.phone = user.phone;
@@ -135,6 +145,19 @@ export default {
                     'userId': user.id
                 }
             })
+        },
+        updateUser() {
+            console.log(this.selectedUser)
+            axios.post('update_status', data)
+                .then((response) => {
+                    console.log(response)
+                    this.openNotification('top-right', 'success')
+                    this.product = {}
+                    // this.$noty.success("Product Save Successfully")
+                })
+                .catch(({
+                    response
+                }) => console.log("Error"))
         },
         userLocation(user) {
             var location = (((user || {}).details || {}).location || '') ?? '';
@@ -172,6 +195,7 @@ export default {
                     loading.close();
                 })
         },
+
         deleteUser(user) {
 
         },

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ProductCollection;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use JD\Cloudder\Facades\Cloudder;
+use App\Http\Resources\ProductCollection;
 
 class ProductController extends ApiController
 {
@@ -32,6 +33,27 @@ class ProductController extends ApiController
     {
         $product = $this->product::where('name', $request->keywords)->get();
         return response()->json($product);
-         
+
+    }
+
+    public function uploadImage(Request $request)
+    {
+            $image = $request->file('product_image');
+            $name = time()."_".$request->file('product_image')->getClientOriginalName();
+            $image_name = $request->file('product_image')->getRealPath();
+
+            Cloudder::upload($image_name, null);
+            list($width, $height) = getimagesize($image_name);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+
+            $uploaded = $image->move(\public_path("uploads"), $name);
+
+            return [
+                'status' => 200,
+                'response' => 'Image Uploaded Successfully',
+                'image_url' => $image_url,
+                'image_path' => "public\uploads",
+                'name' => $name
+            ];
     }
 }

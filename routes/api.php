@@ -40,6 +40,7 @@ Route::apiResource('post_category', 'PostCategoryController');
 
 Route::group(['namespace' => 'API'], function() {
     Route::apiResource('users', 'UserController');
+    Route::post('update_status', 'UserController@updateUserStatus');
     Route::get('roles', 'RolesController@getSysteRoles');
     Route::get('permissions', 'PermissionsController@getSystemPerms');
     Route::apiResource('manufacturers', 'ManufacturerController');
