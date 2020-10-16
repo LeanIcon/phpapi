@@ -74,35 +74,6 @@
     </form>
     </modal>
 
-
-    <modal name="dos-modal">
-    <form method="PUT" action="#" enctype="multipart/form-data" @submit.prevent="editdosageform">
-        <div class="card">
-            <div class="card-header">
-                Dosage Form
-            </div>
-            <div class="card-body">
-
-               <form action="" class="form" >
-                   <div class="row">
-                       <div class="col-lg-6 p-1">
-                           <label for="dosageform">Dosage Form Name</label>
-                           <input v-model="dosage_form.name" type="text" class="form-control" name="name" id="name">
-                       </div>
-                         <suglify :slugify="dosage_form.name" :slug.sync="dosage_form.slug">
-                    <input slot-scope="{inputBidding}" v-bind="inputBidding"
-               type="text" class="form-control" placeholder="Slug ..." hidden>
-                         </suglify>
-                   </div>
-                   
-               </form>
-               <button v-on:click="showAlert" class="btn btn-primary" >SAVE</button>
-            </div>
-        </div>
-    </form>
-    </modal>
-
-
 </div>
 </template>
 
@@ -124,11 +95,11 @@ export default {
         
         methods: {
             editdos(dosage_form){
-                this.$modal.show('dos-modal');
+                this.$modal.show('dosage_form-modal');
                 this.dosage_form.name = dosage_form.name,
                 this.dosage_form.id = dosage_form.id
                 
-                //console.log(this.dosage_form.name)
+                console.log(this.dosage_form.name)
                 
             },
 

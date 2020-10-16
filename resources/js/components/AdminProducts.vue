@@ -7,7 +7,7 @@
                     <i class="ri-add-box-line"></i>
                     Add Products
                 </router-link>
-                <input type="text" v-model="keywords">
+                <!-- <input type="text" v-model="keywords"> -->
                 <!-- <a href="javascript:void(0);" @click="loadUser" class="btn btn-success mb-2"><i class="fa fa-plus-square"></i> Add Product</a> -->
             </div>
             <div class="table-responsive mt-3">
@@ -38,7 +38,7 @@
                             </td>
 
                             <td> <img style="width:75px;" class="mg-fluid img-thumbnail" :src="'/assets/images/product/drugsamp.jpg'" :alt="product.name ? product.name : product.product_name"> {{product.name ? product.name : product.product_name}}</td>
-                            <td>{{productDesc(product)}}</td>
+                            <td>{{productDesc(product)}} {{product.dosage_form}}</td>
                             <td>{{product.manufacturer.name}}</td>
 
                             <td>
@@ -81,7 +81,7 @@
                             <div class="form-group">
                                 <label for="manufacturername">Manufacturer</label>
                                 <select v-model="product.manufacturer_id" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                                    <option>Select</option>
+                                    <option value="undefined" disabled>Select</option>
                                     <option :value="manufacturer.id" v-for="(manufacturer, index) in manufacturers.data" :key="index">{{manufacturer.name}}</option>
                                 </select>
                             </div>
@@ -114,7 +114,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="manufacturername">Dosage Form</label>
-                                <select v-model="product.dosage_form" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                <select v-model="product.dosage_form_id" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
                                     <option>Select</option>
                                     <option :value="dosage_form.id" v-for="(dosage_form, index) in dosage_forms.data" :key="index">{{dosage_form.name}}</option>
                                 </select>
@@ -195,15 +195,16 @@ export default {
         editProduct(product) {
             this.$modal.show('product-modal');
             this.product.name = product.name
-            this.product.manufacturer = product.manufacturer
+            this.product.manufacturer_id = product.manufacturer_id
             this.product.category = product.category
             this.product.category_type = product.category_type
-            this.product.dosage_form = product.dosage_form
+            this.product.dosage_form_id = product.dosage_form_id
             this.product.drug_class = product.drug_class
             this.product.strength = product.strength
             this.product.packet_size = product.packet_size
             this.product.drug_legal_status = product.drug_legal_status
             this.product.active_ingredients = product.active_ingredients
+            this.product.therapeutic_class = product.therapeutic_class
             this.product.id = product.id
         },
         openLoader() {
@@ -249,7 +250,7 @@ export default {
                     .then(resp => {
                         this.product.name = '',
                         this.product.manufacturer = '',
-                        this.product.dosage_form = '',
+                        this.product.dosage_form_id = '',
                         this.product.strength = '',
                         this.product.packet_size = '',
                         this.product.drug_class = '',
