@@ -29,7 +29,7 @@
                                 <td>{{user.phone}}</td>
 
                                 <td>
-                                    {{user.pin_confirmed}}
+                                    {{userConfirmStatus(user)}}
                                 </td>
                                 <td>
                                     {{userStatus(user)}}
@@ -125,6 +125,7 @@ export default {
                     data
                 }) => {
                     this.users = data
+                    console.log(this.users)
                     this.loading != this.loading
                     loading.close();
                 })
@@ -161,7 +162,7 @@ export default {
                 }) => console.log("Error"))
         },
         userLocation(user) {
-            var location = (((user || {}).details || {}).location || '') ?? '';
+            var location = (((user || {}).details || {}).user_location || '') ?? '';
             return location;
         },
         userContactPrsn(user) {
@@ -201,6 +202,12 @@ export default {
                 return "Active";
             }
             return "Not Active"
+        },
+        userConfirmStatus(user) {
+            if (user.pin_confirmed) {
+                return "Confirmed";
+            }
+            return "Not Confirmed"
         },
         deleteUser(user) {
 
