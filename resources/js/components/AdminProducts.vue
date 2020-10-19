@@ -89,7 +89,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="name">Brand Name</label>
-                                <input v-model="product.name" id="name" name="name" type="text" class="form-control">
+                                <input v-model="product.name" id="name" name="name" type="text" class="form-control" disabled>
                             </div>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Generic Name</label>
-                                <input v-model="product.active_ingredients" id="active_ingredients" name="active_ingredients" type="text" class="form-control">
+                                <input v-model="product.active_ingredients" id="active_ingredients" name="active_ingredients" type="text" class="form-control" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
