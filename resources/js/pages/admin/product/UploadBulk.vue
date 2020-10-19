@@ -4,7 +4,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <form action="">
+                    <form>
                         <div class="form-group">
                             <label for="" class="control-label">UPLOAD FILE</label>
                             <input type="file" class="form-control" id="file" ref="file" v-on:change="handleFileUpload()" />
