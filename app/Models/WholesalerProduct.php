@@ -14,6 +14,11 @@ class WholesalerProduct extends ApiModel  implements Searchable
     protected $fillable = ['batch_number', 'price', 'product_code','expiry_date', 'expiry_status','wholesaler_id','packet_size','active_ingredient',
     'strength', 'manufacturer_id', 'products_id', 'type', 'status', 'product_name','dosage_form', 'drug_legal_status','manufacturer'];
 
+    public $with = ['product'];
+
+    public $appends = [
+        'wholesaler_name'
+    ];
 
     // public $appends = [
     //     'category'
@@ -24,17 +29,27 @@ class WholesalerProduct extends ApiModel  implements Searchable
         return $this->belongsTo(User::class, 'wholesaler_id');
     }
 
-
-   public function products()
-   {
-        return $this->belongsToMany(Product::class, 'wholesaler_products', 'id','products_id');
-   }
+    public function products()
+    {
+            return $this->belongsToMany(Product::class, 'wholesaler_products', 'id','products_id');
+    }
 
     public function order_items()
     {
         return $this->hasMany(PurchaseOrderItems::class);
     }
 
+    public function getWholesalerNameAttribute()
+    {
+        $maftr = User::find($this->wholesaler_id)->name;
+        return $maftr ?? 'na';
+    }
+
+
+    public function product()
+    {
+         return $this->belongsTo(Product::class, 'id');
+    }
 
     public function getCategoryAttribute()
     {
