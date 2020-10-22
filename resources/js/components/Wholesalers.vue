@@ -125,7 +125,6 @@ export default {
                     data
                 }) => {
                     this.users = data
-                    console.log(this.users)
                     this.loading != this.loading
                     loading.close();
                 })
@@ -152,7 +151,7 @@ export default {
             console.log(this.selectedUser)
             axios.post('update_status', data)
                 .then((response) => {
-                    console.log(response)
+                    // console.log(response)
                     this.openNotification('top-right', 'success')
                     this.product = {}
                     // this.$noty.success("Product Save Successfully")

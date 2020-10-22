@@ -114,3 +114,5 @@ Route::apiResource('customer','CustomerController');
 // Route::put('app_settings','AppSettingsController');
 
 Route::get('coviddata', 'ConvidDataController@getCovidData');
+
+// Route::post('/wholesaler/product/upload', 'ProductUploadController@productImportCollection')->name('product.collections');

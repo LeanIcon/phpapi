@@ -4,7 +4,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <form action="">
+                    <form @submit.prevent="submitFile" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="" class="control-label">UPLOAD FILE</label>
                             <input type="file" class="form-control" id="file" ref="file" v-on:change="handleFileUpload()" />
@@ -50,12 +50,24 @@ export default {
                             'Content-Type': 'multipart/form-data'
                         }
                     }
-                ).then(function () {
-                    console.log('SUCCESS!!');
+                ).then(function (response) {
+                    console.log('SUCCESS!!', response);
                 })
-                .catch(function () {
-                    console.log('FAILURE!!');
+                .catch(function (error) {
+                    console.log('FAILURE!!', error);
                 });
+            // axios.post('/wholesaler/product/upload',
+            //         formData, {
+            //             headers: {
+            //                 'Content-Type': 'multipart/form-data'
+            //             }
+            //         }
+            //     ).then(function (response) {
+            //         console.log('SUCCESS!!', response);
+            //     })
+            //     .catch(function (error) {
+            //         console.log('FAILURE!!', error);
+            //     });
         },
     }
 }

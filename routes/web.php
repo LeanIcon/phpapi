@@ -22,3 +22,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/{vue?}', function () {
     return view('app');
 })->where('vue', '[\/\w\.-]*')->name('home');
+
+
+
+Route::get('/wholesaler/product/upload', 'ProductUploadController@productImportview')->name('product.import');
+Route::post('/wholesaler/product/collection', 'ProductUploadController@productImport')->name('product.collection');
+Route::post('/wholesaler/product/upload', 'ProductUploadController@productImportCollection')->name('product.collections');
