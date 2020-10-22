@@ -8,7 +8,7 @@ use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use Illuminate\Database\Eloquent\Model;
 
-class WholesalerProduct extends Model  implements Searchable
+class WholesalerProduct extends ApiModel  implements Searchable
 {
     protected $table = 'wholesaler_products';
     protected $fillable = ['batch_number', 'price', 'product_code','expiry_date', 'expiry_status','wholesaler_id','packet_size','active_ingredient',
@@ -24,11 +24,6 @@ class WholesalerProduct extends Model  implements Searchable
         return $this->belongsTo(User::class, 'wholesaler_id');
     }
 
-    public function getWholesalerNameAttribute()
-    {
-        $maftr = User::find($this->wholesaler_id)->name;
-        return $maftr ?? 'na';
-    }
 
    public function products()
    {

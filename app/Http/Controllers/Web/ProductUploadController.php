@@ -19,6 +19,7 @@ class ProductUploadController extends Controller
     {
         $this->wholesalerProduct = $wholesalerProduct;
         $this->product = $product;
+        $this->middleware('auth:api');
     }
     //
 
@@ -37,7 +38,9 @@ class ProductUploadController extends Controller
 
     public function productImport(Request $request)
     {
-        // $user = Auth::user();
+        $user = Auth::user();
+
+        return $user;
 
         // Retrieve existing product codes
         $import  = new WholesalerProductImport() ;
@@ -96,6 +99,6 @@ class ProductUploadController extends Controller
         }
 
         // return redirect()->route('wholesaler_products.index')->withSuccessMessage('Products successfully added');
-        return \response()->json(['message' => 'Successfully']);
+        return response()->json(['message' => 'Successfully']);
     }
 }

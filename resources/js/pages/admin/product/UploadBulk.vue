@@ -44,7 +44,7 @@ export default {
             /*
               Make the request to the POST /single-file URL
             */
-            axios.post('/wholesaler/product/upload',
+            axios.post('/wholesaler/product/collection',
                     formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
@@ -56,6 +56,18 @@ export default {
                 .catch(function (error) {
                     console.log('FAILURE!!', error);
                 });
+            // axios.post('/wholesaler/product/upload',
+            //         formData, {
+            //             headers: {
+            //                 'Content-Type': 'multipart/form-data'
+            //             }
+            //         }
+            //     ).then(function (response) {
+            //         console.log('SUCCESS!!', response);
+            //     })
+            //     .catch(function (error) {
+            //         console.log('FAILURE!!', error);
+            //     });
         },
     }
 }
