@@ -3,15 +3,17 @@
 namespace App\Http\Controllers\Web;
 
 use App\Models\Product;
+use App\Models\DrugCode;
 use Illuminate\Http\Request;
+use App\Imports\ProductImport;
 use App\Models\WholesalerProduct;
+use Illuminate\Support\Collection;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\WholesalerProductImport;
-use App\Models\DrugCode;
-use Illuminate\Support\Collection;
 use RealRashid\SweetAlert\Facades\Alert;
+
 class ProductUploadController extends Controller
 {
     public $wholesalerProduct, $product;
@@ -43,6 +45,7 @@ class ProductUploadController extends Controller
         return $user;
 
         // Retrieve existing product codes
+        $productImport = new ProductImport();
         $import  = new WholesalerProductImport() ;
         $collection = Excel::toCollection($import, request()->file('file'));
 
