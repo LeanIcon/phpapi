@@ -62,12 +62,20 @@ class ProductUploadController extends Controller
             $prod['product_code'] = "$bname$gname";
 
 
-            $genCode = $this->product->getDrugCodeProducts($prod);
-            $simProduct[] = $genCode;
+            $codeCheck = $this->product->getDrugCodeProducts($prod);
+            $genCodeInc = $this->product->generateDrugCodeInc($codeCheck, $pcode);
+            // $prod['product_code'] = $genCodeInc;
+            // $prod['code'] = $genCodeInc;
 
+            return  $genCodeInc;
+            // $product =  $this->product::create($prod);
+
+            // return  $product;
+
+            $simProduct[] = $genCodeInc;
             $product[] = $prod;
         }
-        return response()->json($simProduct);
+        // return response()->json($simProduct);
 
         return response()->json($product);
     }

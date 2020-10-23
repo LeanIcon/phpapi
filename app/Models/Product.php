@@ -122,14 +122,14 @@ class Product extends ApiModel implements Searchable
      * @param [type] $data
      * @return String
      */
-    public function generateDrugCode($data)
-    {
-        $brand_name = Str::substr($data['brand_name'], 0, 3);
-        $generic_name = Str::substr($data['generic_name'], 0, 3);
-        $drugCode = "$brand_name$generic_name";
+    // public function generateDrugCode($data)
+    // {
+    //     $brand_name = Str::substr($data['brand_name'], 0, 3);
+    //     $generic_name = Str::substr($data['generic_name'], 0, 3);
+    //     $drugCode = "$brand_name$generic_name";
 
-        return $drugCode;
-    }
+    //     return $drugCode;
+    // }
 
     /**
      * Get last product from Collection
@@ -139,21 +139,42 @@ class Product extends ApiModel implements Searchable
      */
     public function getDrugCodeProducts($product)
     {
-
-        $getLastProd =  self::where('product_code', 'like', '%'. $product['product_code'] .'%')
-                            ->where('strength', '=' , $product['strength'])
-                            ->where('dosage_form', '=' , $product['dosage_form'])
-                            ->get();
-
+        $proCode =  $product['product_code'];
+        $getLastProd =  self::where('product_code', 'like', '%'. $product['product_code'] .'%')->get();
+                            // ->where('strength', '=' , $product['strength'])
+                            // ->where('dosage_form', '=' , $product['dosage_form'])
 
         if($getLastProd->count() > 0) {
-            $getLastProd = collect($getLastProd);
+            $getLastProd = collect($getLastProd)->last();
             return $getLastProd;
         }
 
-        return $product;
+        return $product['product_code'];
+        // return $inComingProdCode = $this->generateDrugCode($proCode);
+    }
 
-        // return $inComingProdCode = $this->generateDrugCode($inComingProdCode);
+    /**
+     * Get last product from Collection
+     * Generic Code Increment
+     * @param [type] $data
+     * @return String
+     */
+    public function checkDrugCodeExist($product)
+    {
+        // $proCode =  $product['product_code'];
+        $checkProduct =  self::where('product_code', '=', $product->product_code)
+                            ->where('strength', '=' , $product->strength)
+                            ->where('dosage_form', '=' , $product->dosage_form)
+                            ->get();
+
+        return $checkProduct;
+
+        // if($getLastProd->count() > 0) {
+        //     $getLastProd = collect($getLastProd)->last();
+        //     return $getLastProd->product_code;
+        // }
+        // return $product['product_code'];
+        // return $inComingProdCode = $this->generateDrugCode($proCode);
     }
 
     /**
@@ -162,20 +183,39 @@ class Product extends ApiModel implements Searchable
      * @param [type] $data
      * @return String
      */
-    public function generateDrugCodeInc($productIn, $codeComb)
+    public function generateDrugCodeInc($codeCheck, $prodCode)
     {
         $idxCode = 0;
-        $code = $this->generateDrugCode($codeComb);
-        if(Str::of($productIn)->exactly($code)) {
+
+        $pcode = $codeCheck->product_code;
+
+        // $code = $this->generateDrugCode($codeComb);
+        if(Str::of($pcode)->exactly($prodCode)) {
             $genCode = $idxCode+=1;
-            return  "$productIn$genCode";
+            return  "$prodCode$genCode";
         }
-        $getLastDig = Str::after($productIn, $code);
+
+        $checkExist = $this->checkDrugCodeExist($codeCheck);
+        $existCount = collect($checkExist)->count();
+
+        if ($existCount > 0 ) {
+           return;
+        }
+        // else{
+        //     ;;
+        // }
+        $getLastDig = Str::after($pcode, $prodCode);
         $getLastDig+=1;
 
-        return "$code$getLastDig";
+        return "$prodCode$getLastDig";
+
 
     }
+
+    // public function count($data = null)
+    // {
+    //     return $data->count();
+    // }
 
 
 }
