@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Imports\ProductImport;
+use App\Models\WholesalerProduct;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -11,9 +14,12 @@ use App\Imports\WholesalerProductImport;
 
 class ProductUploadController extends Controller
 {
-    public function __construct()
-    {
+    public $wholesalerProducts, $product;
 
+    public function __construct(WholesalerProduct $wholesalerProducts, Product $product)
+    {
+        $this->wholesalerProducts = $wholesalerProducts;
+        $this->product = $product;
     }
     //
 
@@ -31,21 +37,53 @@ class ProductUploadController extends Controller
         return response()->json($collection);
     }
 
-    public function productImport()
+    public function productCollectionImport()
     {
-        $import  = new WholesalerProductImport() ;
-        $collection = Excel::toCollection($import, request()->file('file'));
-
-        // return $collection;
-        return response()->json($collection);
-
-        $user = Auth::user();
-        // Retrieve existing product codes
+        // $import  = new WholesalerProductImport();
+        $prod = array();
+        $product = array();
+        $simProduct = array();
         $productImport = new ProductImport();
-        $import  = new WholesalerProductImport() ;
         $collection = Excel::toCollection($productImport, request()->file('file'));
 
+        foreach ($collection[0] as $key => $value) {
+            $bname = Str::substr($value['brand_name'], 0, 3);
+            $gname = Str::substr($value['generic_name'], 0, 3);
+            $pcode = "$bname$gname";
+
+            $prod['brand_name'] = $value['brand_name'];
+            $prod['dosage_form'] = $value['dosage_form'];
+            $prod['drug_legal_status'] = $value['drug_legal_status'];
+            $prod['manufacturer'] = $value['manufacturer'];
+            $prod['pack_size'] = $value['pack_size'];
+            $prod['strength'] = $value['strength'];
+            $prod['therapeutic_class'] = $value['therapeutic_class'];
+            $prod['active_ingredients'] = $value['generic_name'];
+            $prod['product_code'] = "$bname$gname";
+
+
+            $genCode = $this->product->getDrugCodeProducts($prod);
+            $simProduct[] = $genCode;
+
+            $product[] = $prod;
+        }
+        return response()->json($simProduct);
+
+        return response()->json($product);
+    }
+
+    public function productImport()
+    {
+
+
+        // Retrieve existing product codes
+        $productImport = new ProductImport();
+        $import  = new WholesalerProductImport();
+        $collection = Excel::toCollection($import, request()->file('file'));
+
         return response()->json($collection);
+
+
         /**
          * Instantiate a new Object Collection
          */
@@ -67,8 +105,10 @@ class ProductUploadController extends Controller
             /**
              * Send generic and brand to return products
              */
-            $genCode = $this->wholesalerProduct->getDrugCodeProducts($dcodeer);
-            $genCodeInc = $this->wholesalerProduct->generateDrugCodeInc($genCode, $dcodeer);
+            $genCode = $this->product->getDrugCodeProducts($dcodeer);
+            $genCodeInc = $this->product->generateDrugCodeInc($genCode, $dcodeer);
+            // $genCode = $this->wholesalerProduct->getDrugCodeProducts($dcodeer);
+            // $genCodeInc = $this->wholesalerProduct->generateDrugCodeInc($genCode, $dcodeer);
 
             $product =  $this->product::create([
                     'name'=> $value['brand_name'],
@@ -80,21 +120,6 @@ class ProductUploadController extends Controller
                     'dosage_form' => $value['dosage_form'],
                     'drug_legal_status' => $value['drug_legal_status'],
                     'manufacturer_slug' => $value['manufacturer'],
-            ]);
-
-            $this->wholesalerProduct::create([
-                    'product_name'=> $value['brand_name'],
-                    'price' => $value['price'],
-                    'product_code' => $genCodeInc,
-                    'products_id' => $product->id,
-                    'wholesaler_id' => Auth::user()->id,
-                    'packet_size' => $value['pack_size'],
-                    'strength' =>$value['strength'] ,
-                    'status' => 1,
-                    'active_ingredient' => $value['generic_name'],
-                    'dosage_form' => $value['dosage_form'],
-                    'drug_legal_status' => $value['drug_legal_status'],
-                    'manufacturer' => $value['manufacturer'],
             ]);
         }
 
