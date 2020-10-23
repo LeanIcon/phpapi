@@ -64,16 +64,16 @@ class ProductUploadController extends Controller
 
             $codeCheck = $this->product->getDrugCodeProducts($prod);
             $genCodeInc = $this->product->generateDrugCodeInc($codeCheck, $pcode);
-            // $prod['product_code'] = $genCodeInc;
-            // $prod['code'] = $genCodeInc;
+            $prod['product_code'] = $genCodeInc;
 
-            return  $genCodeInc;
-            // $product =  $this->product::create($prod);
+            $productIsIn =  $this->product->checkDrugCodeExist($prod, $pcode);
 
-            // return  $product;
+            if ($productIsIn) {
+               continue;
+            }
 
-            $simProduct[] = $genCodeInc;
-            $product[] = $prod;
+            $product =  $this->product::create($prod);
+
         }
         // return response()->json($simProduct);
 

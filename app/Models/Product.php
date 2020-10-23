@@ -149,7 +149,7 @@ class Product extends ApiModel implements Searchable
             return $getLastProd;
         }
 
-        return $product['product_code'];
+        return $product;
         // return $inComingProdCode = $this->generateDrugCode($proCode);
     }
 
@@ -159,15 +159,21 @@ class Product extends ApiModel implements Searchable
      * @param [type] $data
      * @return String
      */
-    public function checkDrugCodeExist($product)
+    public function checkDrugCodeExist($product, $code)
     {
+        // return $product;
         // $proCode =  $product['product_code'];
-        $checkProduct =  self::where('product_code', '=', $product->product_code)
-                            ->where('strength', '=' , $product->strength)
-                            ->where('dosage_form', '=' , $product->dosage_form)
+        $checkProduct =  self::where('product_code', 'like', '%'. $code .'%')
+                            ->where('strength', '=' , $product['strength'])
+                            ->where('dosage_form', '=' , $product['dosage_form'])
                             ->get();
 
-        return $checkProduct;
+        // return $checkProduct;
+
+        if ($checkProduct->count() > 0) {
+            return true;
+        }
+        return false;
 
         // if($getLastProd->count() > 0) {
         //     $getLastProd = collect($getLastProd)->last();
@@ -187,20 +193,20 @@ class Product extends ApiModel implements Searchable
     {
         $idxCode = 0;
 
-        $pcode = $codeCheck->product_code;
+        // return $codeCheck;
 
+        $pcode = $codeCheck['product_code'];
         // $code = $this->generateDrugCode($codeComb);
         if(Str::of($pcode)->exactly($prodCode)) {
             $genCode = $idxCode+=1;
             return  "$prodCode$genCode";
         }
 
-        $checkExist = $this->checkDrugCodeExist($codeCheck);
-        $existCount = collect($checkExist)->count();
-
-        if ($existCount > 0 ) {
-           return;
-        }
+        // $checkExist = $this->checkDrugCodeExist($codeCheck);
+        // $existCount = collect($checkExist)->count();
+        // if ($existCount > 0 ) {
+        //    return;
+        // }
         // else{
         //     ;;
         // }
