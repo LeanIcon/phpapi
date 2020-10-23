@@ -28,7 +28,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <div v-if="products.length > 0" />
+                        
                         <tr v-for="(product, index) in products.data" :key="index">
                             <td>
                                 <div class="custom-control custom-checkbox">
@@ -181,7 +181,7 @@ export default {
             category_types: {},
             loading: false,
             keywords: null,
-            products: []
+        
         }
     },
     methods: {
