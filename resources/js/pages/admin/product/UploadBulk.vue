@@ -26,11 +26,21 @@ export default {
         }
     },
     methods: {
-
+        openNotification(position = null, color, text = 'Unprovided') {
+            const noti = this.$vs.notification({
+                square: true,
+                flat: true,
+                color,
+                position,
+                title: text,
+                // text: ''
+            })
+        },
         handleFileUpload() {
             this.file = this.$refs.file.files[0];
         },
         submitFile() {
+            this.loading = !this.loading;
             /*
                 Initialize the form data
             */
@@ -44,6 +54,11 @@ export default {
             /*
               Make the request to the POST /single-file URL
             */
+            const loading = this.$vs.loading({
+                text: "Upload Product Please Wait...",
+                type: "rectangle"
+            });
+
             axios.post('/product/upload',
                     formData, {
                         headers: {
@@ -51,9 +66,17 @@ export default {
                         }
                     }
                 ).then(function (response) {
+                    // this.loading != this.loading;
+                    loading.close();
+                    // this.openNotification('top-right', 'success', 'Product Upload Successfull')
+                    // this.$swal('Hello Vue world!!!');
                     console.log('SUCCESS!!', response);
                 })
                 .catch(function (error) {
+                    // this.loading != this.loading;
+                    loading.close();
+                    // this.$swal('Error...');
+                    // this.openNotification('top-right', 'error', 'Upload Did not complete... Try Again...')
                     console.log('FAILURE!!', error);
                 });
             // axios.post('/wholesaler/product/upload',
