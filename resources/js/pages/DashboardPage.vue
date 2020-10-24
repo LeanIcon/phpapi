@@ -64,7 +64,7 @@ export default {
                     this.wholesalerCount = data.wholesalercount
                     this.invoiceCount = data.invoiceCount
                     this.poCounts = data.purchaseOrdersCount
-                    console.log(data)
+                    // console.log(data)
                     // this.loading != this.loading;
                     // loading.close();
                 })

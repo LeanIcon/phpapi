@@ -39,7 +39,7 @@
                         <td><span class="text-muted">{{getLocation(wholesaler)}}</span></td>
                         <td style="color:green">Active</td>
                         <td>
-                            <vs-button color="success" size="small" type="filled"  @click="viewDetails(wholesaler)">
+                            <vs-button color="success" size="small" type="filled" @click="viewDetails(wholesaler)">
                                 View Products
                             </vs-button>
                         </td>
@@ -86,11 +86,11 @@ export default {
             })
         },
         getLocation(user) {
-            console.log(user)
+            // console.log(user)
             return user.details?.location ?? "Not Available";
         },
         getContactPerson(user) {
-            console.log(user)
+            // console.log(user)
             return user.details?.contact_person ?? "Not Available";
         },
     },
@@ -103,6 +103,6 @@ export default {
 
 <style scoped>
 .vs-button {
-  margin: 1px;
+    margin: 1px;
 }
 </style>

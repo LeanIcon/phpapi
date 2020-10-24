@@ -124,8 +124,8 @@ export default {
             this.$modal.show('loca-modal');
             this.location.name = location.name,
                 this.location.id = location.id,
-                this.location.region_id = location.region_id,
-                console.log("Worked")
+                this.location.region_id = location.region_id
+            // console.log("Worked")
         },
 
         editlocation() {
@@ -139,7 +139,7 @@ export default {
                     this.$swal('Location edited successfully');
                 })
                 .catch(error => {
-                    console.log(error);
+                    console.log("Error");
                 })
         },
 
@@ -161,7 +161,7 @@ export default {
                     this.locations = response.data;
                 })
                 .catch((err) => {
-                    console.log(err);
+                    console.log("Error");
                 })
         },
 
@@ -171,7 +171,7 @@ export default {
                     'region_id': this.location.region_id
                 })
                 .then((res) => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     this.location.name = '';
                     this.loadloc()
                     this.$swal('Location added successfully');
@@ -191,7 +191,7 @@ export default {
                     this.$swal('Location deleted successfully');
                 })
                 .catch(error => {
-                    console.log(error);
+                    console.log("Error");
                 })
         },
 
@@ -210,7 +210,7 @@ export default {
                     this.loading != this.loading
                     loading.close();
                 })
-                .catch((error) => console.log(error))
+                .catch((error) => console.log("Error"))
 
         }
 

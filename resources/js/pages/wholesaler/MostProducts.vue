@@ -285,8 +285,8 @@ export default {
         numberOfProducts() {
             // console.log(this.multiple_products);
             let numofItem = Object.keys(this.multiple_products).length;
-            console.log(numofItem);
-            console.log(this.multiple_products);
+            // console.log(numofItem);
+            // console.log(this.multiple_products);
             return numofItem;
         }
     },

@@ -145,7 +145,7 @@ export default {
                 }) => {
                     this.products = data
                     this.loading != this.loading
-                    console.log(data);
+                    // console.log(data);
                     loading.close();
                 })
                 .catch(({
@@ -260,7 +260,7 @@ export default {
     mounted() {
         this.loadProduct();
         this.po_products = this.selectPurchaseOrderProducts;
-        console.log("PO Page", this.po_products)
+        // console.log("PO Page", this.po_products)
     }
 
 }

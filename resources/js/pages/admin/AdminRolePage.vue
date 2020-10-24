@@ -67,13 +67,13 @@ export default {
             axios.get(`${url}`).then(({
                     data
                 }) => {
-                    console.log(data)
+                    // console.log(data)
                     this.roles = data;
                 })
                 .catch(({
                     response
                 }) => {
-                    console.log(response)
+                    console.log("Error")
                 });
         },
         saveRole() {
