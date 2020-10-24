@@ -30,7 +30,7 @@
                         <tr v-for="(product) in products" :key="product.id">
                             <td>{{product.wholesaler_name ? product.wholesaler_name : ''}}</td>
                             <td>{{product.product.name}}</td>
-                            <td>Product Description</td>
+                            <td>{{productDescription(product)}}</td>
                             <td>{{product.manufacturer}}</td>
 
                             <td>
@@ -79,7 +79,7 @@
                 <tr v-for="(product, index) in shortage_list" :key="index">
                     <td>{{product.wholesaler_name ? product.wholesaler_name : ''}}</td>
                     <td>{{product.product.name}}</td>
-                    <td>Product Description</td>
+                    <td>{{productDescription(product)}}</td>
                     <td>{{product.manufacturer}}</td>
 
                     <td>
