@@ -10,10 +10,13 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class ProductImport implements ToModel, WithHeadingRow
 {
-    /**
-    * @param Collection $collection
+   /**
+    * @param array $row
+    *
+    * @return \Illuminate\Database\Eloquent\Model|null
     */
-    public function collection(Collection $collection)
+
+    public function model(array $row)
     {
         $brand_name = Str::substr($row['brand_name'], 0, 3);
         $generic_name = Str::substr($row['generic_name'], 0, 3);
@@ -24,7 +27,7 @@ class ProductImport implements ToModel, WithHeadingRow
             'manufacturer' => $row['manufacturer'],
             'product_name' => $row['brand_name'],
             'dosage_form' => $row['dosage_form'],
-            'active_ingredient' => $row['generic_name'],
+            'active_ingredients' => $row['generic_name'],
             'drug_legal_status' => $row['drug_legal_status'],
         ]);
     }

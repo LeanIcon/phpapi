@@ -30,7 +30,7 @@
                         <tr v-for="(product) in products" :key="product.id">
                             <td>{{product.wholesaler_name ? product.wholesaler_name : ''}}</td>
                             <td>{{product.product.name}}</td>
-                            <td>Product Description</td>
+                            <td>{{productDescription(product)}}</td>
                             <td>{{product.manufacturer}}</td>
 
                             <td>
@@ -77,17 +77,17 @@
             </thead>
             <tbody>
                 <tr v-for="(product, index) in shortage_list" :key="index">
-                     <td>{{product.wholesaler_name ? product.wholesaler_name : ''}}</td>
-                            <td>{{product.product.name}}</td>
-                            <td>Product Description</td>
-                            <td>{{product.manufacturer}}</td>
+                    <td>{{product.wholesaler_name ? product.wholesaler_name : ''}}</td>
+                    <td>{{product.product.name}}</td>
+                    <td>{{productDescription(product)}}</td>
+                    <td>{{product.manufacturer}}</td>
 
                     <td>
                         {{product.packet_size}}
                     </td>
 
                     <td>
-                         {{product.product.packet_size}}
+                        {{product.product.packet_size}}
                     </td>
                     <td style="width: 75px;">
                         <input v-model.number="product.quantity" type="text" class="form-control">
@@ -147,7 +147,7 @@ export default {
                 }) => {
                     this.products = data
                     this.loading != this.loading
-                    console.log(this.products)
+                    // console.log(this.products)
                     loading.close();
                 })
                 .catch(({
@@ -199,7 +199,7 @@ export default {
                 .catch(({
                     response
                 }) => {
-                    console.log(response)
+                    // console.log(response)
                     this.loading != this.loading
                     loading.close();
                 })
@@ -211,7 +211,7 @@ export default {
             this.$modal.show('po-preview-modal');
         },
         checkUpdate() {
-            console.log(this.shortage_list);
+            // console.log(this.shortage_list);
         },
         updateCheck() {
             if (this.shortage_list.length == this.products.data.length) {
@@ -219,8 +219,8 @@ export default {
             } else {
                 this.isCheckAll = false;
             }
-            console.log(this.selected_products);
-            console.log(Object.values(this.selected_products).length);
+            // console.log(this.selected_products);
+            // console.log(Object.values(this.selected_products).length);
         },
         productDesc(product) {
             let active_ing = product.active_ingredients ?? '';

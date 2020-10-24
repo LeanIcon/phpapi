@@ -43,7 +43,7 @@ export default new Vuex.Store({
     mutations: {
         loginCreds(state, user) {
             state.user = user;
-            console.log(state.user);
+            // console.log(state.user);
         }
     },
     actions: {

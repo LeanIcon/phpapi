@@ -2,25 +2,26 @@
 
 namespace App\Models;
 
-use App\Casts\Json;
-use App\Models\WholesalerProduct;
 use App\User;
-use Illuminate\Database\Eloquent\Model;
+use App\Casts\Json;
+use Illuminate\Support\Str;
+use App\Models\WholesalerProduct;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
+use Illuminate\Database\Eloquent\Model;
 
 class Product extends ApiModel implements Searchable
 {
     protected $table = "products";
     protected $fillable = ['name', 'image_url', 'code','active_ingredients', 'associated_name','dosage_form_id', 'packet_size', 'dosage_class_slug', 'product_code',
-    'associated_name', 'brand_name', 'generic_name','therapeutic_class', 'drug_legal_status',
-    ' category', 'strength', 'drug_class_id', 'type', 'product_category_id', 'manufacturer_id','dosage_form_slug','product_category_slug'];
+    'associated_name', 'brand_name', 'generic_name','therapeutic_class', 'drug_legal_status', 'manufacturer',
+    ' category', 'dosage_form','strength', 'drug_class_id', 'type', 'product_category_id', 'manufacturer_id','dosage_form_slug','product_category_slug'];
 
 
 
-    protected $casts = [
-        'active_ingredients' => Json::class
-    ];
+    // protected $casts = [
+    //     'active_ingredients' => Json::class
+    // ];
 
 
     public $appends = [
@@ -40,6 +41,17 @@ class Product extends ApiModel implements Searchable
     }
 
 
+    // public function setProductCodeAttribute()
+    // {
+    //     $brand_name = Str::substr($data['brand_name'], 0, 3);
+    //     $generic_name = Str::substr($data['generic_name'], 0, 3);
+    //     $drugCode = "$brand_name$generic_name";
+
+    //     $this->attributes['product_code'] =  $drugCode;
+    //     return $drugCode;
+    // }
+
+
     public function getManufacturerAttribute()
     {
         $maftr = Manufacturer::find($this->manufacturer_id);
@@ -52,7 +64,7 @@ class Product extends ApiModel implements Searchable
         return $productCat;
     }
 
-    
+
     public function scopeIsDrug($query, $wholesalerId = null)
     {
         return $query->where('product_category_slug', 'drugs');
@@ -94,7 +106,7 @@ class Product extends ApiModel implements Searchable
      public function getSearchResult(): SearchResult
     {
         //$url = route('admin.pages.retailers.search', $this->id);
- 
+
         return new SearchResult(
             $this,
             $this->name,
@@ -102,6 +114,116 @@ class Product extends ApiModel implements Searchable
             //$url
         );
     }
+
+
+    /**
+     * Pick first 3 letters from brand name and generic name
+     *
+     * @param [type] $data
+     * @return String
+     */
+    // public function generateDrugCode($data)
+    // {
+    //     $brand_name = Str::substr($data['brand_name'], 0, 3);
+    //     $generic_name = Str::substr($data['generic_name'], 0, 3);
+    //     $drugCode = "$brand_name$generic_name";
+
+    //     return $drugCode;
+    // }
+
+    /**
+     * Get last product from Collection
+     * Generic Code Increment
+     * @param [type] $data
+     * @return String
+     */
+    public function getDrugCodeProducts($product)
+    {
+        $proCode =  $product['product_code'];
+        $getLastProd =  self::where('product_code', 'like', '%'. $product['product_code'] .'%')->get();
+                            // ->where('strength', '=' , $product['strength'])
+                            // ->where('dosage_form', '=' , $product['dosage_form'])
+
+        if($getLastProd->count() > 0) {
+            $getLastProd = collect($getLastProd)->last();
+            return $getLastProd;
+        }
+
+        return $product;
+        // return $inComingProdCode = $this->generateDrugCode($proCode);
+    }
+
+    /**
+     * Get last product from Collection
+     * Generic Code Increment
+     * @param [type] $data
+     * @return String
+     */
+    public function checkDrugCodeExist($product, $code)
+    {
+        // return $product;
+        // $proCode =  $product['product_code'];
+        $checkProduct =  self::where('product_code', 'like', '%'. $code .'%')
+                            ->where('strength', '=' , $product['strength'])
+                            ->where('dosage_form', '=' , $product['dosage_form'])
+                            ->get();
+
+        // return $checkProduct;
+
+        if ($checkProduct->count() > 0) {
+            return true;
+        }
+        return false;
+
+        // if($getLastProd->count() > 0) {
+        //     $getLastProd = collect($getLastProd)->last();
+        //     return $getLastProd->product_code;
+        // }
+        // return $product['product_code'];
+        // return $inComingProdCode = $this->generateDrugCode($proCode);
+    }
+
+    /**
+     * Pick first 3 letters from brand name and generic name
+     * Generic Code Increment
+     * @param [type] $data
+     * @return String
+     */
+    public function generateDrugCodeInc($codeCheck, $prodCode)
+    {
+        $idxCode = 0;
+
+        // return $codeCheck;
+
+        $pcode = $codeCheck['product_code'];
+        // $code = $this->generateDrugCode($codeComb);
+        if(Str::of($pcode)->exactly($prodCode)) {
+            $genCode = $idxCode+=1;
+            return  "$prodCode$genCode";
+        }
+
+        // $checkExist = $this->checkDrugCodeExist($codeCheck);
+        // $existCount = collect($checkExist)->count();
+        // if ($existCount > 0 ) {
+        //    return;
+        // }
+        // else{
+        //     ;;
+        // }
+        $getLastDig = Str::after($pcode, $prodCode);
+
+        $typeCastCode = (int)$getLastDig;
+        $typeCastCode+=1;
+
+        return "$prodCode$getLastDig";
+
+
+    }
+
+    // public function count($data = null)
+    // {
+    //     return $data->count();
+    // }
 
 
 }

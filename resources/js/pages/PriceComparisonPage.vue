@@ -100,7 +100,7 @@ export default {
                     data
                 }) => {
                     this.products = data;
-                    console.log(data)
+                    // console.log(data)
                     this.loading != this.loading;
                     loading.close();
                 })

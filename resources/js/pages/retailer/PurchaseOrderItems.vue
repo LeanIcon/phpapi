@@ -5,6 +5,7 @@
         SAVE
     </vs-button>
     <table class="table table-centered dt-responsive nowrap no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+
         <thead class="thead-light">
             <tr>
                 <th>Product Name</th>
@@ -18,15 +19,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(product, index) in po_products" :key="index">
-                <td>{{product.name ? product.name : product.product_name}}</td>
+            <tr v-for="(product, index) in products" :key="index">
+                <td>{{product.product.name ? product.product.name : product.product_name}}</td>
                 <td>
                     {{productDesc(product)}}
                 </td>
-                <td>{{product.manufacturer.name ? product.manufacturer.name : product.manufacturer}}</td>
+                <td>{{product.product.manufacturer.name ? product.product.manufacturer.name : product.manufacturer}}</td>
 
                 <td>
-                    {{product.packet_size}}
+                    {{product.product.packet_size}}
                 </td>
 
                 <td>
@@ -52,11 +53,11 @@
 
 <script>
 export default {
-    props: ['po_products'],
+    props: ['products'],
     methods: {
         productDesc(product) {
-            let active_ing = product.active_ingredients ?? '';
-            return active_ing + ' ' + product.strength;
+            let active_ing = product.product.active_ingredients ?? '';
+            return active_ing + ' ' + product.product.strength;
         },
         savePurchaseOrder() {
             this.$emit('savePO');

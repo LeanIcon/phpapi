@@ -1,19 +1,19 @@
 <template>
-  <div>
-      <div class="card">
-          <div class="card-body">
-              <div class="form-group col-lg-5">
-                        <label for="manufacturername">Retailers</label>
-                           <select v-model="selectedUser" @change="userChanged($event)" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                            <option value="" disabled hidden >Select</option>
-                            <option :value="user.id"  v-for="(user, index) in users.data" :key="index" >{{user.name}}</option>
-                        </select>
-                    </div>
-          </div>
-      </div>
-      <!-- <user-details :userId="selectedUser ? selectedUser : userId" ></user-details> -->
-      <retailer-details :userId="selectedUser ? selectedUser : userId"></retailer-details>
-  </div>
+<div>
+    <div class="card">
+        <div class="card-body">
+            <div class="form-group col-lg-5">
+                <label for="manufacturername">Retailers</label>
+                <select v-model="selectedUser" @change="userChanged($event)" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                    <option value="" disabled hidden>Select</option>
+                    <option :value="user.id" v-for="(user, index) in users.data" :key="index">{{user.name}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <!-- <user-details :userId="selectedUser ? selectedUser : userId" ></user-details> -->
+    <retailer-details :userId="selectedUser ? selectedUser : userId"></retailer-details>
+</div>
 </template>
 
 <script>
@@ -35,15 +35,17 @@ export default {
             this.loading = !this.loading
             const loading = this.$vs.loading();
             await axios.get(`admin/${url}`)
-            .then(({data}) => {
-                this.users = data
-                this.loading != this.loading
-                loading.close();
+                .then(({
+                    data
+                }) => {
+                    this.users = data
+                    this.loading != this.loading
+                    loading.close();
                 })
-            .catch((error) => console.log(error))
+                .catch((error) => console.log(error))
         },
-        userChanged(event){
-            console.log("Changed Event User", event.target.value);
+        userChanged(event) {
+            // console.log("Changed Event User", event.target.value);
             this.$emit('retailerOptionChanged', event.target.value)
         }
     },
@@ -57,10 +59,10 @@ export default {
         }
     },
     watch: {
-        '$route': function(to, from) {
+        '$route': function (to, from) {
             this.selectedUser = this.userId = this.to.params.id
         },
-        selectedUser: function(val) {
+        selectedUser: function (val) {
             return this.userId
         }
     },
