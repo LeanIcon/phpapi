@@ -59,6 +59,7 @@ class ProductUploadController extends Controller
             $prod['strength'] = $value['strength'];
             $prod['therapeutic_class'] = $value['therapeutic_class'];
             $prod['active_ingredients'] = $value['generic_name'];
+            $prod['name'] = $value['brand_name'];
             $prod['product_code'] = "$bname$gname";
 
 

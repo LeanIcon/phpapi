@@ -2,9 +2,9 @@
 <div>
     <div class="card">
         <div class="card-body">
-             Name: <strong>{{getWholesalerData.name}}</strong> <br>
-             Email: <strong>{{getWholesalerData.email}}</strong> <br>
-             Contact:<strong>{{getWholesalerData.phone}}</strong>
+            Name: <strong>{{getWholesalerData.name}}</strong> <br>
+            Email: <strong>{{getWholesalerData.email}}</strong> <br>
+            Contact:<strong>{{getWholesalerData.phone}}</strong>
         </div>
     </div>
     <!-- <div class="row">
@@ -18,7 +18,8 @@
         </div> -->
 
     <div class="table-responsive mt-3">
-        <button class="btn btn-info" @click="previewSweetModal()">Cost of Selected Products {{getPurchaseOrderQty}}</button> <!--{{!Number.isNaN(calculateTotal) ? calculateTotal : ''}} -->
+        <button class="btn btn-info" @click="previewSweetModal()">Cost of Selected Products {{getPurchaseOrderQty}}</button>
+        <!--{{!Number.isNaN(calculateTotal) ? calculateTotal : ''}} -->
         <table class="table table-centered dt-responsive nowrap no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
             <thead class="thead-light">
                 <tr>
@@ -34,12 +35,12 @@
             </thead>
             <tbody>
                 <tr v-for="(product, index) in products.data" :key="index">
-                    <td> <img style="width:75px;" class="rounded-circle" :src="'/assets/images/product/drugsamp.jpg'" :alt="product.name ? product.name : product.product_name"> {{product.name ? product.name : product.product_name}}</td>
+                    <td> <img style="width:75px;" class="rounded-circle" :src="'/assets/images/product/drugsamp.jpg'" :alt="product.product.name ? product.product.name : product.product_name"> {{product.product.name ? product.product.name : product.product_name}}</td>
                     <td style="width: 100px;">{{productDesc(product)}}</td>
-                    <td style="width: 190px;">{{product.manufacturer.name ? product.manufacturer.name : product.manufacturer}}</td>
+                    <td style="width: 190px;">{{product.product.manufacturer.name ? product.product.manufacturer.name : product.product.manufacturer}}</td>
 
                     <td style="width: 190px;">
-                        {{product.packet_size}}
+                        {{product.product.packet_size}}
                     </td>
 
                     <td style="width: 150px;">
@@ -49,11 +50,11 @@
                         <input v-model.number="product.quantity" type="number" class="form-control">
                     </td>
                     <!-- <td>
-                         <h6 v-if="product.quantity > 0">GH₵ {{formatPrice(product.price) * product.quantity}}</h6> 
+                         <h6 v-if="product.quantity > 0">GH₵ {{formatPrice(product.price) * product.quantity}}</h6>
                          <h6  v-else>{{formatPrice(product.price) * product.quantity}}</h6>
                     </td> -->
                     <td>
-                        <vs-checkbox v-model="po_products"  color="success" :val="product" style="width: 20px; height:20px;">
+                        <vs-checkbox v-model="po_products" color="success" :val="product" style="width: 20px; height:20px;">
                         </vs-checkbox>
                     </td>
                 </tr>
@@ -75,7 +76,7 @@
         </div> -->
 
     <sweet-modal ref="review_po" width="70%">
-        <purchase-order-items :po_products="selectPurchaseOrderProducts" @savePO="savePurchaseOrder"></purchase-order-items>
+        <purchase-order-items :products="selectPurchaseOrderProducts" @savePO="savePurchaseOrder"></purchase-order-items>
     </sweet-modal>
 </div>
 </template>
@@ -144,7 +145,7 @@ export default {
                 }) => {
                     this.products = data
                     this.loading != this.loading
-                    // console.log(data);
+                    console.log(data);
                     loading.close();
                 })
                 .catch(({
@@ -178,7 +179,7 @@ export default {
                 .catch(({
                     response
                 }) => {
-                    console.log(response)
+                    // console.log(response)
                     this.$router.push({
                         name: 'retailer.dashboard'
                     })
@@ -203,7 +204,7 @@ export default {
             }
         },
         formatPrice(product) {
-            var formattedPrice = parseFloat(product.pivot.price);
+            var formattedPrice = parseFloat(product.price);
             return formattedPrice;
         },
         formatLineTotal(qty) {
@@ -211,9 +212,9 @@ export default {
             return lineTotal ?? 0;
         },
         productDesc(product) {
-            let active_ing = product.active_ingredients ?? '';
+            let active_ing = product.product.active_ingredients ?? '';
             let generic = product.name ?? '';
-            return active_ing + ' ' + product.strength;
+            return active_ing + ' ' + product.product.strength;
         },
         getNextPage() {
             this.loadProduct(this.products.links.next);
@@ -259,7 +260,7 @@ export default {
     mounted() {
         this.loadProduct();
         this.po_products = this.selectPurchaseOrderProducts;
-        // console.log("PO Page", this.wholesalerId)
+        console.log("PO Page", this.po_products)
     }
 
 }

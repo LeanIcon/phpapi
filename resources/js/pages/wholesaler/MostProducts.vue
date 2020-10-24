@@ -150,6 +150,7 @@ export default {
     },
     methods: {
         previewSelectedItems(product) {
+            // console.log(product);
             this.$modal.show('product-preview-modal');
             this.product.name = product.name
             this.product.manufacturer = product.manufacturer
@@ -285,6 +286,8 @@ export default {
             // console.log(this.multiple_products);
             let numofItem = Object.keys(this.multiple_products).length;
             console.log(numofItem);
+            console.log(this.multiple_products);
+            return numofItem;
         }
     },
     mounted() {
