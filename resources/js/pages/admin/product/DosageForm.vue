@@ -109,7 +109,8 @@ export default {
                 axios.put('dosage_form/'+ id, this.dosage_form
                     )
                     .then(resp => {
-                        this.dosage_form.name = ''
+                        this.dosage_form.name = '',
+                        this.dosage_form.slug = ''
                         this.loaddosage()
                         this.$swal('Dosage Form edited successfully');
                     })
@@ -138,6 +139,7 @@ export default {
                     .then((res) => {
                         console.log(res.data);
                         this.dosage_form.name = '';
+                        this.dosage_form.slug = ''
                         this.loaddosage()
                         $('dosage_form-modal').modal('hide');
                         

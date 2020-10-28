@@ -38,7 +38,7 @@
                             </td>
 
                             <td> <img style="width:75px;" class="mg-fluid img-thumbnail" :src="'/assets/images/product/drugsamp.jpg'" :alt="product.name ? product.name : product.product_name"> {{product.name ? product.name : product.product_name}}</td>
-                            <td>{{productDesc(product)}} {{product.dosage_form}}</td>
+                            <td>{{productDesc(product)}} {{product.dosage_form}} {{product.drug_legal_status.name}}</td>
                             <td>{{product.manufacturer.name}}</td>
 
                             <td>
@@ -118,6 +118,7 @@
                                     <option>Select</option>
                                     <option :value="dosage_form.id" v-for="(dosage_form, index) in dosage_forms.data" :key="index">{{dosage_form.name}}</option>
                                 </select>
+                                
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -161,8 +162,10 @@ export default {
                 manufacturer_id: '',
                 name: '',
                 category: '',
-                category_type: '',
                 dosage_form: '',
+                dosage_form_id: '',
+                category_type: '',
+                dosage_form_id: '',
                 drug_class: '',
                 strength: '',
                 packet_size: '',
@@ -199,13 +202,13 @@ export default {
             this.product.category = product.category
             this.product.category_type = product.category_type
             this.product.dosage_form_id = product.dosage_form_id
+            this.product.dosage_form = product.dosage_form
             this.product.drug_class = product.drug_class
             this.product.strength = product.strength
             this.product.packet_size = product.packet_size
             this.product.drug_legal_status = product.drug_legal_status
             this.product.active_ingredients = product.active_ingredients
             this.product.therapeutic_class = product.therapeutic_class
-            this.product.id = product.id
         },
         openLoader() {
             if (this.loading) {
@@ -251,6 +254,7 @@ export default {
                         this.product.name = '',
                         this.product.manufacturer = '',
                         this.product.dosage_form_id = '',
+                        this.product.dosage_form = '',
                         this.product.strength = '',
                         this.product.packet_size = '',
                         this.product.drug_class = '',
@@ -367,6 +371,4 @@ a,
 label {
     font-family: 'Roboto' !important;
 }
-</style><style>
-</style>
 </style>
