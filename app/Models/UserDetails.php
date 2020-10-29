@@ -23,6 +23,6 @@ class UserDetails extends Model
     public function getUserLocationAttribute()
     {
         $location  = Location::find($this->location);
-        return $location->name;
+        return $location->name ?? '';
     }
 }
