@@ -6,7 +6,7 @@
                 <h4 class="mb-0 hd-four">RETAILING</h4>
 
                 <!-- <div class="page-title-right">
-                    <ol class="breadcrumb m-0">
+                    <old class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Nnuro</a></li>
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
@@ -17,7 +17,7 @@
     </div>
     <!-- end page title -->
     <div class="row">
-      <stats :cardTitle="medDevices" :cardValue="product_count" ></stats>
+      <stats :cardTitle="produ" :cardValue="product_count" ></stats>
       <stats :cardTitle="purchaseOrdersReceived" :cardValue="purchase_orders_count" ></stats>
       <!-- <stats :cardTitle="proForma" :cardValue="proforma_count" ></stats> -->
       <stats :cardTitle="inVoices" :cardValue="proforma_count" ></stats>
@@ -49,7 +49,7 @@ export default {
   },
   data() {
     return {
-      medDevices: "Medical Devices",
+      produ: "Total Products",
       purchaseOrdersReceived: "Purchase Order Received",
       proForma: "Pro Forma Invoice",
       inVoices: "Invoices",

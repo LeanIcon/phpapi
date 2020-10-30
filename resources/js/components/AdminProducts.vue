@@ -38,7 +38,7 @@
                             </td>
 
                             <td> <img style="width:75px;" class="mg-fluid img-thumbnail" :src="'/assets/images/product/drugsamp.jpg'" :alt="product.name ? product.name : product.product_name"> {{product.name ? product.name : product.product_name}}</td>
-                            <td>{{productDesc(product)}} {{product.dosage_form}} {{product.drug_legal_status.name}}</td>
+                            <td>{{productDesc(product)}} {{product.dosage_form.name}}</td>
                             <td>{{product.manufacturer.name}}</td>
 
                             <td>
