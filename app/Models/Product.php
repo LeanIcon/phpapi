@@ -25,7 +25,8 @@ class Product extends ApiModel implements Searchable
 
 
     public $appends = [
-        'manufacturer'
+        'manufacturer',
+        'dosage_form'
     ];
 
     public function wholesalers()
@@ -58,15 +59,11 @@ class Product extends ApiModel implements Searchable
         return $maftr ?? 'na';
     }
 
-
-    public function getdosageformAttribute()
+    public function getDosageFormAttribute()
     {
-        $dosa = DosageForm::find($this->dosage_form_id);
-        return $dos ?? 'na';
+        $dform = DosageForm::find($this->dosage_form_id);
+        return $dform ?? 'na';
     }
-
-
-
 
     public function scopeProductCategory($value)
     {
