@@ -239,6 +239,7 @@ export default {
                 .then(({
                     data
                 }) => {
+                    console.log(data)
                     this.products = data
                     this.loading != this.loading
                     loading.close();
