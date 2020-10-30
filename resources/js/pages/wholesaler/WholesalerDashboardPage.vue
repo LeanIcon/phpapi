@@ -17,7 +17,7 @@
     </div>
     <!-- end page title -->
     <div class="row">
-      <stats :cardTitle="medDevices" :cardValue="product_count" ></stats>
+      <stats :cardTitle="produ" :cardValue="product_count" ></stats>
       <stats :cardTitle="purchaseOrdersReceived" :cardValue="purchase_orders_count" ></stats>
       <!-- <stats :cardTitle="proForma" :cardValue="proforma_count" ></stats> -->
       <stats :cardTitle="inVoices" :cardValue="proforma_count" ></stats>
@@ -49,7 +49,7 @@ export default {
   },
   data() {
     return {
-      medDevices: "Medical Devices",
+      produ: "Total Products",
       purchaseOrdersReceived: "Purchase Order Received",
       proForma: "Pro Forma Invoice",
       inVoices: "Invoices",
