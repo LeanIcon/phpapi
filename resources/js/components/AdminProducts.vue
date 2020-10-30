@@ -261,7 +261,8 @@ export default {
                         this.product.packet_size = '',
                         this.product.drug_class = '',
                         this.product.active_ingredients = '',
-                        this.product.category_type = ''
+                        this.product.category_type = '',
+                        this.therapeutic_class = '',
                     this.loadProduct()
                     this.$modal.hide('product-modal')
                     this.$swal('Product edited successfully');
