@@ -31,8 +31,8 @@ class ProductController extends ApiController
 
     public function search(Request $request)
     {
-        $product = $this->product::where('name', $request->keywords)->get();
-        return response()->json($product);
+        $products = $this->product::where('name', $request->keywords)->get();
+        return response()->json($products);
 
     }
 

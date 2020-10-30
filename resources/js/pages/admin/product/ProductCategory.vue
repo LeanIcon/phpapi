@@ -156,8 +156,7 @@ export default {
                 this.$modal.show('manu-modal');
                 this.productcat.name = productcat.name,
                 this.productcat.id = productcat.id,
-                this.productcat.status = productcat.status,
-                console.log("Worked")
+                this.productcat.status = productcat.status
                 
             },
 

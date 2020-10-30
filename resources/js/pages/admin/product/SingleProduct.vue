@@ -24,22 +24,19 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Category</label>
-                                    <select v-model="product.product_category_id" @change="onCategoryChang" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                                        <option value="undefined" disabled>Select</option>
-                                        <option :value="category.id" v-for="(category, index) in product_category.data" :key="index">{{category.name}}</option>
-                                    </select>
-                                </div>
+                               <div class="form-group">
+                                <label class="control-label">Generic Name</label>
+                                <input v-model="product.active_ingredients" id="active_ingredients" name="active_ingredients" type="text" class="form-control">
+                            </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Category Type</label>
-                                    <select v-model="product.category_type" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                                        <option value="undefined" disabled>Select</option>
-                                        <option :value="category_type.id" v-for="(category_type, index) in category_types.data" :key="index">{{category_type.name}}</option>
-                                    </select>
-                                </div>
+                                <label class="control-label">Drug Legal Status</label>
+                                <select v-model="product.drug_legal_status" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                    <option>Select</option>
+                                    <option :value="category_type.id" v-for="(category_type, index) in category_types.data" :key="index">{{category_type.name}}</option>
+                                </select>
+                            </div>
                             </div>
                         </div>
                         <div class="row">
@@ -54,12 +51,12 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="manufacturerbrand">Drug Class</label>
-                                    <select v-model="product.drug_class_id" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                                        <option value="" disabled hidden>Select</option>
-                                        <option :value="drug_class.id" v-for="(drug_class, index) in drug_classes.data" :key="index">{{drug_class.name}}</option>
-                                    </select>
-                                </div>
+                                <label for="drugclassname">Therapeutic Class</label>
+                                <select v-model="product.therapeutic_class" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                    <option>Select</option>
+                                    <option :value="drug_class.name" v-for="(drug_class, index) in drugclasses.data" :key="index">{{drug_class.name}}</option>
+                                </select>
+                            </div>
                             </div>
                         </div>
                         <div class="row">
@@ -117,38 +114,33 @@ export default {
     },
     data() {
         return {
-            product: {
-                manufacturer: '',
+             product: {
+                manufacturer_id: '',
                 name: '',
-                product_category_id: '',
+                category: '',
                 category_type: '',
-                dosage_form_id: '',
-                drug_class_id: '',
+                dosage_form: '',
+                drug_class: '',
                 strength: '',
-                packet_size: ''
+                packet_size: '',
+                drug_class: '',
+                drug_legal_status: '',
+                therapeutic_class: '',
+                active_ingredients: ''
             },
             productImage: '',
             manufacturers: {},
-            drug_classes: {},
+            drugclasses: {},
             dosage_forms: {},
             product_category: {},
             category_types: {},
+            drug_legal_statuses: {},
 
             links: {}
         }
     },
     methods: {
-        editProduct(product) {
-            this.$modal.show('product-modal');
-            this.product.name = product.name
-            this.product.manufacturer = product.manufacturer
-            this.product.category = product.category
-            this.product.category_type = product.category_type
-            this.product.dosage_form = product.dosage_form
-            this.product.drug_class = product.drug_class
-            this.product.strength = product.strength
-            this.product.packet_size = product.packet_size
-        },
+        
         openNotification(position = null, color) {
             const noti = this.$vs.notification({
                 color,
@@ -157,9 +149,7 @@ export default {
                 text: 'Product Save Successfully'
             })
         },
-        onCategoryChang(category) {
-            this.loadCategoryTypes(this.product.product_category_id)
-        },
+        
         saveProduct(url = 'admin_products') {
             const data = this.product;
             // console.log(this.product);
@@ -186,17 +176,7 @@ export default {
                     response
                 }) => console.log("Error"))
         },
-        async loadProductCategory() {
-            await axios.get('product_category')
-                .then(({
-                    data
-                }) => {
-                    this.product_category = data
-                })
-                .catch(({
-                    response
-                }) => console.log("Error"))
-        },
+        
         async loadDosageForm() {
             await axios.get('dosage_form')
                 .then(({
@@ -208,16 +188,17 @@ export default {
                     response
                 }) => console.log("Error"))
         },
-        async loadDrugClass() {
+         async loaddrugclass() {
             await axios.get('drug_class')
                 .then(({
                     data
                 }) => {
-                    this.drug_classes = data
+                    this.drugclasses = data
+                    // console.log(data);
                 })
                 .catch(({
                     response
-                }) => console.log("Error"))
+                }) => console.log(response))
         },
         onPictureChanged() {
             console.log("New Picture loaded")
@@ -231,24 +212,38 @@ export default {
         onPictureRemoved() {
             console.log("Picture Removed")
         },
-        async loadCategoryTypes(category_type) {
-            await axios.get('category_types?product_category_id=' + category_type)
+
+        async loaddruglegalstatus() {
+            await axios.get('category_types')
                 .then(({
                     data
                 }) => {
                     this.category_types = data
+                    // console.log(data);
                 })
                 .catch(({
                     response
-                }) => console.log("Error"))
+                }) => console.log(response))
         },
+        // async loadCategoryTypes(category_type) {
+        //     await axios.get('category_types?product_category_id=' + category_type)
+        //         .then(({
+        //             data
+        //         }) => {
+        //             this.category_types = data
+        //         })
+        //         .catch(({
+        //             response
+        //         }) => console.log("Error"))
+        // },
     },
     computed: {},
     mounted() {
         this.loadManufacturers();
-        this.loadProductCategory();
+        // this.loadProductCategory();
         this.loadDosageForm();
-        this.loadDrugClass();
+        this.loaddrugclass();
+        this.loaddruglegalstatus();
     },
 
 }
