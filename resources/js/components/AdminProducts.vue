@@ -197,6 +197,7 @@ export default {
         // },
         editProduct(product) {
             this.$modal.show('product-modal');
+            this.product.id = product.id
             this.product.name = product.name
             this.product.manufacturer_id = product.manufacturer_id
             this.product.category = product.category
@@ -248,6 +249,7 @@ export default {
         },
 
         editpro() {
+            console.log(this.product)
             var id = this.product.id
             axios.put('admin_products/' + id, this.product)
                 .then(resp => {
