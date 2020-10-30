@@ -58,6 +58,16 @@ class Product extends ApiModel implements Searchable
         return $maftr ?? 'na';
     }
 
+
+    public function getdosageformAttribute()
+    {
+        $dosa = DosageForm::find($this->dosage_form_id);
+        return $dos ?? 'na';
+    }
+
+
+
+
     public function scopeProductCategory($value)
     {
         $productCat = ProductCategory::find($this->product_category_id);
