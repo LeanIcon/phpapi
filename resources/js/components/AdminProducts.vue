@@ -28,7 +28,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                         <tr v-for="(product, index) in products.data" :key="index">
                             <td>
                                 <div class="custom-control custom-checkbox">
@@ -118,7 +118,7 @@
                                     <option>Select</option>
                                     <option :value="dosage_form.id" v-for="(dosage_form, index) in dosage_forms.data" :key="index">{{dosage_form.name}}</option>
                                 </select>
-                                
+
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -174,7 +174,7 @@ export default {
                 therapeutic_class: '',
                 active_ingredients: ''
             },
-            
+
             products: [],
             manufacturers: {},
             drugclasses: {},
@@ -184,7 +184,7 @@ export default {
             category_types: {},
             loading: false,
             keywords: null,
-        
+
         }
     },
     methods: {
@@ -239,7 +239,6 @@ export default {
                 .then(({
                     data
                 }) => {
-                    console.log(data)
                     this.products = data
                     this.loading != this.loading
                     loading.close();
@@ -247,12 +246,11 @@ export default {
                 .catch((error) => console.log(error))
         },
 
-        editpro(){
-                var id = this.product.id
-                axios.put('admin_products/'+ id, this.product
-                    )
-                    .then(resp => {
-                        this.product.name = '',
+        editpro() {
+            var id = this.product.id
+            axios.put('admin_products/' + id, this.product)
+                .then(resp => {
+                    this.product.name = '',
                         this.product.manufacturer = '',
                         this.product.dosage_form_id = '',
                         this.product.dosage_form = '',
@@ -261,14 +259,14 @@ export default {
                         this.product.drug_class = '',
                         this.product.active_ingredients = '',
                         this.product.category_type = ''
-                        this.loadProduct()
-                        this.$modal.hide('product-modal')
-                        this.$swal('Product edited successfully');
-                    })
-                    .catch(error => {
+                    this.loadProduct()
+                    this.$modal.hide('product-modal')
+                    this.$swal('Product edited successfully');
+                })
+                .catch(error => {
                     console.log(error);
-                    })
-            },
+                })
+        },
         async loadManufacturers() {
             await axios.get('manufacturers')
                 .then(({
@@ -281,7 +279,6 @@ export default {
                     response
                 }) => console.log(response))
         },
-
 
         async loaddrugclass() {
             await axios.get('drug_class')
@@ -309,8 +306,6 @@ export default {
                 }) => console.log(response))
         },
 
-
-
         async loaddosageform() {
             await axios.get('dosage_form')
                 .then(({
@@ -323,7 +318,6 @@ export default {
                     response
                 }) => console.log(response))
         },
-
 
         productDesc(product) {
             return product.active_ingredients + ' ' + product.strength;
