@@ -31,10 +31,10 @@
                                 <td>{{user.phone}}</td>
 
                                 <td>
-                                    {{user.is_active}}
+                                    {{userConfirmStatus(user)}}
                                 </td>
                                 <td>
-                                    {{user.pin_confirmed}}
+                                    {{userStatus(user)}}
                                 </td>
                                 <td>
                                     <a href="javascript:void(0);" @click="editUser(user)" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-edit font-size-18"></i></a>
@@ -124,6 +124,18 @@ export default {
             this.selectedUser.location = user.details.location ?? 'na';
             this.selectedUser.contact_person = user.details.contact_person;
             this.$modal.show('user-modal');
+        },
+        userStatus(user) {
+            if (user.status) {
+                return "Active";
+            }
+            return "Not Active"
+        },
+        userConfirmStatus(user) {
+            if (user.pin_confirmed) {
+                return "Confirmed";
+            }
+            return "Not Confirmed"
         },
         viewUser(user) {
             this.$router.push({

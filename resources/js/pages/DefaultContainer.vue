@@ -27,47 +27,49 @@
 // import * as roleHelpers from '../_helpers/role';
 import {
     UserTypes
-} from "../_helpers/role";
+} from '../_helpers/role'
 // let ut = roleHelpers;
 
-import NavBarVue from "../components/NavBar.vue";
-import SidebarVue from "../components/Sidebar.vue";
-import RightBarVue from "../components/RightBar.vue";
-import BreadCrumbVue from "../components/BreadCrumb.vue";
-import WholesaleSidebarVue from "../components/wholesaler/WholesaleSidebar.vue";
-import RetailSidebarVue from "../components/retailer/RetailSidebar.vue";
+import NavBarVue from '../components/NavBar.vue'
+import SidebarVue from '../components/Sidebar.vue'
+import RightBarVue from '../components/RightBar.vue'
+import BreadCrumbVue from '../components/BreadCrumb.vue'
+import WholesaleSidebarVue from '../components/wholesaler/WholesaleSidebar.vue'
+import RetailSidebarVue from '../components/retailer/RetailSidebar.vue'
 export default {
-    props: ["userMode"],
+    props: ['userMode'],
     components: {
-        navBar: NavBarVue,
-        sideBar: SidebarVue,
-        rightBar: RightBarVue,
-        breadCrumb: BreadCrumbVue,
-        wholeSaleSideBar: WholesaleSidebarVue,
-        retailSideBar: RetailSidebarVue,
+        'navBar': NavBarVue,
+        'sideBar': SidebarVue,
+        'rightBar': RightBarVue,
+        'breadCrumb': BreadCrumbVue,
+        'wholeSaleSideBar': WholesaleSidebarVue,
+        'retailSideBar': RetailSidebarVue
+
     },
     computed: {
         userLogin() {
             return this.$store.getters.account;
         },
         authUser() {
-            return this.$store.getters["account/loggedInUser"];
+            return this.$store.getters['account/loggedInUser'];
         },
         isAdmin() {
-            return this.$store.getters["account/userType"] == UserTypes.admin;
+            return this.$store.getters['account/userType'] == UserTypes.admin;
         },
         isWholesaler() {
-            return this.$store.getters["account/userType"] == UserTypes.wholesaler;
+            return this.$store.getters['account/userType'] == UserTypes.wholesaler;
         },
         isRetailer() {
-            return this.$store.getters["account/userType"] == UserTypes.retailer;
+            return this.$store.getters['account/userType'] == UserTypes.retailer;
         },
         userType() {
-            return this.$store.getters["account/userType"];
-        },
+            return this.$store.getters['account/userType'];
+        }
     },
     created() {
-        this.$store.dispatch("products/loadProduct");
-    },
-};
+        this.$store.dispatch('products/loadProduct')
+    }
+
+}
 </script>
