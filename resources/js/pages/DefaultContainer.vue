@@ -18,10 +18,10 @@
 </div>
 </template>
 
-<style src="../../../assets/css/app.css" lang="css"></style>
-<style src="../../../assets/css/bootstrap.min.css" lang="css"></style>
-<style src="../../../assets/css/icons.min.css" lang="css"></style>
-<style src="../../../assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" lang="css"></style>
+<style src="../../assets/css/app.css" lang="css"></style>
+<style src="../../assets/css/bootstrap.min.css" lang="css"></style>
+<style src="../../assets/css/icons.min.css" lang="css"></style>
+<style src="../../assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" lang="css"></style>
 
 <script>
 // import * as roleHelpers from '../_helpers/role';
