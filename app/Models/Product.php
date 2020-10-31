@@ -19,13 +19,15 @@ class Product extends ApiModel implements Searchable
 
 
 
-    protected $casts = [
-        'active_ingredients' => Json::class
-    ];
+    // protected $casts = [
+    //     'active_ingredients' => Json::class
+    // ];
 
 
     public $appends = [
-        'manufacturer'
+        'manufacturer',
+        'dosage_form',
+        'manufac'
     ];
 
     public function wholesalers()
@@ -56,6 +58,18 @@ class Product extends ApiModel implements Searchable
     {
         $maftr = Manufacturer::find($this->manufacturer_id);
         return $maftr ?? 'na';
+        // $m = $maftr ? $maftr : $this->manufacturer;
+    }
+
+    public function getManufacAttribute()
+    {
+        return $this->manufacturer;
+    }
+
+    public function getDosageFormAttribute()
+    {
+        $dform = DosageForm::find($this->dosage_form_id);
+        return $dform ?? 'na';
     }
 
     public function scopeProductCategory($value)
@@ -211,7 +225,9 @@ class Product extends ApiModel implements Searchable
         //     ;;
         // }
         $getLastDig = Str::after($pcode, $prodCode);
-        $getLastDig+=1;
+
+        $typeCastCode = (int)$getLastDig;
+        $typeCastCode+=1;
 
         return "$prodCode$getLastDig";
 
