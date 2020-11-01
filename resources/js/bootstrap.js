@@ -32,7 +32,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 if(process.env.NODE_ENV == 'production') {
     // window.axios.defaults.baseURL = 'https://nnuroadmin.herokuapp.com/api';
-    window.axios.defaults.baseURL = process.env.APP_URL + '/api' ;
+    window.axios.defaults.baseURL = `${process.env.APP_URL}/api` ;
     // window.axios.defaults.baseURL = process.env.VUE_APP_BASE_URL ;
 }else{
     window.axios.defaults.baseURL = 'http://localhost:8000/api';
