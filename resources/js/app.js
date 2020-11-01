@@ -11,21 +11,9 @@ import SweetModal from 'sweet-modal-vue/src/plugin.js';
 import carousel from 'vue-owl-carousel2';
 import VueSweetalert2 from 'vue-sweetalert2';
 import VueSuglify from "vue-suglify";
-import Vue from 'vue'
+import Vue from 'vue';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
-
-
-// import Modal from 'vmodal';
-// import Axios from "axios";
-
-
-// import Vuex from 'vuex';
-
-
-// import  "../../public/assets/css/app.css";
-// import  "../../public/css/app.css";
-// import  "../../public/assets/css/bootstrap.min.css";
 
 // window.noty = require('vuejs-noty');
 /**
@@ -57,11 +45,11 @@ Vue.filter('formatDate', function(value) {
         return moment(String(value)).format('MM/DD/YYYY hh:mm');
     }
 });
-// Vue.use(Vuex);
-// axios.defaults.headers.common['Accept'] = 'application/json';
-// axios.defaults.headers.common['Content-Type'] = 'application/json';
 
-window.axios.defaults.headers.get['Accept'] = 'application/json'; // default header for all get request
+// Vue.use(Vuex);
+// default header for all get request
+
+window.axios.defaults.headers.get['Accept'] = 'application/json';
 window.axios.defaults.headers.post['Accept'] = 'application/json';
 
 
