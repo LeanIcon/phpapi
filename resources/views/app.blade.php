@@ -6,6 +6,7 @@
         <title>Nnuro Admin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Admin & Dashboard" name="description" />
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
         <meta content="nnuro" name="author" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- App favicon -->
