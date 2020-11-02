@@ -12,7 +12,7 @@ import carousel from 'vue-owl-carousel2';
 import VueSweetalert2 from 'vue-sweetalert2';
 import VueSuglify from "vue-suglify";
 import Vue from 'vue';
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 
 
 // window.noty = require('vuejs-noty');

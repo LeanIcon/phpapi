@@ -19,7 +19,17 @@ class UserController extends ApiController
 
     public function updateUserStatus(Request $request)
     {
-        $changeStatus = $this->user::find($request->user_id)->delete();
+        $status = '';
+        if ($request->status) {
+            $status = 'true';
+        }
+        else{
+            $status = 'false';
+        }
+        $changeStatus = $this->user::find($request->id);
+        $changeStatus->status = $status;
+        $changeStatus->save();
+        // $changeStatus = $this->user::find($request->id)->delete();
         return \response()->json(['status' => 'User Status Updated']);
     }
 }

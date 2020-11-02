@@ -21,25 +21,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(user, index) in users.data" :key="index">
-                                <td>{{ user.name }}</td>
-                                <td>{{ userLocation(user) }}</td>
-                                <td>{{ userContactPrsn(user) }}</td>
-                                <td>{{ user.otp }}</td>
-                                <td>{{ user.phone }}</td>
-
-                                <td>
-                                    {{ userConfirmStatus(user) }}
-                                </td>
-                                <td>
-                                    {{ userStatus(user) }}
-                                </td>
-                                <td>
+                            <user-row v-for="user in users.data" :key="user.id" :user="user">
+                                <td slot="action" style="width: 150px">
                                     <a href="javascript:void(0);" @click="editUser(user)" class="mr-1 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-edit-box-line font-size-18"></i></a>
                                     <a href="javascript:void(0);" @click="viewUser(user)" class="mr-1 text-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-eye-fill font-size-18"></i></a>
                                     <a href="javascript:void(0);" @click="deleteUser(user)" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="ri-delete-bin-line font-size-18"></i></a>
                                 </td>
-                            </tr>
+                            </user-row>
                         </tbody>
                     </table>
                 </div>
@@ -96,7 +84,11 @@
 import {
     UserTypes
 } from "../_helpers/role";
+import UserRowVue from "./admin/UserRow.vue";
 export default {
+    components: {
+        UserRow: UserRowVue,
+    },
     data() {
         return {
             users: {},
@@ -108,6 +100,7 @@ export default {
                 phone: "",
                 location: "",
                 contact_person: "",
+                status: false,
             },
             view: false,
             regions: [],
@@ -150,6 +143,7 @@ export default {
             this.selectedUser.name = user.name;
             this.selectedUser.email = user.email;
             this.selectedUser.phone = user.phone;
+            this.selectedUser.status = user.status;
             this.selectedUser.location = user.details.location ?? "na";
             this.selectedUser.contact_person = user.details.contact_person;
             this.$modal.show("user-modal");
@@ -176,6 +170,7 @@ export default {
         },
         updateUser() {
             console.log(this.selectedUser);
+            return;
             axios
                 .post("update_status", data)
                 .then((response) => {
@@ -192,6 +187,12 @@ export default {
             var location = (((user || {}).details || {}).user_location || "") ?? "";
             return location;
         },
+        ustatus(user) {
+            if (user.status) {
+                return true;
+            }
+            return false;
+        },
         userStatus(user) {
             if (user.status) {
                 return "Active";
@@ -203,6 +204,12 @@ export default {
                 return "Confirmed";
             }
             return "Not Confirmed";
+        },
+    },
+    watch: {
+        "selectedUser.status": function (oldVal, newVal) {
+            console.log("Old Val " + oldVal + " " + "New Val: " + newVal);
+            this.updateUser();
         },
     },
     mounted() {
