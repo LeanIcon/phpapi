@@ -21,7 +21,7 @@
                             <ul class="list-unstyled personal-detail">
                                 <li class=""><i class="fa fa-phone mr-2 text-info font-18"></i> <b> phone </b> {{user.phone}}</li>
                                 <li class="mt-2"><i class="fa fa-phone text-info font-18 mt-2 mr-2"></i> <b> Email </b> : {{user.email}}</li>
-                                <li class="mt-2"><i class="fa fa-phone text-info font-18 mt-2 mr-2"></i> <b>Location</b> : {{userLocation(user)}}</li>
+                                <li class="mt-2"><i class="fa fa-phone text-info font-18 mt-2 mr-2"></i> <b>Location</b> : {{ getLocation(user) }}</li>
                             </ul>
                         </div>
                         <!--end col-->
@@ -148,7 +148,10 @@ export default {
             console.log(" Event Accepted", changedVal);
             this.wholesaleUser = changedVal
             this.fetchDetails(changedVal);
-        }
+        },
+        getLocation(user) {
+            return user.details?.user_location ?? "Not Available";
+        },
     },
     watch: {
         // 'userId': function(oldVal, newVal){
