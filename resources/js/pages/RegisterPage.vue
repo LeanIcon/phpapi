@@ -67,7 +67,7 @@
                                                     </div>
                                                     <div class="form-group  mb-2 col-lg-6">
                                                         <label for="username">Email</label>
-                                                        <input type="email" v-model="user.email" class="form-control" id="username" placeholder="email">
+                                                        <input type="email" v-model="user.email" class="form-control" id="username" placeholder="Email Address">
                                                     </div>
                                                 </div>
                                                 <div class="row">
